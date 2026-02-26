@@ -4,250 +4,555 @@ regions:
     name: Praha
     locative: v Praze
     title: Výkup nemovitostí v Praze | Rychlá nabídka
-    description: Rychlý výkup bytu, domu i podílu v Praze. Nezávazná konzultace zdarma.
+    description: V Praze zajišťujeme expresní výkup bytů, činžovních jednotek i podílů se
+      zaměřením na komplikované městské případy. Umíme převzít komunikaci se SVJ,
+      právníky i bankou a připravit převod v krátkém termínu.
     h1: Rychlý výkup nemovitostí v Praze
     heroCta: Získat nezávaznou nabídku
-    phone: "+420 800 123 001"
+    phone: +420 800 123 001
     email: praha@vykup-regiony.cz
     primaryCity: Praha
-    supportedCities: [Praha 1, Praha 2, Praha 3]
-    uspPoints: [První kontakt do 15 minut, Řešíme i exekuce a podíly, Transparentní postup bez skrytých poplatků]
+    supportedCities:
+      - Praha 1
+      - Praha 2
+      - Praha 3
+    uspPoints:
+      - První kontakt do 15 minut
+      - Řešíme i exekuce a podíly
+      - Transparentní postup bez skrytých poplatků
     faq:
-      - question: Za jak dlouho dostanu nabídku?
-        answer: Předběžnou nabídku obvykle do 24 hodin.
+      - question: Řešíte i byt s nájemní smlouvou v centru Prahy?
+        answer: Ano, standardně oceňujeme i jednotky s nájemníkem a navrhneme bezpečný postup
+          převodu bez výpadku nájmu.
+      - question: Mohu prodat podíl na bytě po rozvodu?
+        answer: Ano, podílové vlastnictví v Praze řešíme často a připravíme varianty podle
+          dohody mezi spoluvlastníky.
     legalDisclaimer: Každý případ posuzujeme individuálně.
-    hosts: [vykup-praha.cz, vykuppraha.cz, praha.localhost]
-
+    hosts:
+      - vykup-praha.cz
+      - vykuppraha.cz
+      - praha.localhost
+    testimonials:
+      - author: Jana K.
+        city: Praha 6
+        quote: Prodávali jsme byt po rozvodu a potřebovali rychlé vyrovnání. Dostali jsme jasný
+          harmonogram a vše se uzavřelo bez zdržení.
+      - author: Petr M.
+        city: Praha 9
+        quote: Ocenil jsem, že tým převzal komunikaci se správcem domu i bankou. Nemusel jsem
+          obíhat úřady a peníze přišly podle dohody.
   - key: stredocesky-kraj
     name: Středočeský kraj
     locative: ve Středočeském kraji
     title: Výkup nemovitostí ve Středočeském kraji | Rychlá nabídka
-    description: Výkup nemovitostí ve Středočeském kraji. Byty, domy, podíly i složité situace.
+    description: Ve Středočeském kraji vykupujeme rodinné domy, byty i rekreační objekty v
+      satelitních obcích kolem Prahy. Přizpůsobujeme postup dopravní dostupnosti i
+      místní poptávce, aby byl prodej rychlý a bez zbytečné administrativy.
     h1: Rychlý výkup nemovitostí ve Středočeském kraji
     heroCta: Nezávazně konzultovat
-    phone: "+420 800 123 002"
+    phone: +420 800 123 002
     email: stredocesky@vykup-regiony.cz
     primaryCity: Kladno
-    supportedCities: [Mladá Boleslav, Kolín, Příbram]
-    uspPoints: [Kontakt do 15 minut, Lokální specialisté, Bez provize]
+    supportedCities:
+      - Mladá Boleslav
+      - Kolín
+      - Příbram
+    uspPoints:
+      - Kontakt do 15 minut
+      - Lokální specialisté
+      - Bez provize
     faq:
-      - question: Vykupujete i zadlužené nemovitosti?
-        answer: Ano, včetně exekučních případů.
+      - question: Vykoupíte i dům v obci bez kanalizace?
+        answer: Ano, technické limity posoudíme individuálně a připravíme nabídku podle
+          skutečného stavu nemovitosti.
+      - question: Je možné řešit podpis mimo pracovní dny?
+        answer: Ano, u klientů dojíždějících do Prahy běžně domlouváme termíny i večer nebo o
+          víkendu.
     legalDisclaimer: Podmínky nabídky závisí na právním a technickém stavu.
-    hosts: [vykup-stredocesky.cz, stredocesky.localhost]
-
+    hosts:
+      - vykup-stredocesky.cz
+      - stredocesky.localhost
+    testimonials:
+      - author: Lucie R.
+        city: Kolín
+        quote: Prodávala jsem dům po rodičích a bála jsem se papírování. Všechny podklady mi
+          připravili a převod proběhl hladce.
+      - author: Milan T.
+        city: Příbram
+        quote: Měl jsem hypotéku i věcné břemeno, přesto našli řešení. Komunikace byla věcná a
+          férová od začátku do konce.
   - key: jihocesky-kraj
     name: Jihočeský kraj
     locative: v Jihočeském kraji
     title: Výkup nemovitostí v Jihočeském kraji
-    description: Rychlý výkup v Jihočeském kraji. Bezpečný a transparentní postup.
+    description: V Jihočeském kraji se zaměřujeme na byty ve městech i chalupy v
+      turistických oblastech. Díky zkušenosti s rekreačními nemovitostmi umíme správně
+      vyhodnotit sezónní tržní cenu i právní rizika.
     h1: Výkup nemovitostí v Jihočeském kraji
     heroCta: Odeslat poptávku
-    phone: "+420 800 123 003"
+    phone: +420 800 123 003
     email: jihocesky@vykup-regiony.cz
     primaryCity: České Budějovice
-    supportedCities: [Tábor, Písek, Jindřichův Hradec]
-    uspPoints: [Rychlá reakce, Pomoc s právním procesem, Nezávazná konzultace]
+    supportedCities:
+      - Tábor
+      - Písek
+      - Jindřichův Hradec
+    uspPoints:
+      - Rychlá reakce
+      - Pomoc s právním procesem
+      - Nezávazná konzultace
     faq:
-      - question: Musím mít připravené dokumenty?
-        answer: Ne, pomůžeme vám s tím.
+      - question: Kupujete i chatu u Lipna s horším přístupem?
+        answer: Ano, rekreační objekty posuzujeme často a počítáme i se specifiky lokality a
+          přístupové cesty.
+      - question: Jak probíhá prodej, když bydlím mimo region?
+        answer: Velkou část agendy vyřídíme na dálku, osobně řešíme jen klíčové podpisy a
+          ověření dokumentů.
     legalDisclaimer: Nejde o závaznou nabídku bez prověření podkladů.
-    hosts: [vykup-jihocesky.cz, jihocesky.localhost]
-
+    hosts:
+      - vykup-jihocesky.cz
+      - jihocesky.localhost
+    testimonials:
+      - author: Roman D.
+        city: Tábor
+        quote: Potřebovali jsme rychle prodat chatu před zimou. Nabídku jsme dostali obratem a
+          převod byl hotový během pár dní.
+      - author: Alena V.
+        city: České Budějovice
+        quote: Líbilo se mi, že mi vysvětlili i daňové dopady prodeje. Celý proces byl přehledný
+          a bez nátlaku.
   - key: plzensky-kraj
     name: Plzeňský kraj
     locative: v Plzeňském kraji
     title: Výkup nemovitostí v Plzeňském kraji
-    description: Výkup bytů, domů i podílů v Plzeňském kraji.
+    description: V Plzeňském kraji vykupujeme městské byty i venkovské domy se složitým
+      technickým stavem. Klientům pomáháme zejména tam, kde je potřeba rychle uzavřít
+      spoluvlastnictví nebo vypořádat zástavu.
     h1: Rychlý výkup nemovitostí v Plzeňském kraji
     heroCta: Získat konzultaci
-    phone: "+420 800 123 004"
+    phone: +420 800 123 004
     email: plzensky@vykup-regiony.cz
     primaryCity: Plzeň
-    supportedCities: [Klatovy, Domažlice, Rokycany]
-    uspPoints: [Do 24h předběžná nabídka, Řešení složitých případů, Diskrétní jednání]
+    supportedCities:
+      - Klatovy
+      - Domažlice
+      - Rokycany
+    uspPoints:
+      - Do 24h předběžná nabídka
+      - Řešení složitých případů
+      - Diskrétní jednání
     faq:
-      - question: Kolik stojí konzultace?
-        answer: Konzultace je zdarma.
+      - question: Co když má nemovitost starou nezkolaudovanou přístavbu?
+        answer: Prověříme dokumentaci a navrhneme postup, který umožní bezpečně uzavřít
+          transakci i u starších staveb.
+      - question: Umíte řešit výkup více spoluvlastníků najednou?
+        answer: Ano, připravíme koordinovaný postup podpisů i vypořádání kupní ceny pro všechny
+          strany.
     legalDisclaimer: Časový rámec závisí na dostupnosti podkladů.
-    hosts: [vykup-plzensky.cz, plzensky.localhost]
-
+    hosts:
+      - vykup-plzensky.cz
+      - plzensky.localhost
+    testimonials:
+      - author: Karel S.
+        city: Plzeň
+        quote: Měl jsem podíl na domě a vztahy v rodině byly napjaté. Firma nastavila jasná
+          pravidla a transakce dopadla korektně.
+      - author: Eva H.
+        city: Rokycany
+        quote: Starší dům potřeboval rekonstrukci a realitky nás odmítaly. Tady jsme dostali
+          realistickou nabídku bez slibů navíc.
   - key: karlovarsky-kraj
     name: Karlovarský kraj
     locative: v Karlovarském kraji
     title: Výkup nemovitostí v Karlovarském kraji
-    description: Rychlý a férový výkup nemovitostí v Karlovarském kraji.
+    description: Karlovarský kraj obsluhujeme se zaměřením na byty, lázeňské apartmány i
+      domy v příhraničí. Zohledňujeme specifika lokality a pomáháme klientům, kteří
+      potřebují rychlé finanční uvolnění.
     h1: Výkup nemovitostí v Karlovarském kraji
     heroCta: Nezávazná nabídka
-    phone: "+420 800 123 005"
+    phone: +420 800 123 005
     email: karlovarsky@vykup-regiony.cz
     primaryCity: Karlovy Vary
-    supportedCities: [Cheb, Sokolov]
-    uspPoints: [Lokální pokrytí, Právně bezpečný proces, Rychlý kontakt]
+    supportedCities:
+      - Cheb
+      - Sokolov
+    uspPoints:
+      - Lokální pokrytí
+      - Právně bezpečný proces
+      - Rychlý kontakt
     faq:
-      - question: Vykupujete i podíly?
-        answer: Ano, i spoluvlastnické podíly.
+      - question: Řešíte i apartmán vedený jako nebytový prostor?
+        answer: Ano, nejprve prověříme právní režim jednotky a následně připravíme odpovídající
+          nabídku.
+      - question: Je možné jednat i v němčině pro zahraniční spoluvlastníky?
+        answer: Ano, u přeshraničních případů koordinujeme komunikaci tak, aby byl postup
+          srozumitelný pro všechny strany.
     legalDisclaimer: Výše nabídky se odvíjí od lokality a stavu nemovitosti.
-    hosts: [vykup-karlovarsky.cz, karlovarsky.localhost]
-
+    hosts:
+      - vykup-karlovarsky.cz
+      - karlovarsky.localhost
+    testimonials:
+      - author: Monika P.
+        city: Cheb
+        quote: Prodávala jsem byt s nájemníkem a bála se komplikací. Dostala jsem jasný plán a
+          vše proběhlo bez zbytečných průtahů.
+      - author: Vladimír N.
+        city: Karlovy Vary
+        quote: Cením si férového jednání a rychlého právního servisu. Termíny platily přesně
+          tak, jak byly domluvené.
   - key: ustecky-kraj
     name: Ústecký kraj
     locative: v Ústeckém kraji
     title: Výkup nemovitostí v Ústeckém kraji
-    description: Pomůžeme s rychlým výkupem včetně exekucí a dluhů.
+    description: V Ústeckém kraji pomáháme s výkupem zadlužených i standardních nemovitostí,
+      často v časové tísni. Umíme koordinovat právní kroky tak, aby klient minimalizoval
+      sankce a stabilizoval svou situaci.
     h1: Rychlý výkup nemovitostí v Ústeckém kraji
     heroCta: Požádat o kontakt
-    phone: "+420 800 123 006"
+    phone: +420 800 123 006
     email: ustecky@vykup-regiony.cz
     primaryCity: Ústí nad Labem
-    supportedCities: [Děčín, Most, Teplice]
-    uspPoints: [Zkušenost s exekucemi, Diskrétnost, Bez skrytých poplatků]
+    supportedCities:
+      - Děčín
+      - Most
+      - Teplice
+    uspPoints:
+      - Zkušenost s exekucemi
+      - Diskrétnost
+      - Bez skrytých poplatků
     faq:
-      - question: Pomůžete i s exekucí?
-        answer: Ano, navrhneme řešení dle situace.
+      - question: Dokážete jednat i při probíhající dražbě?
+        answer: Ano, v urgentních případech nastavujeme prioritní postup a okamžitě ověřujeme
+          právní možnosti.
+      - question: Mohu konzultovat anonymně před odesláním dokumentů?
+        answer: Ano, úvodní konzultaci vedeme diskrétně a bez závazku, teprve potom řešíme
+          detailní podklady.
     legalDisclaimer: Nezaručujeme výsledek bez individuálního posouzení.
-    hosts: [vykup-ustecky.cz, ustecky.localhost]
-
+    hosts:
+      - vykup-ustecky.cz
+      - ustecky.localhost
+    testimonials:
+      - author: Stanislav B.
+        city: Most
+        quote: Byl jsem pod tlakem kvůli exekuci a času nebylo nazbyt. Tým jednal rychle a
+          pomohl mi situaci uzavřít důstojně.
+      - author: Iveta L.
+        city: Děčín
+        quote: Vážím si lidského přístupu. Všechno mi vysvětlili bez složitých právnických
+          formulací a drželi se domluvy.
   - key: liberecky-kraj
     name: Liberecký kraj
     locative: v Libereckém kraji
     title: Výkup nemovitostí v Libereckém kraji
-    description: Rychlý výkup nemovitostí v Libereckém kraji bez provize.
+    description: V Libereckém kraji vykupujeme byty, horské apartmány i domy v podhorských
+      oblastech. Klientům nabízíme rychlý postup bez provize a právní podporu i u
+      komplikovaných vlastnických vztahů.
     h1: Výkup nemovitostí v Libereckém kraji
     heroCta: Získat nabídku
-    phone: "+420 800 123 007"
+    phone: +420 800 123 007
     email: liberecky@vykup-regiony.cz
     primaryCity: Liberec
-    supportedCities: [Jablonec nad Nisou, Česká Lípa]
-    uspPoints: [Lokální expert, Rychlá nabídka, Právní podpora]
+    supportedCities:
+      - Jablonec nad Nisou
+      - Česká Lípa
+    uspPoints:
+      - Lokální expert
+      - Rychlá nabídka
+      - Právní podpora
     faq:
-      - question: Jak probíhá první krok?
-        answer: Vyplníte formulář a ozveme se vám.
+      - question: Vykoupíte i apartmán v horském středisku?
+        answer: Ano, apartmány v turistických lokalitách oceňujeme pravidelně včetně specifik
+          krátkodobého pronájmu.
+      - question: Jak řešíte nemovitost se starším věcným břemenem?
+        answer: Nejprve prověříme zápisy v katastru a navrhneme postup, který je právně bezpečný
+          pro prodávajícího i kupujícího.
     legalDisclaimer: Konečná nabídka je podmíněna due diligence.
-    hosts: [vykup-liberecky.cz, liberecky.localhost]
-
+    hosts:
+      - vykup-liberecky.cz
+      - liberecky.localhost
+    testimonials:
+      - author: Martina Č.
+        city: Liberec
+        quote: Potřebovala jsem rychle prodat byt kvůli stěhování do zahraničí. Vše se vyřešilo
+          na dálku a bez komplikací.
+      - author: Josef K.
+        city: Česká Lípa
+        quote: Oceňuji transparentní kalkulaci ceny. Od prvního hovoru jsem věděl, co se bude
+          dít a kdy.
   - key: kralovehradecky-kraj
     name: Královéhradecký kraj
     locative: v Královéhradeckém kraji
     title: Výkup nemovitostí v Královéhradeckém kraji
-    description: Bezpečný výkup nemovitostí v Královéhradeckém kraji.
+    description: Královéhradecký kraj pokrýváme od městských bytů po rodinné domy v
+      podkrkonoší. Důraz klademe na rychlou reakci, srozumitelné podmínky a bezpečné
+      vypořádání i u více vlastníků.
     h1: Rychlý výkup nemovitostí v Královéhradeckém kraji
     heroCta: Nezávazná konzultace
-    phone: "+420 800 123 008"
+    phone: +420 800 123 008
     email: kralovehradecky@vykup-regiony.cz
     primaryCity: Hradec Králové
-    supportedCities: [Trutnov, Náchod, Jičín]
-    uspPoints: [Do 15 minut zpětný kontakt, Řešení podílů, Transparentní kroky]
+    supportedCities:
+      - Trutnov
+      - Náchod
+      - Jičín
+    uspPoints:
+      - Do 15 minut zpětný kontakt
+      - Řešení podílů
+      - Transparentní kroky
     faq:
-      - question: Je služba nezávazná?
-        answer: Ano, konzultace i nabídka jsou nezávazné.
+      - question: Je možné prodat dům zatížený služebností dožití?
+        answer: Ano, podobné případy řešíme individuálně a připravíme realistický právní scénář
+          převodu.
+      - question: Kdy mohu očekávat návrh smluv?
+        answer: Po potvrzení základních podkladů připravujeme návrh dokumentace zpravidla v
+          nejkratším možném termínu.
     legalDisclaimer: Výsledná cena se liší dle stavu a právních omezení.
-    hosts: [vykup-kralovehradecky.cz, kralovehradecky.localhost]
-
+    hosts:
+      - vykup-kralovehradecky.cz
+      - kralovehradecky.localhost
+    testimonials:
+      - author: Daniela F.
+        city: Hradec Králové
+        quote: Měla jsem obavy z právních detailů, ale všechno mi vysvětlili krok po kroku.
+          Proces byl klidný a dobře řízený.
+      - author: Radek V.
+        city: Trutnov
+        quote: Rychlý kontakt, jasná dohoda a žádné překvapení ve smlouvách. Přesně takový
+          servis jsem očekával.
   - key: pardubicky-kraj
     name: Pardubický kraj
     locative: v Pardubickém kraji
     title: Výkup nemovitostí v Pardubickém kraji
-    description: Výkup bytu, domu a podílů v Pardubickém kraji.
+    description: V Pardubickém kraji pomáháme klientům, kteří chtějí prodat bez provize a
+      dlouhého čekání na kupce. Zajišťujeme kompletní administrativu včetně koordinace s
+      bankou a katastrem.
     h1: Výkup nemovitostí v Pardubickém kraji
     heroCta: Odeslat poptávku
-    phone: "+420 800 123 009"
+    phone: +420 800 123 009
     email: pardubicky@vykup-regiony.cz
     primaryCity: Pardubice
-    supportedCities: [Chrudim, Svitavy, Ústí nad Orlicí]
-    uspPoints: [Rychlé zpracování, Bez provize, Jasné podmínky]
+    supportedCities:
+      - Chrudim
+      - Svitavy
+      - Ústí nad Orlicí
+    uspPoints:
+      - Rychlé zpracování
+      - Bez provize
+      - Jasné podmínky
     faq:
-      - question: Mohu prodat i spoluvlastnický podíl?
-        answer: Ano, i podíly vykupujeme.
+      - question: Lze prodat byt, který je součástí dědického řízení?
+        answer: Ano, navážeme ihned po ukončení řízení a připravíme hladký převod vlastnictví.
+      - question: Jak rychle umíte nacenit rodinný dům mimo krajské město?
+        answer: Po dodání základních údajů připravíme orientační nabídku obvykle během krátké
+          doby.
     legalDisclaimer: Nabídka podléhá internímu schválení.
-    hosts: [vykup-pardubicky.cz, pardubicky.localhost]
-
+    hosts:
+      - vykup-pardubicky.cz
+      - pardubicky.localhost
+    testimonials:
+      - author: Veronika J.
+        city: Pardubice
+        quote: Prodej bytu se dříve táhl měsíce. Tady jsme měli konkrétní nabídku rychle a bez
+          tlaku na podpis.
+      - author: Tomáš E.
+        city: Chrudim
+        quote: Všechny kroky byly jasně vysvětlené a termíny seděly. Oceňuji profesionální, ale
+          lidský přístup.
   - key: vysocina
     name: Kraj Vysočina
     locative: na Vysočině
     title: Výkup nemovitostí na Vysočině
-    description: Rychlý výkup nemovitostí na Vysočině.
+    description: Na Vysočině vykupujeme městské byty i venkovské usedlosti, kde běžné
+      realitní prodeje trvají dlouho. Nabízíme transparentní podmínky a praktické řešení
+      pro klienty z menších obcí.
     h1: Rychlý výkup nemovitostí na Vysočině
     heroCta: Získat nezávaznou nabídku
-    phone: "+420 800 123 010"
+    phone: +420 800 123 010
     email: vysocina@vykup-regiony.cz
     primaryCity: Jihlava
-    supportedCities: [Třebíč, Žďár nad Sázavou, Havlíčkův Brod]
-    uspPoints: [Lokální znalost, Rychlý kontakt, Právní jistota]
+    supportedCities:
+      - Třebíč
+      - Žďár nad Sázavou
+      - Havlíčkův Brod
+    uspPoints:
+      - Lokální znalost
+      - Rychlý kontakt
+      - Právní jistota
     faq:
-      - question: Jak rychle mě kontaktujete?
-        answer: Standardně do 15 minut.
+      - question: Přijedete i do menší obce mimo hlavní tahy?
+        answer: Ano, region pokrýváme plošně a osobní konzultace domlouváme i v menších
+          lokalitách.
+      - question: Řešíte i hospodářské objekty u rodinných domů?
+        answer: Ano, při ocenění bereme v úvahu i stodoly, dílny a další navazující stavby.
     legalDisclaimer: Komunikace nepředstavuje závazek uzavřít smlouvu.
-    hosts: [vykup-vysocina.cz, vysocina.localhost]
-
+    hosts:
+      - vykup-vysocina.cz
+      - vysocina.localhost
+    testimonials:
+      - author: Lenka Z.
+        city: Jihlava
+        quote: Po stěhování jsme potřebovali rychle uzavřít prodej domu. Celý postup byl férový
+          a bez zbytečného papírování.
+      - author: Miroslav A.
+        city: Třebíč
+        quote: Ocenil jsem, že řešili i technické detaily starší nemovitosti. Nabídka byla
+          realistická a dobře vysvětlená.
   - key: jihomoravsky-kraj
     name: Jihomoravský kraj
     locative: v Jihomoravském kraji
     title: Výkup nemovitostí v Jihomoravském kraji
-    description: Rychlý výkup v Brně a celém Jihomoravském kraji.
+    description: Jihomoravský kraj pokrýváme se silným zázemím v Brně i okolních okresech.
+      Umíme rychle řešit standardní prodeje, podíly i případy s exekucí nebo více
+      zástavami.
     h1: Rychlý výkup nemovitostí v Jihomoravském kraji
     heroCta: Nezávazně poptat výkup
-    phone: "+420 800 123 011"
+    phone: +420 800 123 011
     email: jihomoravsky@vykup-regiony.cz
     primaryCity: Brno
-    supportedCities: [Znojmo, Břeclav, Hodonín]
-    uspPoints: [Silné pokrytí Brno, Řešení exekucí, Bezpečné smluvní podmínky]
+    supportedCities:
+      - Znojmo
+      - Břeclav
+      - Hodonín
+    uspPoints:
+      - Silné pokrytí Brno
+      - Řešení exekucí
+      - Bezpečné smluvní podmínky
     faq:
-      - question: Působíte i mimo Brno?
-        answer: Ano, po celém kraji.
+      - question: Řešíte i prodej bytu v Brně s hypotékou?
+        answer: Ano, koordinujeme doplacení hypotéky s bankou a připravíme bezpečný harmonogram
+          převodu.
+      - question: Lze vyřídit většinu procesu online?
+        answer: Ano, dokumenty i konzultace řešíme na dálku a osobní schůzky plánujeme jen pro
+          klíčové úkony.
     legalDisclaimer: Konkrétní parametry nabídky sdělujeme po posouzení případu.
-    hosts: [vykup-jihomoravsky.cz, jihomoravsky.localhost]
-
+    hosts:
+      - vykup-jihomoravsky.cz
+      - jihomoravsky.localhost
+    testimonials:
+      - author: Pavla M.
+        city: Brno
+        quote: Složitý spoluvlastnický případ vyřešili rychleji, než jsem čekala. Komunikace
+          byla profesionální a velmi konkrétní.
+      - author: Igor C.
+        city: Hodonín
+        quote: Měl jsem jasný přehled o všech krocích i termínech. Žádné sliby navíc, jen věcný
+          a spolehlivý postup.
   - key: olomoucky-kraj
     name: Olomoucký kraj
     locative: v Olomouckém kraji
     title: Výkup nemovitostí v Olomouckém kraji
-    description: Výkup nemovitostí v Olomouckém kraji rychle a férově.
+    description: V Olomouckém kraji vykupujeme byty, domy i podíly s důrazem na rychlé
+      nacenění a právní jistotu. Často pomáháme klientům po dědictví nebo při potřebě
+      rychlého vypořádání majetku.
     h1: Výkup nemovitostí v Olomouckém kraji
     heroCta: Získat konzultaci zdarma
-    phone: "+420 800 123 012"
+    phone: +420 800 123 012
     email: olomoucky@vykup-regiony.cz
     primaryCity: Olomouc
-    supportedCities: [Přerov, Prostějov, Šumperk]
-    uspPoints: [Do 24h předběžná nabídka, Férové podmínky, Podpora u složitých případů]
+    supportedCities:
+      - Přerov
+      - Prostějov
+      - Šumperk
+    uspPoints:
+      - Do 24h předběžná nabídka
+      - Férové podmínky
+      - Podpora u složitých případů
     faq:
-      - question: Je možné řešit i dědictví?
-        answer: Ano, i dědické případy řešíme.
+      - question: Jak postupujete u nemovitosti po dědictví?
+        answer: Nejprve ověříme stav řízení a navrhneme kroky tak, aby následný převod proběhl
+          bez zdržení.
+      - question: Můžete vyřešit i byt s nesplacenou hypotékou?
+        answer: Ano, nastavíme transakci tak, aby bylo možné úvěr doplatit a bezpečně převést
+          vlastnictví.
     legalDisclaimer: Informace na webu mají obecný charakter.
-    hosts: [vykup-olomoucky.cz, olomoucky.localhost]
-
+    hosts:
+      - vykup-olomoucky.cz
+      - olomoucky.localhost
+    testimonials:
+      - author: Kateřina R.
+        city: Olomouc
+        quote: Prodávala jsem byt s hypotékou a bála se komplikací. Vše koordinovali s bankou a
+          průběh byl překvapivě hladký.
+      - author: Ondřej W.
+        city: Přerov
+        quote: Od začátku jsem měl jasno, v jaké fázi se obchod nachází. Oceňuji transparentní
+          komunikaci i rychlost.
   - key: moravskoslezsky-kraj
     name: Moravskoslezský kraj
     locative: v Moravskoslezském kraji
     title: Výkup nemovitostí v Moravskoslezském kraji
-    description: Rychlý výkup nemovitostí v Ostravě a celém kraji.
+    description: V Moravskoslezském kraji řešíme rychlý výkup nemovitostí zejména pro
+      klienty v časové tísni. Zkušeně vedeme i případy se zadlužením, exekucí nebo
+      složitým spoluvlastnictvím.
     h1: Rychlý výkup nemovitostí v Moravskoslezském kraji
     heroCta: Požádat o nabídku
-    phone: "+420 800 123 013"
+    phone: +420 800 123 013
     email: moravskoslezsky@vykup-regiony.cz
     primaryCity: Ostrava
-    supportedCities: [Karviná, Frýdek-Místek, Opava]
-    uspPoints: [Silné pokrytí Ostrava, Řešení zadlužených nemovitostí, Rychlý callback]
+    supportedCities:
+      - Karviná
+      - Frýdek-Místek
+      - Opava
+    uspPoints:
+      - Silné pokrytí Ostrava
+      - Řešení zadlužených nemovitostí
+      - Rychlý callback
     faq:
-      - question: Jak řešíte zadlužené nemovitosti?
-        answer: Navrhneme individuální právně čistý postup.
+      - question: Pomůžete i když běží exekuční řízení?
+        answer: Ano, urgentní případy prioritizujeme a ihned připravujeme právně čistý postup
+          vypořádání.
+      - question: Kdy obvykle dochází k vyplacení kupní ceny?
+        answer: Po splnění smluvních podmínek a úschovy realizujeme výplatu v nejbližším možném
+          termínu.
     legalDisclaimer: Nabídka se může lišit dle právního zatížení.
-    hosts: [vykup-moravskoslezsky.cz, moravskoslezsky.localhost]
-
+    hosts:
+      - vykup-moravskoslezsky.cz
+      - moravskoslezsky.localhost
+    testimonials:
+      - author: Renata S.
+        city: Ostrava
+        quote: Kvůli stěhování za prací jsem potřebovala rychlé řešení. Nabídka byla férová a
+          celý proces proběhl bez stresu.
+      - author: Marek D.
+        city: Karviná
+        quote: Profesionální servis od prvního hovoru po převod peněz. Oceňuji důslednost i
+          jasně dané kroky.
   - key: zlinsky-kraj
     name: Zlínský kraj
     locative: ve Zlínském kraji
     title: Výkup nemovitostí ve Zlínském kraji
-    description: Rychlý a bezpečný výkup nemovitostí ve Zlínském kraji.
+    description: Ve Zlínském kraji poskytujeme výkup bytů, domů i podílů s důrazem na
+      transparentnost a rychlou dostupnost týmu. Klientům nabízíme jasný proces bez
+      skrytých poplatků.
     h1: Výkup nemovitostí ve Zlínském kraji
     heroCta: Nezávazně konzultovat
-    phone: "+420 800 123 014"
+    phone: +420 800 123 014
     email: zlinsky@vykup-regiony.cz
     primaryCity: Zlín
-    supportedCities: [Uherské Hradiště, Kroměříž, Vsetín]
-    uspPoints: [Regionální servis, Rychlá reakce, Transparentní podmínky]
+    supportedCities:
+      - Uherské Hradiště
+      - Kroměříž
+      - Vsetín
+    uspPoints:
+      - Regionální servis
+      - Rychlá reakce
+      - Transparentní podmínky
     faq:
-      - question: Můžu poslat poptávku online?
-        answer: Ano, formulář je dostupný 24/7.
+      - question: Mohu podat poptávku i mimo pracovní dobu?
+        answer: Ano, formulář je dostupný nonstop a ozveme se vám v nejbližším možném termínu.
+      - question: Řešíte i starší dům před rekonstrukcí?
+        answer: Ano, technický stav není překážkou. Nabídku připravujeme i pro nemovitosti
+          určené k obnově.
     legalDisclaimer: Přesné podmínky nabídky sdělujeme po analýze nemovitosti.
-    hosts: [vykup-zlinsky.cz, zlinsky.localhost]
+    hosts:
+      - vykup-zlinsky.cz
+      - zlinsky.localhost
+    testimonials:
+      - author: Hana P.
+        city: Zlín
+        quote: Skvělá komunikace a rychlé zpracování poptávky. Všechny podmínky byly
+          srozumitelné a bez drobného písma.
+      - author: Richard G.
+        city: Vsetín
+        quote: Potřebovali jsme prodat dům po rodičích. Tým nám pomohl nastavit postup tak, aby
+          byl bezpečný pro celou rodinu.

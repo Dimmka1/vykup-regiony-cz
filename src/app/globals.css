@@ -8,4 +8,14 @@
 
 body {
   @apply bg-slate-50 text-slate-900;
+  -webkit-tap-highlight-color: transparent;
+  text-size-adjust: 100%;
+}
+
+input,
+select,
+button,
+textarea {
+  font: inherit;
+  touch-action: manipulation;
 }

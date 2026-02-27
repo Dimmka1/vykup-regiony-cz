@@ -33,9 +33,9 @@ import {
 const COMPANY_NAME = "Výkup Regiony CZ";
 
 const HERO_BADGES = [
-  "Nabídka do 24 hodin",
-  "Bez poplatků a provizí",
-  "Diskrétní jednání",
+  "Záloha až 500 000 Kč ihned",
+  "Peníze na účtu do 48 hodin",
+  "Bez provize a skrytých poplatků",
 ] as const;
 
 const PROCESS_STEPS = [
@@ -310,7 +310,7 @@ export default async function HomePage({
             </a>
           </div>
           <p className="mt-3 text-sm text-slate-300">
-            Nezávazně a zdarma. Ozveme se do 30 minut.
+            Zálohu vyplácíme při podpisu smlouvy. Celý proces trvá 3–7 dní.
           </p>
         </div>
       </section>

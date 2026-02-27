@@ -4,6 +4,7 @@ import "./globals.css";
 import { CookieConsent } from "@/components/cookie-consent";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { WebVitalsReporter } from "@/components/web-vitals-reporter";
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
@@ -32,6 +33,14 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="cs" className={inter.variable}>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body className={`${inter.className} flex min-h-screen flex-col`}>
         <a
           href="#hlavni-obsah"
@@ -40,6 +49,7 @@ export default function RootLayout({
           Přeskočit na obsah
         </a>
         <SiteHeader />
+        <WebVitalsReporter />
         <main id="hlavni-obsah" className="flex-1">
           {children}
         </main>

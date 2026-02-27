@@ -17,20 +17,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   listRegions().forEach((region) => {
     region.hosts.forEach((host) => {
-      const normalizedHost = normalizeHost(host);
-      if (isPublicHost(normalizedHost)) {
-        hostToRegionKey.set(normalizedHost, region.key);
+      const normalized = normalizeHost(host);
+      if (isPublicHost(normalized)) {
+        hostToRegionKey.set(normalized, region.key);
       }
     });
   });
 
   return Array.from(hostToRegionKey.entries())
-    .sort(([hostA], [hostB]) => hostA.localeCompare(hostB))
-    .map(([host, regionKey]) => ({
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([host]) => ({
       url: `https://${host}`,
       lastModified: now,
-      changeFrequency: "weekly" as const,
+      changeFrequency: "monthly" as const,
       priority: host === "vykup-regiony.cz" ? 1 : 0.9,
-      images: [`https://${host}/api/og/${regionKey}`],
     }));
 }

@@ -1,13 +1,34 @@
 import { safeJsonLd } from "@/lib/jsonld";
 import type { ReactElement } from "react";
 import type { Metadata } from "next";
+import Image from "next/image";
 import { CtaLink } from "@/components/cta-link";
 import { LeadForm } from "@/components/lead-form";
 import { AnimatedCounter } from "@/components/animated-counter";
 import { ScrollTracker } from "@/components/scroll-tracker";
+import { FaqAccordion } from "@/components/faq-accordion";
 import { getRegionByHost } from "@/lib/config";
 import { getRequestHost } from "@/lib/request-host";
 import type { RegionConfig } from "@/lib/types";
+import {
+  Check,
+  FileText,
+  Zap,
+  FileSignature,
+  Banknote,
+  Award,
+  Clock,
+  Star,
+  Gavel,
+  FileWarning,
+  Landmark,
+  ScrollText,
+  Users,
+  Link2,
+  CheckCircle,
+  Quote,
+  Phone,
+} from "lucide-react";
 
 const COMPANY_NAME = "Výkup Regiony CZ";
 
@@ -21,40 +42,33 @@ const PROCESS_STEPS = [
   {
     title: "Vyplníte formulář",
     eta: "2 min",
-    icon: "📝",
+    Icon: FileText,
     description: "Stačí základní údaje o nemovitosti",
   },
   {
     title: "Nabídka do 24h",
     eta: "24 h",
-    icon: "⚡",
+    Icon: Zap,
     description: "Připravíme nezávaznou cenovou nabídku",
   },
   {
     title: "Podpis smlouvy",
     eta: "dle dohody",
-    icon: "📄",
+    Icon: FileSignature,
     description: "Vše vyřídíme za vás, včetně právního servisu",
   },
   {
     title: "Peníze na účtu",
     eta: "do 48h",
-    icon: "💸",
+    Icon: Banknote,
     description: "Výplata ihned po podpisu smlouvy",
   },
 ] as const;
 
 const TRUST_METRICS = [
-  { label: "Realizovaných výkupů", value: "1 250+" },
-  { label: "Průměrná doba první nabídky", value: "24 h" },
-  { label: "Spokojenost klientů", value: "4.9/5" },
-] as const;
-
-const TRUST_BADGES = [
-  { label: "Bezpečná transakce", icon: "🔒" },
-  { label: "Osobní přístup", icon: "👤" },
-  { label: "Garance výkupní ceny", icon: "✅" },
-  { label: "Bez skrytých poplatků", icon: "💎" },
+  { label: "Realizovaných výkupů", value: "1 250+", Icon: Award },
+  { label: "Průměrná doba první nabídky", value: "24 h", Icon: Clock },
+  { label: "Spokojenost klientů", value: "4.9/5", Icon: Star },
 ] as const;
 
 const ABOUT_STATS = [
@@ -66,32 +80,32 @@ const ABOUT_STATS = [
 const COMPLEX_SITUATIONS = [
   {
     label: "Exekuce",
-    icon: "⚖️",
+    Icon: Gavel,
     description: "Vykoupíme nemovitost i s exekucí a pomůžeme s oddlužením",
   },
   {
     label: "Insolvence",
-    icon: "📋",
+    Icon: FileWarning,
     description: "Řešení pro nemovitosti v insolvenčním řízení",
   },
   {
     label: "Hypotéka",
-    icon: "🏦",
+    Icon: Landmark,
     description: "Převezmeme nemovitost se zatížením hypotékou",
   },
   {
     label: "Dědictví",
-    icon: "📜",
+    Icon: ScrollText,
     description: "Rychlý výkup zděděných nemovitostí bez komplikací",
   },
   {
     label: "Spoluvlastnický podíl",
-    icon: "👥",
+    Icon: Users,
     description: "Odkoupíme i podíl na nemovitosti bez souhlasu ostatních",
   },
   {
     label: "Věcné břemeno",
-    icon: "🔗",
+    Icon: Link2,
     description: "Nemovitosti s věcným břemenem nejsou problém",
   },
 ] as const;
@@ -219,43 +233,51 @@ export default async function HomePage(): Promise<ReactElement> {
   const schema = buildSchema(region, canonicalUrl);
 
   return (
-    <div className="mx-auto flex min-h-screen max-w-6xl flex-col gap-8 px-4 py-8 pb-28 sm:px-6 lg:py-10 lg:pb-10">
+    <>
       <ScrollTracker regionName={region.name} />
 
       {/* ===== HERO ===== */}
-      <section className="relative overflow-hidden rounded-3xl bg-slate-900 px-6 py-8 text-white shadow-xl sm:px-10 sm:py-12">
+      <section className="relative min-h-[520px] overflow-hidden sm:min-h-[480px]">
+        <Image
+          src="https://images.unsplash.com/photo-1562932831-afcfe5b6cae8?w=1920&q=80"
+          alt="Panorama českého města"
+          fill
+          priority
+          className="object-cover"
+        />
         <div
-          className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.35),transparent_55%)]"
+          className="absolute inset-0 bg-gradient-to-r from-slate-900/85 via-slate-900/50 to-slate-900/30"
           aria-hidden="true"
         />
-        <div className="relative">
+        <div className="relative mx-auto flex min-h-[520px] max-w-7xl flex-col justify-center px-6 py-20 sm:min-h-[480px]">
           <div className="mb-4 flex flex-wrap items-center gap-3">
-            <p className="inline-flex rounded-full border border-emerald-300/40 bg-emerald-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-emerald-200">
+            <p className="inline-flex rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white backdrop-blur-sm">
               {region.locative}
             </p>
-            <p className="inline-flex rounded-full border border-amber-300/40 bg-amber-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-amber-200">
+            <p className="inline-flex rounded-full border border-amber-300/40 bg-amber-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-amber-200 backdrop-blur-sm">
               Nejsme realitka — jsme přímý kupec
             </p>
           </div>
-          <h1 className="text-3xl font-extrabold leading-tight tracking-tight sm:text-5xl">
+          <h1 className="max-w-3xl text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl">
             {region.h1}
           </h1>
-          <p className="mt-4 max-w-2xl text-base text-slate-200 sm:text-lg">
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-200 sm:text-lg">
             {region.description}
           </p>
 
-          <ul className="mt-6 grid gap-2 text-sm text-slate-100 sm:grid-cols-3">
+          <ul className="mt-6 flex flex-wrap gap-2 text-sm text-white">
             {HERO_BADGES.map((badge) => (
               <li
                 key={badge}
-                className="rounded-lg border border-white/20 bg-white/5 px-3 py-2"
+                className="inline-flex items-center gap-1.5 rounded-lg border border-white/20 bg-white/10 px-3 py-2 backdrop-blur-sm"
               >
-                ✓ {badge}
+                <Check className="h-4 w-4 text-amber-400" />
+                {badge}
               </li>
             ))}
           </ul>
 
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
             <CtaLink
               href="#kontakt"
               label={region.heroCta}
@@ -263,243 +285,259 @@ export default async function HomePage(): Promise<ReactElement> {
             />
             <a
               href={`tel:${region.phone}`}
-              className="inline-flex min-h-11 items-center justify-center rounded-xl border border-white/30 px-6 py-3 text-base font-semibold text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/40 px-6 py-3 text-base font-semibold text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
             >
+              <Phone className="h-5 w-5" />
               Zavolat: {region.phone}
             </a>
           </div>
-          <p className="mt-3 text-sm text-slate-400">
+          <p className="mt-3 text-sm text-slate-300">
             Nezávazně a zdarma. Ozveme se do 30 minut.
           </p>
         </div>
       </section>
 
-      {/* ===== TRUST STRIP ===== */}
-      <section className="rounded-2xl bg-white p-5 shadow-sm sm:p-8">
-        <div className="grid gap-3 sm:grid-cols-3">
-          {TRUST_METRICS.map((metric) => (
-            <article
-              key={metric.label}
-              className="rounded-xl border border-emerald-100 bg-emerald-50/60 p-4 text-center"
-            >
-              <p className="text-2xl font-bold text-emerald-700">
-                <AnimatedCounter value={metric.value} />
-              </p>
-              <p className="mt-1 text-sm text-slate-700">{metric.label}</p>
-            </article>
-          ))}
-        </div>
-        <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
-          {TRUST_BADGES.map((badge) => (
-            <div
-              key={badge.label}
-              className="flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3"
-            >
-              <span className="text-xl" aria-hidden="true">
-                {badge.icon}
-              </span>
-              <span className="text-sm font-medium text-slate-700">
-                {badge.label}
-              </span>
-            </div>
-          ))}
+      {/* ===== TRUST METRICS ===== */}
+      <section className="py-16">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="grid gap-6 sm:grid-cols-3">
+            {TRUST_METRICS.map((metric) => (
+              <article
+                key={metric.label}
+                className="flex flex-col items-center rounded-2xl bg-slate-50 p-6 text-center"
+              >
+                <metric.Icon className="mb-3 h-7 w-7 text-teal-500" />
+                <p className="text-3xl font-bold text-teal-700">
+                  <AnimatedCounter value={metric.value} />
+                </p>
+                <p className="mt-1 text-sm text-slate-500">{metric.label}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ===== JAK TO FUNGUJE (PROCESS STEPS) ===== */}
-      <section className="rounded-2xl bg-white p-5 shadow-sm sm:p-8">
-        <h2 className="text-2xl font-semibold text-slate-900">
-          Jak to funguje
-        </h2>
-        <p className="mt-2 text-slate-600">
-          Od prvního kontaktu k penězům na účtu — jednoduše a rychle.
-        </p>
-        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {PROCESS_STEPS.map((step, index) => (
+      <section className="py-16">
+        <div className="mx-auto max-w-7xl px-6">
+          <h2 className="text-3xl font-bold text-slate-900 sm:text-2xl">
+            Jak to funguje
+          </h2>
+          <p className="mt-2 text-slate-600">
+            Od prvního kontaktu k penězům na účtu — jednoduše a rychle.
+          </p>
+          <div className="relative mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {/* Connector line on desktop */}
             <div
-              key={step.title}
-              className="relative rounded-xl border border-slate-200 bg-slate-50 p-5"
-            >
-              <div className="mb-3 flex items-center gap-3">
-                <span
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100 text-lg"
-                  aria-hidden="true"
-                >
-                  {step.icon}
-                </span>
-                <span className="rounded-full bg-emerald-500 px-2.5 py-0.5 text-xs font-bold text-white">
-                  {index + 1}
-                </span>
+              className="absolute left-0 right-0 top-8 hidden h-0.5 border-t-2 border-dashed border-teal-200 lg:block"
+              aria-hidden="true"
+            />
+            {PROCESS_STEPS.map((step, index) => (
+              <div
+                key={step.title}
+                className="relative rounded-2xl border border-slate-100 bg-white p-6"
+              >
+                <div className="mb-4 flex items-center gap-3">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-teal-50 text-teal-600">
+                    <step.Icon className="h-6 w-6" />
+                  </span>
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-teal-600 text-xs font-bold text-white">
+                    {index + 1}
+                  </span>
+                </div>
+                <h3 className="text-base font-semibold text-slate-900">
+                  {step.title}
+                </h3>
+                <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                  {step.description}
+                </p>
+                <p className="mt-2 text-xs font-medium text-teal-600">
+                  {step.eta}
+                </p>
               </div>
-              <h3 className="text-base font-semibold text-slate-900">
-                {step.title}
-              </h3>
-              <p className="mt-1 text-sm text-slate-600">{step.description}</p>
-              <p className="mt-2 text-xs font-semibold text-emerald-600">
-                ⏱ {step.eta}
-              </p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ===== ŘEŠÍME I SLOŽITÉ SITUACE ===== */}
-      <section className="rounded-2xl bg-white p-5 shadow-sm sm:p-8">
-        <h2 className="text-2xl font-semibold text-slate-900">
-          Řešíme i složité situace
-        </h2>
-        <p className="mt-2 text-slate-600">
-          Nemovitost s problémem? Žádný strach — máme řešení pro každou situaci.
-        </p>
-        <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {COMPLEX_SITUATIONS.map((situation) => (
-            <div
-              key={situation.label}
-              className="flex gap-4 rounded-xl border border-slate-200 bg-slate-50 p-4"
-            >
-              <span
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-amber-50 text-xl"
-                aria-hidden="true"
+      <section className="py-16">
+        <div className="mx-auto max-w-7xl px-6">
+          <h2 className="text-3xl font-bold text-slate-900 sm:text-2xl">
+            Řešíme i složité situace
+          </h2>
+          <p className="mt-2 text-slate-600">
+            Nemovitost s problémem? Žádný strach — máme řešení pro každou
+            situaci.
+          </p>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {COMPLEX_SITUATIONS.map((situation) => (
+              <div
+                key={situation.label}
+                className="flex gap-4 rounded-2xl border border-slate-100 bg-white p-6 transition hover:-translate-y-0.5 hover:shadow-lg"
               >
-                {situation.icon}
-              </span>
-              <div>
-                <h3 className="text-sm font-semibold text-slate-900">
-                  {situation.label}
-                </h3>
-                <p className="mt-1 text-xs text-slate-600">
-                  {situation.description}
-                </p>
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-teal-50 text-teal-600">
+                  <situation.Icon className="h-5 w-5" />
+                </span>
+                <div>
+                  <h3 className="font-semibold text-slate-900">
+                    {situation.label}
+                  </h3>
+                  <p className="mt-1 text-sm leading-relaxed text-slate-500">
+                    {situation.description}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ===== PROČ KLIENTI VOLÍ NÁS (USP) ===== */}
-      <section className="rounded-2xl bg-white p-5 shadow-sm [contain-intrinsic-size:600px] [content-visibility:auto] sm:p-8">
-        <h2 className="text-2xl font-semibold text-slate-900">
-          Proč klienti volí nás
-        </h2>
-        <ul className="mt-4 grid gap-3 sm:grid-cols-3">
-          {region.uspPoints.map((point) => (
-            <li
-              key={point}
-              className="rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700"
-            >
-              {point}
-            </li>
-          ))}
-        </ul>
+      <section className="bg-gradient-to-br from-teal-700 to-teal-900 py-16 text-white">
+        <div className="mx-auto max-w-7xl px-6">
+          <h2 className="text-3xl font-bold text-white sm:text-2xl">
+            Proč klienti volí nás
+          </h2>
+          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {region.uspPoints.map((point) => (
+              <li
+                key={point}
+                className="flex items-start gap-3 rounded-2xl border border-white/20 bg-white/10 p-6 backdrop-blur"
+              >
+                <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-amber-400" />
+                <span className="text-white/90">{point}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
 
       {/* ===== O NÁS ===== */}
-      <section className="rounded-2xl bg-white p-5 shadow-sm sm:p-8">
-        <h2 className="text-2xl font-semibold text-slate-900">O nás</h2>
-        <div className="mt-5 grid gap-6 lg:grid-cols-[200px_1fr]">
-          <div className="flex h-40 w-40 items-center justify-center rounded-2xl bg-slate-100 text-6xl">
-            👨‍💼
-          </div>
-          <div>
-            <p className="text-slate-700">
-              Jsme tým profesionálů s více než 10 lety zkušeností na českém
-              realitním trhu. Specializujeme se na rychlý a férový výkup
-              nemovitostí v celé České republice.
-            </p>
-            <div className="mt-5 grid gap-3 sm:grid-cols-3">
-              {ABOUT_STATS.map((stat) => (
-                <div
-                  key={stat.label}
-                  className="rounded-xl border border-emerald-100 bg-emerald-50/60 p-4 text-center"
-                >
-                  <p className="text-2xl font-bold text-emerald-700">
-                    {stat.value}
-                  </p>
-                  <p className="mt-1 text-sm text-slate-700">{stat.label}</p>
-                </div>
-              ))}
+      <section className="py-16">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="grid items-center gap-10 lg:grid-cols-2">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-xl">
+              <Image
+                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80"
+                alt="Náš profesionální tým"
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div>
+              <h2 className="text-3xl font-bold text-slate-900 sm:text-2xl">
+                O nás
+              </h2>
+              <p className="mt-4 leading-relaxed text-slate-700">
+                Jsme tým profesionálů s více než 10 lety zkušeností na českém
+                realitním trhu. Specializujeme se na rychlý a férový výkup
+                nemovitostí v celé České republice.
+              </p>
+              <div className="mt-8 grid gap-4 sm:grid-cols-3">
+                {ABOUT_STATS.map((stat) => (
+                  <div
+                    key={stat.label}
+                    className="border-l-2 border-teal-500 pl-4"
+                  >
+                    <p className="text-2xl font-bold text-teal-700">
+                      {stat.value}
+                    </p>
+                    <p className="mt-1 text-sm text-slate-600">{stat.label}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* ===== LEAD FORM + CO SE STANE PO ODESLÁNÍ ===== */}
-      <section
-        className="grid gap-5 [contain-intrinsic-size:1000px] [content-visibility:auto] lg:grid-cols-2"
-        id="kontakt"
-      >
-        <LeadForm regionName={region.name} />
+      <section className="py-16" id="kontakt">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="grid gap-8 lg:grid-cols-2">
+            <LeadForm regionName={region.name} />
 
-        <div className="rounded-2xl bg-white p-6 shadow-sm sm:p-8">
-          <h2 className="text-2xl font-semibold text-slate-900">
-            Co se stane po odeslání
-          </h2>
-          <ul className="mt-5 space-y-4">
-            {FORM_BENEFITS.map((benefit) => (
-              <li key={benefit} className="flex items-start gap-3">
-                <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-sm text-emerald-600">
-                  ✓
-                </span>
-                <span className="text-slate-700">{benefit}</span>
-              </li>
-            ))}
-          </ul>
+            <div className="rounded-2xl border border-slate-100 bg-white p-8 shadow-sm">
+              <h2 className="text-2xl font-bold text-slate-900">
+                Co se stane po odeslání
+              </h2>
+              <ul className="mt-6 space-y-4">
+                {FORM_BENEFITS.map((benefit) => (
+                  <li key={benefit} className="flex items-start gap-3">
+                    <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-teal-100 text-teal-600">
+                      <Check className="h-4 w-4" />
+                    </span>
+                    <span className="text-slate-700">{benefit}</span>
+                  </li>
+                ))}
+              </ul>
 
-          <div className="mt-8">
-            <h3 className="text-lg font-semibold text-slate-900">
-              Nezávazná konzultace zdarma
-            </h3>
-            <p className="mt-2 text-sm text-slate-600">
-              Primárně {region.primaryCity} a okolí, dále:{" "}
-              {region.supportedCities.join(", ")}.
-            </p>
-            <p className="mt-4 text-xs text-slate-500">
-              {region.legalDisclaimer}
-            </p>
+              <div className="mt-8">
+                <h3 className="text-lg font-semibold text-slate-900">
+                  Nezávazná konzultace zdarma
+                </h3>
+                <p className="mt-2 text-sm text-slate-600">
+                  Primárně {region.primaryCity} a okolí, dále:{" "}
+                  {region.supportedCities.join(", ")}.
+                </p>
+                <p className="mt-4 text-xs text-slate-500">
+                  {region.legalDisclaimer}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* ===== TESTIMONIALS ===== */}
-      <section className="rounded-2xl bg-white p-5 shadow-sm sm:p-8">
-        <h2 className="text-2xl font-semibold text-slate-900">
-          Co říkají naši klienti
-        </h2>
-        <div className="mt-6 grid gap-4 md:grid-cols-2">
-          {region.testimonials.map((testimonial) => (
-            <figure
-              key={`${testimonial.author}-${testimonial.city}`}
-              className="rounded-xl bg-slate-50 p-4"
-            >
-              <div className="mb-2 text-amber-400" aria-label="5 z 5 hvězd">
-                ★★★★★
-              </div>
-              <blockquote className="text-sm text-slate-700">
-                &ldquo;{testimonial.quote}&rdquo;
-              </blockquote>
-              <figcaption className="mt-3 text-sm font-semibold text-slate-900">
-                {testimonial.author}{" "}
-                <span className="font-normal text-slate-600">
-                  — {testimonial.city}
-                </span>
-              </figcaption>
-            </figure>
-          ))}
+      <section className="py-16">
+        <div className="mx-auto max-w-7xl px-6">
+          <h2 className="text-3xl font-bold text-slate-900 sm:text-2xl">
+            Co říkají naši klienti
+          </h2>
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            {region.testimonials.map((testimonial) => (
+              <figure
+                key={`${testimonial.author}-${testimonial.city}`}
+                className="relative rounded-2xl border border-slate-100 bg-slate-50 p-6"
+              >
+                <Quote
+                  className="absolute right-6 top-6 h-10 w-10 text-teal-100"
+                  aria-hidden="true"
+                />
+                <div className="mb-3 flex gap-0.5" aria-label="5 z 5 hvězd">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className="h-5 w-5 fill-amber-400 text-amber-400"
+                    />
+                  ))}
+                </div>
+                <blockquote className="text-sm italic leading-relaxed text-slate-600">
+                  &ldquo;{testimonial.quote}&rdquo;
+                </blockquote>
+                <figcaption className="mt-4 text-sm font-semibold text-slate-800">
+                  {testimonial.author}{" "}
+                  <span className="font-normal text-slate-400">
+                    — {testimonial.city}
+                  </span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ===== FAQ ===== */}
-      <section className="rounded-2xl bg-white p-5 shadow-sm sm:p-8">
-        <h2 className="text-2xl font-semibold text-slate-900">Časté dotazy</h2>
-        <div className="mt-5 space-y-4">
-          {region.faq.map((faqItem) => (
-            <article key={faqItem.question}>
-              <h3 className="text-base font-semibold text-slate-800">
-                {faqItem.question}
-              </h3>
-              <p className="mt-1 text-slate-700">{faqItem.answer}</p>
-            </article>
-          ))}
+      <section className="py-16">
+        <div className="mx-auto max-w-7xl px-6">
+          <h2 className="text-center text-3xl font-bold text-slate-900 sm:text-2xl">
+            Časté dotazy
+          </h2>
+          <div className="mt-8">
+            <FaqAccordion items={region.faq} />
+          </div>
         </div>
       </section>
 
@@ -508,16 +546,16 @@ export default async function HomePage(): Promise<ReactElement> {
         aria-label="Rychlé akce"
         className="fixed inset-x-0 bottom-0 z-20 border-t border-slate-200 bg-white/95 px-4 py-3 backdrop-blur supports-[padding:max(0px)]:pb-[max(0.75rem,env(safe-area-inset-bottom))] lg:hidden"
       >
-        <div className="mx-auto flex max-w-6xl gap-2">
+        <div className="mx-auto flex max-w-7xl gap-2">
           <a
             href="#kontakt"
-            className="inline-flex min-h-11 flex-1 items-center justify-center rounded-xl bg-emerald-500 px-4 py-3 text-sm font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
+            className="inline-flex min-h-11 flex-1 items-center justify-center rounded-xl bg-amber-500 px-4 py-3 text-sm font-semibold text-white transition hover:bg-amber-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
           >
             Odeslat poptávku
           </a>
           <a
             href={`tel:${region.phone}`}
-            className="inline-flex min-h-11 flex-1 items-center justify-center rounded-xl border border-slate-300 px-4 py-3 text-sm font-semibold text-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
+            className="inline-flex min-h-11 flex-1 items-center justify-center rounded-xl border border-slate-300 px-4 py-3 text-sm font-semibold text-slate-800 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2"
           >
             Zavolat
           </a>
@@ -528,6 +566,6 @@ export default async function HomePage(): Promise<ReactElement> {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonLd(schema) }}
       />
-    </div>
+    </>
   );
 }

@@ -25,7 +25,7 @@ export function CtaLink({
     <a
       href={href}
       onClick={handleClick}
-      className="inline-flex min-h-11 items-center justify-center rounded-xl bg-emerald-500 px-6 py-3 text-base font-semibold text-white transition hover:bg-emerald-400"
+      className="inline-flex min-h-11 items-center justify-center rounded-xl bg-amber-500 px-8 py-4 text-lg font-bold text-white shadow-lg shadow-amber-500/25 transition hover:bg-amber-600"
     >
       {label}
     </a>

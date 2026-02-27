@@ -8,10 +8,11 @@
 
 html {
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 body {
-  @apply bg-slate-50 text-slate-900;
+  @apply bg-white text-slate-900;
   -webkit-tap-highlight-color: transparent;
   text-size-adjust: 100%;
   overflow-x: hidden;
@@ -44,5 +45,5 @@ input[type="radio"] {
 }
 
 .prose-article a {
-  @apply font-medium text-emerald-600 hover:text-emerald-500;
+  @apply font-medium text-teal-600 hover:text-teal-500;
 }

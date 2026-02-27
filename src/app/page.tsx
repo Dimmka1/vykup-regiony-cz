@@ -117,7 +117,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const region = getRegionByHost(host);
   const canonicalUrl = buildCanonicalUrl(host);
   const metaDescription = buildMetaDescription(region);
-  const ogImageUrl = `${canonicalUrl}/api/og/${region.key}`;
+  const ogImageUrl = `${canonicalUrl}/opengraph-image`;
 
   return {
     title: region.title,

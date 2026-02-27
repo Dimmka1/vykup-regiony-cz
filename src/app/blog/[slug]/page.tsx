@@ -252,6 +252,18 @@ export async function generateMetadata({
   return {
     title: article.title,
     description: post?.excerpt ?? "",
+    openGraph: {
+      title: article.title,
+      description: post?.excerpt ?? "",
+      type: "article",
+      publishedTime: article.date,
+      images: ["/blog/" + slug + "/opengraph-image"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: article.title,
+      description: post?.excerpt ?? "",
+    },
   };
 }
 

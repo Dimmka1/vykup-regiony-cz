@@ -3,8 +3,18 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Phone } from "lucide-react";
+import { RegionSelector } from "@/components/region-selector";
 
-export function SiteHeader() {
+interface Region {
+  key: string;
+  name: string;
+}
+
+interface SiteHeaderProps {
+  regions?: Region[];
+}
+
+export function SiteHeader({ regions }: SiteHeaderProps) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -35,6 +45,7 @@ export function SiteHeader() {
           Výkup Nemovitostí
         </Link>
         <div className="flex items-center gap-4">
+          {regions && <RegionSelector regions={regions} />}
           <Link
             href="/caste-dotazy"
             className={`hidden min-h-[44px] items-center text-sm font-medium transition-colors hover:text-teal-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 sm:inline-flex ${

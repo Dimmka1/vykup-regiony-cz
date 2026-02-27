@@ -7,7 +7,7 @@ import { LeadForm } from "@/components/lead-form";
 import { AnimatedCounter } from "@/components/animated-counter";
 import { ScrollTracker } from "@/components/scroll-tracker";
 import { FaqAccordion } from "@/components/faq-accordion";
-import { getRegionByHost } from "@/lib/config";
+import { getRegionByHost, getRegionByKey, listRegions } from "@/lib/config";
 import { getRequestHost } from "@/lib/request-host";
 import type { RegionConfig } from "@/lib/types";
 import {
@@ -187,9 +187,16 @@ function buildSchema(region: RegionConfig, canonicalUrl: string): object[] {
   ];
 }
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ region?: string }>;
+}): Promise<Metadata> {
+  const params = await searchParams;
   const host = await getRequestHost();
-  const region = getRegionByHost(host);
+  const region = params.region
+    ? getRegionByKey(params.region)
+    : getRegionByHost(host);
   const canonicalUrl = buildCanonicalUrl(host);
   const metaDescription = region.seoDescription || buildMetaDescription(region);
   const ogImageUrl = `${canonicalUrl}/opengraph-image`;
@@ -226,9 +233,16 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function HomePage(): Promise<ReactElement> {
+export default async function HomePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ region?: string }>;
+}): Promise<ReactElement> {
+  const params = await searchParams;
   const host = await getRequestHost();
-  const region = getRegionByHost(host);
+  const region = params.region
+    ? getRegionByKey(params.region)
+    : getRegionByHost(host);
   const canonicalUrl = buildCanonicalUrl(host);
   const schema = buildSchema(region, canonicalUrl);
 
@@ -239,7 +253,7 @@ export default async function HomePage(): Promise<ReactElement> {
       {/* ===== HERO ===== */}
       <section className="relative min-h-[520px] overflow-hidden sm:min-h-[480px]">
         <Image
-          src="https://images.unsplash.com/photo-1562932831-afcfe5b6cae8?w=1920&q=80"
+          src="/images/hero-prague.jpg"
           alt="Panorama českého města"
           fill
           priority
@@ -419,7 +433,7 @@ export default async function HomePage(): Promise<ReactElement> {
           <div className="grid items-center gap-10 lg:grid-cols-2">
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-xl">
               <Image
-                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80"
+                src="/images/about-team.jpg"
                 alt="Náš profesionální tým"
                 fill
                 className="object-cover"

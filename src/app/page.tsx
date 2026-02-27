@@ -546,12 +546,16 @@ export default async function HomePage(): Promise<ReactElement> {
         aria-label="Rychlé akce"
         className="fixed inset-x-0 bottom-0 z-20 border-t border-slate-200 bg-white/95 px-4 py-3 backdrop-blur supports-[padding:max(0px)]:pb-[max(0.75rem,env(safe-area-inset-bottom))] lg:hidden"
       >
+        <p className="mb-2 text-center text-xs text-slate-500">
+          ✓ Bez poplatků &nbsp;·&nbsp; ✓ Nabídka do 24h &nbsp;·&nbsp; ✓ 1 250+
+          výkupů
+        </p>
         <div className="mx-auto flex max-w-7xl gap-2">
           <a
             href="#kontakt"
             className="inline-flex min-h-11 flex-1 items-center justify-center rounded-xl bg-amber-500 px-4 py-3 text-sm font-semibold text-white transition hover:bg-amber-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
           >
-            Odeslat poptávku
+            Odeslat poptávku — zdarma
           </a>
           <a
             href={`tel:${region.phone}`}

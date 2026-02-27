@@ -7,12 +7,12 @@ const config: Config = {
       colors: {
         brand: {
           500: "#0f766e",
-          700: "#115e59"
-        }
-      }
-    }
+          700: "#115e59",
+        },
+      },
+    },
   },
-  plugins: []
+  plugins: [],
 };
 
 export default config;

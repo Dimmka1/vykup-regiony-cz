@@ -92,7 +92,10 @@ export function getRegionByHost(host: string | null): RegionConfig {
     return getDefaultRegion();
   }
 
-  const normalizedHost = host.toLowerCase().replace(/^www\./, "").split(":")[0];
+  const normalizedHost = host
+    .toLowerCase()
+    .replace(/^www\./, "")
+    .split(":")[0];
   return regionByHost.get(normalizedHost) ?? getDefaultRegion();
 }
 

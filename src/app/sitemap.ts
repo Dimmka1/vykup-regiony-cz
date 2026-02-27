@@ -2,7 +2,10 @@ import type { MetadataRoute } from "next";
 import { getDefaultRegion, listRegions } from "@/lib/config";
 
 function normalizeHost(host: string): string {
-  return host.toLowerCase().replace(/^www\./, "").split(":")[0];
+  return host
+    .toLowerCase()
+    .replace(/^www\./, "")
+    .split(":")[0];
 }
 
 function isPublicHost(host: string): boolean {

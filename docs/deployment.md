@@ -35,6 +35,7 @@ Open `http://localhost:3000`.
 Trigger: `push` to `develop`.
 
 CI pipeline:
+
 1. lint + typecheck
 2. tests
 3. build
@@ -55,6 +56,7 @@ npx vercel deploy --prebuilt
 Trigger: `push` to `main`.
 
 CI pipeline:
+
 1. lint + typecheck
 2. tests
 3. build
@@ -73,11 +75,13 @@ npx vercel deploy --prebuilt --prod
 ## 5) Rollback procedure (<= 1 minute)
 
 ### Option A: Vercel instant rollback
+
 1. Open Vercel Project → Deployments
 2. Find previous healthy deployment
 3. Click **Promote to Production**
 
 ### Option B: Git rollback
+
 ```bash
 git checkout main
 git revert <bad_commit_sha>

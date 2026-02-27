@@ -27,14 +27,23 @@ const TRUST_METRICS = [
   { label: "Spokojenost klientů", value: "4.9/5" },
 ] as const;
 
-const PARTNER_LOGOS = ["ČSOB", "Moneta", "Air Bank", "Česká spořitelna", "Komerční banka"] as const;
+const PARTNER_LOGOS = [
+  "ČSOB",
+  "Moneta",
+  "Air Bank",
+  "Česká spořitelna",
+  "Komerční banka",
+] as const;
 
 function normalizeHost(host: string | null): string {
   if (!host) {
     return "vykup-regiony.cz";
   }
 
-  return host.toLowerCase().replace(/^www\./, "").split(":")[0];
+  return host
+    .toLowerCase()
+    .replace(/^www\./, "")
+    .split(":")[0];
 }
 
 function buildCanonicalUrl(host: string | null): string {
@@ -144,25 +153,39 @@ export default async function HomePage(): Promise<ReactElement> {
     <main className="mx-auto flex min-h-screen max-w-6xl flex-col gap-8 px-4 py-8 pb-28 sm:px-6 lg:py-10 lg:pb-10">
       <ScrollTracker regionName={region.name} />
       <section className="relative overflow-hidden rounded-3xl bg-slate-900 px-6 py-8 text-white shadow-xl sm:px-10 sm:py-12">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.35),transparent_55%)]" aria-hidden="true" />
+        <div
+          className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.35),transparent_55%)]"
+          aria-hidden="true"
+        />
         <div className="relative grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-end">
           <div>
             <p className="mb-4 inline-flex rounded-full border border-emerald-300/40 bg-emerald-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-emerald-200">
               {region.locative}
             </p>
-            <h1 className="text-3xl font-extrabold leading-tight tracking-tight sm:text-5xl">{region.h1}</h1>
-            <p className="mt-4 max-w-2xl text-base text-slate-200 sm:text-lg">{region.description}</p>
+            <h1 className="text-3xl font-extrabold leading-tight tracking-tight sm:text-5xl">
+              {region.h1}
+            </h1>
+            <p className="mt-4 max-w-2xl text-base text-slate-200 sm:text-lg">
+              {region.description}
+            </p>
 
             <ul className="mt-6 grid gap-2 text-sm text-slate-100 sm:grid-cols-3">
               {HERO_BADGES.map((badge) => (
-                <li key={badge} className="rounded-lg border border-white/20 bg-white/5 px-3 py-2">
+                <li
+                  key={badge}
+                  className="rounded-lg border border-white/20 bg-white/5 px-3 py-2"
+                >
                   ✓ {badge}
                 </li>
               ))}
             </ul>
 
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <CtaLink href="#kontakt" label={region.heroCta} regionName={region.name} />
+              <CtaLink
+                href="#kontakt"
+                label={region.heroCta}
+                regionName={region.name}
+              />
               <a
                 href={`tel:${region.phone}`}
                 className="inline-flex min-h-11 items-center justify-center rounded-xl border border-white/30 px-6 py-3 text-base font-semibold text-white transition hover:bg-white/10"
@@ -173,15 +196,22 @@ export default async function HomePage(): Promise<ReactElement> {
           </div>
 
           <div className="rounded-2xl border border-white/20 bg-white/10 p-5 backdrop-blur-sm">
-            <p className="text-xs font-semibold uppercase tracking-wide text-emerald-200">Jak to probíhá</p>
+            <p className="text-xs font-semibold uppercase tracking-wide text-emerald-200">
+              Jak to probíhá
+            </p>
             <ol className="mt-4 space-y-3">
               {PROCESS_STEPS.map((step, index) => (
-                <li key={step.title} className="flex items-start gap-3 rounded-lg bg-black/20 p-3">
+                <li
+                  key={step.title}
+                  className="flex items-start gap-3 rounded-lg bg-black/20 p-3"
+                >
                   <span className="text-lg" aria-hidden="true">
                     {step.icon}
                   </span>
                   <p className="text-sm text-slate-100">
-                    <span className="mr-1 font-semibold text-emerald-200">{index + 1}.</span>
+                    <span className="mr-1 font-semibold text-emerald-200">
+                      {index + 1}.
+                    </span>
                     {step.title}
                   </p>
                 </li>
@@ -191,24 +221,36 @@ export default async function HomePage(): Promise<ReactElement> {
         </div>
       </section>
 
-      <section className="rounded-2xl bg-white p-5 shadow-sm sm:p-8 [content-visibility:auto] [contain-intrinsic-size:600px]">
-        <h2 className="text-2xl font-semibold text-slate-900">Proč klienti volí nás</h2>
+      <section className="rounded-2xl bg-white p-5 shadow-sm [contain-intrinsic-size:600px] [content-visibility:auto] sm:p-8">
+        <h2 className="text-2xl font-semibold text-slate-900">
+          Proč klienti volí nás
+        </h2>
         <ul className="mt-4 grid gap-3 sm:grid-cols-3">
           {region.uspPoints.map((point) => (
-            <li key={point} className="rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700">
+            <li
+              key={point}
+              className="rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700"
+            >
               {point}
             </li>
           ))}
         </ul>
       </section>
 
-      <section className="rounded-2xl bg-white p-5 shadow-sm sm:p-8 [content-visibility:auto] [contain-intrinsic-size:800px]">
-        <h2 className="text-2xl font-semibold text-slate-900">Důvěřují nám klienti i partneři</h2>
+      <section className="rounded-2xl bg-white p-5 shadow-sm [contain-intrinsic-size:800px] [content-visibility:auto] sm:p-8">
+        <h2 className="text-2xl font-semibold text-slate-900">
+          Důvěřují nám klienti i partneři
+        </h2>
 
         <div className="mt-5 grid gap-3 sm:grid-cols-3">
           {TRUST_METRICS.map((metric) => (
-            <article key={metric.label} className="rounded-xl border border-emerald-100 bg-emerald-50/60 p-4">
-              <p className="text-2xl font-bold text-emerald-700">{metric.value}</p>
+            <article
+              key={metric.label}
+              className="rounded-xl border border-emerald-100 bg-emerald-50/60 p-4"
+            >
+              <p className="text-2xl font-bold text-emerald-700">
+                {metric.value}
+              </p>
               <p className="mt-1 text-sm text-slate-700">{metric.label}</p>
             </article>
           ))}
@@ -216,20 +258,33 @@ export default async function HomePage(): Promise<ReactElement> {
 
         <div className="mt-6 grid gap-4 md:grid-cols-2">
           {region.testimonials.map((testimonial) => (
-            <figure key={`${testimonial.author}-${testimonial.city}`} className="rounded-xl bg-slate-50 p-4">
-              <blockquote className="text-sm text-slate-700">“{testimonial.quote}”</blockquote>
+            <figure
+              key={`${testimonial.author}-${testimonial.city}`}
+              className="rounded-xl bg-slate-50 p-4"
+            >
+              <blockquote className="text-sm text-slate-700">
+                “{testimonial.quote}”
+              </blockquote>
               <figcaption className="mt-3 text-sm font-semibold text-slate-900">
-                {testimonial.author} <span className="font-normal text-slate-600">— {testimonial.city}</span>
+                {testimonial.author}{" "}
+                <span className="font-normal text-slate-600">
+                  — {testimonial.city}
+                </span>
               </figcaption>
             </figure>
           ))}
         </div>
 
         <div className="mt-6">
-          <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">Spolupracujeme s institucemi</p>
+          <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+            Spolupracujeme s institucemi
+          </p>
           <ul className="mt-3 flex flex-wrap gap-2">
             {PARTNER_LOGOS.map((partner) => (
-              <li key={partner} className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-700">
+              <li
+                key={partner}
+                className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-700"
+              >
                 {partner}
               </li>
             ))}
@@ -237,20 +292,32 @@ export default async function HomePage(): Promise<ReactElement> {
         </div>
       </section>
 
-      <section className="grid gap-5 lg:grid-cols-2 [content-visibility:auto] [contain-intrinsic-size:1000px]" id="kontakt">
+      <section
+        className="grid gap-5 [contain-intrinsic-size:1000px] [content-visibility:auto] lg:grid-cols-2"
+        id="kontakt"
+      >
         <div className="rounded-2xl bg-white p-6 shadow-sm sm:p-8">
-          <h2 className="text-2xl font-semibold text-slate-900">Nezávazná konzultace zdarma</h2>
-          <p className="mt-3 text-slate-700">Primárně {region.primaryCity} a okolí, dále: {region.supportedCities.join(", ")}.</p>
+          <h2 className="text-2xl font-semibold text-slate-900">
+            Nezávazná konzultace zdarma
+          </h2>
+          <p className="mt-3 text-slate-700">
+            Primárně {region.primaryCity} a okolí, dále:{" "}
+            {region.supportedCities.join(", ")}.
+          </p>
           <h3 className="mt-6 text-lg font-semibold">Časté dotazy</h3>
           <div className="mt-3 space-y-4">
             {region.faq.map((faqItem) => (
               <article key={faqItem.question}>
-                <h4 className="text-base font-semibold text-slate-800">{faqItem.question}</h4>
+                <h4 className="text-base font-semibold text-slate-800">
+                  {faqItem.question}
+                </h4>
                 <p className="mt-1 text-slate-700">{faqItem.answer}</p>
               </article>
             ))}
           </div>
-          <p className="mt-6 text-xs text-slate-500">{region.legalDisclaimer}</p>
+          <p className="mt-6 text-xs text-slate-500">
+            {region.legalDisclaimer}
+          </p>
         </div>
 
         <LeadForm regionName={region.name} />
@@ -273,7 +340,10 @@ export default async function HomePage(): Promise<ReactElement> {
         </div>
       </div>
 
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
     </main>
   );
 }

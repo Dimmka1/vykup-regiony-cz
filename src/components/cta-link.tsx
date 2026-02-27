@@ -9,7 +9,11 @@ interface CtaLinkProps {
   regionName: string;
 }
 
-export function CtaLink({ href, label, regionName }: CtaLinkProps): ReactElement {
+export function CtaLink({
+  href,
+  label,
+  regionName,
+}: CtaLinkProps): ReactElement {
   const handleClick = (_event: MouseEvent<HTMLAnchorElement>): void => {
     trackEvent("cta_click", {
       cta_location: "hero",

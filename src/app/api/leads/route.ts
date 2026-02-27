@@ -47,24 +47,42 @@ export async function POST(request: Request): Promise<NextResponse> {
   try {
     const clientIp = getClientIp(request);
     if (isRateLimited(clientIp)) {
-      return NextResponse.json({ ok: false, code: "RATE_LIMITED" }, { status: 429 });
+      return NextResponse.json(
+        { ok: false, code: "RATE_LIMITED" },
+        { status: 429 },
+      );
     }
 
     const payload = await request.json();
 
-    if (typeof payload.website === "string" && payload.website.trim().length > 0) {
-      return NextResponse.json({ ok: true, lead_id: "honeypot-discarded" }, { status: 200 });
+    if (
+      typeof payload.website === "string" &&
+      payload.website.trim().length > 0
+    ) {
+      return NextResponse.json(
+        { ok: true, lead_id: "honeypot-discarded" },
+        { status: 200 },
+      );
     }
 
     const result = leadSchema.safeParse(payload);
     if (!result.success) {
-      return NextResponse.json({ ok: false, code: "VALIDATION_ERROR" }, { status: 400 });
+      return NextResponse.json(
+        { ok: false, code: "VALIDATION_ERROR" },
+        { status: 400 },
+      );
     }
 
     const leadId = `lead_${Date.now().toString(36)}`;
 
-    return NextResponse.json({ ok: true, lead_id: leadId, message: "Lead accepted" }, { status: 200 });
+    return NextResponse.json(
+      { ok: true, lead_id: leadId, message: "Lead accepted" },
+      { status: 200 },
+    );
   } catch (_error) {
-    return NextResponse.json({ ok: false, code: "DELIVERY_ERROR" }, { status: 500 });
+    return NextResponse.json(
+      { ok: false, code: "DELIVERY_ERROR" },
+      { status: 500 },
+    );
   }
 }

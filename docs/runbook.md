@@ -40,9 +40,11 @@ curl -I https://staging.project.com
 ## 4) Как откатить деплой
 
 Primary:
+
 - Promote last healthy deployment in Vercel
 
 Secondary:
+
 - `git revert` last commit in `main` and redeploy
 
 ## 5) Эскалация

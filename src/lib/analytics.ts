@@ -1,4 +1,8 @@
-export type AnalyticsEventName = "lead_form_submit_success" | "lead_form_submit_error" | "cta_click" | "scroll_50";
+export type AnalyticsEventName =
+  | "lead_form_submit_success"
+  | "lead_form_submit_error"
+  | "cta_click"
+  | "scroll_50";
 
 type Primitive = string | number | boolean;
 
@@ -26,7 +30,10 @@ function getDataLayer(): DataLayerEvent[] | null {
   return window.dataLayer;
 }
 
-export function trackEvent(event: AnalyticsEventName, payload: AnalyticsEventPayload = {}): void {
+export function trackEvent(
+  event: AnalyticsEventName,
+  payload: AnalyticsEventPayload = {},
+): void {
   const dataLayer = getDataLayer();
   if (!dataLayer) {
     return;

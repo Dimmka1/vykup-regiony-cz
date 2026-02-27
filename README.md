@@ -72,6 +72,7 @@ Body:
 ```
 
 Response:
+
 - `200` `{ ok: true, lead_id, message }`
 - `400` `{ ok: false, code: "VALIDATION_ERROR" }`
 - `429` `{ ok: false, code: "RATE_LIMITED" }`

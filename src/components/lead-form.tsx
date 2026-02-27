@@ -31,7 +31,11 @@ interface StepMeta {
 
 const STEPS: readonly StepMeta[] = [
   { key: 0, title: "Typ nemovitosti", description: "Upřesněte, co vykupujeme" },
-  { key: 1, title: "Adresa", description: "Lokalita pomůže se správným oceněním" },
+  {
+    key: 1,
+    title: "Adresa",
+    description: "Lokalita pomůže se správným oceněním",
+  },
   { key: 2, title: "Kontakt", description: "Kam vám máme poslat nabídku" },
 ] as const;
 
@@ -69,12 +73,24 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [currentStep, setCurrentStep] = useState<FormStep>(0);
 
-  const isPhoneValid = useMemo(() => CZ_PHONE_REGEX.test(formData.phone.trim()), [formData.phone]);
+  const isPhoneValid = useMemo(
+    () => CZ_PHONE_REGEX.test(formData.phone.trim()),
+    [formData.phone],
+  );
   const isNameValid = formData.name.trim().length > 1;
   const isAddressValid = formData.address.trim().length > 4;
   const isCityValid = formData.city.trim().length > 1;
-  const isPostalCodeValid = useMemo(() => CZ_POSTAL_CODE_REGEX.test(formData.postalCode.trim()), [formData.postalCode]);
-  const isFormValid = isNameValid && isPhoneValid && isAddressValid && isCityValid && isPostalCodeValid && formData.consent;
+  const isPostalCodeValid = useMemo(
+    () => CZ_POSTAL_CODE_REGEX.test(formData.postalCode.trim()),
+    [formData.postalCode],
+  );
+  const isFormValid =
+    isNameValid &&
+    isPhoneValid &&
+    isAddressValid &&
+    isCityValid &&
+    isPostalCodeValid &&
+    formData.consent;
   const progressPercent = Math.round(((currentStep + 1) / STEPS.length) * 100);
 
   const handleNextStep = (): void => {
@@ -86,7 +102,9 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
 
     if (currentStep === 1) {
       if (!isAddressValid || !isCityValid || !isPostalCodeValid) {
-        setErrorMessage("Doplňte prosím kompletní adresu ve formátu PSČ 123 45.");
+        setErrorMessage(
+          "Doplňte prosím kompletní adresu ve formátu PSČ 123 45.",
+        );
         return;
       }
 
@@ -102,7 +120,9 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
     }
   };
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
+  const handleSubmit = async (
+    event: React.FormEvent<HTMLFormElement>,
+  ): Promise<void> => {
     event.preventDefault();
 
     if (!isFormValid) {
@@ -153,7 +173,10 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
   };
 
   return (
-    <form className="space-y-4 rounded-xl bg-white p-4 shadow sm:p-6" onSubmit={handleSubmit}>
+    <form
+      className="space-y-4 rounded-xl bg-white p-4 shadow sm:p-6"
+      onSubmit={handleSubmit}
+    >
       <div className="space-y-2">
         <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wide text-slate-500">
           <span>
@@ -161,11 +184,24 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
           </span>
           <span>{progressPercent}%</span>
         </div>
-        <div className="h-2 w-full rounded-full bg-slate-200" role="progressbar" aria-valuemin={1} aria-valuemax={STEPS.length} aria-valuenow={currentStep + 1}>
-          <div className="h-full rounded-full bg-emerald-600 transition-all" style={{ width: `${progressPercent}%` }} />
+        <div
+          className="h-2 w-full rounded-full bg-slate-200"
+          role="progressbar"
+          aria-valuemin={1}
+          aria-valuemax={STEPS.length}
+          aria-valuenow={currentStep + 1}
+        >
+          <div
+            className="h-full rounded-full bg-emerald-600 transition-all"
+            style={{ width: `${progressPercent}%` }}
+          />
         </div>
-        <h3 className="text-lg font-semibold text-slate-900">{STEPS[currentStep].title}</h3>
-        <p className="text-sm text-slate-600">{STEPS[currentStep].description}</p>
+        <h3 className="text-lg font-semibold text-slate-900">
+          {STEPS[currentStep].title}
+        </h3>
+        <p className="text-sm text-slate-600">
+          {STEPS[currentStep].description}
+        </p>
         <ol className="grid grid-cols-3 gap-2" aria-label="Průběh formuláře">
           {STEPS.map((step, index) => {
             const isActive = step.key === currentStep;
@@ -196,7 +232,12 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
             <select
               className="mt-1 min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base"
               value={formData.propertyType}
-              onChange={(event) => setFormData((prev) => ({ ...prev, propertyType: event.target.value }))}
+              onChange={(event) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  propertyType: event.target.value,
+                }))
+              }
             >
               <option value="byt">Byt</option>
               <option value="dum">Dům</option>
@@ -210,7 +251,12 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
             <select
               className="mt-1 min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base"
               value={formData.situationType}
-              onChange={(event) => setFormData((prev) => ({ ...prev, situationType: event.target.value }))}
+              onChange={(event) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  situationType: event.target.value,
+                }))
+              }
             >
               <option value="standard">Standardní prodej</option>
               <option value="exekuce">Exekuce</option>
@@ -231,7 +277,12 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
               autoComplete="street-address"
               enterKeyHint="next"
               value={formData.address}
-              onChange={(event) => setFormData((prev) => ({ ...prev, address: event.target.value }))}
+              onChange={(event) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  address: event.target.value,
+                }))
+              }
               required
             />
           </label>
@@ -245,7 +296,9 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
                 autoComplete="address-level2"
                 enterKeyHint="next"
                 value={formData.city}
-                onChange={(event) => setFormData((prev) => ({ ...prev, city: event.target.value }))}
+                onChange={(event) =>
+                  setFormData((prev) => ({ ...prev, city: event.target.value }))
+                }
                 required
               />
             </label>
@@ -259,7 +312,12 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
                 autoComplete="postal-code"
                 enterKeyHint="next"
                 value={formData.postalCode}
-                onChange={(event) => setFormData((prev) => ({ ...prev, postalCode: normalizePostalCode(event.target.value) }))}
+                onChange={(event) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    postalCode: normalizePostalCode(event.target.value),
+                  }))
+                }
                 required
               />
             </label>
@@ -276,7 +334,9 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
               value={formData.name}
               autoComplete="name"
               enterKeyHint="next"
-              onChange={(event) => setFormData((prev) => ({ ...prev, name: event.target.value }))}
+              onChange={(event) =>
+                setFormData((prev) => ({ ...prev, name: event.target.value }))
+              }
               required
             />
           </label>
@@ -290,7 +350,12 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
               autoComplete="tel"
               enterKeyHint="send"
               value={formData.phone}
-              onChange={(event) => setFormData((prev) => ({ ...prev, phone: normalizePhone(event.target.value) }))}
+              onChange={(event) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  phone: normalizePhone(event.target.value),
+                }))
+              }
               required
             />
           </label>
@@ -302,7 +367,12 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
               className="min-h-11"
               autoComplete="off"
               value={formData.website}
-              onChange={(event) => setFormData((prev) => ({ ...prev, website: event.target.value }))}
+              onChange={(event) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  website: event.target.value,
+                }))
+              }
             />
           </label>
 
@@ -311,7 +381,12 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
               className="mt-1"
               type="checkbox"
               checked={formData.consent}
-              onChange={(event) => setFormData((prev) => ({ ...prev, consent: event.target.checked }))}
+              onChange={(event) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  consent: event.target.checked,
+                }))
+              }
             />
             Souhlasím se zpracováním osobních údajů pro účely zpětného kontaktu.
           </label>
@@ -347,9 +422,13 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
         )}
       </div>
 
-      {errorMessage ? <p className="text-sm text-red-600">{errorMessage}</p> : null}
+      {errorMessage ? (
+        <p className="text-sm text-red-600">{errorMessage}</p>
+      ) : null}
       {status === "success" ? (
-        <p className="text-sm text-emerald-700">Děkujeme, ozveme se vám co nejdříve.</p>
+        <p className="text-sm text-emerald-700">
+          Děkujeme, ozveme se vám co nejdříve.
+        </p>
       ) : null}
     </form>
   );

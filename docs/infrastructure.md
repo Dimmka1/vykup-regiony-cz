@@ -12,11 +12,11 @@
 
 ## Environments
 
-| Environment | Branch | URL | Purpose |
-|---|---|---|---|
-| Development | local | http://localhost:3000 | Dev iteration |
-| Staging | develop | https://staging.project.com | QA and preview |
-| Production | main | https://project.com | Live users |
+| Environment | Branch  | URL                         | Purpose        |
+| ----------- | ------- | --------------------------- | -------------- |
+| Development | local   | http://localhost:3000       | Dev iteration  |
+| Staging     | develop | https://staging.project.com | QA and preview |
+| Production  | main    | https://project.com         | Live users     |
 
 ## Services and access
 

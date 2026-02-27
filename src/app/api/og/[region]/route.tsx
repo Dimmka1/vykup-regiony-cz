@@ -6,7 +6,10 @@ type RouteContext = {
 
 export const runtime = "nodejs";
 
-export async function GET(_request: Request, context: RouteContext): Promise<Response> {
+export async function GET(
+  _request: Request,
+  context: RouteContext,
+): Promise<Response> {
   const { region } = await context.params;
   return renderOgImage(region);
 }

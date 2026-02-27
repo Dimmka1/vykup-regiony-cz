@@ -2,21 +2,24 @@ import Link from "next/link";
 
 export function SiteFooter() {
   return (
-    <footer className="bg-slate-900 text-white">
+    <footer className="bg-slate-900 pb-[env(safe-area-inset-bottom)] text-white">
       <div className="mx-auto max-w-5xl px-4 py-10">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <p className="text-lg font-bold">Výkup Regiony CZ</p>
             <p className="mt-1 text-sm text-slate-400">IČO: [bude doplněno]</p>
           </div>
-          <nav className="flex gap-6 text-sm">
+          <nav className="flex gap-4 text-sm">
             <Link
               href="/ochrana-osobnich-udaju"
-              className="text-slate-300 hover:text-white"
+              className="inline-flex min-h-[44px] items-center text-slate-300 hover:text-white"
             >
               Ochrana osobních údajů
             </Link>
-            <Link href="/cookies" className="text-slate-300 hover:text-white">
+            <Link
+              href="/cookies"
+              className="inline-flex min-h-[44px] items-center text-slate-300 hover:text-white"
+            >
               Cookies
             </Link>
           </nav>

@@ -27,10 +27,12 @@ const TRUST_METRICS = [
   { label: "Spokojenost klientů", value: "4.9/5" },
 ] as const;
 
-const ABOUT_STATS = [
-  { value: "10+", label: "let na trhu" },
-  { value: "1 250+", label: "úspěšných výkupů" },
-  { value: "14", label: "krajů ČR" },
+const PARTNER_LOGOS = [
+  "ČSOB",
+  "Moneta",
+  "Air Bank",
+  "Česká spořitelna",
+  "Komerční banka",
 ] as const;
 
 function normalizeHost(host: string | null): string {
@@ -235,35 +237,6 @@ export default async function HomePage(): Promise<ReactElement> {
         </ul>
       </section>
 
-      <section className="rounded-2xl bg-white p-5 shadow-sm sm:p-8">
-        <h2 className="text-2xl font-semibold text-slate-900">O nás</h2>
-        <div className="mt-5 grid gap-6 lg:grid-cols-[200px_1fr]">
-          <div className="flex h-40 w-40 items-center justify-center rounded-2xl bg-slate-100 text-6xl">
-            👨‍💼
-          </div>
-          <div>
-            <p className="text-slate-700">
-              Jsme tým profesionálů s více než 10 lety zkušeností na českém
-              realitním trhu. Specializujeme se na rychlý a férový výkup
-              nemovitostí v celé České republice.
-            </p>
-            <div className="mt-5 grid gap-3 sm:grid-cols-3">
-              {ABOUT_STATS.map((stat) => (
-                <div
-                  key={stat.label}
-                  className="rounded-xl border border-emerald-100 bg-emerald-50/60 p-4 text-center"
-                >
-                  <p className="text-2xl font-bold text-emerald-700">
-                    {stat.value}
-                  </p>
-                  <p className="mt-1 text-sm text-slate-700">{stat.label}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section className="rounded-2xl bg-white p-5 shadow-sm [contain-intrinsic-size:800px] [content-visibility:auto] sm:p-8">
         <h2 className="text-2xl font-semibold text-slate-900">
           Důvěřují nám klienti i partneři
@@ -300,6 +273,22 @@ export default async function HomePage(): Promise<ReactElement> {
               </figcaption>
             </figure>
           ))}
+        </div>
+
+        <div className="mt-6">
+          <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+            Spolupracujeme s institucemi
+          </p>
+          <ul className="mt-3 flex flex-wrap gap-2">
+            {PARTNER_LOGOS.map((partner) => (
+              <li
+                key={partner}
+                className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-700"
+              >
+                {partner}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

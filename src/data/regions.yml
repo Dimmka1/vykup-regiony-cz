@@ -41,9 +41,14 @@ regions:
         výkup domu Praha,
       ]
     hosts:
+      - vykoupim-nemovitost.cz
+      - www.vykoupim-nemovitost.cz
+      - dev.vykoupim-nemovitost.cz
+      - vykup-regiony-cz-dev.vercel.app
       - vykup-praha.cz
       - vykuppraha.cz
       - praha.localhost
+      - praha.vykoupim-nemovitost.cz
     testimonials:
       - author: Jana K.
         city: Praha 6
@@ -97,6 +102,7 @@ regions:
     hosts:
       - vykup-stredocesky.cz
       - stredocesky.localhost
+      - stredocesky.vykoupim-nemovitost.cz
     testimonials:
       - author: Lucie R.
         city: Kolín
@@ -149,6 +155,7 @@ regions:
     hosts:
       - vykup-jihocesky.cz
       - jihocesky.localhost
+      - jihocesky.vykoupim-nemovitost.cz
     testimonials:
       - author: Roman D.
         city: Tábor
@@ -198,6 +205,7 @@ regions:
     hosts:
       - vykup-plzensky.cz
       - plzensky.localhost
+      - plzensky.vykoupim-nemovitost.cz
     testimonials:
       - author: Karel S.
         city: Plzeň
@@ -250,6 +258,7 @@ regions:
     hosts:
       - vykup-karlovarsky.cz
       - karlovarsky.localhost
+      - karlovarsky.vykoupim-nemovitost.cz
     testimonials:
       - author: Monika P.
         city: Cheb
@@ -303,6 +312,7 @@ regions:
     hosts:
       - vykup-ustecky.cz
       - ustecky.localhost
+      - ustecky.vykoupim-nemovitost.cz
     testimonials:
       - author: Stanislav B.
         city: Most
@@ -355,6 +365,7 @@ regions:
     hosts:
       - vykup-liberecky.cz
       - liberecky.localhost
+      - liberecky.vykoupim-nemovitost.cz
     testimonials:
       - author: Martina Č.
         city: Liberec
@@ -408,6 +419,7 @@ regions:
     hosts:
       - vykup-kralovehradecky.cz
       - kralovehradecky.localhost
+      - kralovehradecky.vykoupim-nemovitost.cz
     testimonials:
       - author: Daniela F.
         city: Hradec Králové
@@ -459,6 +471,7 @@ regions:
     hosts:
       - vykup-pardubicky.cz
       - pardubicky.localhost
+      - pardubicky.vykoupim-nemovitost.cz
     testimonials:
       - author: Veronika J.
         city: Pardubice
@@ -511,6 +524,7 @@ regions:
     hosts:
       - vykup-vysocina.cz
       - vysocina.localhost
+      - vysocina.vykoupim-nemovitost.cz
     testimonials:
       - author: Lenka Z.
         city: Jihlava
@@ -565,6 +579,7 @@ regions:
     hosts:
       - vykup-jihomoravsky.cz
       - jihomoravsky.localhost
+      - jihomoravsky.vykoupim-nemovitost.cz
     testimonials:
       - author: Pavla M.
         city: Brno
@@ -614,6 +629,7 @@ regions:
     hosts:
       - vykup-olomoucky.cz
       - olomoucky.localhost
+      - olomoucky.vykoupim-nemovitost.cz
     testimonials:
       - author: Kateřina R.
         city: Olomouc
@@ -668,6 +684,7 @@ regions:
     hosts:
       - vykup-moravskoslezsky.cz
       - moravskoslezsky.localhost
+      - moravskoslezsky.vykoupim-nemovitost.cz
     testimonials:
       - author: Renata S.
         city: Ostrava
@@ -715,6 +732,7 @@ regions:
     hosts:
       - vykup-zlinsky.cz
       - zlinsky.localhost
+      - zlinsky.vykoupim-nemovitost.cz
     testimonials:
       - author: Hana P.
         city: Zlín

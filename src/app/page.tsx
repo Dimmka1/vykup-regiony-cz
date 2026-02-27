@@ -3,6 +3,7 @@ import type { ReactElement } from "react";
 import type { Metadata } from "next";
 import { CtaLink } from "@/components/cta-link";
 import { LeadForm } from "@/components/lead-form";
+import { AnimatedCounter } from "@/components/animated-counter";
 import { ScrollTracker } from "@/components/scroll-tracker";
 import { getRegionByHost } from "@/lib/config";
 import { getRequestHost } from "@/lib/request-host";
@@ -26,6 +27,13 @@ const TRUST_METRICS = [
   { label: "Realizovaných výkupů", value: "1 250+" },
   { label: "Průměrná doba první nabídky", value: "24 h" },
   { label: "Spokojenost klientů", value: "4.9/5" },
+] as const;
+
+const TRUST_BADGES = [
+  { label: "Bezpečná transakce", icon: "🔒" },
+  { label: "Osobní přístup", icon: "👤" },
+  { label: "Garance výkupní ceny", icon: "✅" },
+  { label: "Bez skrytých poplatků", icon: "💎" },
 ] as const;
 
 const ABOUT_STATS = [
@@ -278,10 +286,26 @@ export default async function HomePage(): Promise<ReactElement> {
               className="rounded-xl border border-emerald-100 bg-emerald-50/60 p-4"
             >
               <p className="text-2xl font-bold text-emerald-700">
-                {metric.value}
+                <AnimatedCounter value={metric.value} />
               </p>
               <p className="mt-1 text-sm text-slate-700">{metric.label}</p>
             </article>
+          ))}
+        </div>
+
+        <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
+          {TRUST_BADGES.map((badge) => (
+            <div
+              key={badge.label}
+              className="flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3"
+            >
+              <span className="text-xl" aria-hidden="true">
+                {badge.icon}
+              </span>
+              <span className="text-sm font-medium text-slate-700">
+                {badge.label}
+              </span>
+            </div>
           ))}
         </div>
 

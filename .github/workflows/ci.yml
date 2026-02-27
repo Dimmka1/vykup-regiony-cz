@@ -97,7 +97,7 @@ jobs:
     if: github.ref == 'refs/heads/develop' && github.event_name == 'push'
     environment:
       name: development
-      url: ${{ steps.deploy.outputs.url }}
+      url: https://dev.vykoupim-nemovitost.cz
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -123,6 +123,11 @@ jobs:
           URL=$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})
           echo "url=$URL" >> $GITHUB_OUTPUT
           echo "✅ Deployed to: $URL"
+
+      - name: Alias to stable dev domain
+        run: |
+          vercel alias set ${{ steps.deploy.outputs.url }} dev.vykoupim-nemovitost.cz --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ secrets.VERCEL_ORG_ID }}
+          echo "✅ Aliased to: https://dev.vykoupim-nemovitost.cz"
 
   deploy-production:
     name: Deploy production (manual only)

@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { CookieConsent } from "@/components/cookie-consent";
 import { SiteHeader } from "@/components/site-header";
-import { listRegions } from "@/lib/config";
 import { SiteFooter } from "@/components/site-footer";
 import { WebVitalsReporter } from "@/components/web-vitals-reporter";
 
@@ -53,9 +52,7 @@ export default function RootLayout({
         >
           Přeskočit na obsah
         </a>
-        <SiteHeader
-          regions={listRegions().map((r) => ({ key: r.key, name: r.name }))}
-        />
+        <SiteHeader />
         <WebVitalsReporter />
         <main id="hlavni-obsah" className="flex-1">
           {children}

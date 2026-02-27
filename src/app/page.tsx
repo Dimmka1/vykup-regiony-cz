@@ -1,3 +1,4 @@
+import { safeJsonLd } from "@/lib/jsonld";
 import type { ReactElement } from "react";
 import type { Metadata } from "next";
 import { CtaLink } from "@/components/cta-link";
@@ -113,6 +114,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: region.title,
     description: metaDescription,
+    keywords: region.keywords,
     alternates: {
       canonical: canonicalUrl,
     },
@@ -353,7 +355,7 @@ export default async function HomePage(): Promise<ReactElement> {
 
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(schema) }}
       />
     </main>
   );

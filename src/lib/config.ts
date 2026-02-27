@@ -31,6 +31,7 @@ const regionSchema = z.object({
   faq: z.array(faqSchema).min(2),
   testimonials: z.array(testimonialSchema).min(2),
   legalDisclaimer: z.string().min(8),
+  keywords: z.array(z.string().min(2)).min(1),
   hosts: z.array(z.string().min(4)).min(1),
 });
 

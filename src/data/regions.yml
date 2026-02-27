@@ -31,6 +31,13 @@ regions:
           Ano, podílové vlastnictví v Praze řešíme často a připravíme varianty podle
           dohody mezi spoluvlastníky.
     legalDisclaimer: Každý případ posuzujeme individuálně.
+    keywords:
+      [
+        výkup nemovitostí Praha,
+        výkup bytu Praha,
+        prodej nemovitosti rychle Praha,
+        výkup domu Praha,
+      ]
     hosts:
       - vykup-praha.cz
       - vykuppraha.cz
@@ -77,6 +84,12 @@ regions:
           Ano, u klientů dojíždějících do Prahy běžně domlouváme termíny i večer nebo o
           víkendu.
     legalDisclaimer: Podmínky nabídky závisí na právním a technickém stavu.
+    keywords:
+      [
+        výkup nemovitostí Středočeský kraj,
+        výkup bytu Kladno,
+        prodej domu Mladá Boleslav,
+      ]
     hosts:
       - vykup-stredocesky.cz
       - stredocesky.localhost
@@ -121,6 +134,12 @@ regions:
           Velkou část agendy vyřídíme na dálku, osobně řešíme jen klíčové podpisy a
           ověření dokumentů.
     legalDisclaimer: Nejde o závaznou nabídku bez prověření podkladů.
+    keywords:
+      [
+        výkup nemovitostí Jihočeský kraj,
+        výkup bytu České Budějovice,
+        prodej nemovitosti jižní Čechy,
+      ]
     hosts:
       - vykup-jihocesky.cz
       - jihocesky.localhost
@@ -166,6 +185,8 @@ regions:
           Ano, připravíme koordinovaný postup podpisů i vypořádání kupní ceny pro všechny
           strany.
     legalDisclaimer: Časový rámec závisí na dostupnosti podkladů.
+    keywords:
+      [výkup nemovitostí Plzeňský kraj, výkup bytu Plzeň, prodej domu Plzeň]
     hosts:
       - vykup-plzensky.cz
       - plzensky.localhost
@@ -210,6 +231,12 @@ regions:
           Ano, u přeshraničních případů koordinujeme komunikaci tak, aby byl postup
           srozumitelný pro všechny strany.
     legalDisclaimer: Výše nabídky se odvíjí od lokality a stavu nemovitosti.
+    keywords:
+      [
+        výkup nemovitostí Karlovarský kraj,
+        výkup bytu Karlovy Vary,
+        prodej nemovitosti Sokolov,
+      ]
     hosts:
       - vykup-karlovarsky.cz
       - karlovarsky.localhost
@@ -255,6 +282,12 @@ regions:
           Ano, úvodní konzultaci vedeme diskrétně a bez závazku, teprve potom řešíme
           detailní podklady.
     legalDisclaimer: Nezaručujeme výsledek bez individuálního posouzení.
+    keywords:
+      [
+        výkup nemovitostí Ústecký kraj,
+        výkup bytu Ústí nad Labem,
+        prodej domu Most,
+      ]
     hosts:
       - vykup-ustecky.cz
       - ustecky.localhost
@@ -299,6 +332,12 @@ regions:
           Nejprve prověříme zápisy v katastru a navrhneme postup, který je právně bezpečný
           pro prodávajícího i kupujícího.
     legalDisclaimer: Konečná nabídka je podmíněna due diligence.
+    keywords:
+      [
+        výkup nemovitostí Liberecký kraj,
+        výkup bytu Liberec,
+        prodej domu Jablonec,
+      ]
     hosts:
       - vykup-liberecky.cz
       - liberecky.localhost
@@ -344,6 +383,12 @@ regions:
           Po potvrzení základních podkladů připravujeme návrh dokumentace zpravidla v
           nejkratším možném termínu.
     legalDisclaimer: Výsledná cena se liší dle stavu a právních omezení.
+    keywords:
+      [
+        výkup nemovitostí Královéhradecký kraj,
+        výkup bytu Hradec Králové,
+        prodej nemovitosti Náchod,
+      ]
     hosts:
       - vykup-kralovehradecky.cz
       - kralovehradecky.localhost
@@ -387,6 +432,12 @@ regions:
           Po dodání základních údajů připravíme orientační nabídku obvykle během krátké
           doby.
     legalDisclaimer: Nabídka podléhá internímu schválení.
+    keywords:
+      [
+        výkup nemovitostí Pardubický kraj,
+        výkup bytu Pardubice,
+        prodej domu Pardubice,
+      ]
     hosts:
       - vykup-pardubicky.cz
       - pardubicky.localhost
@@ -430,6 +481,13 @@ regions:
       - question: Řešíte i hospodářské objekty u rodinných domů?
         answer: Ano, při ocenění bereme v úvahu i stodoly, dílny a další navazující stavby.
     legalDisclaimer: Komunikace nepředstavuje závazek uzavřít smlouvu.
+    keywords:
+      [
+        výkup nemovitostí Vysočina,
+        výkup bytu Jihlava,
+        prodej domu Třebíč,
+        výkup nemovitosti Havlíčkův Brod,
+      ]
     hosts:
       - vykup-vysocina.cz
       - vysocina.localhost
@@ -475,6 +533,13 @@ regions:
           Ano, dokumenty i konzultace řešíme na dálku a osobní schůzky plánujeme jen pro
           klíčové úkony.
     legalDisclaimer: Konkrétní parametry nabídky sdělujeme po posouzení případu.
+    keywords:
+      [
+        výkup nemovitostí Jihomoravský kraj,
+        výkup bytu Brno,
+        prodej domu Brno,
+        výkup nemovitosti jižní Morava,
+      ]
     hosts:
       - vykup-jihomoravsky.cz
       - jihomoravsky.localhost
@@ -520,6 +585,8 @@ regions:
           Ano, nastavíme transakci tak, aby bylo možné úvěr doplatit a bezpečně převést
           vlastnictví.
     legalDisclaimer: Informace na webu mají obecný charakter.
+    keywords:
+      [výkup nemovitostí Olomoucký kraj, výkup bytu Olomouc, prodej domu Přerov]
     hosts:
       - vykup-olomoucky.cz
       - olomoucky.localhost
@@ -565,6 +632,13 @@ regions:
           Po splnění smluvních podmínek a úschovy realizujeme výplatu v nejbližším možném
           termínu.
     legalDisclaimer: Nabídka se může lišit dle právního zatížení.
+    keywords:
+      [
+        výkup nemovitostí Moravskoslezský kraj,
+        výkup bytu Ostrava,
+        prodej domu Opava,
+        výkup nemovitosti Karviná,
+      ]
     hosts:
       - vykup-moravskoslezsky.cz
       - moravskoslezsky.localhost
@@ -608,6 +682,8 @@ regions:
           Ano, technický stav není překážkou. Nabídku připravujeme i pro nemovitosti
           určené k obnově.
     legalDisclaimer: Přesné podmínky nabídky sdělujeme po analýze nemovitosti.
+    keywords:
+      [výkup nemovitostí Zlínský kraj, výkup bytu Zlín, prodej domu Vsetín]
     hosts:
       - vykup-zlinsky.cz
       - zlinsky.localhost

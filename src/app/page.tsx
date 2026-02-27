@@ -253,8 +253,12 @@ export default async function HomePage({
       {/* ===== HERO ===== */}
       <section className="relative min-h-[520px] overflow-hidden sm:min-h-[480px]">
         <Image
-          src="/images/hero-prague.jpg"
-          alt="Panorama českého města"
+          src={
+            region.key === "praha"
+              ? "/images/hero-prague.jpg"
+              : `/images/hero-${region.key}.jpg`
+          }
+          alt={`Panorama města ${region.primaryCity}`}
           fill
           priority
           className="object-cover"

@@ -177,18 +177,18 @@ export async function generateMetadata(): Promise<Metadata> {
   const host = await getRequestHost();
   const region = getRegionByHost(host);
   const canonicalUrl = buildCanonicalUrl(host);
-  const metaDescription = buildMetaDescription(region);
+  const metaDescription = region.seoDescription || buildMetaDescription(region);
   const ogImageUrl = `${canonicalUrl}/opengraph-image`;
 
   return {
-    title: region.title,
+    title: region.seoTitle || region.title,
     description: metaDescription,
     keywords: region.keywords,
     alternates: {
       canonical: canonicalUrl,
     },
     openGraph: {
-      title: region.title,
+      title: region.seoTitle || region.title,
       description: metaDescription,
       url: canonicalUrl,
       siteName: COMPANY_NAME,
@@ -205,7 +205,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     twitter: {
       card: "summary_large_image",
-      title: region.title,
+      title: region.seoTitle || region.title,
       description: metaDescription,
       images: [ogImageUrl],
     },

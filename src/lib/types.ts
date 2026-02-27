@@ -25,6 +25,8 @@ export interface RegionConfig {
   faq: FaqItem[];
   testimonials: TestimonialItem[];
   legalDisclaimer: string;
+  seoTitle: string;
+  seoDescription: string;
   keywords: string[];
   hosts: string[];
 }

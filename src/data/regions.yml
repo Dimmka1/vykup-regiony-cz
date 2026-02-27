@@ -1,6 +1,8 @@
 defaultRegion: praha
 regions:
   - key: praha
+    seoTitle: "Výkup nemovitostí v Praze | Nabídka do 24 hodin"
+    seoDescription: "Potřebujete rychle prodat byt nebo dům v Praze? Nabídka do 24 h, právní servis a bez skrytých poplatků."
     name: Praha
     locative: v Praze
     title: Výkup nemovitostí v Praze | Rychlá nabídka
@@ -54,6 +56,8 @@ regions:
           Ocenil jsem, že tým převzal komunikaci se správcem domu i bankou. Nemusel jsem
           obíhat úřady a peníze přišly podle dohody.
   - key: stredocesky-kraj
+    seoTitle: "Rychlý výkup bytu a domu ve Středočeském kraji | Bez provize"
+    seoDescription: "Rychlý výkup nemovitostí ve Středočeském kraji. Řešíme i exekuce, dědictví a podíly. Nezávazná konzultace zdarma."
     name: Středočeský kraj
     locative: ve Středočeském kraji
     title: Výkup nemovitostí ve Středočeském kraji | Rychlá nabídka
@@ -105,6 +109,8 @@ regions:
           Měl jsem hypotéku i věcné břemeno, přesto našli řešení. Komunikace byla věcná a
           férová od začátku do konce.
   - key: jihocesky-kraj
+    seoTitle: "Prodej nemovitosti v Jihočeském kraji bez čekání | Férová nabídka"
+    seoDescription: "Získejte férovou nabídku na výkup nemovitosti v Jihočeském kraji. Ozveme se do 15 minut."
     name: Jihočeský kraj
     locative: v Jihočeském kraji
     title: Výkup nemovitostí v Jihočeském kraji
@@ -155,6 +161,8 @@ regions:
           Líbilo se mi, že mi vysvětlili i daňové dopady prodeje. Celý proces byl přehledný
           a bez nátlaku.
   - key: plzensky-kraj
+    seoTitle: "Výkup nemovitostí v Plzeňském kraji | Nabídka do 24 hodin"
+    seoDescription: "Potřebujete rychle prodat byt nebo dům v Plzeňském kraji? Nabídka do 24 h, právní servis a bez skrytých poplatků."
     name: Plzeňský kraj
     locative: v Plzeňském kraji
     title: Výkup nemovitostí v Plzeňském kraji
@@ -202,6 +210,8 @@ regions:
           Starší dům potřeboval rekonstrukci a realitky nás odmítaly. Tady jsme dostali
           realistickou nabídku bez slibů navíc.
   - key: karlovarsky-kraj
+    seoTitle: "Výkup i zadlužených nemovitostí v Karlovarském kraji | Konzultace zdarma"
+    seoDescription: "Rychlý výkup nemovitostí v Karlovarském kraji. Řešíme i exekuce, dědictví a podíly. Nezávazná konzultace zdarma."
     name: Karlovarský kraj
     locative: v Karlovarském kraji
     title: Výkup nemovitostí v Karlovarském kraji
@@ -252,6 +262,8 @@ regions:
           Cením si férového jednání a rychlého právního servisu. Termíny platily přesně
           tak, jak byly domluvené.
   - key: ustecky-kraj
+    seoTitle: "Rychlý výkup bytu a domu v Ústeckém kraji | Bez provize"
+    seoDescription: "Získejte férovou nabídku na výkup nemovitosti v Ústeckém kraji. Ozveme se do 15 minut."
     name: Ústecký kraj
     locative: v Ústeckém kraji
     title: Výkup nemovitostí v Ústeckém kraji
@@ -303,6 +315,8 @@ regions:
           Vážím si lidského přístupu. Všechno mi vysvětlili bez složitých právnických
           formulací a drželi se domluvy.
   - key: liberecky-kraj
+    seoTitle: "Prodej nemovitosti v Libereckém kraji bez čekání | Férová nabídka"
+    seoDescription: "Potřebujete rychle prodat byt nebo dům v Libereckém kraji? Nabídka do 24 h, právní servis a bez skrytých poplatků."
     name: Liberecký kraj
     locative: v Libereckém kraji
     title: Výkup nemovitostí v Libereckém kraji
@@ -353,6 +367,8 @@ regions:
           Oceňuji transparentní kalkulaci ceny. Od prvního hovoru jsem věděl, co se bude
           dít a kdy.
   - key: kralovehradecky-kraj
+    seoTitle: "Výkup nemovitostí v Královéhradeckém kraji | Nabídka do 24 hodin"
+    seoDescription: "Rychlý výkup nemovitostí v Královéhradeckém kraji. Řešíme i exekuce, dědictví a podíly. Nezávazná konzultace zdarma."
     name: Královéhradecký kraj
     locative: v Královéhradeckém kraji
     title: Výkup nemovitostí v Královéhradeckém kraji
@@ -404,6 +420,8 @@ regions:
           Rychlý kontakt, jasná dohoda a žádné překvapení ve smlouvách. Přesně takový
           servis jsem očekával.
   - key: pardubicky-kraj
+    seoTitle: "Výkup i zadlužených nemovitostí v Pardubickém kraji | Konzultace zdarma"
+    seoDescription: "Získejte férovou nabídku na výkup nemovitosti v Pardubickém kraji. Ozveme se do 15 minut."
     name: Pardubický kraj
     locative: v Pardubickém kraji
     title: Výkup nemovitostí v Pardubickém kraji
@@ -453,6 +471,8 @@ regions:
           Všechny kroky byly jasně vysvětlené a termíny seděly. Oceňuji profesionální, ale
           lidský přístup.
   - key: vysocina
+    seoTitle: "Rychlý výkup bytu a domu na Vysočině | Bez provize"
+    seoDescription: "Potřebujete rychle prodat byt nebo dům na Vysočině? Nabídka do 24 h, právní servis a bez skrytých poplatků."
     name: Kraj Vysočina
     locative: na Vysočině
     title: Výkup nemovitostí na Vysočině
@@ -503,6 +523,8 @@ regions:
           Ocenil jsem, že řešili i technické detaily starší nemovitosti. Nabídka byla
           realistická a dobře vysvětlená.
   - key: jihomoravsky-kraj
+    seoTitle: "Výkup nemovitostí v Jihomoravském kraji | Nabídka do 24 hodin"
+    seoDescription: "Rychlý výkup nemovitostí v Jihomoravském kraji. Řešíme i exekuce, dědictví a podíly. Nezávazná konzultace zdarma."
     name: Jihomoravský kraj
     locative: v Jihomoravském kraji
     title: Výkup nemovitostí v Jihomoravském kraji
@@ -555,6 +577,8 @@ regions:
           Měl jsem jasný přehled o všech krocích i termínech. Žádné sliby navíc, jen věcný
           a spolehlivý postup.
   - key: olomoucky-kraj
+    seoTitle: "Prodej nemovitosti v Olomouckém kraji bez čekání | Férová nabídka"
+    seoDescription: "Potřebujete rychle prodat byt nebo dům v Olomouckém kraji? Nabídka do 24 h, právní servis a bez skrytých poplatků."
     name: Olomoucký kraj
     locative: v Olomouckém kraji
     title: Výkup nemovitostí v Olomouckém kraji
@@ -602,6 +626,8 @@ regions:
           Od začátku jsem měl jasno, v jaké fázi se obchod nachází. Oceňuji transparentní
           komunikaci i rychlost.
   - key: moravskoslezsky-kraj
+    seoTitle: "Výkup i zadlužených nemovitostí v Moravskoslezském kraji | Konzultace zdarma"
+    seoDescription: "Získejte férovou nabídku na výkup nemovitosti v Moravskoslezském kraji. Ozveme se do 15 minut."
     name: Moravskoslezský kraj
     locative: v Moravskoslezském kraji
     title: Výkup nemovitostí v Moravskoslezském kraji
@@ -654,6 +680,8 @@ regions:
           Profesionální servis od prvního hovoru po převod peněz. Oceňuji důslednost i
           jasně dané kroky.
   - key: zlinsky-kraj
+    seoTitle: "Rychlý výkup bytu a domu ve Zlínském kraji | Bez provize"
+    seoDescription: "Rychlý výkup nemovitostí ve Zlínském kraji. Řešíme i exekuce, dědictví a podíly. Nezávazná konzultace zdarma."
     name: Zlínský kraj
     locative: ve Zlínském kraji
     title: Výkup nemovitostí ve Zlínském kraji

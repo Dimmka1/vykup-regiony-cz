@@ -14,13 +14,27 @@ export function SiteHeader() {
         >
           Výkup Regiony CZ
         </Link>
-        <a
-          href="tel:+420XXXXXXXXX"
-          className="inline-flex min-h-[44px] items-center text-sm font-medium text-brand-700 hover:text-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
-          aria-label="Zavolat na +420 XXX XXX XXX"
-        >
-          +420 XXX XXX XXX
-        </a>
+        <div className="flex items-center gap-4">
+          <Link
+            href="/caste-dotazy"
+            className="hidden min-h-[44px] items-center text-sm font-medium text-slate-700 hover:text-emerald-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 sm:inline-flex"
+          >
+            Časté dotazy
+          </Link>
+          <Link
+            href="/blog"
+            className="hidden min-h-[44px] items-center text-sm font-medium text-slate-700 hover:text-emerald-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 sm:inline-flex"
+          >
+            Blog
+          </Link>
+          <a
+            href="tel:+420XXXXXXXXX"
+            className="inline-flex min-h-[44px] items-center text-sm font-medium text-brand-700 hover:text-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
+            aria-label="Zavolat na +420 XXX XXX XXX"
+          >
+            +420 XXX XXX XXX
+          </a>
+        </div>
       </nav>
     </header>
   );

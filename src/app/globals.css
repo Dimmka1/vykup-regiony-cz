@@ -33,3 +33,16 @@ input[type="radio"] {
   width: 20px;
   height: 20px;
 }
+
+/* Blog article prose styles */
+.prose-article h2 {
+  @apply mb-3 mt-8 text-xl font-bold text-slate-900;
+}
+
+.prose-article p {
+  @apply mb-4 leading-relaxed text-slate-700;
+}
+
+.prose-article a {
+  @apply font-medium text-emerald-600 hover:text-emerald-500;
+}

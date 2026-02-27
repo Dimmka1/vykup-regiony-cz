@@ -12,6 +12,14 @@ function isPublicHost(host: string): boolean {
   return !host.endsWith(".localhost") && !host.includes("localhost");
 }
 
+const STATIC_PATHS = [
+  { path: "/caste-dotazy", priority: 0.8 },
+  { path: "/blog", priority: 0.8 },
+  { path: "/blog/jak-probiha-rychly-vykup", priority: 0.7 },
+  { path: "/blog/5-duvodu-proc-prodat", priority: 0.7 },
+  { path: "/blog/vykup-v-exekuci", priority: 0.7 },
+] as const;
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
   const hostToRegionKey = new Map<string, string>();
@@ -27,7 +35,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   });
 
-  return Array.from(hostToRegionKey.entries())
+  const regionEntries: MetadataRoute.Sitemap = Array.from(
+    hostToRegionKey.entries(),
+  )
     .sort(([a], [b]) => a.localeCompare(b))
     .map(([host]) => ({
       url: `https://${host}`,
@@ -35,4 +45,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: host === "vykup-regiony.cz" ? 1 : 0.9,
     }));
+
+  const staticEntries: MetadataRoute.Sitemap = STATIC_PATHS.map((entry) => ({
+    url: `https://vykup-regiony.cz${entry.path}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: entry.priority,
+  }));
+
+  return [...regionEntries, ...staticEntries];
 }

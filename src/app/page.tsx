@@ -349,13 +349,23 @@ export default async function HomePage({
           <div className="mt-10 space-y-12">
             {/* Row 1: Consultation + Steps 1-2 */}
             <div className="grid items-center gap-8 lg:grid-cols-2">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-lg">
-                <Image
-                  src="/images/consultation.jpg"
-                  alt="Konzultace s klientem — probereme vaši situaci"
-                  fill
-                  className="object-cover"
-                />
+              <div className="grid grid-cols-2 gap-4">
+                <div className="relative aspect-[3/4] overflow-hidden rounded-2xl shadow-lg">
+                  <Image
+                    src="/images/process-consultation.webp"
+                    alt="Kancelář pro konzultace — teplý interiér s výhledem na českou ulici"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="relative aspect-[3/4] overflow-hidden rounded-2xl shadow-lg">
+                  <Image
+                    src="/images/process-valuation.webp"
+                    alt="Ocenění nemovitosti — podklady pro stanovení férové ceny"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
               </div>
               <div className="space-y-6">
                 {PROCESS_STEPS.slice(0, 2).map((step, index) => (
@@ -420,16 +430,16 @@ export default async function HomePage({
               <div className="order-1 grid grid-cols-2 gap-4 lg:order-2">
                 <div className="relative aspect-[3/4] overflow-hidden rounded-2xl shadow-lg">
                   <Image
-                    src="/images/document-signing.jpg"
-                    alt="Podpis kupní smlouvy u notáře"
+                    src="/images/process-contract.webp"
+                    alt="Podepsaná kupní smlouva s notářským razítkem"
                     fill
                     className="object-cover"
                   />
                 </div>
                 <div className="relative aspect-[3/4] overflow-hidden rounded-2xl shadow-lg">
                   <Image
-                    src="/images/keys-handover.jpg"
-                    alt="Předání klíčů od nemovitosti novému majiteli"
+                    src="/images/process-keys.webp"
+                    alt="Klíče od prodané nemovitosti na stole — úspěšný výkup"
                     fill
                     className="object-cover"
                   />
@@ -515,8 +525,8 @@ export default async function HomePage({
           <div className="grid items-center gap-10 lg:grid-cols-2">
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-xl">
               <Image
-                src="/images/office-team.jpg"
-                alt="Profesionální tým Výkup Regiony CZ v moderní kanceláři"
+                src="/images/property-exterior.jpg"
+                alt="Rezidenční čtvrť v České republice — působíme po celé zemi"
                 fill
                 className="object-cover"
               />
@@ -571,11 +581,20 @@ export default async function HomePage({
 
               <div className="relative mt-6 aspect-[16/9] overflow-hidden rounded-2xl">
                 <Image
-                  src="/images/handshake-deal.jpg"
-                  alt="Podání ruky nad podepsanou smlouvou s klíči od domu"
+                  src="/images/texture-brick.webp"
+                  alt="Textura české cihlové zdi — detail historického zdiva"
                   fill
                   className="object-cover"
                 />
+                <div
+                  className="absolute inset-0 bg-slate-900/60"
+                  aria-hidden="true"
+                />
+                <div className="relative flex h-full items-center justify-center px-6">
+                  <p className="text-center text-lg font-bold text-white">
+                    Férové jednání je náš standard
+                  </p>
+                </div>
               </div>
 
               <div className="mt-8">

@@ -158,7 +158,7 @@ export default async function HomePage(): Promise<ReactElement> {
   const schema = buildSchema(region, canonicalUrl);
 
   return (
-    <main className="mx-auto flex min-h-screen max-w-6xl flex-col gap-8 px-4 py-8 pb-28 sm:px-6 lg:py-10 lg:pb-10">
+    <div className="mx-auto flex min-h-screen max-w-6xl flex-col gap-8 px-4 py-8 pb-28 sm:px-6 lg:py-10 lg:pb-10">
       <ScrollTracker regionName={region.name} />
       <section className="relative overflow-hidden rounded-3xl bg-slate-900 px-6 py-8 text-white shadow-xl sm:px-10 sm:py-12">
         <div
@@ -196,7 +196,7 @@ export default async function HomePage(): Promise<ReactElement> {
               />
               <a
                 href={`tel:${region.phone}`}
-                className="inline-flex min-h-11 items-center justify-center rounded-xl border border-white/30 px-6 py-3 text-base font-semibold text-white transition hover:bg-white/10"
+                className="inline-flex min-h-11 items-center justify-center rounded-xl border border-white/30 px-6 py-3 text-base font-semibold text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
               >
                 Zavolat: {region.phone}
               </a>
@@ -352,7 +352,7 @@ export default async function HomePage(): Promise<ReactElement> {
               </article>
             ))}
           </div>
-          <p className="mt-6 text-xs text-slate-500">
+          <p className="mt-6 text-xs text-slate-600">
             {region.legalDisclaimer}
           </p>
         </div>
@@ -360,27 +360,30 @@ export default async function HomePage(): Promise<ReactElement> {
         <LeadForm regionName={region.name} />
       </section>
 
-      <div className="fixed inset-x-0 bottom-0 z-20 border-t border-slate-200 bg-white/95 px-4 py-3 backdrop-blur supports-[padding:max(0px)]:pb-[max(0.75rem,env(safe-area-inset-bottom))] lg:hidden">
+      <nav
+        aria-label="Rychlé akce"
+        className="fixed inset-x-0 bottom-0 z-20 border-t border-slate-200 bg-white/95 px-4 py-3 backdrop-blur supports-[padding:max(0px)]:pb-[max(0.75rem,env(safe-area-inset-bottom))] lg:hidden"
+      >
         <div className="mx-auto flex max-w-6xl gap-2">
           <a
             href="#kontakt"
-            className="inline-flex min-h-11 flex-1 items-center justify-center rounded-xl bg-emerald-500 px-4 py-3 text-sm font-semibold text-white"
+            className="inline-flex min-h-11 flex-1 items-center justify-center rounded-xl bg-emerald-500 px-4 py-3 text-sm font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
           >
             Odeslat poptávku
           </a>
           <a
             href={`tel:${region.phone}`}
-            className="inline-flex min-h-11 flex-1 items-center justify-center rounded-xl border border-slate-300 px-4 py-3 text-sm font-semibold text-slate-800"
+            className="inline-flex min-h-11 flex-1 items-center justify-center rounded-xl border border-slate-300 px-4 py-3 text-sm font-semibold text-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
           >
             Zavolat
           </a>
         </div>
-      </div>
+      </nav>
 
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonLd(schema) }}
       />
-    </main>
+    </div>
   );
 }

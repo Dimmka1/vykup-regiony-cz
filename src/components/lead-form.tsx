@@ -176,9 +176,10 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
     <form
       className="space-y-4 rounded-xl bg-white p-4 shadow sm:p-6"
       onSubmit={handleSubmit}
+      aria-label="Formulář poptávky výkupu nemovitosti"
     >
       <div className="space-y-2">
-        <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wide text-slate-500">
+        <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wide text-slate-600">
           <span>
             Krok {currentStep + 1} / {STEPS.length}
           </span>
@@ -190,6 +191,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
           aria-valuemin={1}
           aria-valuemax={STEPS.length}
           aria-valuenow={currentStep + 1}
+          aria-label={`Krok ${currentStep + 1} z ${STEPS.length}`}
         >
           <div
             className="h-full rounded-full bg-emerald-600 transition-all"
@@ -210,12 +212,13 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
             return (
               <li
                 key={step.title}
+                aria-current={isActive ? "step" : undefined}
                 className={`rounded-lg px-2 py-2 text-center text-xs font-semibold ${
                   isActive
                     ? "bg-emerald-100 text-emerald-800"
                     : isCompleted
                       ? "bg-emerald-50 text-emerald-700"
-                      : "bg-slate-100 text-slate-500"
+                      : "bg-slate-100 text-slate-600"
                 }`}
               >
                 {index + 1}. {step.title}
@@ -226,72 +229,80 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
       </div>
 
       {currentStep === 0 ? (
-        <div className="grid gap-4">
-          <label className="text-sm">
+        <fieldset className="grid gap-4">
+          <legend className="sr-only">Typ nemovitosti a situace</legend>
+          <label htmlFor="property-type" className="text-sm">
             Typ nemovitosti
-            <select
-              className="mt-1 min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base"
-              value={formData.propertyType}
-              onChange={(event) =>
-                setFormData((prev) => ({
-                  ...prev,
-                  propertyType: event.target.value,
-                }))
-              }
-            >
-              <option value="byt">Byt</option>
-              <option value="dum">Dům</option>
-              <option value="podil">Podíl</option>
-              <option value="jine">Jiné</option>
-            </select>
           </label>
+          <select
+            id="property-type"
+            className="min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+            value={formData.propertyType}
+            onChange={(event) =>
+              setFormData((prev) => ({
+                ...prev,
+                propertyType: event.target.value,
+              }))
+            }
+          >
+            <option value="byt">Byt</option>
+            <option value="dum">Dům</option>
+            <option value="podil">Podíl</option>
+            <option value="jine">Jiné</option>
+          </select>
 
-          <label className="text-sm">
+          <label htmlFor="situation-type" className="text-sm">
             Situace
-            <select
-              className="mt-1 min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base"
-              value={formData.situationType}
-              onChange={(event) =>
-                setFormData((prev) => ({
-                  ...prev,
-                  situationType: event.target.value,
-                }))
-              }
-            >
-              <option value="standard">Standardní prodej</option>
-              <option value="exekuce">Exekuce</option>
-              <option value="dedictvi">Dědictví</option>
-              <option value="podil">Spoluvlastnický podíl</option>
-            </select>
           </label>
-        </div>
+          <select
+            id="situation-type"
+            className="min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+            value={formData.situationType}
+            onChange={(event) =>
+              setFormData((prev) => ({
+                ...prev,
+                situationType: event.target.value,
+              }))
+            }
+          >
+            <option value="standard">Standardní prodej</option>
+            <option value="exekuce">Exekuce</option>
+            <option value="dedictvi">Dědictví</option>
+            <option value="podil">Spoluvlastnický podíl</option>
+          </select>
+        </fieldset>
       ) : null}
 
       {currentStep === 1 ? (
-        <div className="grid gap-4">
-          <label className="text-sm">
+        <fieldset className="grid gap-4">
+          <legend className="sr-only">Adresa nemovitosti</legend>
+          <label htmlFor="address" className="text-sm">
             Ulice a č.p.
-            <input
-              className="mt-1 min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base"
-              placeholder="Např. Revoluční 12"
-              autoComplete="street-address"
-              enterKeyHint="next"
-              value={formData.address}
-              onChange={(event) =>
-                setFormData((prev) => ({
-                  ...prev,
-                  address: event.target.value,
-                }))
-              }
-              required
-            />
           </label>
+          <input
+            id="address"
+            className="min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+            placeholder="Např. Revoluční 12"
+            autoComplete="street-address"
+            enterKeyHint="next"
+            value={formData.address}
+            onChange={(event) =>
+              setFormData((prev) => ({
+                ...prev,
+                address: event.target.value,
+              }))
+            }
+            required
+          />
 
           <div className="grid gap-4 sm:grid-cols-2">
-            <label className="text-sm">
-              Město
+            <div>
+              <label htmlFor="city" className="text-sm">
+                Město
+              </label>
               <input
-                className="mt-1 min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base"
+                id="city"
+                className="mt-1 min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
                 placeholder="Např. Brno"
                 autoComplete="address-level2"
                 enterKeyHint="next"
@@ -301,12 +312,15 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
                 }
                 required
               />
-            </label>
+            </div>
 
-            <label className="text-sm">
-              PSČ
+            <div>
+              <label htmlFor="postal-code" className="text-sm">
+                PSČ
+              </label>
               <input
-                className="mt-1 min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base"
+                id="postal-code"
+                className="mt-1 min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
                 placeholder="123 45"
                 inputMode="numeric"
                 autoComplete="postal-code"
@@ -320,49 +334,53 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
                 }
                 required
               />
-            </label>
+            </div>
           </div>
-        </div>
+        </fieldset>
       ) : null}
 
       {currentStep === 2 ? (
-        <div className="grid gap-4">
-          <label className="text-sm">
+        <fieldset className="grid gap-4">
+          <legend className="sr-only">Kontaktní údaje</legend>
+          <label htmlFor="lead-name" className="text-sm">
             Jméno a příjmení
-            <input
-              className="mt-1 min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base"
-              value={formData.name}
-              autoComplete="name"
-              enterKeyHint="next"
-              onChange={(event) =>
-                setFormData((prev) => ({ ...prev, name: event.target.value }))
-              }
-              required
-            />
           </label>
+          <input
+            id="lead-name"
+            className="min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+            value={formData.name}
+            autoComplete="name"
+            enterKeyHint="next"
+            onChange={(event) =>
+              setFormData((prev) => ({ ...prev, name: event.target.value }))
+            }
+            required
+          />
 
-          <label className="text-sm">
+          <label htmlFor="lead-phone" className="text-sm">
             Telefon
-            <input
-              className="mt-1 min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base"
-              placeholder="+420 777 123 456"
-              inputMode="tel"
-              autoComplete="tel"
-              enterKeyHint="send"
-              value={formData.phone}
-              onChange={(event) =>
-                setFormData((prev) => ({
-                  ...prev,
-                  phone: normalizePhone(event.target.value),
-                }))
-              }
-              required
-            />
           </label>
+          <input
+            id="lead-phone"
+            className="min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+            placeholder="+420 777 123 456"
+            inputMode="tel"
+            autoComplete="tel"
+            enterKeyHint="send"
+            value={formData.phone}
+            onChange={(event) =>
+              setFormData((prev) => ({
+                ...prev,
+                phone: normalizePhone(event.target.value),
+              }))
+            }
+            required
+          />
 
-          <label className="hidden" aria-hidden="true">
-            Website
+          <div className="hidden" aria-hidden="true">
+            <label htmlFor="lead-website">Website</label>
             <input
+              id="lead-website"
               tabIndex={-1}
               className="min-h-11"
               autoComplete="off"
@@ -374,11 +392,11 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
                 }))
               }
             />
-          </label>
+          </div>
 
           <label className="flex items-start gap-2 text-sm">
             <input
-              className="mt-1"
+              className="mt-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
               type="checkbox"
               checked={formData.consent}
               onChange={(event) =>
@@ -390,7 +408,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
             />
             Souhlasím se zpracováním osobních údajů pro účely zpětného kontaktu.
           </label>
-        </div>
+        </fieldset>
       ) : null}
 
       <div className="sticky bottom-3 z-10 -mx-2 flex flex-col gap-3 rounded-xl bg-white/95 px-2 py-2 backdrop-blur sm:static sm:mx-0 sm:bg-transparent sm:px-0 sm:py-0">
@@ -398,7 +416,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
           type="button"
           onClick={handlePreviousStep}
           disabled={currentStep === 0 || status === "submitting"}
-          className="inline-flex min-h-11 items-center justify-center rounded border border-slate-300 px-5 py-3 text-base font-semibold text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex min-h-11 items-center justify-center rounded border border-slate-300 px-5 py-3 text-base font-semibold text-slate-700 transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
         >
           Zpět
         </button>
@@ -407,7 +425,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
           <button
             type="button"
             onClick={handleNextStep}
-            className="inline-flex min-h-11 items-center justify-center rounded bg-brand-500 px-5 py-3 text-base font-semibold text-white transition hover:bg-brand-700"
+            className="inline-flex min-h-11 items-center justify-center rounded bg-brand-500 px-5 py-3 text-base font-semibold text-white transition hover:bg-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
           >
             Pokračovat
           </button>
@@ -415,7 +433,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
           <button
             type="submit"
             disabled={status === "submitting"}
-            className="inline-flex min-h-11 items-center justify-center rounded bg-brand-500 px-5 py-3 text-base font-semibold text-white transition hover:bg-brand-700 disabled:opacity-70"
+            className="inline-flex min-h-11 items-center justify-center rounded bg-brand-500 px-5 py-3 text-base font-semibold text-white transition hover:bg-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 disabled:opacity-70"
           >
             {status === "submitting" ? "Odesílám..." : "Odeslat poptávku"}
           </button>
@@ -423,10 +441,12 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
       </div>
 
       {errorMessage ? (
-        <p className="text-sm text-red-600">{errorMessage}</p>
+        <p className="text-sm text-red-600" role="alert">
+          {errorMessage}
+        </p>
       ) : null}
       {status === "success" ? (
-        <p className="text-sm text-emerald-700">
+        <p className="text-sm text-emerald-700" role="status">
           Děkujeme, ozveme se vám co nejdříve.
         </p>
       ) : null}

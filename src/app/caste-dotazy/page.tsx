@@ -120,7 +120,7 @@ export default function CasteDotazyPage(): React.ReactElement {
                 key={index}
                 className="group rounded-2xl bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
               >
-                <summary className="marker:[content:''] flex cursor-pointer items-center justify-between text-lg font-semibold text-slate-900 [&::-webkit-details-marker]:hidden">
+                <summary className="flex cursor-pointer items-center justify-between text-lg font-semibold text-slate-900 marker:[content:''] [&::-webkit-details-marker]:hidden">
                   <span>{item.question}</span>
                   <span className="ml-4 flex-shrink-0 text-emerald-500 transition-transform group-open:rotate-45">
                     ✚

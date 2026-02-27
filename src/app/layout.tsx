@@ -5,6 +5,7 @@ import { CookieConsent } from "@/components/cookie-consent";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { WebVitalsReporter } from "@/components/web-vitals-reporter";
+import { getDefaultRegion } from "@/lib/config";
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
@@ -52,7 +53,7 @@ export default function RootLayout({
         >
           Přeskočit na obsah
         </a>
-        <SiteHeader />
+        <SiteHeader phone={getDefaultRegion().phone} />
         <WebVitalsReporter />
         <main id="hlavni-obsah" className="flex-1">
           {children}

@@ -4,7 +4,11 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Phone } from "lucide-react";
 
-export function SiteHeader() {
+interface SiteHeaderProps {
+  phone?: string;
+}
+
+export function SiteHeader({ phone = "+420 800 123 001" }: SiteHeaderProps) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -52,14 +56,14 @@ export function SiteHeader() {
             Blog
           </Link>
           <a
-            href="tel:+420XXXXXXXXX"
+            href={`tel:${phone}`}
             className={`inline-flex min-h-[44px] items-center gap-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 ${
               scrolled ? "text-slate-600" : "text-white/80"
             }`}
-            aria-label="Zavolat na +420 XXX XXX XXX"
+            aria-label={`Zavolat na ${phone}`}
           >
             <Phone className="h-4 w-4" />
-            <span className="hidden sm:inline">+420 XXX XXX XXX</span>
+            <span className="hidden sm:inline">{phone}</span>
           </a>
           <a
             href="#kontakt"

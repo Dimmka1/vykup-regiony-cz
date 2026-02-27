@@ -344,36 +344,98 @@ export default async function HomePage({
           <p className="mt-2 text-slate-600">
             Od prvního kontaktu k penězům na účtu — jednoduše a rychle.
           </p>
-          <div className="relative mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {/* Connector line on desktop */}
-            <div
-              className="absolute left-0 right-0 top-8 hidden h-0.5 border-t-2 border-dashed border-teal-200 lg:block"
-              aria-hidden="true"
-            />
-            {PROCESS_STEPS.map((step, index) => (
-              <div
-                key={step.title}
-                className="relative rounded-2xl border border-slate-100 bg-white p-6"
-              >
-                <div className="mb-4 flex items-center gap-3">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-teal-50 text-teal-600">
-                    <step.Icon className="h-6 w-6" />
-                  </span>
-                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-teal-600 text-xs font-bold text-white">
-                    {index + 1}
-                  </span>
-                </div>
-                <h3 className="text-base font-semibold text-slate-900">
-                  {step.title}
-                </h3>
-                <p className="mt-1 text-sm leading-relaxed text-slate-600">
-                  {step.description}
-                </p>
-                <p className="mt-2 text-xs font-medium text-teal-600">
-                  {step.eta}
-                </p>
+
+          {/* Steps with images - 2 column layout */}
+          <div className="mt-10 space-y-12">
+            {/* Row 1: Consultation + Steps 1-2 */}
+            <div className="grid items-center gap-8 lg:grid-cols-2">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-lg">
+                <Image
+                  src="/images/consultation.jpg"
+                  alt="Konzultace s klientem — probereme vaši situaci"
+                  fill
+                  className="object-cover"
+                />
               </div>
-            ))}
+              <div className="space-y-6">
+                {PROCESS_STEPS.slice(0, 2).map((step, index) => (
+                  <div
+                    key={step.title}
+                    className="flex gap-4 rounded-2xl border border-slate-100 bg-white p-6"
+                  >
+                    <div className="flex flex-col items-center gap-2">
+                      <span className="flex h-12 w-12 items-center justify-center rounded-full bg-teal-50 text-teal-600">
+                        <step.Icon className="h-6 w-6" />
+                      </span>
+                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-teal-600 text-xs font-bold text-white">
+                        {index + 1}
+                      </span>
+                    </div>
+                    <div>
+                      <h3 className="text-base font-semibold text-slate-900">
+                        {step.title}
+                      </h3>
+                      <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                        {step.description}
+                      </p>
+                      <p className="mt-2 text-xs font-medium text-teal-600">
+                        {step.eta}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Row 2: Steps 3-4 + Images */}
+            <div className="grid items-center gap-8 lg:grid-cols-2">
+              <div className="order-2 space-y-6 lg:order-1">
+                {PROCESS_STEPS.slice(2, 4).map((step, index) => (
+                  <div
+                    key={step.title}
+                    className="flex gap-4 rounded-2xl border border-slate-100 bg-white p-6"
+                  >
+                    <div className="flex flex-col items-center gap-2">
+                      <span className="flex h-12 w-12 items-center justify-center rounded-full bg-teal-50 text-teal-600">
+                        <step.Icon className="h-6 w-6" />
+                      </span>
+                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-teal-600 text-xs font-bold text-white">
+                        {index + 3}
+                      </span>
+                    </div>
+                    <div>
+                      <h3 className="text-base font-semibold text-slate-900">
+                        {step.title}
+                      </h3>
+                      <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                        {step.description}
+                      </p>
+                      <p className="mt-2 text-xs font-medium text-teal-600">
+                        {step.eta}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="order-1 grid grid-cols-2 gap-4 lg:order-2">
+                <div className="relative aspect-[3/4] overflow-hidden rounded-2xl shadow-lg">
+                  <Image
+                    src="/images/document-signing.jpg"
+                    alt="Podpis kupní smlouvy u notáře"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="relative aspect-[3/4] overflow-hidden rounded-2xl shadow-lg">
+                  <Image
+                    src="/images/keys-handover.jpg"
+                    alt="Předání klíčů od nemovitosti novému majiteli"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -411,6 +473,22 @@ export default async function HomePage({
         </div>
       </section>
 
+      {/* ===== VISUAL BREAK: PROPERTY EXTERIOR ===== */}
+      <section className="relative h-[150px] sm:h-[200px] lg:h-[250px]">
+        <Image
+          src="/images/property-exterior.jpg"
+          alt="Rezidenční čtvrť v České republice — autentická architektura"
+          fill
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-slate-900/60" aria-hidden="true" />
+        <div className="relative flex h-full items-center justify-center px-6">
+          <p className="text-center text-xl font-bold text-white sm:text-2xl lg:text-3xl">
+            Pomáháme majitelům nemovitostí po celé České republice
+          </p>
+        </div>
+      </section>
+
       {/* ===== PROČ KLIENTI VOLÍ NÁS (USP) ===== */}
       <section className="bg-gradient-to-br from-teal-700 to-teal-900 py-16 text-white">
         <div className="mx-auto max-w-7xl px-6">
@@ -437,8 +515,8 @@ export default async function HomePage({
           <div className="grid items-center gap-10 lg:grid-cols-2">
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-xl">
               <Image
-                src="/images/about-team.jpg"
-                alt="Náš profesionální tým"
+                src="/images/office-team.jpg"
+                alt="Profesionální tým Výkup Regiony CZ v moderní kanceláři"
                 fill
                 className="object-cover"
               />
@@ -491,6 +569,15 @@ export default async function HomePage({
                 ))}
               </ul>
 
+              <div className="relative mt-6 aspect-[16/9] overflow-hidden rounded-2xl">
+                <Image
+                  src="/images/handshake-deal.jpg"
+                  alt="Podání ruky nad podepsanou smlouvou s klíči od domu"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+
               <div className="mt-8">
                 <h3 className="text-lg font-semibold text-slate-900">
                   Nezávazná konzultace zdarma
@@ -509,8 +596,15 @@ export default async function HomePage({
       </section>
 
       {/* ===== TESTIMONIALS ===== */}
-      <section className="py-16">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="relative py-16">
+        <Image
+          src="/images/testimonial-bg.jpg"
+          alt="Střechy českého města při západu slunce"
+          fill
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-white/90" aria-hidden="true" />
+        <div className="relative mx-auto max-w-7xl px-6">
           <h2 className="text-3xl font-bold text-slate-900 sm:text-2xl">
             Co říkají naši klienti
           </h2>
@@ -544,6 +638,22 @@ export default async function HomePage({
               </figure>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ===== VISUAL BREAK: HAPPY FAMILY HOME ===== */}
+      <section className="relative h-[150px] sm:h-[200px] lg:h-[250px]">
+        <Image
+          src="/images/happy-family-home.jpg"
+          alt="Moderní český rodinný dům se zahradou"
+          fill
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-slate-900/60" aria-hidden="true" />
+        <div className="relative flex h-full items-center justify-center px-6">
+          <p className="text-center text-xl font-bold text-white sm:text-2xl lg:text-3xl">
+            Vaše nemovitost si zaslouží férové jednání
+          </p>
         </div>
       </section>
 

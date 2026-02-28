@@ -35,6 +35,38 @@ import {
 } from "lucide-react";
 
 const COMPANY_NAME = "Výkup Regiony CZ";
+const GENERAL_FAQ: { question: string; answer: string }[] = [
+  {
+    question: "Jak dlouho trvá celý proces výkupu nemovitosti?",
+    answer:
+      "Celý proces od prvního kontaktu po vyplacení peněz trvá obvykle 7–14 dní. V urgentních případech dokážeme vše vyřídit i do 48 hodin. Záleží na složitosti případu a stavu katastru nemovitostí.",
+  },
+  {
+    question: "Kolik peněz za svou nemovitost dostanu?",
+    answer:
+      "Nabízíme férovou tržní cenu stanovenou na základě aktuálních dat z realitního trhu a individuálního posouzení stavu nemovitosti. Cenovou nabídku dostanete zdarma a nezávazně do 24 hodin.",
+  },
+  {
+    question: "Je výkup nemovitosti bezpečný?",
+    answer:
+      "Ano. Celý proces zajišťují naši právníci, kupní smlouvu připravujeme s advokátní úschovou kupní ceny. Peníze jsou chráněny na úschovním účtu a uvolněny až po zápisu do katastru.",
+  },
+  {
+    question: "Musím platit provizi nebo nějaké poplatky?",
+    answer:
+      "Ne. Výkup je pro vás zcela bez poplatků a bez provize. Veškeré náklady spojené s převodem, včetně právního servisu a poplatků za katastr, hradíme my.",
+  },
+  {
+    question: "Vykupujete i nemovitosti s hypotékou nebo exekucí?",
+    answer:
+      "Ano, běžně řešíme nemovitosti zatížené hypotékou, exekucí, věcným břemenem nebo zástavním právem. Pomůžeme vám s vypořádáním všech závazků v rámci výkupu.",
+  },
+  {
+    question: "Jak probíhá ocenění nemovitosti?",
+    answer:
+      "Po vyplnění formuláře náš odborník provede analýzu na základě lokality, stavu a aktuálních tržních cen. U složitějších případů nabídneme osobní prohlídku. Ocenění je vždy zdarma a nezávazné.",
+  },
+];
 
 const HERO_BADGES = [
   "Záloha až 500 000 Kč ihned",
@@ -179,14 +211,24 @@ function buildSchema(region: RegionConfig, canonicalUrl: string): object[] {
     {
       "@context": "https://schema.org",
       "@type": "FAQPage",
-      mainEntity: region.faq.map((item) => ({
-        "@type": "Question",
-        name: item.question,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: item.answer,
-        },
-      })),
+      mainEntity: [
+        ...GENERAL_FAQ.map((item) => ({
+          "@type": "Question" as const,
+          name: item.question,
+          acceptedAnswer: {
+            "@type": "Answer" as const,
+            text: item.answer,
+          },
+        })),
+        ...region.faq.map((item) => ({
+          "@type": "Question" as const,
+          name: item.question,
+          acceptedAnswer: {
+            "@type": "Answer" as const,
+            text: item.answer,
+          },
+        })),
+      ],
     },
   ];
 }
@@ -699,7 +741,7 @@ export default async function HomePage({
             Časté dotazy
           </h2>
           <div className="mt-8">
-            <FaqAccordion items={region.faq} />
+            <FaqAccordion items={[...GENERAL_FAQ, ...region.faq]} />
           </div>
         </div>
       </section>

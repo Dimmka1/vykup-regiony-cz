@@ -2,6 +2,7 @@ import { safeJsonLd } from "@/lib/jsonld";
 import type { ReactElement } from "react";
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { CtaLink } from "@/components/cta-link";
 import { LeadForm } from "@/components/lead-form";
 import { AnimatedCounter } from "@/components/animated-counter";
@@ -447,6 +448,14 @@ export default async function HomePage({
                 </div>
               </div>
             </div>
+          </div>
+          <div className="mt-8 text-center">
+            <Link
+              href="/jak-to-funguje"
+              className="inline-flex items-center gap-1 text-sm font-medium text-teal-700 transition hover:text-teal-600"
+            >
+              Více o celém procesu →
+            </Link>
           </div>
         </div>
       </section>

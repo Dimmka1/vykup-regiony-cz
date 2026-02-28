@@ -18,6 +18,9 @@ const STATIC_PATHS = [
   { path: "/blog/jak-probiha-rychly-vykup", priority: 0.7 },
   { path: "/blog/5-duvodu-proc-prodat", priority: 0.7 },
   { path: "/blog/vykup-v-exekuci", priority: 0.7 },
+  { path: "/vykup-pri-exekuci", priority: 0.8 },
+  { path: "/vykup-pri-dedictvi", priority: 0.8 },
+  { path: "/vykup-pri-rozvodu", priority: 0.8 },
 ] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {

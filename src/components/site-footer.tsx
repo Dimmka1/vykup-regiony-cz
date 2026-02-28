@@ -35,6 +35,24 @@ export function SiteFooter() {
               Blog
             </Link>
             <Link
+              href="/vykup-pri-exekuci"
+              className="inline-flex min-h-[44px] items-center text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+            >
+              Výkup při exekuci
+            </Link>
+            <Link
+              href="/vykup-pri-dedictvi"
+              className="inline-flex min-h-[44px] items-center text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+            >
+              Výkup při dědictví
+            </Link>
+            <Link
+              href="/vykup-pri-rozvodu"
+              className="inline-flex min-h-[44px] items-center text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+            >
+              Výkup při rozvodu
+            </Link>
+            <Link
               href="/ochrana-osobnich-udaju"
               className="inline-flex min-h-[44px] items-center text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
             >

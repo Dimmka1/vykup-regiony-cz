@@ -7,6 +7,7 @@ import { LeadForm } from "@/components/lead-form";
 import { AnimatedCounter } from "@/components/animated-counter";
 import { ScrollTracker } from "@/components/scroll-tracker";
 import { FaqAccordion } from "@/components/faq-accordion";
+import { GoogleReviewsSection } from "@/components/google-reviews-section";
 import { getRegionByHost, getRegionByKey, listRegions } from "@/lib/config";
 import { getRequestHost } from "@/lib/request-host";
 import type { RegionConfig } from "@/lib/types";

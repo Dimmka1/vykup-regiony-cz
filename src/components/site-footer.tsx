@@ -71,6 +71,24 @@ export function SiteFooter() {
               Výkup s věcným břemenem
             </Link>
             <Link
+              href="/vykup-bytu"
+              className="inline-flex min-h-[44px] items-center text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+            >
+              Výkup bytů
+            </Link>
+            <Link
+              href="/vykup-domu"
+              className="inline-flex min-h-[44px] items-center text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+            >
+              Výkup domů
+            </Link>
+            <Link
+              href="/vykup-pozemku"
+              className="inline-flex min-h-[44px] items-center text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+            >
+              Výkup pozemků
+            </Link>
+            <Link
               href="/ochrana-osobnich-udaju"
               className="inline-flex min-h-[44px] items-center text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
             >

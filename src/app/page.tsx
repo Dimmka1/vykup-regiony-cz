@@ -12,6 +12,7 @@ import { GoogleReviewsSection } from "@/components/google-reviews-section";
 import { getRegionByHost, getRegionByKey, listRegions } from "@/lib/config";
 import { getRequestHost } from "@/lib/request-host";
 import type { RegionConfig } from "@/lib/types";
+import { FloatingWhatsApp } from "@/components/floating-whatsapp";
 import {
   Check,
   FileText,
@@ -251,6 +252,7 @@ export default async function HomePage({
   return (
     <>
       <ScrollTracker regionName={region.name} />
+      <FloatingWhatsApp regionName={region.name} />
 
       {/* ===== HERO ===== */}
       <section className="relative min-h-[520px] overflow-hidden sm:min-h-[480px]">

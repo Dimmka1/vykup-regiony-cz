@@ -3,7 +3,8 @@ export type AnalyticsEventName =
   | "lead_form_submit_error"
   | "form_submission_success"
   | "cta_click"
-  | "scroll_50";
+  | "scroll_50"
+  | "whatsapp_click";
 
 type Primitive = string | number | boolean;
 

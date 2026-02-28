@@ -292,7 +292,7 @@ export function PropertyEstimator(): ReactElement {
                 transform: `translateX(-${step * 25}%)`,
               }}
             >
-              <div className="w-full flex-shrink-0 px-1">
+              <div className="w-1/4 flex-shrink-0 px-1">
                 <StepPropertyType
                   selected={state.propertyType}
                   onSelect={(t) => {
@@ -301,13 +301,13 @@ export function PropertyEstimator(): ReactElement {
                   }}
                 />
               </div>
-              <div className="w-full flex-shrink-0 px-1">
+              <div className="w-1/4 flex-shrink-0 px-1">
                 <StepArea
                   area={state.area}
                   onChange={(v) => setState((s) => ({ ...s, area: v }))}
                 />
               </div>
-              <div className="w-full flex-shrink-0 px-1">
+              <div className="w-1/4 flex-shrink-0 px-1">
                 <StepCondition
                   selected={state.condition}
                   onSelect={(c) => {
@@ -319,7 +319,7 @@ export function PropertyEstimator(): ReactElement {
                   }}
                 />
               </div>
-              <div className="w-full flex-shrink-0 px-1">
+              <div className="w-1/4 flex-shrink-0 px-1">
                 {price && <StepResult price={price} />}
               </div>
             </div>

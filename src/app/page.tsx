@@ -343,7 +343,7 @@ export default async function HomePage({
       {/* ===== JAK TO FUNGUJE (PROCESS STEPS) ===== */}
       <section className="py-16">
         <div className="mx-auto max-w-7xl px-6">
-          <h2 className="text-3xl font-bold text-slate-900 sm:text-2xl">
+          <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
             Jak to funguje
           </h2>
           <p className="mt-2 text-slate-600">
@@ -466,7 +466,7 @@ export default async function HomePage({
       {/* ===== ŘEŠÍME I SLOŽITÉ SITUACE ===== */}
       <section className="py-16">
         <div className="mx-auto max-w-7xl px-6">
-          <h2 className="text-3xl font-bold text-slate-900 sm:text-2xl">
+          <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
             Řešíme i složité situace
           </h2>
           <p className="mt-2 text-slate-600">
@@ -515,7 +515,7 @@ export default async function HomePage({
       {/* ===== PROČ KLIENTI VOLÍ NÁS (USP) ===== */}
       <section className="bg-gradient-to-br from-teal-700 to-teal-900 py-16 text-white">
         <div className="mx-auto max-w-7xl px-6">
-          <h2 className="text-3xl font-bold text-white sm:text-2xl">
+          <h2 className="text-2xl font-bold text-white sm:text-3xl">
             Proč klienti volí nás
           </h2>
           <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -545,7 +545,7 @@ export default async function HomePage({
               />
             </div>
             <div>
-              <h2 className="text-3xl font-bold text-slate-900 sm:text-2xl">
+              <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
                 O nás
               </h2>
               <p className="mt-4 leading-relaxed text-slate-700">
@@ -640,7 +640,7 @@ export default async function HomePage({
         />
         <div className="absolute inset-0 bg-white/90" aria-hidden="true" />
         <div className="relative mx-auto max-w-7xl px-6">
-          <h2 className="text-3xl font-bold text-slate-900 sm:text-2xl">
+          <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
             Co říkají naši klienti
           </h2>
           <div className="mt-8 grid gap-6 md:grid-cols-2">
@@ -695,7 +695,7 @@ export default async function HomePage({
       {/* ===== FAQ ===== */}
       <section className="py-16">
         <div className="mx-auto max-w-7xl px-6">
-          <h2 className="text-center text-3xl font-bold text-slate-900 sm:text-2xl">
+          <h2 className="text-center text-2xl font-bold text-slate-900 sm:text-3xl">
             Časté dotazy
           </h2>
           <div className="mt-8">

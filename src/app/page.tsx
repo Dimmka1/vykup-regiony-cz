@@ -6,6 +6,7 @@ import { CtaLink } from "@/components/cta-link";
 import { LeadForm } from "@/components/lead-form";
 import { AnimatedCounter } from "@/components/animated-counter";
 import { ScrollTracker } from "@/components/scroll-tracker";
+import { PropertyEstimator } from "@/components/property-estimator";
 import { FaqAccordion } from "@/components/faq-accordion";
 import { getRegionByHost, getRegionByKey, listRegions } from "@/lib/config";
 import { getRequestHost } from "@/lib/request-host";
@@ -557,6 +558,9 @@ export default async function HomePage({
           </div>
         </div>
       </section>
+
+      {/* ===== PROPERTY ESTIMATOR ===== */}
+      <PropertyEstimator />
 
       {/* ===== LEAD FORM + CO SE STANE PO ODESLÁNÍ ===== */}
       <section className="py-16" id="kontakt">

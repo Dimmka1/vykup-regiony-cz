@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { CookieConsent } from "@/components/cookie-consent";
+import { ExitIntentPopup } from "@/components/exit-intent-popup";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { WebVitalsReporter } from "@/components/web-vitals-reporter";
@@ -60,6 +61,7 @@ export default function RootLayout({
         </main>
         <SiteFooter />
         <CookieConsent />
+        <ExitIntentPopup />
       </body>
     </html>
   );

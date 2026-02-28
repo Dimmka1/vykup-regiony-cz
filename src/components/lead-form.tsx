@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactElement } from "react";
+import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import { trackEvent } from "@/lib/analytics";
 
@@ -72,6 +73,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [currentStep, setCurrentStep] = useState<FormStep>(0);
+  const router = useRouter();
 
   const isPhoneValid = useMemo(
     () => CZ_PHONE_REGEX.test(formData.phone.trim()),
@@ -159,7 +161,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
         form_name: "lead_form",
         region: regionName,
       });
-      setStatus("success");
+      router.push("/dekujeme");
       setCurrentStep(0);
       setFormData(INITIAL_FORM);
     } catch (_error) {

@@ -4,7 +4,9 @@ export type AnalyticsEventName =
   | "form_submission_success"
   | "cta_click"
   | "scroll_50"
-  | "whatsapp_click";
+  | "whatsapp_click"
+  | "exit_popup_shown"
+  | "exit_popup_submit";
 
 type Primitive = string | number | boolean;
 

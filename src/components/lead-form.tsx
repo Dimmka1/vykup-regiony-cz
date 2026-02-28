@@ -161,6 +161,11 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
         form_name: "lead_form",
         region: regionName,
       });
+      try {
+        localStorage.setItem("form_submitted", String(Date.now()));
+      } catch {
+        /* noop */
+      }
       router.push("/dekujeme");
       setCurrentStep(0);
       setFormData(INITIAL_FORM);

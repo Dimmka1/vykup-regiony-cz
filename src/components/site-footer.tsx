@@ -53,6 +53,24 @@ export function SiteFooter() {
               Výkup při rozvodu
             </Link>
             <Link
+              href="/vykup-spoluvlastnickeho-podilu"
+              className="inline-flex min-h-[44px] items-center text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+            >
+              Výkup spoluvlastnického podílu
+            </Link>
+            <Link
+              href="/vykup-nemovitosti-s-hypotekou"
+              className="inline-flex min-h-[44px] items-center text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+            >
+              Výkup s hypotékou
+            </Link>
+            <Link
+              href="/vykup-nemovitosti-s-vecnym-bremenem"
+              className="inline-flex min-h-[44px] items-center text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+            >
+              Výkup s věcným břemenem
+            </Link>
+            <Link
               href="/ochrana-osobnich-udaju"
               className="inline-flex min-h-[44px] items-center text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
             >

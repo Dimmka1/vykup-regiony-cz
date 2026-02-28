@@ -21,6 +21,9 @@ const STATIC_PATHS = [
   { path: "/vykup-pri-exekuci", priority: 0.8 },
   { path: "/vykup-pri-dedictvi", priority: 0.8 },
   { path: "/vykup-pri-rozvodu", priority: 0.8 },
+  { path: "/vykup-spoluvlastnickeho-podilu", priority: 0.8 },
+  { path: "/vykup-nemovitosti-s-hypotekou", priority: 0.8 },
+  { path: "/vykup-nemovitosti-s-vecnym-bremenem", priority: 0.8 },
 ] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {

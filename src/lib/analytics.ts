@@ -1,6 +1,7 @@
 export type AnalyticsEventName =
   | "lead_form_submit_success"
   | "lead_form_submit_error"
+  | "form_submission_success"
   | "cta_click"
   | "scroll_50";
 

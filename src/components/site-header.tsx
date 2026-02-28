@@ -37,6 +37,14 @@ export function SiteHeader({ phone = "+420 800 123 001" }: SiteHeaderProps) {
           aria-label="Výkup Nemovitostí — domovská stránka"
         >
           Výkup Nemovitostí
+          <Link
+            href="/jak-to-funguje"
+            className={`hidden min-h-[44px] items-center text-sm font-medium transition-colors hover:text-teal-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 sm:inline-flex ${
+              scrolled ? "text-slate-700" : "text-white/80"
+            }`}
+          >
+            Jak to funguje
+          </Link>
         </Link>
         <div className="flex items-center gap-4">
           <Link

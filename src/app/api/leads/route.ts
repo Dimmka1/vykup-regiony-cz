@@ -1,3 +1,4 @@
+import { appendFileSync } from "node:fs";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
@@ -91,6 +92,54 @@ function sendEmailNotification(payload: LeadNotificationPayload): void {
   });
 }
 
+function sendTelegramNotification(payload: LeadNotificationPayload): void {
+  const botToken = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
+
+  if (!botToken || !chatId) {
+    return;
+  }
+
+  const { data } = payload;
+  const text = [
+    "🏠 <b>Nový lead!</b>",
+    "",
+    `👤 <b>Jméno:</b> ${data.name}`,
+    `📞 <b>Telefon:</b> ${data.phone}`,
+    `🏘️ <b>Typ:</b> ${data.property_type}`,
+    `📍 <b>Region:</b> ${data.region}`,
+    `📋 <b>Situace:</b> ${data.situation_type}`,
+    `🕐 <b>Čas:</b> ${payload.timestamp}`,
+    `🆔 <b>ID:</b> ${payload.lead_id}`,
+  ].join("\n");
+
+  fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      chat_id: chatId,
+      text,
+      parse_mode: "HTML",
+    }),
+  }).catch((error: unknown) => {
+    console.error("[lead-notify] Telegram failed:", {
+      lead_id: payload.lead_id,
+      error: error instanceof Error ? error.message : String(error),
+    });
+  });
+}
+
+function saveLeadToFile(payload: LeadNotificationPayload): void {
+  try {
+    appendFileSync("/tmp/leads-backup.json", JSON.stringify(payload) + "\n");
+  } catch (error: unknown) {
+    console.error("[lead-backup] File write failed:", {
+      lead_id: payload.lead_id,
+      error: error instanceof Error ? error.message : String(error),
+    });
+  }
+}
+
 function getClientIp(request: Request): string {
   const forwarded = request.headers.get("x-forwarded-for");
   if (forwarded) {
@@ -167,6 +216,8 @@ export async function POST(request: Request): Promise<NextResponse> {
     // Fire-and-forget: don't block client response
     sendWebhookNotification(notificationPayload);
     sendEmailNotification(notificationPayload);
+    sendTelegramNotification(notificationPayload);
+    saveLeadToFile(notificationPayload);
 
     return NextResponse.json(
       { ok: true, lead_id: leadId, message: "Lead accepted" },

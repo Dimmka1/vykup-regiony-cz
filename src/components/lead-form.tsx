@@ -290,7 +290,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
           </label>
           <input
             id="address"
-            className="min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
+            className={`min-h-11 w-full rounded border px-3 py-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 ${step1Attempted && !isAddressValid ? "border-red-500" : "border-slate-300"}`}
             placeholder="Např. Revoluční 12"
             autoComplete="street-address"
             enterKeyHint="next"
@@ -311,7 +311,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
               </label>
               <input
                 id="city"
-                className="mt-1 min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
+                className={`mt-1 min-h-11 w-full rounded border px-3 py-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 ${step1Attempted && !isCityValid ? "border-red-500" : "border-slate-300"}`}
                 placeholder="Např. Brno"
                 autoComplete="address-level2"
                 enterKeyHint="next"
@@ -329,11 +329,14 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
               </label>
               <input
                 id="postal-code"
-                className="mt-1 min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
+                className={`mt-1 min-h-11 w-full rounded border px-3 py-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 ${formData.postalCode.trim() && !isPostalCodeValid ? "border-red-500" : "border-slate-300"}`}
                 placeholder="123 45"
                 inputMode="numeric"
                 autoComplete="postal-code"
                 enterKeyHint="next"
+                maxLength={6}
+                aria-invalid={!isPostalCodeValid}
+                aria-describedby="psc-hint"
                 value={formData.postalCode}
                 onChange={(event) =>
                   setFormData((prev) => ({
@@ -343,6 +346,12 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
                 }
                 required
               />
+              <p
+                id="psc-hint"
+                className={`mt-1 text-xs ${formData.postalCode.trim() ? (isPostalCodeValid ? "text-teal-600" : "text-red-500") : "text-slate-500"}`}
+              >
+                Formát: 123 45
+              </p>
             </div>
           </div>
         </fieldset>
@@ -434,7 +443,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
           <button
             type="button"
             onClick={handleNextStep}
-            className="inline-flex min-h-11 items-center justify-center rounded bg-amber-500 px-5 py-3 text-base font-semibold text-white transition hover:bg-amber-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2"
+            className={`inline-flex min-h-11 items-center justify-center rounded bg-amber-500 px-5 py-3 text-base font-semibold text-white transition hover:bg-amber-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 ${currentStep === 1 && (!isAddressValid || !isCityValid || !isPostalCodeValid) ? "pointer-events-none cursor-not-allowed opacity-60" : ""}`}
           >
             Pokračovat
           </button>

@@ -27,7 +27,7 @@ export function FloatingWhatsApp({ regionName }: FloatingWhatsAppProps) {
       rel="noopener noreferrer"
       onClick={handleClick}
       aria-label="Napište nám na WhatsApp"
-      className="fixed bottom-[5.5rem] right-4 z-10 flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-3 text-sm font-semibold text-white shadow-lg transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2 lg:bottom-6"
+      className="fixed bottom-20 right-4 z-10 flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-3 text-sm font-semibold text-white shadow-lg transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2 md:bottom-6"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

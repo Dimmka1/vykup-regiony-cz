@@ -73,6 +73,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [currentStep, setCurrentStep] = useState<FormStep>(0);
+  const [step1Attempted, setStep1Attempted] = useState(false);
   const router = useRouter();
 
   const isPhoneValid = useMemo(
@@ -103,6 +104,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
     }
 
     if (currentStep === 1) {
+      setStep1Attempted(true);
       if (!isAddressValid || !isCityValid || !isPostalCodeValid) {
         setErrorMessage(
           "Doplňte prosím kompletní adresu ve formátu PSČ 123 45.",

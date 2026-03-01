@@ -302,10 +302,15 @@ function StepResult({ price }: { price: PriceRange }): ReactElement {
       </p>
       <a
         href="#kontakt"
+        onClick={(e) => {
+          e.preventDefault();
+          document
+            .getElementById("kontakt")
+            ?.scrollIntoView({ behavior: "smooth" });
+        }}
         className="mt-6 inline-flex items-center gap-2 rounded-xl bg-amber-500 px-8 py-3 text-base font-semibold text-white transition hover:bg-amber-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
       >
-        Chcete přesnou nabídku? Vyplňte kontakt
-        <ChevronRight className="h-5 w-5" />
+        Získat nezávaznou nabídku →
       </a>
     </div>
   );

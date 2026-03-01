@@ -8,6 +8,7 @@ import { LeadForm } from "@/components/lead-form";
 import { AnimatedCounter } from "@/components/animated-counter";
 import { ScrollTracker } from "@/components/scroll-tracker";
 import { PropertyEstimator } from "@/components/property-estimator";
+import { FloatingDesktopCta } from "@/components/floating-desktop-cta";
 import { FaqAccordion } from "@/components/faq-accordion";
 import { GoogleReviewsSection } from "@/components/google-reviews-section";
 import { getRegionByHost, getRegionByKey, listRegions } from "@/lib/config";
@@ -310,6 +311,7 @@ export default async function HomePage({
     <>
       <ScrollTracker regionName={region.name} />
       <FloatingWhatsApp regionName={region.name} />
+      <FloatingDesktopCta />
 
       {/* ===== HERO ===== */}
       <section className="relative min-h-[520px] overflow-hidden sm:min-h-[480px]">
@@ -340,7 +342,7 @@ export default async function HomePage({
           <h1 className="max-w-3xl text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl">
             {region.h1}
           </h1>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-200 sm:text-lg">
+          <p className="mt-4 hidden max-w-2xl text-base leading-relaxed text-slate-200 md:block md:text-lg">
             {region.description}
           </p>
 
@@ -379,7 +381,7 @@ export default async function HomePage({
       {/* ===== TRUST METRICS ===== */}
       <section className="py-16">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="grid gap-6 sm:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             {TRUST_METRICS.map((metric) => (
               <article
                 key={metric.label}
@@ -631,7 +633,10 @@ export default async function HomePage({
       <PropertyEstimator regionKey={region.key} />
 
       {/* ===== LEAD FORM + CO SE STANE PO ODESLÁNÍ ===== */}
-      <section className="py-16" id="kontakt">
+      <section
+        className="border-t border-teal-200 bg-teal-50 py-16"
+        id="kontakt"
+      >
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid gap-8 lg:grid-cols-2">
             <LeadForm regionName={region.name} />

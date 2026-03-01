@@ -42,7 +42,7 @@ export function SiteHeader({ phone = "+420 800 123 001" }: SiteHeaderProps) {
           </Link>
           <Link
             href="/jak-to-funguje"
-            className={`hidden min-h-[44px] items-center text-sm font-medium transition-colors hover:text-teal-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 sm:inline-flex ${
+            className={`hidden min-h-[44px] items-center text-sm font-medium transition-colors hover:text-teal-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 md:inline-flex ${
               scrolled ? "text-slate-700" : "text-white/80"
             }`}
           >
@@ -52,7 +52,7 @@ export function SiteHeader({ phone = "+420 800 123 001" }: SiteHeaderProps) {
         <div className="flex items-center gap-4">
           <Link
             href="/caste-dotazy"
-            className={`hidden min-h-[44px] items-center text-sm font-medium transition-colors hover:text-teal-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 sm:inline-flex ${
+            className={`hidden min-h-[44px] items-center text-sm font-medium transition-colors hover:text-teal-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 md:inline-flex ${
               scrolled ? "text-slate-700" : "text-white/80"
             }`}
           >
@@ -60,7 +60,7 @@ export function SiteHeader({ phone = "+420 800 123 001" }: SiteHeaderProps) {
           </Link>
           <Link
             href="/blog"
-            className={`hidden min-h-[44px] items-center text-sm font-medium transition-colors hover:text-teal-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 sm:inline-flex ${
+            className={`hidden min-h-[44px] items-center text-sm font-medium transition-colors hover:text-teal-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 md:inline-flex ${
               scrolled ? "text-slate-700" : "text-white/80"
             }`}
           >
@@ -74,7 +74,7 @@ export function SiteHeader({ phone = "+420 800 123 001" }: SiteHeaderProps) {
             aria-label={`Zavolat na ${phone}`}
           >
             <Phone className="h-4 w-4" />
-            <span className="hidden sm:inline">{phone}</span>
+            <span className="hidden md:inline">{phone}</span>
           </a>
           <a
             href="#kontakt"
@@ -133,6 +133,13 @@ export function SiteHeader({ phone = "+420 800 123 001" }: SiteHeaderProps) {
             >
               <Phone className="h-4 w-4" />
               {phone}
+            </a>
+            <a
+              href="#kontakt"
+              className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-teal-700 px-4 py-2 text-sm font-semibold text-white transition hover:bg-teal-600"
+              onClick={() => setMobileOpen(false)}
+            >
+              Nezávazná poptávka
             </a>
           </div>
         </div>

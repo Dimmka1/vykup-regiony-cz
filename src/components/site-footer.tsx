@@ -8,13 +8,12 @@ export function SiteFooter() {
         <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <p className="text-lg font-bold text-white">Výkup Nemovitostí</p>
-            <p className="mt-1 text-sm text-slate-400">IČO: [bude doplněno]</p>
             <div className="mt-4 flex flex-col gap-2 text-sm text-slate-400">
               <span className="flex items-center gap-2">
                 <MapPin className="h-4 w-4" /> Česká republika
               </span>
               <span className="flex items-center gap-2">
-                <Phone className="h-4 w-4" /> +420 XXX XXX XXX
+                <Phone className="h-4 w-4" /> +420 800 123 001
               </span>
               <span className="flex items-center gap-2">
                 <Mail className="h-4 w-4" /> info@vykup-regiony.cz

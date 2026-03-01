@@ -614,7 +614,7 @@ export default async function HomePage({
       </section>
 
       {/* ===== PROPERTY ESTIMATOR ===== */}
-      <PropertyEstimator />
+      <PropertyEstimator regionKey={region.key} />
 
       {/* ===== LEAD FORM + CO SE STANE PO ODESLÁNÍ ===== */}
       <section className="py-16" id="kontakt">

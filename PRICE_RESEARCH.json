@@ -1,0 +1,49 @@
+{
+  "sources": [
+    "https://realitymix.cz/statistika-nemovitosti/ (byty, krajská města, 02/2026)",
+    "https://truhlarstvihoudek.cz/ceny-nemovitosti-v-krajich-cr-2025-kde-jsou-nejdrazsi-a-kde-nejlevnejsi-byty-a-domy",
+    "https://ceska-okna-dvere.cz/ceny-stavebnich-pozemku-v-krajich-cr-prehled-cen-a-regionalnich-rozdilu",
+    "https://www.hyponamiru.cz/vyvoj-cen-nemovitosti-v-cr/",
+    "https://csu.gov.cz/prices-of-real-estate (ČSÚ 2024 baseline)"
+  ],
+  "date": "2026-03-01",
+  "currency": "CZK",
+  "unit": "per_m2",
+  "note": "Byty — RealityMIX 02/2026 (krajská města) extrapolated to kraj avg. Domy — tržní ceny prodeje. Pozemky — stavební pozemky, ČSÚ Q1 2025 + articles. Všechny ceny jsou přibližné průměry za kraj.",
+  "regions": {
+    "praha": { "byt_m2": 150800, "dum_m2": 105000, "pozemek_m2": 14000 },
+    "stredocesky-kraj": {
+      "byt_m2": 86500,
+      "dum_m2": 60000,
+      "pozemek_m2": 5500
+    },
+    "jihocesky-kraj": { "byt_m2": 72000, "dum_m2": 48000, "pozemek_m2": 3000 },
+    "plzensky-kraj": { "byt_m2": 78000, "dum_m2": 52000, "pozemek_m2": 3200 },
+    "karlovarsky-kraj": {
+      "byt_m2": 42000,
+      "dum_m2": 32000,
+      "pozemek_m2": 1800
+    },
+    "ustecky-kraj": { "byt_m2": 40000, "dum_m2": 28000, "pozemek_m2": 1800 },
+    "liberecky-kraj": { "byt_m2": 68000, "dum_m2": 45000, "pozemek_m2": 2500 },
+    "kralovehradecky-kraj": {
+      "byt_m2": 75000,
+      "dum_m2": 48000,
+      "pozemek_m2": 3200
+    },
+    "pardubicky-kraj": { "byt_m2": 72000, "dum_m2": 46000, "pozemek_m2": 2800 },
+    "vysocina": { "byt_m2": 55000, "dum_m2": 38000, "pozemek_m2": 1600 },
+    "jihomoravsky-kraj": {
+      "byt_m2": 91000,
+      "dum_m2": 58000,
+      "pozemek_m2": 5000
+    },
+    "olomoucky-kraj": { "byt_m2": 70000, "dum_m2": 42000, "pozemek_m2": 2200 },
+    "moravskoslezsky-kraj": {
+      "byt_m2": 50000,
+      "dum_m2": 35000,
+      "pozemek_m2": 1700
+    },
+    "zlinsky-kraj": { "byt_m2": 68000, "dum_m2": 44000, "pozemek_m2": 2400 }
+  }
+}

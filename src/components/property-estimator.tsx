@@ -15,6 +15,12 @@ import {
 type PropertyType = "byt" | "dum" | "pozemek";
 type PropertyCondition = "dobry" | "rekonstrukce" | "spatny";
 
+interface RegionPrices {
+  byt_m2: number;
+  dum_m2: number;
+  pozemek_m2: number;
+}
+
 interface EstimatorState {
   propertyType: PropertyType | null;
   area: number;
@@ -24,6 +30,10 @@ interface EstimatorState {
 interface PriceRange {
   min: number;
   max: number;
+}
+
+interface PropertyEstimatorProps {
+  regionKey?: string;
 }
 
 // --- Constants ---
@@ -40,11 +50,39 @@ const CONDITIONS = [
   { key: "spatny" as const, label: "Špatný stav", emoji: "🏚️" },
 ] as const;
 
-const BASE_PRICES: Record<PropertyType, number> = {
-  byt: 45_000,
-  dum: 35_000,
-  pozemek: 3_000,
+/** Výkupní discount — we offer 75% of market price */
+const VYKUPNI_DISCOUNT = 0.75;
+
+/** Per-region market prices (CZK/m²), source: PRICE_RESEARCH.json */
+const REGION_PRICES: Record<string, RegionPrices> = {
+  praha: { byt_m2: 150_800, dum_m2: 105_000, pozemek_m2: 14_000 },
+  "stredocesky-kraj": { byt_m2: 86_500, dum_m2: 60_000, pozemek_m2: 5_500 },
+  "jihocesky-kraj": { byt_m2: 72_000, dum_m2: 48_000, pozemek_m2: 3_000 },
+  "plzensky-kraj": { byt_m2: 78_000, dum_m2: 52_000, pozemek_m2: 3_200 },
+  "karlovarsky-kraj": { byt_m2: 42_000, dum_m2: 32_000, pozemek_m2: 1_800 },
+  "ustecky-kraj": { byt_m2: 40_000, dum_m2: 28_000, pozemek_m2: 1_800 },
+  "liberecky-kraj": { byt_m2: 68_000, dum_m2: 45_000, pozemek_m2: 2_500 },
+  "kralovehradecky-kraj": { byt_m2: 75_000, dum_m2: 48_000, pozemek_m2: 3_200 },
+  "pardubicky-kraj": { byt_m2: 72_000, dum_m2: 46_000, pozemek_m2: 2_800 },
+  vysocina: { byt_m2: 55_000, dum_m2: 38_000, pozemek_m2: 1_600 },
+  "jihomoravsky-kraj": { byt_m2: 91_000, dum_m2: 58_000, pozemek_m2: 5_000 },
+  "olomoucky-kraj": { byt_m2: 70_000, dum_m2: 42_000, pozemek_m2: 2_200 },
+  "moravskoslezsky-kraj": { byt_m2: 50_000, dum_m2: 35_000, pozemek_m2: 1_700 },
+  "zlinsky-kraj": { byt_m2: 68_000, dum_m2: 44_000, pozemek_m2: 2_400 },
 };
+
+/** Country-wide average (mean of all 14 regions) */
+const COUNTRY_AVERAGE: RegionPrices = (() => {
+  const values = Object.values(REGION_PRICES);
+  const count = values.length;
+  return {
+    byt_m2: Math.round(values.reduce((s, r) => s + r.byt_m2, 0) / count),
+    dum_m2: Math.round(values.reduce((s, r) => s + r.dum_m2, 0) / count),
+    pozemek_m2: Math.round(
+      values.reduce((s, r) => s + r.pozemek_m2, 0) / count,
+    ),
+  };
+})();
 
 const CONDITION_MULTIPLIERS: Record<PropertyCondition, number> = {
   dobry: 1.0,
@@ -52,15 +90,44 @@ const CONDITION_MULTIPLIERS: Record<PropertyCondition, number> = {
   spatny: 0.5,
 };
 
+// --- Helpers ---
+
+function getRegionPrices(regionKey?: string): RegionPrices {
+  if (regionKey && regionKey in REGION_PRICES) {
+    return REGION_PRICES[regionKey];
+  }
+  return COUNTRY_AVERAGE;
+}
+
+function getBasePricePerM2(
+  prices: RegionPrices,
+  propertyType: PropertyType,
+): number {
+  const mapping: Record<PropertyType, keyof RegionPrices> = {
+    byt: "byt_m2",
+    dum: "dum_m2",
+    pozemek: "pozemek_m2",
+  };
+  return prices[mapping[propertyType]];
+}
+
 // --- Price calculation ---
 
-function calculatePrice(state: EstimatorState): PriceRange | null {
+function calculatePrice(
+  state: EstimatorState,
+  regionKey?: string,
+): PriceRange | null {
   if (!state.propertyType || !state.condition) return null;
-  const base =
+  const prices = getRegionPrices(regionKey);
+  const marketPrice =
     state.area *
-    BASE_PRICES[state.propertyType] *
+    getBasePricePerM2(prices, state.propertyType) *
     CONDITION_MULTIPLIERS[state.condition];
-  return { min: Math.round(base * 0.85), max: Math.round(base * 1.15) };
+  const vykupniPrice = marketPrice * VYKUPNI_DISCOUNT;
+  return {
+    min: Math.round(vykupniPrice * 0.85),
+    max: Math.round(vykupniPrice * 1.15),
+  };
 }
 
 function formatCzk(value: number): string {
@@ -225,13 +292,13 @@ function StepResult({ price }: { price: PriceRange }): ReactElement {
     <div className="flex flex-col items-center text-center">
       <Calculator className="mb-4 h-12 w-12 text-teal-500" />
       <h3 className="text-lg font-semibold text-slate-900">
-        Odhadovaná cena vaší nemovitosti
+        Odhadovaná výkupní cena vaší nemovitosti
       </h3>
       <p className="mt-4 text-3xl font-bold text-teal-600 sm:text-4xl">
         {formatCzk(price.min)} — {formatCzk(price.max)}
       </p>
       <p className="mt-2 text-sm text-slate-500">
-        Orientační odhad na základě průměrných tržních cen v ČR.
+        Orientační odhad výkupní ceny na základě tržních cen ve vašem regionu.
       </p>
       <a
         href="#kontakt"
@@ -246,7 +313,9 @@ function StepResult({ price }: { price: PriceRange }): ReactElement {
 
 // --- Main component ---
 
-export function PropertyEstimator(): ReactElement {
+export function PropertyEstimator({
+  regionKey,
+}: PropertyEstimatorProps): ReactElement {
   const [step, setStep] = useState(0);
   const [state, setState] = useState<EstimatorState>({
     propertyType: null,
@@ -268,7 +337,7 @@ export function PropertyEstimator(): ReactElement {
 
   const goBack = useCallback(() => setStep((s) => Math.max(s - 1, 0)), []);
 
-  const price = calculatePrice(state);
+  const price = calculatePrice(state, regionKey);
 
   return (
     <section className="py-16" id="estimator">

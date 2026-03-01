@@ -185,23 +185,37 @@ function buildMetaDescription(region: RegionConfig): string {
 }
 
 function buildSchema(region: RegionConfig, canonicalUrl: string): object[] {
+  const allRegions = listRegions();
+
   return [
     {
       "@context": "https://schema.org",
       "@type": "Organization",
       name: COMPANY_NAME,
-      url: canonicalUrl,
-      telephone: region.phone,
-      email: region.email,
+      url: "https://vykoupim-nemovitost.cz",
+      logo: "https://vykoupim-nemovitost.cz/icon.svg",
+      contactPoint: {
+        "@type": "ContactPoint",
+        telephone: region.phone,
+        contactType: "customer service",
+        areaServed: "CZ",
+        availableLanguage: "Czech",
+      },
     },
     {
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
+      "@type": "RealEstateAgent",
       name: `${COMPANY_NAME} — ${region.name}`,
-      areaServed: region.name,
+      description:
+        "Rychlý výkup nemovitostí v celé České republice. Nabídka do 24 hodin, peníze na účtu do 3 dnů.",
       telephone: region.phone,
       email: region.email,
       url: canonicalUrl,
+      priceRange: "$$",
+      areaServed: allRegions.map((r) => ({
+        "@type": "AdministrativeArea",
+        name: r.name,
+      })),
       address: {
         "@type": "PostalAddress",
         addressCountry: "CZ",

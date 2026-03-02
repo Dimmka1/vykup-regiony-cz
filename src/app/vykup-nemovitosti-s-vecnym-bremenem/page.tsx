@@ -14,6 +14,10 @@ import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical:
+      "https://vykoupim-nemovitost.cz/vykup-nemovitosti-s-vecnym-bremenem",
+  },
   title: "Výkup nemovitosti s věcným břemenem — rychle a bez komplikací",
   description:
     "Vykoupíme nemovitost zatíženou věcným břemenem — služebností, právem užívání i zástavou. Férová cena, právní servis zdarma, výplata do 7 dnů.",

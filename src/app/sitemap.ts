@@ -1,10 +1,7 @@
 import type { MetadataRoute } from "next";
 import { headers } from "next/headers";
-import {
-  getRegionByHost,
-  listRegions,
-  getRegionSubdomainUrl,
-} from "@/lib/config";
+
+const PRODUCTION_DOMAIN = "vykoupim-nemovitost.cz";
 
 const STATIC_PATHS = [
   { path: "/caste-dotazy", priority: 0.8 },
@@ -21,6 +18,10 @@ const STATIC_PATHS = [
   { path: "/vykup-bytu", priority: 0.8 },
   { path: "/vykup-domu", priority: 0.8 },
   { path: "/vykup-pozemku", priority: 0.8 },
+  { path: "/jak-to-funguje", priority: 0.8 },
+  { path: "/reference", priority: 0.8 },
+  { path: "/ochrana-osobnich-udaju", priority: 0.3 },
+  { path: "/kraje", priority: 0.7 },
 ] as const;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -28,7 +29,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const host = (
     requestHeaders.get("x-forwarded-host") ??
     requestHeaders.get("host") ??
-    "vykoupim-nemovitost.cz"
+    PRODUCTION_DOMAIN
   )
     .toLowerCase()
     .replace(/^www\./, "")
@@ -37,7 +38,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = `https://${host}`;
   const now = new Date();
 
-  // Home page for current subdomain
+  const isRootDomain =
+    host === PRODUCTION_DOMAIN || !host.endsWith(`.${PRODUCTION_DOMAIN}`);
+
+  // Home page for current host
   const entries: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
@@ -47,32 +51,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  // Static content pages (same on every subdomain)
-  for (const entry of STATIC_PATHS) {
-    entries.push({
-      url: `${baseUrl}${entry.path}`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: entry.priority,
-    });
-  }
-
-  // On root domain, also include cross-links to all regional subdomains
-  const isRootDomain =
-    host === "vykoupim-nemovitost.cz" ||
-    !host.endsWith(".vykoupim-nemovitost.cz");
-
+  // Content pages ONLY on root domain (or dev/preview)
   if (isRootDomain) {
-    for (const region of listRegions()) {
-      const subdomainUrl = getRegionSubdomainUrl(region.key);
+    for (const entry of STATIC_PATHS) {
       entries.push({
-        url: subdomainUrl,
+        url: `${baseUrl}${entry.path}`,
         lastModified: now,
         changeFrequency: "monthly",
-        priority: 0.9,
+        priority: entry.priority,
       });
     }
   }
+
+  // Subdomains: only home page, no content paths, no cross-host URLs
 
   return entries;
 }

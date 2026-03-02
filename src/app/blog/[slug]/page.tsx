@@ -804,6 +804,7 @@ export async function generateMetadata({
       publishedTime: article.date,
       images: ["/blog/" + slug + "/opengraph-image"],
     },
+    alternates: { canonical: `https://vykoupim-nemovitost.cz/blog/${slug}` },
     twitter: {
       card: "summary_large_image",
       title: article.title,

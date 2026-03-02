@@ -16,6 +16,7 @@ import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "https://vykoupim-nemovitost.cz/vykup-bytu" },
   title: "Výkup bytů — rychlý prodej bytu za hotové do 7 dnů",
   description:
     "Vykoupíme váš byt rychle a bez provize. Osobní, družstevní i problémové byty. Férová cena 80–90 % tržní hodnoty, vyplacení do 7 dnů. Celá ČR.",

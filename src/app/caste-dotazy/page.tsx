@@ -3,6 +3,7 @@ import Link from "next/link";
 import { safeJsonLd } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "https://vykoupim-nemovitost.cz/caste-dotazy" },
   title: "Časté dotazy k výkupu nemovitostí",
   description:
     "Odpovědi na nejčastější otázky o rychlém výkupu nemovitostí v České republice. Jak probíhá výkup, kolik dostanete, jak dlouho trvá celý proces.",

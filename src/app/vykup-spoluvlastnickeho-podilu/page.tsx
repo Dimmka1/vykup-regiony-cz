@@ -14,6 +14,9 @@ import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://vykoupim-nemovitost.cz/vykup-spoluvlastnickeho-podilu",
+  },
   title:
     "Výkup spoluvlastnického podílu na nemovitosti — férová cena bez soudů",
   description:

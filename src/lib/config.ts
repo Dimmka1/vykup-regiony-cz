@@ -113,3 +113,61 @@ export function getRegionByKey(regionKey: string | null): RegionConfig {
 export function listRegions(): RegionConfig[] {
   return regionData.regions;
 }
+
+const PRODUCTION_DOMAIN = "vykoupim-nemovitost.cz";
+
+/** All region keys as a Set for fast lookup */
+export const REGION_KEYS: Set<string> = new Set(
+  regionData.regions.map((r) => r.key),
+);
+
+/**
+ * Check if a hostname is a production domain (vykoupim-nemovitost.cz or subdomain).
+ */
+export function isProductionHost(host: string | null): boolean {
+  if (!host) return false;
+  const normalized = host
+    .toLowerCase()
+    .replace(/^www\./, "")
+    .split(":")[0];
+  return (
+    normalized === PRODUCTION_DOMAIN ||
+    normalized.endsWith(`.${PRODUCTION_DOMAIN}`)
+  );
+}
+
+/**
+ * Get the production subdomain URL for a region.
+ * Extracts the {x}.vykoupim-nemovitost.cz host from region's hosts array.
+ */
+export function getRegionSubdomainUrl(regionKey: string): string {
+  const region = regionByKey.get(regionKey);
+  if (!region) return `https://${PRODUCTION_DOMAIN}`;
+  const subdomainHost = region.hosts.find(
+    (h) =>
+      h.endsWith(`.${PRODUCTION_DOMAIN}`) &&
+      !h.startsWith("www.") &&
+      !h.startsWith("dev."),
+  );
+  if (subdomainHost) return `https://${subdomainHost}`;
+  // Praha root domain case
+  if (region.hosts.includes(PRODUCTION_DOMAIN)) {
+    return `https://praha.${PRODUCTION_DOMAIN}`;
+  }
+  return `https://${PRODUCTION_DOMAIN}`;
+}
+
+/**
+ * Get the correct URL for a region based on current environment.
+ * Production: subdomain URL. Dev/preview: path-based URL.
+ */
+export function getRegionUrl(
+  regionKey: string,
+  currentHost: string | null,
+): string {
+  if (isProductionHost(currentHost)) {
+    return getRegionSubdomainUrl(regionKey);
+  }
+  // Dev/preview: use path-based routing
+  return `/${regionKey}`;
+}

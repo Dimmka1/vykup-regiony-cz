@@ -1,16 +1,10 @@
 import type { MetadataRoute } from "next";
-import { getDefaultRegion, listRegions } from "@/lib/config";
-
-function normalizeHost(host: string): string {
-  return host
-    .toLowerCase()
-    .replace(/^www\./, "")
-    .split(":")[0];
-}
-
-function isPublicHost(host: string): boolean {
-  return !host.endsWith(".localhost") && !host.includes("localhost");
-}
+import { headers } from "next/headers";
+import {
+  getRegionByHost,
+  listRegions,
+  getRegionSubdomainUrl,
+} from "@/lib/config";
 
 const STATIC_PATHS = [
   { path: "/caste-dotazy", priority: 0.8 },
@@ -29,51 +23,56 @@ const STATIC_PATHS = [
   { path: "/vykup-pozemku", priority: 0.8 },
 ] as const;
 
-const BASE_URL = "https://vykup-regiony.cz";
-
-export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
-  const hostToRegionKey = new Map<string, string>();
-
-  hostToRegionKey.set("vykup-regiony.cz", getDefaultRegion().key);
-
-  listRegions().forEach((region) => {
-    region.hosts.forEach((host) => {
-      const normalized = normalizeHost(host);
-      if (isPublicHost(normalized)) {
-        hostToRegionKey.set(normalized, region.key);
-      }
-    });
-  });
-
-  // Host-based region entries (existing behavior)
-  const regionHostEntries: MetadataRoute.Sitemap = Array.from(
-    hostToRegionKey.entries(),
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const requestHeaders = await headers();
+  const host = (
+    requestHeaders.get("x-forwarded-host") ??
+    requestHeaders.get("host") ??
+    "vykoupim-nemovitost.cz"
   )
-    .sort(([a], [b]) => a.localeCompare(b))
-    .map(([host]) => ({
-      url: `https://${host}`,
+    .toLowerCase()
+    .replace(/^www\./, "")
+    .split(":")[0];
+
+  const baseUrl = `https://${host}`;
+  const now = new Date();
+
+  // Home page for current subdomain
+  const entries: MetadataRoute.Sitemap = [
+    {
+      url: baseUrl,
       lastModified: now,
-      changeFrequency: "monthly" as const,
-      priority: host === "vykup-regiony.cz" ? 1 : 0.9,
-    }));
+      changeFrequency: "monthly",
+      priority: 1,
+    },
+  ];
 
-  // Path-based region entries: /praha, /brno, etc.
-  const regionPathEntries: MetadataRoute.Sitemap = listRegions().map(
-    (region) => ({
-      url: `${BASE_URL}/${region.key}`,
+  // Static content pages (same on every subdomain)
+  for (const entry of STATIC_PATHS) {
+    entries.push({
+      url: `${baseUrl}${entry.path}`,
       lastModified: now,
-      changeFrequency: "monthly" as const,
-      priority: 0.9,
-    }),
-  );
+      changeFrequency: "monthly",
+      priority: entry.priority,
+    });
+  }
 
-  const staticEntries: MetadataRoute.Sitemap = STATIC_PATHS.map((entry) => ({
-    url: `${BASE_URL}${entry.path}`,
-    lastModified: now,
-    changeFrequency: "monthly" as const,
-    priority: entry.priority,
-  }));
+  // On root domain, also include cross-links to all regional subdomains
+  const isRootDomain =
+    host === "vykoupim-nemovitost.cz" ||
+    !host.endsWith(".vykoupim-nemovitost.cz");
 
-  return [...regionHostEntries, ...regionPathEntries, ...staticEntries];
+  if (isRootDomain) {
+    for (const region of listRegions()) {
+      const subdomainUrl = getRegionSubdomainUrl(region.key);
+      entries.push({
+        url: subdomainUrl,
+        lastModified: now,
+        changeFrequency: "monthly",
+        priority: 0.9,
+      });
+    }
+  }
+
+  return entries;
 }

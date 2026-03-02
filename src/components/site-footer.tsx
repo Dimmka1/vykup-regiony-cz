@@ -1,5 +1,29 @@
 import Link from "next/link";
 import { MapPin, Mail, Phone } from "lucide-react";
+import { listRegions, getRegionSubdomainUrl } from "@/lib/config";
+
+function RegionCrossLinks() {
+  const regions = listRegions();
+  return (
+    <div className="mt-8">
+      <p className="mb-3 text-sm font-semibold text-slate-300">
+        Výkup nemovitostí v regionech
+      </p>
+      <ul className="flex flex-wrap gap-x-4 gap-y-1 text-sm">
+        {regions.map((r) => (
+          <li key={r.key}>
+            <a
+              href={getRegionSubdomainUrl(r.key)}
+              className="text-slate-400 transition hover:text-white"
+            >
+              {r.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 export function SiteFooter() {
   return (
@@ -107,6 +131,7 @@ export function SiteFooter() {
             </Link>
           </nav>
         </div>
+        <RegionCrossLinks />
         <div className="mt-10 border-t border-slate-700 pt-6 text-center text-sm text-slate-400">
           © 2026 Výkup Nemovitostí. Všechna práva vyhrazena.
         </div>

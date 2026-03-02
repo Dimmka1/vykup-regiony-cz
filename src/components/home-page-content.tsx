@@ -3,17 +3,48 @@ import { getThemeStyle } from "@/lib/theme-colors";
 import type { ReactElement } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { CtaLink } from "@/components/cta-link";
-import { LeadForm } from "@/components/lead-form";
 import { CallbackForm } from "@/components/callback-form";
 import { AnimatedCounter } from "@/components/animated-counter";
 import { ScrollTracker } from "@/components/scroll-tracker";
-import { PropertyEstimator } from "@/components/property-estimator";
-import { ComparisonCalculator } from "@/components/comparison-calculator";
 import { FloatingDesktopCta } from "@/components/floating-desktop-cta";
 import { FaqAccordion } from "@/components/faq-accordion";
 import { NearbyRegions } from "@/components/nearby-regions";
 import { FloatingWhatsApp } from "@/components/floating-whatsapp";
+
+const LeadForm = dynamic(
+  () => import("@/components/lead-form").then((mod) => mod.LeadForm),
+  {
+    loading: () => (
+      <div className="h-96 animate-pulse rounded-2xl bg-slate-100" />
+    ),
+  },
+);
+
+const PropertyEstimator = dynamic(
+  () =>
+    import("@/components/property-estimator").then(
+      (mod) => mod.PropertyEstimator,
+    ),
+  {
+    loading: () => (
+      <div className="h-64 animate-pulse rounded-2xl bg-slate-100" />
+    ),
+  },
+);
+
+const ComparisonCalculator = dynamic(
+  () =>
+    import("@/components/comparison-calculator").then(
+      (mod) => mod.ComparisonCalculator,
+    ),
+  {
+    loading: () => (
+      <div className="h-64 animate-pulse rounded-2xl bg-slate-100" />
+    ),
+  },
+);
 import { getRegionSubdomainUrl, isProductionHost } from "@/lib/config";
 import type { RegionConfig } from "@/lib/types";
 import {

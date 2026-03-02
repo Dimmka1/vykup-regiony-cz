@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { MapPin } from "lucide-react";
-import { listRegions } from "@/lib/config";
+import { listRegions, getRegionSubdomainUrl, getRegionUrl } from "@/lib/config";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { safeJsonLd } from "@/lib/jsonld";
+import { getRequestHost } from "@/lib/request-host";
 
 const SITE_URL = "https://www.vykupnemovitosticz.cz";
 
@@ -16,8 +17,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function KrajePage() {
+export default async function KrajePage() {
   const regions = listRegions();
+  const host = await getRequestHost();
 
   const itemListJsonLd = {
     "@context": "https://schema.org",
@@ -28,7 +30,7 @@ export default function KrajePage() {
       "@type": "ListItem",
       position: index + 1,
       name: region.name,
-      url: `${SITE_URL}/${region.key}`,
+      url: getRegionSubdomainUrl(region.key),
     })),
   };
 
@@ -55,7 +57,7 @@ export default function KrajePage() {
             {regions.map((region) => (
               <Link
                 key={region.key}
-                href={`/${region.key}`}
+                href={getRegionUrl(region.key, host)}
                 className="group flex flex-col rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-all hover:border-teal-300 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2"
               >
                 <div className="flex items-center gap-3">

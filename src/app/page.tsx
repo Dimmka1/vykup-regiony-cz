@@ -70,5 +70,7 @@ export default async function HomePage(): Promise<ReactElement> {
   const { region, host } = await resolveRegion();
   const canonicalUrl = buildCanonicalUrl(host, region.key);
 
-  return <HomePageContent region={region} canonicalUrl={canonicalUrl} />;
+  return (
+    <HomePageContent region={region} canonicalUrl={canonicalUrl} host={host} />
+  );
 }

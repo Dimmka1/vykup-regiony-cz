@@ -1,3 +1,4 @@
+import { RegionLinksSection } from "@/components/region-links-section";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -903,6 +904,7 @@ export default async function BlogArticlePage({
           </div>
         </div>
       </article>
+      <RegionLinksSection />
     </>
   );
 }

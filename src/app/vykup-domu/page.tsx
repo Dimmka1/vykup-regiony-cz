@@ -1,3 +1,4 @@
+import { RegionLinksSection } from "@/components/region-links-section";
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
@@ -330,6 +331,7 @@ export default function VykupDomuPage(): React.ReactElement {
           <RelatedArticles articles={getRelatedArticles("vykup-domu")} />
         </div>
       </section>
+      <RegionLinksSection />
     </>
   );
 }

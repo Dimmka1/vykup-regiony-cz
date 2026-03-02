@@ -29,6 +29,8 @@ const STATIC_PATHS = [
   { path: "/vykup-pozemku", priority: 0.8 },
 ] as const;
 
+const BASE_URL = "https://vykup-regiony.cz";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
   const hostToRegionKey = new Map<string, string>();
@@ -44,7 +46,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   });
 
-  const regionEntries: MetadataRoute.Sitemap = Array.from(
+  // Host-based region entries (existing behavior)
+  const regionHostEntries: MetadataRoute.Sitemap = Array.from(
     hostToRegionKey.entries(),
   )
     .sort(([a], [b]) => a.localeCompare(b))
@@ -55,12 +58,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: host === "vykup-regiony.cz" ? 1 : 0.9,
     }));
 
+  // Path-based region entries: /praha, /brno, etc.
+  const regionPathEntries: MetadataRoute.Sitemap = listRegions().map(
+    (region) => ({
+      url: `${BASE_URL}/${region.key}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
+    }),
+  );
+
   const staticEntries: MetadataRoute.Sitemap = STATIC_PATHS.map((entry) => ({
-    url: `https://vykup-regiony.cz${entry.path}`,
+    url: `${BASE_URL}${entry.path}`,
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: entry.priority,
   }));
 
-  return [...regionEntries, ...staticEntries];
+  return [...regionHostEntries, ...regionPathEntries, ...staticEntries];
 }

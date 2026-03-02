@@ -86,7 +86,7 @@ export default async function OgImage({
           color: "rgba(255, 255, 255, 0.7)",
         }}
       >
-        vykup-regiony.cz/blog
+        vykoupim-nemovitost.cz/blog
       </div>
     </div>,
     {

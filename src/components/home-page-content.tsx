@@ -15,6 +15,7 @@ import { FaqAccordion } from "@/components/faq-accordion";
 import { NearbyRegions } from "@/components/nearby-regions";
 import { FloatingWhatsApp } from "@/components/floating-whatsapp";
 import { getRegionSubdomainUrl, isProductionHost } from "@/lib/config";
+import { TestimonialCarousel } from "@/components/testimonial-carousel";
 import type { RegionConfig } from "@/lib/types";
 import {
   Check,
@@ -696,7 +697,6 @@ export function HomePageContent({
           </div>
         </div>
       </section>
-
       {/* ===== TESTIMONIALS ===== */}
       <section className="relative py-16">
         <Image
@@ -707,39 +707,10 @@ export function HomePageContent({
         />
         <div className="absolute inset-0 bg-white/90" aria-hidden="true" />
         <div className="relative mx-auto max-w-7xl px-6">
-          <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
+          <h2 className="mb-8 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
             Co říkají naši klienti
           </h2>
-          <div className="mt-8 grid gap-6 md:grid-cols-2">
-            {region.testimonials.map((testimonial) => (
-              <figure
-                key={`${testimonial.author}-${testimonial.city}`}
-                className="relative rounded-2xl border border-slate-100 bg-slate-50 p-6"
-              >
-                <Quote
-                  className="absolute right-6 top-6 h-10 w-10 text-[var(--theme-100)]"
-                  aria-hidden="true"
-                />
-                <div className="mb-3 flex gap-0.5" aria-label="5 z 5 hvězd">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="h-5 w-5 fill-[var(--theme-400)] text-[var(--theme-400)]"
-                    />
-                  ))}
-                </div>
-                <blockquote className="text-sm italic leading-relaxed text-slate-600">
-                  &ldquo;{testimonial.quote}&rdquo;
-                </blockquote>
-                <figcaption className="mt-4 text-sm font-semibold text-slate-800">
-                  {testimonial.author}{" "}
-                  <span className="font-normal text-slate-400">
-                    - {testimonial.city}
-                  </span>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
+          <TestimonialCarousel />
         </div>
       </section>
 

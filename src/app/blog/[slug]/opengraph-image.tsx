@@ -1,4 +1,6 @@
 import { ImageResponse } from "next/og";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { BLOG_POSTS } from "../data";
 
 export const alt = "Výkup Regiony CZ — Blog";
@@ -9,6 +11,11 @@ export const size = {
 };
 
 export const contentType = "image/png";
+
+function loadFont(): ArrayBuffer {
+  const fontPath = join(process.cwd(), "src/assets/fonts/Inter-Bold.ttf");
+  return readFileSync(fontPath).buffer as ArrayBuffer;
+}
 
 export function generateStaticParams(): Array<{ slug: string }> {
   return BLOG_POSTS.map((post) => ({ slug: post.slug }));
@@ -24,6 +31,7 @@ export default async function OgImage({
   const { slug } = await params;
   const post = BLOG_POSTS.find((p) => p.slug === slug);
   const title = post?.title ?? "Blog — Výkup Regiony CZ";
+  const fontData = loadFont();
 
   return new ImageResponse(
     <div
@@ -37,6 +45,7 @@ export default async function OgImage({
         background:
           "linear-gradient(135deg, #059669 0%, #10b981 50%, #34d399 100%)",
         padding: "60px 80px",
+        fontFamily: "Inter",
       }}
     >
       {/* House icon */}
@@ -80,6 +89,16 @@ export default async function OgImage({
         vykup-regiony.cz/blog
       </div>
     </div>,
-    { ...size },
+    {
+      ...size,
+      fonts: [
+        {
+          name: "Inter",
+          data: fontData,
+          style: "normal",
+          weight: 700,
+        },
+      ],
+    },
   );
 }

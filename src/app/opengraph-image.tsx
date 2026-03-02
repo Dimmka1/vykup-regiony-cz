@@ -11,7 +11,13 @@ export const size = {
 
 export const contentType = "image/png";
 
-export default function OgImage(): ImageResponse {
+const interBoldFont = fetch(
+  new URL("../assets/fonts/Inter-Bold.ttf", import.meta.url),
+).then((res) => res.arrayBuffer());
+
+export default async function OgImage(): Promise<ImageResponse> {
+  const fontData = await interBoldFont;
+
   return new ImageResponse(
     <div
       style={{
@@ -24,6 +30,7 @@ export default function OgImage(): ImageResponse {
         background:
           "linear-gradient(135deg, #059669 0%, #10b981 50%, #34d399 100%)",
         padding: "60px",
+        fontFamily: "Inter",
       }}
     >
       {/* House icon */}
@@ -86,6 +93,16 @@ export default function OgImage(): ImageResponse {
         vykup-regiony.cz
       </div>
     </div>,
-    { ...size },
+    {
+      ...size,
+      fonts: [
+        {
+          name: "Inter",
+          data: fontData,
+          style: "normal",
+          weight: 700,
+        },
+      ],
+    },
   );
 }

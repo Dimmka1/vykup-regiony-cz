@@ -1,4 +1,5 @@
 import { safeJsonLd } from "@/lib/jsonld";
+import { getThemeStyle } from "@/lib/theme-colors";
 import type { ReactElement } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -296,8 +297,10 @@ export function HomePageContent({
 }: HomePageContentProps): ReactElement {
   const schema = buildSchema(region, canonicalUrl);
 
+  const themeStyle = getThemeStyle(region.themeColor);
+
   return (
-    <>
+    <div style={themeStyle}>
       <ScrollTracker regionName={region.name} />
       <FloatingWhatsApp regionName={region.name} />
       <FloatingDesktopCta />
@@ -355,7 +358,7 @@ export function HomePageContent({
             />
             <a
               href={`tel:${region.phone}`}
-              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/40 px-6 py-3 text-base font-semibold text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/40 px-6 py-3 text-base font-semibold text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
             >
               <Phone className="h-5 w-5" />
               Zavolat: {region.phone}
@@ -390,8 +393,8 @@ export function HomePageContent({
                 key={metric.label}
                 className="flex flex-col items-center rounded-2xl bg-slate-50 p-6 text-center"
               >
-                <metric.Icon className="mb-3 h-7 w-7 text-teal-500" />
-                <p className="text-3xl font-bold text-teal-700">
+                <metric.Icon className="mb-3 h-7 w-7 text-[var(--theme-500)]" />
+                <p className="text-3xl font-bold text-[var(--theme-700)]">
                   <AnimatedCounter value={metric.value} />
                 </p>
                 <p className="mt-1 text-sm text-slate-500">{metric.label}</p>
@@ -438,10 +441,10 @@ export function HomePageContent({
                     className="flex gap-4 rounded-2xl border border-slate-100 bg-white p-6"
                   >
                     <div className="flex flex-col items-center gap-2">
-                      <span className="flex h-12 w-12 items-center justify-center rounded-full bg-teal-50 text-teal-600">
+                      <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--theme-50)] text-[var(--theme-600)]">
                         <step.Icon className="h-6 w-6" />
                       </span>
-                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-teal-600 text-xs font-bold text-white">
+                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[var(--theme-600)] text-xs font-bold text-white">
                         {index + 1}
                       </span>
                     </div>
@@ -452,7 +455,7 @@ export function HomePageContent({
                       <p className="mt-1 text-sm leading-relaxed text-slate-600">
                         {step.description}
                       </p>
-                      <p className="mt-2 text-xs font-medium text-teal-600">
+                      <p className="mt-2 text-xs font-medium text-[var(--theme-600)]">
                         {step.eta}
                       </p>
                     </div>
@@ -469,10 +472,10 @@ export function HomePageContent({
                     className="flex gap-4 rounded-2xl border border-slate-100 bg-white p-6"
                   >
                     <div className="flex flex-col items-center gap-2">
-                      <span className="flex h-12 w-12 items-center justify-center rounded-full bg-teal-50 text-teal-600">
+                      <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--theme-50)] text-[var(--theme-600)]">
                         <step.Icon className="h-6 w-6" />
                       </span>
-                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-teal-600 text-xs font-bold text-white">
+                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[var(--theme-600)] text-xs font-bold text-white">
                         {index + 3}
                       </span>
                     </div>
@@ -483,7 +486,7 @@ export function HomePageContent({
                       <p className="mt-1 text-sm leading-relaxed text-slate-600">
                         {step.description}
                       </p>
-                      <p className="mt-2 text-xs font-medium text-teal-600">
+                      <p className="mt-2 text-xs font-medium text-[var(--theme-600)]">
                         {step.eta}
                       </p>
                     </div>
@@ -513,7 +516,7 @@ export function HomePageContent({
           <div className="mt-8 text-center">
             <Link
               href="/jak-to-funguje"
-              className="inline-flex items-center gap-1 text-sm font-medium text-teal-700 transition hover:text-teal-600"
+              className="inline-flex items-center gap-1 text-sm font-medium text-[var(--theme-700)] transition hover:text-[var(--theme-600)]"
             >
               Více o celém procesu →
             </Link>
@@ -537,7 +540,7 @@ export function HomePageContent({
                 key={situation.label}
                 className="flex gap-4 rounded-2xl border border-slate-100 bg-white p-6 transition hover:-translate-y-0.5 hover:shadow-lg"
               >
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-teal-50 text-teal-600">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--theme-50)] text-[var(--theme-600)]">
                   <situation.Icon className="h-5 w-5" />
                 </span>
                 <div>
@@ -571,7 +574,7 @@ export function HomePageContent({
       </section>
 
       {/* ===== PROČ KLIENTI VOLÍ NÁS (USP) ===== */}
-      <section className="bg-gradient-to-br from-teal-700 to-teal-900 py-16 text-white">
+      <section className="bg-gradient-to-br from-[var(--theme-700)] to-[var(--theme-900)] py-16 text-white">
         <div className="mx-auto max-w-7xl px-6">
           <h2 className="text-2xl font-bold text-white sm:text-3xl">
             Proč klienti volí nás
@@ -615,9 +618,9 @@ export function HomePageContent({
                 {ABOUT_STATS.map((stat) => (
                   <div
                     key={stat.label}
-                    className="border-l-2 border-teal-500 pl-4"
+                    className="border-l-2 border-[var(--theme-500)] pl-4"
                   >
-                    <p className="text-2xl font-bold text-teal-700">
+                    <p className="text-2xl font-bold text-[var(--theme-700)]">
                       {stat.value}
                     </p>
                     <p className="mt-1 text-sm text-slate-600">{stat.label}</p>
@@ -637,7 +640,7 @@ export function HomePageContent({
 
       {/* ===== LEAD FORM + CO SE STANE PO ODESLÁNÍ ===== */}
       <section
-        className="border-t border-teal-200 bg-teal-50 py-16"
+        className="border-t border-[var(--theme-200)] bg-[var(--theme-50)] py-16"
         id="kontakt"
       >
         <div className="mx-auto max-w-7xl px-6">
@@ -651,7 +654,7 @@ export function HomePageContent({
               <ul className="mt-6 space-y-4">
                 {FORM_BENEFITS.map((benefit) => (
                   <li key={benefit} className="flex items-start gap-3">
-                    <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-teal-100 text-teal-600">
+                    <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--theme-100)] text-[var(--theme-600)]">
                       <Check className="h-4 w-4" />
                     </span>
                     <span className="text-slate-700">{benefit}</span>
@@ -714,7 +717,7 @@ export function HomePageContent({
                 className="relative rounded-2xl border border-slate-100 bg-slate-50 p-6"
               >
                 <Quote
-                  className="absolute right-6 top-6 h-10 w-10 text-teal-100"
+                  className="absolute right-6 top-6 h-10 w-10 text-[var(--theme-100)]"
                   aria-hidden="true"
                 />
                 <div className="mb-3 flex gap-0.5" aria-label="5 z 5 hvězd">
@@ -803,7 +806,7 @@ export function HomePageContent({
           </a>
           <a
             href={`tel:${region.phone}`}
-            className="inline-flex min-h-11 flex-1 items-center justify-center rounded-xl border border-slate-300 px-4 py-3 text-sm font-semibold text-slate-800 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2"
+            className="inline-flex min-h-11 flex-1 items-center justify-center rounded-xl border border-slate-300 px-4 py-3 text-sm font-semibold text-slate-800 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
           >
             Zavolat
           </a>
@@ -814,6 +817,6 @@ export function HomePageContent({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonLd(schema) }}
       />
-    </>
+    </div>
   );
 }

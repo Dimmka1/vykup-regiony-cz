@@ -4,6 +4,14 @@
 
 :root {
   color-scheme: light;
+  --theme-50: #f0fdfa;
+  --theme-100: #ccfbf1;
+  --theme-200: #99f6e4;
+  --theme-500: #14b8a6;
+  --theme-600: #0d9488;
+  --theme-700: #0f766e;
+  --theme-800: #115e59;
+  --theme-900: #134e4a;
 }
 
 html {
@@ -45,5 +53,10 @@ input[type="radio"] {
 }
 
 .prose-article a {
-  @apply font-medium text-teal-600 hover:text-teal-500;
+  @apply font-medium;
+  color: var(--theme-600, #0d9488);
+}
+
+.prose-article a:hover {
+  color: var(--theme-500, #14b8a6);
 }

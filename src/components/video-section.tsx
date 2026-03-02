@@ -48,7 +48,7 @@ function YouTubeEmbed({ videoId }: { videoId: string }): ReactElement {
       <button
         type="button"
         onClick={() => setLoaded(true)}
-        className="group relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-2xl bg-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2"
+        className="group relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-2xl bg-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
         aria-label="Přehrát video"
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}

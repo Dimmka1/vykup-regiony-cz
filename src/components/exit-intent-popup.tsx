@@ -118,7 +118,7 @@ export function ExitIntentPopup(): ReactElement | null {
         <button
           type="button"
           onClick={handleClose}
-          className="absolute right-3 top-3 rounded-full p-1.5 text-slate-400 transition hover:bg-slate-100 hover:text-slate-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
+          className="absolute right-3 top-3 rounded-full p-1.5 text-slate-400 transition hover:bg-slate-100 hover:text-slate-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]"
           aria-label="Zavřít"
         >
           <X className="h-5 w-5" />
@@ -126,7 +126,7 @@ export function ExitIntentPopup(): ReactElement | null {
 
         {status === "success" ? (
           <div className="py-4 text-center">
-            <p className="text-lg font-semibold text-teal-700">
+            <p className="text-lg font-semibold text-[var(--theme-700)]">
               Děkujeme! Ozveme se vám co nejdříve.
             </p>
           </div>
@@ -151,7 +151,7 @@ export function ExitIntentPopup(): ReactElement | null {
                   inputMode="tel"
                   autoComplete="tel"
                   placeholder="+420 777 123 456"
-                  className="min-h-12 w-full rounded-lg border border-slate-300 px-4 py-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
+                  className="min-h-12 w-full rounded-lg border border-slate-300 px-4 py-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]"
                   value={phone}
                   onChange={(e) => setPhone(normalizePhone(e.target.value))}
                   required
@@ -167,7 +167,7 @@ export function ExitIntentPopup(): ReactElement | null {
               <button
                 type="submit"
                 disabled={status === "submitting"}
-                className="min-h-12 w-full rounded-lg bg-amber-500 px-5 py-3 text-base font-semibold text-white transition hover:bg-amber-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 disabled:opacity-70"
+                className="min-h-12 w-full rounded-lg bg-amber-500 px-5 py-3 text-base font-semibold text-white transition hover:bg-amber-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 disabled:opacity-70"
               >
                 {status === "submitting" ? "Odesílám..." : "Zavoláme vám zpět"}
               </button>

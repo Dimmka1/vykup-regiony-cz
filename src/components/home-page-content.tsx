@@ -269,6 +269,14 @@ export function buildSchema(
             text: item.answer,
           },
         })),
+        ...(region.regionFaq ?? []).map((item) => ({
+          "@type": "Question" as const,
+          name: item.question,
+          acceptedAnswer: {
+            "@type": "Answer" as const,
+            text: item.answer,
+          },
+        })),
       ],
     },
   ];
@@ -358,6 +366,17 @@ export function HomePageContent({
           </p>
         </div>
       </section>
+
+      {/* ===== MARKET INFO ===== */}
+      {region.marketInfo && (
+        <section className="bg-slate-50 py-8">
+          <div className="mx-auto max-w-7xl px-6">
+            <p className="text-center text-sm leading-relaxed text-slate-600 md:text-base">
+              {region.marketInfo}
+            </p>
+          </div>
+        </section>
+      )}
 
       {/* ===== TRUST METRICS ===== */}
       <section className="py-16">
@@ -733,6 +752,20 @@ export function HomePageContent({
           </p>
         </div>
       </section>
+
+      {/* ===== REGION FAQ ===== */}
+      {region.regionFaq && region.regionFaq.length > 0 && (
+        <section className="bg-slate-50 py-16">
+          <div className="mx-auto max-w-7xl px-6">
+            <h2 className="text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+              Otázky k výkupu {region.locative}
+            </h2>
+            <div className="mt-8">
+              <FaqAccordion items={region.regionFaq} />
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ===== FAQ ===== */}
       <section className="py-16">

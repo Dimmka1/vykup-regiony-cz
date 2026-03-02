@@ -70,5 +70,4 @@ export default async function HomePage({
   const canonicalUrl = buildCanonicalUrl(host);
 
   return <HomePageContent region={region} canonicalUrl={canonicalUrl} />;
-
 }

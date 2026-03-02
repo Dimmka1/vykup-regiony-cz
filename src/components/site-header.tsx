@@ -59,6 +59,14 @@ export function SiteHeader({ phone = "+420 800 123 001" }: SiteHeaderProps) {
             Časté dotazy
           </Link>
           <Link
+            href="/reference"
+            className={`hidden min-h-[44px] items-center text-sm font-medium transition-colors hover:text-teal-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 md:inline-flex ${
+              scrolled ? "text-slate-700" : "text-white/80"
+            }`}
+          >
+            Reference
+          </Link>
+          <Link
             href="/blog"
             className={`hidden min-h-[44px] items-center text-sm font-medium transition-colors hover:text-teal-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 md:inline-flex ${
               scrolled ? "text-slate-700" : "text-white/80"
@@ -119,6 +127,13 @@ export function SiteHeader({ phone = "+420 800 123 001" }: SiteHeaderProps) {
               onClick={() => setMobileOpen(false)}
             >
               Časté dotazy
+            </Link>
+            <Link
+              href="/reference"
+              className="min-h-[44px] text-sm font-medium text-slate-700 hover:text-teal-500"
+              onClick={() => setMobileOpen(false)}
+            >
+              Reference
             </Link>
             <Link
               href="/blog"

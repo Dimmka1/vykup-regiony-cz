@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://vykoupim-nemovitost.cz/vykup-nemovitosti-s-hypotekou",
   },
-  title: "Výkup nemovitosti s hypotékou — rychlé řešení zatížené nemovitosti",
+  title: "Výkup nemovitosti s hypotékou - rychlé řešení zatížené nemovitosti",
   description:
     "Vykoupíme nemovitost zatíženou hypotékou nebo zástavním právem. Vyřešíme komunikaci s bankou, splatíme úvěr z kupní ceny. Výplata do 7 dnů, bez provize.",
 };
@@ -141,7 +141,7 @@ export default async function VykupNemovitostiSHypotekou(): Promise<React.ReactE
           <p className="mt-4 text-lg text-slate-600">
             Splácíte hypotéku, kterou už nezvládáte? Potřebujete rychle prodat
             nemovitost zatíženou zástavním právem banky? Pomůžeme vám celou
-            situaci vyřešit — splatíme hypotéku z kupní ceny a zbytek vyplatíme
+            situaci vyřešit - splatíme hypotéku z kupní ceny a zbytek vyplatíme
             přímo vám.
           </p>
           <p className="mt-4 text-slate-600">
@@ -159,7 +159,7 @@ export default async function VykupNemovitostiSHypotekou(): Promise<React.ReactE
           </p>
           <p className="mt-4 text-slate-600">
             Situace, kdy majitelé nemohou splácet hypotéku, není výjimečná.
-            Ztráta zaměstnání, rozvod, nemoc nebo pokles příjmů — důvodů může
+            Ztráta zaměstnání, rozvod, nemoc nebo pokles příjmů - důvodů může
             být mnoho. Důležité je jednat včas, než se situace zkomplikuje
             exekucí nebo nuceným prodejem.
           </p>

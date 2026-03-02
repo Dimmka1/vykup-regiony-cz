@@ -48,7 +48,7 @@ const TIMELINE: TimelineStep[] = [
     day: "Den 2",
     title: "Prohlídka a ocenění",
     description:
-      "Prohlédli jsme byt 3+1 v Ostravě-Porubě. Nabídka 2 650 000 Kč — oba manželé souhlasili.",
+      "Prohlédli jsme byt 3+1 v Ostravě-Porubě. Nabídka 2 650 000 Kč - oba manželé souhlasili.",
   },
   {
     day: "Den 4–6",
@@ -118,10 +118,10 @@ export default function RozvodOstravaPage() {
           <h2 className="mb-4 text-2xl font-bold text-slate-900">Problém</h2>
           <ul className="space-y-3">
             {[
-              "Napjatá atmosféra — manželé spolu nechtěli komunikovat",
+              "Napjatá atmosféra - manželé spolu nechtěli komunikovat",
               "Standardní prodej přes realitku by trval měsíce",
               "Paní K. urgentně potřebovala prostředky na nové bydlení",
-              "Hypotéka na bytě stále běžela — 1 100 000 Kč zůstatek",
+              "Hypotéka na bytě stále běžela - 1 100 000 Kč zůstatek",
             ].map((item) => (
               <li key={item} className="flex items-start gap-3 text-slate-600">
                 <span className="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-red-400" />

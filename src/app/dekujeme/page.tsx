@@ -50,7 +50,7 @@ export default function DekujemePage(): ReactElement {
                 2
               </span>
               <span className="text-slate-700">
-                Zavoláme vám s konkrétní cenovou nabídkou — nezávazně.
+                Zavoláme vám s konkrétní cenovou nabídkou - nezávazně.
               </span>
             </li>
             <li className="flex items-start gap-3">
@@ -58,7 +58,7 @@ export default function DekujemePage(): ReactElement {
                 3
               </span>
               <span className="text-slate-700">
-                Pokud souhlasíte, vyřídíme vše za vás — rychle a bez starostí.
+                Pokud souhlasíte, vyřídíme vše za vás - rychle a bez starostí.
               </span>
             </li>
           </ol>

@@ -53,7 +53,7 @@ const TIMELINE: TimelineStep[] = [
     day: "Den 5–7",
     title: "Jednání se spoluvlastníky",
     description:
-      "Kontaktovali jsme všechny 4 spoluvlastníky a individuálně vyjednali podmínky. Dva bydleli v zahraničí — řešili jsme plnou moc.",
+      "Kontaktovali jsme všechny 4 spoluvlastníky a individuálně vyjednali podmínky. Dva bydleli v zahraničí - řešili jsme plnou moc.",
   },
   {
     day: "Den 10",

@@ -7,7 +7,7 @@ const ALL_PAGES: Record<string, RelatedArticle> = {
     href: "/blog/jak-rychle-prodat-nemovitost",
     title: "Jak rychle prodat nemovitost v roce 2026",
     description:
-      "Kompletní průvodce rychlým prodejem nemovitosti — od přípravy až po předání klíčů.",
+      "Kompletní průvodce rychlým prodejem nemovitosti - od přípravy až po předání klíčů.",
   },
   "blog/vykup-nemovitosti-vs-realitni-kancelar": {
     href: "/blog/vykup-nemovitosti-vs-realitni-kancelar",
@@ -17,7 +17,7 @@ const ALL_PAGES: Record<string, RelatedArticle> = {
   },
   "blog/nemovitost-v-exekuci-pruvodce": {
     href: "/blog/nemovitost-v-exekuci-pruvodce",
-    title: "Nemovitost v exekuci — kompletní průvodce",
+    title: "Nemovitost v exekuci - kompletní průvodce",
     description:
       "Vše o prodeji nemovitosti zatížené exekucí. Právní možnosti a postup krok za krokem.",
   },
@@ -25,7 +25,7 @@ const ALL_PAGES: Record<string, RelatedArticle> = {
     href: "/blog/jak-probiha-rychly-vykup",
     title: "Jak probíhá rychlý výkup nemovitosti",
     description:
-      "Kompletní průvodce procesem rychlého výkupu — od prvního kontaktu po vyplacení.",
+      "Kompletní průvodce procesem rychlého výkupu - od prvního kontaktu po vyplacení.",
   },
   "blog/5-duvodu-proc-prodat": {
     href: "/blog/5-duvodu-proc-prodat",

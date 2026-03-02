@@ -105,7 +105,7 @@ export default function ExekucePrahaPage() {
             <p className="leading-relaxed text-slate-600">
               Paní N. (52 let) vlastnila byt 2+kk na Praze 4. Po ztrátě
               zaměstnání přestala splácet hypotéku a po dvou letech se situace
-              vyostřila — exekutor zahájil řízení a hrozila nucená dražba. Tržní
+              vyostřila - exekutor zahájil řízení a hrozila nucená dražba. Tržní
               hodnota bytu činila přibližně <strong>4 200 000 Kč</strong>, ale
               dluh narostl na <strong>2 900 000 Kč</strong> včetně
               příslušenství.
@@ -139,7 +139,7 @@ export default function ExekucePrahaPage() {
               Nabídli jsme přímý výkup bytu bez realitní kanceláře. Naši
               právníci komunikovali přímo s exekutorským úřadem a zajistili
               uvolnění zástavy při podpisu smlouvy. Paní N. nemusela řešit žádné
-              papírování — vše jsme vyřídili za ni.
+              papírování - vše jsme vyřídili za ni.
             </p>
           </div>
         </section>

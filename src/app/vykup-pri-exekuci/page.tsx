@@ -10,7 +10,7 @@ import { getRequestHost } from "@/lib/request-host";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://vykoupim-nemovitost.cz/vykup-pri-exekuci" },
-  title: "Výkup nemovitosti při exekuci — rychlé řešení bez starostí",
+  title: "Výkup nemovitosti při exekuci - rychlé řešení bez starostí",
   description:
     "Prodejte nemovitost zatíženou exekucí rychle a diskrétně. Vyřešíme dluhy, uhradíme exekuci z kupní ceny a vyplatíme vás do 7 dnů. Bez provize.",
 };
@@ -108,7 +108,7 @@ export default async function VykupPriExekuciPage(): Promise<React.ReactElement>
           </h1>
           <p className="mt-4 text-lg text-slate-600">
             Exekuce na nemovitost je stresující situace, ale existuje cesta ven.
-            Pomůžeme vám nemovitost rychle prodat, uhradit dluhy a začít znovu —
+            Pomůžeme vám nemovitost rychle prodat, uhradit dluhy a začít znovu -
             bez zbytečných průtahů a bez provize.
           </p>
           <p className="mt-4 text-slate-600">
@@ -123,7 +123,7 @@ export default async function VykupPriExekuciPage(): Promise<React.ReactElement>
             jedním krokem.
           </p>
           <p className="mt-4 text-slate-600">
-            Celý proces probíhá diskrétně — vaši sousedé ani okolí se o prodeji
+            Celý proces probíhá diskrétně - vaši sousedé ani okolí se o prodeji
             nedozví. Veškeré náklady na právní služby, odhad a převod hradíme
             my.
           </p>

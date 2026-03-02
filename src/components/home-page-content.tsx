@@ -328,7 +328,7 @@ export function HomePageContent({
               {region.locative}
             </p>
             <p className="inline-flex rounded-full border border-amber-300/40 bg-amber-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-amber-200 backdrop-blur-sm">
-              Nejsme realitka — jsme přímý kupec
+              Nejsme realitka - jsme přímý kupec
             </p>
           </div>
           <h1 className="max-w-3xl text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl">
@@ -411,7 +411,7 @@ export function HomePageContent({
             Jak to funguje
           </h2>
           <p className="mt-2 text-slate-600">
-            Od prvního kontaktu k penězům na účtu — jednoduše a rychle.
+            Od prvního kontaktu k penězům na účtu - jednoduše a rychle.
           </p>
 
           <div className="mt-10 space-y-12">
@@ -420,7 +420,7 @@ export function HomePageContent({
                 <div className="relative aspect-[3/4] overflow-hidden rounded-2xl shadow-lg">
                   <Image
                     src="/images/process-consultation.webp"
-                    alt="Kancelář pro konzultace — teplý interiér s výhledem na českou ulici"
+                    alt="Kancelář pro konzultace - teplý interiér s výhledem na českou ulici"
                     fill
                     className="object-cover"
                   />
@@ -428,7 +428,7 @@ export function HomePageContent({
                 <div className="relative aspect-[3/4] overflow-hidden rounded-2xl shadow-lg">
                   <Image
                     src="/images/process-valuation.webp"
-                    alt="Ocenění nemovitosti — podklady pro stanovení férové ceny"
+                    alt="Ocenění nemovitosti - podklady pro stanovení férové ceny"
                     fill
                     className="object-cover"
                   />
@@ -505,7 +505,7 @@ export function HomePageContent({
                 <div className="relative aspect-[3/4] overflow-hidden rounded-2xl shadow-lg">
                   <Image
                     src="/images/process-keys.webp"
-                    alt="Klíče od prodané nemovitosti na stole — úspěšný výkup"
+                    alt="Klíče od prodané nemovitosti na stole - úspěšný výkup"
                     fill
                     className="object-cover"
                   />
@@ -531,7 +531,7 @@ export function HomePageContent({
             Řešíme i složité situace
           </h2>
           <p className="mt-2 text-slate-600">
-            Nemovitost s problémem? Žádný strach — máme řešení pro každou
+            Nemovitost s problémem? Žádný strach - máme řešení pro každou
             situaci.
           </p>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -561,7 +561,7 @@ export function HomePageContent({
       <section className="relative h-[150px] sm:h-[200px] lg:h-[250px]">
         <Image
           src="/images/property-exterior.jpg"
-          alt="Rezidenční čtvrť v České republice — autentická architektura"
+          alt="Rezidenční čtvrť v České republice - autentická architektura"
           fill
           className="object-cover"
         />
@@ -600,7 +600,7 @@ export function HomePageContent({
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-xl">
               <Image
                 src="/images/property-exterior.jpg"
-                alt="Rezidenční čtvrť v České republice — působíme po celé zemi"
+                alt="Rezidenční čtvrť v České republice - působíme po celé zemi"
                 fill
                 className="object-cover"
               />
@@ -665,7 +665,7 @@ export function HomePageContent({
               <div className="relative mt-6 aspect-[16/9] overflow-hidden rounded-2xl">
                 <Image
                   src="/images/texture-brick.webp"
-                  alt="Textura české cihlové zdi — detail historického zdiva"
+                  alt="Textura české cihlové zdi - detail historického zdiva"
                   fill
                   className="object-cover"
                 />
@@ -734,7 +734,7 @@ export function HomePageContent({
                 <figcaption className="mt-4 text-sm font-semibold text-slate-800">
                   {testimonial.author}{" "}
                   <span className="font-normal text-slate-400">
-                    — {testimonial.city}
+                    - {testimonial.city}
                   </span>
                 </figcaption>
               </figure>
@@ -802,7 +802,7 @@ export function HomePageContent({
             href="#kontakt"
             className="inline-flex min-h-11 flex-1 items-center justify-center rounded-xl bg-amber-500 px-4 py-3 text-sm font-semibold text-white transition hover:bg-amber-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
           >
-            Odeslat poptávku — zdarma
+            Odeslat poptávku - zdarma
           </a>
           <a
             href={`tel:${region.phone}`}

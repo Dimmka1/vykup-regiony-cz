@@ -50,7 +50,7 @@ const CONDITIONS = [
   { key: "spatny" as const, label: "Špatný stav", emoji: "🏚️" },
 ] as const;
 
-/** Výkupní discount — we offer 75% of market price */
+/** Výkupní discount - we offer 75% of market price */
 const VYKUPNI_DISCOUNT = 0.75;
 
 /** Per-region market prices (CZK/m²), source: PRICE_RESEARCH.json */
@@ -295,7 +295,7 @@ function StepResult({ price }: { price: PriceRange }): ReactElement {
         Odhadovaná výkupní cena vaší nemovitosti
       </h3>
       <p className="mt-4 text-3xl font-bold text-[var(--theme-600)] sm:text-4xl">
-        {formatCzk(price.min)} — {formatCzk(price.max)}
+        {formatCzk(price.min)} - {formatCzk(price.max)}
       </p>
       <p className="mt-2 text-sm text-slate-500">
         Orientační odhad výkupní ceny na základě tržních cen ve vašem regionu.

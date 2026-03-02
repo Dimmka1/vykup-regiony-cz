@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://vykoupim-nemovitost.cz/vykup-pri-dedictvi",
   },
-  title: "Výkup nemovitosti při dědictví — rychlý prodej zděděné nemovitosti",
+  title: "Výkup nemovitosti při dědictví - rychlý prodej zděděné nemovitosti",
   description:
     "Zdědili jste nemovitost a chcete ji rychle prodat? Vykoupíme zděděný byt nebo dům za férovou cenu. Vyřešíme i spoluvlastnictví a dědické spory.",
 };
@@ -33,7 +33,7 @@ const FAQ_ITEMS: readonly FaqItem[] = [
   {
     question: "Kdy mohu zděděnou nemovitost prodat?",
     answer:
-      "Nemovitost můžete prodat ihned po pravomocném usnesení o dědictví. Nemusíte čekat na zápis do katastru — stačí pravomocné rozhodnutí soudu a můžeme zahájit výkup.",
+      "Nemovitost můžete prodat ihned po pravomocném usnesení o dědictví. Nemusíte čekat na zápis do katastru - stačí pravomocné rozhodnutí soudu a můžeme zahájit výkup.",
   },
   {
     question: "Co když je více dědiců a neshodnou se?",
@@ -117,7 +117,7 @@ export default async function VykupPriDedictviPage(): Promise<React.ReactElement
           </h1>
           <p className="mt-4 text-lg text-slate-600">
             Zdědili jste nemovitost a nevíte, co s ní? Ať už jde o byt, dům nebo
-            pozemek — pomůžeme vám s rychlým a bezstarostným prodejem za férovou
+            pozemek - pomůžeme vám s rychlým a bezstarostným prodejem za férovou
             cenu.
           </p>
           <p className="mt-4 text-slate-600">
@@ -127,7 +127,7 @@ export default async function VykupPriDedictviPage(): Promise<React.ReactElement
             zbytečné náklady.
           </p>
           <p className="mt-4 text-slate-600">
-            Nabízíme rychlé řešení — vykoupíme celou nemovitost nebo i váš
+            Nabízíme rychlé řešení - vykoupíme celou nemovitost nebo i váš
             spoluvlastnický podíl. Nemusíte čekat měsíce na klasický prodej přes
             realitní kancelář.
           </p>
@@ -136,7 +136,7 @@ export default async function VykupPriDedictviPage(): Promise<React.ReactElement
             nemovitostí a notářem. Vy se nemusíte o nic starat.
           </p>
           <p className="mt-4 text-slate-600">
-            Nemovitost kupujeme v aktuálním stavu — bez nutnosti rekonstrukce,
+            Nemovitost kupujeme v aktuálním stavu - bez nutnosti rekonstrukce,
             vyklízení nebo oprav. I pokud byla nemovitost dlouho neobývaná, není
             to pro nás překážka.
           </p>

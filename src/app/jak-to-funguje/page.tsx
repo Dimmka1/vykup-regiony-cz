@@ -13,7 +13,7 @@ import { safeJsonLd } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "Jak funguje výkup nemovitosti | Vykoupíme Nemovitost",
   description:
-    "Celý proces výkupu nemovitosti v 5 jednoduchých krocích — od prvního kontaktu po platbu na účet do 48 hodin. Bez provize, bez starostí.",
+    "Celý proces výkupu nemovitosti v 5 jednoduchých krocích - od prvního kontaktu po platbu na účet do 48 hodin. Bez provize, bez starostí.",
   alternates: { canonical: "https://vykoupim-nemovitost.cz/jak-to-funguje" },
 };
 
@@ -22,7 +22,7 @@ const STEPS = [
     number: 1,
     title: "Kontaktujte nás",
     description:
-      "Vyplňte krátký formulář nebo zavolejte. Potřebujeme jen základní údaje o nemovitosti — adresu, typ a váš kontakt. Trvá to maximálně 2 minuty.",
+      "Vyplňte krátký formulář nebo zavolejte. Potřebujeme jen základní údaje o nemovitosti - adresu, typ a váš kontakt. Trvá to maximálně 2 minuty.",
     Icon: FileText,
   },
   {
@@ -43,7 +43,7 @@ const STEPS = [
     number: 4,
     title: "Podpis smlouvy",
     description:
-      "Pokud nabídku přijmete, připravíme kupní smlouvu. Veškerý právní servis zajistíme za vás — nemusíte řešit nic navíc.",
+      "Pokud nabídku přijmete, připravíme kupní smlouvu. Veškerý právní servis zajistíme za vás - nemusíte řešit nic navíc.",
     Icon: FileSignature,
   },
   {
@@ -60,7 +60,7 @@ const JSON_LD_HOWTO = {
   "@type": "HowTo",
   name: "Jak funguje výkup nemovitosti",
   description:
-    "Celý proces výkupu nemovitosti v 5 jednoduchých krocích — od kontaktu po platbu.",
+    "Celý proces výkupu nemovitosti v 5 jednoduchých krocích - od kontaktu po platbu.",
   totalTime: "P3D",
   step: STEPS.map((s) => ({
     "@type": "HowToStep",
@@ -85,7 +85,7 @@ export default function JakToFungujePage() {
             Jak funguje výkup nemovitosti
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-[var(--theme-100)]">
-            Od prvního kontaktu k penězům na účtu — transparentně, rychle a bez
+            Od prvního kontaktu k penězům na účtu - transparentně, rychle a bez
             starostí. Celý proces zvládneme za vás.
           </p>
         </div>

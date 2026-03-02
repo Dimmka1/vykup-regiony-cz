@@ -19,7 +19,7 @@ import { getRequestHost } from "@/lib/request-host";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://vykoupim-nemovitost.cz/vykup-bytu" },
-  title: "Výkup bytů — rychlý prodej bytu za hotové do 7 dnů",
+  title: "Výkup bytů - rychlý prodej bytu za hotové do 7 dnů",
   description:
     "Vykoupíme váš byt rychle a bez provize. Osobní, družstevní i problémové byty. Férová cena 80–90 % tržní hodnoty, vyplacení do 7 dnů. Celá ČR.",
 };
@@ -43,12 +43,12 @@ const FAQ_ITEMS: readonly FaqItem[] = [
   {
     question: "Co když je v bytě nájemník?",
     answer:
-      "Byty s nájemníkem vykupujeme také. Nájemní vztah není překážkou — ocenění zohledníme dle aktuálního stavu a podmínek nájemní smlouvy.",
+      "Byty s nájemníkem vykupujeme také. Nájemní vztah není překážkou - ocenění zohledníme dle aktuálního stavu a podmínek nájemní smlouvy.",
   },
   {
     question: "Kolik za byt nabídnete?",
     answer:
-      "Nabízíme 80–90 % tržní hodnoty bytu. Přesnou nabídku obdržíte do 24 hodin po vyplnění formuláře. Neplatíte žádnou provizi ani skryté poplatky — veškeré náklady hradíme my.",
+      "Nabízíme 80–90 % tržní hodnoty bytu. Přesnou nabídku obdržíte do 24 hodin po vyplnění formuláře. Neplatíte žádnou provizi ani skryté poplatky - veškeré náklady hradíme my.",
   },
 ] as const;
 
@@ -63,7 +63,7 @@ const SITUATIONS: readonly Situation[] = [
     icon: AlertTriangle,
     title: "Potřebujete rychle peníze",
     description:
-      "Finanční tíseň, splátky, neočekávané výdaje — vykoupíme byt rychle a vyplatíme vás do 7 dnů.",
+      "Finanční tíseň, splátky, neočekávané výdaje - vykoupíme byt rychle a vyplatíme vás do 7 dnů.",
   },
   {
     icon: Users,
@@ -130,7 +130,7 @@ export default async function VykupBytuPage(): Promise<React.ReactElement> {
   const webPageJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name: "Výkup bytů — rychlý prodej bytu za hotové",
+    name: "Výkup bytů - rychlý prodej bytu za hotové",
     description: metadata.description,
     url: "https://vykup-regiony.cz/vykup-bytu",
     isPartOf: { "@type": "WebSite", url: "https://vykup-regiony.cz" },
@@ -158,24 +158,24 @@ export default async function VykupBytuPage(): Promise<React.ReactElement> {
             />
           </div>
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Výkup bytů — rychle, férově a bez provize
+            Výkup bytů - rychle, férově a bez provize
           </h1>
           <p className="mt-4 text-lg text-slate-600">
             Potřebujete prodat byt rychle a bez starostí? Vykoupíme váš byt za
             férovou cenu odpovídající 80–90 % tržní hodnoty. Celý proces
-            zvládneme do 7 dnů — od první konzultace po vyplacení peněz na váš
+            zvládneme do 7 dnů - od první konzultace po vyplacení peněz na váš
             účet.
           </p>
           <p className="mt-4 text-slate-600">
             Specializujeme se na výkup všech typů bytů v celé České republice.
             Ať už vlastníte osobní byt, družstevní byt nebo byt zatížený
-            hypotékou či exekucí — najdeme řešení přesně pro vaši situaci.
+            hypotékou či exekucí - najdeme řešení přesně pro vaši situaci.
             Neplatíte žádnou provizi, poplatky za odhad ani právní služby.
           </p>
           <p className="mt-4 text-slate-600">
             Na rozdíl od klasického prodeje přes realitní kancelář u nás
             nemusíte čekat měsíce na kupce, řešit prohlídky ani investovat do
-            oprav. Byt vykoupíme v jakémkoli stavu — i bez rekonstrukce, s
+            oprav. Byt vykoupíme v jakémkoli stavu - i bez rekonstrukce, s
             nájemníkem nebo s právním zatížením.
           </p>
           <p className="mt-4 text-slate-600">
@@ -186,7 +186,7 @@ export default async function VykupBytuPage(): Promise<React.ReactElement> {
           </p>
           <p className="mt-4 text-slate-600">
             Vykupujeme byty v Praze, Brně, Ostravě i v menších městech po celé
-            ČR. Nezáleží na velikosti, stavu ani lokalitě — každý byt posoudíme
+            ČR. Nezáleží na velikosti, stavu ani lokalitě - každý byt posoudíme
             individuálně a nabídneme vám nejvýhodnější podmínky.
           </p>
           <div className="mt-8">

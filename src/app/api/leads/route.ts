@@ -9,7 +9,7 @@ const requestCounter = new Map<string, { count: number; start: number }>();
 
 const leadSchema = z.object({
   name: z.string().min(2),
-  phone: z.string().regex(/^(\+420)?\s?\d{3}\s?\d{3}\s?\d{3}$/),
+  phone: z.string().regex(/^(\+?420|00420)?\s?\d{3}\s?\d{3}\s?\d{3}$/),
   property_type: z.string().min(2),
   region: z.string().min(2),
   situation_type: z.string().min(2),
@@ -19,7 +19,7 @@ const leadSchema = z.object({
 
 const callbackSchema = z.object({
   type: z.literal("callback"),
-  phone: z.string().regex(/^(\+420|00420)?\s?\d{3}\s?\d{3}\s?\d{3}$/),
+  phone: z.string().regex(/^(\+?420|00420)?\s?\d{3}\s?\d{3}\s?\d{3}$/),
   source: z.string().min(1),
   region: z.string().min(2),
 });

@@ -8,6 +8,38 @@ export interface BlogPost {
 
 export const BLOG_POSTS: readonly BlogPost[] = [
   {
+    slug: "jake-dokumenty-potrebuji",
+    title: "Jaké dokumenty potřebuji k výkupu nemovitosti?",
+    excerpt:
+      "Kompletní přehled dokumentů potřebných k prodeji nemovitosti přes výkupní firmu. List vlastnictví, kupní smlouva, občanský průkaz a další.",
+    date: "2026-03-02",
+    readingTime: "6 min",
+  },
+  {
+    slug: "vykup-krok-za-krokem",
+    title: "Výkup nemovitosti krok za krokem — jak to funguje",
+    excerpt:
+      "Podrobný průvodce celým procesem výkupu nemovitosti od prvního kontaktu po vyplacení peněz. Celý proces trvá jen 7–14 dní.",
+    date: "2026-03-02",
+    readingTime: "7 min",
+  },
+  {
+    slug: "vykup-vs-drazba",
+    title: "Výkup nemovitosti vs. dražba — co je výhodnější?",
+    excerpt:
+      "Srovnání výkupu nemovitosti a dražby. Čas, cena, jistota, náklady a stres — kompletní analýza obou variant.",
+    date: "2026-03-02",
+    readingTime: "7 min",
+  },
+  {
+    slug: "kolik-stoji-vykup",
+    title: "Kolik stojí výkup nemovitosti? Kompletní přehled nákladů",
+    excerpt:
+      "Zjistěte, kolik ve skutečnosti zaplatíte při výkupu nemovitosti. Srovnání s realitní kanceláří a dražbou.",
+    date: "2026-03-02",
+    readingTime: "6 min",
+  },
+  {
     slug: "jak-rychle-prodat-nemovitost",
     title: "Jak rychle prodat nemovitost v roce 2026",
     excerpt:

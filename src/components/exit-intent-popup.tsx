@@ -7,8 +7,30 @@ import { trackEvent } from "@/lib/analytics";
 
 const LS_KEY_SHOWN = "exit_popup_shown";
 const LS_KEY_FORM_SUBMITTED = "form_submitted";
-const CZ_PHONE_REGEX = /^(\+420)?\s?\d{3}\s?\d{3}\s?\d{3}$/;
+const CZ_PHONE_REGEX = /^(\+?420|00420)?\s?\d{3}\s?\d{3}\s?\d{3}$/;
 const SCROLL_THRESHOLD = 0.6;
+function getRegionFromUrl(): string {
+  if (typeof window === "undefined") return "cesko";
+
+  // 1. Subdomain: praha.vykoupim-nemovitost.cz → praha
+  const hostParts = window.location.hostname.split(".");
+  if (hostParts.length > 2) {
+    const subdomain = hostParts[0];
+    if (subdomain && subdomain !== "www") return subdomain;
+  }
+
+  // 2. Path: /praha/cokoliv → praha
+  const pathSegment = window.location.pathname.split("/")[1];
+  if (pathSegment && pathSegment.length > 1) return pathSegment;
+
+  // 3. Query: ?region=praha → praha
+  const params = new URLSearchParams(window.location.search);
+  const regionParam = params.get("region");
+  if (regionParam) return regionParam;
+
+  // 4. Fallback
+  return "cesko";
+}
 
 function wasAlreadyShown(): boolean {
   try {
@@ -89,7 +111,12 @@ export function ExitIntentPopup(): ReactElement | null {
       const res = await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phone, source: "exit_popup" }),
+        body: JSON.stringify({
+          type: "callback",
+          phone: phone.trim(),
+          source: "exit_popup",
+          region: getRegionFromUrl(),
+        }),
       });
       if (!res.ok) throw new Error("API error");
       trackEvent("exit_popup_submit", { phone_provided: true });

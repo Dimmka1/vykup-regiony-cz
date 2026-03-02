@@ -29,6 +29,8 @@ export interface RegionConfig {
   seoDescription: string;
   keywords: string[];
   hosts: string[];
+  marketInfo?: string;
+  regionFaq?: FaqItem[];
 }
 
 export interface RegionDataFile {

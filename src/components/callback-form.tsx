@@ -128,7 +128,7 @@ export function CallbackForm({ regionName }: CallbackFormProps): ReactElement {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="inline-flex min-h-11 items-center justify-center gap-2 rounded bg-amber-500 px-5 py-2.5 text-base font-semibold text-white transition hover:bg-amber-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 disabled:opacity-70"
+        className="inline-flex min-h-11 items-center justify-center gap-2 rounded bg-[var(--theme-600)] px-5 py-2.5 text-base font-semibold text-white transition hover:bg-[var(--theme-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 disabled:opacity-70"
       >
         <Phone className="h-4 w-4" />
         {status === "submitting" ? "Odesílám..." : "Zavolejte mi"}

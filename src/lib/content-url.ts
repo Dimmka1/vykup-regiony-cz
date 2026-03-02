@@ -1,8 +1,8 @@
 const PRODUCTION_DOMAIN = "vykoupim-nemovitost.cz";
 
 /**
- * Content paths that live ONLY on the root domain.
- * Subdomains must redirect these to the root domain.
+ * Content paths that live on the root domain canonically.
+ * Content lives on root domain canonically but is accessible from subdomains too.
  */
 export const CONTENT_PATH_PREFIXES = [
   "/blog",

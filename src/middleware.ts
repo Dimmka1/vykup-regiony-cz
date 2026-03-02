@@ -47,35 +47,6 @@ const PRODUCTION_DOMAIN = "vykoupim-nemovitost.cz";
 /** Valid subdomains on production */
 const VALID_SUBDOMAINS = new Set([...Object.values(REGION_SUBDOMAINS), "www"]);
 
-/**
- * Content path prefixes that must live ONLY on root domain.
- * Duplicated from lib/content-url.ts because middleware runs on Edge runtime.
- */
-const CONTENT_PATH_PREFIXES = [
-  "/blog",
-  "/caste-dotazy",
-  "/jak-to-funguje",
-  "/reference",
-  "/vykup-pri-exekuci",
-  "/vykup-pri-dedictvi",
-  "/vykup-pri-rozvodu",
-  "/vykup-spoluvlastnickeho-podilu",
-  "/vykup-nemovitosti-s-hypotekou",
-  "/vykup-nemovitosti-s-vecnym-bremenem",
-  "/vykup-bytu",
-  "/vykup-domu",
-  "/vykup-pozemku",
-  "/ochrana-osobnich-udaju",
-  "/dekujeme",
-  "/kraje",
-];
-
-function isContentPath(pathname: string): boolean {
-  return CONTENT_PATH_PREFIXES.some(
-    (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`),
-  );
-}
-
 function normalizeHost(host: string): string {
   return host
     .toLowerCase()
@@ -106,17 +77,6 @@ export function middleware(request: NextRequest): NextResponse | undefined {
   const host = request.headers.get("host") ?? "";
   const { pathname, searchParams } = request.nextUrl;
   const isProd = isProductionDomain(host);
-
-  // 0. Content path on ANY production subdomain → 301 redirect to root domain
-  if (isProd) {
-    const subdomain = getSubdomain(host);
-    if (subdomain && isContentPath(pathname)) {
-      return NextResponse.redirect(
-        `https://${PRODUCTION_DOMAIN}${pathname}`,
-        301,
-      );
-    }
-  }
 
   // 1. Handle ?region=X query param
   const regionParam = searchParams.get("region");

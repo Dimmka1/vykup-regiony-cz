@@ -11,11 +11,7 @@ import { ComparisonCalculator } from "@/components/comparison-calculator";
 import { FloatingDesktopCta } from "@/components/floating-desktop-cta";
 import { FaqAccordion } from "@/components/faq-accordion";
 import { FloatingWhatsApp } from "@/components/floating-whatsapp";
-import {
-  listRegions,
-  getRegionSubdomainUrl,
-  isProductionHost,
-} from "@/lib/config";
+import { getRegionSubdomainUrl, isProductionHost } from "@/lib/config";
 import type { RegionConfig } from "@/lib/types";
 import {
   Check,
@@ -214,7 +210,7 @@ export function buildSchema(
   region: RegionConfig,
   canonicalUrl: string,
 ): object[] {
-  const allRegions = listRegions();
+  const ogImageUrl = `${canonicalUrl}/opengraph-image`;
   return [
     {
       "@context": "https://schema.org",
@@ -233,21 +229,23 @@ export function buildSchema(
     {
       "@context": "https://schema.org",
       "@type": "RealEstateAgent",
-      name: `${COMPANY_NAME} — ${region.name}`,
+      name: `Výkup Nemovitostí - ${region.name}`,
       description:
         "Rychlý výkup nemovitostí v celé České republice. Nabídka do 24 hodin, peníze na účtu do 3 dnů.",
       telephone: region.phone,
       email: region.email,
       url: canonicalUrl,
       priceRange: "$$",
-      areaServed: allRegions.map((r) => ({
+      image: ogImageUrl,
+      areaServed: {
         "@type": "AdministrativeArea",
-        name: r.name,
-      })),
+        name: region.name,
+      },
       address: {
         "@type": "PostalAddress",
-        addressCountry: "CZ",
         addressLocality: region.primaryCity,
+        addressRegion: region.name,
+        addressCountry: "CZ",
       },
     },
     {

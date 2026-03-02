@@ -40,7 +40,9 @@ interface LeadNotificationPayload {
   data: Omit<LeadData, "website" | "consent_gdpr">;
 }
 
-function sendWebhookNotification(payload: LeadNotificationPayload): void {
+async function sendWebhookNotification(
+  payload: LeadNotificationPayload,
+): Promise<void> {
   const webhookUrl = process.env.LEAD_WEBHOOK_URL;
 
   if (!webhookUrl) {
@@ -51,24 +53,31 @@ function sendWebhookNotification(payload: LeadNotificationPayload): void {
     return;
   }
 
-  fetch(webhookUrl, {
+  const res = await fetch(webhookUrl, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
-  }).catch((error: unknown) => {
+  });
+
+  if (!res.ok) {
+    const body = await res.text();
     console.error("[lead-notify] Webhook failed:", {
       url: webhookUrl,
       lead_id: payload.lead_id,
-      error: error instanceof Error ? error.message : String(error),
+      status: res.status,
+      body,
     });
-  });
+  }
 }
 
-function sendEmailNotification(payload: LeadNotificationPayload): void {
+async function sendEmailNotification(
+  payload: LeadNotificationPayload,
+): Promise<void> {
   const apiKey = process.env.RESEND_API_KEY;
   const notifyEmail = process.env.LEAD_NOTIFY_EMAIL;
 
   if (!apiKey || !notifyEmail) {
+    console.warn("[lead-notify] RESEND_API_KEY or LEAD_NOTIFY_EMAIL not set");
     return;
   }
 
@@ -86,7 +95,7 @@ function sendEmailNotification(payload: LeadNotificationPayload): void {
     "</table>",
   ].join("\n");
 
-  fetch("https://api.resend.com/emails", {
+  const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -98,19 +107,28 @@ function sendEmailNotification(payload: LeadNotificationPayload): void {
       subject: `Nový lead: ${data.name} – ${data.region}`,
       html: htmlBody,
     }),
-  }).catch((error: unknown) => {
+  });
+
+  if (!res.ok) {
+    const body = await res.text();
     console.error("[lead-notify] Email failed:", {
       lead_id: payload.lead_id,
-      error: error instanceof Error ? error.message : String(error),
+      status: res.status,
+      body,
     });
-  });
+  }
 }
 
-function sendTelegramNotification(payload: LeadNotificationPayload): void {
+async function sendTelegramNotification(
+  payload: LeadNotificationPayload,
+): Promise<void> {
   const botToken = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
 
   if (!botToken || !chatId) {
+    console.warn(
+      "[lead-notify] TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID not set",
+    );
     return;
   }
 
@@ -127,29 +145,39 @@ function sendTelegramNotification(payload: LeadNotificationPayload): void {
     `🆔 <b>ID:</b> ${payload.lead_id}`,
   ].join("\n");
 
-  fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      chat_id: chatId,
-      text,
-      parse_mode: "HTML",
-    }),
-  }).catch((error: unknown) => {
-    console.error("[lead-notify] Telegram failed:", {
+  const res = await fetch(
+    `https://api.telegram.org/bot${botToken}/sendMessage`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text,
+        parse_mode: "HTML",
+      }),
+    },
+  );
+
+  if (!res.ok) {
+    const body = await res.text();
+    console.error("[lead-notify] Telegram API error:", {
       lead_id: payload.lead_id,
-      error: error instanceof Error ? error.message : String(error),
+      status: res.status,
+      body,
     });
-  });
+  }
 }
 
-function sendCallbackTelegramNotification(
+async function sendCallbackTelegramNotification(
   payload: CallbackNotificationPayload,
-): void {
+): Promise<void> {
   const botToken = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
 
   if (!botToken || !chatId) {
+    console.warn(
+      "[lead-notify] TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID not set",
+    );
     return;
   }
 
@@ -164,20 +192,27 @@ function sendCallbackTelegramNotification(
     `🆔 <b>ID:</b> ${payload.lead_id}`,
   ].join("\n");
 
-  fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      chat_id: chatId,
-      text,
-      parse_mode: "HTML",
-    }),
-  }).catch((error: unknown) => {
+  const res = await fetch(
+    `https://api.telegram.org/bot${botToken}/sendMessage`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text,
+        parse_mode: "HTML",
+      }),
+    },
+  );
+
+  if (!res.ok) {
+    const body = await res.text();
     console.error("[lead-notify] Callback Telegram failed:", {
       lead_id: payload.lead_id,
-      error: error instanceof Error ? error.message : String(error),
+      status: res.status,
+      body,
     });
-  });
+  }
 }
 
 function saveLeadToFile(
@@ -270,7 +305,19 @@ export async function POST(request: Request): Promise<NextResponse> {
         },
       };
 
-      sendCallbackTelegramNotification(cbPayload);
+      const cbResults = await Promise.allSettled([
+        sendCallbackTelegramNotification(cbPayload),
+      ]);
+
+      cbResults.forEach((r, i) => {
+        if (r.status === "rejected") {
+          console.error(
+            `[lead-notify] Callback notification ${i} failed:`,
+            r.reason,
+          );
+        }
+      });
+
       saveLeadToFile(cbPayload);
 
       return NextResponse.json(
@@ -303,10 +350,19 @@ export async function POST(request: Request): Promise<NextResponse> {
       },
     };
 
-    // Fire-and-forget: don't block client response
-    sendWebhookNotification(notificationPayload);
-    sendEmailNotification(notificationPayload);
-    sendTelegramNotification(notificationPayload);
+    const notifyResults = await Promise.allSettled([
+      sendWebhookNotification(notificationPayload),
+      sendEmailNotification(notificationPayload),
+      sendTelegramNotification(notificationPayload),
+    ]);
+
+    const notifyNames = ["webhook", "email", "telegram"];
+    notifyResults.forEach((r, i) => {
+      if (r.status === "rejected") {
+        console.error(`[lead-notify] ${notifyNames[i]} failed:`, r.reason);
+      }
+    });
+
     saveLeadToFile(notificationPayload);
 
     return NextResponse.json(

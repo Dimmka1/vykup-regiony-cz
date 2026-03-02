@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
-
-export const runtime = "edge";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 
 export const alt = "Rychlý výkup nemovitostí - Výkup Regiony CZ";
 
@@ -11,12 +11,13 @@ export const size = {
 
 export const contentType = "image/png";
 
-const interBoldFont = fetch(
-  new URL("../assets/fonts/Inter-Bold.ttf", import.meta.url),
-).then((res) => res.arrayBuffer());
+function loadFont(): ArrayBuffer {
+  const fontPath = join(process.cwd(), "src/assets/fonts/Inter-Bold.ttf");
+  return readFileSync(fontPath).buffer as ArrayBuffer;
+}
 
 export default async function OgImage(): Promise<ImageResponse> {
-  const fontData = await interBoldFont;
+  const fontData = loadFont();
 
   return new ImageResponse(
     <div
@@ -90,7 +91,7 @@ export default async function OgImage(): Promise<ImageResponse> {
           color: "rgba(255, 255, 255, 0.7)",
         }}
       >
-        vykup-regiony.cz
+        vykoupim-nemovitost.cz
       </div>
     </div>,
     {

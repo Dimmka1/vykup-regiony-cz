@@ -8,6 +8,30 @@ export interface BlogPost {
 
 export const BLOG_POSTS: readonly BlogPost[] = [
   {
+    slug: "jak-rychle-prodat-nemovitost",
+    title: "Jak rychle prodat nemovitost v roce 2026",
+    excerpt:
+      "Kompletní průvodce rychlým prodejem nemovitosti v roce 2026 — od přípravy až po předání klíčů. Praktické tipy, které vám ušetří čas i peníze.",
+    date: "2026-03-01",
+    readingTime: "7 min",
+  },
+  {
+    slug: "vykup-nemovitosti-vs-realitni-kancelar",
+    title: "Výkup nemovitosti vs realitní kancelář — co se vyplatí",
+    excerpt:
+      "Srovnání dvou nejčastějších způsobů prodeje nemovitosti. Kdy zvolit výkup a kdy realitní kancelář? Objektivní analýza výhod a nevýhod.",
+    date: "2026-02-25",
+    readingTime: "8 min",
+  },
+  {
+    slug: "nemovitost-v-exekuci-pruvodce",
+    title: "Nemovitost v exekuci — kompletní průvodce",
+    excerpt:
+      "Vše, co potřebujete vědět o prodeji nemovitosti zatížené exekucí. Právní možnosti, postup krok za krokem a jak získat co nejvíce.",
+    date: "2026-02-20",
+    readingTime: "9 min",
+  },
+  {
     slug: "jak-probiha-rychly-vykup",
     title: "Jak probíhá rychlý výkup nemovitosti",
     excerpt:

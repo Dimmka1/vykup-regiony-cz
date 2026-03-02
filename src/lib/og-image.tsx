@@ -1,11 +1,13 @@
 import { ImageResponse } from "next/og";
 import { getRegionByKey } from "@/lib/config";
+import { getInterBoldFont, interFontConfig } from "@/lib/og-font";
 
 const WIDTH = 1200;
 const HEIGHT = 630;
 
 export function renderOgImage(regionKey: string | null): ImageResponse {
   const region = getRegionByKey(regionKey);
+  const fontData = getInterBoldFont();
 
   return new ImageResponse(
     <div
@@ -61,6 +63,12 @@ export function renderOgImage(regionKey: string | null): ImageResponse {
     {
       width: WIDTH,
       height: HEIGHT,
+      fonts: [
+        {
+          ...interFontConfig,
+          data: fontData,
+        },
+      ],
     },
   );
 }

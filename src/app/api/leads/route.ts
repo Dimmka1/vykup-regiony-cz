@@ -1,3 +1,4 @@
+import { appendFileSync } from "node:fs";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
@@ -15,6 +16,182 @@ const leadSchema = z.object({
   consent_gdpr: z.literal(true),
   website: z.string().optional(),
 });
+
+const callbackSchema = z.object({
+  type: z.literal("callback"),
+  phone: z.string().regex(/^(\+420|00420)?\s?\d{3}\s?\d{3}\s?\d{3}$/),
+  source: z.string().min(1),
+  region: z.string().min(2),
+});
+
+type LeadData = z.infer<typeof leadSchema>;
+
+interface CallbackNotificationPayload {
+  lead_id: string;
+  timestamp: string;
+  ip: string;
+  data: { type: "callback"; phone: string; source: string; region: string };
+}
+
+interface LeadNotificationPayload {
+  lead_id: string;
+  timestamp: string;
+  ip: string;
+  data: Omit<LeadData, "website" | "consent_gdpr">;
+}
+
+function sendWebhookNotification(payload: LeadNotificationPayload): void {
+  const webhookUrl = process.env.LEAD_WEBHOOK_URL;
+
+  if (!webhookUrl) {
+    console.warn(
+      "[lead-notify] LEAD_WEBHOOK_URL not set. Lead data:",
+      JSON.stringify(payload),
+    );
+    return;
+  }
+
+  fetch(webhookUrl, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  }).catch((error: unknown) => {
+    console.error("[lead-notify] Webhook failed:", {
+      url: webhookUrl,
+      lead_id: payload.lead_id,
+      error: error instanceof Error ? error.message : String(error),
+    });
+  });
+}
+
+function sendEmailNotification(payload: LeadNotificationPayload): void {
+  const apiKey = process.env.RESEND_API_KEY;
+  const notifyEmail = process.env.LEAD_NOTIFY_EMAIL;
+
+  if (!apiKey || !notifyEmail) {
+    return;
+  }
+
+  const { data } = payload;
+  const htmlBody = [
+    `<h2>Nový lead – ${data.name}</h2>`,
+    "<table>",
+    `<tr><td><strong>Jméno:</strong></td><td>${data.name}</td></tr>`,
+    `<tr><td><strong>Telefon:</strong></td><td>${data.phone}</td></tr>`,
+    `<tr><td><strong>Typ nemovitosti:</strong></td><td>${data.property_type}</td></tr>`,
+    `<tr><td><strong>Region:</strong></td><td>${data.region}</td></tr>`,
+    `<tr><td><strong>Situace:</strong></td><td>${data.situation_type}</td></tr>`,
+    `<tr><td><strong>IP:</strong></td><td>${payload.ip}</td></tr>`,
+    `<tr><td><strong>Čas:</strong></td><td>${payload.timestamp}</td></tr>`,
+    "</table>",
+  ].join("\n");
+
+  fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify({
+      from: "Výkup Regiony <noreply@vykup-regiony.cz>",
+      to: [notifyEmail],
+      subject: `Nový lead: ${data.name} – ${data.region}`,
+      html: htmlBody,
+    }),
+  }).catch((error: unknown) => {
+    console.error("[lead-notify] Email failed:", {
+      lead_id: payload.lead_id,
+      error: error instanceof Error ? error.message : String(error),
+    });
+  });
+}
+
+function sendTelegramNotification(payload: LeadNotificationPayload): void {
+  const botToken = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
+
+  if (!botToken || !chatId) {
+    return;
+  }
+
+  const { data } = payload;
+  const text = [
+    "🏠 <b>Nový lead!</b>",
+    "",
+    `👤 <b>Jméno:</b> ${data.name}`,
+    `📞 <b>Telefon:</b> ${data.phone}`,
+    `🏘️ <b>Typ:</b> ${data.property_type}`,
+    `📍 <b>Region:</b> ${data.region}`,
+    `📋 <b>Situace:</b> ${data.situation_type}`,
+    `🕐 <b>Čas:</b> ${payload.timestamp}`,
+    `🆔 <b>ID:</b> ${payload.lead_id}`,
+  ].join("\n");
+
+  fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      chat_id: chatId,
+      text,
+      parse_mode: "HTML",
+    }),
+  }).catch((error: unknown) => {
+    console.error("[lead-notify] Telegram failed:", {
+      lead_id: payload.lead_id,
+      error: error instanceof Error ? error.message : String(error),
+    });
+  });
+}
+
+function sendCallbackTelegramNotification(
+  payload: CallbackNotificationPayload,
+): void {
+  const botToken = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
+
+  if (!botToken || !chatId) {
+    return;
+  }
+
+  const { data } = payload;
+  const text = [
+    "📞 <b>Zpětné zavolání!</b>",
+    "",
+    `📞 <b>Telefon:</b> ${data.phone}`,
+    `📍 <b>Region:</b> ${data.region}`,
+    `📋 <b>Zdroj:</b> ${data.source}`,
+    `🕐 <b>Čas:</b> ${payload.timestamp}`,
+    `🆔 <b>ID:</b> ${payload.lead_id}`,
+  ].join("\n");
+
+  fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      chat_id: chatId,
+      text,
+      parse_mode: "HTML",
+    }),
+  }).catch((error: unknown) => {
+    console.error("[lead-notify] Callback Telegram failed:", {
+      lead_id: payload.lead_id,
+      error: error instanceof Error ? error.message : String(error),
+    });
+  });
+}
+
+function saveLeadToFile(
+  payload: LeadNotificationPayload | CallbackNotificationPayload,
+): void {
+  try {
+    appendFileSync("/tmp/leads-backup.json", JSON.stringify(payload) + "\n");
+  } catch (error: unknown) {
+    console.error("[lead-backup] File write failed:", {
+      lead_id: payload.lead_id,
+      error: error instanceof Error ? error.message : String(error),
+    });
+  }
+}
 
 function getClientIp(request: Request): string {
   const forwarded = request.headers.get("x-forwarded-for");
@@ -53,14 +230,51 @@ export async function POST(request: Request): Promise<NextResponse> {
       );
     }
 
-    const payload = await request.json();
+    const payload: unknown = await request.json();
 
     if (
-      typeof payload.website === "string" &&
-      payload.website.trim().length > 0
+      typeof (payload as Record<string, unknown>).website === "string" &&
+      ((payload as Record<string, unknown>).website as string).trim().length > 0
     ) {
       return NextResponse.json(
         { ok: true, lead_id: "honeypot-discarded" },
+        { status: 200 },
+      );
+    }
+
+    const isCallback =
+      typeof (payload as Record<string, unknown>).type === "string" &&
+      (payload as Record<string, unknown>).type === "callback";
+
+    if (isCallback) {
+      const cbResult = callbackSchema.safeParse(payload);
+      if (!cbResult.success) {
+        return NextResponse.json(
+          { ok: false, code: "VALIDATION_ERROR" },
+          { status: 400 },
+        );
+      }
+
+      const leadId = `cb_${Date.now().toString(36)}`;
+      const cbData = cbResult.data;
+
+      const cbPayload: CallbackNotificationPayload = {
+        lead_id: leadId,
+        timestamp: new Date().toISOString(),
+        ip: clientIp,
+        data: {
+          type: "callback",
+          phone: cbData.phone,
+          source: cbData.source,
+          region: cbData.region,
+        },
+      };
+
+      sendCallbackTelegramNotification(cbPayload);
+      saveLeadToFile(cbPayload);
+
+      return NextResponse.json(
+        { ok: true, lead_id: leadId, message: "Callback lead accepted" },
         { status: 200 },
       );
     }
@@ -74,6 +288,26 @@ export async function POST(request: Request): Promise<NextResponse> {
     }
 
     const leadId = `lead_${Date.now().toString(36)}`;
+    const validatedData = result.data;
+
+    const notificationPayload: LeadNotificationPayload = {
+      lead_id: leadId,
+      timestamp: new Date().toISOString(),
+      ip: clientIp,
+      data: {
+        name: validatedData.name,
+        phone: validatedData.phone,
+        property_type: validatedData.property_type,
+        region: validatedData.region,
+        situation_type: validatedData.situation_type,
+      },
+    };
+
+    // Fire-and-forget: don't block client response
+    sendWebhookNotification(notificationPayload);
+    sendEmailNotification(notificationPayload);
+    sendTelegramNotification(notificationPayload);
+    saveLeadToFile(notificationPayload);
 
     return NextResponse.json(
       { ok: true, lead_id: leadId, message: "Lead accepted" },

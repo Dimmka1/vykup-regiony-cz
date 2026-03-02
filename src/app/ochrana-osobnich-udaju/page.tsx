@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://vykoupim-nemovitost.cz/ochrana-osobnich-udaju",
+  },
   title: "Ochrana osobních údajů",
   description:
     "Zásady ochrany osobních údajů a zpracování cookies na webu vykup-praha.cz.",

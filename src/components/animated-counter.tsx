@@ -52,7 +52,8 @@ export function AnimatedCounter({
   duration = 2000,
 }: AnimatedCounterProps): React.ReactElement {
   const { prefix, number: target, decimals, suffix } = parseNumericPart(value);
-  const [display, setDisplay] = useState(`${prefix}0${suffix}`);
+  // SSR fallback: show target value initially so users never see "0"
+  const [display, setDisplay] = useState(value);
   const ref = useRef<HTMLSpanElement>(null);
   const hasAnimated = useRef(false);
 
@@ -75,6 +76,8 @@ export function AnimatedCounter({
       }
     }
 
+    // Start animation from 0
+    setDisplay(`${prefix}${formatNumber(0, decimals, value)}${suffix}`);
     requestAnimationFrame(step);
   }, [duration, target, decimals, prefix, suffix, value]);
 
@@ -82,18 +85,27 @@ export function AnimatedCounter({
     const el = ref.current;
     if (!el) return;
 
+    // Timeout fallback: start animation after 3s even if not intersecting
+    const timeout = setTimeout(() => {
+      animate();
+    }, 3000);
+
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0]?.isIntersecting) {
+          clearTimeout(timeout);
           animate();
           observer.disconnect();
         }
       },
-      { threshold: 0.3 },
+      { threshold: 0.1 },
     );
 
     observer.observe(el);
-    return () => observer.disconnect();
+    return () => {
+      clearTimeout(timeout);
+      observer.disconnect();
+    };
   }, [animate]);
 
   return <span ref={ref}>{display}</span>;

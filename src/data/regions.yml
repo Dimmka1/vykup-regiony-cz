@@ -43,7 +43,6 @@ regions:
     hosts:
       - vykoupim-nemovitost.cz
       - www.vykoupim-nemovitost.cz
-      - dev.vykoupim-nemovitost.cz
       - vykup-regiony-cz-dev.vercel.app
       - vykup-praha.cz
       - vykuppraha.cz

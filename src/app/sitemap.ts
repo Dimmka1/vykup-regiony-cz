@@ -1,57 +1,77 @@
 import type { MetadataRoute } from "next";
-import { getDefaultRegion, listRegions } from "@/lib/config";
+import { headers } from "next/headers";
+import { listRegions } from "@/lib/config";
+import { BLOG_POSTS } from "@/app/blog/data";
 
-function normalizeHost(host: string): string {
-  return host
+const ROOT_DOMAIN = "vykoupim-nemovitost.cz";
+
+const CONTENT_PATHS = [
+  { path: "/", priority: 1.0 },
+  { path: "/caste-dotazy", priority: 0.8 },
+  { path: "/blog", priority: 0.8 },
+  { path: "/vykup-pri-exekuci", priority: 0.8 },
+  { path: "/vykup-pri-dedictvi", priority: 0.8 },
+  { path: "/vykup-pri-rozvodu", priority: 0.8 },
+  { path: "/vykup-spoluvlastnickeho-podilu", priority: 0.8 },
+  { path: "/vykup-nemovitosti-s-hypotekou", priority: 0.8 },
+  { path: "/vykup-nemovitosti-s-vecnym-bremenem", priority: 0.8 },
+  { path: "/vykup-bytu", priority: 0.8 },
+  { path: "/vykup-domu", priority: 0.8 },
+  { path: "/vykup-pozemku", priority: 0.8 },
+  { path: "/reference", priority: 0.6 },
+  { path: "/reference/exekuce-praha", priority: 0.6 },
+  { path: "/reference/dedictvi-brno", priority: 0.6 },
+  { path: "/reference/rozvod-ostrava", priority: 0.6 },
+  { path: "/jak-to-funguje", priority: 0.7 },
+  { path: "/kraje", priority: 0.7 },
+  { path: "/ochrana-osobnich-udaju", priority: 0.3 },
+] as const;
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const requestHeaders = await headers();
+  const host = (
+    requestHeaders.get("x-forwarded-host") ??
+    requestHeaders.get("host") ??
+    ROOT_DOMAIN
+  )
     .toLowerCase()
     .replace(/^www\./, "")
     .split(":")[0];
-}
 
-function isPublicHost(host: string): boolean {
-  return !host.endsWith(".localhost") && !host.includes("localhost");
-}
-
-const STATIC_PATHS = [
-  { path: "/caste-dotazy", priority: 0.8 },
-  { path: "/blog", priority: 0.8 },
-  { path: "/blog/jak-probiha-rychly-vykup", priority: 0.7 },
-  { path: "/blog/5-duvodu-proc-prodat", priority: 0.7 },
-  { path: "/blog/vykup-v-exekuci", priority: 0.7 },
-] as const;
-
-export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  const hostToRegionKey = new Map<string, string>();
+  const isRootOrDev = host === ROOT_DOMAIN || !host.endsWith(`.${ROOT_DOMAIN}`);
 
-  hostToRegionKey.set("vykup-regiony.cz", getDefaultRegion().key);
+  const baseUrl = `https://${host}`;
 
-  listRegions().forEach((region) => {
-    region.hosts.forEach((host) => {
-      const normalized = normalizeHost(host);
-      if (isPublicHost(normalized)) {
-        hostToRegionKey.set(normalized, region.key);
-      }
-    });
-  });
+  // Subdomain sitemap: ONLY home page (content lives on root domain)
+  if (!isRootOrDev) {
+    return [
+      {
+        url: baseUrl,
+        lastModified: now,
+        changeFrequency: "monthly",
+        priority: 1,
+      },
+    ];
+  }
 
-  const regionEntries: MetadataRoute.Sitemap = Array.from(
-    hostToRegionKey.entries(),
-  )
-    .sort(([a], [b]) => a.localeCompare(b))
-    .map(([host]) => ({
-      url: `https://${host}`,
-      lastModified: now,
-      changeFrequency: "monthly" as const,
-      priority: host === "vykup-regiony.cz" ? 1 : 0.9,
-    }));
-
-  const staticEntries: MetadataRoute.Sitemap = STATIC_PATHS.map((entry) => ({
-    url: `https://vykup-regiony.cz${entry.path}`,
+  // Root domain sitemap: all content pages + blog posts
+  const entries: MetadataRoute.Sitemap = CONTENT_PATHS.map((entry) => ({
+    url: `${baseUrl}${entry.path}`,
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: entry.priority,
   }));
 
-  return [...regionEntries, ...staticEntries];
+  // Blog post entries
+  for (const post of BLOG_POSTS) {
+    entries.push({
+      url: `${baseUrl}/blog/${post.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    });
+  }
+
+  return entries;
 }

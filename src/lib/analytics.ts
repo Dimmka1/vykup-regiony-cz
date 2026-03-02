@@ -1,8 +1,15 @@
 export type AnalyticsEventName =
   | "lead_form_submit_success"
   | "lead_form_submit_error"
+  | "form_submission_success"
   | "cta_click"
-  | "scroll_50";
+  | "scroll_50"
+  | "whatsapp_click"
+  | "exit_popup_shown"
+  | "exit_popup_submit"
+  | "callback_form_open"
+  | "callback_form_submit_success"
+  | "callback_form_submit_error";
 
 type Primitive = string | number | boolean;
 

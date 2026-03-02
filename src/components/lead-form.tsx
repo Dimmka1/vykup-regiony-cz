@@ -1,7 +1,8 @@
 "use client";
 
 import type { ReactElement } from "react";
-import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { trackEvent } from "@/lib/analytics";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
@@ -67,11 +68,30 @@ function normalizePostalCode(rawPostalCode: string): string {
   return `${digits.slice(0, 3)} ${digits.slice(3)}`;
 }
 
+function scrollToFirstError(errors: Record<string, string>): void {
+  const firstKey = Object.keys(errors)[0];
+  if (!firstKey) return;
+  const el = document.getElementById(firstKey);
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+}
+
+function inputBorderClass(
+  fieldId: string,
+  fieldErrors: Record<string, string>,
+): string {
+  return fieldErrors[fieldId] ? "border-red-500" : "border-slate-300";
+}
+
 export function LeadForm({ regionName }: LeadFormProps): ReactElement {
   const [formData, setFormData] = useState<FormDataState>(INITIAL_FORM);
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [currentStep, setCurrentStep] = useState<FormStep>(0);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const formRef = useRef<HTMLFormElement>(null);
+  const router = useRouter();
 
   const isPhoneValid = useMemo(
     () => CZ_PHONE_REGEX.test(formData.phone.trim()),
@@ -93,21 +113,43 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
     formData.consent;
   const progressPercent = Math.round(((currentStep + 1) / STEPS.length) * 100);
 
+  const validateStep1 = useCallback((): Record<string, string> => {
+    const errors: Record<string, string> = {};
+    if (!isAddressValid) errors["address"] = "Zadejte ulici";
+    if (!isCityValid) errors["city"] = "Zadejte město";
+    if (!isPostalCodeValid) errors["postal-code"] = "PSČ ve formátu 123 45";
+    return errors;
+  }, [isAddressValid, isCityValid, isPostalCodeValid]);
+
+  const validateStep2 = useCallback((): Record<string, string> => {
+    const errors: Record<string, string> = {};
+    if (!isNameValid) errors["lead-name"] = "Zadejte jméno";
+    if (!isPhoneValid)
+      errors["lead-phone"] = "Zadejte telefon ve formátu +420 777 123 456";
+    if (!formData.consent) errors["consent"] = "Potřebujeme váš souhlas";
+    return errors;
+  }, [isNameValid, isPhoneValid, formData.consent]);
+
   const handleNextStep = (): void => {
     if (currentStep === 0) {
       setCurrentStep(1);
       setErrorMessage("");
+      setFieldErrors({});
       return;
     }
 
     if (currentStep === 1) {
-      if (!isAddressValid || !isCityValid || !isPostalCodeValid) {
+      const errors = validateStep1();
+      if (Object.keys(errors).length > 0) {
+        setFieldErrors(errors);
         setErrorMessage(
           "Doplňte prosím kompletní adresu ve formátu PSČ 123 45.",
         );
+        scrollToFirstError(errors);
         return;
       }
 
+      setFieldErrors({});
       setCurrentStep(2);
       setErrorMessage("");
     }
@@ -117,6 +159,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
     if (currentStep > 0) {
       setCurrentStep((prev) => (prev - 1) as FormStep);
       setErrorMessage("");
+      setFieldErrors({});
     }
   };
 
@@ -125,11 +168,20 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
   ): Promise<void> => {
     event.preventDefault();
 
+    const errors = validateStep2();
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors);
+      setErrorMessage("Zkontrolujte prosím kontakt, adresu a souhlas GDPR.");
+      scrollToFirstError(errors);
+      return;
+    }
+
     if (!isFormValid) {
       setErrorMessage("Zkontrolujte prosím kontakt, adresu a souhlas GDPR.");
       return;
     }
 
+    setFieldErrors({});
     setStatus("submitting");
     setErrorMessage("");
 
@@ -159,7 +211,12 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
         form_name: "lead_form",
         region: regionName,
       });
-      setStatus("success");
+      try {
+        localStorage.setItem("form_submitted", String(Date.now()));
+      } catch {
+        /* noop */
+      }
+      router.push("/dekujeme");
       setCurrentStep(0);
       setFormData(INITIAL_FORM);
     } catch (_error) {
@@ -174,6 +231,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
 
   return (
     <form
+      ref={formRef}
       className="space-y-4 rounded-xl bg-white p-4 shadow sm:p-6"
       onSubmit={handleSubmit}
       aria-label="Formulář poptávky výkupu nemovitosti"
@@ -236,7 +294,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
           </label>
           <select
             id="property-type"
-            className="min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
+            className="min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
             value={formData.propertyType}
             onChange={(event) =>
               setFormData((prev) => ({
@@ -256,7 +314,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
           </label>
           <select
             id="situation-type"
-            className="min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
+            className="min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
             value={formData.situationType}
             onChange={(event) =>
               setFormData((prev) => ({
@@ -276,24 +334,38 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
       {currentStep === 1 ? (
         <fieldset className="grid gap-4">
           <legend className="sr-only">Adresa nemovitosti</legend>
-          <label htmlFor="address" className="text-sm">
-            Ulice a č.p.
-          </label>
-          <input
-            id="address"
-            className="min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
-            placeholder="Např. Revoluční 12"
-            autoComplete="street-address"
-            enterKeyHint="next"
-            value={formData.address}
-            onChange={(event) =>
-              setFormData((prev) => ({
-                ...prev,
-                address: event.target.value,
-              }))
-            }
-            required
-          />
+          <div>
+            <label htmlFor="address" className="text-sm">
+              Ulice a č.p.
+            </label>
+            <input
+              id="address"
+              className={`mt-1 min-h-11 w-full rounded border ${inputBorderClass("address", fieldErrors)} px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500`}
+              placeholder="Např. Revoluční 12"
+              autoComplete="street-address"
+              enterKeyHint="next"
+              value={formData.address}
+              onChange={(event) => {
+                setFormData((prev) => ({
+                  ...prev,
+                  address: event.target.value,
+                }));
+                if (fieldErrors["address"]) {
+                  setFieldErrors((prev) => {
+                    const next = { ...prev };
+                    delete next["address"];
+                    return next;
+                  });
+                }
+              }}
+              required
+            />
+            {fieldErrors["address"] ? (
+              <p className="mt-1 text-xs text-red-600">
+                {fieldErrors["address"]}
+              </p>
+            ) : null}
+          </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
@@ -302,16 +374,31 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
               </label>
               <input
                 id="city"
-                className="mt-1 min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
+                className={`mt-1 min-h-11 w-full rounded border ${inputBorderClass("city", fieldErrors)} px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500`}
                 placeholder="Např. Brno"
                 autoComplete="address-level2"
                 enterKeyHint="next"
                 value={formData.city}
-                onChange={(event) =>
-                  setFormData((prev) => ({ ...prev, city: event.target.value }))
-                }
+                onChange={(event) => {
+                  setFormData((prev) => ({
+                    ...prev,
+                    city: event.target.value,
+                  }));
+                  if (fieldErrors["city"]) {
+                    setFieldErrors((prev) => {
+                      const next = { ...prev };
+                      delete next["city"];
+                      return next;
+                    });
+                  }
+                }}
                 required
               />
+              {fieldErrors["city"] ? (
+                <p className="mt-1 text-xs text-red-600">
+                  {fieldErrors["city"]}
+                </p>
+              ) : null}
             </div>
 
             <div>
@@ -320,20 +407,41 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
               </label>
               <input
                 id="postal-code"
-                className="mt-1 min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
+                className={`mt-1 min-h-11 w-full rounded border ${inputBorderClass("postal-code", fieldErrors)} px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500`}
                 placeholder="123 45"
                 inputMode="numeric"
                 autoComplete="postal-code"
                 enterKeyHint="next"
+                maxLength={6}
+                aria-invalid={!isPostalCodeValid}
+                aria-describedby="psc-hint"
                 value={formData.postalCode}
-                onChange={(event) =>
+                onChange={(event) => {
                   setFormData((prev) => ({
                     ...prev,
                     postalCode: normalizePostalCode(event.target.value),
-                  }))
-                }
+                  }));
+                  if (fieldErrors["postal-code"]) {
+                    setFieldErrors((prev) => {
+                      const next = { ...prev };
+                      delete next["postal-code"];
+                      return next;
+                    });
+                  }
+                }}
                 required
               />
+              <p
+                id="psc-hint"
+                className={`mt-1 text-xs ${formData.postalCode.trim() ? (isPostalCodeValid ? "text-teal-600" : "text-red-500") : "text-slate-500"}`}
+              >
+                Formát: 123 45
+              </p>
+              {fieldErrors["postal-code"] ? (
+                <p className="mt-1 text-xs text-red-600">
+                  {fieldErrors["postal-code"]}
+                </p>
+              ) : null}
             </div>
           </div>
         </fieldset>
@@ -342,40 +450,68 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
       {currentStep === 2 ? (
         <fieldset className="grid gap-4">
           <legend className="sr-only">Kontaktní údaje</legend>
-          <label htmlFor="lead-name" className="text-sm">
-            Jméno a příjmení
-          </label>
-          <input
-            id="lead-name"
-            className="min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
-            value={formData.name}
-            autoComplete="name"
-            enterKeyHint="next"
-            onChange={(event) =>
-              setFormData((prev) => ({ ...prev, name: event.target.value }))
-            }
-            required
-          />
+          <div>
+            <label htmlFor="lead-name" className="text-sm">
+              Jméno a příjmení
+            </label>
+            <input
+              id="lead-name"
+              className={`mt-1 min-h-11 w-full rounded border ${inputBorderClass("lead-name", fieldErrors)} px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500`}
+              value={formData.name}
+              autoComplete="name"
+              enterKeyHint="next"
+              onChange={(event) => {
+                setFormData((prev) => ({ ...prev, name: event.target.value }));
+                if (fieldErrors["lead-name"]) {
+                  setFieldErrors((prev) => {
+                    const next = { ...prev };
+                    delete next["lead-name"];
+                    return next;
+                  });
+                }
+              }}
+              required
+            />
+            {fieldErrors["lead-name"] ? (
+              <p className="mt-1 text-xs text-red-600">
+                {fieldErrors["lead-name"]}
+              </p>
+            ) : null}
+          </div>
 
-          <label htmlFor="lead-phone" className="text-sm">
-            Telefon
-          </label>
-          <input
-            id="lead-phone"
-            className="min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
-            placeholder="+420 777 123 456"
-            inputMode="tel"
-            autoComplete="tel"
-            enterKeyHint="send"
-            value={formData.phone}
-            onChange={(event) =>
-              setFormData((prev) => ({
-                ...prev,
-                phone: normalizePhone(event.target.value),
-              }))
-            }
-            required
-          />
+          <div>
+            <label htmlFor="lead-phone" className="text-sm">
+              Telefon
+            </label>
+            <input
+              id="lead-phone"
+              className={`mt-1 min-h-11 w-full rounded border ${inputBorderClass("lead-phone", fieldErrors)} px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500`}
+              placeholder="+420 777 123 456"
+              inputMode="tel"
+              autoComplete="tel"
+              enterKeyHint="send"
+              value={formData.phone}
+              onChange={(event) => {
+                setFormData((prev) => ({
+                  ...prev,
+                  phone: normalizePhone(event.target.value),
+                }));
+                if (fieldErrors["lead-phone"]) {
+                  setFieldErrors((prev) => {
+                    const next = { ...prev };
+                    delete next["lead-phone"];
+                    return next;
+                  });
+                }
+              }}
+              required
+            />
+            {fieldErrors["lead-phone"] ? (
+              <p className="mt-1 text-xs text-red-600">
+                {fieldErrors["lead-phone"]}
+              </p>
+            ) : null}
+          </div>
 
           <div className="hidden" aria-hidden="true">
             <label htmlFor="lead-website">Website</label>
@@ -399,33 +535,34 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
               className="mt-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
               type="checkbox"
               checked={formData.consent}
-              onChange={(event) =>
+              onChange={(event) => {
                 setFormData((prev) => ({
                   ...prev,
                   consent: event.target.checked,
-                }))
-              }
+                }));
+                if (fieldErrors["consent"]) {
+                  setFieldErrors((prev) => {
+                    const next = { ...prev };
+                    delete next["consent"];
+                    return next;
+                  });
+                }
+              }}
             />
             Souhlasím se zpracováním osobních údajů pro účely zpětného kontaktu.
           </label>
+          {fieldErrors["consent"] ? (
+            <p className="text-xs text-red-600">{fieldErrors["consent"]}</p>
+          ) : null}
         </fieldset>
       ) : null}
 
-      <div className="sticky bottom-3 z-10 -mx-2 flex flex-col gap-3 rounded-xl bg-white/95 px-2 py-2 backdrop-blur sm:static sm:mx-0 sm:bg-transparent sm:px-0 sm:py-0">
-        <button
-          type="button"
-          onClick={handlePreviousStep}
-          disabled={currentStep === 0 || status === "submitting"}
-          className="inline-flex min-h-11 items-center justify-center rounded border border-slate-300 px-5 py-3 text-base font-semibold text-slate-700 transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
-        >
-          Zpět
-        </button>
-
+      <div className="sticky bottom-3 z-10 -mx-2 flex flex-col-reverse gap-3 rounded-xl bg-white/95 px-2 py-2 backdrop-blur sm:static sm:mx-0 sm:flex-col sm:bg-transparent sm:px-0 sm:py-0">
         {currentStep < 2 ? (
           <button
             type="button"
             onClick={handleNextStep}
-            className="inline-flex min-h-11 items-center justify-center rounded bg-amber-500 px-5 py-3 text-base font-semibold text-white transition hover:bg-amber-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2"
+            className={`inline-flex min-h-11 items-center justify-center rounded bg-amber-500 px-5 py-3 text-base font-semibold text-white transition hover:bg-amber-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 ${currentStep === 1 && (!isAddressValid || !isCityValid || !isPostalCodeValid) ? "pointer-events-none cursor-not-allowed opacity-60" : ""}`}
           >
             Pokračovat
           </button>
@@ -438,6 +575,15 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
             {status === "submitting" ? "Odesílám..." : "Odeslat poptávku"}
           </button>
         )}
+
+        <button
+          type="button"
+          onClick={handlePreviousStep}
+          disabled={currentStep === 0 || status === "submitting"}
+          className="inline-flex min-h-11 items-center justify-center rounded border border-slate-300 px-5 py-3 text-base font-semibold text-slate-700 transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          Zpět
+        </button>
       </div>
 
       {errorMessage ? (

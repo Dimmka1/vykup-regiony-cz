@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { CookieConsent } from "@/components/cookie-consent";
+import { ExitIntentPopup } from "@/components/exit-intent-popup";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { WebVitalsReporter } from "@/components/web-vitals-reporter";
+import { getDefaultRegion } from "@/lib/config";
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
@@ -13,7 +15,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://vykup-praha.cz"),
+  metadataBase: new URL("https://vykoupim-nemovitost.cz"),
   title: {
     default: "Výkup nemovitostí",
     template: "%s | Výkup nemovitostí",
@@ -52,13 +54,14 @@ export default function RootLayout({
         >
           Přeskočit na obsah
         </a>
-        <SiteHeader />
+        <SiteHeader phone={getDefaultRegion().phone} />
         <WebVitalsReporter />
         <main id="hlavni-obsah" className="flex-1">
           {children}
         </main>
         <SiteFooter />
         <CookieConsent />
+        <ExitIntentPopup />
       </body>
     </html>
   );

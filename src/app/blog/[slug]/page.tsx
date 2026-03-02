@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { safeJsonLd } from "@/lib/jsonld";
+import { Breadcrumbs } from "@/components/breadcrumbs";
+import { RelatedArticles } from "@/components/related-articles";
+import { getRelatedArticles } from "@/lib/related-articles";
 import { BLOG_POSTS } from "../data";
 
 interface ArticleContent {
@@ -832,6 +835,7 @@ export default async function BlogArticlePage({
   };
 
   const otherPosts = BLOG_POSTS.filter((p) => p.slug !== slug);
+  const relatedArticles = getRelatedArticles(`blog/${slug}`);
 
   return (
     <>
@@ -843,12 +847,12 @@ export default async function BlogArticlePage({
       <article className="bg-gradient-to-b from-slate-50 to-white py-16">
         <div className="mx-auto max-w-3xl px-4">
           <div className="mb-8">
-            <Link
-              href="/blog"
-              className="text-sm font-medium text-emerald-600 hover:text-emerald-500"
-            >
-              ← Zpět na blog
-            </Link>
+            <Breadcrumbs
+              items={[
+                { label: "Blog", href: "/blog" },
+                { label: article.title, href: `/blog/${slug}` },
+              ]}
+            />
           </div>
 
           <header>
@@ -883,27 +887,7 @@ export default async function BlogArticlePage({
             </Link>
           </div>
 
-          {otherPosts.length > 0 && (
-            <div className="mt-12">
-              <h2 className="text-xl font-bold text-slate-900">Další články</h2>
-              <div className="mt-4 space-y-4">
-                {otherPosts.map((post) => (
-                  <Link
-                    key={post.slug}
-                    href={`/blog/${post.slug}`}
-                    className="block rounded-2xl bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
-                  >
-                    <h3 className="font-semibold text-slate-900">
-                      {post.title}
-                    </h3>
-                    <p className="mt-1 text-sm text-slate-600">
-                      {post.excerpt}
-                    </p>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          )}
+          <RelatedArticles articles={relatedArticles} />
 
           <div className="mt-8 flex justify-center gap-4 text-sm">
             <Link

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { BLOG_POSTS } from "./data";
 
 export const metadata: Metadata = {
@@ -12,6 +13,9 @@ export default function BlogPage(): React.ReactElement {
   return (
     <section className="bg-gradient-to-b from-slate-50 to-white py-16">
       <div className="mx-auto max-w-3xl px-4">
+        <div className="mb-6">
+          <Breadcrumbs items={[{ label: "Blog", href: "/blog" }]} />
+        </div>
         <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
           Blog o výkupu nemovitostí
         </h1>

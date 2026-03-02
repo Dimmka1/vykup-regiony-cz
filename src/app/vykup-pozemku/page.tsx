@@ -11,6 +11,9 @@ import {
   Building2,
 } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
+import { Breadcrumbs } from "@/components/breadcrumbs";
+import { RelatedArticles } from "@/components/related-articles";
+import { getRelatedArticles } from "@/lib/related-articles";
 
 export const metadata: Metadata = {
   title: "Výkup pozemků — rychlý prodej pozemku za hotové",
@@ -141,6 +144,14 @@ export default function VykupPozemkuPage(): React.ReactElement {
 
       <section className="bg-gradient-to-b from-slate-50 to-white py-16">
         <div className="mx-auto max-w-3xl px-4">
+          <div className="mb-6">
+            <Breadcrumbs
+              items={[
+                { label: "Služby", href: "/#sluzby" },
+                { label: "Výkup pozemků", href: "/vykup-pozemku" },
+              ]}
+            />
+          </div>
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
             Výkup pozemků a parcel — rychle, férově a bez provize
           </h1>
@@ -310,6 +321,12 @@ export default function VykupPozemkuPage(): React.ReactElement {
               </Link>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="bg-slate-50 py-12">
+        <div className="mx-auto max-w-3xl px-4">
+          <RelatedArticles articles={getRelatedArticles("vykup-pozemku")} />
         </div>
       </section>
     </>

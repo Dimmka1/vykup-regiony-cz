@@ -7,6 +7,7 @@ import { LeadForm } from "@/components/lead-form";
 import { AnimatedCounter } from "@/components/animated-counter";
 import { ScrollTracker } from "@/components/scroll-tracker";
 import { PropertyEstimator } from "@/components/property-estimator";
+import { ComparisonCalculator } from "@/components/comparison-calculator";
 import { FloatingDesktopCta } from "@/components/floating-desktop-cta";
 import { FaqAccordion } from "@/components/faq-accordion";
 import { FloatingWhatsApp } from "@/components/floating-whatsapp";
@@ -583,6 +584,9 @@ export function HomePageContent({
 
       {/* ===== PROPERTY ESTIMATOR ===== */}
       <PropertyEstimator regionKey={region.key} />
+
+      {/* ===== COMPARISON CALCULATOR ===== */}
+      <ComparisonCalculator />
 
       {/* ===== LEAD FORM + CO SE STANE PO ODESLÁNÍ ===== */}
       <section

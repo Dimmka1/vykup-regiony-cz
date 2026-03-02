@@ -168,6 +168,64 @@ export default function ReferencePage() {
         </div>
       </section>
 
+      {/* Příběhy klientů */}
+      <section className="mx-auto max-w-7xl px-6 py-16">
+        <h2 className="mb-2 text-2xl font-bold text-slate-900 sm:text-3xl">
+          Příběhy klientů
+        </h2>
+        <p className="mb-8 text-slate-600">
+          Podívejte se na detailní příběhy lidí, kterým jsme pomohli vyřešit
+          složitou životní situaci rychlým výkupem nemovitosti.
+        </p>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            {
+              href: "/reference/exekuce-praha",
+              title: "Exekuce na byt v Praze",
+              name: "Paní N.",
+              summary:
+                "Prodej bytu při exekuci za 7 dní. Zachránila 950 000 Kč.",
+              badge: "7 dní",
+            },
+            {
+              href: "/reference/dedictvi-brno",
+              title: "Zděděný dům v Brně",
+              name: "Pan S.",
+              summary: "4 spoluvlastníci, 2 v zahraničí. Vyřešeno za 14 dní.",
+              badge: "14 dní",
+            },
+            {
+              href: "/reference/rozvod-ostrava",
+              title: "Rozvod a byt v Ostravě",
+              name: "Paní K.",
+              summary: "Rychlý prodej společného bytu při rozvodu za 10 dní.",
+              badge: "10 dní",
+            },
+          ].map((cs) => (
+            <Link
+              key={cs.href}
+              href={cs.href}
+              className="group flex flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:border-teal-300 hover:shadow-md"
+            >
+              <span className="mb-2 inline-flex w-fit rounded-full bg-teal-100 px-3 py-1 text-xs font-semibold text-teal-700">
+                {cs.badge}
+              </span>
+              <h3 className="text-lg font-bold text-slate-900 group-hover:text-teal-700">
+                {cs.title}
+              </h3>
+              <p className="mt-1 text-sm text-slate-500">{cs.name}</p>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">
+                {cs.summary}
+              </p>
+              <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-teal-700">
+                Číst příběh
+                <ChevronRight className="h-4 w-4" />
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       {/* Filters + Reviews */}
       <section className="mx-auto max-w-7xl px-6 py-16">
         {/* Region tabs */}

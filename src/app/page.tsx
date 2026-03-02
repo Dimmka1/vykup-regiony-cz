@@ -15,6 +15,7 @@ import { getRegionByHost, getRegionByKey, listRegions } from "@/lib/config";
 import { getRequestHost } from "@/lib/request-host";
 import type { RegionConfig } from "@/lib/types";
 import { FloatingWhatsApp } from "@/components/floating-whatsapp";
+import { VideoSection } from "@/components/video-section";
 import {
   Check,
   FileText,
@@ -520,6 +521,9 @@ export default async function HomePage({
           </div>
         </div>
       </section>
+
+      {/* ===== VIDEO SECTION ===== */}
+      <VideoSection />
 
       {/* ===== ŘEŠÍME I SLOŽITÉ SITUACE ===== */}
       <section className="py-16">

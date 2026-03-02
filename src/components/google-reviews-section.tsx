@@ -73,7 +73,7 @@ export function GoogleReviewsSection({
         </p>
         <Link
           href="#kontakt"
-          className="mt-6 inline-flex items-center gap-2 rounded-full bg-teal-600 px-6 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-teal-700 hover:shadow-lg"
+          className="mt-6 inline-flex items-center gap-2 rounded-full bg-[var(--theme-600)] px-6 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-[var(--theme-700)] hover:shadow-lg"
         >
           <GoogleIcon className="h-5 w-5" />
           Napište nám a buďte mezi prvními

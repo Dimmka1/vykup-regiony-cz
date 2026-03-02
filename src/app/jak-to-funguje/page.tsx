@@ -13,7 +13,7 @@ import { safeJsonLd } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "Jak funguje výkup nemovitosti | Vykoupíme Nemovitost",
   description:
-    "Celý proces výkupu nemovitosti v 5 jednoduchých krocích — od prvního kontaktu po platbu na účet do 48 hodin. Bez provize, bez starostí.",
+    "Celý proces výkupu nemovitosti v 5 jednoduchých krocích - od prvního kontaktu po platbu na účet do 48 hodin. Bez provize, bez starostí.",
   alternates: { canonical: "https://vykoupim-nemovitost.cz/jak-to-funguje" },
 };
 
@@ -22,7 +22,7 @@ const STEPS = [
     number: 1,
     title: "Kontaktujte nás",
     description:
-      "Vyplňte krátký formulář nebo zavolejte. Potřebujeme jen základní údaje o nemovitosti — adresu, typ a váš kontakt. Trvá to maximálně 2 minuty.",
+      "Vyplňte krátký formulář nebo zavolejte. Potřebujeme jen základní údaje o nemovitosti - adresu, typ a váš kontakt. Trvá to maximálně 2 minuty.",
     Icon: FileText,
   },
   {
@@ -43,7 +43,7 @@ const STEPS = [
     number: 4,
     title: "Podpis smlouvy",
     description:
-      "Pokud nabídku přijmete, připravíme kupní smlouvu. Veškerý právní servis zajistíme za vás — nemusíte řešit nic navíc.",
+      "Pokud nabídku přijmete, připravíme kupní smlouvu. Veškerý právní servis zajistíme za vás - nemusíte řešit nic navíc.",
     Icon: FileSignature,
   },
   {
@@ -60,7 +60,7 @@ const JSON_LD_HOWTO = {
   "@type": "HowTo",
   name: "Jak funguje výkup nemovitosti",
   description:
-    "Celý proces výkupu nemovitosti v 5 jednoduchých krocích — od kontaktu po platbu.",
+    "Celý proces výkupu nemovitosti v 5 jednoduchých krocích - od kontaktu po platbu.",
   totalTime: "P3D",
   step: STEPS.map((s) => ({
     "@type": "HowToStep",
@@ -79,13 +79,13 @@ export default function JakToFungujePage() {
       />
 
       {/* Hero */}
-      <section className="bg-gradient-to-br from-teal-800 to-teal-950 pb-16 pt-28 text-white">
+      <section className="bg-gradient-to-br from-[var(--theme-800)] to-[var(--theme-900)] pb-16 pt-28 text-white">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
             Jak funguje výkup nemovitosti
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-teal-100">
-            Od prvního kontaktu k penězům na účtu — transparentně, rychle a bez
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-[var(--theme-100)]">
+            Od prvního kontaktu k penězům na účtu - transparentně, rychle a bez
             starostí. Celý proces zvládneme za vás.
           </p>
         </div>
@@ -94,16 +94,16 @@ export default function JakToFungujePage() {
       {/* Steps */}
       <section className="py-16">
         <div className="mx-auto max-w-4xl px-6">
-          <ol className="relative space-y-12 border-l-2 border-teal-200 pl-8">
+          <ol className="relative space-y-12 border-l-2 border-[var(--theme-200)] pl-8">
             {STEPS.map((step) => (
               <li key={step.number} className="relative">
-                <span className="absolute -left-12 flex h-8 w-8 items-center justify-center rounded-full bg-teal-700 text-sm font-bold text-white">
+                <span className="absolute -left-12 flex h-8 w-8 items-center justify-center rounded-full bg-[var(--theme-700)] text-sm font-bold text-white">
                   {step.number}
                 </span>
 
                 <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm transition hover:shadow-md">
                   <div className="flex items-center gap-3">
-                    <step.Icon className="h-6 w-6 shrink-0 text-teal-700" />
+                    <step.Icon className="h-6 w-6 shrink-0 text-[var(--theme-700)]" />
                     <h2 className="text-xl font-bold text-slate-900">
                       {step.title}
                     </h2>
@@ -136,7 +136,7 @@ export default function JakToFungujePage() {
             </Link>
             <Link
               href="/"
-              className="inline-flex min-h-11 items-center text-sm font-medium text-teal-700 transition hover:text-teal-600"
+              className="inline-flex min-h-11 items-center text-sm font-medium text-[var(--theme-700)] transition hover:text-[var(--theme-600)]"
             >
               ← Zpět na hlavní stránku
             </Link>

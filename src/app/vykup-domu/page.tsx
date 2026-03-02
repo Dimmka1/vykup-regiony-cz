@@ -14,10 +14,12 @@ import { safeJsonLd } from "@/lib/jsonld";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
+import { AllRegionsSection } from "@/components/all-regions-section";
+import { getRequestHost } from "@/lib/request-host";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://vykoupim-nemovitost.cz/vykup-domu" },
-  title: "Výkup domů — rychlý prodej rodinného domu za hotové",
+  title: "Výkup domů - rychlý prodej rodinného domu za hotové",
   description:
     "Vykoupíme váš rodinný dům rychle a bez provize. Staré domy, domy k rekonstrukci i se zástavou. Férová cena, vyplacení do 7 dnů. Celá ČR.",
 };
@@ -31,7 +33,7 @@ const FAQ_ITEMS: readonly FaqItem[] = [
   {
     question: "Vykupujete i staré domy v špatném stavu?",
     answer:
-      "Ano, vykupujeme domy v jakémkoli stavu — i zchátralé, poškozené nebo vyžadující kompletní rekonstrukci. Stav domu není překážkou, naopak se na takové nemovitosti specializujeme.",
+      "Ano, vykupujeme domy v jakémkoli stavu - i zchátralé, poškozené nebo vyžadující kompletní rekonstrukci. Stav domu není překážkou, naopak se na takové nemovitosti specializujeme.",
   },
   {
     question: "Jak stanovíte cenu za rodinný dům?",
@@ -112,7 +114,8 @@ const STEPS: readonly {
   },
 ] as const;
 
-export default function VykupDomuPage(): React.ReactElement {
+export default async function VykupDomuPage(): Promise<React.ReactElement> {
+  const host = await getRequestHost();
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -126,7 +129,7 @@ export default function VykupDomuPage(): React.ReactElement {
   const webPageJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name: "Výkup domů — rychlý prodej rodinného domu za hotové",
+    name: "Výkup domů - rychlý prodej rodinného domu za hotové",
     description: metadata.description,
     url: "https://vykup-regiony.cz/vykup-domu",
     isPartOf: { "@type": "WebSite", url: "https://vykup-regiony.cz" },
@@ -154,24 +157,24 @@ export default function VykupDomuPage(): React.ReactElement {
             />
           </div>
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Výkup rodinných domů — rychle, férově a bez provize
+            Výkup rodinných domů - rychle, férově a bez provize
           </h1>
           <p className="mt-4 text-lg text-slate-600">
             Chcete prodat rodinný dům rychle a bez komplikací? Vykoupíme váš dům
             za férovou cenu odpovídající 80–90 % tržní hodnoty. Celý proces
-            zvládneme do 7 dnů — vy nemusíte řešit inzerci, prohlídky ani
+            zvládneme do 7 dnů - vy nemusíte řešit inzerci, prohlídky ani
             opravy.
           </p>
           <p className="mt-4 text-slate-600">
             Specializujeme se na výkup rodinných domů po celé České republice.
-            Vykoupíme domy v jakémkoli stavu — starší domy, domy k demolici,
+            Vykoupíme domy v jakémkoli stavu - starší domy, domy k demolici,
             rozestavěné projekty i nemovitosti zatížené hypotékou, exekucí nebo
             věcným břemenem. Každou situaci posoudíme individuálně.
           </p>
           <p className="mt-4 text-slate-600">
             Klasický prodej rodinného domu přes realitní kancelář trvá v průměru
             6–12 měsíců. U nás je to otázka dnů. Neplatíte žádnou provizi,
-            poplatky za odhad, právní služby ani náklady na převod — vše hradíme
+            poplatky za odhad, právní služby ani náklady na převod - vše hradíme
             my.
           </p>
           <p className="mt-4 text-slate-600">
@@ -330,6 +333,8 @@ export default function VykupDomuPage(): React.ReactElement {
           <RelatedArticles articles={getRelatedArticles("vykup-domu")} />
         </div>
       </section>
+
+      <AllRegionsSection currentHost={host} />
     </>
   );
 }

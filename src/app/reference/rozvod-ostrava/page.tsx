@@ -48,7 +48,7 @@ const TIMELINE: TimelineStep[] = [
     day: "Den 2",
     title: "Prohlídka a ocenění",
     description:
-      "Prohlédli jsme byt 3+1 v Ostravě-Porubě. Nabídka 2 650 000 Kč — oba manželé souhlasili.",
+      "Prohlédli jsme byt 3+1 v Ostravě-Porubě. Nabídka 2 650 000 Kč - oba manželé souhlasili.",
   },
   {
     day: "Den 4–6",
@@ -78,7 +78,7 @@ export default function RozvodOstravaPage() {
         dangerouslySetInnerHTML={{ __html: safeJsonLd(articleLd) }}
       />
 
-      <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-teal-900 pb-16 pt-28 text-white">
+      <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-[var(--theme-900)] pb-16 pt-28 text-white">
         <div className="mx-auto max-w-4xl px-6">
           <Breadcrumbs
             items={[
@@ -118,10 +118,10 @@ export default function RozvodOstravaPage() {
           <h2 className="mb-4 text-2xl font-bold text-slate-900">Problém</h2>
           <ul className="space-y-3">
             {[
-              "Napjatá atmosféra — manželé spolu nechtěli komunikovat",
+              "Napjatá atmosféra - manželé spolu nechtěli komunikovat",
               "Standardní prodej přes realitku by trval měsíce",
               "Paní K. urgentně potřebovala prostředky na nové bydlení",
-              "Hypotéka na bytě stále běžela — 1 100 000 Kč zůstatek",
+              "Hypotéka na bytě stále běžela - 1 100 000 Kč zůstatek",
             ].map((item) => (
               <li key={item} className="flex items-start gap-3 text-slate-600">
                 <span className="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-red-400" />
@@ -153,15 +153,15 @@ export default function RozvodOstravaPage() {
             {TIMELINE.map((step, i) => (
               <div key={i} className="flex gap-4">
                 <div className="flex flex-col items-center">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-teal-100 text-sm font-bold text-teal-700">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--theme-100)] text-sm font-bold text-[var(--theme-700)]">
                     <Clock className="h-5 w-5" />
                   </div>
                   {i < TIMELINE.length - 1 && (
-                    <div className="mt-2 h-full w-px bg-teal-200" />
+                    <div className="mt-2 h-full w-px bg-[var(--theme-200)]" />
                   )}
                 </div>
                 <div className="pb-6">
-                  <p className="text-sm font-semibold text-teal-700">
+                  <p className="text-sm font-semibold text-[var(--theme-700)]">
                     {step.day}
                   </p>
                   <h3 className="text-lg font-bold text-slate-900">
@@ -194,7 +194,7 @@ export default function RozvodOstravaPage() {
                 key={label}
                 className="rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm"
               >
-                <Icon className="mx-auto mb-2 h-8 w-8 text-teal-600" />
+                <Icon className="mx-auto mb-2 h-8 w-8 text-[var(--theme-600)]" />
                 <p className="text-sm text-slate-500">{label}</p>
                 <p className="text-2xl font-bold text-slate-900">{value}</p>
               </div>
@@ -208,7 +208,7 @@ export default function RozvodOstravaPage() {
           </p>
         </section>
 
-        <section className="rounded-2xl bg-teal-50 p-8 text-center">
+        <section className="rounded-2xl bg-[var(--theme-50)] p-8 text-center">
           <h2 className="mb-2 text-2xl font-bold text-slate-900">
             Procházíte rozvodem?
           </h2>
@@ -217,7 +217,7 @@ export default function RozvodOstravaPage() {
           </p>
           <Link
             href="/vykup-pri-rozvodu"
-            className="inline-flex items-center gap-2 rounded-full bg-teal-700 px-8 py-3 font-semibold text-white transition hover:bg-teal-800"
+            className="inline-flex items-center gap-2 rounded-full bg-[var(--theme-700)] px-8 py-3 font-semibold text-white transition hover:bg-[var(--theme-800)]"
           >
             Více o výkupu při rozvodu
             <ArrowRight className="h-5 w-5" />

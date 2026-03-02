@@ -12,12 +12,14 @@ import { safeJsonLd } from "@/lib/jsonld";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
+import { AllRegionsSection } from "@/components/all-regions-section";
+import { getRequestHost } from "@/lib/request-host";
 
 export const metadata: Metadata = {
   alternates: {
     canonical: "https://vykoupim-nemovitost.cz/vykup-nemovitosti-s-hypotekou",
   },
-  title: "Výkup nemovitosti s hypotékou — rychlé řešení zatížené nemovitosti",
+  title: "Výkup nemovitosti s hypotékou - rychlé řešení zatížené nemovitosti",
   description:
     "Vykoupíme nemovitost zatíženou hypotékou nebo zástavním právem. Vyřešíme komunikaci s bankou, splatíme úvěr z kupní ceny. Výplata do 7 dnů, bez provize.",
 };
@@ -83,7 +85,8 @@ const STEPS: readonly Step[] = [
   },
 ] as const;
 
-export default function VykupNemovitostiSHypotekou(): React.ReactElement {
+export default async function VykupNemovitostiSHypotekou(): Promise<React.ReactElement> {
+  const host = await getRequestHost();
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -138,7 +141,7 @@ export default function VykupNemovitostiSHypotekou(): React.ReactElement {
           <p className="mt-4 text-lg text-slate-600">
             Splácíte hypotéku, kterou už nezvládáte? Potřebujete rychle prodat
             nemovitost zatíženou zástavním právem banky? Pomůžeme vám celou
-            situaci vyřešit — splatíme hypotéku z kupní ceny a zbytek vyplatíme
+            situaci vyřešit - splatíme hypotéku z kupní ceny a zbytek vyplatíme
             přímo vám.
           </p>
           <p className="mt-4 text-slate-600">
@@ -156,7 +159,7 @@ export default function VykupNemovitostiSHypotekou(): React.ReactElement {
           </p>
           <p className="mt-4 text-slate-600">
             Situace, kdy majitelé nemohou splácet hypotéku, není výjimečná.
-            Ztráta zaměstnání, rozvod, nemoc nebo pokles příjmů — důvodů může
+            Ztráta zaměstnání, rozvod, nemoc nebo pokles příjmů - důvodů může
             být mnoho. Důležité je jednat včas, než se situace zkomplikuje
             exekucí nebo nuceným prodejem.
           </p>
@@ -317,6 +320,8 @@ export default function VykupNemovitostiSHypotekou(): React.ReactElement {
           />
         </div>
       </section>
+
+      <AllRegionsSection currentHost={host} />
     </>
   );
 }

@@ -70,7 +70,7 @@ export function CallbackForm({ regionName }: CallbackFormProps): ReactElement {
 
   if (status === "success") {
     return (
-      <div className="flex items-center gap-2 rounded-xl bg-teal-50 px-4 py-3 text-sm font-medium text-teal-800">
+      <div className="flex items-center gap-2 rounded-xl bg-[var(--theme-50)] px-4 py-3 text-sm font-medium text-[var(--theme-800)]">
         <Phone className="h-4 w-4 shrink-0" />
         Děkujeme! Zavoláme vám zpět co nejdříve.
       </div>
@@ -82,7 +82,7 @@ export function CallbackForm({ regionName }: CallbackFormProps): ReactElement {
       <button
         type="button"
         onClick={handleToggle}
-        className="inline-flex items-center gap-2 rounded-lg border-2 border-teal-600 bg-white px-5 py-3 text-sm font-semibold text-teal-700 transition hover:bg-teal-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2"
+        className="inline-flex items-center gap-2 rounded-lg border-2 border-[var(--theme-600)] bg-white px-5 py-3 text-sm font-semibold text-[var(--theme-700)] transition hover:bg-[var(--theme-50)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
       >
         <Phone className="h-4 w-4" />
         Zavolejte mi zpět
@@ -114,7 +114,7 @@ export function CallbackForm({ regionName }: CallbackFormProps): ReactElement {
             setPhone(normalizePhone(e.target.value));
             if (error) setError("");
           }}
-          className={`min-h-11 w-full rounded border px-3 py-2.5 text-base transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 ${
+          className={`min-h-11 w-full rounded border px-3 py-2.5 text-base transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] ${
             error ? "border-red-500" : "border-slate-300"
           }`}
           required
@@ -128,7 +128,7 @@ export function CallbackForm({ regionName }: CallbackFormProps): ReactElement {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="inline-flex min-h-11 items-center justify-center gap-2 rounded bg-amber-500 px-5 py-2.5 text-base font-semibold text-white transition hover:bg-amber-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 disabled:opacity-70"
+        className="inline-flex min-h-11 items-center justify-center gap-2 rounded bg-amber-500 px-5 py-2.5 text-base font-semibold text-white transition hover:bg-amber-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 disabled:opacity-70"
       >
         <Phone className="h-4 w-4" />
         {status === "submitting" ? "Odesílám..." : "Zavolejte mi"}

@@ -53,7 +53,7 @@ export async function generateMetadata(): Promise<Metadata> {
           url: ogImageUrl,
           width: 1200,
           height: 630,
-          alt: `${region.h1} — ${COMPANY_NAME}`,
+          alt: `${region.h1} - ${COMPANY_NAME}`,
         },
       ],
     },
@@ -70,5 +70,11 @@ export default async function HomePage(): Promise<ReactElement> {
   const { region, host } = await resolveRegion();
   const canonicalUrl = buildCanonicalUrl(host, region.key);
 
-  return <HomePageContent region={region} canonicalUrl={canonicalUrl} />;
+  return (
+    <HomePageContent
+      region={region}
+      canonicalUrl={canonicalUrl}
+      currentHost={host}
+    />
+  );
 }

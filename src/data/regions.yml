@@ -1,6 +1,7 @@
 defaultRegion: praha
 regions:
   - key: praha
+    themeColor: "teal"
     seoTitle: "Výkup nemovitostí v Praze | Nabídka do 24 hodin"
     seoDescription: "Potřebujete rychle prodat byt nebo dům v Praze? Nabídka do 24 h, právní servis a bez skrytých poplatků."
     name: Praha
@@ -59,7 +60,20 @@ regions:
         quote:
           Ocenil jsem, že tým převzal komunikaci se správcem domu i bankou. Nemusel jsem
           obíhat úřady a peníze přišly podle dohody.
+    marketInfo: >-
+      Pražský realitní trh patří k nejdražším v Česku - průměrná cena bytu přesahuje 120 000 Kč/m². Nejvíce se obchoduje s byty na Praze 4, 5 a 9, kde poptávka stabilně roste. Typické jsou panelové byty 2+1 a 3+1, ale i činžovní jednotky v širším centru.
+    regionFaq:
+      - question: "Jaká je průměrná doba prodeje nemovitosti v Praze?"
+        answer: >-
+          V Praze se nemovitosti prodávají rychleji než v jiných krajích - běžně do 2–4 týdnů. U našeho výkupu v Praze to zvládneme ještě rychleji, často do 7 dnů.
+      - question: "Vykupujete byty ve všech pražských městských částech?"
+        answer: >-
+          Ano, působíme ve všech městských částech Prahy - od centra přes Prahu 4, 5, 9 až po okrajové části jako Praha 12 nebo Praha-Čakovice.
+      - question: "Jak se liší výkupní cena v Praze oproti jiným krajům?"
+        answer: >-
+          Výkupní ceny v Praze jsou nejvyšší v Česku díky silné poptávce. I při rychlém výkupu v Praze nabízíme ceny odpovídající aktuálnímu trhu.
   - key: stredocesky-kraj
+    themeColor: "sky"
     seoTitle: "Rychlý výkup bytu a domu ve Středočeském kraji | Bez provize"
     seoDescription: "Rychlý výkup nemovitostí ve Středočeském kraji. Řešíme i exekuce, dědictví a podíly. Nezávazná konzultace zdarma."
     name: Středočeský kraj
@@ -113,7 +127,20 @@ regions:
         quote:
           Měl jsem hypotéku i věcné břemeno, přesto našli řešení. Komunikace byla věcná a
           férová od začátku do konce.
+    marketInfo: >-
+      Středočeský kraj je silně ovlivněn blízkostí Prahy - města jako Kladno, Beroun a Mladá Boleslav zažívají růst cen nemovitostí. Typické jsou rodinné domy v satelitních obcích a starší byty v okresních městech. Ceny se pohybují výrazně níže než v Praze, ale stabilně rostou.
+    regionFaq:
+      - question: "Vykupujete nemovitosti v celém Středočeském kraji?"
+        answer: >-
+          Ano, pokrýváme celý Středočeský kraj - od Kladna a Berouna přes Kolín až po Příbram a Mladou Boleslav.
+      - question: "Jak rychle dokážete nacenit dům ve Středočeském kraji?"
+        answer: >-
+          Předběžnou nabídku na nemovitost ve Středočeském kraji připravíme do 24 hodin od dodání základních údajů.
+      - question: "Řešíte i satelitní obce kolem Prahy ve Středočeském kraji?"
+        answer: >-
+          Ano, právě satelitní obce ve Středočeském kraji jsou naší specialitou - Říčany, Jesenice, Hostivice a další lokality vykupujeme pravidelně.
   - key: jihocesky-kraj
+    themeColor: "emerald"
     seoTitle: "Prodej nemovitosti v Jihočeském kraji bez čekání | Férová nabídka"
     seoDescription: "Získejte férovou nabídku na výkup nemovitosti v Jihočeském kraji. Ozveme se do 15 minut."
     name: Jihočeský kraj
@@ -166,7 +193,20 @@ regions:
         quote:
           Líbilo se mi, že mi vysvětlili i daňové dopady prodeje. Celý proces byl přehledný
           a bez nátlaku.
+    marketInfo: >-
+      Jihočeský kraj nabízí pestrou škálu nemovitostí - od městských bytů v Českých Budějovicích a Táboře po rekreační chalupy u Lipna a na Šumavě. Ceny jsou nižší než celostátní průměr, ale u rekreačních objektů v turistických oblastech výrazně rostou.
+    regionFaq:
+      - question: "Vykupujete i rekreační objekty v Jihočeském kraji?"
+        answer: >-
+          Ano, v Jihočeském kraji pravidelně vykupujeme chalupy a chaty - zejména v oblastech kolem Lipna, Třeboňska a Šumavy.
+      - question: "Jaké typy nemovitostí nejčastěji vykupujete v Jihočeském kraji?"
+        answer: >-
+          V Jihočeském kraji nejčastěji řešíme rodinné domy v menších městech, byty v Českých Budějovicích a Táboře a rekreační objekty v turistických lokalitách.
+      - question: "Jak probíhá výkup nemovitosti v odlehlejší části Jihočeského kraje?"
+        answer: >-
+          I v odlehlejších částech Jihočeského kraje zajistíme osobní prohlídku a celý proces zvládneme s minimem osobních schůzek.
   - key: plzensky-kraj
+    themeColor: "amber"
     seoTitle: "Výkup nemovitostí v Plzeňském kraji | Nabídka do 24 hodin"
     seoDescription: "Potřebujete rychle prodat byt nebo dům v Plzeňském kraji? Nabídka do 24 h, právní servis a bez skrytých poplatků."
     name: Plzeňský kraj
@@ -216,7 +256,20 @@ regions:
         quote:
           Starší dům potřeboval rekonstrukci a realitky nás odmítaly. Tady jsme dostali
           realistickou nabídku bez slibů navíc.
+    marketInfo: >-
+      Plzeňský kraj je tahounem západočeského realitního trhu. Plzeň jako krajské město nabízí stabilní ceny bytů kolem 65 000 Kč/m², v Klatovech a Domažlicích jsou ceny výrazně nižší. Typické jsou panelové byty v Plzni a starší rodinné domy v okresních městech.
+    regionFaq:
+      - question: "Vykupujete nemovitosti i mimo Plzeň v Plzeňském kraji?"
+        answer: >-
+          Ano, v Plzeňském kraji působíme nejen v Plzni, ale i v Klatovech, Domažlicích, Rokycanech a dalších městech i obcích.
+      - question: "Jaká je situace na realitním trhu v Plzeňském kraji?"
+        answer: >-
+          Realitní trh v Plzeňském kraji je stabilní s rostoucí poptávkou v Plzni. Mimo krajské město jsou ceny dostupnější, což přitahuje kupce z Prahy.
+      - question: "Řešíte i starší domy s nedokončenou rekonstrukcí v Plzeňském kraji?"
+        answer: >-
+          Ano, v Plzeňském kraji běžně vykupujeme i nemovitosti ve špatném technickém stavu nebo s nedokončenými úpravami.
   - key: karlovarsky-kraj
+    themeColor: "rose"
     seoTitle: "Výkup i zadlužených nemovitostí v Karlovarském kraji | Konzultace zdarma"
     seoDescription: "Rychlý výkup nemovitostí v Karlovarském kraji. Řešíme i exekuce, dědictví a podíly. Nezávazná konzultace zdarma."
     name: Karlovarský kraj
@@ -269,7 +322,20 @@ regions:
         quote:
           Cením si férového jednání a rychlého právního servisu. Termíny platily přesně
           tak, jak byly domluvené.
+    marketInfo: >-
+      Karlovarský kraj má specifický realitní trh ovlivněný lázeňským turismem. V Karlových Varech se obchodují lázeňské apartmány a byty, v Chebu a Sokolově převažují starší panelové byty s nižšími cenami. Průměrné ceny patří k nejnižším v Česku.
+    regionFaq:
+      - question: "Vykupujete i lázeňské apartmány v Karlovarském kraji?"
+        answer: >-
+          Ano, v Karlovarském kraji máme zkušenosti s výkupem lázeňských apartmánů v Karlových Varech i Mariánských Lázních, včetně nebytových jednotek.
+      - question: "Jak ovlivňuje nižší cenová hladina výkup v Karlovarském kraji?"
+        answer: >-
+          I při nižších tržních cenách v Karlovarském kraji nabízíme férovou nabídku odpovídající aktuální situaci na místním trhu.
+      - question: "Řešíte i nemovitosti v příhraničí Karlovarského kraje?"
+        answer: >-
+          Ano, v Karlovarském kraji pokrýváme i příhraniční oblasti kolem Chebu a Aše, kde řešíme i specifické případy se zahraničními spoluvlastníky.
   - key: ustecky-kraj
+    themeColor: "indigo"
     seoTitle: "Rychlý výkup bytu a domu v Ústeckém kraji | Bez provize"
     seoDescription: "Získejte férovou nabídku na výkup nemovitosti v Ústeckém kraji. Ozveme se do 15 minut."
     name: Ústecký kraj
@@ -323,7 +389,20 @@ regions:
         quote:
           Vážím si lidského přístupu. Všechno mi vysvětlili bez složitých právnických
           formulací a drželi se domluvy.
+    marketInfo: >-
+      Ústecký kraj nabízí jedny z nejnižších cen nemovitostí v Česku - byty v Mostě a Chomutově se prodávají i pod 15 000 Kč/m². V Ústí nad Labem a Děčíně jsou ceny vyšší. Typické jsou panelové byty a starší rodinné domy, často s potřebou investice do oprav.
+    regionFaq:
+      - question: "Vykupujete i levnější nemovitosti v Ústeckém kraji?"
+        answer: >-
+          Ano, v Ústeckém kraji vykupujeme nemovitosti bez ohledu na cenovou hladinu - řešíme byty v Mostě, Chomutově i domy v Děčíně.
+      - question: "Jak řešíte zadlužené nemovitosti v Ústeckém kraji?"
+        answer: >-
+          V Ústeckém kraji máme bohaté zkušenosti s výkupem zadlužených nemovitostí. Koordinujeme komunikaci s exekutory i bankami.
+      - question: "Je výkup v Ústeckém kraji rychlejší díky nižším cenám?"
+        answer: >-
+          Rychlost výkupu v Ústeckém kraji závisí spíše na právním stavu nemovitosti než na ceně. Standardně zvládáme celý proces do 14 dnů.
   - key: liberecky-kraj
+    themeColor: "cyan"
     seoTitle: "Prodej nemovitosti v Libereckém kraji bez čekání | Férová nabídka"
     seoDescription: "Potřebujete rychle prodat byt nebo dům v Libereckém kraji? Nabídka do 24 h, právní servis a bez skrytých poplatků."
     name: Liberecký kraj
@@ -376,7 +455,20 @@ regions:
         quote:
           Oceňuji transparentní kalkulaci ceny. Od prvního hovoru jsem věděl, co se bude
           dít a kdy.
+    marketInfo: >-
+      Liberecký kraj kombinuje městské nemovitosti v Liberci a Jablonci nad Nisou s horskými apartmány v Jizerských horách a Krkonoších. Ceny bytů v Liberci se pohybují kolem 45 000 Kč/m², rekreační nemovitosti v horách jsou výrazně dražší.
+    regionFaq:
+      - question: "Vykupujete horské apartmány v Libereckém kraji?"
+        answer: >-
+          Ano, v Libereckém kraji pravidelně vykupujeme apartmány v Jizerských horách i západních Krkonoších, včetně objektů s krátkodobým pronájmem.
+      - question: "Jak probíhá ocenění nemovitosti v turistické oblasti Libereckého kraje?"
+        answer: >-
+          U nemovitostí v turistických lokalitách Libereckého kraje zohledňujeme sezónní výnosy, obsazenost a specifika horského trhu.
+      - question: "Pokrýváte i Českou Lípu a okolí v Libereckém kraji?"
+        answer: >-
+          Ano, v Libereckém kraji působíme i v České Lípě a okolí, kde řešíme zejména rodinné domy a starší byty.
   - key: kralovehradecky-kraj
+    themeColor: "violet"
     seoTitle: "Výkup nemovitostí v Královéhradeckém kraji | Nabídka do 24 hodin"
     seoDescription: "Rychlý výkup nemovitostí v Královéhradeckém kraji. Řešíme i exekuce, dědictví a podíly. Nezávazná konzultace zdarma."
     name: Královéhradecký kraj
@@ -430,7 +522,20 @@ regions:
         quote:
           Rychlý kontakt, jasná dohoda a žádné překvapení ve smlouvách. Přesně takový
           servis jsem očekával.
+    marketInfo: >-
+      Královéhradecký kraj má silný trh v Hradci Králové, kde ceny bytů dosahují 55 000 Kč/m². V Trutnově a Náchodě jsou ceny nižší. Region nabízí také horské nemovitosti v Krkonoších, kde ceny rekreačních objektů výrazně rostou.
+    regionFaq:
+      - question: "Vykupujete nemovitosti i v Krkonoších v Královéhradeckém kraji?"
+        answer: >-
+          Ano, v Královéhradeckém kraji řešíme i nemovitosti v Krkonoších - od apartmánů ve Špindlerově Mlýně po chalupy v podhůří.
+      - question: "Jak rychle zvládnete výkup bytu v Hradci Králové?"
+        answer: >-
+          Výkup bytu v Hradci Králové v Královéhradeckém kraji standardně zvládáme do 14 dnů od první konzultace.
+      - question: "Řešíte i podíly na nemovitostech v Královéhradeckém kraji?"
+        answer: >-
+          Ano, v Královéhradeckém kraji běžně vykupujeme spoluvlastnické podíly a koordinujeme jednání se všemi vlastníky.
   - key: pardubicky-kraj
+    themeColor: "lime"
     seoTitle: "Výkup i zadlužených nemovitostí v Pardubickém kraji | Konzultace zdarma"
     seoDescription: "Získejte férovou nabídku na výkup nemovitosti v Pardubickém kraji. Ozveme se do 15 minut."
     name: Pardubický kraj
@@ -482,7 +587,20 @@ regions:
         quote:
           Všechny kroky byly jasně vysvětlené a termíny seděly. Oceňuji profesionální, ale
           lidský přístup.
+    marketInfo: >-
+      Pardubický kraj nabízí dostupné bydlení s cenami bytů kolem 40 000 Kč/m² v Pardubicích. V Chrudimi, Svitavách a Ústí nad Orlicí jsou ceny ještě nižší. Převažují panelové byty a starší rodinné domy, poptávka stabilně roste díky dobré dopravní dostupnosti.
+    regionFaq:
+      - question: "Jaká je poptávka po nemovitostech v Pardubickém kraji?"
+        answer: >-
+          Pardubický kraj zažívá rostoucí zájem kupců díky dobré dostupnosti do Prahy. To se pozitivně odráží i na výkupních cenách.
+      - question: "Vykupujete i nemovitosti v menších městech Pardubického kraje?"
+        answer: >-
+          Ano, v Pardubickém kraji pokrýváme nejen Pardubice, ale i Chrudim, Svitavy, Ústí nad Orlicí a okolní obce.
+      - question: "Jak dlouho trvá výkup domu v Pardubickém kraji?"
+        answer: >-
+          Výkup rodinného domu v Pardubickém kraji trvá obvykle 7–14 dnů. U jednodušších případů i rychleji.
   - key: vysocina
+    themeColor: "green"
     seoTitle: "Rychlý výkup bytu a domu na Vysočině | Bez provize"
     seoDescription: "Potřebujete rychle prodat byt nebo dům na Vysočině? Nabídka do 24 h, právní servis a bez skrytých poplatků."
     name: Kraj Vysočina
@@ -535,7 +653,20 @@ regions:
         quote:
           Ocenil jsem, že řešili i technické detaily starší nemovitosti. Nabídka byla
           realistická a dobře vysvětlená.
+    marketInfo: >-
+      Kraj Vysočina patří k cenově dostupnějším regionům - byty v Jihlavě se prodávají kolem 35 000 Kč/m², v Třebíči a Havlíčkově Brodě ještě levněji. Typické jsou starší rodinné domy a venkovské usedlosti, prodeje na otevřeném trhu trvají často déle než v jiných krajích.
+    regionFaq:
+      - question: "Proč trvá prodej nemovitosti na Vysočině déle?"
+        answer: >-
+          Na Vysočině je menší poptávka oproti velkým městům, proto standardní prodej trvá déle. Náš výkup na Vysočině tento problém řeší - nabídku máte do 24 hodin.
+      - question: "Vykupujete i venkovské usedlosti na Vysočině?"
+        answer: >-
+          Ano, na Vysočině máme zkušenosti s výkupem venkovských usedlostí, starších domů i hospodářských stavení.
+      - question: "Jak stanovujete cenu nemovitosti na Vysočině?"
+        answer: >-
+          Cenu nemovitosti na Vysočině stanovujeme na základě aktuálních tržních dat, stavu objektu a lokality. Vždy zohledňujeme místní specifika regionu.
   - key: jihomoravsky-kraj
+    themeColor: "blue"
     seoTitle: "Výkup nemovitostí v Jihomoravském kraji | Nabídka do 24 hodin"
     seoDescription: "Rychlý výkup nemovitostí v Jihomoravském kraji. Řešíme i exekuce, dědictví a podíly. Nezávazná konzultace zdarma."
     name: Jihomoravský kraj
@@ -590,7 +721,20 @@ regions:
         quote:
           Měl jsem jasný přehled o všech krocích i termínech. Žádné sliby navíc, jen věcný
           a spolehlivý postup.
+    marketInfo: >-
+      Jihomoravský kraj je druhým nejdražším regionem v Česku díky Brnu, kde ceny bytů přesahují 90 000 Kč/m². Ve Znojmě, Břeclavi a Hodoníně jsou ceny výrazně nižší. Typické jsou panelové byty v Brně, vinařské usedlosti na jižní Moravě a rodinné domy v okresních městech.
+    regionFaq:
+      - question: "Jaké jsou výkupní ceny bytů v Brně v Jihomoravském kraji?"
+        answer: >-
+          Výkupní ceny bytů v Brně patří v Jihomoravském kraji k nejvyšším a odrážejí silnou poptávku. Nabízíme férovou cenu odpovídající aktuálnímu brněnskému trhu.
+      - question: "Vykupujete i mimo Brno v Jihomoravském kraji?"
+        answer: >-
+          Ano, v Jihomoravském kraji působíme i ve Znojmě, Břeclavi, Hodoníně a dalších městech i obcích na jižní Moravě.
+      - question: "Řešíte i nemovitosti s více zástavami v Jihomoravském kraji?"
+        answer: >-
+          Ano, v Jihomoravském kraji běžně řešíme případy s více zástavními právy, exekucemi i složitým spoluvlastnictvím.
   - key: olomoucky-kraj
+    themeColor: "orange"
     seoTitle: "Prodej nemovitosti v Olomouckém kraji bez čekání | Férová nabídka"
     seoDescription: "Potřebujete rychle prodat byt nebo dům v Olomouckém kraji? Nabídka do 24 h, právní servis a bez skrytých poplatků."
     name: Olomoucký kraj
@@ -640,7 +784,20 @@ regions:
         quote:
           Od začátku jsem měl jasno, v jaké fázi se obchod nachází. Oceňuji transparentní
           komunikaci i rychlost.
+    marketInfo: >-
+      Olomoucký kraj má stabilní realitní trh s centrem v univerzitním městě Olomouci, kde ceny bytů dosahují 50 000 Kč/m². V Přerově, Prostějově a Šumperku jsou ceny dostupnější. Převažují panelové byty a starší rodinné domy v okresních městech.
+    regionFaq:
+      - question: "Jak se liší ceny nemovitostí v Olomouci a zbytku Olomouckého kraje?"
+        answer: >-
+          V Olomouci jsou ceny nemovitostí v Olomouckém kraji nejvyšší díky univerzitě a silné poptávce. V Přerově či Šumperku jsou ceny o 30–40 % nižší.
+      - question: "Vykupujete nemovitosti po dědictví v Olomouckém kraji?"
+        answer: >-
+          Ano, v Olomouckém kraji často řešíme výkup zděděných nemovitostí. Pomáháme s celým procesem od dokončení dědického řízení po převod.
+      - question: "Jak rychle se ozvete po odeslání poptávky v Olomouckém kraji?"
+        answer: >-
+          Na poptávku z Olomouckého kraje reagujeme do 15 minut v pracovní době. Předběžnou nabídku připravíme do 24 hodin.
   - key: moravskoslezsky-kraj
+    themeColor: "slate"
     seoTitle: "Výkup i zadlužených nemovitostí v Moravskoslezském kraji | Konzultace zdarma"
     seoDescription: "Získejte férovou nabídku na výkup nemovitosti v Moravskoslezském kraji. Ozveme se do 15 minut."
     name: Moravskoslezský kraj
@@ -695,7 +852,20 @@ regions:
         quote:
           Profesionální servis od prvního hovoru po převod peněz. Oceňuji důslednost i
           jasně dané kroky.
+    marketInfo: >-
+      Moravskoslezský kraj nabízí široké cenové rozpětí - v Ostravě se byty prodávají kolem 35 000 Kč/m², v Karviné a Havířově výrazně levněji. Region se vyznačuje vysokým podílem panelových bytů a průmyslových nemovitostí. Poptávka v Ostravě stabilně roste.
+    regionFaq:
+      - question: "Vykupujete i levnější byty v Karviné v Moravskoslezském kraji?"
+        answer: >-
+          Ano, v Moravskoslezském kraji vykupujeme nemovitosti v celém cenovém spektru - od bytů v Karviné po domy v Ostravě a Frýdku-Místku.
+      - question: "Jak řešíte výkup v Moravskoslezském kraji při exekuci?"
+        answer: >-
+          V Moravskoslezském kraji máme bohaté zkušenosti s exekučními případy. Koordinujeme jednání s exekutory a zajistíme právně čistý převod.
+      - question: "Je výkup nemovitosti v Ostravě v Moravskoslezském kraji rychlejší?"
+        answer: >-
+          V Ostravě v Moravskoslezském kraji díky našemu silnému pokrytí zvládáme výkup často i do 7 dnů od první konzultace.
   - key: zlinsky-kraj
+    themeColor: "fuchsia"
     seoTitle: "Rychlý výkup bytu a domu ve Zlínském kraji | Bez provize"
     seoDescription: "Rychlý výkup nemovitostí ve Zlínském kraji. Řešíme i exekuce, dědictví a podíly. Nezávazná konzultace zdarma."
     name: Zlínský kraj
@@ -743,3 +913,16 @@ regions:
         quote:
           Potřebovali jsme prodat dům po rodičích. Tým nám pomohl nastavit postup tak, aby
           byl bezpečný pro celou rodinu.
+
+    marketInfo: >-
+      Zlínský kraj je regionem s rozmanitým trhem - ve Zlíně a Uherském Hradišti se ceny bytů pohybují kolem 40 000 Kč/m², v Kroměříži a Vsetíně mírně nižší. Typické jsou cihlové byty v centru Zlína, rodinné domy na Valašsku a starší nemovitosti v okresních městech.
+    regionFaq:
+      - question: "Vykupujete nemovitosti i na Valašsku ve Zlínském kraji?"
+        answer: >-
+          Ano, ve Zlínském kraji pokrýváme i Valašsko - Vsetín, Rožnov pod Radhoštěm a okolní obce, kde řešíme zejména starší rodinné domy.
+      - question: "Jaká je situace na realitním trhu ve Zlínském kraji?"
+        answer: >-
+          Realitní trh ve Zlínském kraji je stabilní s mírným růstem cen. Zlín a Uherské Hradiště jsou nejžádanějšími lokalitami regionu.
+      - question: "Jak probíhá výkup nemovitosti ve Zlínském kraji krok za krokem?"
+        answer: >-
+          Výkup ve Zlínském kraji začíná bezplatnou konzultací, následuje ocenění do 24 hodin, podpis smlouvy a vyplacení peněz - vše obvykle do 14 dnů.

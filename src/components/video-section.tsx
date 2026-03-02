@@ -48,7 +48,7 @@ function YouTubeEmbed({ videoId }: { videoId: string }): ReactElement {
       <button
         type="button"
         onClick={() => setLoaded(true)}
-        className="group relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-2xl bg-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2"
+        className="group relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-2xl bg-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
         aria-label="Přehrát video"
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -73,7 +73,7 @@ function YouTubeEmbed({ videoId }: { videoId: string }): ReactElement {
     <div className="relative aspect-video w-full overflow-hidden rounded-2xl">
       <iframe
         src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`}
-        title="Video — Jak funguje výkup nemovitostí"
+        title="Video - Jak funguje výkup nemovitostí"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
         className="absolute inset-0 h-full w-full"
@@ -89,7 +89,7 @@ export function VideoSection({ videoUrl }: VideoSectionProps): ReactElement {
   const videoJsonLd = {
     "@context": "https://schema.org",
     "@type": "VideoObject",
-    name: "Jak funguje výkup nemovitostí — Výkup Regiony CZ",
+    name: "Jak funguje výkup nemovitostí - Výkup Regiony CZ",
     description:
       "Podívejte se, jak probíhá rychlý a férový výkup nemovitostí. Od prvního kontaktu po peníze na účtu.",
     // TODO: Replace with actual video URL when available

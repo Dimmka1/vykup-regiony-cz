@@ -12,13 +12,15 @@ import { safeJsonLd } from "@/lib/jsonld";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
+import { AllRegionsSection } from "@/components/all-regions-section";
+import { getRequestHost } from "@/lib/request-host";
 
 export const metadata: Metadata = {
   alternates: {
     canonical: "https://vykoupim-nemovitost.cz/vykup-spoluvlastnickeho-podilu",
   },
   title:
-    "Výkup spoluvlastnického podílu na nemovitosti — férová cena bez soudů",
+    "Výkup spoluvlastnického podílu na nemovitosti - férová cena bez soudů",
   description:
     "Vykoupíme váš spoluvlastnický podíl na nemovitosti rychle a bez soudních sporů. Férová cena, právní servis zdarma, výplata do 7 dnů. Bez provize.",
 };
@@ -83,7 +85,8 @@ const STEPS: readonly Step[] = [
   },
 ] as const;
 
-export default function VykupSpoluvlastnickehoPodilu(): React.ReactElement {
+export default async function VykupSpoluvlastnickehoPodilu(): Promise<React.ReactElement> {
+  const host = await getRequestHost();
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -136,7 +139,7 @@ export default function VykupSpoluvlastnickehoPodilu(): React.ReactElement {
             Výkup spoluvlastnického podílu na nemovitosti
           </h1>
           <p className="mt-4 text-lg text-slate-600">
-            Spoluvlastnictví nemovitosti se může snadno proměnit v noční můru —
+            Spoluvlastnictví nemovitosti se může snadno proměnit v noční můru -
             neshody ohledně správy, oprav nebo budoucnosti nemovitosti jsou na
             denním pořádku. Pokud chcete ze spoluvlastnictví vystoupit rychle a
             bez soudních sporů, jsme tu pro vás.
@@ -158,7 +161,7 @@ export default function VykupSpoluvlastnickehoPodilu(): React.ReactElement {
           <p className="mt-4 text-slate-600">
             Spoluvlastnictví často vzniká při dědění, kdy nemovitost zdědí více
             dědiců, nebo po rozvodu, kdy se manželé nedokáží dohodnout na
-            vypořádání. V obou případech nabízíme elegantní řešení — vykoupíme
+            vypořádání. V obou případech nabízíme elegantní řešení - vykoupíme
             váš podíl a vy získáte finanční prostředky bez dlouhých soudních
             řízení.
           </p>
@@ -317,6 +320,8 @@ export default function VykupSpoluvlastnickehoPodilu(): React.ReactElement {
           />
         </div>
       </section>
+
+      <AllRegionsSection currentHost={host} />
     </>
   );
 }

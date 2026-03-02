@@ -14,10 +14,12 @@ import { safeJsonLd } from "@/lib/jsonld";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
+import { AllRegionsSection } from "@/components/all-regions-section";
+import { getRequestHost } from "@/lib/request-host";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://vykoupim-nemovitost.cz/vykup-pozemku" },
-  title: "Výkup pozemků — rychlý prodej pozemku za hotové",
+  title: "Výkup pozemků - rychlý prodej pozemku za hotové",
   description:
     "Vykoupíme váš pozemek rychle a bez provize. Stavební, zemědělské i lesní pozemky. Férová cena, vyplacení do 7 dnů. Celá ČR.",
 };
@@ -41,7 +43,7 @@ const FAQ_ITEMS: readonly FaqItem[] = [
   {
     question: "Co když je pozemek ve spoluvlastnictví?",
     answer:
-      "Pozemky ve spoluvlastnictví vykupujeme běžně. Můžeme vykoupit váš podíl, nebo koordinovat prodej se všemi spoluvlastníky — záleží na vaší situaci.",
+      "Pozemky ve spoluvlastnictví vykupujeme běžně. Můžeme vykoupit váš podíl, nebo koordinovat prodej se všemi spoluvlastníky - záleží na vaší situaci.",
   },
   {
     question: "Jak rychle proběhne výkup pozemku?",
@@ -112,7 +114,8 @@ const STEPS: readonly {
   },
 ] as const;
 
-export default function VykupPozemkuPage(): React.ReactElement {
+export default async function VykupPozemkuPage(): Promise<React.ReactElement> {
+  const host = await getRequestHost();
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -126,7 +129,7 @@ export default function VykupPozemkuPage(): React.ReactElement {
   const webPageJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name: "Výkup pozemků — rychlý prodej pozemku za hotové",
+    name: "Výkup pozemků - rychlý prodej pozemku za hotové",
     description: metadata.description,
     url: "https://vykup-regiony.cz/vykup-pozemku",
     isPartOf: { "@type": "WebSite", url: "https://vykup-regiony.cz" },
@@ -154,7 +157,7 @@ export default function VykupPozemkuPage(): React.ReactElement {
             />
           </div>
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Výkup pozemků a parcel — rychle, férově a bez provize
+            Výkup pozemků a parcel - rychle, férově a bez provize
           </h1>
           <p className="mt-4 text-lg text-slate-600">
             Chcete prodat pozemek rychle a bez zbytečných komplikací? Vykoupíme
@@ -165,7 +168,7 @@ export default function VykupPozemkuPage(): React.ReactElement {
             Specializujeme se na výkup všech typů pozemků v celé České
             republice. Vykupujeme stavební parcely, zemědělskou půdu, lesní
             pozemky, zahrady i parcely se složitými vlastnickými vztahy.
-            Nezáleží na velikosti ani lokalitě — každý pozemek posoudíme
+            Nezáleží na velikosti ani lokalitě - každý pozemek posoudíme
             individuálně.
           </p>
           <p className="mt-4 text-slate-600">
@@ -181,7 +184,7 @@ export default function VykupPozemkuPage(): React.ReactElement {
           </p>
           <p className="mt-4 text-slate-600">
             Ať už vlastníte stavební parcelu v centru města, zemědělské pole na
-            venkově nebo lesní pozemek v horách — ozvěte se nám. Nabídneme vám
+            venkově nebo lesní pozemek v horách - ozvěte se nám. Nabídneme vám
             férovou cenu a vyřešíme vše za vás. Konzultace je zdarma a zcela
             nezávazná.
           </p>
@@ -330,6 +333,8 @@ export default function VykupPozemkuPage(): React.ReactElement {
           <RelatedArticles articles={getRelatedArticles("vykup-pozemku")} />
         </div>
       </section>
+
+      <AllRegionsSection currentHost={host} />
     </>
   );
 }

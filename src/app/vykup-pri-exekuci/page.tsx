@@ -5,10 +5,12 @@ import { safeJsonLd } from "@/lib/jsonld";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
+import { AllRegionsSection } from "@/components/all-regions-section";
+import { getRequestHost } from "@/lib/request-host";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://vykoupim-nemovitost.cz/vykup-pri-exekuci" },
-  title: "Výkup nemovitosti při exekuci — rychlé řešení bez starostí",
+  title: "Výkup nemovitosti při exekuci - rychlé řešení bez starostí",
   description:
     "Prodejte nemovitost zatíženou exekucí rychle a diskrétně. Vyřešíme dluhy, uhradíme exekuci z kupní ceny a vyplatíme vás do 7 dnů. Bez provize.",
 };
@@ -72,7 +74,8 @@ const STEPS: readonly Step[] = [
   },
 ] as const;
 
-export default function VykupPriExekuciPage(): React.ReactElement {
+export default async function VykupPriExekuciPage(): Promise<React.ReactElement> {
+  const host = await getRequestHost();
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -105,7 +108,7 @@ export default function VykupPriExekuciPage(): React.ReactElement {
           </h1>
           <p className="mt-4 text-lg text-slate-600">
             Exekuce na nemovitost je stresující situace, ale existuje cesta ven.
-            Pomůžeme vám nemovitost rychle prodat, uhradit dluhy a začít znovu —
+            Pomůžeme vám nemovitost rychle prodat, uhradit dluhy a začít znovu -
             bez zbytečných průtahů a bez provize.
           </p>
           <p className="mt-4 text-slate-600">
@@ -120,7 +123,7 @@ export default function VykupPriExekuciPage(): React.ReactElement {
             jedním krokem.
           </p>
           <p className="mt-4 text-slate-600">
-            Celý proces probíhá diskrétně — vaši sousedé ani okolí se o prodeji
+            Celý proces probíhá diskrétně - vaši sousedé ani okolí se o prodeji
             nedozví. Veškeré náklady na právní služby, odhad a převod hradíme
             my.
           </p>
@@ -232,6 +235,8 @@ export default function VykupPriExekuciPage(): React.ReactElement {
           <RelatedArticles articles={getRelatedArticles("vykup-pri-exekuci")} />
         </div>
       </section>
+
+      <AllRegionsSection currentHost={host} />
     </>
   );
 }

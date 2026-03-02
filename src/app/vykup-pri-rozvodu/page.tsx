@@ -12,10 +12,12 @@ import { safeJsonLd } from "@/lib/jsonld";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
+import { AllRegionsSection } from "@/components/all-regions-section";
+import { getRequestHost } from "@/lib/request-host";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://vykoupim-nemovitost.cz/vykup-pri-rozvodu" },
-  title: "Výkup nemovitosti při rozvodu — rychlé vypořádání majetku",
+  title: "Výkup nemovitosti při rozvodu - rychlé vypořádání majetku",
   description:
     "Řešíte rozvod a potřebujete rychle prodat společnou nemovitost? Vykoupíme váš byt nebo dům za férovou cenu. Diskrétně a bez provize.",
 };
@@ -34,7 +36,7 @@ const FAQ_ITEMS: readonly FaqItem[] = [
   {
     question: "Jak se rozdělí peníze z prodeje?",
     answer:
-      "Rozdělení závisí na dohodě obou manželů nebo na rozhodnutí soudu o vypořádání společného jmění. Peníze z prodeje převedeme podle vaší dohody — každému jeho podíl na úschovní účet.",
+      "Rozdělení závisí na dohodě obou manželů nebo na rozhodnutí soudu o vypořádání společného jmění. Peníze z prodeje převedeme podle vaší dohody - každému jeho podíl na úschovní účet.",
   },
   {
     question: "Jak rychle můžeme nemovitost prodat?",
@@ -80,7 +82,8 @@ const STEPS: readonly Step[] = [
   },
 ] as const;
 
-export default function VykupPriRozvoduPage(): React.ReactElement {
+export default async function VykupPriRozvoduPage(): Promise<React.ReactElement> {
+  const host = await getRequestHost();
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -123,7 +126,7 @@ export default function VykupPriRozvoduPage(): React.ReactElement {
           </p>
           <p className="mt-4 text-slate-600">
             Nabídneme férovou cenu odpovídající 80–90 % tržní hodnoty. Peníze z
-            prodeje rozdělíme podle vaší dohody nebo rozhodnutí soudu — každému
+            prodeje rozdělíme podle vaší dohody nebo rozhodnutí soudu - každému
             jeho podíl na úschovní účet.
           </p>
           <p className="mt-4 text-slate-600">
@@ -239,6 +242,8 @@ export default function VykupPriRozvoduPage(): React.ReactElement {
           <RelatedArticles articles={getRelatedArticles("vykup-pri-rozvodu")} />
         </div>
       </section>
+
+      <AllRegionsSection currentHost={host} />
     </>
   );
 }

@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Star, ChevronRight, User } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
+import { AllRegionsSectionClient } from "@/components/all-regions-section-client";
 
 interface Review {
   name: string;
@@ -70,7 +71,7 @@ function ReviewCard({ review }: { review: Review }) {
   return (
     <article className="flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md">
       <div className="flex items-center gap-4">
-        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-teal-100 text-teal-700">
+        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--theme-100)] text-[var(--theme-700)]">
           <User className="h-6 w-6" />
         </div>
         <div>
@@ -127,7 +128,7 @@ export default function ReferencePage() {
       />
 
       {/* Hero */}
-      <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-teal-900 pb-16 pt-28 text-white">
+      <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-[var(--theme-900)] pb-16 pt-28 text-white">
         <div className="mx-auto max-w-7xl px-6">
           {/* Breadcrumbs */}
           <nav aria-label="Drobečková navigace" className="mb-6">
@@ -205,19 +206,19 @@ export default function ReferencePage() {
             <Link
               key={cs.href}
               href={cs.href}
-              className="group flex flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:border-teal-300 hover:shadow-md"
+              className="group flex flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:border-[var(--theme-200)] hover:shadow-md"
             >
-              <span className="mb-2 inline-flex w-fit rounded-full bg-teal-100 px-3 py-1 text-xs font-semibold text-teal-700">
+              <span className="mb-2 inline-flex w-fit rounded-full bg-[var(--theme-100)] px-3 py-1 text-xs font-semibold text-[var(--theme-700)]">
                 {cs.badge}
               </span>
-              <h3 className="text-lg font-bold text-slate-900 group-hover:text-teal-700">
+              <h3 className="text-lg font-bold text-slate-900 group-hover:text-[var(--theme-700)]">
                 {cs.title}
               </h3>
               <p className="mt-1 text-sm text-slate-500">{cs.name}</p>
               <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">
                 {cs.summary}
               </p>
-              <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-teal-700">
+              <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[var(--theme-700)]">
                 Číst příběh
                 <ChevronRight className="h-4 w-4" />
               </span>
@@ -237,7 +238,7 @@ export default function ReferencePage() {
               onClick={() => setActiveRegion(region)}
               className={`rounded-full px-5 py-2 text-sm font-medium transition ${
                 activeRegion === region
-                  ? "bg-teal-700 text-white shadow-sm"
+                  ? "bg-[var(--theme-700)] text-white shadow-sm"
                   : "bg-slate-100 text-slate-600 hover:bg-slate-200"
               }`}
             >
@@ -259,6 +260,8 @@ export default function ReferencePage() {
           </p>
         )}
       </section>
+
+      <AllRegionsSectionClient />
     </>
   );
 }

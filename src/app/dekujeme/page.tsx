@@ -14,10 +14,13 @@ export default function DekujemePage(): ReactElement {
   }, []);
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-gradient-to-b from-teal-50 to-white px-4 py-16">
+    <main className="flex min-h-screen items-center justify-center bg-gradient-to-b from-[var(--theme-50)] to-white px-4 py-16">
       <div className="mx-auto max-w-lg text-center">
-        <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-teal-100">
-          <CheckCircle className="h-10 w-10 text-teal-600" aria-hidden="true" />
+        <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-[var(--theme-100)]">
+          <CheckCircle
+            className="h-10 w-10 text-[var(--theme-600)]"
+            aria-hidden="true"
+          />
         </div>
 
         <h1 className="mb-3 text-3xl font-bold text-slate-900">
@@ -35,7 +38,7 @@ export default function DekujemePage(): ReactElement {
           </h2>
           <ol className="space-y-4">
             <li className="flex items-start gap-3">
-              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-teal-100 text-sm font-bold text-teal-700">
+              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--theme-100)] text-sm font-bold text-[var(--theme-700)]">
                 1
               </span>
               <span className="text-slate-700">
@@ -43,19 +46,19 @@ export default function DekujemePage(): ReactElement {
               </span>
             </li>
             <li className="flex items-start gap-3">
-              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-teal-100 text-sm font-bold text-teal-700">
+              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--theme-100)] text-sm font-bold text-[var(--theme-700)]">
                 2
               </span>
               <span className="text-slate-700">
-                Zavoláme vám s konkrétní cenovou nabídkou — nezávazně.
+                Zavoláme vám s konkrétní cenovou nabídkou - nezávazně.
               </span>
             </li>
             <li className="flex items-start gap-3">
-              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-teal-100 text-sm font-bold text-teal-700">
+              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--theme-100)] text-sm font-bold text-[var(--theme-700)]">
                 3
               </span>
               <span className="text-slate-700">
-                Pokud souhlasíte, vyřídíme vše za vás — rychle a bez starostí.
+                Pokud souhlasíte, vyřídíme vše za vás - rychle a bez starostí.
               </span>
             </li>
           </ol>
@@ -91,7 +94,7 @@ export default function DekujemePage(): ReactElement {
         <div className="mt-8">
           <Link
             href="/"
-            className="inline-flex items-center justify-center rounded bg-teal-600 px-6 py-3 text-base font-semibold text-white transition hover:bg-teal-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2"
+            className="inline-flex items-center justify-center rounded bg-[var(--theme-600)] px-6 py-3 text-base font-semibold text-white transition hover:bg-[var(--theme-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
           >
             Zpět na hlavní stránku
           </Link>

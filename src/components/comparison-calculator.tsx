@@ -81,7 +81,7 @@ export function ComparisonCalculator(): ReactElement {
     <section className="py-16" id="srovnani">
       <div className="mx-auto max-w-7xl px-6">
         <h2 className="text-center text-2xl font-bold text-slate-900 sm:text-3xl">
-          Výkup vs. Realitka — kolik ušetříte?
+          Výkup vs. Realitka - kolik ušetříte?
         </h2>
         <p className="mx-auto mt-2 max-w-2xl text-center text-slate-600">
           Zadejte předpokládanou cenu nemovitosti a podívejte se na rozdíl.
@@ -103,7 +103,7 @@ export function ComparisonCalculator(): ReactElement {
               placeholder="např. 3 000 000"
               value={rawValue}
               onChange={(e) => setRawValue(e.target.value)}
-              className="block w-full rounded-xl border border-slate-300 px-4 py-3 pr-14 text-lg font-semibold text-slate-900 placeholder:text-slate-400 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/30"
+              className="focus:ring-[var(--theme-500)]/30 block w-full rounded-xl border border-slate-300 px-4 py-3 pr-14 text-lg font-semibold text-slate-900 placeholder:text-slate-400 focus:border-[var(--theme-500)] focus:outline-none focus:ring-2"
             />
             <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-sm font-medium text-slate-400">
               Kč
@@ -116,7 +116,7 @@ export function ComparisonCalculator(): ReactElement {
           {/* Header */}
           <div className="grid grid-cols-3 bg-slate-50 text-center text-sm font-semibold">
             <div className="px-4 py-3 text-left text-slate-500">Kritérium</div>
-            <div className="border-l border-slate-200 bg-teal-50 px-4 py-3 text-teal-700">
+            <div className="border-l border-slate-200 bg-[var(--theme-50)] px-4 py-3 text-[var(--theme-700)]">
               <span className="flex items-center justify-center gap-1">
                 <Check className="h-4 w-4" /> Výkup
               </span>
@@ -136,7 +136,7 @@ export function ComparisonCalculator(): ReactElement {
                 <row.icon className="hidden h-4 w-4 shrink-0 text-slate-400 sm:block" />
                 {row.label}
               </div>
-              <div className="flex items-center justify-center border-l border-slate-100 bg-teal-50/50 px-4 py-3 font-medium text-teal-700">
+              <div className="bg-[var(--theme-50)]/50 flex items-center justify-center border-l border-slate-100 px-4 py-3 font-medium text-[var(--theme-700)]">
                 {row.vykup}
               </div>
               <div className="flex items-center justify-center border-l border-slate-100 px-4 py-3 text-slate-500">
@@ -147,16 +147,16 @@ export function ComparisonCalculator(): ReactElement {
 
           {/* Net outcome row */}
           {price > 0 && (
-            <div className="grid grid-cols-3 border-t-2 border-teal-200 text-sm font-semibold">
+            <div className="grid grid-cols-3 border-t-2 border-[var(--theme-200)] text-sm font-semibold">
               <div className="flex items-center px-4 py-4 text-slate-900">
                 Čistý výnos
               </div>
-              <div className="flex flex-col items-center justify-center border-l border-teal-200 bg-teal-50 px-4 py-4 text-teal-700">
+              <div className="flex flex-col items-center justify-center border-l border-[var(--theme-200)] bg-[var(--theme-50)] px-4 py-4 text-[var(--theme-700)]">
                 <span className="text-base sm:text-lg">
                   {formatCzk(netVykup)}
                 </span>
               </div>
-              <div className="flex flex-col items-center justify-center border-l border-teal-200 px-4 py-4 text-slate-500">
+              <div className="flex flex-col items-center justify-center border-l border-[var(--theme-200)] px-4 py-4 text-slate-500">
                 <span className="text-base sm:text-lg">
                   {formatCzk(netRealitkaMin)}
                 </span>
@@ -170,12 +170,14 @@ export function ComparisonCalculator(): ReactElement {
 
         {/* Savings highlight */}
         {price > 0 && (
-          <div className="mx-auto mt-6 max-w-3xl rounded-2xl border border-teal-200 bg-teal-50 p-6 text-center">
-            <p className="text-sm text-teal-700">S přímým výkupem ušetříte</p>
-            <p className="mt-1 text-2xl font-bold text-teal-800 sm:text-3xl">
+          <div className="mx-auto mt-6 max-w-3xl rounded-2xl border border-[var(--theme-200)] bg-[var(--theme-50)] p-6 text-center">
+            <p className="text-sm text-[var(--theme-700)]">
+              S přímým výkupem ušetříte
+            </p>
+            <p className="mt-1 text-2xl font-bold text-[var(--theme-800)] sm:text-3xl">
               {formatCzk(commissionMin)} – {formatCzk(commissionMax)}
             </p>
-            <p className="mt-1 text-xs text-teal-600">
+            <p className="mt-1 text-xs text-[var(--theme-600)]">
               oproti prodeji přes realitní kancelář
             </p>
           </div>

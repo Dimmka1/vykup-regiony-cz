@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Menu, Phone, X } from "lucide-react";
 
-/** Region keys that have a dark hero — header stays transparent */
+/** Region keys that have a dark hero - header stays transparent */
 const REGION_KEYS = new Set([
   "praha",
   "stredocesky-kraj",
@@ -63,7 +63,7 @@ export function SiteHeader({ phone = "+420 800 123 001" }: SiteHeaderProps) {
             className={`inline-flex min-h-[44px] items-center text-xl font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 ${
               showSolid ? "text-slate-900" : "text-white"
             }`}
-            aria-label="Výkup Nemovitostí — domovská stránka"
+            aria-label="Výkup Nemovitostí - domovská stránka"
           >
             Výkup Nemovitostí
           </Link>

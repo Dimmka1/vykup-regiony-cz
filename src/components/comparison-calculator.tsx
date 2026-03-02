@@ -81,7 +81,7 @@ export function ComparisonCalculator(): ReactElement {
     <section className="py-16" id="srovnani">
       <div className="mx-auto max-w-7xl px-6">
         <h2 className="text-center text-2xl font-bold text-slate-900 sm:text-3xl">
-          Výkup vs. Realitka — kolik ušetříte?
+          Výkup vs. Realitka - kolik ušetříte?
         </h2>
         <p className="mx-auto mt-2 max-w-2xl text-center text-slate-600">
           Zadejte předpokládanou cenu nemovitosti a podívejte se na rozdíl.

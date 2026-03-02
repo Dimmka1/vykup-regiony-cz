@@ -45,7 +45,7 @@ export default async function KrajePage() {
           <Breadcrumbs items={[{ label: "Kde působíme", href: "/kraje" }]} />
 
           <h1 className="mt-6 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Kde působíme — výkup nemovitostí v krajích ČR
+            Kde působíme - výkup nemovitostí v krajích ČR
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-slate-600">
             Vykupujeme nemovitosti ve všech 14 krajích České republiky. Vyberte

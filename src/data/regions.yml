@@ -61,14 +61,14 @@ regions:
           Ocenil jsem, že tým převzal komunikaci se správcem domu i bankou. Nemusel jsem
           obíhat úřady a peníze přišly podle dohody.
     marketInfo: >-
-      Pražský realitní trh patří k nejdražším v Česku — průměrná cena bytu přesahuje 120 000 Kč/m². Nejvíce se obchoduje s byty na Praze 4, 5 a 9, kde poptávka stabilně roste. Typické jsou panelové byty 2+1 a 3+1, ale i činžovní jednotky v širším centru.
+      Pražský realitní trh patří k nejdražším v Česku - průměrná cena bytu přesahuje 120 000 Kč/m². Nejvíce se obchoduje s byty na Praze 4, 5 a 9, kde poptávka stabilně roste. Typické jsou panelové byty 2+1 a 3+1, ale i činžovní jednotky v širším centru.
     regionFaq:
       - question: "Jaká je průměrná doba prodeje nemovitosti v Praze?"
         answer: >-
-          V Praze se nemovitosti prodávají rychleji než v jiných krajích — běžně do 2–4 týdnů. U našeho výkupu v Praze to zvládneme ještě rychleji, často do 7 dnů.
+          V Praze se nemovitosti prodávají rychleji než v jiných krajích - běžně do 2–4 týdnů. U našeho výkupu v Praze to zvládneme ještě rychleji, často do 7 dnů.
       - question: "Vykupujete byty ve všech pražských městských částech?"
         answer: >-
-          Ano, působíme ve všech městských částech Prahy — od centra přes Prahu 4, 5, 9 až po okrajové části jako Praha 12 nebo Praha-Čakovice.
+          Ano, působíme ve všech městských částech Prahy - od centra přes Prahu 4, 5, 9 až po okrajové části jako Praha 12 nebo Praha-Čakovice.
       - question: "Jak se liší výkupní cena v Praze oproti jiným krajům?"
         answer: >-
           Výkupní ceny v Praze jsou nejvyšší v Česku díky silné poptávce. I při rychlém výkupu v Praze nabízíme ceny odpovídající aktuálnímu trhu.
@@ -128,17 +128,17 @@ regions:
           Měl jsem hypotéku i věcné břemeno, přesto našli řešení. Komunikace byla věcná a
           férová od začátku do konce.
     marketInfo: >-
-      Středočeský kraj je silně ovlivněn blízkostí Prahy — města jako Kladno, Beroun a Mladá Boleslav zažívají růst cen nemovitostí. Typické jsou rodinné domy v satelitních obcích a starší byty v okresních městech. Ceny se pohybují výrazně níže než v Praze, ale stabilně rostou.
+      Středočeský kraj je silně ovlivněn blízkostí Prahy - města jako Kladno, Beroun a Mladá Boleslav zažívají růst cen nemovitostí. Typické jsou rodinné domy v satelitních obcích a starší byty v okresních městech. Ceny se pohybují výrazně níže než v Praze, ale stabilně rostou.
     regionFaq:
       - question: "Vykupujete nemovitosti v celém Středočeském kraji?"
         answer: >-
-          Ano, pokrýváme celý Středočeský kraj — od Kladna a Berouna přes Kolín až po Příbram a Mladou Boleslav.
+          Ano, pokrýváme celý Středočeský kraj - od Kladna a Berouna přes Kolín až po Příbram a Mladou Boleslav.
       - question: "Jak rychle dokážete nacenit dům ve Středočeském kraji?"
         answer: >-
           Předběžnou nabídku na nemovitost ve Středočeském kraji připravíme do 24 hodin od dodání základních údajů.
       - question: "Řešíte i satelitní obce kolem Prahy ve Středočeském kraji?"
         answer: >-
-          Ano, právě satelitní obce ve Středočeském kraji jsou naší specialitou — Říčany, Jesenice, Hostivice a další lokality vykupujeme pravidelně.
+          Ano, právě satelitní obce ve Středočeském kraji jsou naší specialitou - Říčany, Jesenice, Hostivice a další lokality vykupujeme pravidelně.
   - key: jihocesky-kraj
     themeColor: "emerald"
     seoTitle: "Prodej nemovitosti v Jihočeském kraji bez čekání | Férová nabídka"
@@ -194,11 +194,11 @@ regions:
           Líbilo se mi, že mi vysvětlili i daňové dopady prodeje. Celý proces byl přehledný
           a bez nátlaku.
     marketInfo: >-
-      Jihočeský kraj nabízí pestrou škálu nemovitostí — od městských bytů v Českých Budějovicích a Táboře po rekreační chalupy u Lipna a na Šumavě. Ceny jsou nižší než celostátní průměr, ale u rekreačních objektů v turistických oblastech výrazně rostou.
+      Jihočeský kraj nabízí pestrou škálu nemovitostí - od městských bytů v Českých Budějovicích a Táboře po rekreační chalupy u Lipna a na Šumavě. Ceny jsou nižší než celostátní průměr, ale u rekreačních objektů v turistických oblastech výrazně rostou.
     regionFaq:
       - question: "Vykupujete i rekreační objekty v Jihočeském kraji?"
         answer: >-
-          Ano, v Jihočeském kraji pravidelně vykupujeme chalupy a chaty — zejména v oblastech kolem Lipna, Třeboňska a Šumavy.
+          Ano, v Jihočeském kraji pravidelně vykupujeme chalupy a chaty - zejména v oblastech kolem Lipna, Třeboňska a Šumavy.
       - question: "Jaké typy nemovitostí nejčastěji vykupujete v Jihočeském kraji?"
         answer: >-
           V Jihočeském kraji nejčastěji řešíme rodinné domy v menších městech, byty v Českých Budějovicích a Táboře a rekreační objekty v turistických lokalitách.
@@ -390,11 +390,11 @@ regions:
           Vážím si lidského přístupu. Všechno mi vysvětlili bez složitých právnických
           formulací a drželi se domluvy.
     marketInfo: >-
-      Ústecký kraj nabízí jedny z nejnižších cen nemovitostí v Česku — byty v Mostě a Chomutově se prodávají i pod 15 000 Kč/m². V Ústí nad Labem a Děčíně jsou ceny vyšší. Typické jsou panelové byty a starší rodinné domy, často s potřebou investice do oprav.
+      Ústecký kraj nabízí jedny z nejnižších cen nemovitostí v Česku - byty v Mostě a Chomutově se prodávají i pod 15 000 Kč/m². V Ústí nad Labem a Děčíně jsou ceny vyšší. Typické jsou panelové byty a starší rodinné domy, často s potřebou investice do oprav.
     regionFaq:
       - question: "Vykupujete i levnější nemovitosti v Ústeckém kraji?"
         answer: >-
-          Ano, v Ústeckém kraji vykupujeme nemovitosti bez ohledu na cenovou hladinu — řešíme byty v Mostě, Chomutově i domy v Děčíně.
+          Ano, v Ústeckém kraji vykupujeme nemovitosti bez ohledu na cenovou hladinu - řešíme byty v Mostě, Chomutově i domy v Děčíně.
       - question: "Jak řešíte zadlužené nemovitosti v Ústeckém kraji?"
         answer: >-
           V Ústeckém kraji máme bohaté zkušenosti s výkupem zadlužených nemovitostí. Koordinujeme komunikaci s exekutory i bankami.
@@ -527,7 +527,7 @@ regions:
     regionFaq:
       - question: "Vykupujete nemovitosti i v Krkonoších v Královéhradeckém kraji?"
         answer: >-
-          Ano, v Královéhradeckém kraji řešíme i nemovitosti v Krkonoších — od apartmánů ve Špindlerově Mlýně po chalupy v podhůří.
+          Ano, v Královéhradeckém kraji řešíme i nemovitosti v Krkonoších - od apartmánů ve Špindlerově Mlýně po chalupy v podhůří.
       - question: "Jak rychle zvládnete výkup bytu v Hradci Králové?"
         answer: >-
           Výkup bytu v Hradci Králové v Královéhradeckém kraji standardně zvládáme do 14 dnů od první konzultace.
@@ -654,11 +654,11 @@ regions:
           Ocenil jsem, že řešili i technické detaily starší nemovitosti. Nabídka byla
           realistická a dobře vysvětlená.
     marketInfo: >-
-      Kraj Vysočina patří k cenově dostupnějším regionům — byty v Jihlavě se prodávají kolem 35 000 Kč/m², v Třebíči a Havlíčkově Brodě ještě levněji. Typické jsou starší rodinné domy a venkovské usedlosti, prodeje na otevřeném trhu trvají často déle než v jiných krajích.
+      Kraj Vysočina patří k cenově dostupnějším regionům - byty v Jihlavě se prodávají kolem 35 000 Kč/m², v Třebíči a Havlíčkově Brodě ještě levněji. Typické jsou starší rodinné domy a venkovské usedlosti, prodeje na otevřeném trhu trvají často déle než v jiných krajích.
     regionFaq:
       - question: "Proč trvá prodej nemovitosti na Vysočině déle?"
         answer: >-
-          Na Vysočině je menší poptávka oproti velkým městům, proto standardní prodej trvá déle. Náš výkup na Vysočině tento problém řeší — nabídku máte do 24 hodin.
+          Na Vysočině je menší poptávka oproti velkým městům, proto standardní prodej trvá déle. Náš výkup na Vysočině tento problém řeší - nabídku máte do 24 hodin.
       - question: "Vykupujete i venkovské usedlosti na Vysočině?"
         answer: >-
           Ano, na Vysočině máme zkušenosti s výkupem venkovských usedlostí, starších domů i hospodářských stavení.
@@ -853,11 +853,11 @@ regions:
           Profesionální servis od prvního hovoru po převod peněz. Oceňuji důslednost i
           jasně dané kroky.
     marketInfo: >-
-      Moravskoslezský kraj nabízí široké cenové rozpětí — v Ostravě se byty prodávají kolem 35 000 Kč/m², v Karviné a Havířově výrazně levněji. Region se vyznačuje vysokým podílem panelových bytů a průmyslových nemovitostí. Poptávka v Ostravě stabilně roste.
+      Moravskoslezský kraj nabízí široké cenové rozpětí - v Ostravě se byty prodávají kolem 35 000 Kč/m², v Karviné a Havířově výrazně levněji. Region se vyznačuje vysokým podílem panelových bytů a průmyslových nemovitostí. Poptávka v Ostravě stabilně roste.
     regionFaq:
       - question: "Vykupujete i levnější byty v Karviné v Moravskoslezském kraji?"
         answer: >-
-          Ano, v Moravskoslezském kraji vykupujeme nemovitosti v celém cenovém spektru — od bytů v Karviné po domy v Ostravě a Frýdku-Místku.
+          Ano, v Moravskoslezském kraji vykupujeme nemovitosti v celém cenovém spektru - od bytů v Karviné po domy v Ostravě a Frýdku-Místku.
       - question: "Jak řešíte výkup v Moravskoslezském kraji při exekuci?"
         answer: >-
           V Moravskoslezském kraji máme bohaté zkušenosti s exekučními případy. Koordinujeme jednání s exekutory a zajistíme právně čistý převod.
@@ -915,14 +915,14 @@ regions:
           byl bezpečný pro celou rodinu.
 
     marketInfo: >-
-      Zlínský kraj je regionem s rozmanitým trhem — ve Zlíně a Uherském Hradišti se ceny bytů pohybují kolem 40 000 Kč/m², v Kroměříži a Vsetíně mírně nižší. Typické jsou cihlové byty v centru Zlína, rodinné domy na Valašsku a starší nemovitosti v okresních městech.
+      Zlínský kraj je regionem s rozmanitým trhem - ve Zlíně a Uherském Hradišti se ceny bytů pohybují kolem 40 000 Kč/m², v Kroměříži a Vsetíně mírně nižší. Typické jsou cihlové byty v centru Zlína, rodinné domy na Valašsku a starší nemovitosti v okresních městech.
     regionFaq:
       - question: "Vykupujete nemovitosti i na Valašsku ve Zlínském kraji?"
         answer: >-
-          Ano, ve Zlínském kraji pokrýváme i Valašsko — Vsetín, Rožnov pod Radhoštěm a okolní obce, kde řešíme zejména starší rodinné domy.
+          Ano, ve Zlínském kraji pokrýváme i Valašsko - Vsetín, Rožnov pod Radhoštěm a okolní obce, kde řešíme zejména starší rodinné domy.
       - question: "Jaká je situace na realitním trhu ve Zlínském kraji?"
         answer: >-
           Realitní trh ve Zlínském kraji je stabilní s mírným růstem cen. Zlín a Uherské Hradiště jsou nejžádanějšími lokalitami regionu.
       - question: "Jak probíhá výkup nemovitosti ve Zlínském kraji krok za krokem?"
         answer: >-
-          Výkup ve Zlínském kraji začíná bezplatnou konzultací, následuje ocenění do 24 hodin, podpis smlouvy a vyplacení peněz — vše obvykle do 14 dnů.
+          Výkup ve Zlínském kraji začíná bezplatnou konzultací, následuje ocenění do 24 hodin, podpis smlouvy a vyplacení peněz - vše obvykle do 14 dnů.

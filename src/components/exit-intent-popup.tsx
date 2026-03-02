@@ -136,7 +136,7 @@ export function ExitIntentPopup(): ReactElement | null {
               Počkejte! Získejte nezávaznou nabídku zdarma
             </h2>
             <p className="mb-5 text-sm text-slate-600">
-              Nechte nám telefon a my vám zavoláme s nabídkou — nezávazně a
+              Nechte nám telefon a my vám zavoláme s nabídkou - nezávazně a
               zdarma.
             </p>
 

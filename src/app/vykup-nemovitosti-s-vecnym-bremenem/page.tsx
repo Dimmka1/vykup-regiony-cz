@@ -20,9 +20,9 @@ export const metadata: Metadata = {
     canonical:
       "https://vykoupim-nemovitost.cz/vykup-nemovitosti-s-vecnym-bremenem",
   },
-  title: "Výkup nemovitosti s věcným břemenem — rychle a bez komplikací",
+  title: "Výkup nemovitosti s věcným břemenem - rychle a bez komplikací",
   description:
-    "Vykoupíme nemovitost zatíženou věcným břemenem — služebností, právem užívání i zástavou. Férová cena, právní servis zdarma, výplata do 7 dnů.",
+    "Vykoupíme nemovitost zatíženou věcným břemenem - služebností, právem užívání i zástavou. Férová cena, právní servis zdarma, výplata do 7 dnů.",
 };
 
 interface FaqItem {
@@ -44,12 +44,12 @@ const FAQ_ITEMS: readonly FaqItem[] = [
   {
     question: "Jaké typy věcných břemen řešíte?",
     answer:
-      "Řešíme všechny typy věcných břemen — služebnosti (právo cesty, právo vedení, právo užívání), reálná břemena i právo doživotního bydlení. U každého typu máme zkušenosti a víme, jak situaci optimálně vyřešit.",
+      "Řešíme všechny typy věcných břemen - služebnosti (právo cesty, právo vedení, právo užívání), reálná břemena i právo doživotního bydlení. U každého typu máme zkušenosti a víme, jak situaci optimálně vyřešit.",
   },
   {
     question: "Lze věcné břemeno zrušit?",
     answer:
-      "V některých případech ano — dohodou stran, rozhodnutím soudu nebo zánikem důvodu břemene. Naši právníci posoudí váš případ a navrhnou, zda je výhodnější břemeno zrušit před prodejem, nebo nemovitost prodat i s břemenem.",
+      "V některých případech ano - dohodou stran, rozhodnutím soudu nebo zánikem důvodu břemene. Naši právníci posoudí váš případ a navrhnou, zda je výhodnější břemeno zrušit před prodejem, nebo nemovitost prodat i s břemenem.",
   },
 ] as const;
 
@@ -141,8 +141,8 @@ export default async function VykupNemovitostiSVecnymBremenem(): Promise<React.R
           </h1>
           <p className="mt-4 text-lg text-slate-600">
             Vlastníte nemovitost zatíženou věcným břemenem a nevíte, jak ji
-            prodat? Věcné břemeno — ať už jde o právo doživotního bydlení,
-            služebnost cesty nebo právo vedení — výrazně komplikuje prodej na
+            prodat? Věcné břemeno - ať už jde o právo doživotního bydlení,
+            služebnost cesty nebo právo vedení - výrazně komplikuje prodej na
             otevřeném trhu. My vám nabídneme rychlé a férové řešení.
           </p>
           <p className="mt-4 text-slate-600">
@@ -154,7 +154,7 @@ export default async function VykupNemovitostiSVecnymBremenem(): Promise<React.R
           </p>
           <p className="mt-4 text-slate-600">
             My se na výkup nemovitostí s věcným břemenem specializujeme. Máme
-            zkušenosti se všemi typy břemen — od služebností (právo cesty,
+            zkušenosti se všemi typy břemen - od služebností (právo cesty,
             stezky, vedení inženýrských sítí) přes reálná břemena až po právo
             doživotního užívání. Každý případ posoudíme individuálně a navrhneme
             optimální řešení.
@@ -167,7 +167,7 @@ export default async function VykupNemovitostiSVecnymBremenem(): Promise<React.R
             zohledňující reálný dopad břemene.
           </p>
           <p className="mt-4 text-slate-600">
-            V některých případech je možné věcné břemeno zrušit — dohodou stran,
+            V některých případech je možné věcné břemeno zrušit - dohodou stran,
             rozhodnutím soudu nebo zánikem důvodu. Naši právníci posoudí, zda je
             tato cesta reálná a výhodná. Pokud ano, pomůžeme vám břemeno
             vymazat, čímž se hodnota nemovitosti výrazně zvýší.
@@ -175,12 +175,12 @@ export default async function VykupNemovitostiSVecnymBremenem(): Promise<React.R
           <p className="mt-4 text-slate-600">
             Veškeré právní služby a odhad nemovitosti hradíme my. Neplatíte
             žádnou provizi ani skryté poplatky. Kontaktujte nás pro nezávaznou
-            konzultaci — posoudíme vaši situaci a navrhneme nejlepší řešení.
+            konzultaci - posoudíme vaši situaci a navrhneme nejlepší řešení.
           </p>
           <p className="mt-4 text-slate-600">
             Nečekejte, až se situace zkomplikuje. Čím dříve se na nás obrátíte,
             tím rychleji a výhodněji celou záležitost vyřešíme. Jsme tu pro vás
-            — diskrétně, profesionálně a s plným právním servisem.
+            - diskrétně, profesionálně a s plným právním servisem.
           </p>
           <div className="mt-8">
             <Link

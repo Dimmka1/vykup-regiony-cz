@@ -19,7 +19,7 @@ function getRegionHref(key: string): string {
     host === "vykoupim-nemovitost.cz" ||
     host.endsWith(".vykoupim-nemovitost.cz")
   ) {
-    // Map region key to subdomain — strip "-kraj" suffix for subdomain
+    // Map region key to subdomain - strip "-kraj" suffix for subdomain
     const subdomain = key.replace(/-kraj$/, "");
     return `https://${subdomain}.vykoupim-nemovitost.cz/`;
   }

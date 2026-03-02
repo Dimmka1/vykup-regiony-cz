@@ -23,7 +23,7 @@ const FAQ_ITEMS: readonly FaqItem[] = [
   {
     question: "Kolik za mou nemovitost dostanu?",
     answer:
-      "Nabízíme obvykle 80–90 % tržní hodnoty nemovitosti. Cena závisí na lokalitě, stavu a typu nemovitosti. Na rozdíl od klasického prodeje neplatíte žádné provize ani poplatky — vše hradíme za vás.",
+      "Nabízíme obvykle 80–90 % tržní hodnoty nemovitosti. Cena závisí na lokalitě, stavu a typu nemovitosti. Na rozdíl od klasického prodeje neplatíte žádné provize ani poplatky - vše hradíme za vás.",
   },
   {
     question: "Jak dlouho celý proces trvá?",
@@ -43,7 +43,7 @@ const FAQ_ITEMS: readonly FaqItem[] = [
   {
     question: "Musím nemovitost před prodejem opravovat?",
     answer:
-      "Vůbec ne. Nemovitost kupujeme v aktuálním stavu — bez nutnosti rekonstrukce, malování nebo úklidu. To je jedna z hlavních výhod rychlého výkupu.",
+      "Vůbec ne. Nemovitost kupujeme v aktuálním stavu - bez nutnosti rekonstrukce, malování nebo úklidu. To je jedna z hlavních výhod rychlého výkupu.",
   },
   {
     question: "Je nabídka závazná?",
@@ -53,7 +53,7 @@ const FAQ_ITEMS: readonly FaqItem[] = [
   {
     question: "Vykupujete nemovitosti v celé ČR?",
     answer:
-      "Ano, působíme ve všech 14 krajích České republiky. Ať už vlastníte byt v Praze, dům na Moravě nebo pozemek v Karlovarském kraji — rádi vám pomůžeme.",
+      "Ano, působíme ve všech 14 krajích České republiky. Ať už vlastníte byt v Praze, dům na Moravě nebo pozemek v Karlovarském kraji - rádi vám pomůžeme.",
   },
   {
     question: "Jak je zajištěna bezpečnost transakce?",
@@ -68,7 +68,7 @@ const FAQ_ITEMS: readonly FaqItem[] = [
   {
     question: "Mohu prodat i spoluvlastnický podíl?",
     answer:
-      "Ano, vykupujeme i spoluvlastnické podíly na nemovitostech. Nemusíte čekat na souhlas ostatních spoluvlastníků — váš podíl můžete prodat samostatně.",
+      "Ano, vykupujeme i spoluvlastnické podíly na nemovitostech. Nemusíte čekat na souhlas ostatních spoluvlastníků - váš podíl můžete prodat samostatně.",
   },
   {
     question: "Kdy dostanu peníze?",
@@ -139,7 +139,7 @@ export default function CasteDotazyPage(): React.ReactElement {
               Máte další otázky?
             </h2>
             <p className="mt-2 text-slate-600">
-              Neváhejte nás kontaktovat — poradíme vám zdarma a nezávazně.
+              Neváhejte nás kontaktovat - poradíme vám zdarma a nezávazně.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               <Link

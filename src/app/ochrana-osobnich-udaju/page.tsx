@@ -96,10 +96,10 @@ export default function OchranaOsobnichUdajuPage() {
           <p>Používáme následující typy cookies:</p>
           <ul className="list-disc space-y-1 pl-5">
             <li>
-              <strong>Nezbytné cookies</strong> — nutné pro fungování webu
+              <strong>Nezbytné cookies</strong> - nutné pro fungování webu
             </li>
             <li>
-              <strong>Analytické cookies</strong> — pomáhají nám pochopit, jak
+              <strong>Analytické cookies</strong> - pomáhají nám pochopit, jak
               web používáte
             </li>
           </ul>

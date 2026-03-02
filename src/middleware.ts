@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 /**
- * Region keys — keep in sync with regions.yml.
+ * Region keys - keep in sync with regions.yml.
  * Static Set because middleware runs on the Edge runtime (no fs reads).
  */
 const REGION_KEYS = new Set([

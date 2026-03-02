@@ -27,7 +27,7 @@ const ARTICLES: Record<string, ArticleContent> = {
           rychle, bezpečně a za co nejlepší cenu. V roce 2026 se český realitní
           trh stabilizoval po turbulentních letech a nabízí řadu možností, jak
           nemovitost prodat efektivně. V tomto článku vám přineseme kompletní
-          průvodce rychlým prodejem nemovitosti — od přípravy až po předání
+          průvodce rychlým prodejem nemovitosti - od přípravy až po předání
           klíčů.
         </p>
 
@@ -37,7 +37,7 @@ const ARTICLES: Record<string, ArticleContent> = {
           rychlého růstu cen a následné korekce se trh ustálil. Úrokové sazby
           hypoték se pohybují kolem 4–5 %, což je příznivější než v předchozích
           dvou letech. Poptávka po nemovitostech zůstává silná zejména ve
-          velkých městech — Praha, Brno, Ostrava a Plzeň vedou statistiky.
+          velkých městech - Praha, Brno, Ostrava a Plzeň vedou statistiky.
           Průměrná doba prodeje nemovitosti přes realitní kancelář je stále 3–6
           měsíců, ale existují způsoby, jak tento proces výrazně zkrátit.
         </p>
@@ -46,13 +46,13 @@ const ARTICLES: Record<string, ArticleContent> = {
         <p>
           Prvním krokem k rychlému prodeji je důkladná příprava. Nemovitost by
           měla být čistá, uklizená a pokud možno zbavená osobních věcí. Drobné
-          opravy — kapající kohoutek, prasklá dlaždice, nefunkční zásuvka —
+          opravy - kapající kohoutek, prasklá dlaždice, nefunkční zásuvka -
           mohou odradit potenciální kupce víc, než byste čekali. Investice
           několika tisíc korun do drobných oprav se vám může vrátit v desítkách
           tisíc na prodejní ceně.
         </p>
         <p>
-          Zvažte také home staging — profesionální aranžování interiéru pro
+          Zvažte také home staging - profesionální aranžování interiéru pro
           účely prodeje. Statistiky ukazují, že nemovitosti s profesionálním
           stagingem se prodávají až o 30 % rychleji. Kvalitní fotografie jsou
           naprostý základ. V roce 2026 jsou standardem také 3D prohlídky a video
@@ -70,7 +70,7 @@ const ARTICLES: Record<string, ArticleContent> = {
         </p>
         <p>
           Pokud chcete prodat opravdu rychle, nastavte cenu mírně pod tržní
-          hodnotou — o 5–10 %. To vyvolá vyšší zájem a může vést dokonce k
+          hodnotou - o 5–10 %. To vyvolá vyšší zájem a může vést dokonce k
           převisu poptávky, což paradoxně zvýší konečnou prodejní cenu.
           Alternativou je oslovit firmu specializující se na{" "}
           <Link
@@ -92,7 +92,7 @@ const ARTICLES: Record<string, ArticleContent> = {
         <h2>Způsoby rychlého prodeje</h2>
         <p>V zásadě máte tři hlavní možnosti, jak nemovitost prodat rychle:</p>
         <p>
-          <strong>1. Prodej přes realitní kancelář</strong> — klasická cesta,
+          <strong>1. Prodej přes realitní kancelář</strong> - klasická cesta,
           která však typicky trvá 3–6 měsíců. Realitka se postará o inzerci,
           prohlídky a právní servis, ale účtuje si provizi 3–5 % z prodejní
           ceny. Více o srovnání s výkupem najdete v našem článku{" "}
@@ -105,13 +105,13 @@ const ARTICLES: Record<string, ArticleContent> = {
           .
         </p>
         <p>
-          <strong>2. Přímý výkup nemovitosti</strong> — nejrychlejší varianta.
+          <strong>2. Přímý výkup nemovitosti</strong> - nejrychlejší varianta.
           Specializovaná firma odkoupí vaši nemovitost přímo, bez
           zprostředkovatele. Celý proces trvá 2–4 týdny. Cena bývá o 10–20 %
           nižší než tržní, ale ušetříte na provizi, času a nejistotě.
         </p>
         <p>
-          <strong>3. Prodej na vlastní pěst</strong> — bez provize, ale vyžaduje
+          <strong>3. Prodej na vlastní pěst</strong> - bez provize, ale vyžaduje
           značné úsilí. Musíte zvládnout inzerci, komunikaci se zájemci,
           organizaci prohlídek a právní stránku věci. Vhodné pro ty, kdo mají
           čas a zkušenosti.
@@ -127,7 +127,7 @@ const ARTICLES: Record<string, ArticleContent> = {
         </p>
         <p>
           Kupní smlouvu doporučujeme nechat připravit zkušeným advokátem.
-          Úschova kupní ceny — ať už advokátní, notářská nebo bankovní — je
+          Úschova kupní ceny - ať už advokátní, notářská nebo bankovní - je
           standardem, který chrání obě strany transakce. Vklad do katastru
           nemovitostí aktuálně trvá přibližně 20 dní.
         </p>
@@ -179,7 +179,7 @@ const ARTICLES: Record<string, ArticleContent> = {
         </p>
         <p>
           <strong>Tip 2:</strong> Investujte do profesionálních fotografií a
-          virtuální prohlídky. První dojem rozhoduje — 90 % kupujících začíná
+          virtuální prohlídky. První dojem rozhoduje - 90 % kupujících začíná
           hledání online.
         </p>
         <p>
@@ -187,7 +187,7 @@ const ARTICLES: Record<string, ArticleContent> = {
           zájemců nemovitost uvidí, tím rychleji ji prodáte.
         </p>
         <p>
-          <strong>Tip 4:</strong> Zvažte kombinaci více prodejních kanálů —
+          <strong>Tip 4:</strong> Zvažte kombinaci více prodejních kanálů -
           inzerát online, sociální sítě a současně oslovení výkupní firmy pro
           porovnání nabídek.
         </p>
@@ -213,7 +213,7 @@ const ARTICLES: Record<string, ArticleContent> = {
     ),
   },
   "vykup-nemovitosti-vs-realitni-kancelar": {
-    title: "Výkup nemovitosti vs realitní kancelář — co se vyplatí",
+    title: "Výkup nemovitosti vs realitní kancelář - co se vyplatí",
     date: "2026-02-25",
     body: (
       <>
@@ -237,7 +237,7 @@ const ARTICLES: Record<string, ArticleContent> = {
         <p>
           Výhodou je, že makléř má zkušenosti s trhem, databázi potenciálních
           kupců a dokáže nemovitost prezentovat profesionálně. Nevýhodou je
-          časová náročnost — průměrný prodej přes realitku trvá 3–6 měsíců, u
+          časová náročnost - průměrný prodej přes realitku trvá 3–6 měsíců, u
           méně atraktivních nemovitostí i déle. Navíc neexistuje žádná záruka,
           že se nemovitost prodá za požadovanou cenu.
         </p>
@@ -246,14 +246,14 @@ const ARTICLES: Record<string, ArticleContent> = {
         <p>
           Výkupní firma odkoupí vaši nemovitost přímo, bez zprostředkovatele.
           Proces je jednoduchý: kontaktujete firmu, ta provede ocenění a
-          předloží nabídku — obvykle do 24–48 hodin. Pokud nabídku přijmete,
+          předloží nabídku - obvykle do 24–48 hodin. Pokud nabídku přijmete,
           právníci připraví kupní smlouvu a celá transakce se dokončí za 2–4
           týdny.
         </p>
         <p>
-          Hlavní výhodou je rychlost a jistota. Neplatíte žádnou provizi —
+          Hlavní výhodou je rychlost a jistota. Neplatíte žádnou provizi -
           veškeré náklady na právní služby a převod hradí výkupní firma.
-          Nevýhodou je, že nabídková cena bývá nižší než maximální tržní cena —
+          Nevýhodou je, že nabídková cena bývá nižší než maximální tržní cena -
           obvykle 80–90 % tržní hodnoty. Firma kupuje s kalkulací na případnou
           rekonstrukci a další prodej.
         </p>
@@ -269,7 +269,7 @@ const ARTICLES: Record<string, ArticleContent> = {
 
         <h2>Srovnání: cena</h2>
         <p>
-          Na první pohled vyhrává realitní kancelář — snaží se prodat za plnou
+          Na první pohled vyhrává realitní kancelář - snaží se prodat za plnou
           tržní cenu. Ale pozor na skryté náklady: provize 3–5 %, náklady na
           home staging a profesionální fotografie, poplatky za právní služby
           (pokud nejsou v ceně provize) a čas, který strávíte prohlídkami a
@@ -278,7 +278,7 @@ const ARTICLES: Record<string, ArticleContent> = {
         <p>
           Když tyto náklady sečtete, reálný rozdíl mezi čistým výnosem z prodeje
           přes realitku a přes výkupní firmu se často zmenší na 5–10 %. A to
-          nepočítáme alternativní náklady — peníze, které byste mohli investovat
+          nepočítáme alternativní náklady - peníze, které byste mohli investovat
           jinde, kdybyste je měli o měsíce dříve.
         </p>
 
@@ -286,7 +286,7 @@ const ARTICLES: Record<string, ArticleContent> = {
         <p>
           Prodej přes realitku vyžaduje vaši aktivní účast. Musíte nemovitost
           připravit k prezentaci, být dostupní pro prohlídky (často i o
-          víkendech), reagovat na dotazy zájemců a čelit nejistotě — kupec může
+          víkendech), reagovat na dotazy zájemců a čelit nejistotě - kupec může
           na poslední chvíli odstoupit, banka nemusí schválit hypotéku.
         </p>
         <p>
@@ -339,7 +339,7 @@ const ARTICLES: Record<string, ArticleContent> = {
           prodávajících volí kombinovaný přístup: nechají si vypracovat nabídku
           od výkupní firmy jako záchrannou síť a současně zkusí prodej přes
           realitku. Pokud se nemovitost neprodá za tržní cenu během 2–3 měsíců,
-          využijí výkup. Tím získáte to nejlepší z obou světů — šanci na vyšší
+          využijí výkup. Tím získáte to nejlepší z obou světů - šanci na vyšší
           cenu i jistotu rychlého prodeje.
         </p>
 
@@ -350,7 +350,7 @@ const ARTICLES: Record<string, ArticleContent> = {
           transparentně vysvětlí způsob ocenění, používá advokátní úschovu pro
           bezpečnost platby, neúčtuje žádné poplatky předem, má pozitivní
           reference a prokazatelnou historii, poskytne dostatek času na
-          rozhodnutí — netlačí na okamžitý podpis.
+          rozhodnutí - netlačí na okamžitý podpis.
         </p>
 
         <h2>Závěr: co se vyplatí právě vám?</h2>
@@ -362,14 +362,14 @@ const ARTICLES: Record<string, ArticleContent> = {
           <Link href="/" className="text-emerald-600 hover:text-emerald-500">
             kontaktovat pro nezávaznou konzultaci
           </Link>
-          . Rádi vám poradíme, jaký postup je ve vaší situaci nejvýhodnější — a
+          . Rádi vám poradíme, jaký postup je ve vaší situaci nejvýhodnější - a
           to zcela zdarma a bez závazků.
         </p>
       </>
     ),
   },
   "nemovitost-v-exekuci-pruvodce": {
-    title: "Nemovitost v exekuci — kompletní průvodce",
+    title: "Nemovitost v exekuci - kompletní průvodce",
     date: "2026-02-20",
     body: (
       <>
@@ -377,7 +377,7 @@ const ARTICLES: Record<string, ArticleContent> = {
           Exekuce na nemovitost patří mezi nejstresovější životní situace.
           Hrozba nucené dražby, ztráta domova a finanční nejistota mohou být
           zdrcující. Dobrou zprávou je, že máte více možností, než si myslíte. V
-          tomto kompletním průvodci vám vysvětlíme vše o exekuci na nemovitost —
+          tomto kompletním průvodci vám vysvětlíme vše o exekuci na nemovitost -
           od právních základů až po konkrétní kroky, jak situaci řešit co
           nejlépe.
         </p>
@@ -385,14 +385,14 @@ const ARTICLES: Record<string, ArticleContent> = {
         <h2>Co je exekuce a jak vzniká</h2>
         <p>
           Exekuce je nucený výkon rozhodnutí, kterým se věřitel domáhá splnění
-          povinnosti dlužníka — nejčastěji zaplacení peněžité pohledávky.
+          povinnosti dlužníka - nejčastěji zaplacení peněžité pohledávky.
           Exekuci nařizuje soud na návrh věřitele a provádí ji soudní exekutor.
           K exekuci na nemovitost dochází typicky tehdy, když dlužník nemá
           dostatek jiného majetku nebo příjmů k pokrytí dluhů.
         </p>
         <p>
           Proces začíná zápisem exekučního příkazu do katastru nemovitostí. Od
-          tohoto okamžiku nesmíte s nemovitostí volně nakládat — nemůžete ji
+          tohoto okamžiku nesmíte s nemovitostí volně nakládat - nemůžete ji
           prodat, darovat ani zatížit zástavním právem bez souhlasu exekutora.
           To ale neznamená, že nemáte žádné možnosti.
         </p>
@@ -401,7 +401,7 @@ const ARTICLES: Record<string, ArticleContent> = {
         <p>
           Exekuční řízení má několik fází a v každé z nich máte jiné možnosti. V
           první fázi exekutor doručí exekuční příkaz a vyzve dlužníka k
-          dobrovolnému plnění — obvykle ve lhůtě 30 dnů. Toto je nejlepší moment
+          dobrovolnému plnění - obvykle ve lhůtě 30 dnů. Toto je nejlepší moment
           jednat, protože máte nejvíce prostoru pro vyjednávání.
         </p>
         <p>
@@ -412,7 +412,7 @@ const ARTICLES: Record<string, ArticleContent> = {
           situaci změnit dobrovolným prodejem.
         </p>
 
-        <h2>Nucená dražba — proč se jí vyhnout</h2>
+        <h2>Nucená dražba - proč se jí vyhnout</h2>
         <p>
           V nucené dražbě se nemovitost často prodá výrazně pod tržní cenou.
           Nejnižší podání v prvním dražebním kole činí dvě třetiny odhadní ceny.
@@ -422,7 +422,7 @@ const ARTICLES: Record<string, ArticleContent> = {
         </p>
         <p>
           Navíc z výtěžku dražby se přednostně hradí náklady exekuce, které
-          mohou být značné — odměna exekutora, znalecký posudek, inzerce dražby
+          mohou být značné - odměna exekutora, znalecký posudek, inzerce dražby
           a další výdaje. Dlužníkovi tak zůstane výrazně méně, než kdyby
           nemovitost prodal dobrovolně.
         </p>
@@ -463,7 +463,7 @@ const ARTICLES: Record<string, ArticleContent> = {
         <p>
           Pro rychlé posouzení vaší situace připravte tyto dokumenty: aktuální
           list vlastnictví (výpis z katastru nemovitostí), přehled exekučních
-          řízení — zjistíte na Centrální evidenci exekucí (ceeonline.cz),
+          řízení - zjistíte na Centrální evidenci exekucí (ceeonline.cz),
           kontakty na exekutory vedoucí řízení proti vám, přehled všech dluhů
           včetně jistiny, úroků a příslušenství, případně kopie exekučních
           příkazů.
@@ -477,7 +477,7 @@ const ARTICLES: Record<string, ArticleContent> = {
         <p>
           <strong>Mýtus: Nemovitost v exekuci nelze prodat.</strong> Realita:
           Dobrovolný prodej je možný se souhlasem exekutora. Exekutoři s tím v
-          praxi souhlasí, pokud je to výhodné pro věřitele — a dobrovolný prodej
+          praxi souhlasí, pokud je to výhodné pro věřitele - a dobrovolný prodej
           za vyšší cenu než v dražbě rozhodně výhodný je.
         </p>
         <p>
@@ -502,7 +502,7 @@ const ARTICLES: Record<string, ArticleContent> = {
         <p>
           Exekuce na nemovitost zasahuje celou rodinu. Pokud v nemovitosti
           bydlíte s rodinou, dobrovolný prodej vám dává možnost dojednat
-          podmínky — například delší lhůtu pro vystěhování nebo pomoc s hledáním
+          podmínky - například delší lhůtu pro vystěhování nebo pomoc s hledáním
           náhradního bydlení. V nucené dražbě tyto možnosti nemáte.
         </p>
         <p>
@@ -512,10 +512,10 @@ const ARTICLES: Record<string, ArticleContent> = {
           rychle a prokonzultovat situaci s právníkem.
         </p>
 
-        <h2>Prevence — jak se exekuci vyhnout</h2>
+        <h2>Prevence - jak se exekuci vyhnout</h2>
         <p>
           Nejlepší strategií je samozřejmě prevence. Pokud máte dluhy,
-          neignorujte upomínky a platební příkazy. Komunikujte s věřiteli —
+          neignorujte upomínky a platební příkazy. Komunikujte s věřiteli -
           většina z nich je ochotna dojednat splátkový kalendář. Pokud víte, že
           nezvládáte splácet{" "}
           <Link
@@ -573,7 +573,7 @@ const ARTICLES: Record<string, ArticleContent> = {
         <h2>1. Nezávazná poptávka</h2>
         <p>
           Vše začíná vyplněním krátkého formuláře na našich stránkách nebo
-          telefonickým kontaktem. Potřebujeme základní informace o nemovitosti —
+          telefonickým kontaktem. Potřebujeme základní informace o nemovitosti -
           typ, lokalitu, velikost a aktuální stav. Formulář zabere maximálně 2
           minuty a je zcela nezávazný.
         </p>
@@ -598,7 +598,7 @@ const ARTICLES: Record<string, ArticleContent> = {
         <p>
           Po odsouhlasení finální ceny naši právníci připraví kupní smlouvu.
           Veškeré právní náklady hradíme za vás. Smlouvu si můžete nechat
-          zkontrolovat vlastním právníkem — na transparentnosti nám záleží.
+          zkontrolovat vlastním právníkem - na transparentnosti nám záleží.
         </p>
 
         <h2>5. Podpis a vyplacení</h2>
@@ -636,7 +636,7 @@ const ARTICLES: Record<string, ArticleContent> = {
           realitku trvá průměrně 3–6 měsíců, výkupní firma dokáže celou
           transakci zvládnout za 2–4 týdny. Nabídku dostanete do 24 hodin od
           prvního kontaktu. To je klíčové zejména v situacích, kdy potřebujete
-          rychle získat finanční prostředky — například při rozvodu, dědictví
+          rychle získat finanční prostředky - například při rozvodu, dědictví
           nebo finančních potížích.
         </p>
 
@@ -651,7 +651,7 @@ const ARTICLES: Record<string, ArticleContent> = {
         <h2>3. Prodej v jakémkoliv stavu</h2>
         <p>
           Nemovitost nemusíte před prodejem opravovat, malovat ani uklízet.
-          Výkupní firma kupuje nemovitosti ve stávajícím stavu — ať už jde o
+          Výkupní firma kupuje nemovitosti ve stávajícím stavu - ať už jde o
           zanedbaný byt, starší dům vyžadující rekonstrukci nebo pozemek s
           ekologickou zátěží. Ušetříte čas i peníze za případné úpravy.
         </p>
@@ -660,7 +660,7 @@ const ARTICLES: Record<string, ArticleContent> = {
         <p>
           Máte na nemovitosti exekuci, zástavní právo nebo věcné břemeno?
           Klasický kupec se takové nemovitosti většinou bojí. Výkupní firmy se
-          na tyto případy specializují a dokáží celou situaci vyřešit — včetně
+          na tyto případy specializují a dokáží celou situaci vyřešit - včetně
           jednání s věřiteli a exekutory. Více o tomto tématu najdete v našem
           článku o{" "}
           <Link
@@ -703,13 +703,13 @@ const ARTICLES: Record<string, ArticleContent> = {
     ),
   },
   "vykup-v-exekuci": {
-    title: "Výkup nemovitosti v exekuci — co potřebujete vědět",
+    title: "Výkup nemovitosti v exekuci - co potřebujete vědět",
     date: "2026-02-05",
     body: (
       <>
         <p>
           Exekuce na nemovitosti je stresující situace, která může skončit
-          nuceným prodejem v dražbě — často hluboko pod tržní cenou. Existuje
+          nuceným prodejem v dražbě - často hluboko pod tržní cenou. Existuje
           ale lepší řešení: dobrovolný prodej nemovitosti výkupní firmě. Pojďme
           se podívat, jak to funguje a co k tomu potřebujete.
         </p>
@@ -726,7 +726,7 @@ const ARTICLES: Record<string, ArticleContent> = {
         <h2>Proč je dobrovolný prodej lepší než dražba?</h2>
         <p>
           Při dobrovolném prodeji přes výkupní firmu získáte výrazně vyšší cenu
-          — obvykle 80–90 % tržní hodnoty. Navíc máte kontrolu nad celým
+          - obvykle 80–90 % tržní hodnoty. Navíc máte kontrolu nad celým
           procesem a můžete vyjednat lepší podmínky. Klíčové je jednat včas,
           dokud exekutor nenařídil dražbu.
         </p>
@@ -752,7 +752,7 @@ const ARTICLES: Record<string, ArticleContent> = {
         <h2>Časté obavy a mýty</h2>
         <p>
           Mnoho lidí se bojí, že prodej v exekuci není možný bez souhlasu
-          exekutora. To není pravda — dobrovolný prodej je možný, ale vyžaduje
+          exekutora. To není pravda - dobrovolný prodej je možný, ale vyžaduje
           součinnost exekutora a jeho písemný souhlas. Dalším mýtem je, že po
           prodeji zůstanou dluhy. Ve většině případů se z kupní ceny pokryjí
           všechny pohledávky. Pokud kupní cena nepokryje vše, zbývající dluh je

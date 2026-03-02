@@ -39,9 +39,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     .split(":")[0];
 
   const now = new Date();
-  const isRootOrDev =
-    host === ROOT_DOMAIN ||
-    !host.endsWith(`.${ROOT_DOMAIN}`);
+  const isRootOrDev = host === ROOT_DOMAIN || !host.endsWith(`.${ROOT_DOMAIN}`);
 
   const baseUrl = `https://${host}`;
 

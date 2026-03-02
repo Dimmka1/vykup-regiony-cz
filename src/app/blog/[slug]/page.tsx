@@ -16,6 +16,745 @@ interface ArticleContent {
 }
 
 const ARTICLES: Record<string, ArticleContent> = {
+  "jake-dokumenty-potrebuji": {
+    title: "Jaké dokumenty potřebuji k výkupu nemovitosti?",
+    date: "2026-03-02",
+    body: (
+      <>
+        <p>
+          Prodej nemovitosti přes výkupní firmu je rychlý a pohodlný způsob, jak
+          získat peníze za svůj byt, dům či pozemek. Jednou z nejčastějších
+          otázek, které dostáváme od klientů, je: &bdquo;Jaké dokumenty budu
+          potřebovat?&rdquo; V tomto článku vám přinášíme kompletní přehled
+          všech potřebných dokumentů — a rovnou vás uklidníme: nemusíte mít vše
+          připravené hned. Pomůžeme vám s jejich zajištěním.
+        </p>
+
+        <h2>Proč jsou dokumenty důležité při výkupu nemovitosti</h2>
+        <p>
+          Každý převod nemovitosti v České republice podléhá zápisu do katastru
+          nemovitostí. Aby celý proces proběhl hladce a bez komplikací, je třeba
+          doložit vlastnictví, identitu prodávajícího a případné právní vztahy
+          vázané k nemovitosti. Čím lépe budete připraveni, tím rychleji celou
+          transakci dokončíme. Nicméně i v případě, že některé dokumenty nemáte
+          po ruce, dokážeme vám poradit, kde je získat, a v mnoha případech je
+          zajistíme za vás.
+        </p>
+        <p>
+          Na rozdíl od prodeje přes realitní kancelář, kde veškerou dokumentaci
+          řešíte sami nebo za příplatek, u výkupní firmy je právní servis
+          součástí služby. Veškeré náklady na přípravu smluv, ověření dokumentů
+          a zápis do katastru hradíme za vás. Více o tom, jak celý proces
+          funguje, najdete na stránce{" "}
+          <Link
+            href="/jak-to-funguje"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Jak to funguje
+          </Link>
+          .
+        </p>
+
+        <h2>Základní dokumenty pro výkup nemovitosti</h2>
+        <p>
+          Následující dokumenty tvoří základ každé transakce. Bez nich nelze
+          převod nemovitosti provést, ale nebojte se — většinu z nich lze snadno
+          získat online nebo na příslušných úřadech.
+        </p>
+        <p>
+          <strong>1. List vlastnictví (LV)</strong> — Nejdůležitější dokument,
+          který prokazuje, kdo je vlastníkem nemovitosti. List vlastnictví
+          získáte na katastrálním úřadě nebo online přes portál Českého úřadu
+          zeměměřického a katastrálního (ČÚZK) na adrese nahlizenidokn.cuzk.cz.
+          Výpis stojí několik set korun a je k dispozici okamžitě. Z listu
+          vlastnictví zjistíme nejen vlastníka, ale také případná břemena,
+          zástavní práva nebo exekuční příkazy.
+        </p>
+        <p>
+          <strong>2. Občanský průkaz nebo pas</strong> — Pro ověření totožnosti
+          prodávajícího. Platný doklad totožnosti je vyžadován při podpisu kupní
+          smlouvy u notáře. Pokud prodáváte nemovitost v zastoupení (například
+          za rodiče nebo partnera), bude potřeba také úředně ověřená plná moc.
+        </p>
+        <p>
+          <strong>3. Nabývací titul</strong> — Dokument, na jehož základě jste
+          nemovitost získali. Může to být kupní smlouva, darovací smlouva,
+          dědické usnesení, rozsudek soudu nebo jiný právní dokument. Nabývací
+          titul pomáhá ověřit nepřerušený řetězec vlastnictví a případné
+          podmínky spojené s nabytím nemovitosti.
+        </p>
+        <p>
+          <strong>4. Energetický průkaz budovy (PENB)</strong> — Od roku 2013 je
+          energetický průkaz povinný při prodeji nemovitosti. Pokud ho nemáte,
+          můžeme vám doporučit certifikovaného energetického specialistu, který
+          jej vypracuje. Cena se pohybuje od 3 000 do 8 000 Kč v závislosti na
+          typu nemovitosti.
+        </p>
+
+        <h2>Doplňující dokumenty podle situace</h2>
+        <p>
+          V závislosti na konkrétní situaci mohou být potřeba další dokumenty.
+          Zde je přehled nejčastějších případů:
+        </p>
+        <p>
+          <strong>Plná moc</strong> — Pokud nemovitost neprodáváte osobně, ale
+          pověřujete jinou osobu. Plná moc musí být úředně ověřená (s ověřeným
+          podpisem na Czech POINTu, u notáře nebo na matrice). V plné moci musí
+          být jasně specifikována nemovitost a rozsah oprávnění zmocněnce.
+        </p>
+        <p>
+          <strong>Souhlas manžela/manželky</strong> — Pokud je nemovitost
+          součástí společného jmění manželů (SJM), musí s prodejem souhlasit oba
+          manželé. V případě{" "}
+          <Link
+            href="/vykup-pri-rozvodu"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            rozvodu
+          </Link>{" "}
+          je třeba doložit dohodu o vypořádání SJM nebo pravomocný rozsudek
+          soudu.
+        </p>
+        <p>
+          <strong>Potvrzení o bezdlužnosti vůči SVJ</strong> — Při prodeji bytu
+          v bytovém domě je standardně vyžadováno potvrzení, že nemáte
+          nedoplatky na příspěvcích do fondu oprav a na službách spojených s
+          užíváním bytu. Toto potvrzení vydává správce domu nebo výbor SVJ.
+        </p>
+        <p>
+          <strong>Dokumenty k exekuci</strong> — Pokud je na nemovitosti vedena
+          exekuce, budeme potřebovat přehled exekučních řízení a kontakty na
+          exekutory. Specializujeme se na{" "}
+          <Link
+            href="/vykup-pri-exekuci"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            výkup nemovitostí v exekuci
+          </Link>{" "}
+          a s celým procesem vám pomůžeme.
+        </p>
+        <p>
+          <strong>Stavební dokumentace</strong> — U domů a větších nemovitostí
+          může být vyžadována projektová dokumentace, kolaudační rozhodnutí nebo
+          povolení k užívání stavby. Tyto dokumenty jsou uloženy na příslušném
+          stavebním úřadě.
+        </p>
+
+        <h2>Nemusíte mít všechny dokumenty hned</h2>
+        <p>
+          Jeden z největších mýtů o prodeji nemovitosti je, že musíte mít
+          veškerou dokumentaci připravenou předem. U výkupní firmy to tak není.
+          Stačí nás kontaktovat a my vám pomůžeme zjistit, které dokumenty
+          potřebujete a kde je získat. V mnoha případech dokážeme potřebné
+          výpisy zajistit za vás — ať už jde o list vlastnictví, výpis z
+          katastru nebo prověření exekucí.
+        </p>
+        <p>
+          Náš právní tým má bohaté zkušenosti se všemi typy nemovitostních
+          transakcí. Ať už prodáváte{" "}
+          <Link
+            href="/vykup-bytu"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            byt
+          </Link>
+          ,{" "}
+          <Link
+            href="/vykup-domu"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            dům
+          </Link>{" "}
+          nebo{" "}
+          <Link
+            href="/vykup-pozemku"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            pozemek
+          </Link>
+          , postaráme se o vše od A do Z. Celý proces je navržen tak, abyste se
+          nemuseli stresovat s byrokratickými záležitostmi.
+        </p>
+
+        <h2>Jak postupovat — praktický návod</h2>
+        <p>
+          Pokud zvažujete prodej nemovitosti přes výkupní firmu, doporučujeme
+          následující postup: Nejprve nás kontaktujte prostřednictvím formuláře
+          na našich stránkách nebo telefonicky. Sdělte nám základní informace o
+          nemovitosti — typ, lokalitu a přibližný stav. My provedeme předběžné
+          ocenění a informujeme vás, které dokumenty budeme potřebovat.
+        </p>
+        <p>
+          Poté si připravte základní dokumenty — občanský průkaz a pokud možno
+          list vlastnictví. Ostatní dokumenty můžeme zajistit společně. Po
+          prohlídce nemovitosti vám předložíme finální nabídku a náš právník
+          připraví veškerou smluvní dokumentaci. Vy se nemusíte o nic starat.
+        </p>
+        <p>
+          Celý proces od prvního kontaktu po vyplacení peněz trvá obvykle 7 až
+          14 dní. Podrobný popis jednotlivých kroků najdete v článku{" "}
+          <Link
+            href="/blog/vykup-krok-za-krokem"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Výkup nemovitosti krok za krokem
+          </Link>
+          .
+        </p>
+
+        <h2>Máte otázky? Kontaktujte nás</h2>
+        <p>
+          Pokud si nejste jistí, jaké dokumenty potřebujete, nebo máte jakýkoliv
+          dotaz ohledně prodeje nemovitosti, neváhejte se na nás obrátit.
+          Nabízíme bezplatnou a nezávaznou konzultaci, při které vám vše
+          vysvětlíme a poradíme s dalším postupem. Pomohli jsme stovkám klientů
+          po celé České republice a rádi pomůžeme i vám.{" "}
+          <Link href="/" className="text-emerald-600 hover:text-emerald-500">
+            Vyplňte formulář
+          </Link>{" "}
+          a ozveme se vám do 24 hodin.
+        </p>
+      </>
+    ),
+  },
+  "vykup-krok-za-krokem": {
+    title: "Výkup nemovitosti krok za krokem — jak to funguje",
+    date: "2026-03-02",
+    body: (
+      <>
+        <p>
+          Přemýšlíte o prodeji nemovitosti a zajímá vás, jak celý proces výkupu
+          vlastně probíhá? V tomto podrobném průvodci vám krok za krokem
+          vysvětlíme celý proces od prvního kontaktu až po vyplacení peněz na
+          váš účet. Celý výkup nemovitosti zvládneme obvykle za 7 až 14 dní —
+          rychle, bezpečně a bez zbytečných komplikací.
+        </p>
+
+        <h2>Krok 1: První kontakt a nezávazná poptávka</h2>
+        <p>
+          Vše začíná jednoduchým krokem — kontaktujete nás prostřednictvím
+          online formuláře na našich stránkách, telefonicky nebo e-mailem. Stačí
+          uvést základní informace o nemovitosti: typ (byt, dům, pozemek),
+          lokalitu, přibližnou velikost a aktuální stav. Formulář zabere
+          maximálně dvě minuty a je zcela nezávazný. Nepotřebujete žádné
+          dokumenty ani podrobné informace — ty zjistíme sami.
+        </p>
+        <p>
+          Po obdržení vaší poptávky náš tým zahájí předběžnou analýzu. Ověříme
+          údaje v katastru nemovitostí, posoudíme lokalitu a aktuální tržní
+          podmínky. Celou tuto fázi zvládneme během několika hodin. Více o tom,
+          jak celý systém funguje, najdete na stránce{" "}
+          <Link
+            href="/jak-to-funguje"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Jak to funguje
+          </Link>
+          .
+        </p>
+
+        <h2>Krok 2: Předběžná cenová nabídka do 24 hodin</h2>
+        <p>
+          Na základě předběžné analýzy vám do 24 hodin představíme cenovou
+          nabídku. Tato nabídka vychází z aktuálních tržních cen v dané
+          lokalitě, stavu nemovitosti a případných právních komplikací. Nabídka
+          je nezávazná — pokud vás nezaujme, nic se neděje a nemáte žádné
+          závazky.
+        </p>
+        <p>
+          Naše nabídky se pohybují obvykle na úrovni 80–90 % tržní hodnoty
+          nemovitosti. Může se to zdát méně než u klasického prodeje, ale
+          zvažte: neplatíte žádnou provizi (u realitky 3–5 %), ušetříte měsíce
+          čekání a máte jistotu prodeje. Když tyto faktory zohledníte, rozdíl v
+          čistém výnosu je minimální. Podrobné srovnání nákladů najdete v článku{" "}
+          <Link
+            href="/blog/kolik-stoji-vykup"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Kolik stojí výkup nemovitosti
+          </Link>
+          .
+        </p>
+
+        <h2>Krok 3: Osobní prohlídka nemovitosti</h2>
+        <p>
+          Pokud vás předběžná nabídka zaujme, domluvíme osobní prohlídku
+          nemovitosti v termínu, který vám vyhovuje. Prohlídku provádí náš
+          zkušený odhadce, který posoudí skutečný technický stav nemovitosti,
+          její dispozici a okolí. Prohlídka trvá obvykle 30 až 60 minut a je
+          samozřejmě zcela zdarma.
+        </p>
+        <p>
+          Během prohlídky si také promluvíme o vaší situaci a případných
+          specifických požadavcích. Ať už jde o potřebu rychlého vyplacení,
+          delší lhůtu pro vystěhování nebo řešení právních komplikací — vždy
+          hledáme individuální řešení, které vyhovuje oběma stranám.
+        </p>
+
+        <h2>Krok 4: Finální nabídka a dohoda</h2>
+        <p>
+          Po prohlídce vám do 48 hodin předložíme finální cenovou nabídku. Tato
+          nabídka je závazná z naší strany — pokud ji přijmete, garantujeme
+          uvedenou cenu. Nejsou žádné skryté poplatky, žádné dodatečné srážky.
+          Cena, na které se dohodneme, je cena, kterou obdržíte.
+        </p>
+        <p>
+          V této fázi máte dostatek času na rozmyšlenou. Netlačíme na okamžité
+          rozhodnutí. Doporučujeme konzultovat nabídku s rodinou nebo právníkem.
+          Transparentnost a férový přístup jsou pro nás klíčové — chceme, abyste
+          se rozhodli informovaně a bez tlaku.
+        </p>
+
+        <h2>Krok 5: Příprava kupní smlouvy</h2>
+        <p>
+          Po odsouhlasení nabídky se celý proces přesouvá k našemu právnímu
+          týmu. Zkušení advokáti připraví kupní smlouvu, která chrání zájmy obou
+          stran. Smlouva obsahuje všechny náležitosti vyžadované českým právem:
+          přesnou identifikaci nemovitosti, kupní cenu, podmínky úhrady, termín
+          předání a další ujednání.
+        </p>
+        <p>
+          Veškeré náklady na právní služby hradíme za vás. Smlouvu si můžete
+          nechat zkontrolovat vlastním právníkem — na transparentnosti nám
+          záleží. Jaké dokumenty budete k podpisu potřebovat, se dozvíte v
+          článku{" "}
+          <Link
+            href="/blog/jake-dokumenty-potrebuji"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Jaké dokumenty potřebuji k výkupu nemovitosti
+          </Link>
+          .
+        </p>
+
+        <h2>Krok 6: Podpis smlouvy a úschova</h2>
+        <p>
+          Podpis kupní smlouvy probíhá u notáře, kde se ověří totožnost obou
+          stran a pravost podpisů. Kupní cena je složena do advokátní úschovy —
+          to je nejbezpečnější způsob, jak zajistit, že peníze budou vyplaceny
+          až po splnění všech podmínek smlouvy, zejména po zápisu nového
+          vlastníka do katastru nemovitostí.
+        </p>
+        <p>
+          Advokátní úschova chrání obě strany: prodávající má jistotu, že peníze
+          existují a budou vyplaceny, kupující má jistotu, že peníze budou
+          uvolněny až po řádném převodu vlastnictví. Celý tento krok zvládneme
+          během jednoho dne.
+        </p>
+
+        <h2>Krok 7: Vyplacení peněz</h2>
+        <p>
+          Po podpisu smlouvy podáme návrh na vklad vlastnického práva do
+          katastru nemovitostí. Katastrální úřad provede zápis obvykle do 20
+          pracovních dnů. Po provedení vkladu advokát uvolní kupní cenu z
+          úschovy a peníze jsou převedeny na váš účet — obvykle do 3 až 5
+          pracovních dnů.
+        </p>
+        <p>
+          V případě, že potřebujete peníze dříve, nabízíme možnost zálohy při
+          podpisu smlouvy. Výše zálohy závisí na konkrétní dohodě, ale obvykle
+          se pohybuje kolem 10–30 % kupní ceny. Tím získáte část peněz okamžitě
+          a zbytek po dokončení katastrálního řízení.
+        </p>
+
+        <h2>Celková časová osa: 7–14 dní</h2>
+        <p>
+          Pojďme si shrnout celý proces z hlediska času. Den 1: kontaktujete nás
+          a vyplníte poptávku. Den 1–2: obdržíte předběžnou nabídku. Den 3–5:
+          prohlídka nemovitosti a finální nabídka. Den 5–7: příprava a podpis
+          kupní smlouvy, složení do úschovy. Den 7–14: zápis do katastru a
+          vyplacení peněz. Celý proces od prvního kontaktu po peníze na účtu
+          trvá typicky 7 až 14 dní — to je zlomek času oproti průměrným 3–6
+          měsícům u klasického prodeje přes realitní kancelář.
+        </p>
+
+        <h2>Máte otázky? Kontaktujte nás</h2>
+        <p>
+          Pokud máte jakékoliv dotazy ohledně procesu výkupu nebo chcete získat
+          nezávaznou nabídku na svou nemovitost, neváhejte nás kontaktovat.
+          Konzultace je zdarma a bez jakýchkoliv závazků. Pomáháme klientům po
+          celé České republice — ať už prodáváte v Praze, Brně, Ostravě nebo
+          kdekoliv jinde. Celý proces je navržen tak, aby byl pro vás co
+          nejjednodušší a nejpohodlnější.{" "}
+          <Link href="/" className="text-emerald-600 hover:text-emerald-500">
+            Vyplňte formulář
+          </Link>{" "}
+          a do 24 hodin se vám ozveme s nabídkou.
+        </p>
+      </>
+    ),
+  },
+  "vykup-vs-drazba": {
+    title: "Výkup nemovitosti vs. dražba — co je výhodnější?",
+    date: "2026-03-02",
+    body: (
+      <>
+        <p>
+          Pokud se nacházíte v situaci, kdy musíte prodat nemovitost — ať už
+          kvůli dluhům, exekuci nebo jinému důvodu — pravděpodobně zvažujete dvě
+          hlavní možnosti: dobrovolný výkup nemovitosti nebo dražbu. Obě
+          varianty mají své výhody a nevýhody a správná volba může znamenat
+          rozdíl v řádu stovek tisíc korun. V tomto článku obě možnosti podrobně
+          porovnáme, abyste se mohli rozhodnout informovaně.
+        </p>
+
+        <h2>Jak funguje výkup nemovitosti</h2>
+        <p>
+          Výkup nemovitosti je dobrovolný prodej vaší nemovitosti specializované
+          firmě. Celý proces je jednoduchý a rychlý: kontaktujete výkupní firmu,
+          ta provede ocenění a předloží nabídku. Pokud nabídku přijmete,
+          právníci připraví kupní smlouvu a celá transakce se dokončí obvykle za
+          7 až 14 dní. Peníze obdržíte přes bezpečnou advokátní úschovu.
+        </p>
+        <p>
+          Klíčovou výhodou výkupu je, že máte plnou kontrolu nad procesem.
+          Rozhodujete o tom, zda nabídku přijmete, můžete vyjednávat podmínky a
+          máte přehled o každém kroku transakce. Podrobný popis celého procesu
+          najdete v článku{" "}
+          <Link
+            href="/blog/vykup-krok-za-krokem"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Výkup nemovitosti krok za krokem
+          </Link>
+          . Více informací o fungování výkupu najdete na stránce{" "}
+          <Link
+            href="/jak-to-funguje"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Jak to funguje
+          </Link>
+          .
+        </p>
+
+        <h2>Jak funguje dražba nemovitosti</h2>
+        <p>
+          Dražba nemovitosti může být dobrovolná nebo nucená. Dobrovolnou dražbu
+          iniciuje vlastník sám — je to alternativa ke klasickému prodeji.
+          Nucená dražba je nařízena exekutorem nebo insolvenčním správcem jako
+          způsob zpeněžení majetku dlužníka k úhradě pohledávek věřitelů.
+        </p>
+        <p>
+          V dražbě se nemovitost nabízí veřejně a kupující soutěží o nejvyšší
+          nabídku. Teoreticky může dražba přinést vyšší cenu než přímý výkup,
+          protože soutěž mezi dražiteli může cenu vyšroubovat nahoru. V praxi
+          ale nucená dražba často končí prodejem výrazně pod tržní cenou — a to
+          z několika důvodů, které si vysvětlíme níže.
+        </p>
+
+        <h2>Srovnání: čas</h2>
+        <p>
+          Výkup nemovitosti zvládneme za 7 až 14 dní od prvního kontaktu. Celý
+          proces je v rukou prodávajícího a výkupní firmy, takže nedochází ke
+          zbytečným průtahům. U nucené dražby je situace zcela jiná. Od zahájení
+          exekučního řízení po samotnou dražbu může uplynout 6 až 12 měsíců —
+          někdy i déle. Exekutor musí nemovitost ocenit znaleckým posudkem,
+          vydat usnesení o ceně, nařídit dražbu a dodržet zákonné lhůty pro
+          oznámení. V dobrovolné dražbě je proces kratší, ale stále počítejte s
+          minimálně 2 až 3 měsíci.
+        </p>
+
+        <h2>Srovnání: dosažená cena</h2>
+        <p>
+          Při výkupu nemovitosti získáte obvykle 80 až 90 procent tržní hodnoty.
+          Cena je známá předem a je garantovaná — žádná překvapení. V nucené
+          dražbě se nemovitost draží od dvou třetin odhadní ceny v prvním kole.
+          Pokud se v prvním kole neprodá, ve druhém kole klesá minimální podání
+          na polovinu odhadu. V praxi se nemovitosti v nucené dražbě prodávají
+          za 50 až 75 procent tržní hodnoty. Dobrovolná dražba může teoreticky
+          přinést i plnou tržní cenu, ale závisí na počtu dražitelů a jejich
+          zájmu.
+        </p>
+
+        <h2>Srovnání: náklady</h2>
+        <p>
+          U výkupu nemovitosti neplatíte jako prodávající žádné poplatky.
+          Veškeré náklady — právní služby, odhad, poplatky za katastr — hradí
+          výkupní firma. U nucené dražby se z výtěžku přednostně hradí náklady
+          exekuce: odměna exekutora (obvykle 15 procent z výtěžku, minimálně
+          však 3 000 Kč), znalecký posudek (5 000 až 15 000 Kč), náklady na
+          inzerci dražby a další administrativní výdaje. Celkové náklady exekuce
+          mohou dosáhnout 20 až 25 procent z výtěžku dražby. U dobrovolné dražby
+          platí prodávající dražebníkovi odměnu obvykle 2 až 5 procent z
+          dosažené ceny.
+        </p>
+
+        <h2>Srovnání: jistota a kontrola</h2>
+        <p>
+          Výkup nabízí maximální jistotu. Máte závaznou nabídku, garantovanou
+          cenu a předem známý termín vyplacení. Celý proces kontrolujete vy —
+          pokud se vám nabídka nelíbí, jednoduše ji odmítnete. U dražby nemáte
+          žádnou kontrolu nad výsledkem. Nevíte, zda se přihlásí dostatek
+          dražitelů, jaká bude výsledná cena ani kdy přesně dražba proběhne. U
+          nucené dražby navíc nemáte možnost dražbu zrušit, jakmile je nařízena.
+        </p>
+
+        <h2>Srovnání: stres a komfort</h2>
+        <p>
+          Prodej přes výkupní firmu je navržen tak, aby byl pro prodávajícího co
+          nejpohodlnější. Stačí vyplnit formulář, domluvit prohlídku a podepsat
+          smlouvu. O vše ostatní se postaráme. Dražba je naopak stresující
+          záležitost. Nucená dražba je spojena se stigmatem exekuce, veřejným
+          oznámením a nejistotou výsledku. I dobrovolná dražba přináší stres —
+          musíte čekat na den dražby, doufat v dostatečný zájem dražitelů a
+          smířit se s tím, že výsledek není ve vašich rukou.
+        </p>
+
+        <h2>Přehledná srovnávací tabulka</h2>
+        <p>
+          Pro lepší orientaci uvádíme shrnutí klíčových parametrů. Čas: výkup 7
+          až 14 dní, dražba 2 až 12 měsíců. Cena: výkup 80 až 90 procent tržní
+          hodnoty, nucená dražba 50 až 75 procent, dobrovolná dražba 85 až 100
+          procent. Náklady pro prodávajícího: výkup 0 Kč, nucená dražba 20 až 25
+          procent z výtěžku, dobrovolná dražba 2 až 5 procent. Jistota prodeje:
+          výkup vysoká (garantovaná nabídka), dražba nízká až střední (závisí na
+          zájmu). Stres: výkup minimální, dražba vysoký. Kontrola: výkup plná,
+          nucená dražba žádná, dobrovolná dražba omezená.
+        </p>
+
+        <h2>Kdy zvolit výkup a kdy dražbu</h2>
+        <p>
+          Výkup je jasná volba, pokud potřebujete prodat rychle, chcete jistotu
+          a garantovanou cenu, nechcete se stresovat a chcete mít kontrolu nad
+          procesem. Je ideální při{" "}
+          <Link
+            href="/vykup-pri-rozvodu"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            rozvodu
+          </Link>
+          ,{" "}
+          <Link
+            href="/vykup-pri-dedictvi"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            dědictví
+          </Link>
+          ,{" "}
+          <Link
+            href="/vykup-pri-exekuci"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            exekuci
+          </Link>{" "}
+          nebo jakékoliv jiné situaci vyžadující rychlé řešení.
+        </p>
+        <p>
+          Dobrovolná dražba může být zajímavá, pokud máte čas a věříte, že
+          konkurence mezi dražiteli vyžene cenu nahoru. Je vhodná u atraktivních
+          nemovitostí v žádaných lokalitách, kde lze očekávat velký zájem.
+          Nucené dražby bychom naopak doporučili vyhnout se za každou cenu —
+          dobrovolný prodej přes výkup přinese téměř vždy lepší výsledek.
+        </p>
+
+        <h2>Máte otázky? Kontaktujte nás</h2>
+        <p>
+          Pokud zvažujete prodej nemovitosti a nejste si jistí, která varianta
+          je pro vás nejvýhodnější, rádi vám zdarma poradíme. Nabízíme
+          nezávaznou konzultaci a cenovou nabídku do 24 hodin. Pomohli jsme
+          stovkám klientů po celé České republice vyřešit jejich situaci rychle
+          a bezpečně.{" "}
+          <Link href="/" className="text-emerald-600 hover:text-emerald-500">
+            Vyplňte formulář
+          </Link>{" "}
+          nebo nám zavolejte — jsme tu pro vás.
+        </p>
+      </>
+    ),
+  },
+  "kolik-stoji-vykup": {
+    title: "Kolik stojí výkup nemovitosti? Kompletní přehled nákladů",
+    date: "2026-03-02",
+    body: (
+      <>
+        <p>
+          Jednou z prvních otázek, kterou si lidé při prodeji nemovitosti
+          kladou, je: &bdquo;Kolik mě to bude stát?&rdquo; U tradičního prodeje
+          přes realitní kancelář je odpověď jasná — provize 3 až 5 procent z
+          prodejní ceny plus další skryté náklady. Ale co výkup nemovitosti? V
+          tomto článku vám přineseme kompletní a transparentní přehled všech
+          nákladů spojených s výkupem a porovnáme je s alternativami.
+        </p>
+
+        <h2>Kolik zaplatíte při výkupu nemovitosti: 0 Kč</h2>
+        <p>
+          Ano, čtete správně. Při prodeji nemovitosti přes výkupní firmu
+          neplatíte jako prodávající žádné poplatky. Nulová provize, žádné
+          skryté poplatky, žádné náklady na právní služby. Veškeré výdaje
+          spojené s transakcí hradí výkupní firma — od ocenění nemovitosti přes
+          přípravu kupní smlouvy až po poplatky za katastr nemovitostí.
+        </p>
+        <p>
+          Jak je to možné? Obchodní model výkupní firmy je jednoduchý: firma
+          kupuje nemovitosti za cenu nižší, než je plná tržní hodnota (obvykle
+          80 až 90 procent), a následně je prodává nebo pronajímá. Marže firmy
+          je již zahrnuta v nabídkové ceně, takže pro vás nejsou žádné dodatečné
+          náklady. Cena, na které se dohodnete, je přesně ta částka, kterou
+          obdržíte na svůj účet. Více o celém procesu se dozvíte na stránce{" "}
+          <Link
+            href="/jak-to-funguje"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Jak to funguje
+          </Link>
+          .
+        </p>
+
+        <h2>Kolik zaplatíte přes realitní kancelář</h2>
+        <p>
+          Prodej přes realitní kancelář je tradičnější cesta, ale rozhodně ne
+          levnější. Hlavním nákladem je provize makléře, která se v České
+          republice pohybuje od 3 do 5 procent z prodejní ceny. U nemovitosti za
+          3 miliony korun to představuje 90 000 až 150 000 Kč. U dražších
+          nemovitostí za 5 milionů už mluvíme o 150 000 až 250 000 Kč.
+        </p>
+        <p>
+          Ale provize není jediný náklad. K tomu připočítejte: profesionální
+          fotografie a video (5 000 až 15 000 Kč), home staging pro
+          zatraktivnění nemovitosti (10 000 až 30 000 Kč), energetický průkaz
+          PENB (3 000 až 8 000 Kč), právní služby pokud nejsou součástí provize
+          (10 000 až 20 000 Kč) a případné drobné opravy před prodejem
+          (individuální). Celkové náklady při prodeji přes realitku mohou snadno
+          dosáhnout 5 až 7 procent z prodejní ceny.
+        </p>
+
+        <h2>Kolik zaplatíte při dražbě</h2>
+        <p>
+          U nucené dražby se náklady hradí z výtěžku dražby, ale jsou překvapivě
+          vysoké. Odměna exekutora činí obvykle 15 procent z výtěžku, minimálně
+          však 3 000 Kč. Dále se z výtěžku hradí znalecký posudek (5 000 až 15
+          000 Kč), náklady na inzerci a organizaci dražby a případné další
+          administrativní výdaje. Celkové náklady nucené dražby mohou pohltit 20
+          až 25 procent z výtěžku.
+        </p>
+        <p>
+          U dobrovolné dražby platí prodávající dražebníkovi odměnu 2 až 5
+          procent z dosažené ceny plus náklady na organizaci dražby. Podrobné
+          srovnání výkupu a dražby najdete v článku{" "}
+          <Link
+            href="/blog/vykup-vs-drazba"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Výkup nemovitosti vs. dražba
+          </Link>
+          .
+        </p>
+
+        <h2>Srovnání čistého výnosu — konkrétní příklad</h2>
+        <p>
+          Podívejme se na konkrétní příklad. Představte si byt v Praze s tržní
+          hodnotou 4 000 000 Kč. Při prodeji přes realitní kancelář dosáhnete
+          prodejní ceny 4 000 000 Kč. Od toho odečtěte provizi 4 procenta (160
+          000 Kč), právní služby (15 000 Kč), fotografie a staging (20 000 Kč) a
+          PENB (5 000 Kč). Čistý výnos: přibližně 3 800 000 Kč. Čas: 3 až 6
+          měsíců.
+        </p>
+        <p>
+          Při výkupu nemovitosti vám firma nabídne 85 procent tržní hodnoty,
+          tedy 3 400 000 Kč. Vaše náklady: 0 Kč. Čistý výnos: 3 400 000 Kč. Čas:
+          7 až 14 dní. Rozdíl v čistém výnosu je přibližně 400 000 Kč, ale
+          peníze máte o 3 až 5 měsíců dříve. Pokud tyto peníze investujete nebo
+          jimi vyřešíte akutní finanční situaci, může být výkup ve výsledku
+          výhodnější.
+        </p>
+        <p>
+          Při nucené dražbě se byt prodá například za 65 procent tržní hodnoty,
+          tedy za 2 600 000 Kč. Z toho se odečte odměna exekutora a další
+          náklady — řekněme 500 000 Kč. Čistý výnos: přibližně 2 100 000 Kč. To
+          je o 1 300 000 Kč méně než u výkupu. Rozdíl je dramatický.
+        </p>
+
+        <h2>Skryté náklady, na které se zapomíná</h2>
+        <p>
+          Při klasickém prodeji existují náklady, které nejsou na první pohled
+          vidět. Čas strávený prohlídkami — pokud pracujete a musíte si brát
+          volno na prohlídky, přicházíte o příjem. Stres a nejistota — měsíce
+          čekání na kupce mají svou psychologickou cenu. Alternativní náklady —
+          peníze, které byste mohli investovat nebo použít k řešení jiné
+          situace, leží měsíce v nemovitosti. Riziko krachu obchodu — kupec může
+          na poslední chvíli odstoupit, banka nemusí schválit hypotéku a celý
+          proces začíná znovu.
+        </p>
+        <p>
+          U výkupu tyto skryté náklady prakticky neexistují. Celý proces je
+          rychlý, předvídatelný a garantovaný. Nabídka výkupní firmy je závazná
+          — jakmile ji přijmete, transakce proběhne.
+        </p>
+
+        <h2>Kdy se výkup vyplatí nejvíce</h2>
+        <p>
+          Z čistě finančního hlediska se výkup nejvíce vyplatí v těchto
+          situacích: nemovitost vyžaduje rekonstrukci — výkupní firma kupuje v
+          jakémkoliv stavu, ušetříte za opravy. Právní komplikace — nemovitost
+          zatížená{" "}
+          <Link
+            href="/vykup-pri-exekuci"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            exekucí
+          </Link>
+          ,{" "}
+          <Link
+            href="/vykup-nemovitosti-s-vecnym-bremenem"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            věcným břemenem
+          </Link>{" "}
+          nebo{" "}
+          <Link
+            href="/vykup-nemovitosti-s-hypotekou"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            hypotékou
+          </Link>{" "}
+          je pro běžné kupce riziková, výkupní firma tyto situace řeší rutinně.
+          Urgentní prodej — při{" "}
+          <Link
+            href="/vykup-pri-rozvodu"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            rozvodu
+          </Link>
+          ,{" "}
+          <Link
+            href="/vykup-pri-dedictvi"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            dědictví
+          </Link>{" "}
+          nebo finančních potížích je rychlost klíčová. Méně atraktivní
+          nemovitost — u nemovitostí v okrajových lokalitách nebo ve špatném
+          stavu by klasický prodej trval příliš dlouho.
+        </p>
+
+        <h2>Daňové aspekty prodeje nemovitosti</h2>
+        <p>
+          Nezávisle na způsobu prodeje je důležité znát daňové dopady. V České
+          republice je příjem z prodeje nemovitosti osvobozen od daně z příjmů,
+          pokud v nemovitosti máte bydliště alespoň 2 roky nebo ji vlastníte
+          alespoň 5 let (u nemovitostí nabytých od roku 2021 alespoň 10 let).
+          Pokud tyto podmínky nesplňujete, příjem z prodeje podléhá dani z
+          příjmů fyzických osob ve výši 15 procent. Toto platí stejně pro výkup,
+          prodej přes realitku i dražbu. Doporučujeme konzultovat daňové dopady
+          s daňovým poradcem.
+        </p>
+
+        <h2>Máte otázky? Kontaktujte nás</h2>
+        <p>
+          Pokud chcete vědět přesně, kolik za svou nemovitost získáte, stačí nás
+          kontaktovat. Nabídku vám připravíme do 24 hodin — zdarma a nezávazně.
+          Žádné skryté poplatky, žádné podmínky. Naší prioritou je
+          transparentnost a férový přístup ke každému klientovi. Pomáháme
+          prodávajícím po celé České republice — od Prahy přes Brno až po menší
+          města a vesnice.{" "}
+          <Link href="/" className="text-emerald-600 hover:text-emerald-500">
+            Vyplňte formulář
+          </Link>{" "}
+          nebo nám zavolejte a přesvědčte se sami.
+        </p>
+      </>
+    ),
+  },
   "jak-rychle-prodat-nemovitost": {
     title: "Jak rychle prodat nemovitost v roce 2026",
     date: "2026-03-01",

@@ -14,6 +14,7 @@ import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "https://vykoupim-nemovitost.cz/vykup-pri-rozvodu" },
   title: "Výkup nemovitosti při rozvodu — rychlé vypořádání majetku",
   description:
     "Řešíte rozvod a potřebujete rychle prodat společnou nemovitost? Vykoupíme váš byt nebo dům za férovou cenu. Diskrétně a bez provize.",

@@ -4,6 +4,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { BLOG_POSTS } from "./data";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "https://vykoupim-nemovitost.cz/blog" },
   title: "Blog o výkupu nemovitostí",
   description:
     "Tipy, rady a novinky ze světa výkupu nemovitostí v České republice. Zjistěte vše o rychlém prodeji nemovitosti.",

@@ -15,7 +15,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://vykup-praha.cz"),
+  metadataBase: new URL("https://vykoupim-nemovitost.cz"),
   title: {
     default: "Výkup nemovitostí",
     template: "%s | Výkup nemovitostí",

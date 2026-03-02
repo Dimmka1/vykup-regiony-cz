@@ -7,6 +7,7 @@ import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "https://vykoupim-nemovitost.cz/vykup-pri-exekuci" },
   title: "Výkup nemovitosti při exekuci — rychlé řešení bez starostí",
   description:
     "Prodejte nemovitost zatíženou exekucí rychle a diskrétně. Vyřešíme dluhy, uhradíme exekuci z kupní ceny a vyplatíme vás do 7 dnů. Bez provize.",

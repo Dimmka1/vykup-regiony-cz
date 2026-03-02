@@ -14,3 +14,12 @@ export async function getRequestHost(): Promise<string | null> {
 
   return null;
 }
+
+/**
+ * Get the region key override set by middleware for dev/preview path-based routing.
+ * Returns null if no override (i.e., host-based resolution should be used).
+ */
+export async function getRegionKeyOverride(): Promise<string | null> {
+  const requestHeaders = await headers();
+  return requestHeaders.get("x-region-key");
+}

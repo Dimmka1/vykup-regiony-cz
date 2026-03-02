@@ -12,7 +12,11 @@ import { ComparisonCalculator } from "@/components/comparison-calculator";
 import { FloatingDesktopCta } from "@/components/floating-desktop-cta";
 import { FaqAccordion } from "@/components/faq-accordion";
 import { FloatingWhatsApp } from "@/components/floating-whatsapp";
-import { listRegions } from "@/lib/config";
+import {
+  listRegions,
+  getRegionSubdomainUrl,
+  isProductionHost,
+} from "@/lib/config";
 import type { RegionConfig } from "@/lib/types";
 import {
   Check,
@@ -156,7 +160,7 @@ const FORM_BENEFITS = [
 
 export function normalizeHost(host: string | null): string {
   if (!host) {
-    return "vykup-regiony.cz";
+    return "vykoupim-nemovitost.cz";
   }
   return host
     .toLowerCase()
@@ -164,13 +168,32 @@ export function normalizeHost(host: string | null): string {
     .split(":")[0];
 }
 
+/**
+ * Build canonical URL for a page.
+ * Production: always use the subdomain URL (e.g., https://praha.vykoupim-nemovitost.cz/)
+ * Root domain vykoupim-nemovitost.cz → canonical to https://praha.vykoupim-nemovitost.cz/
+ * Dev/preview: use current host with optional path.
+ */
 export function buildCanonicalUrl(
   host: string | null,
-  regionSlug?: string,
+  regionKey?: string,
 ): string {
-  const base = `https://${normalizeHost(host)}`;
-  if (regionSlug) {
-    return `${base}/${regionSlug}`;
+  const normalized = normalizeHost(host);
+  const isProd = isProductionHost(host);
+
+  if (isProd && regionKey) {
+    return getRegionSubdomainUrl(regionKey);
+  }
+
+  if (isProd) {
+    // Root domain without region key → Praha
+    return "https://praha.vykoupim-nemovitost.cz";
+  }
+
+  // Dev/preview: use current host
+  const base = `https://${normalized}`;
+  if (regionKey) {
+    return `${base}/${regionKey}`;
   }
   return base;
 }

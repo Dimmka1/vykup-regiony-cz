@@ -9,6 +9,23 @@ interface Region {
   name: string;
 }
 
+/**
+ * On production domains, navigate to subdomain. On dev, use path-based.
+ */
+function getRegionHref(key: string): string {
+  if (typeof window === "undefined") return `/${key}`;
+  const host = window.location.hostname;
+  if (
+    host === "vykoupim-nemovitost.cz" ||
+    host.endsWith(".vykoupim-nemovitost.cz")
+  ) {
+    // Map region key to subdomain — strip "-kraj" suffix for subdomain
+    const subdomain = key.replace(/-kraj$/, "");
+    return `https://${subdomain}.vykoupim-nemovitost.cz/`;
+  }
+  return `/${key}`;
+}
+
 function RegionSelectorInner({ regions }: { regions: Region[] }) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
@@ -24,7 +41,12 @@ function RegionSelectorInner({ regions }: { regions: Region[] }) {
   const handleSelect = useCallback(
     (key: string) => {
       setOpen(false);
-      router.push(`/${key}`);
+      const href = getRegionHref(key);
+      if (href.startsWith("https://")) {
+        window.location.href = href;
+      } else {
+        router.push(href);
+      }
     },
     [router],
   );

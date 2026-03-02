@@ -1,7 +1,12 @@
 import type { ReactElement } from "react";
 import type { Metadata } from "next";
-import { getRegionByHost, getRegionByKey } from "@/lib/config";
-import { getRequestHost } from "@/lib/request-host";
+import {
+  getRegionByHost,
+  getRegionByKey,
+  isProductionHost,
+  getRegionSubdomainUrl,
+} from "@/lib/config";
+import { getRequestHost, getRegionKeyOverride } from "@/lib/request-host";
 
 import {
   HomePageContent,
@@ -9,19 +14,23 @@ import {
   buildCanonicalUrl,
   buildMetaDescription,
 } from "@/components/home-page-content";
-import { GoogleReviewsSection } from "@/components/google-reviews-section";
 
-export async function generateMetadata({
-  searchParams,
-}: {
-  searchParams: Promise<{ region?: string }>;
-}): Promise<Metadata> {
-  const params = await searchParams;
+async function resolveRegion() {
   const host = await getRequestHost();
-  const region = params.region
-    ? getRegionByKey(params.region)
-    : getRegionByHost(host);
-  const canonicalUrl = buildCanonicalUrl(host);
+  const regionKeyOverride = await getRegionKeyOverride();
+
+  // If middleware set a region key override (dev/preview path-based routing), use it
+  if (regionKeyOverride) {
+    return { region: getRegionByKey(regionKeyOverride), host };
+  }
+
+  // Otherwise resolve by host (production subdomains + dev host-based)
+  return { region: getRegionByHost(host), host };
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const { region, host } = await resolveRegion();
+  const canonicalUrl = buildCanonicalUrl(host, region.key);
   const metaDescription = region.seoDescription || buildMetaDescription(region);
   const ogImageUrl = `${canonicalUrl}/opengraph-image`;
 
@@ -57,17 +66,9 @@ export async function generateMetadata({
   };
 }
 
-export default async function HomePage({
-  searchParams,
-}: {
-  searchParams: Promise<{ region?: string }>;
-}): Promise<ReactElement> {
-  const params = await searchParams;
-  const host = await getRequestHost();
-  const region = params.region
-    ? getRegionByKey(params.region)
-    : getRegionByHost(host);
-  const canonicalUrl = buildCanonicalUrl(host);
+export default async function HomePage(): Promise<ReactElement> {
+  const { region, host } = await resolveRegion();
+  const canonicalUrl = buildCanonicalUrl(host, region.key);
 
   return <HomePageContent region={region} canonicalUrl={canonicalUrl} />;
 }

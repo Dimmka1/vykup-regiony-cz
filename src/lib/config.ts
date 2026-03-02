@@ -35,6 +35,7 @@ const regionSchema = z.object({
   seoDescription: z.string().min(20),
   keywords: z.array(z.string().min(2)).min(1),
   hosts: z.array(z.string().min(4)).min(1),
+  marketInfo: z.string().min(10).optional(),
 });
 
 const dataSchema = z.object({

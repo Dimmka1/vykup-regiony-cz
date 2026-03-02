@@ -1,3 +1,4 @@
+import { NearbyRegions } from "@/components/nearby-regions";
 import { safeJsonLd } from "@/lib/jsonld";
 import type { ReactElement } from "react";
 import Image from "next/image";
@@ -278,11 +279,13 @@ export function buildSchema(
 interface HomePageContentProps {
   region: RegionConfig;
   canonicalUrl: string;
+  host: string | null;
 }
 
 export function HomePageContent({
   region,
   canonicalUrl,
+  host,
 }: HomePageContentProps): ReactElement {
   const schema = buildSchema(region, canonicalUrl);
 
@@ -324,6 +327,7 @@ export function HomePageContent({
           <p className="mt-4 hidden max-w-2xl text-base leading-relaxed text-slate-200 md:block md:text-lg">
             {region.description}
           </p>
+
 
           <ul className="mt-6 flex flex-wrap gap-2 text-sm text-white">
             {HERO_BADGES.map((badge) => (
@@ -743,6 +747,9 @@ export function HomePageContent({
           </div>
         </div>
       </section>
+
+      {/* ===== NEARBY REGIONS ===== */}
+      <NearbyRegions regionKey={region.key} currentHost={host} />
 
       {/* ===== STICKY MOBILE BAR ===== */}
       <nav

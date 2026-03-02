@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   title: "Jak funguje výkup nemovitosti | Vykoupíme Nemovitost",
   description:
     "Celý proces výkupu nemovitosti v 5 jednoduchých krocích — od prvního kontaktu po platbu na účet do 48 hodin. Bez provize, bez starostí.",
-  alternates: { canonical: "/jak-to-funguje" },
+  alternates: { canonical: "https://vykoupim-nemovitost.cz/jak-to-funguje" },
 };
 
 const STEPS = [

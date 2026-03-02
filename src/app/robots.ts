@@ -8,12 +8,17 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
     requestHeaders.get("host") ??
     "vykoupim-nemovitost.cz";
 
+  const normalizedHost = host
+    .toLowerCase()
+    .replace(/^www\./, "")
+    .split(":")[0];
+
   return {
     rules: {
       userAgent: "*",
       allow: "/",
       disallow: "/api/",
     },
-    sitemap: `https://${host}/sitemap.xml`,
+    sitemap: `https://${normalizedHost}/sitemap.xml`,
   };
 }

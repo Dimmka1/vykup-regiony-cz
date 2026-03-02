@@ -16,6 +16,7 @@ import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "https://vykoupim-nemovitost.cz/vykup-domu" },
   title: "Výkup domů — rychlý prodej rodinného domu za hotové",
   description:
     "Vykoupíme váš rodinný dům rychle a bez provize. Staré domy, domy k rekonstrukci i se zástavou. Férová cena, vyplacení do 7 dnů. Celá ČR.",

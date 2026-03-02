@@ -14,6 +14,9 @@ import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://vykoupim-nemovitost.cz/vykup-nemovitosti-s-hypotekou",
+  },
   title: "Výkup nemovitosti s hypotékou — rychlé řešení zatížené nemovitosti",
   description:
     "Vykoupíme nemovitost zatíženou hypotékou nebo zástavním právem. Vyřešíme komunikaci s bankou, splatíme úvěr z kupní ceny. Výplata do 7 dnů, bez provize.",

@@ -16,6 +16,7 @@ import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "https://vykoupim-nemovitost.cz/vykup-pozemku" },
   title: "Výkup pozemků — rychlý prodej pozemku za hotové",
   description:
     "Vykoupíme váš pozemek rychle a bez provize. Stavební, zemědělské i lesní pozemky. Férová cena, vyplacení do 7 dnů. Celá ČR.",

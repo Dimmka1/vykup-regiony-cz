@@ -1,17 +1,14 @@
 import type { MetadataRoute } from "next";
 import { headers } from "next/headers";
-import {
-  getRegionByHost,
-  listRegions,
-  getRegionSubdomainUrl,
-} from "@/lib/config";
+import { listRegions } from "@/lib/config";
+import { BLOG_POSTS } from "@/app/blog/data";
 
-const STATIC_PATHS = [
+const ROOT_DOMAIN = "vykoupim-nemovitost.cz";
+
+const CONTENT_PATHS = [
+  { path: "/", priority: 1.0 },
   { path: "/caste-dotazy", priority: 0.8 },
   { path: "/blog", priority: 0.8 },
-  { path: "/blog/jak-probiha-rychly-vykup", priority: 0.7 },
-  { path: "/blog/5-duvodu-proc-prodat", priority: 0.7 },
-  { path: "/blog/vykup-v-exekuci", priority: 0.7 },
   { path: "/vykup-pri-exekuci", priority: 0.8 },
   { path: "/vykup-pri-dedictvi", priority: 0.8 },
   { path: "/vykup-pri-rozvodu", priority: 0.8 },
@@ -21,6 +18,13 @@ const STATIC_PATHS = [
   { path: "/vykup-bytu", priority: 0.8 },
   { path: "/vykup-domu", priority: 0.8 },
   { path: "/vykup-pozemku", priority: 0.8 },
+  { path: "/reference", priority: 0.6 },
+  { path: "/reference/exekuce-praha", priority: 0.6 },
+  { path: "/reference/dedictvi-brno", priority: 0.6 },
+  { path: "/reference/rozvod-ostrava", priority: 0.6 },
+  { path: "/jak-to-funguje", priority: 0.7 },
+  { path: "/kraje", priority: 0.7 },
+  { path: "/ochrana-osobnich-udaju", priority: 0.3 },
 ] as const;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -28,50 +32,47 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const host = (
     requestHeaders.get("x-forwarded-host") ??
     requestHeaders.get("host") ??
-    "vykoupim-nemovitost.cz"
+    ROOT_DOMAIN
   )
     .toLowerCase()
     .replace(/^www\./, "")
     .split(":")[0];
 
-  const baseUrl = `https://${host}`;
   const now = new Date();
+  const isRootOrDev =
+    host === ROOT_DOMAIN ||
+    !host.endsWith(`.${ROOT_DOMAIN}`);
 
-  // Home page for current subdomain
-  const entries: MetadataRoute.Sitemap = [
-    {
-      url: baseUrl,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 1,
-    },
-  ];
+  const baseUrl = `https://${host}`;
 
-  // Static content pages (same on every subdomain)
-  for (const entry of STATIC_PATHS) {
-    entries.push({
-      url: `${baseUrl}${entry.path}`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: entry.priority,
-    });
-  }
-
-  // On root domain, also include cross-links to all regional subdomains
-  const isRootDomain =
-    host === "vykoupim-nemovitost.cz" ||
-    !host.endsWith(".vykoupim-nemovitost.cz");
-
-  if (isRootDomain) {
-    for (const region of listRegions()) {
-      const subdomainUrl = getRegionSubdomainUrl(region.key);
-      entries.push({
-        url: subdomainUrl,
+  // Subdomain sitemap: ONLY home page (content lives on root domain)
+  if (!isRootOrDev) {
+    return [
+      {
+        url: baseUrl,
         lastModified: now,
         changeFrequency: "monthly",
-        priority: 0.9,
-      });
-    }
+        priority: 1,
+      },
+    ];
+  }
+
+  // Root domain sitemap: all content pages + blog posts
+  const entries: MetadataRoute.Sitemap = CONTENT_PATHS.map((entry) => ({
+    url: `${baseUrl}${entry.path}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: entry.priority,
+  }));
+
+  // Blog post entries
+  for (const post of BLOG_POSTS) {
+    entries.push({
+      url: `${baseUrl}/blog/${post.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    });
   }
 
   return entries;

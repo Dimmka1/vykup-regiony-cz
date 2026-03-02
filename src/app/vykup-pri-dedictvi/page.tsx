@@ -14,6 +14,9 @@ import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://vykoupim-nemovitost.cz/vykup-pri-dedictvi",
+  },
   title: "Výkup nemovitosti při dědictví — rychlý prodej zděděné nemovitosti",
   description:
     "Zdědili jste nemovitost a chcete ji rychle prodat? Vykoupíme zděděný byt nebo dům za férovou cenu. Vyřešíme i spoluvlastnictví a dědické spory.",

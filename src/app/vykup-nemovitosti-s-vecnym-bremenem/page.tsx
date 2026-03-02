@@ -9,6 +9,9 @@ import {
   ScrollText,
 } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
+import { Breadcrumbs } from "@/components/breadcrumbs";
+import { RelatedArticles } from "@/components/related-articles";
+import { getRelatedArticles } from "@/lib/related-articles";
 
 export const metadata: Metadata = {
   title: "Výkup nemovitosti s věcným břemenem — rychle a bez komplikací",
@@ -115,6 +118,17 @@ export default function VykupNemovitostiSVecnymBremenem(): React.ReactElement {
 
       <section className="bg-gradient-to-b from-slate-50 to-white py-16">
         <div className="mx-auto max-w-3xl px-4">
+          <div className="mb-6">
+            <Breadcrumbs
+              items={[
+                { label: "Služby", href: "/#sluzby" },
+                {
+                  label: "Výkup s věcným břemenem",
+                  href: "/vykup-nemovitosti-s-vecnym-bremenem",
+                },
+              ]}
+            />
+          </div>
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
             Výkup nemovitosti s věcným břemenem
           </h1>
@@ -296,6 +310,14 @@ export default function VykupNemovitostiSVecnymBremenem(): React.ReactElement {
               </Link>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="bg-slate-50 py-12">
+        <div className="mx-auto max-w-3xl px-4">
+          <RelatedArticles
+            articles={getRelatedArticles("vykup-nemovitosti-s-vecnym-bremenem")}
+          />
         </div>
       </section>
     </>

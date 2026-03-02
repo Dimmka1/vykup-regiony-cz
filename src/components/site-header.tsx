@@ -47,6 +47,13 @@ export function SiteHeader({ phone = "+420 800 123 001" }: SiteHeaderProps) {
             }`}
           >
             Jak to funguje
+            <Link
+              href="/kraje"
+              className="min-h-[44px] text-sm font-medium text-slate-700 hover:text-teal-500"
+              onClick={() => setMobileOpen(false)}
+            >
+              Kde působíme
+            </Link>
           </Link>
         </div>
         <div className="flex items-center gap-4">
@@ -120,6 +127,13 @@ export function SiteHeader({ phone = "+420 800 123 001" }: SiteHeaderProps) {
               onClick={() => setMobileOpen(false)}
             >
               Jak to funguje
+              <Link
+                href="/kraje"
+                className="min-h-[44px] text-sm font-medium text-slate-700 hover:text-teal-500"
+                onClick={() => setMobileOpen(false)}
+              >
+                Kde působíme
+              </Link>
             </Link>
             <Link
               href="/caste-dotazy"

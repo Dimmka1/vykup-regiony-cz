@@ -327,7 +327,7 @@ export function HomePageContent({
             <p className="inline-flex rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white backdrop-blur-sm">
               {region.locative}
             </p>
-            <p className="inline-flex rounded-full border border-amber-300/40 bg-amber-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-amber-200 backdrop-blur-sm">
+            <p className="border-[var(--theme-200)]/40 bg-[var(--theme-500)]/10 inline-flex rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[var(--theme-200)] backdrop-blur-sm">
               Nejsme realitka - jsme přímý kupec
             </p>
           </div>
@@ -344,7 +344,7 @@ export function HomePageContent({
                 key={badge}
                 className="inline-flex items-center gap-1.5 rounded-lg border border-white/20 bg-white/10 px-3 py-2 backdrop-blur-sm"
               >
-                <Check className="h-4 w-4 text-amber-400" />
+                <Check className="h-4 w-4 text-[var(--theme-400)]" />
                 {badge}
               </li>
             ))}
@@ -585,7 +585,7 @@ export function HomePageContent({
                 key={point}
                 className="flex items-start gap-3 rounded-2xl border border-white/20 bg-white/10 p-6 backdrop-blur"
               >
-                <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-amber-400" />
+                <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-[var(--theme-400)]" />
                 <span className="text-white/90">{point}</span>
               </li>
             ))}
@@ -724,7 +724,7 @@ export function HomePageContent({
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
-                      className="h-5 w-5 fill-amber-400 text-amber-400"
+                      className="h-5 w-5 fill-[var(--theme-400)] text-[var(--theme-400)]"
                     />
                   ))}
                 </div>
@@ -800,7 +800,7 @@ export function HomePageContent({
         <div className="mx-auto flex max-w-7xl gap-2">
           <a
             href="#kontakt"
-            className="inline-flex min-h-11 flex-1 items-center justify-center rounded-xl bg-amber-500 px-4 py-3 text-sm font-semibold text-white transition hover:bg-amber-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
+            className="inline-flex min-h-11 flex-1 items-center justify-center rounded-xl bg-[var(--theme-600)] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[var(--theme-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
           >
             Odeslat poptávku - zdarma
           </a>

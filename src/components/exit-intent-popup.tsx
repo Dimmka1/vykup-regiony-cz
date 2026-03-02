@@ -167,7 +167,7 @@ export function ExitIntentPopup(): ReactElement | null {
               <button
                 type="submit"
                 disabled={status === "submitting"}
-                className="min-h-12 w-full rounded-lg bg-amber-500 px-5 py-3 text-base font-semibold text-white transition hover:bg-amber-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 disabled:opacity-70"
+                className="min-h-12 w-full rounded-lg bg-[var(--theme-600)] px-5 py-3 text-base font-semibold text-white transition hover:bg-[var(--theme-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 disabled:opacity-70"
               >
                 {status === "submitting" ? "Odesílám..." : "Zavoláme vám zpět"}
               </button>

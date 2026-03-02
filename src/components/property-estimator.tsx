@@ -308,7 +308,7 @@ function StepResult({ price }: { price: PriceRange }): ReactElement {
             .getElementById("kontakt")
             ?.scrollIntoView({ behavior: "smooth" });
         }}
-        className="mt-6 inline-flex items-center gap-2 rounded-xl bg-amber-500 px-8 py-3 text-base font-semibold text-white transition hover:bg-amber-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
+        className="mt-6 inline-flex items-center gap-2 rounded-xl bg-[var(--theme-600)] px-8 py-3 text-base font-semibold text-white transition hover:bg-[var(--theme-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
       >
         Získat nezávaznou nabídku →
       </a>

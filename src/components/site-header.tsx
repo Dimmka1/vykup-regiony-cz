@@ -74,13 +74,14 @@ export function SiteHeader({ phone = "+420 800 123 001" }: SiteHeaderProps) {
             }`}
           >
             Jak to funguje
-            <Link
-              href="/kraje"
-              className="min-h-[44px] text-sm font-medium text-slate-700 hover:text-[var(--theme-500)]"
-              onClick={() => setMobileOpen(false)}
-            >
-              Kde působíme
-            </Link>
+          </Link>
+          <Link
+            href="/kraje"
+            className={`hidden min-h-[44px] items-center text-sm font-medium transition-colors hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 md:inline-flex ${
+              showSolid ? "text-slate-700" : "text-white/80"
+            }`}
+          >
+            Kde působíme
           </Link>
         </div>
         <div className="flex items-center gap-4">
@@ -154,13 +155,13 @@ export function SiteHeader({ phone = "+420 800 123 001" }: SiteHeaderProps) {
               onClick={() => setMobileOpen(false)}
             >
               Jak to funguje
-              <Link
-                href="/kraje"
-                className="min-h-[44px] text-sm font-medium text-slate-700 hover:text-[var(--theme-500)]"
-                onClick={() => setMobileOpen(false)}
-              >
-                Kde působíme
-              </Link>
+            </Link>
+            <Link
+              href="/kraje"
+              className="min-h-[44px] text-sm font-medium text-slate-700 hover:text-[var(--theme-500)]"
+              onClick={() => setMobileOpen(false)}
+            >
+              Kde působíme
             </Link>
             <Link
               href="/caste-dotazy"

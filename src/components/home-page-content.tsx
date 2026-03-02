@@ -1,4 +1,5 @@
 import { safeJsonLd } from "@/lib/jsonld";
+import { SocialProofBar } from "@/components/social-proof-bar";
 import { getThemeStyle } from "@/lib/theme-colors";
 import type { ReactElement } from "react";
 import Image from "next/image";
@@ -14,7 +15,11 @@ import { FloatingDesktopCta } from "@/components/floating-desktop-cta";
 import { FaqAccordion } from "@/components/faq-accordion";
 import { NearbyRegions } from "@/components/nearby-regions";
 import { FloatingWhatsApp } from "@/components/floating-whatsapp";
-import { getRegionSubdomainUrl, isProductionHost } from "@/lib/config";
+import {
+  getRegionSubdomainUrl,
+  isProductionHost,
+  listRegions,
+} from "@/lib/config";
 import type { RegionConfig } from "@/lib/types";
 import {
   Check,
@@ -372,6 +377,8 @@ export function HomePageContent({
           </p>
         </div>
       </section>
+
+      <SocialProofBar regionNames={listRegions().map((r) => r.name)} />
 
       {/* ===== MARKET INFO ===== */}
       {region.marketInfo && (

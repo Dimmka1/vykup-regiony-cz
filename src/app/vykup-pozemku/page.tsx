@@ -14,6 +14,8 @@ import { safeJsonLd } from "@/lib/jsonld";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
+import { AllRegionsSection } from "@/components/all-regions-section";
+import { getRequestHost } from "@/lib/request-host";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://vykoupim-nemovitost.cz/vykup-pozemku" },
@@ -112,7 +114,8 @@ const STEPS: readonly {
   },
 ] as const;
 
-export default function VykupPozemkuPage(): React.ReactElement {
+export default async function VykupPozemkuPage(): Promise<React.ReactElement> {
+  const host = await getRequestHost();
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -330,6 +333,8 @@ export default function VykupPozemkuPage(): React.ReactElement {
           <RelatedArticles articles={getRelatedArticles("vykup-pozemku")} />
         </div>
       </section>
+
+      <AllRegionsSection currentHost={host} />
     </>
   );
 }

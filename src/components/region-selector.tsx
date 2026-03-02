@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useCallback, useState, Suspense } from "react";
 import { MapPin, ChevronDown } from "lucide-react";
 
@@ -13,19 +13,20 @@ function RegionSelectorInner({ regions }: { regions: Region[] }) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const currentRegionKey = searchParams.get("region") ?? regions[0]?.key ?? "";
+
+  // Determine current region from URL path
+  const pathSegment = pathname.split("/")[1] ?? "";
+  const currentRegionKey =
+    regions.find((r) => r.key === pathSegment)?.key ?? regions[0]?.key ?? "";
 
   const currentRegion = regions.find((r) => r.key === currentRegionKey);
 
   const handleSelect = useCallback(
     (key: string) => {
       setOpen(false);
-      const params = new URLSearchParams(searchParams.toString());
-      params.set("region", key);
-      router.push(`${pathname}?${params.toString()}`);
+      router.push(`/${key}`);
     },
-    [router, pathname, searchParams],
+    [router],
   );
 
   return (

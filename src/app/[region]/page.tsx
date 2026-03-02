@@ -1,27 +1,37 @@
+import { notFound } from "next/navigation";
 import type { ReactElement } from "react";
 import type { Metadata } from "next";
-import { getRegionByHost, getRegionByKey } from "@/lib/config";
+import { getRegionByKey, listRegions } from "@/lib/config";
 import { getRequestHost } from "@/lib/request-host";
-
 import {
   HomePageContent,
   COMPANY_NAME,
   buildCanonicalUrl,
   buildMetaDescription,
 } from "@/components/home-page-content";
-import { GoogleReviewsSection } from "@/components/google-reviews-section";
+
+interface RegionPageProps {
+  params: Promise<{ region: string }>;
+}
+
+/** Pre-generate all 14 region pages at build time. */
+export function generateStaticParams(): { region: string }[] {
+  return listRegions().map((r) => ({ region: r.key }));
+}
 
 export async function generateMetadata({
-  searchParams,
-}: {
-  searchParams: Promise<{ region?: string }>;
-}): Promise<Metadata> {
-  const params = await searchParams;
+  params,
+}: RegionPageProps): Promise<Metadata> {
+  const { region: regionSlug } = await params;
+  const allKeys = new Set(listRegions().map((r) => r.key));
+
+  if (!allKeys.has(regionSlug)) {
+    return {};
+  }
+
+  const region = getRegionByKey(regionSlug);
   const host = await getRequestHost();
-  const region = params.region
-    ? getRegionByKey(params.region)
-    : getRegionByHost(host);
-  const canonicalUrl = buildCanonicalUrl(host);
+  const canonicalUrl = buildCanonicalUrl(host, regionSlug);
   const metaDescription = region.seoDescription || buildMetaDescription(region);
   const ogImageUrl = `${canonicalUrl}/opengraph-image`;
 
@@ -57,18 +67,19 @@ export async function generateMetadata({
   };
 }
 
-export default async function HomePage({
-  searchParams,
-}: {
-  searchParams: Promise<{ region?: string }>;
-}): Promise<ReactElement> {
-  const params = await searchParams;
+export default async function RegionPage({
+  params,
+}: RegionPageProps): Promise<ReactElement> {
+  const { region: regionSlug } = await params;
+  const allKeys = new Set(listRegions().map((r) => r.key));
+
+  if (!allKeys.has(regionSlug)) {
+    notFound();
+  }
+
+  const region = getRegionByKey(regionSlug);
   const host = await getRequestHost();
-  const region = params.region
-    ? getRegionByKey(params.region)
-    : getRegionByHost(host);
-  const canonicalUrl = buildCanonicalUrl(host);
+  const canonicalUrl = buildCanonicalUrl(host, regionSlug);
 
   return <HomePageContent region={region} canonicalUrl={canonicalUrl} />;
-
 }

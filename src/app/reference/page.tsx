@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Star, ChevronRight, User } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
+import { AllRegionsSectionClient } from "@/components/all-regions-section-client";
 
 interface Review {
   name: string;
@@ -259,6 +260,8 @@ export default function ReferencePage() {
           </p>
         )}
       </section>
+
+      <AllRegionsSectionClient />
     </>
   );
 }

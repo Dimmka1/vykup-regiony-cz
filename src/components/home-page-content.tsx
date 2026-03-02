@@ -11,6 +11,7 @@ import { PropertyEstimator } from "@/components/property-estimator";
 import { ComparisonCalculator } from "@/components/comparison-calculator";
 import { FloatingDesktopCta } from "@/components/floating-desktop-cta";
 import { FaqAccordion } from "@/components/faq-accordion";
+import { NearbyRegions } from "@/components/nearby-regions";
 import { FloatingWhatsApp } from "@/components/floating-whatsapp";
 import { getRegionSubdomainUrl, isProductionHost } from "@/lib/config";
 import type { RegionConfig } from "@/lib/types";
@@ -285,11 +286,13 @@ export function buildSchema(
 interface HomePageContentProps {
   region: RegionConfig;
   canonicalUrl: string;
+  currentHost: string | null;
 }
 
 export function HomePageContent({
   region,
   canonicalUrl,
+  currentHost,
 }: HomePageContentProps): ReactElement {
   const schema = buildSchema(region, canonicalUrl);
 
@@ -752,6 +755,9 @@ export function HomePageContent({
           </p>
         </div>
       </section>
+
+      {/* ===== NEARBY REGIONS ===== */}
+      <NearbyRegions regionKey={region.key} currentHost={currentHost} />
 
       {/* ===== REGION FAQ ===== */}
       {region.regionFaq && region.regionFaq.length > 0 && (

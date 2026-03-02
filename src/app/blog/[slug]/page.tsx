@@ -6,6 +6,8 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 import { BLOG_POSTS } from "../data";
+import { AllRegionsSection } from "@/components/all-regions-section";
+import { getRequestHost } from "@/lib/request-host";
 
 interface ArticleContent {
   title: string;
@@ -791,6 +793,7 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
+  const host = await getRequestHost();
   const article = ARTICLES[slug];
   if (!article) return {};
   const post = BLOG_POSTS.find((p) => p.slug === slug);
@@ -817,6 +820,7 @@ export default async function BlogArticlePage({
   params,
 }: PageProps): Promise<React.ReactElement> {
   const { slug } = await params;
+  const host = await getRequestHost();
   const article = ARTICLES[slug];
   if (!article) notFound();
 
@@ -903,6 +907,8 @@ export default async function BlogArticlePage({
           </div>
         </div>
       </article>
+
+      <AllRegionsSection currentHost={host} />
     </>
   );
 }

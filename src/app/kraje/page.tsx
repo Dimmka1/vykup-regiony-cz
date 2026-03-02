@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { MapPin } from "lucide-react";
-import { listRegions } from "@/lib/config";
+import { listRegions, getRegionUrl, getRegionSubdomainUrl } from "@/lib/config";
+import { getRequestHost } from "@/lib/request-host";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { safeJsonLd } from "@/lib/jsonld";
 
-const SITE_URL = "https://www.vykupnemovitosticz.cz";
+const SITE_URL = "https://vykoupim-nemovitost.cz";
 
 export const metadata: Metadata = {
   title: "Výkup nemovitostí ve všech krajích ČR | vykoupim-nemovitost.cz",
@@ -16,7 +16,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function KrajePage() {
+export default async function KrajePage() {
+  const host = await getRequestHost();
   const regions = listRegions();
 
   const itemListJsonLd = {
@@ -28,7 +29,7 @@ export default function KrajePage() {
       "@type": "ListItem",
       position: index + 1,
       name: region.name,
-      url: `${SITE_URL}/${region.key}`,
+      url: getRegionSubdomainUrl(region.key),
     })),
   };
 
@@ -53,9 +54,9 @@ export default function KrajePage() {
 
           <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {regions.map((region) => (
-              <Link
+              <a
                 key={region.key}
-                href={`/${region.key}`}
+                href={getRegionUrl(region.key, host)}
                 className="group flex flex-col rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-all hover:border-teal-300 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2"
               >
                 <div className="flex items-center gap-3">
@@ -72,7 +73,7 @@ export default function KrajePage() {
                 <span className="mt-auto pt-4 text-sm font-medium text-teal-700 group-hover:underline">
                   Zjistit více →
                 </span>
-              </Link>
+              </a>
             ))}
           </div>
         </div>

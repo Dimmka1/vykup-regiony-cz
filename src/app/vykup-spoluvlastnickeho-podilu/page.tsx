@@ -12,6 +12,8 @@ import { safeJsonLd } from "@/lib/jsonld";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
+import { AllRegionsSection } from "@/components/all-regions-section";
+import { getRequestHost } from "@/lib/request-host";
 
 export const metadata: Metadata = {
   alternates: {
@@ -83,7 +85,8 @@ const STEPS: readonly Step[] = [
   },
 ] as const;
 
-export default function VykupSpoluvlastnickehoPodilu(): React.ReactElement {
+export default async function VykupSpoluvlastnickehoPodilu(): Promise<React.ReactElement> {
+  const host = await getRequestHost();
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -317,6 +320,8 @@ export default function VykupSpoluvlastnickehoPodilu(): React.ReactElement {
           />
         </div>
       </section>
+
+      <AllRegionsSection currentHost={host} />
     </>
   );
 }

@@ -21,9 +21,9 @@ export function AllRegionsSection({ currentHost }: AllRegionsSectionProps) {
               <a
                 key={r.key}
                 href={url}
-                className="flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 transition hover:border-teal-300 hover:text-teal-700"
+                className="flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 transition hover:border-[var(--theme-200)] hover:text-[var(--theme-700)]"
               >
-                <MapPin className="h-3.5 w-3.5 shrink-0 text-teal-500" />
+                <MapPin className="h-3.5 w-3.5 shrink-0 text-[var(--theme-500)]" />
                 {r.name}
               </a>
             );

@@ -252,7 +252,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
           aria-label={`Krok ${currentStep + 1} z ${STEPS.length}`}
         >
           <div
-            className="h-full rounded-full bg-teal-600 transition-all"
+            className="h-full rounded-full bg-[var(--theme-600)] transition-all"
             style={{ width: `${progressPercent}%` }}
           />
         </div>
@@ -273,9 +273,9 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
                 aria-current={isActive ? "step" : undefined}
                 className={`rounded-lg px-2 py-2 text-center text-xs font-semibold ${
                   isActive
-                    ? "bg-teal-100 text-teal-800"
+                    ? "bg-[var(--theme-100)] text-[var(--theme-800)]"
                     : isCompleted
-                      ? "bg-teal-50 text-teal-700"
+                      ? "bg-[var(--theme-50)] text-[var(--theme-700)]"
                       : "bg-slate-100 text-slate-600"
                 }`}
               >
@@ -294,7 +294,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
           </label>
           <select
             id="property-type"
-            className="min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
+            className="min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]"
             value={formData.propertyType}
             onChange={(event) =>
               setFormData((prev) => ({
@@ -314,7 +314,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
           </label>
           <select
             id="situation-type"
-            className="min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
+            className="min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]"
             value={formData.situationType}
             onChange={(event) =>
               setFormData((prev) => ({
@@ -340,7 +340,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
             </label>
             <input
               id="address"
-              className={`mt-1 min-h-11 w-full rounded border ${inputBorderClass("address", fieldErrors)} px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500`}
+              className={`mt-1 min-h-11 w-full rounded border ${inputBorderClass("address", fieldErrors)} px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]`}
               placeholder="Např. Revoluční 12"
               autoComplete="street-address"
               enterKeyHint="next"
@@ -374,7 +374,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
               </label>
               <input
                 id="city"
-                className={`mt-1 min-h-11 w-full rounded border ${inputBorderClass("city", fieldErrors)} px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500`}
+                className={`mt-1 min-h-11 w-full rounded border ${inputBorderClass("city", fieldErrors)} px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]`}
                 placeholder="Např. Brno"
                 autoComplete="address-level2"
                 enterKeyHint="next"
@@ -407,7 +407,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
               </label>
               <input
                 id="postal-code"
-                className={`mt-1 min-h-11 w-full rounded border ${inputBorderClass("postal-code", fieldErrors)} px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500`}
+                className={`mt-1 min-h-11 w-full rounded border ${inputBorderClass("postal-code", fieldErrors)} px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]`}
                 placeholder="123 45"
                 inputMode="numeric"
                 autoComplete="postal-code"
@@ -433,7 +433,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
               />
               <p
                 id="psc-hint"
-                className={`mt-1 text-xs ${formData.postalCode.trim() ? (isPostalCodeValid ? "text-teal-600" : "text-red-500") : "text-slate-500"}`}
+                className={`mt-1 text-xs ${formData.postalCode.trim() ? (isPostalCodeValid ? "text-[var(--theme-600)]" : "text-red-500") : "text-slate-500"}`}
               >
                 Formát: 123 45
               </p>
@@ -456,7 +456,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
             </label>
             <input
               id="lead-name"
-              className={`mt-1 min-h-11 w-full rounded border ${inputBorderClass("lead-name", fieldErrors)} px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500`}
+              className={`mt-1 min-h-11 w-full rounded border ${inputBorderClass("lead-name", fieldErrors)} px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]`}
               value={formData.name}
               autoComplete="name"
               enterKeyHint="next"
@@ -485,7 +485,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
             </label>
             <input
               id="lead-phone"
-              className={`mt-1 min-h-11 w-full rounded border ${inputBorderClass("lead-phone", fieldErrors)} px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500`}
+              className={`mt-1 min-h-11 w-full rounded border ${inputBorderClass("lead-phone", fieldErrors)} px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]`}
               placeholder="+420 777 123 456"
               inputMode="tel"
               autoComplete="tel"
@@ -532,7 +532,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
 
           <label className="flex items-start gap-2 text-sm">
             <input
-              className="mt-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
+              className="mt-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]"
               type="checkbox"
               checked={formData.consent}
               onChange={(event) => {
@@ -562,7 +562,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
           <button
             type="button"
             onClick={handleNextStep}
-            className={`inline-flex min-h-11 items-center justify-center rounded bg-amber-500 px-5 py-3 text-base font-semibold text-white transition hover:bg-amber-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 ${currentStep === 1 && (!isAddressValid || !isCityValid || !isPostalCodeValid) ? "pointer-events-none cursor-not-allowed opacity-60" : ""}`}
+            className={`inline-flex min-h-11 items-center justify-center rounded bg-amber-500 px-5 py-3 text-base font-semibold text-white transition hover:bg-amber-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 ${currentStep === 1 && (!isAddressValid || !isCityValid || !isPostalCodeValid) ? "pointer-events-none cursor-not-allowed opacity-60" : ""}`}
           >
             Pokračovat
           </button>
@@ -570,7 +570,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
           <button
             type="submit"
             disabled={status === "submitting"}
-            className="inline-flex min-h-11 items-center justify-center rounded bg-amber-500 px-5 py-3 text-base font-semibold text-white transition hover:bg-amber-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 disabled:opacity-70"
+            className="inline-flex min-h-11 items-center justify-center rounded bg-amber-500 px-5 py-3 text-base font-semibold text-white transition hover:bg-amber-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 disabled:opacity-70"
           >
             {status === "submitting" ? "Odesílám..." : "Odeslat poptávku"}
           </button>
@@ -580,7 +580,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
           type="button"
           onClick={handlePreviousStep}
           disabled={currentStep === 0 || status === "submitting"}
-          className="inline-flex min-h-11 items-center justify-center rounded border border-slate-300 px-5 py-3 text-base font-semibold text-slate-700 transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex min-h-11 items-center justify-center rounded border border-slate-300 px-5 py-3 text-base font-semibold text-slate-700 transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
         >
           Zpět
         </button>
@@ -592,7 +592,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
         </p>
       ) : null}
       {status === "success" ? (
-        <p className="text-sm text-teal-700" role="status">
+        <p className="text-sm text-[var(--theme-700)]" role="status">
           Děkujeme, ozveme se vám co nejdříve.
         </p>
       ) : null}

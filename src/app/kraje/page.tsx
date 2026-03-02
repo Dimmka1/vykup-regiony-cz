@@ -57,20 +57,20 @@ export default async function KrajePage() {
               <a
                 key={region.key}
                 href={getRegionUrl(region.key, host)}
-                className="group flex flex-col rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-all hover:border-teal-300 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2"
+                className="group flex flex-col rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-all hover:border-[var(--theme-200)] hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
               >
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-teal-50 text-teal-700 transition-colors group-hover:bg-teal-100">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[var(--theme-50)] text-[var(--theme-700)] transition-colors group-hover:bg-[var(--theme-100)]">
                     <MapPin className="h-5 w-5" />
                   </div>
-                  <h2 className="text-lg font-semibold text-slate-900 group-hover:text-teal-700">
+                  <h2 className="text-lg font-semibold text-slate-900 group-hover:text-[var(--theme-700)]">
                     {region.name}
                   </h2>
                 </div>
                 <p className="mt-3 line-clamp-2 text-sm text-slate-500">
                   {region.description}
                 </p>
-                <span className="mt-auto pt-4 text-sm font-medium text-teal-700 group-hover:underline">
+                <span className="mt-auto pt-4 text-sm font-medium text-[var(--theme-700)] group-hover:underline">
                   Zjistit více →
                 </span>
               </a>

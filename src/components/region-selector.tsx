@@ -56,7 +56,7 @@ function RegionSelectorInner({ regions }: { regions: Region[] }) {
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="inline-flex min-h-[44px] items-center gap-1.5 rounded-lg border border-white/20 bg-white/10 px-3 py-2 text-sm font-medium text-white backdrop-blur-sm transition hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
+        className="inline-flex min-h-[44px] items-center gap-1.5 rounded-lg border border-white/20 bg-white/10 px-3 py-2 text-sm font-medium text-white backdrop-blur-sm transition hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]"
         aria-expanded={open}
         aria-haspopup="listbox"
       >
@@ -87,9 +87,9 @@ function RegionSelectorInner({ regions }: { regions: Region[] }) {
                   role="option"
                   aria-selected={r.key === currentRegionKey}
                   onClick={() => handleSelect(r.key)}
-                  className={`flex w-full items-center px-3 py-2 text-left text-sm transition hover:bg-teal-50 ${
+                  className={`flex w-full items-center px-3 py-2 text-left text-sm transition hover:bg-[var(--theme-50)] ${
                     r.key === currentRegionKey
-                      ? "bg-teal-50 font-semibold text-teal-700"
+                      ? "bg-[var(--theme-50)] font-semibold text-[var(--theme-700)]"
                       : "text-slate-700"
                   }`}
                 >

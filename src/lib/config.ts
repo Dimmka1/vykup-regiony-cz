@@ -36,6 +36,7 @@ const regionSchema = z.object({
   keywords: z.array(z.string().min(2)).min(1),
   hosts: z.array(z.string().min(4)).min(1),
   marketInfo: z.string().optional(),
+  themeColor: z.string().optional(),
   regionFaq: z
     .array(
       z.object({

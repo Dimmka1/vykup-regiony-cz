@@ -35,11 +35,11 @@ export function NearbyRegions({ regionKey, currentHost }: NearbyRegionsProps) {
               <a
                 key={r.key}
                 href={url}
-                className="group flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-4 transition hover:border-teal-300 hover:shadow-md"
+                className="group flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-4 transition hover:border-[var(--theme-200)] hover:shadow-md"
               >
-                <MapPin className="h-5 w-5 shrink-0 text-teal-600" />
+                <MapPin className="h-5 w-5 shrink-0 text-[var(--theme-600)]" />
                 <div>
-                  <span className="font-semibold text-slate-900 group-hover:text-teal-700">
+                  <span className="font-semibold text-slate-900 group-hover:text-[var(--theme-700)]">
                     {r.name}
                   </span>
                   <p className="mt-0.5 text-sm text-slate-500">

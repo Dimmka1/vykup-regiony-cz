@@ -170,7 +170,7 @@ function StepIndicator({
         <div
           key={i}
           className={`h-2 rounded-full transition-all duration-300 ${
-            i <= current ? "w-8 bg-teal-500" : "w-2 bg-slate-200"
+            i <= current ? "bg-[var(--theme-50)]0 w-8" : "w-2 bg-slate-200"
           }`}
         />
       ))}
@@ -198,15 +198,15 @@ function StepPropertyType({
             onClick={() => onSelect(key)}
             className={`flex flex-col items-center gap-3 rounded-2xl border-2 p-6 transition hover:-translate-y-0.5 hover:shadow-md ${
               selected === key
-                ? "border-teal-500 bg-teal-50 shadow-md"
-                : "border-slate-200 bg-white hover:border-teal-300"
+                ? "border-[var(--theme-500)] bg-[var(--theme-50)] shadow-md"
+                : "border-slate-200 bg-white hover:border-[var(--theme-200)]"
             }`}
           >
             <Icon
-              className={`h-10 w-10 ${selected === key ? "text-teal-600" : "text-slate-400"}`}
+              className={`h-10 w-10 ${selected === key ? "text-[var(--theme-600)]" : "text-slate-400"}`}
             />
             <span
-              className={`text-sm font-semibold ${selected === key ? "text-teal-700" : "text-slate-700"}`}
+              className={`text-sm font-semibold ${selected === key ? "text-[var(--theme-700)]" : "text-slate-700"}`}
             >
               {label}
             </span>
@@ -230,7 +230,7 @@ function StepArea({
         Jaká je plocha? (m²)
       </h3>
       <div className="mt-6 flex flex-col items-center gap-4">
-        <p className="text-4xl font-bold text-teal-600">{area} m²</p>
+        <p className="text-4xl font-bold text-[var(--theme-600)]">{area} m²</p>
         <input
           type="range"
           min={20}
@@ -238,7 +238,7 @@ function StepArea({
           step={5}
           value={area}
           onChange={(e) => onChange(Number(e.target.value))}
-          className="w-full max-w-md accent-teal-500"
+          className="w-full max-w-md accent-[var(--theme-500)]"
           aria-label="Plocha nemovitosti v metrech čtverečních"
         />
         <div className="flex w-full max-w-md justify-between text-xs text-slate-400">
@@ -270,13 +270,13 @@ function StepCondition({
             onClick={() => onSelect(key)}
             className={`flex flex-col items-center gap-3 rounded-2xl border-2 p-6 transition hover:-translate-y-0.5 hover:shadow-md ${
               selected === key
-                ? "border-teal-500 bg-teal-50 shadow-md"
-                : "border-slate-200 bg-white hover:border-teal-300"
+                ? "border-[var(--theme-500)] bg-[var(--theme-50)] shadow-md"
+                : "border-slate-200 bg-white hover:border-[var(--theme-200)]"
             }`}
           >
             <span className="text-3xl">{emoji}</span>
             <span
-              className={`text-sm font-semibold ${selected === key ? "text-teal-700" : "text-slate-700"}`}
+              className={`text-sm font-semibold ${selected === key ? "text-[var(--theme-700)]" : "text-slate-700"}`}
             >
               {label}
             </span>
@@ -290,11 +290,11 @@ function StepCondition({
 function StepResult({ price }: { price: PriceRange }): ReactElement {
   return (
     <div className="flex flex-col items-center text-center">
-      <Calculator className="mb-4 h-12 w-12 text-teal-500" />
+      <Calculator className="mb-4 h-12 w-12 text-[var(--theme-500)]" />
       <h3 className="text-lg font-semibold text-slate-900">
         Odhadovaná výkupní cena vaší nemovitosti
       </h3>
-      <p className="mt-4 text-3xl font-bold text-teal-600 sm:text-4xl">
+      <p className="mt-4 text-3xl font-bold text-[var(--theme-600)] sm:text-4xl">
         {formatCzk(price.min)} — {formatCzk(price.max)}
       </p>
       <p className="mt-2 text-sm text-slate-500">
@@ -416,7 +416,7 @@ export function PropertyEstimator({
                   type="button"
                   onClick={goNext}
                   disabled={!canNext}
-                  className="inline-flex items-center gap-1 rounded-xl bg-teal-600 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-teal-700 disabled:opacity-40"
+                  className="inline-flex items-center gap-1 rounded-xl bg-[var(--theme-600)] px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--theme-700)] disabled:opacity-40"
                 >
                   Další
                   <ChevronRight className="h-4 w-4" />

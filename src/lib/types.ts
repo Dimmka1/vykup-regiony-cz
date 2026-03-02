@@ -30,6 +30,7 @@ export interface RegionConfig {
   keywords: string[];
   hosts: string[];
   marketInfo?: string;
+  themeColor?: string;
   regionFaq?: FaqItem[];
 }
 

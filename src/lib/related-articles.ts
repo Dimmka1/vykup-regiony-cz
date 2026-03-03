@@ -84,6 +84,11 @@ const ALL_PAGES: Record<string, RelatedArticle> = {
     title: "Výkup spoluvlastnického podílu",
     description: "Odkoupíme váš podíl na nemovitosti rychle a férově.",
   },
+  "zpetny-najem": {
+    href: "/zpetny-najem",
+    title: "Zpětný nájem",
+    description: "Prodejte nemovitost a zůstaňte bydlet díky zpětnému nájmu.",
+  },
 };
 
 /** Mapping: page key → array of related page keys */
@@ -148,7 +153,7 @@ const RELATED_MAP: Record<string, string[]> = {
     "blog/nemovitost-v-exekuci-pruvodce",
     "blog/vykup-v-exekuci",
     "vykup-nemovitosti-s-hypotekou",
-    "vykup-pri-rozvodu",
+    "zpetny-najem",
   ],
   "vykup-pri-rozvodu": [
     "blog/jak-rychle-prodat-nemovitost",
@@ -166,17 +171,23 @@ const RELATED_MAP: Record<string, string[]> = {
     "blog/nemovitost-v-exekuci-pruvodce",
     "vykup-pri-exekuci",
     "blog/jak-probiha-rychly-vykup",
-    "vykup-bytu",
+    "zpetny-najem",
   ],
   "vykup-nemovitosti-s-vecnym-bremenem": [
     "blog/vykup-nemovitosti-vs-realitni-kancelar",
     "vykup-nemovitosti-s-hypotekou",
-    "blog/jak-rychle-prodat-nemovitost",
+    "zpetny-najem",
     "vykup-pri-exekuci",
   ],
   "vykup-spoluvlastnickeho-podilu": [
     "vykup-pri-rozvodu",
     "vykup-pri-dedictvi",
+    "blog/jak-rychle-prodat-nemovitost",
+    "vykup-bytu",
+  ],
+  "zpetny-najem": [
+    "vykup-pri-exekuci",
+    "vykup-nemovitosti-s-hypotekou",
     "blog/jak-rychle-prodat-nemovitost",
     "vykup-bytu",
   ],

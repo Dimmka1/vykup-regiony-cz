@@ -13,6 +13,10 @@ import { FloatingDesktopCta } from "@/components/floating-desktop-cta";
 import { FaqAccordion } from "@/components/faq-accordion";
 import { NearbyRegions } from "@/components/nearby-regions";
 import { FloatingWhatsApp } from "@/components/floating-whatsapp";
+import { PropertyEstimator } from "@/components/property-estimator";
+import { ComparisonCalculator } from "@/components/comparison-calculator";
+import { LeadForm } from "@/components/lead-form";
+import { TestimonialCarousel } from "@/components/testimonial-carousel";
 import {
   getRegionSubdomainUrl,
   isProductionHost,

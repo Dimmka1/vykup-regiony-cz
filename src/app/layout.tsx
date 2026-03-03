@@ -1,12 +1,23 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { CookieConsent } from "@/components/cookie-consent";
-import { ExitIntentPopup } from "@/components/exit-intent-popup";
+import dynamic from "next/dynamic";
+
+const CookieConsent = dynamic(
+  () => import("@/components/cookie-consent").then((mod) => mod.CookieConsent),
+  { ssr: true },
+);
+
+const ExitIntentPopup = dynamic(
+  () =>
+    import("@/components/exit-intent-popup").then((mod) => mod.ExitIntentPopup),
+  { ssr: true },
+);
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { UrgencyBanner } from "@/components/urgency-banner";
 import { WebVitalsReporter } from "@/components/web-vitals-reporter";
-import { getDefaultRegion } from "@/lib/config";
+import { getDefaultRegion, listRegions } from "@/lib/config";
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
@@ -34,19 +45,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const headersList = await headers();
+  const isStrippedLayout = headersList.get("x-layout-stripped") === "1";
+
   return (
     <html lang="cs" className={inter.variable}>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-      </head>
       <body className={`${inter.className} flex min-h-screen flex-col`}>
         <a
           href="#hlavni-obsah"
@@ -54,14 +60,22 @@ export default function RootLayout({
         >
           Přeskočit na obsah
         </a>
+        <UrgencyBanner
+          regions={listRegions().map((r) => ({
+            key: r.key,
+            name: r.name,
+            locative: r.locative,
+          }))}
+        />
         <SiteHeader phone={getDefaultRegion().phone} />
         <WebVitalsReporter />
         <main id="hlavni-obsah" className="flex-1">
           {children}
         </main>
-        <SiteFooter />
+        {!isStrippedLayout && <SiteFooter />}
         <CookieConsent />
         <ExitIntentPopup />
+        <TrackingPixels />
       </body>
     </html>
   );

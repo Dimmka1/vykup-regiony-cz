@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { headers } from "next/headers";
 import { CookieConsent } from "@/components/cookie-consent";
 import { ExitIntentPopup } from "@/components/exit-intent-popup";
 import { SiteHeader } from "@/components/site-header";
@@ -34,9 +35,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const headersList = await headers();
+  const isStrippedLayout = headersList.get("x-layout-stripped") === "1";
+
   return (
     <html lang="cs" className={inter.variable}>
       <head>
@@ -54,14 +58,14 @@ export default function RootLayout({
         >
           Přeskočit na obsah
         </a>
-        <SiteHeader phone={getDefaultRegion().phone} />
+        {!isStrippedLayout && <SiteHeader phone={getDefaultRegion().phone} />}
         <WebVitalsReporter />
         <main id="hlavni-obsah" className="flex-1">
           {children}
         </main>
-        <SiteFooter />
+        {!isStrippedLayout && <SiteFooter />}
         <CookieConsent />
-        <ExitIntentPopup />
+        {!isStrippedLayout && <ExitIntentPopup />}
       </body>
     </html>
   );

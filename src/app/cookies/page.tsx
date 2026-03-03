@@ -88,8 +88,8 @@ export default function CookiesPage() {
             měření návštěvnosti webu, cílení reklamy a přizpůsobení zobrazení
             webových stránek. Cookies pro měření návštěvnosti a přizpůsobení
             zobrazení webových stránek jsou zpracovávány na základě oprávněného
-            zájmu společnosti. Cookies pro cílení reklamy jsou zpracovávány
-            pouze na základě Vámi uděleného souhlasu.
+            zájmu správce. Cookies pro cílení reklamy jsou zpracovávány pouze na
+            základě Vámi uděleného souhlasu.
           </p>
           <p>
             Informace shromážděné pomocí cookies nám neumožňují identifikovat
@@ -108,11 +108,11 @@ export default function CookiesPage() {
 
         <Section title="Kdo cookies využívá?">
           <p>
-            Provozovatelem webové stránky vykoupim-nemovitost.cz je
-            [PROVOZOVATEL &ndash; bude doplněno]. Vaše osobní údaje zpracováváme
-            jako správce, tedy určujeme, jak budou osobní údaje zpracovávány a
-            za jakým účelem, po jak dlouhou dobu a určujeme případné další
-            zpracovatele.
+            Provozovatelem webové stránky vykoupim-nemovitost.cz je fyzická
+            osoba provozující webové stránky vykoupim-nemovitost.cz. Vaše osobní
+            údaje zpracováváme jako správce, tedy určujeme, jak budou osobní
+            údaje zpracovávány a za jakým účelem, po jak dlouhou dobu a určujeme
+            případné další zpracovatele.
           </p>
         </Section>
 
@@ -220,14 +220,21 @@ export default function CookiesPage() {
         <Section title="Kontakt">
           <p>
             Pokud se na nás budete chtít obrátit ohledně zpracování cookies,
-            kontaktujte nás na telefonu{" "}
+            kontaktujte nás na e-mailu{" "}
             <a
-              href="tel:+420800123001"
+              href="mailto:info@vykoupim-nemovitost.cz"
               className="text-[var(--theme-600)] underline hover:text-[var(--theme-700)]"
             >
-              +420 800 123 001
+              info@vykoupim-nemovitost.cz
             </a>{" "}
-            nebo prostřednictvím kontaktního formuláře na webu.
+            nebo na telefonu{" "}
+            <a
+              href="tel:+420776424145"
+              className="text-[var(--theme-600)] underline hover:text-[var(--theme-700)]"
+            >
+              +420 776 424 145
+            </a>
+            .
           </p>
         </Section>
       </article>

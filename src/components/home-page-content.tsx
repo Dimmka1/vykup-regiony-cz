@@ -527,6 +527,12 @@ export function HomePageContent({
             >
               Více o celém procesu →
             </Link>
+            <Link
+              href="/garance-vykupu"
+              className="inline-flex items-center gap-1 text-sm font-medium text-[var(--theme-700)] transition hover:text-[var(--theme-600)]"
+            >
+              Naše garance →
+            </Link>
           </div>
         </div>
       </section>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Offline | Výkup nemovitostí</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:system-ui,-apple-system,sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#f8fafc;color:#334155;padding:1rem}
+    .card{max-width:28rem;text-align:center}
+    .code{font-size:5rem;font-weight:700;color:#e2e8f0}
+    h1{font-size:1.5rem;font-weight:700;margin-top:1rem;color:#0f172a}
+    p{margin-top:1rem;line-height:1.6;color:#64748b}
+    .cta{display:inline-flex;align-items:center;gap:.5rem;margin-top:2rem;padding:.75rem 1.5rem;background:#059669;color:#fff;border-radius:.75rem;text-decoration:none;font-weight:600;font-size:1rem}
+    .cta:hover{background:#047857}
+    .retry{display:inline-block;margin-top:1rem;color:#059669;font-weight:500;cursor:pointer;border:none;background:none;font-size:.875rem}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="code">📡</div>
+    <h1>Jste offline</h1>
+    <p>Nemáte připojení k internetu. Zkontrolujte své připojení a zkuste to znovu.</p>
+    <a href="tel:+420776424145" class="cta">📞 Zavolejte nám: +420 776 424 145</a>
+    <br>
+    <button class="retry" onclick="location.reload()">↻ Zkusit znovu</button>
+  </div>
+</body>
+</html>

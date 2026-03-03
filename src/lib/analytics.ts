@@ -9,7 +9,8 @@ export type AnalyticsEventName =
   | "exit_popup_submit"
   | "callback_form_open"
   | "callback_form_submit_success"
-  | "callback_form_submit_error";
+  | "callback_form_submit_error"
+  | "page_not_found";
 
 type Primitive = string | number | boolean;
 

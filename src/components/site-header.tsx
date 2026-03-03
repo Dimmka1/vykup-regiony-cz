@@ -27,7 +27,7 @@ interface SiteHeaderProps {
   phone?: string;
 }
 
-export function SiteHeader({ phone = "+420 800 123 001" }: SiteHeaderProps) {
+export function SiteHeader({ phone = "+420 776 424 145" }: SiteHeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();

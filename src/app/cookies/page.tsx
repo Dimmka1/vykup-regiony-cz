@@ -222,10 +222,10 @@ export default function CookiesPage() {
             Pokud se na nás budete chtít obrátit ohledně zpracování cookies,
             kontaktujte nás na telefonu{" "}
             <a
-              href="tel:+420800123001"
+              href="tel:+420776424145"
               className="text-[var(--theme-600)] underline hover:text-[var(--theme-700)]"
             >
-              +420 800 123 001
+              +420 776 424 145
             </a>{" "}
             nebo prostřednictvím kontaktního formuláře na webu.
           </p>

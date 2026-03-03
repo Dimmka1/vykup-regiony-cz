@@ -18,6 +18,8 @@ import { LeadForm } from "@/components/lead-form";
 import { GuaranteeCarousel } from "@/components/guarantee-carousel";
 import { getRegionSubdomainUrl, isProductionHost } from "@/lib/config";
 import type { RegionConfig } from "@/lib/types";
+import { cookies } from "next/headers";
+import { getHeroVariant, AB_COOKIE_NAME } from "@/lib/ab-variants";
 import {
   Check,
   FileText,
@@ -293,12 +295,20 @@ interface HomePageContentProps {
   currentHost: string | null;
 }
 
-export function HomePageContent({
+export async function HomePageContent({
   region,
   canonicalUrl,
   currentHost,
-}: HomePageContentProps): ReactElement {
+}: HomePageContentProps): Promise<ReactElement> {
   const schema = buildSchema(region, canonicalUrl);
+
+  const cookieStore = await cookies();
+  const abVariant = cookieStore.get(AB_COOKIE_NAME)?.value ?? "A";
+  const heroOverride = getHeroVariant(abVariant);
+  const heroHeadline =
+    heroOverride?.headline.replace("{ZALOH}", "500 000") ?? region.h1;
+  const heroSubheadline = heroOverride?.subheadline ?? region.description;
+  const heroCtaText = heroOverride?.ctaText ?? region.heroCta;
 
   const themeStyle = getThemeStyle(region.themeColor);
 
@@ -334,10 +344,10 @@ export function HomePageContent({
             </p>
           </div>
           <h1 className="max-w-3xl text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl">
-            {region.h1}
+            {heroHeadline}
           </h1>
           <p className="mt-4 hidden max-w-2xl text-base leading-relaxed text-slate-200 md:block md:text-lg">
-            {region.description}
+            {heroSubheadline}
           </p>
 
           <ul className="mt-6 flex flex-wrap gap-2 text-sm text-white">
@@ -355,7 +365,7 @@ export function HomePageContent({
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
             <CtaLink
               href="#kontakt"
-              label={region.heroCta}
+              label={heroCtaText}
               regionName={region.name}
             />
             <a

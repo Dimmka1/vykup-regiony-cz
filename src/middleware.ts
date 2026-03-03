@@ -1,5 +1,10 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import {
+  AB_COOKIE_NAME,
+  AB_COOKIE_MAX_AGE,
+  pickVariant,
+} from "@/lib/ab-variants";
 
 /**
  * Region keys - keep in sync with regions.yml.
@@ -133,6 +138,19 @@ export function middleware(request: NextRequest): NextResponse | undefined {
     if (subdomain && !VALID_SUBDOMAINS.has(subdomain)) {
       return NextResponse.redirect(`https://${PRODUCTION_DOMAIN}/`, 301);
     }
+  }
+
+  // A/B test: assign variant cookie on first visit (sticky, 30 days)
+  const abCookie = request.cookies.get(AB_COOKIE_NAME);
+  if (!abCookie) {
+    const response = NextResponse.next();
+    response.cookies.set(AB_COOKIE_NAME, pickVariant(), {
+      httpOnly: false,
+      maxAge: AB_COOKIE_MAX_AGE,
+      sameSite: "lax",
+      path: "/",
+    });
+    return response;
   }
 
   return undefined;

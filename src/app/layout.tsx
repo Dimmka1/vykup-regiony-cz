@@ -13,6 +13,7 @@ const ExitIntentPopup = dynamic(
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { WebVitalsReporter } from "@/components/web-vitals-reporter";
+import { ABVariantTracker } from "@/components/ab-variant-tracker";
 import {
   getDefaultRegion,
   getRegionByHost,
@@ -90,6 +91,7 @@ export default async function RootLayout({
         </a>
         <SiteHeader phone={region.phone} />
         <WebVitalsReporter />
+        <ABVariantTracker />
         <main id="hlavni-obsah" className="flex-1">
           {children}
         </main>

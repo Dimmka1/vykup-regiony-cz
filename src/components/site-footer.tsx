@@ -1,6 +1,9 @@
 import Link from "next/link";
-import { MapPin, Mail, Phone } from "lucide-react";
+import { MapPin, Phone } from "lucide-react";
 import { listRegions, getRegionSubdomainUrl } from "@/lib/config";
+
+const linkClass =
+  "text-sm text-slate-400 hover:text-white transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900";
 
 function RegionCrossLinks() {
   const regions = listRegions();
@@ -29,121 +32,110 @@ export function SiteFooter() {
   return (
     <footer className="bg-slate-900 pb-[env(safe-area-inset-bottom)] text-white">
       <div className="mx-auto max-w-7xl px-6 py-12">
-        <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-5">
+          {/* Služby */}
           <div>
-            <p className="text-lg font-bold text-white">Výkup Nemovitostí</p>
-            <div className="mt-4 flex flex-col gap-2 text-sm text-slate-400">
-              <span className="flex items-center gap-2">
-                <MapPin className="h-4 w-4" /> Česká republika
+            <h3 className="mb-3 text-sm font-semibold text-white">Služby</h3>
+            <nav aria-label="Služby" className="flex flex-col gap-2">
+              <Link href="/vykup-pri-exekuci" className={linkClass}>
+                Výkup při exekuci
+              </Link>
+              <Link href="/vykup-pri-dedictvi" className={linkClass}>
+                Výkup při dědictví
+              </Link>
+              <Link href="/vykup-pri-rozvodu" className={linkClass}>
+                Výkup při rozvodu
+              </Link>
+              <Link
+                href="/vykup-spoluvlastnickeho-podilu"
+                className={linkClass}
+              >
+                Výkup spoluvlastnického podílu
+              </Link>
+              <Link href="/vykup-nemovitosti-s-hypotekou" className={linkClass}>
+                Výkup s hypotékou
+              </Link>
+              <Link
+                href="/vykup-nemovitosti-s-vecnym-bremenem"
+                className={linkClass}
+              >
+                Výkup s věcným břemenem
+              </Link>
+            </nav>
+          </div>
+
+          {/* Typy nemovitostí */}
+          <div>
+            <h3 className="mb-3 text-sm font-semibold text-white">
+              Typy nemovitostí
+            </h3>
+            <nav aria-label="Typy nemovitostí" className="flex flex-col gap-2">
+              <Link href="/vykup-bytu" className={linkClass}>
+                Výkup bytů
+              </Link>
+              <Link href="/vykup-domu" className={linkClass}>
+                Výkup domů
+              </Link>
+              <Link href="/vykup-pozemku" className={linkClass}>
+                Výkup pozemků
+              </Link>
+            </nav>
+          </div>
+
+          {/* Informace */}
+          <div>
+            <h3 className="mb-3 text-sm font-semibold text-white">Informace</h3>
+            <nav aria-label="Informace" className="flex flex-col gap-2">
+              <Link href="/kraje" className={linkClass}>
+                Kde působíme
+              </Link>
+              <Link href="/reference" className={linkClass}>
+                Reference
+              </Link>
+              <Link href="/caste-dotazy" className={linkClass}>
+                Časté dotazy
+              </Link>
+              <Link href="/garance-vykupu" className={linkClass}>
+                Garance výkupu
+              </Link>
+              <Link href="/blog" className={linkClass}>
+                Blog
+              </Link>
+            </nav>
+          </div>
+
+          {/* Právní */}
+          <div>
+            <h3 className="mb-3 text-sm font-semibold text-white">Právní</h3>
+            <nav aria-label="Právní" className="flex flex-col gap-2">
+              <Link href="/ochrana-osobnich-udaju" className={linkClass}>
+                Ochrana osobních údajů
+              </Link>
+              <Link href="/cookies" className={linkClass}>
+                Cookies
+              </Link>
+            </nav>
+          </div>
+
+          {/* Kontakt */}
+          <div>
+            <h3 className="mb-3 text-sm font-semibold text-white">Kontakt</h3>
+            <div className="flex flex-col gap-2">
+              <span className="flex items-center gap-2 whitespace-nowrap text-sm text-slate-400">
+                <MapPin className="h-4 w-4 shrink-0" /> Česká republika
               </span>
-              <span className="flex items-center gap-2">
-                <Phone className="h-4 w-4" /> +420 800 123 001
-              </span>
-              <span className="flex items-center gap-2">
-                <Mail className="h-4 w-4" /> info@vykup-regiony.cz
-              </span>
+              <a
+                href="tel:+420800123001"
+                className="flex items-center gap-2 whitespace-nowrap text-sm text-slate-400 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+              >
+                <Phone className="h-4 w-4 shrink-0" /> +420 800 123 001
+              </a>
             </div>
           </div>
-          <nav aria-label="Patička" className="flex flex-wrap gap-4 text-sm">
-            <Link
-              href="/kraje"
-              className="inline-flex min-h-[44px] items-center text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
-            >
-              Kde působíme
-            </Link>
-            <Link
-              href="/reference"
-              className="inline-flex min-h-[44px] items-center text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
-            >
-              Reference
-            </Link>
-            <Link
-              href="/caste-dotazy"
-              className="inline-flex min-h-[44px] items-center text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
-            >
-              Časté dotazy
-            </Link>
-            <Link
-              href="/garance-vykupu"
-              className="inline-flex min-h-[44px] items-center text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
-            >
-              Garance výkupu
-            </Link>
-            <Link
-              href="/blog"
-              className="inline-flex min-h-[44px] items-center text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
-            >
-              Blog
-            </Link>
-            <Link
-              href="/vykup-pri-exekuci"
-              className="inline-flex min-h-[44px] items-center text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
-            >
-              Výkup při exekuci
-            </Link>
-            <Link
-              href="/vykup-pri-dedictvi"
-              className="inline-flex min-h-[44px] items-center text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
-            >
-              Výkup při dědictví
-            </Link>
-            <Link
-              href="/vykup-pri-rozvodu"
-              className="inline-flex min-h-[44px] items-center text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
-            >
-              Výkup při rozvodu
-            </Link>
-            <Link
-              href="/vykup-spoluvlastnickeho-podilu"
-              className="inline-flex min-h-[44px] items-center text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
-            >
-              Výkup spoluvlastnického podílu
-            </Link>
-            <Link
-              href="/vykup-nemovitosti-s-hypotekou"
-              className="inline-flex min-h-[44px] items-center text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
-            >
-              Výkup s hypotékou
-            </Link>
-            <Link
-              href="/vykup-nemovitosti-s-vecnym-bremenem"
-              className="inline-flex min-h-[44px] items-center text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
-            >
-              Výkup s věcným břemenem
-            </Link>
-            <Link
-              href="/vykup-bytu"
-              className="inline-flex min-h-[44px] items-center text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
-            >
-              Výkup bytů
-            </Link>
-            <Link
-              href="/vykup-domu"
-              className="inline-flex min-h-[44px] items-center text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
-            >
-              Výkup domů
-            </Link>
-            <Link
-              href="/vykup-pozemku"
-              className="inline-flex min-h-[44px] items-center text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
-            >
-              Výkup pozemků
-            </Link>
-            <Link
-              href="/ochrana-osobnich-udaju"
-              className="inline-flex min-h-[44px] items-center text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
-            >
-              Ochrana osobních údajů
-            </Link>
-            <Link
-              href="/cookies"
-              className="inline-flex min-h-[44px] items-center text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
-            >
-              Cookies
-            </Link>
-          </nav>
         </div>
+
         <RegionCrossLinks />
+
         <div className="mt-10 border-t border-slate-700 pt-6 text-center text-sm text-slate-400">
           © 2026 Výkup Nemovitostí. Všechna práva vyhrazena.
         </div>

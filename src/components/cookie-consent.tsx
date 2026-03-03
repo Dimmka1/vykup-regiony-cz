@@ -10,12 +10,6 @@ interface ConsentState {
   timestamp: string;
 }
 
-declare global {
-  interface Window {
-    dataLayer: Record<string, unknown>[];
-  }
-}
-
 const GTM_ID = "GTM-PSS7C6RD";
 
 function getConsentCookie(): ConsentState | null {
@@ -44,14 +38,14 @@ function loadGTM() {
   script.id = "gtm-script";
   script.async = true;
   script.src = `https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`;
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+  (window as any).dataLayer = (window as any).dataLayer || [];
+  (window as any).dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
   document.head.appendChild(script);
 }
 
 function pushConsentEvent(consent: ConsentState) {
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
+  (window as any).dataLayer = (window as any).dataLayer || [];
+  (window as any).dataLayer.push({
     event: "cookie_consent_update",
     cookie_consent: consent,
   });

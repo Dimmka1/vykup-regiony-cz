@@ -2,12 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import dynamic from "next/dynamic";
+import Script from "next/script";
 import { TrackingPixels } from "@/components/tracking-pixels";
-
-const CookieConsent = dynamic(
-  () => import("@/components/cookie-consent").then((mod) => mod.CookieConsent),
-  { ssr: true },
-);
 
 const ExitIntentPopup = dynamic(
   () =>
@@ -87,7 +83,6 @@ export default async function RootLayout({
           {children}
         </main>
         {!isStrippedLayout && <SiteFooter />}
-        <CookieConsent />
         <ExitIntentPopup />
         <TrackingPixels />
       </body>

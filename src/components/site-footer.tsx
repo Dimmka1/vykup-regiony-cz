@@ -95,6 +95,9 @@ export function SiteFooter() {
               <Link href="/caste-dotazy" className={linkClass}>
                 Časté dotazy
               </Link>
+              <Link href="/proc-my" className={linkClass}>
+                Proč prodat nám
+              </Link>
               <Link href="/garance-vykupu" className={linkClass}>
                 Garance výkupu
               </Link>

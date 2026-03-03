@@ -78,7 +78,7 @@ export const GENERAL_FAQ: { question: string; answer: string }[] = [
 ];
 
 const HERO_BADGES = [
-  "Záloha až 500 000 Kč ihned",
+  `Záloha až ${process.env.NEXT_PUBLIC_ZALOH_VARIANT || "500 000"} Kč ihned`,
   "Peníze na účtu do 48 hodin",
   "Bez provize a skrytých poplatků",
 ] as const;

@@ -9,17 +9,18 @@ const requestCounter = new Map<string, { count: number; start: number }>();
 
 const leadSchema = z.object({
   name: z.string().min(2),
-  phone: z.string().regex(/^(\+420)?\s?\d{3}\s?\d{3}\s?\d{3}$/),
+  phone: z.string().regex(/^(\+?420|00420)?\s?\d{3}\s?\d{3}\s?\d{3}$/),
   property_type: z.string().min(2),
   region: z.string().min(2),
   situation_type: z.string().min(2),
   consent_gdpr: z.literal(true),
+  email: z.string().email().optional().or(z.literal("")),
   website: z.string().optional(),
 });
 
 const callbackSchema = z.object({
   type: z.literal("callback"),
-  phone: z.string().regex(/^(\+420|00420)?\s?\d{3}\s?\d{3}\s?\d{3}$/),
+  phone: z.string().regex(/^(\+?420|00420)?\s?\d{3}\s?\d{3}\s?\d{3}$/),
   source: z.string().min(1),
   region: z.string().min(2),
 });
@@ -40,7 +41,9 @@ interface LeadNotificationPayload {
   data: Omit<LeadData, "website" | "consent_gdpr">;
 }
 
-function sendWebhookNotification(payload: LeadNotificationPayload): void {
+async function sendWebhookNotification(
+  payload: LeadNotificationPayload,
+): Promise<void> {
   const webhookUrl = process.env.LEAD_WEBHOOK_URL;
 
   if (!webhookUrl) {
@@ -51,24 +54,31 @@ function sendWebhookNotification(payload: LeadNotificationPayload): void {
     return;
   }
 
-  fetch(webhookUrl, {
+  const res = await fetch(webhookUrl, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
-  }).catch((error: unknown) => {
+  });
+
+  if (!res.ok) {
+    const body = await res.text();
     console.error("[lead-notify] Webhook failed:", {
       url: webhookUrl,
       lead_id: payload.lead_id,
-      error: error instanceof Error ? error.message : String(error),
+      status: res.status,
+      body,
     });
-  });
+  }
 }
 
-function sendEmailNotification(payload: LeadNotificationPayload): void {
+async function sendEmailNotification(
+  payload: LeadNotificationPayload,
+): Promise<void> {
   const apiKey = process.env.RESEND_API_KEY;
   const notifyEmail = process.env.LEAD_NOTIFY_EMAIL;
 
   if (!apiKey || !notifyEmail) {
+    console.warn("[lead-notify] RESEND_API_KEY or LEAD_NOTIFY_EMAIL not set");
     return;
   }
 
@@ -86,7 +96,7 @@ function sendEmailNotification(payload: LeadNotificationPayload): void {
     "</table>",
   ].join("\n");
 
-  fetch("https://api.resend.com/emails", {
+  const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -98,19 +108,28 @@ function sendEmailNotification(payload: LeadNotificationPayload): void {
       subject: `Nový lead: ${data.name} – ${data.region}`,
       html: htmlBody,
     }),
-  }).catch((error: unknown) => {
+  });
+
+  if (!res.ok) {
+    const body = await res.text();
     console.error("[lead-notify] Email failed:", {
       lead_id: payload.lead_id,
-      error: error instanceof Error ? error.message : String(error),
+      status: res.status,
+      body,
     });
-  });
+  }
 }
 
-function sendTelegramNotification(payload: LeadNotificationPayload): void {
+async function sendTelegramNotification(
+  payload: LeadNotificationPayload,
+): Promise<void> {
   const botToken = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
 
   if (!botToken || !chatId) {
+    console.warn(
+      "[lead-notify] TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID not set",
+    );
     return;
   }
 
@@ -127,29 +146,121 @@ function sendTelegramNotification(payload: LeadNotificationPayload): void {
     `🆔 <b>ID:</b> ${payload.lead_id}`,
   ].join("\n");
 
-  fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      chat_id: chatId,
-      text,
-      parse_mode: "HTML",
-    }),
-  }).catch((error: unknown) => {
-    console.error("[lead-notify] Telegram failed:", {
+  const res = await fetch(
+    `https://api.telegram.org/bot${botToken}/sendMessage`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text,
+        parse_mode: "HTML",
+      }),
+    },
+  );
+
+  if (!res.ok) {
+    const body = await res.text();
+    console.error("[lead-notify] Telegram API error:", {
+      lead_id: payload.lead_id,
+      status: res.status,
+      body,
+    });
+  }
+}
+
+async function sendAutoReplyEmail(
+  payload: LeadNotificationPayload & { email: string },
+): Promise<void> {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) return;
+
+  const fromEmail =
+    process.env.RESEND_FROM_EMAIL ?? "noreply@vykoupim-nemovitost.cz";
+  const { data, email } = payload;
+
+  const propertyTypeLabels: Record<string, string> = {
+    byt: "Byt",
+    dum: "Dům",
+    podil: "Podíl",
+    jine: "Jiné",
+  };
+
+  const situationLabels: Record<string, string> = {
+    standard: "Standardní prodej",
+    exekuce: "Exekuce",
+    dedictvi: "Dědictví",
+    podil: "Spoluvlastnický podíl",
+  };
+
+  const htmlBody = `<!DOCTYPE html>
+<html lang="cs">
+<head><meta charset="utf-8"></head>
+<body style="font-family:Arial,sans-serif;color:#333;max-width:600px;margin:0 auto;padding:20px">
+  <h2 style="color:#1a56db">Děkujeme za vaši poptávku!</h2>
+  <p>Dobrý den, <strong>${data.name}</strong>,</p>
+  <p>obdrželi jsme vaši poptávku na výkup nemovitosti a děkujeme za důvěru.</p>
+  <table style="border-collapse:collapse;width:100%;margin:20px 0">
+    <tr style="background:#f8fafc">
+      <td style="padding:10px;border:1px solid #e2e8f0"><strong>Typ nemovitosti</strong></td>
+      <td style="padding:10px;border:1px solid #e2e8f0">${propertyTypeLabels[data.property_type] ?? data.property_type}</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;border:1px solid #e2e8f0"><strong>Region</strong></td>
+      <td style="padding:10px;border:1px solid #e2e8f0">${data.region}</td>
+    </tr>
+    <tr style="background:#f8fafc">
+      <td style="padding:10px;border:1px solid #e2e8f0"><strong>Situace</strong></td>
+      <td style="padding:10px;border:1px solid #e2e8f0">${situationLabels[data.situation_type] ?? data.situation_type}</td>
+    </tr>
+  </table>
+  <p style="font-size:18px;color:#1a56db;font-weight:bold">📞 Zavoláme vám do 30 minut!</p>
+  <p>Pokud máte mezitím jakékoli dotazy, neváhejte nás kontaktovat na telefonu <strong>+420 725 877 076</strong>.</p>
+  <hr style="border:none;border-top:1px solid #e2e8f0;margin:30px 0">
+  <p style="font-size:12px;color:#94a3b8">Tento e-mail byl odeslán automaticky z webu vykoupím-nemovitost.cz</p>
+</body>
+</html>`;
+
+  try {
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({
+        from: `Výkup Nemovitostí <${fromEmail}>`,
+        to: [email],
+        subject: "Děkujeme za poptávku – ozveme se do 30 minut",
+        html: htmlBody,
+      }),
+    });
+
+    if (!res.ok) {
+      const body = await res.text();
+      console.error("[auto-reply] Email failed:", {
+        lead_id: payload.lead_id,
+        status: res.status,
+        body,
+      });
+    }
+  } catch (error: unknown) {
+    console.error("[auto-reply] Email error:", {
       lead_id: payload.lead_id,
       error: error instanceof Error ? error.message : String(error),
     });
-  });
+  }
 }
-
-function sendCallbackTelegramNotification(
+async function sendCallbackTelegramNotification(
   payload: CallbackNotificationPayload,
-): void {
+): Promise<void> {
   const botToken = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
 
   if (!botToken || !chatId) {
+    console.warn(
+      "[lead-notify] TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID not set",
+    );
     return;
   }
 
@@ -164,20 +275,27 @@ function sendCallbackTelegramNotification(
     `🆔 <b>ID:</b> ${payload.lead_id}`,
   ].join("\n");
 
-  fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      chat_id: chatId,
-      text,
-      parse_mode: "HTML",
-    }),
-  }).catch((error: unknown) => {
+  const res = await fetch(
+    `https://api.telegram.org/bot${botToken}/sendMessage`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text,
+        parse_mode: "HTML",
+      }),
+    },
+  );
+
+  if (!res.ok) {
+    const body = await res.text();
     console.error("[lead-notify] Callback Telegram failed:", {
       lead_id: payload.lead_id,
-      error: error instanceof Error ? error.message : String(error),
+      status: res.status,
+      body,
     });
-  });
+  }
 }
 
 function saveLeadToFile(
@@ -270,7 +388,19 @@ export async function POST(request: Request): Promise<NextResponse> {
         },
       };
 
-      sendCallbackTelegramNotification(cbPayload);
+      const cbResults = await Promise.allSettled([
+        sendCallbackTelegramNotification(cbPayload),
+      ]);
+
+      cbResults.forEach((r, i) => {
+        if (r.status === "rejected") {
+          console.error(
+            `[lead-notify] Callback notification ${i} failed:`,
+            r.reason,
+          );
+        }
+      });
+
       saveLeadToFile(cbPayload);
 
       return NextResponse.json(
@@ -303,10 +433,27 @@ export async function POST(request: Request): Promise<NextResponse> {
       },
     };
 
-    // Fire-and-forget: don't block client response
-    sendWebhookNotification(notificationPayload);
-    sendEmailNotification(notificationPayload);
-    sendTelegramNotification(notificationPayload);
+    const notifyResults = await Promise.allSettled([
+      sendWebhookNotification(notificationPayload),
+      sendEmailNotification(notificationPayload),
+      sendTelegramNotification(notificationPayload),
+      ...(validatedData.email && validatedData.email.trim()
+        ? [
+            sendAutoReplyEmail({
+              ...notificationPayload,
+              email: validatedData.email.trim(),
+            }),
+          ]
+        : []),
+    ]);
+
+    const notifyNames = ["webhook", "email", "telegram", "auto-reply"];
+    notifyResults.forEach((r, i) => {
+      if (r.status === "rejected") {
+        console.error(`[lead-notify] ${notifyNames[i]} failed:`, r.reason);
+      }
+    });
+
     saveLeadToFile(notificationPayload);
 
     return NextResponse.json(

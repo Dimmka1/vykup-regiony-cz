@@ -43,6 +43,17 @@ input[type="radio"] {
   height: 20px;
 }
 
+/* Global focus-visible ring for keyboard accessibility */
+*:focus-visible {
+  outline: 2px solid var(--theme-600);
+  outline-offset: 2px;
+}
+
+/* Elements with Tailwind focus-visible classes handle their own styles */
+[class*="focus-visible:"]:focus-visible {
+  outline: none;
+}
+
 /* Blog article prose styles */
 .prose-article h2 {
   @apply mb-3 mt-8 text-xl font-bold text-slate-900;

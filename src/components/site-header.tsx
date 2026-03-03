@@ -151,35 +151,35 @@ export function SiteHeader({ phone = "+420 800 123 001" }: SiteHeaderProps) {
           <div className="flex flex-col gap-3">
             <Link
               href="/jak-to-funguje"
-              className="min-h-[44px] text-sm font-medium text-slate-700 hover:text-[var(--theme-500)]"
+              className="min-h-[44px] text-sm font-medium text-slate-700 hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
               onClick={() => setMobileOpen(false)}
             >
               Jak to funguje
             </Link>
             <Link
               href="/kraje"
-              className="min-h-[44px] text-sm font-medium text-slate-700 hover:text-[var(--theme-500)]"
+              className="min-h-[44px] text-sm font-medium text-slate-700 hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
               onClick={() => setMobileOpen(false)}
             >
               Kde působíme
             </Link>
             <Link
               href="/caste-dotazy"
-              className="min-h-[44px] text-sm font-medium text-slate-700 hover:text-[var(--theme-500)]"
+              className="min-h-[44px] text-sm font-medium text-slate-700 hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
               onClick={() => setMobileOpen(false)}
             >
               Časté dotazy
             </Link>
             <Link
               href="/reference"
-              className="min-h-[44px] text-sm font-medium text-slate-700 hover:text-[var(--theme-500)]"
+              className="min-h-[44px] text-sm font-medium text-slate-700 hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
               onClick={() => setMobileOpen(false)}
             >
               Reference
             </Link>
             <Link
               href="/blog"
-              className="min-h-[44px] text-sm font-medium text-slate-700 hover:text-[var(--theme-500)]"
+              className="min-h-[44px] text-sm font-medium text-slate-700 hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
               onClick={() => setMobileOpen(false)}
             >
               Blog

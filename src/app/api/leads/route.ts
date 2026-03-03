@@ -1,3 +1,4 @@
+import { addLead as addDripLead } from "@/lib/lead-store";
 import { appendFileSync } from "node:fs";
 import { NextResponse } from "next/server";
 import { z } from "zod";
@@ -455,6 +456,15 @@ export async function POST(request: Request): Promise<NextResponse> {
     });
 
     saveLeadToFile(notificationPayload);
+
+    // Register for drip email sequence
+    if (validatedData.email && validatedData.email.trim()) {
+      try {
+        addDripLead(validatedData.email.trim());
+      } catch (err) {
+        console.error("[drip] Failed to register lead:", err);
+      }
+    }
 
     return NextResponse.json(
       { ok: true, lead_id: leadId, message: "Lead accepted" },

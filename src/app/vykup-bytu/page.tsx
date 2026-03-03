@@ -132,8 +132,8 @@ export default async function VykupBytuPage(): Promise<React.ReactElement> {
     "@type": "WebPage",
     name: "Výkup bytů - rychlý prodej bytu za hotové",
     description: metadata.description,
-    url: "https://vykup-regiony.cz/vykup-bytu",
-    isPartOf: { "@type": "WebSite", url: "https://vykup-regiony.cz" },
+    url: "https://vykoupim-nemovitost.cz/vykup-bytu",
+    isPartOf: { "@type": "WebSite", url: "https://vykoupim-nemovitost.cz" },
   };
 
   return (

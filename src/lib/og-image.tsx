@@ -25,7 +25,7 @@ export function renderOgImage(regionKey: string | null): ImageResponse {
       }}
     >
       <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
-        <span style={{ fontSize: 34, opacity: 0.9 }}>Výkup Regiony CZ</span>
+        <span style={{ fontSize: 34, opacity: 0.9 }}>Vykoupím Nemovitost</span>
         <h1
           style={{ fontSize: 64, lineHeight: 1.1, margin: 0, maxWidth: "85%" }}
         >

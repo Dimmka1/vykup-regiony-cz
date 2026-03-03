@@ -103,11 +103,11 @@ export default async function VykupSpoluvlastnickehoPodilu(): Promise<React.Reac
     name: "Výkup spoluvlastnického podílu na nemovitosti",
     description:
       "Vykoupíme váš spoluvlastnický podíl na nemovitosti rychle a bez soudních sporů.",
-    url: "https://vykup-regiony.cz/vykup-spoluvlastnickeho-podilu",
+    url: "https://vykoupim-nemovitost.cz/vykup-spoluvlastnickeho-podilu",
     publisher: {
       "@type": "Organization",
       name: "Výkup Nemovitostí",
-      url: "https://vykup-regiony.cz",
+      url: "https://vykoupim-nemovitost.cz",
     },
   };
 

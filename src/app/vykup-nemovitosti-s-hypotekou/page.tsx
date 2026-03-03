@@ -103,11 +103,11 @@ export default async function VykupNemovitostiSHypotekou(): Promise<React.ReactE
     name: "Výkup nemovitosti s hypotékou",
     description:
       "Vykoupíme nemovitost zatíženou hypotékou nebo zástavním právem rychle a bez komplikací.",
-    url: "https://vykup-regiony.cz/vykup-nemovitosti-s-hypotekou",
+    url: "https://vykoupim-nemovitost.cz/vykup-nemovitosti-s-hypotekou",
     publisher: {
       "@type": "Organization",
       name: "Výkup Nemovitostí",
-      url: "https://vykup-regiony.cz",
+      url: "https://vykoupim-nemovitost.cz",
     },
   };
 

@@ -131,8 +131,8 @@ export default async function VykupDomuPage(): Promise<React.ReactElement> {
     "@type": "WebPage",
     name: "Výkup domů - rychlý prodej rodinného domu za hotové",
     description: metadata.description,
-    url: "https://vykup-regiony.cz/vykup-domu",
-    isPartOf: { "@type": "WebSite", url: "https://vykup-regiony.cz" },
+    url: "https://vykoupim-nemovitost.cz/vykup-domu",
+    isPartOf: { "@type": "WebSite", url: "https://vykoupim-nemovitost.cz" },
   };
 
   return (

@@ -43,7 +43,7 @@ import {
   Phone,
 } from "lucide-react";
 
-export const COMPANY_NAME = "Výkup Regiony CZ";
+export const COMPANY_NAME = "Vykoupím Nemovitost";
 
 export const GENERAL_FAQ: { question: string; answer: string }[] = [
   {

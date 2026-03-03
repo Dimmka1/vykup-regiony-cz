@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { BLOG_POSTS } from "../data";
 
-export const alt = "Výkup Regiony CZ - Blog";
+export const alt = "Vykoupím Nemovitost - Blog";
 
 export const size = {
   width: 1200,
@@ -30,7 +30,7 @@ export default async function OgImage({
 }: OgImageProps): Promise<ImageResponse> {
   const { slug } = await params;
   const post = BLOG_POSTS.find((p) => p.slug === slug);
-  const title = post?.title ?? "Blog - Výkup Regiony CZ";
+  const title = post?.title ?? "Blog - Vykoupím Nemovitost";
   const fontData = loadFont();
 
   return new ImageResponse(

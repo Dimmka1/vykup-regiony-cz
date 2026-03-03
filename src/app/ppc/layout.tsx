@@ -2,6 +2,7 @@ import type { ReactElement } from "react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "https://vykoupim-nemovitost.cz/ppc" },
   title: "Rychlý výkup nemovitostí | Nabídka zdarma",
   description:
     "Vykoupíme vaši nemovitost rychle a férově. Nezávazná nabídka do 24 hodin.",

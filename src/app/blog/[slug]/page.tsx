@@ -150,7 +150,7 @@ const ARTICLES: Record<string, ArticleContent> = {
           katastru nebo prověření exekucí.
         </p>
         <p>
-          Náš právní tým má bohaté zkušenosti se všemi typy nemovitostních
+          Náš právní tým se specializuje na všechny typy nemovitostních
           transakcí. Ať už prodáváte{" "}
           <Link
             href="/vykup-bytu"
@@ -1319,10 +1319,9 @@ const ARTICLES: Record<string, ArticleContent> = {
 
         <h2>2. Ocenění nemovitosti</h2>
         <p>
-          Na základě poskytnutých údajů naši odborníci provedou předběžné
-          ocenění. Zohledňujeme aktuální tržní ceny v dané lokalitě, stav
-          nemovitosti a případná právní břemena. Do 24 hodin vám představíme
-          cenovou nabídku.
+          Na základě poskytnutých údajů provedeme předběžné ocenění.
+          Zohledňujeme aktuální tržní ceny v dané lokalitě, stav nemovitosti a
+          případná právní břemena. Do 24 hodin vám představíme cenovou nabídku.
         </p>
 
         <h2>3. Prohlídka a finální nabídka</h2>

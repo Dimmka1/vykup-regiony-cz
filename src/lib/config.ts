@@ -9,12 +9,6 @@ const faqSchema = z.object({
   answer: z.string().min(1),
 });
 
-const testimonialSchema = z.object({
-  author: z.string().min(2),
-  city: z.string().min(2),
-  quote: z.string().min(20),
-});
-
 const regionSchema = z.object({
   key: z.string().min(2),
   name: z.string().min(2),
@@ -29,7 +23,6 @@ const regionSchema = z.object({
   supportedCities: z.array(z.string().min(2)).min(1),
   uspPoints: z.array(z.string().min(5)).min(3),
   faq: z.array(faqSchema).min(2),
-  testimonials: z.array(testimonialSchema).min(2),
   legalDisclaimer: z.string().min(8),
   seoTitle: z.string().min(10),
   seoDescription: z.string().min(20),

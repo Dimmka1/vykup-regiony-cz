@@ -152,10 +152,10 @@ export default async function VykupNemovitostiSHypotekou(): Promise<React.ReactE
             obdržela svou pohledávku a vy zbytek kupní ceny.
           </p>
           <p className="mt-4 text-slate-600">
-            Naši specialisté mají bohaté zkušenosti s výkupem nemovitostí
-            zatížených zástavním právem. Komunikujeme přímo s vaší bankou,
-            zjistíme přesnou výši nesplaceného úvěru a dohodneme podmínky
-            předčasného splacení. Vy se nemusíte o nic starat.
+            Specializujeme se na výkup nemovitostí zatížených zástavním právem.
+            Komunikujeme přímo s vaší bankou, zjistíme přesnou výši nesplaceného
+            úvěru a dohodneme podmínky předčasného splacení. Vy se nemusíte o
+            nic starat.
           </p>
           <p className="mt-4 text-slate-600">
             Situace, kdy majitelé nemohou splácet hypotéku, není výjimečná.

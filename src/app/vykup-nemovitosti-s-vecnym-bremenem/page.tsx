@@ -44,7 +44,7 @@ const FAQ_ITEMS: readonly FaqItem[] = [
   {
     question: "Jaké typy věcných břemen řešíte?",
     answer:
-      "Řešíme všechny typy věcných břemen - služebnosti (právo cesty, právo vedení, právo užívání), reálná břemena i právo doživotního bydlení. U každého typu máme zkušenosti a víme, jak situaci optimálně vyřešit.",
+      "Řešíme všechny typy věcných břemen - služebnosti (právo cesty, právo vedení, právo užívání), reálná břemena i právo doživotního bydlení. U každého typu víme, jak situaci optimálně vyřešit.",
   },
   {
     question: "Lze věcné břemeno zrušit?",
@@ -153,11 +153,11 @@ export default async function VykupNemovitostiSVecnymBremenem(): Promise<React.R
             kupce měsíce i roky.
           </p>
           <p className="mt-4 text-slate-600">
-            My se na výkup nemovitostí s věcným břemenem specializujeme. Máme
-            zkušenosti se všemi typy břemen - od služebností (právo cesty,
-            stezky, vedení inženýrských sítí) přes reálná břemena až po právo
-            doživotního užívání. Každý případ posoudíme individuálně a navrhneme
-            optimální řešení.
+            My se na výkup nemovitostí s věcným břemenem specializujeme. Řešíme
+            všechny typy břemen - od služebností (právo cesty, stezky, vedení
+            inženýrských sítí) přes reálná břemena až po právo doživotního
+            užívání. Každý případ posoudíme individuálně a navrhneme optimální
+            řešení.
           </p>
           <p className="mt-4 text-slate-600">
             Nejčastěji se setkáváme s právem doživotního bydlení, které bylo

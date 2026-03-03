@@ -9,7 +9,11 @@ export type AnalyticsEventName =
   | "exit_popup_submit"
   | "callback_form_open"
   | "callback_form_submit_success"
-  | "callback_form_submit_error";
+  | "callback_form_submit_error"
+  | "form_step_1_type"
+  | "form_step_2_address"
+  | "form_step_3_contact"
+  | "form_submit";
 
 type Primitive = string | number | boolean;
 

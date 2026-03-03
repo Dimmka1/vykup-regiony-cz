@@ -2,8 +2,44 @@
 
 import type { ReactElement } from "react";
 import { useRouter } from "next/navigation";
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { trackEvent } from "@/lib/analytics";
+import type { AnalyticsEventName } from "@/lib/analytics";
+
+/* ── GTM form-step tracking (VR-129) ─────────────────────────── */
+
+const STEP_EVENTS: readonly { event: AnalyticsEventName; stepName: string }[] = [
+  { event: "form_step_1_type", stepName: "type" },
+  { event: "form_step_2_address", stepName: "address" },
+  { event: "form_step_3_contact", stepName: "contact" },
+] as const;
+
+function getUtmSource(): string {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const fromUrl = params.get("utm_source");
+    if (fromUrl) return fromUrl;
+  } catch {
+    /* SSR guard */
+  }
+  try {
+    return sessionStorage.getItem("utm_source") ?? "";
+  } catch {
+    return "";
+  }
+}
+
+function pushFormStepEvent(step: number, region: string): void {
+  const meta = STEP_EVENTS[step];
+  if (!meta) return;
+  trackEvent(meta.event, {
+    step: step + 1,
+    stepName: meta.stepName,
+    region,
+    utm_source: getUtmSource(),
+  });
+}
+
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 type FormStep = 0 | 1 | 2;
@@ -95,6 +131,12 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
   const formRef = useRef<HTMLFormElement>(null);
   const router = useRouter();
 
+  // VR-129: Track step 1 on mount
+  useEffect(() => {
+    pushFormStepEvent(0, regionName);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const isPhoneValid = useMemo(
     () => CZ_PHONE_REGEX.test(formData.phone.trim()),
     [formData.phone],
@@ -135,6 +177,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
   const handleNextStep = (): void => {
     if (currentStep === 0) {
       setCurrentStep(1);
+      pushFormStepEvent(1, regionName);
       setErrorMessage("");
       setFieldErrors({});
       return;
@@ -153,6 +196,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
 
       setFieldErrors({});
       setCurrentStep(2);
+      pushFormStepEvent(2, regionName);
       setErrorMessage("");
     }
   };
@@ -210,6 +254,13 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
         throw new Error("Lead API error");
       }
 
+      // VR-129: Track form submission
+      trackEvent("form_submit", {
+        step: 4,
+        stepName: "submit",
+        region: regionName,
+        utm_source: getUtmSource(),
+      });
       trackEvent("lead_form_submit_success", {
         form_name: "lead_form",
         region: regionName,

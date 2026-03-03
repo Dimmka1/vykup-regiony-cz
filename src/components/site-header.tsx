@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Menu, Phone, X } from "lucide-react";
+import { useTrackingPhone } from "@/hooks/use-tracking-phone";
+import { trackPhoneClick } from "@/lib/phone-tracking";
 
 /** Region keys that have a dark hero - header stays transparent */
 const REGION_KEYS = new Set([
@@ -24,13 +26,24 @@ const REGION_KEYS = new Set([
 ]);
 
 interface SiteHeaderProps {
+  /** Default phone from region config (server-side) */
   phone?: string;
+  /** Region name for GTM tracking */
+  region?: string;
 }
 
-export function SiteHeader({ phone = "+420 800 123 001" }: SiteHeaderProps) {
+export function SiteHeader({
+  phone: defaultPhone = "+420 800 123 001",
+  region,
+}: SiteHeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
+  const { phone, utmSource } = useTrackingPhone(defaultPhone);
+
+  const handlePhoneClick = useCallback(() => {
+    trackPhoneClick(phone, utmSource, region);
+  }, [phone, utmSource, region]);
 
   // Determine if this page needs a solid (always visible) header
   const isSolid =
@@ -110,7 +123,8 @@ export function SiteHeader({ phone = "+420 800 123 001" }: SiteHeaderProps) {
             Blog
           </Link>
           <a
-            href={`tel:${phone}`}
+            href={`tel:${phone.replace(/\s/g, "")}`}
+            onClick={handlePhoneClick}
             className={`inline-flex min-h-[44px] items-center gap-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 ${
               showSolid ? "text-slate-600" : "text-white/80"
             }`}
@@ -185,7 +199,8 @@ export function SiteHeader({ phone = "+420 800 123 001" }: SiteHeaderProps) {
               Blog
             </Link>
             <a
-              href={`tel:${phone}`}
+              href={`tel:${phone.replace(/\s/g, "")}`}
+              onClick={handlePhoneClick}
               className="inline-flex min-h-[44px] items-center gap-1.5 text-sm font-medium text-slate-600"
             >
               <Phone className="h-4 w-4" />

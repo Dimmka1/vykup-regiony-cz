@@ -7,6 +7,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { WebVitalsReporter } from "@/components/web-vitals-reporter";
 import { getDefaultRegion } from "@/lib/config";
+import { TrackingPixels } from "@/components/tracking-pixels";
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
@@ -62,6 +63,7 @@ export default function RootLayout({
         <SiteFooter />
         <CookieConsent />
         <ExitIntentPopup />
+        <TrackingPixels />
       </body>
     </html>
   );

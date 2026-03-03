@@ -6,8 +6,9 @@ import { CookieConsent } from "@/components/cookie-consent";
 import { ExitIntentPopup } from "@/components/exit-intent-popup";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { UrgencyBanner } from "@/components/urgency-banner";
 import { WebVitalsReporter } from "@/components/web-vitals-reporter";
-import { getDefaultRegion } from "@/lib/config";
+import { getDefaultRegion, listRegions } from "@/lib/config";
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
@@ -58,7 +59,14 @@ export default async function RootLayout({
         >
           Přeskočit na obsah
         </a>
-        {!isStrippedLayout && <SiteHeader phone={getDefaultRegion().phone} />}
+        <UrgencyBanner
+          regions={listRegions().map((r) => ({
+            key: r.key,
+            name: r.name,
+            locative: r.locative,
+          }))}
+        />
+        <SiteHeader phone={getDefaultRegion().phone} />
         <WebVitalsReporter />
         <main id="hlavni-obsah" className="flex-1">
           {children}

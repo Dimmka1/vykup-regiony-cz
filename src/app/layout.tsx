@@ -67,10 +67,40 @@ export default async function RootLayout({
 
   return (
     <html lang="cs" className={inter.variable}>
+      <head>
+        {process.env.NODE_ENV === "production" && (
+          <Script
+            id="Cookiebot"
+            src="https://consent.cookiebot.com/uc.js"
+            data-cbid="24a1c53d-bae2-4f7b-a72d-b828d4f8126c"
+            data-blockingmode="auto"
+            strategy="beforeInteractive"
+          />
+        )}
+        {process.env.NODE_ENV === "production" && (
+          <Script id="gtm" strategy="afterInteractive">
+            {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-PSS7C6RD');`}
+          </Script>
+        )}
+      </head>
       <body
         className={`${inter.className} flex min-h-screen flex-col`}
         style={themeStyle}
       >
+        {process.env.NODE_ENV === "production" && (
+          <noscript>
+            <iframe
+              src="https://www.googletagmanager.com/ns.html?id=GTM-PSS7C6RD"
+              height="0"
+              width="0"
+              style={{ display: "none", visibility: "hidden" }}
+            />
+          </noscript>
+        )}
         <a
           href="#hlavni-obsah"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-slate-900 focus:shadow-lg focus:ring-2 focus:ring-[var(--theme-500)]"

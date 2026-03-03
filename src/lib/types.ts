@@ -3,12 +3,6 @@ export interface FaqItem {
   answer: string;
 }
 
-export interface TestimonialItem {
-  author: string;
-  city: string;
-  quote: string;
-}
-
 export interface RegionConfig {
   key: string;
   name: string;
@@ -23,7 +17,6 @@ export interface RegionConfig {
   supportedCities: string[];
   uspPoints: string[];
   faq: FaqItem[];
-  testimonials: TestimonialItem[];
   legalDisclaimer: string;
   seoTitle: string;
   seoDescription: string;

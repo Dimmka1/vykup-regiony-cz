@@ -1,6 +1,7 @@
 import { appendFileSync } from "node:fs";
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { calculateLeadScore } from "@/lib/lead-scoring";
 
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX = 10;
@@ -134,8 +135,13 @@ async function sendTelegramNotification(
   }
 
   const { data } = payload;
+  const scoring = calculateLeadScore({
+    property_type: data.property_type,
+    region: data.region,
+    situation_type: data.situation_type,
+  });
   const text = [
-    "🏠 <b>Nový lead!</b>",
+    `${scoring.emoji} <b>${scoring.tier.toUpperCase()} lead (${scoring.score})</b>: ${data.property_type} ${data.region}${data.situation_type !== "standard" ? ", " + data.situation_type : ""}`,
     "",
     `👤 <b>Jméno:</b> ${data.name}`,
     `📞 <b>Telefon:</b> ${data.phone}`,
@@ -456,8 +462,20 @@ export async function POST(request: Request): Promise<NextResponse> {
 
     saveLeadToFile(notificationPayload);
 
+    const leadScore = calculateLeadScore({
+      property_type: validatedData.property_type,
+      region: validatedData.region,
+      situation_type: validatedData.situation_type,
+    });
+
     return NextResponse.json(
-      { ok: true, lead_id: leadId, message: "Lead accepted" },
+      {
+        ok: true,
+        lead_id: leadId,
+        message: "Lead accepted",
+        score: leadScore.score,
+        tier: leadScore.tier,
+      },
       { status: 200 },
     );
   } catch (_error) {

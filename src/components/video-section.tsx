@@ -89,7 +89,7 @@ export function VideoSection({ videoUrl }: VideoSectionProps): ReactElement {
   const videoJsonLd = {
     "@context": "https://schema.org",
     "@type": "VideoObject",
-    name: "Jak funguje výkup nemovitostí - Výkup Regiony CZ",
+    name: "Jak funguje výkup nemovitostí - Vykoupím Nemovitost",
     description:
       "Podívejte se, jak probíhá rychlý a férový výkup nemovitostí. Od prvního kontaktu po peníze na účtu.",
     // TODO: Replace with actual video URL when available

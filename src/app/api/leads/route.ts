@@ -103,7 +103,7 @@ async function sendEmailNotification(
       Authorization: `Bearer ${apiKey}`,
     },
     body: JSON.stringify({
-      from: "Výkup Regiony <noreply@vykup-regiony.cz>",
+      from: "Vykoupím Nemovitost <noreply@vykoupim-nemovitost.cz>",
       to: [notifyEmail],
       subject: `Nový lead: ${data.name} – ${data.region}`,
       html: htmlBody,

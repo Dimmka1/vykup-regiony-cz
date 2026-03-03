@@ -15,6 +15,7 @@ interface LeadFormProps {
 interface FormDataState {
   name: string;
   phone: string;
+  email: string;
   propertyType: string;
   situationType: string;
   address: string;
@@ -42,6 +43,7 @@ const STEPS: readonly StepMeta[] = [
 
 const INITIAL_FORM: FormDataState = {
   name: "",
+  email: "",
   phone: "",
   propertyType: "byt",
   situationType: "standard",
@@ -199,6 +201,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
           postal_code: formData.postalCode,
           city: formData.city,
           consent_gdpr: formData.consent,
+          email: formData.email,
           website: formData.website,
         }),
       });
@@ -513,6 +516,23 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
             ) : null}
           </div>
 
+          <div>
+            <label htmlFor="lead-email" className="text-sm">
+              E-mail <span className="text-slate-400">(nepovinné)</span>
+            </label>
+            <input
+              id="lead-email"
+              type="email"
+              className="mt-1 min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]"
+              placeholder="jan@example.cz"
+              autoComplete="email"
+              enterKeyHint="next"
+              value={formData.email}
+              onChange={(event) =>
+                setFormData((prev) => ({ ...prev, email: event.target.value }))
+              }
+            />
+          </div>
           <div className="hidden" aria-hidden="true">
             <label htmlFor="lead-website">Website</label>
             <input

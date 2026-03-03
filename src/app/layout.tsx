@@ -89,3 +89,12 @@ export default async function RootLayout({
     </html>
   );
 }
+        {process.env.NODE_ENV === "production" && (
+          <Script
+            id="Cookiebot"
+            src="https://consent.cookiebot.com/uc.js"
+            data-cbid="24a1c53d-bae2-4f7b-a72d-b828d4f8126c"
+            data-blockingmode="auto"
+            strategy="beforeInteractive"
+          />
+        )}

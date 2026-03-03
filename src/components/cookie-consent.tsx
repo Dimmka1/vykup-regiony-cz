@@ -46,6 +46,27 @@ function loadGTM() {
   document.head.appendChild(script);
 }
 
+function loadGA4() {
+  const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+  if (!GA_ID) return;
+  if (document.getElementById("ga4-script")) return;
+
+  // Load gtag.js for GA4
+  const script = document.createElement("script");
+  script.id = "ga4-script";
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+  document.head.appendChild(script);
+
+  // Initialize gtag with GA4 measurement ID
+  (window as any).dataLayer = (window as any).dataLayer || [];
+  function gtag(...args: any[]) {
+    (window as any).dataLayer.push(args);
+  }
+  gtag("js", new Date());
+  gtag("config", GA_ID);
+}
+
 function pushConsentEvent(consent: ConsentState) {
   (window as any).dataLayer = (window as any).dataLayer || [];
   (window as any).dataLayer.push({
@@ -66,6 +87,7 @@ export function CookieConsent() {
       pushConsentEvent(existing);
       if (existing.analytics || existing.marketing) {
         loadGTM();
+        loadGA4();
       }
     } else {
       setVisible(true);
@@ -84,6 +106,7 @@ export function CookieConsent() {
       pushConsentEvent(consent);
       if (analyticsVal || marketingVal) {
         loadGTM();
+        loadGA4();
       }
       setVisible(false);
     },

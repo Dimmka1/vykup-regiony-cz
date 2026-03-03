@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   },
   title: "Ochrana osobních údajů",
   description:
-    "Zásady ochrany osobních údajů a zpracování cookies na webu vykup-praha.cz.",
+    "Zásady ochrany osobních údajů a zpracování cookies na webu vykoupim-nemovitost.cz.",
 };
 
 function Section({
@@ -35,9 +35,27 @@ export default function OchranaOsobnichUdajuPage() {
         <Section title="1. Správce údajů">
           <p>
             Správcem osobních údajů je{" "}
-            <strong>[NÁZEV SPOLEČNOSTI / JMÉNO]</strong>, IČO:{" "}
-            <strong>[IČO]</strong>, se sídlem <strong>[ADRESA]</strong> (dále
-            jen &bdquo;správce&ldquo;).
+            <strong>
+              fyzická osoba provozující webové stránky vykoupim-nemovitost.cz
+            </strong>{" "}
+            (dále jen &bdquo;správce&ldquo;).
+          </p>
+          <p>
+            Kontaktní e-mail:{" "}
+            <a
+              href="mailto:info@vykoupim-nemovitost.cz"
+              className="text-brand-700 underline hover:text-brand-500"
+            >
+              info@vykoupim-nemovitost.cz
+            </a>
+            <br />
+            Telefon:{" "}
+            <a
+              href="tel:+420776424145"
+              className="text-brand-700 underline hover:text-brand-500"
+            >
+              +420 776 424 145
+            </a>
           </p>
         </Section>
 
@@ -115,19 +133,28 @@ export default function OchranaOsobnichUdajuPage() {
           </p>
           <ul className="list-disc space-y-1 pl-5">
             <li>
-              E-mail: <strong>[EMAIL]</strong>
+              E-mail:{" "}
+              <a
+                href="mailto:info@vykoupim-nemovitost.cz"
+                className="text-brand-700 underline hover:text-brand-500"
+              >
+                info@vykoupim-nemovitost.cz
+              </a>
             </li>
             <li>
-              Telefon: <strong>[TELEFON]</strong>
-            </li>
-            <li>
-              Adresa: <strong>[ADRESA]</strong>
+              Telefon:{" "}
+              <a
+                href="tel:+420776424145"
+                className="text-brand-700 underline hover:text-brand-500"
+              >
+                +420 776 424 145
+              </a>
             </li>
           </ul>
         </Section>
 
         <p className="border-t border-gray-100 pt-4 text-sm text-gray-500">
-          Tyto zásady jsou platné od <strong>[DATUM]</strong> a mohou být
+          Tyto zásady jsou platné od <strong>1.3.2026</strong> a mohou být
           průběžně aktualizovány.
         </p>
       </article>

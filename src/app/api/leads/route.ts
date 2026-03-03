@@ -25,6 +25,14 @@ const callbackSchema = z.object({
   region: z.string().min(2),
 });
 
+const quickEstimateSchema = z.object({
+  type: z.literal("quick-estimate"),
+  phone: z.string().regex(/^(\+?420|00420)?\s?\d{3}\s?\d{3}\s?\d{3}$/),
+  source: z.string().min(1),
+  region: z.string().min(2),
+  psc: z.string().optional(),
+});
+
 type LeadData = z.infer<typeof leadSchema>;
 
 interface CallbackNotificationPayload {
@@ -405,6 +413,55 @@ export async function POST(request: Request): Promise<NextResponse> {
 
       return NextResponse.json(
         { ok: true, lead_id: leadId, message: "Callback lead accepted" },
+        { status: 200 },
+      );
+    }
+
+    const isQuickEstimate =
+      typeof (payload as Record<string, unknown>).type === "string" &&
+      (payload as Record<string, unknown>).type === "quick-estimate";
+
+    if (isQuickEstimate) {
+      const qeResult = quickEstimateSchema.safeParse(payload);
+      if (!qeResult.success) {
+        return NextResponse.json(
+          { ok: false, code: "VALIDATION_ERROR" },
+          { status: 400 },
+        );
+      }
+
+      const leadId = `qe_${Date.now().toString(36)}`;
+      const qeData = qeResult.data;
+
+      const qePayload: CallbackNotificationPayload = {
+        lead_id: leadId,
+        timestamp: new Date().toISOString(),
+        ip: clientIp,
+        data: {
+          type: "callback",
+          phone: qeData.phone,
+          source: qeData.source,
+          region: qeData.region,
+        },
+      };
+
+      const qeResults = await Promise.allSettled([
+        sendCallbackTelegramNotification(qePayload),
+      ]);
+
+      qeResults.forEach((r, i) => {
+        if (r.status === "rejected") {
+          console.error(
+            `[lead-notify] Quick-estimate notification ${i} failed:`,
+            r.reason,
+          );
+        }
+      });
+
+      saveLeadToFile(qePayload);
+
+      return NextResponse.json(
+        { ok: true, lead_id: leadId, message: "Quick estimate lead accepted" },
         { status: 200 },
       );
     }

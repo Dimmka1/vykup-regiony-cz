@@ -131,8 +131,8 @@ export default async function VykupPozemkuPage(): Promise<React.ReactElement> {
     "@type": "WebPage",
     name: "Výkup pozemků - rychlý prodej pozemku za hotové",
     description: metadata.description,
-    url: "https://vykup-regiony.cz/vykup-pozemku",
-    isPartOf: { "@type": "WebSite", url: "https://vykup-regiony.cz" },
+    url: "https://vykoupim-nemovitost.cz/vykup-pozemku",
+    isPartOf: { "@type": "WebSite", url: "https://vykoupim-nemovitost.cz" },
   };
 
   return (

@@ -1570,11 +1570,11 @@ export default async function BlogArticlePage({
     datePublished: article.date,
     author: {
       "@type": "Organization",
-      name: "Výkup Regiony CZ",
+      name: "Vykoupím Nemovitost",
     },
     publisher: {
       "@type": "Organization",
-      name: "Výkup Regiony CZ",
+      name: "Vykoupím Nemovitost",
     },
   };
 

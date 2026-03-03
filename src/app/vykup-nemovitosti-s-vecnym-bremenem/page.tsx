@@ -104,11 +104,11 @@ export default async function VykupNemovitostiSVecnymBremenem(): Promise<React.R
     name: "Výkup nemovitosti s věcným břemenem",
     description:
       "Vykoupíme nemovitost zatíženou věcným břemenem rychle a bez komplikací.",
-    url: "https://vykup-regiony.cz/vykup-nemovitosti-s-vecnym-bremenem",
+    url: "https://vykoupim-nemovitost.cz/vykup-nemovitosti-s-vecnym-bremenem",
     publisher: {
       "@type": "Organization",
       name: "Výkup Nemovitostí",
-      url: "https://vykup-regiony.cz",
+      url: "https://vykoupim-nemovitost.cz",
     },
   };
 

@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 
-export const alt = "Rychlý výkup nemovitostí - Výkup Regiony CZ";
+export const alt = "Rychlý výkup nemovitostí - Vykoupím Nemovitost";
 
 export const size = {
   width: 1200,

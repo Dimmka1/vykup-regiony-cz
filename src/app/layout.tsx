@@ -69,6 +69,15 @@ export default async function RootLayout({
     <html lang="cs" className={inter.variable}>
       <head>
         {process.env.NODE_ENV === "production" && (
+          <Script
+            id="Cookiebot"
+            src="https://consent.cookiebot.com/uc.js"
+            data-cbid="24a1c53d-bae2-4f7b-a72d-b828d4f8126c"
+            data-blockingmode="auto"
+            strategy="beforeInteractive"
+          />
+        )}
+        {process.env.NODE_ENV === "production" && (
           <Script id="gtm" strategy="afterInteractive">
             {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],

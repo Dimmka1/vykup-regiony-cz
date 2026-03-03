@@ -11,7 +11,7 @@ interface CallbackFormProps {
   regionName: string;
 }
 
-const CZ_PHONE_REGEX = /^(\+420|00420)?\s?\d{3}\s?\d{3}\s?\d{3}$/;
+const CZ_PHONE_REGEX = /^(\+?420|00420)?\s?\d{3}\s?\d{3}\s?\d{3}$/;
 
 function normalizePhone(raw: string): string {
   return raw.replace(/[^\d+\s]/g, "").slice(0, 20);

@@ -1,4 +1,5 @@
 import { safeJsonLd } from "@/lib/jsonld";
+import { SocialProofBar } from "@/components/social-proof-bar";
 import { getThemeStyle } from "@/lib/theme-colors";
 import type { ReactElement } from "react";
 import Image from "next/image";
@@ -12,40 +13,11 @@ import { FloatingDesktopCta } from "@/components/floating-desktop-cta";
 import { FaqAccordion } from "@/components/faq-accordion";
 import { NearbyRegions } from "@/components/nearby-regions";
 import { FloatingWhatsApp } from "@/components/floating-whatsapp";
-
-const LeadForm = dynamic(
-  () => import("@/components/lead-form").then((mod) => mod.LeadForm),
-  {
-    loading: () => (
-      <div className="h-96 animate-pulse rounded-2xl bg-slate-100" />
-    ),
-  },
-);
-
-const PropertyEstimator = dynamic(
-  () =>
-    import("@/components/property-estimator").then(
-      (mod) => mod.PropertyEstimator,
-    ),
-  {
-    loading: () => (
-      <div className="h-64 animate-pulse rounded-2xl bg-slate-100" />
-    ),
-  },
-);
-
-const ComparisonCalculator = dynamic(
-  () =>
-    import("@/components/comparison-calculator").then(
-      (mod) => mod.ComparisonCalculator,
-    ),
-  {
-    loading: () => (
-      <div className="h-64 animate-pulse rounded-2xl bg-slate-100" />
-    ),
-  },
-);
-import { getRegionSubdomainUrl, isProductionHost } from "@/lib/config";
+import {
+  getRegionSubdomainUrl,
+  isProductionHost,
+  listRegions,
+} from "@/lib/config";
 import type { RegionConfig } from "@/lib/types";
 import {
   Check,
@@ -404,6 +376,8 @@ export function HomePageContent({
         </div>
       </section>
 
+      <SocialProofBar regionNames={listRegions().map((r) => r.name)} />
+
       {/* ===== MARKET INFO ===== */}
       {region.marketInfo && (
         <section className="bg-slate-50 py-8">
@@ -550,6 +524,12 @@ export function HomePageContent({
               className="inline-flex items-center gap-1 text-sm font-medium text-[var(--theme-700)] transition hover:text-[var(--theme-600)]"
             >
               Více o celém procesu →
+            </Link>
+            <Link
+              href="/garance-vykupu"
+              className="inline-flex items-center gap-1 text-sm font-medium text-[var(--theme-700)] transition hover:text-[var(--theme-600)]"
+            >
+              Naše garance →
             </Link>
           </div>
         </div>

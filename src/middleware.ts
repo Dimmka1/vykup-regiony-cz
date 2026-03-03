@@ -78,6 +78,13 @@ export function middleware(request: NextRequest): NextResponse | undefined {
   const { pathname, searchParams } = request.nextUrl;
   const isProd = isProductionDomain(host);
 
+  // 0. PPC landing — stripped layout (no header/footer)
+  if (pathname === "/ppc") {
+    const response = NextResponse.next();
+    response.headers.set("x-layout-stripped", "1");
+    return response;
+  }
+
   // 1. Handle ?region=X query param
   const regionParam = searchParams.get("region");
   if (pathname === "/" && regionParam && REGION_KEYS.has(regionParam)) {

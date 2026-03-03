@@ -45,9 +45,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const headersList = await headers();
+  const isStrippedLayout = headersList.get("x-layout-stripped") === "1";
+
   return (
     <html lang="cs" className={inter.variable}>
       <body className={`${inter.className} flex min-h-screen flex-col`}>
@@ -69,7 +72,7 @@ export default function RootLayout({
         <main id="hlavni-obsah" className="flex-1">
           {children}
         </main>
-        <SiteFooter />
+        {!isStrippedLayout && <SiteFooter />}
         <CookieConsent />
         <ExitIntentPopup />
         <TrackingPixels />

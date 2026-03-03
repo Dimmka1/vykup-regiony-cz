@@ -19,6 +19,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { UrgencyBanner } from "@/components/urgency-banner";
 import { WebVitalsReporter } from "@/components/web-vitals-reporter";
 import { getDefaultRegion, listRegions } from "@/lib/config";
+import { headers } from "next/headers";
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],

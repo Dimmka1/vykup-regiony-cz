@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import dynamic from "next/dynamic";
-import Script from "next/script";
+import { CookieConsent } from "@/components/cookie-consent";
 import { TrackingPixels } from "@/components/tracking-pixels";
 
 const ExitIntentPopup = dynamic(
@@ -68,24 +68,6 @@ export default async function RootLayout({
   return (
     <html lang="cs" className={inter.variable}>
       <head>
-        {process.env.NODE_ENV === "production" && (
-          <Script
-            id="Cookiebot"
-            src="https://consent.cookiebot.com/uc.js"
-            data-cbid="24a1c53d-bae2-4f7b-a72d-b828d4f8126c"
-            data-blockingmode="auto"
-            strategy="beforeInteractive"
-          />
-        )}
-        {process.env.NODE_ENV === "production" && (
-          <Script id="gtm" strategy="afterInteractive">
-            {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','GTM-PSS7C6RD');`}
-          </Script>
-        )}
       </head>
       <body
         className={`${inter.className} flex min-h-screen flex-col`}
@@ -115,6 +97,7 @@ export default async function RootLayout({
         {!isStrippedLayout && <SiteFooter />}
         <ExitIntentPopup />
         <TrackingPixels />
+        <CookieConsent />
       </body>
     </html>
   );

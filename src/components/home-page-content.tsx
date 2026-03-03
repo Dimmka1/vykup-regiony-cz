@@ -427,7 +427,7 @@ export function HomePageContent({
                 <div className="relative aspect-[3/4] overflow-hidden rounded-2xl shadow-lg">
                   <Image
                     src="/images/process-consultation.webp"
-                    alt="Kancelář pro konzultace - teplý interiér s výhledem na českou ulici"
+                    alt="Činžovní dům v secesním stylu v Praze - výkup nemovitostí"
                     fill
                     className="object-cover"
                   />
@@ -435,7 +435,7 @@ export function HomePageContent({
                 <div className="relative aspect-[3/4] overflow-hidden rounded-2xl shadow-lg">
                   <Image
                     src="/images/process-valuation.webp"
-                    alt="Ocenění nemovitosti - podklady pro stanovení férové ceny"
+                    alt="Typický český rodinný dům - ocenění nemovitosti"
                     fill
                     className="object-cover"
                   />
@@ -504,7 +504,7 @@ export function HomePageContent({
                 <div className="relative aspect-[3/4] overflow-hidden rounded-2xl shadow-lg">
                   <Image
                     src="/images/process-contract.webp"
-                    alt="Podepsaná kupní smlouva s notářským razítkem"
+                    alt="Renovovaný panelový dům - kupní smlouva"
                     fill
                     className="object-cover"
                   />
@@ -512,7 +512,7 @@ export function HomePageContent({
                 <div className="relative aspect-[3/4] overflow-hidden rounded-2xl shadow-lg">
                   <Image
                     src="/images/process-keys.webp"
-                    alt="Klíče od prodané nemovitosti na stole - úspěšný výkup"
+                    alt="Prázdný byt připravený pro nové majitele - předání klíčů"
                     fill
                     className="object-cover"
                   />

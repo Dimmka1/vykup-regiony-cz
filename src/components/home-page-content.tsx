@@ -12,7 +12,6 @@ import { ScrollTracker } from "@/components/scroll-tracker";
 import { FloatingDesktopCta } from "@/components/floating-desktop-cta";
 import { FaqAccordion } from "@/components/faq-accordion";
 import { NearbyRegions } from "@/components/nearby-regions";
-import { FloatingWhatsApp } from "@/components/floating-whatsapp";
 import { PropertyEstimator } from "@/components/property-estimator";
 import { ComparisonCalculator } from "@/components/comparison-calculator";
 import { LeadForm } from "@/components/lead-form";
@@ -309,7 +308,6 @@ export function HomePageContent({
   return (
     <div style={themeStyle}>
       <ScrollTracker regionName={region.name} />
-      <FloatingWhatsApp regionName={region.name} />
       <FloatingDesktopCta />
 
       {/* ===== HERO ===== */}

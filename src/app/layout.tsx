@@ -67,8 +67,7 @@ export default async function RootLayout({
 
   return (
     <html lang="cs" className={inter.variable}>
-      <head>
-      </head>
+      <head></head>
       <body
         className={`${inter.className} flex min-h-screen flex-col`}
         style={themeStyle}

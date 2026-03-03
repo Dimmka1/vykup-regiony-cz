@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { CtaLink } from "@/components/cta-link";
+import { HeroPhoneLink } from "@/components/hero-phone-link";
 import { CallbackForm } from "@/components/callback-form";
 import { AnimatedCounter } from "@/components/animated-counter";
 import { ScrollTracker } from "@/components/scroll-tracker";
@@ -39,7 +40,6 @@ import {
   Link2,
   CheckCircle,
   Quote,
-  Phone,
 } from "lucide-react";
 
 export const COMPANY_NAME = "Vykoupím Nemovitost";
@@ -361,13 +361,12 @@ export function HomePageContent({
               label={region.heroCta}
               regionName={region.name}
             />
-            <a
-              href={`tel:${region.phone}`}
+            <HeroPhoneLink
+              defaultPhone={region.phone}
+              region={region.name}
               className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/40 px-6 py-3 text-base font-semibold text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
-            >
-              <Phone className="h-5 w-5" />
-              Zavolat: {region.phone}
-            </a>
+              label="Zavolat:"
+            />
           </div>
           <div className="mt-4">
             <CallbackForm regionName={region.name} />
@@ -787,12 +786,12 @@ export function HomePageContent({
           >
             Odeslat poptávku - zdarma
           </a>
-          <a
-            href={`tel:${region.phone}`}
+          <HeroPhoneLink
+            defaultPhone={region.phone}
+            region={region.name}
             className="inline-flex min-h-11 flex-1 items-center justify-center rounded-xl border border-slate-300 px-4 py-3 text-sm font-semibold text-slate-800 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
-          >
-            Zavolat
-          </a>
+            staticLabel="Zavolat"
+          />
         </div>
       </nav>
 

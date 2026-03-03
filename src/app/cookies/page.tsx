@@ -5,8 +5,7 @@ export const metadata: Metadata = {
     canonical: "https://vykoupim-nemovitost.cz/cookies",
   },
   title: "Cookies",
-  description:
-    "Informace o používání cookies na webu vykoupim-nemovitost.cz.",
+  description: "Informace o používání cookies na webu vykoupim-nemovitost.cz.",
 };
 
 function Section({
@@ -99,20 +98,21 @@ export default function CookiesPage() {
           </p>
           <p>
             Webové stránky lze používat i v režimu, který neumožňuje sbírání
-            údajů o chování návštěvníků webu — můžete stále používat naše
-            webové stránky, ale přístup k některým funkcím a oblastem může být
-            omezen. Přesný postup odmítnutí/zakázání cookies se liší v
-            závislosti na používaném internetovém prohlížeči a naleznete jej v
-            nápovědě svého prohlížeče.
+            údajů o chování návštěvníků webu — můžete stále používat naše webové
+            stránky, ale přístup k některým funkcím a oblastem může být omezen.
+            Přesný postup odmítnutí/zakázání cookies se liší v závislosti na
+            používaném internetovém prohlížeči a naleznete jej v nápovědě svého
+            prohlížeče.
           </p>
         </Section>
 
         <Section title="Kdo cookies využívá?">
           <p>
-            Provozovatelem webové stránky vykoupim-nemovitost.cz je [PROVOZOVATEL
-            &ndash; bude doplněno]. Vaše osobní údaje zpracováváme jako správce,
-            tedy určujeme, jak budou osobní údaje zpracovávány a za jakým účelem,
-            po jak dlouhou dobu a určujeme případné další zpracovatele.
+            Provozovatelem webové stránky vykoupim-nemovitost.cz je
+            [PROVOZOVATEL &ndash; bude doplněno]. Vaše osobní údaje zpracováváme
+            jako správce, tedy určujeme, jak budou osobní údaje zpracovávány a
+            za jakým účelem, po jak dlouhou dobu a určujeme případné další
+            zpracovatele.
           </p>
         </Section>
 

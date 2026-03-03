@@ -14,7 +14,9 @@ const GTM_ID = "GTM-PSS7C6RD";
 
 function getConsentCookie(): ConsentState | null {
   try {
-    const match = document.cookie.match(/(?:^|;\s*)cookie_consent=([^;]*)/);
+    const match = document.cookie.match(
+      /(?:^|;\s*)cookie_consent=([^;]*)/,
+    );
     if (match) {
       return JSON.parse(decodeURIComponent(match[1]));
     }
@@ -26,9 +28,7 @@ function getConsentCookie(): ConsentState | null {
 
 function setConsentCookie(consent: ConsentState) {
   const value = encodeURIComponent(JSON.stringify(consent));
-  const expires = new Date(
-    Date.now() + 365 * 24 * 60 * 60 * 1000,
-  ).toUTCString();
+  const expires = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toUTCString();
   document.cookie = `cookie_consent=${value};expires=${expires};path=/;SameSite=Lax`;
 }
 
@@ -39,10 +39,7 @@ function loadGTM() {
   script.async = true;
   script.src = `https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`;
   (window as any).dataLayer = (window as any).dataLayer || [];
-  (window as any).dataLayer.push({
-    "gtm.start": new Date().getTime(),
-    event: "gtm.js",
-  });
+  (window as any).dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
   document.head.appendChild(script);
 }
 

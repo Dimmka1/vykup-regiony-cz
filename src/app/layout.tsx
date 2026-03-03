@@ -12,6 +12,7 @@ const ExitIntentPopup = dynamic(
 );
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { SwRegister } from "@/components/sw-register";
 import { WebVitalsReporter } from "@/components/web-vitals-reporter";
 import {
   getDefaultRegion,
@@ -96,6 +97,7 @@ export default async function RootLayout({
         {!isStrippedLayout && <SiteFooter />}
         <ExitIntentPopup />
         <TrackingPixels />
+        <SwRegister />
         <CookieConsent />
       </body>
     </html>

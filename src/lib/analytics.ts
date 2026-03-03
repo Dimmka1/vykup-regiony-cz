@@ -10,7 +10,7 @@ export type AnalyticsEventName =
   | "callback_form_open"
   | "callback_form_submit_success"
   | "callback_form_submit_error"
-  | "lead_magnet_download";
+  | "page_not_found";
 
 type Primitive = string | number | boolean;
 

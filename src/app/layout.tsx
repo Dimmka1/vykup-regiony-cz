@@ -2,12 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import dynamic from "next/dynamic";
+import Script from "next/script";
 import { TrackingPixels } from "@/components/tracking-pixels";
-
-const CookieConsent = dynamic(
-  () => import("@/components/cookie-consent").then((mod) => mod.CookieConsent),
-  { ssr: true },
-);
 
 const ExitIntentPopup = dynamic(
   () =>
@@ -54,6 +50,17 @@ export default async function RootLayout({
 
   return (
     <html lang="cs" className={inter.variable}>
+      <head>
+        {process.env.NODE_ENV === "production" && (
+          <Script
+            id="Cookiebot"
+            src="https://consent.cookiebot.com/uc.js"
+            data-cbid="24a1c53d-bae2-4f7b-a72d-b828d4f8126c"
+            data-blockingmode="auto"
+            strategy="beforeInteractive"
+          />
+        )}
+      </head>
       <body className={`${inter.className} flex min-h-screen flex-col`}>
         <a
           href="#hlavni-obsah"
@@ -67,7 +74,6 @@ export default async function RootLayout({
           {children}
         </main>
         {!isStrippedLayout && <SiteFooter />}
-        <CookieConsent />
         <ExitIntentPopup />
         <TrackingPixels />
       </body>

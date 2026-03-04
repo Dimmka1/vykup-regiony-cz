@@ -1,6 +1,7 @@
 import { appendFileSync } from "node:fs";
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { calculateLeadScore } from "@/lib/lead-scoring";
 
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX = 10;
@@ -23,6 +24,14 @@ const callbackSchema = z.object({
   phone: z.string().regex(/^(\+?420|00420)?\s?\d{3}\s?\d{3}\s?\d{3}$/),
   source: z.string().min(1),
   region: z.string().min(2),
+});
+
+const quickEstimateSchema = z.object({
+  type: z.literal("quick-estimate"),
+  phone: z.string().regex(/^(\+?420|00420)?\s?\d{3}\s?\d{3}\s?\d{3}$/),
+  source: z.string().min(1),
+  region: z.string().min(2),
+  psc: z.string().optional(),
 });
 
 type LeadData = z.infer<typeof leadSchema>;
@@ -134,8 +143,13 @@ async function sendTelegramNotification(
   }
 
   const { data } = payload;
+  const scoring = calculateLeadScore({
+    property_type: data.property_type,
+    region: data.region,
+    situation_type: data.situation_type,
+  });
   const text = [
-    "🏠 <b>Nový lead!</b>",
+    `${scoring.emoji} <b>${scoring.tier.toUpperCase()} lead (${scoring.score})</b>: ${data.property_type} ${data.region}${data.situation_type !== "standard" ? ", " + data.situation_type : ""}`,
     "",
     `👤 <b>Jméno:</b> ${data.name}`,
     `📞 <b>Telefon:</b> ${data.phone}`,
@@ -409,6 +423,55 @@ export async function POST(request: Request): Promise<NextResponse> {
       );
     }
 
+    const isQuickEstimate =
+      typeof (payload as Record<string, unknown>).type === "string" &&
+      (payload as Record<string, unknown>).type === "quick-estimate";
+
+    if (isQuickEstimate) {
+      const qeResult = quickEstimateSchema.safeParse(payload);
+      if (!qeResult.success) {
+        return NextResponse.json(
+          { ok: false, code: "VALIDATION_ERROR" },
+          { status: 400 },
+        );
+      }
+
+      const leadId = `qe_${Date.now().toString(36)}`;
+      const qeData = qeResult.data;
+
+      const qePayload: CallbackNotificationPayload = {
+        lead_id: leadId,
+        timestamp: new Date().toISOString(),
+        ip: clientIp,
+        data: {
+          type: "callback",
+          phone: qeData.phone,
+          source: qeData.source,
+          region: qeData.region,
+        },
+      };
+
+      const qeResults = await Promise.allSettled([
+        sendCallbackTelegramNotification(qePayload),
+      ]);
+
+      qeResults.forEach((r, i) => {
+        if (r.status === "rejected") {
+          console.error(
+            `[lead-notify] Quick-estimate notification ${i} failed:`,
+            r.reason,
+          );
+        }
+      });
+
+      saveLeadToFile(qePayload);
+
+      return NextResponse.json(
+        { ok: true, lead_id: leadId, message: "Quick estimate lead accepted" },
+        { status: 200 },
+      );
+    }
+
     const result = leadSchema.safeParse(payload);
     if (!result.success) {
       return NextResponse.json(
@@ -456,8 +519,20 @@ export async function POST(request: Request): Promise<NextResponse> {
 
     saveLeadToFile(notificationPayload);
 
+    const leadScore = calculateLeadScore({
+      property_type: validatedData.property_type,
+      region: validatedData.region,
+      situation_type: validatedData.situation_type,
+    });
+
     return NextResponse.json(
-      { ok: true, lead_id: leadId, message: "Lead accepted" },
+      {
+        ok: true,
+        lead_id: leadId,
+        message: "Lead accepted",
+        score: leadScore.score,
+        tier: leadScore.tier,
+      },
       { status: 200 },
     );
   } catch (_error) {

@@ -1,3 +1,4 @@
+import { LeadMagnetCta } from "@/components/lead-magnet-cta";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Shield, Clock, BadgeCheck, HandCoins } from "lucide-react";
@@ -236,6 +237,7 @@ export default async function VykupPriExekuciPage(): Promise<React.ReactElement>
         </div>
       </section>
 
+      <LeadMagnetCta />
       <AllRegionsSection currentHost={host} />
     </>
   );

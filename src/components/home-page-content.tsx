@@ -7,6 +7,7 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import { CtaLink } from "@/components/cta-link";
 import { CallbackForm } from "@/components/callback-form";
+import { QuickEstimateForm } from "@/components/quick-estimate-form";
 import { AnimatedCounter } from "@/components/animated-counter";
 import { ScrollTracker } from "@/components/scroll-tracker";
 import { FloatingDesktopCta } from "@/components/floating-desktop-cta";
@@ -15,12 +16,8 @@ import { NearbyRegions } from "@/components/nearby-regions";
 import { PropertyEstimator } from "@/components/property-estimator";
 import { ComparisonCalculator } from "@/components/comparison-calculator";
 import { LeadForm } from "@/components/lead-form";
-import { TestimonialCarousel } from "@/components/testimonial-carousel";
-import {
-  getRegionSubdomainUrl,
-  isProductionHost,
-  listRegions,
-} from "@/lib/config";
+import { GuaranteeCarousel } from "@/components/guarantee-carousel";
+import { getRegionSubdomainUrl, isProductionHost } from "@/lib/config";
 import type { RegionConfig } from "@/lib/types";
 import {
   Check,
@@ -28,9 +25,9 @@ import {
   Zap,
   FileSignature,
   Banknote,
-  Award,
+  HandCoins,
   Clock,
-  Star,
+  ShieldCheck,
   Gavel,
   FileWarning,
   Landmark,
@@ -78,7 +75,7 @@ export const GENERAL_FAQ: { question: string; answer: string }[] = [
 ];
 
 const HERO_BADGES = [
-  "Záloha až 500 000 Kč ihned",
+  `Záloha až ${process.env.NEXT_PUBLIC_ZALOH_VARIANT || "500 000"} Kč ihned`,
   "Peníze na účtu do 48 hodin",
   "Bez provize a skrytých poplatků",
 ] as const;
@@ -111,14 +108,15 @@ const PROCESS_STEPS = [
 ] as const;
 
 const TRUST_METRICS = [
-  { label: "Realizovaných výkupů", value: "1 250+", Icon: Award },
+  { label: "Bez provize", value: "0 Kč", Icon: HandCoins },
   { label: "Průměrná doba první nabídky", value: "24 h", Icon: Clock },
-  { label: "Spokojenost klientů", value: "4.9/5", Icon: Star },
+  { label: "Právní servis zdarma", value: "V ceně", Icon: FileSignature },
+  { label: "Garance ceny ve smlouvě", value: "100 %", Icon: ShieldCheck },
 ] as const;
 
 const ABOUT_STATS = [
-  { value: "10+", label: "let na trhu" },
-  { value: "1 250+", label: "úspěšných výkupů" },
+  { value: "100%", label: "transparentnost" },
+  { value: "0 Kč", label: "provize" },
   { value: "14", label: "krajů ČR" },
 ] as const;
 
@@ -372,13 +370,16 @@ export function HomePageContent({
           <div className="mt-4">
             <CallbackForm regionName={region.name} />
           </div>
+          <div className="mt-4">
+            <QuickEstimateForm regionName={region.name} />
+          </div>
           <p className="mt-3 text-sm text-slate-300">
             Zálohu vyplácíme při podpisu smlouvy. Celý proces trvá 3–7 dní.
           </p>
         </div>
       </section>
 
-      <SocialProofBar regionNames={listRegions().map((r) => r.name)} />
+      <SocialProofBar />
 
       {/* ===== MARKET INFO ===== */}
       {region.marketInfo && (
@@ -623,9 +624,9 @@ export function HomePageContent({
                 O nás
               </h2>
               <p className="mt-4 leading-relaxed text-slate-700">
-                Jsme tým profesionálů s více než 10 lety zkušeností na českém
-                realitním trhu. Specializujeme se na rychlý a férový výkup
-                nemovitostí v celé České republice.
+                Specializujeme se na rychlý a férový výkup nemovitostí v celé
+                České republice. Nabízíme transparentní proces, férovou cenu a
+                kompletní právní servis zdarma.
               </p>
               <div className="mt-8 grid gap-4 sm:grid-cols-3">
                 {ABOUT_STATS.map((stat) => (
@@ -720,9 +721,9 @@ export function HomePageContent({
         <div className="absolute inset-0 bg-white/90" aria-hidden="true" />
         <div className="relative mx-auto max-w-7xl px-6">
           <h2 className="mb-8 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
-            Co říkají naši klienti
+            Naše garance
           </h2>
-          <TestimonialCarousel />
+          <GuaranteeCarousel />
         </div>
       </section>
 
@@ -777,8 +778,8 @@ export function HomePageContent({
         className="fixed inset-x-0 bottom-0 z-20 border-t border-slate-200 bg-white/95 px-4 py-3 backdrop-blur supports-[padding:max(0px)]:pb-[max(0.75rem,env(safe-area-inset-bottom))] lg:hidden"
       >
         <p className="mb-2 text-center text-xs text-slate-500">
-          ✓ Bez poplatků &nbsp;·&nbsp; ✓ Nabídka do 24h &nbsp;·&nbsp; ✓ 1 250+
-          výkupů
+          ✓ Bez provize &nbsp;·&nbsp; ✓ Nabídka do 24h &nbsp;·&nbsp; ✓ Právní
+          servis zdarma
         </p>
         <div className="mx-auto flex max-w-7xl gap-2">
           <a

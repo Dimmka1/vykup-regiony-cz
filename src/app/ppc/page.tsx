@@ -24,13 +24,6 @@ const TRUST_BULLETS = [
   },
 ] as const;
 
-const TESTIMONIAL = {
-  author: "Jana K.",
-  city: "Praha",
-  quote:
-    "Potřebovala jsem prodat byt rychle kvůli rozvodu. Nabídku jsem dostala do 24 hodin a do měsíce bylo vše vyřízeno. Profesionální a férový přístup.",
-};
-
 function PpcPageContent(): ReactElement {
   const searchParams = useSearchParams();
 
@@ -65,7 +58,7 @@ function PpcPageContent(): ReactElement {
         </section>
 
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
-          {/* Left: Trust bullets + testimonial */}
+          {/* Left: Trust bullets + guarantee */}
           <div className="space-y-8">
             {/* Trust bullets */}
             <section aria-label="Proč nás zvolit">
@@ -91,19 +84,20 @@ function PpcPageContent(): ReactElement {
               </ul>
             </section>
 
-            {/* Testimonial */}
+            {/* Guarantee */}
             <section
-              aria-label="Reference"
+              aria-label="Garance"
               className="rounded-xl border border-slate-200 bg-white p-5"
             >
-              <blockquote>
-                <p className="mb-3 text-sm italic leading-relaxed text-slate-700">
-                  &ldquo;{TESTIMONIAL.quote}&rdquo;
-                </p>
-                <footer className="text-sm font-semibold text-slate-900">
-                  — {TESTIMONIAL.author}, {TESTIMONIAL.city}
-                </footer>
-              </blockquote>
+              <h3 className="mb-3 font-semibold text-slate-900">
+                Naše garance
+              </h3>
+              <ul className="space-y-2 text-sm text-slate-700">
+                <li>✓ Garance ceny ve smlouvě</li>
+                <li>✓ Platba do 48 hodin</li>
+                <li>✓ Právní servis zdarma</li>
+                <li>✓ Bez provize</li>
+              </ul>
             </section>
           </div>
 

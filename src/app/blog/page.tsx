@@ -1,3 +1,4 @@
+import { LeadMagnetCta } from "@/components/lead-magnet-cta";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/breadcrumbs";
@@ -134,6 +135,7 @@ export default function BlogPage(): React.ReactElement {
           </div>
         </div>
       </section>
+      <LeadMagnetCta />
     </>
   );
 }

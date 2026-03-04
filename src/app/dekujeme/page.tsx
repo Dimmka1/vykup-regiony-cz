@@ -72,10 +72,10 @@ export default function DekujemePage(): ReactElement {
           <p className="mt-1 text-amber-700">
             Zavolejte nám na{" "}
             <a
-              href="tel:+420800123001"
+              href="tel:+420776424145"
               className="font-bold underline hover:no-underline"
             >
-              +420 800 123 001
+              +420 776 424 145
             </a>
           </p>
         </div>

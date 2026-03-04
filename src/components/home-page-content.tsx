@@ -8,6 +8,7 @@ import dynamic from "next/dynamic";
 import { CtaLink } from "@/components/cta-link";
 import { CallbackForm } from "@/components/callback-form";
 import { AnimatedCounter } from "@/components/animated-counter";
+import { PropertyEstimator } from "@/components/property-estimator";
 import { ScrollTracker } from "@/components/scroll-tracker";
 import { FloatingDesktopCta } from "@/components/floating-desktop-cta";
 import { FaqAccordion } from "@/components/faq-accordion";
@@ -391,7 +392,7 @@ export function HomePageContent({
       {/* ===== TRUST METRICS ===== */}
       <section className="py-16">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             {TRUST_METRICS.map((metric) => (
               <article
                 key={metric.label}
@@ -705,6 +706,8 @@ export function HomePageContent({
           </div>
         </div>
       </section>
+      <PropertyEstimator regionKey={region.key} />
+
       {/* ===== TESTIMONIALS ===== */}
       <section className="relative py-16">
         <Image

@@ -1,5 +1,11 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import {
+  ZALOHA_COOKIE_NAME,
+  ZALOHA_COOKIE_MAX_AGE,
+  pickZalohaVariant,
+  isValidZalohaVariant,
+} from "@/lib/ab-variants";
 
 /**
  * Region keys - keep in sync with regions.yml.
@@ -133,6 +139,28 @@ export function middleware(request: NextRequest): NextResponse | undefined {
     if (subdomain && !VALID_SUBDOMAINS.has(subdomain)) {
       return NextResponse.redirect(`https://${PRODUCTION_DOMAIN}/`, 301);
     }
+  }
+
+  // Záloha A/B test (VR-149): assign variant cookie on first visit
+  // Also support ?zaloha=A|B|C override (sticky)
+  const zalohaParam = searchParams.get("zaloha");
+  const zalohaCookie = request.cookies.get(ZALOHA_COOKIE_NAME);
+  const needsZalohaCookie =
+    (zalohaParam && isValidZalohaVariant(zalohaParam)) || !zalohaCookie;
+
+  if (needsZalohaCookie) {
+    const variant =
+      zalohaParam && isValidZalohaVariant(zalohaParam)
+        ? zalohaParam
+        : pickZalohaVariant();
+    const response = NextResponse.next();
+    response.cookies.set(ZALOHA_COOKIE_NAME, variant, {
+      httpOnly: false,
+      maxAge: ZALOHA_COOKIE_MAX_AGE,
+      sameSite: "lax",
+      path: "/",
+    });
+    return response;
   }
 
   return undefined;

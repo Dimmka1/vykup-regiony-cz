@@ -5,6 +5,8 @@ import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 
 import { PpcLeadForm } from "@/components/ppc-lead-form";
+import { ZalohaBadge } from "@/components/zaloha-badge";
+import { ZalohaVariantTracker } from "@/components/zaloha-variant-tracker";
 
 const TRUST_BULLETS = [
   {
@@ -55,6 +57,10 @@ function PpcPageContent(): ReactElement {
             Získejte nezávaznou nabídku do 24 hodin. Žádné provize, žádné skryté
             poplatky. Vše vyřídíme za vás.
           </p>
+          <p className="mx-auto inline-flex items-center gap-2 rounded-full bg-[var(--theme-50)] px-4 py-2 text-sm font-medium text-[var(--theme-700)]">
+            ✓ <ZalohaBadge />
+          </p>
+          <ZalohaVariantTracker />
         </section>
 
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">

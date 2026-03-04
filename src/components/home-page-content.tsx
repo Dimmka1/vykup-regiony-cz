@@ -17,6 +17,8 @@ import { PropertyEstimator } from "@/components/property-estimator";
 import { ComparisonCalculator } from "@/components/comparison-calculator";
 import { LeadForm } from "@/components/lead-form";
 import { GuaranteeCarousel } from "@/components/guarantee-carousel";
+import { ZalohaBadge } from "@/components/zaloha-badge";
+import { ZalohaVariantTracker } from "@/components/zaloha-variant-tracker";
 import { getRegionSubdomainUrl, isProductionHost } from "@/lib/config";
 import type { RegionConfig } from "@/lib/types";
 import {
@@ -75,7 +77,6 @@ export const GENERAL_FAQ: { question: string; answer: string }[] = [
 ];
 
 const HERO_BADGES = [
-  `Záloha až ${process.env.NEXT_PUBLIC_ZALOH_VARIANT || "500 000"} Kč ihned`,
   "Peníze na účtu do 48 hodin",
   "Bez provize a skrytých poplatků",
 ] as const;
@@ -341,7 +342,12 @@ export function HomePageContent({
             {region.description}
           </p>
 
+          <ZalohaVariantTracker />
           <ul className="mt-6 flex flex-wrap gap-2 text-sm text-white">
+            <li className="inline-flex items-center gap-1.5 rounded-lg border border-white/20 bg-white/10 px-3 py-2 backdrop-blur-sm">
+              <Check className="h-4 w-4 text-[var(--theme-400)]" />
+              <ZalohaBadge />
+            </li>
             {HERO_BADGES.map((badge) => (
               <li
                 key={badge}

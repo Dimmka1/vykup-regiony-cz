@@ -7,6 +7,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 import { AllRegionsSection } from "@/components/all-regions-section";
+import { ProgrammaticLinksBySituation } from "@/components/programmatic-links-by-situation";
 import { getRequestHost } from "@/lib/request-host";
 
 export const metadata: Metadata = {
@@ -230,6 +231,10 @@ export default async function VykupPriExekuciPage(): Promise<React.ReactElement>
           </div>
         </div>
       </section>
+
+      <ProgrammaticLinksBySituation situationKey="exekuce" />
+
+      <ProgrammaticLinksBySituation situationKey="exekuce" />
 
       <section className="bg-slate-50 py-12">
         <div className="mx-auto max-w-3xl px-4">

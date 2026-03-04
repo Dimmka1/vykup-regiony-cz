@@ -5,6 +5,31 @@ import { BLOG_POSTS } from "@/app/blog/data";
 
 const ROOT_DOMAIN = "vykoupim-nemovitost.cz";
 
+function buildHreflangAlternates(path: string) {
+  const regions = listRegions();
+  const languages: Record<string, string> = {
+    "x-default": `https://${ROOT_DOMAIN}${path}`,
+  };
+  // For subdomain regions, add cs hreflang
+  // Note: sitemap alternates use xhtml:link which supports multiple same-lang entries
+  // But Next.js MetadataRoute types expect Record<string, string>
+  // We add root + all subdomains
+  for (const region of regions) {
+    const subHost = region.hosts.find(
+      (h: string) =>
+        h.endsWith(`.${ROOT_DOMAIN}`) &&
+        !h.startsWith("www.") &&
+        !h.startsWith("dev."),
+    );
+    if (subHost) {
+      languages[`cs-${region.key}`] = `https://${subHost}${path}`;
+    }
+  }
+  // Root domain
+  languages["cs"] = `https://${ROOT_DOMAIN}${path}`;
+  return languages;
+}
+
 const CONTENT_PATHS = [
   { path: "/", priority: 1.0 },
   { path: "/caste-dotazy", priority: 0.8 },
@@ -51,6 +76,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: now,
         changeFrequency: "monthly",
         priority: 1,
+        alternates: {
+          languages: buildHreflangAlternates("/"),
+        },
       },
     ];
   }
@@ -61,6 +89,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: now,
     changeFrequency: "monthly" as const,
     priority: entry.priority,
+    alternates: {
+      languages: buildHreflangAlternates(entry.path),
+    },
   }));
 
   // Blog post entries
@@ -70,6 +101,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.7,
+      alternates: {
+        languages: buildHreflangAlternates(`/blog/${post.slug}`),
+      },
     });
   }
 

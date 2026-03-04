@@ -1,3 +1,4 @@
+import { HreflangTags } from "@/components/hreflang-tags";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -68,7 +69,9 @@ export default async function RootLayout({
 
   return (
     <html lang="cs" className={inter.variable}>
-      <head></head>
+      <head>
+        <HreflangTags />
+      </head>
       <body
         className={`${inter.className} flex min-h-screen flex-col`}
         style={themeStyle}
@@ -103,4 +106,3 @@ export default async function RootLayout({
     </html>
   );
 }
-

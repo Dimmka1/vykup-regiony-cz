@@ -9,6 +9,7 @@ import { CtaLink } from "@/components/cta-link";
 import { CallbackForm } from "@/components/callback-form";
 import { QuickEstimateForm } from "@/components/quick-estimate-form";
 import { AnimatedCounter } from "@/components/animated-counter";
+import { DynamicSocialProof } from "@/components/dynamic-social-proof";
 import { ScrollTracker } from "@/components/scroll-tracker";
 import { FloatingDesktopCta } from "@/components/floating-desktop-cta";
 import { FaqAccordion } from "@/components/faq-accordion";
@@ -353,6 +354,7 @@ export function HomePageContent({
             ))}
           </ul>
 
+          <DynamicSocialProof />
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
             <CtaLink
               href="#kontakt"

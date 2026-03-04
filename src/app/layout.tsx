@@ -22,6 +22,7 @@ import {
 import { getRequestHost, getRegionKeyOverride } from "@/lib/request-host";
 import { getThemeStyle } from "@/lib/theme-colors";
 import { headers } from "next/headers";
+import Script from "next/script";
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
@@ -68,7 +69,22 @@ export default async function RootLayout({
 
   return (
     <html lang="cs" className={inter.variable}>
-      <head></head>
+      <head>
+        {process.env.NODE_ENV === "production" && (
+          <>
+            <Script
+              src="https://www.googletagmanager.com/gtag/js?id=G-71SV5L1M1T"
+              strategy="afterInteractive"
+            />
+            <Script id="ga4-init" strategy="afterInteractive">
+              {`window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', 'G-71SV5L1M1T');`}
+            </Script>
+          </>
+        )}
+      </head>
       <body
         className={`${inter.className} flex min-h-screen flex-col`}
         style={themeStyle}

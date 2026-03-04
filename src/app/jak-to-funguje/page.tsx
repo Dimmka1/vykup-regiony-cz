@@ -54,18 +54,49 @@ const STEPS = [
   },
 ] as const;
 
+/** HowTo JSON-LD for Google rich snippets (VR-150) */
+const HOWTO_STEPS = [
+  {
+    name: "Vyplňte formulář",
+    text: "Vyplňte krátký online formulář s údaji o vaší nemovitosti — adresu, typ a kontakt. Trvá to maximálně 2 minuty.",
+    url: "https://vykoupim-nemovitost.cz/#kontakt",
+  },
+  {
+    name: "Získejte nabídku do 24 hodin",
+    text: "Na základě nezávislého ohodnocení vám do 24 hodin připravíme konkrétní cenovou nabídku bez skrytých poplatků a bez provize.",
+    url: "https://vykoupim-nemovitost.cz/jak-to-funguje",
+  },
+  {
+    name: "Podpis smlouvy + záloha",
+    text: "Pokud nabídku přijmete, připravíme kupní smlouvu. Při podpisu obdržíte zálohu. Veškerý právní servis zajistíme za vás.",
+    url: "https://vykoupim-nemovitost.cz/jak-to-funguje",
+  },
+  {
+    name: "Vyplacení celé částky",
+    text: "Po podpisu smlouvy obdržíte zbývající částku na váš účet. Celý proces je rychlý, transparentní a bez starostí.",
+    url: "https://vykoupim-nemovitost.cz/jak-to-funguje",
+  },
+] as const;
+
 const JSON_LD_HOWTO = {
   "@context": "https://schema.org",
   "@type": "HowTo",
-  name: "Jak funguje výkup nemovitosti",
+  name: "Jak prodat nemovitost rychle – výkup v 4 krocích",
   description:
-    "Celý proces výkupu nemovitosti v 5 jednoduchých krocích - od kontaktu po platbu.",
-  totalTime: "P3D",
-  step: STEPS.map((s) => ({
+    "Prodejte nemovitost rychle a bez provize. Celý proces od vyplnění formuláře po vyplacení celé částky zvládneme do 7 dnů.",
+  totalTime: "P7D",
+  estimatedCost: {
+    "@type": "MonetaryAmount",
+    currency: "CZK",
+    value: "0",
+  },
+  tool: ["Telefon", "Počítač"],
+  step: HOWTO_STEPS.map((s, i) => ({
     "@type": "HowToStep",
-    position: s.number,
-    name: s.title,
-    text: s.description,
+    position: i + 1,
+    name: s.name,
+    text: s.text,
+    url: s.url,
   })),
 };
 

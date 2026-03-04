@@ -4,7 +4,7 @@ import { test as base } from "@playwright/test";
  * Extended test fixture that dismisses the GDPR cookie consent banner
  * before every test by setting the cookie_consent cookie.
  */
- 
+
 export const test = base.extend({
   page: async ({ page }, run) => {
     const consent = JSON.stringify({

@@ -8,11 +8,12 @@ import type { AnalyticsEventName } from "@/lib/analytics";
 
 /* ── GTM form-step tracking (VR-129) ─────────────────────────── */
 
-const STEP_EVENTS: readonly { event: AnalyticsEventName; stepName: string }[] = [
-  { event: "form_step_1_type", stepName: "type" },
-  { event: "form_step_2_address", stepName: "address" },
-  { event: "form_step_3_contact", stepName: "contact" },
-] as const;
+const STEP_EVENTS: readonly { event: AnalyticsEventName; stepName: string }[] =
+  [
+    { event: "form_step_1_type", stepName: "type" },
+    { event: "form_step_2_address", stepName: "address" },
+    { event: "form_step_3_contact", stepName: "contact" },
+  ] as const;
 
 function getUtmSource(): string {
   try {
@@ -39,7 +40,6 @@ function pushFormStepEvent(step: number, region: string): void {
     utm_source: getUtmSource(),
   });
 }
-
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 type FormStep = 0 | 1 | 2;
@@ -134,7 +134,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
   // VR-129: Track step 1 on mount
   useEffect(() => {
     pushFormStepEvent(0, regionName);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const isPhoneValid = useMemo(

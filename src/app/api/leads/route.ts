@@ -3,8 +3,8 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { calculateLeadScore } from "@/lib/lead-scoring";
 
-const RATE_LIMIT_WINDOW_MS = 60_000;
-const RATE_LIMIT_MAX = 10;
+const RATE_LIMIT_WINDOW_MS = 3_600_000; // 1 hour
+const RATE_LIMIT_MAX = 5;
 
 const requestCounter = new Map<string, { count: number; start: number }>();
 
@@ -331,11 +331,31 @@ function getClientIp(request: Request): string {
     return forwarded.split(",")[0]?.trim() ?? "unknown";
   }
 
+  const realIp = request.headers.get("x-real-ip");
+  if (realIp) {
+    return realIp.trim();
+  }
+
   return "unknown";
+}
+
+function cleanupExpiredEntries(): void {
+  const now = Date.now();
+  for (const [ip, entry] of requestCounter) {
+    if (now - entry.start > RATE_LIMIT_WINDOW_MS) {
+      requestCounter.delete(ip);
+    }
+  }
 }
 
 function isRateLimited(clientIp: string): boolean {
   const now = Date.now();
+
+  // Periodic cleanup to prevent memory leaks
+  if (requestCounter.size > 100) {
+    cleanupExpiredEntries();
+  }
+
   const current = requestCounter.get(clientIp);
 
   if (!current || now - current.start > RATE_LIMIT_WINDOW_MS) {
@@ -356,8 +376,16 @@ export async function POST(request: Request): Promise<NextResponse> {
   try {
     const clientIp = getClientIp(request);
     if (isRateLimited(clientIp)) {
+      console.warn("[anti-spam] Rate limited:", {
+        ip: clientIp,
+        timestamp: new Date().toISOString(),
+      });
       return NextResponse.json(
-        { ok: false, code: "RATE_LIMITED" },
+        {
+          ok: false,
+          code: "RATE_LIMITED",
+          message: "Příliš mnoho požadavků. Zkuste to prosím později.",
+        },
         { status: 429 },
       );
     }
@@ -368,6 +396,10 @@ export async function POST(request: Request): Promise<NextResponse> {
       typeof (payload as Record<string, unknown>).website === "string" &&
       ((payload as Record<string, unknown>).website as string).trim().length > 0
     ) {
+      console.warn("[anti-spam] Honeypot triggered:", {
+        ip: clientIp,
+        timestamp: new Date().toISOString(),
+      });
       return NextResponse.json(
         { ok: true, lead_id: "honeypot-discarded" },
         { status: 200 },

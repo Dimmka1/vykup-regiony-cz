@@ -7,13 +7,11 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import { CtaLink } from "@/components/cta-link";
 import { CallbackForm } from "@/components/callback-form";
-import { QuickEstimateForm } from "@/components/quick-estimate-form";
 import { AnimatedCounter } from "@/components/animated-counter";
 import { ScrollTracker } from "@/components/scroll-tracker";
 import { FloatingDesktopCta } from "@/components/floating-desktop-cta";
 import { FaqAccordion } from "@/components/faq-accordion";
 import { NearbyRegions } from "@/components/nearby-regions";
-import { PropertyEstimator } from "@/components/property-estimator";
 import { ComparisonCalculator } from "@/components/comparison-calculator";
 import { LeadForm } from "@/components/lead-form";
 import { GuaranteeCarousel } from "@/components/guarantee-carousel";
@@ -370,9 +368,7 @@ export function HomePageContent({
           <div className="mt-4">
             <CallbackForm regionName={region.name} />
           </div>
-          <div className="mt-4">
-            <QuickEstimateForm regionName={region.name} />
-          </div>
+          <div className="mt-4"></div>
           <p className="mt-3 text-sm text-slate-300">
             Zálohu vyplácíme při podpisu smlouvy. Celý proces trvá 3–7 dní.
           </p>
@@ -647,7 +643,6 @@ export function HomePageContent({
       </section>
 
       {/* ===== PROPERTY ESTIMATOR ===== */}
-      <PropertyEstimator regionKey={region.key} />
 
       {/* ===== COMPARISON CALCULATOR ===== */}
       <ComparisonCalculator />

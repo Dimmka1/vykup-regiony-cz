@@ -52,13 +52,14 @@ export function AnimatedCounter({
   duration = 2000,
 }: AnimatedCounterProps): React.ReactElement {
   const { prefix, number: target, decimals, suffix } = parseNumericPart(value);
+  const isNumeric = /\d/.test(value);
   // SSR fallback: show target value initially so users never see "0"
   const [display, setDisplay] = useState(value);
   const ref = useRef<HTMLSpanElement>(null);
   const hasAnimated = useRef(false);
 
   const animate = useCallback(() => {
-    if (hasAnimated.current) return;
+    if (hasAnimated.current || !isNumeric) return;
     hasAnimated.current = true;
 
     const startTime = performance.now();
@@ -79,7 +80,7 @@ export function AnimatedCounter({
     // Start animation from 0
     setDisplay(`${prefix}${formatNumber(0, decimals, value)}${suffix}`);
     requestAnimationFrame(step);
-  }, [duration, target, decimals, prefix, suffix, value]);
+  }, [duration, target, decimals, prefix, suffix, value, isNumeric]);
 
   useEffect(() => {
     const el = ref.current;

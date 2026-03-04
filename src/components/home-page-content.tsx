@@ -7,7 +7,6 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import { CtaLink } from "@/components/cta-link";
 import { CallbackForm } from "@/components/callback-form";
-import { AnimatedCounter } from "@/components/animated-counter";
 import { PropertyEstimator } from "@/components/property-estimator";
 import { ScrollTracker } from "@/components/scroll-tracker";
 import { FloatingDesktopCta } from "@/components/floating-desktop-cta";
@@ -400,7 +399,7 @@ export function HomePageContent({
               >
                 <metric.Icon className="mb-3 h-7 w-7 text-[var(--theme-500)]" />
                 <p className="text-3xl font-bold text-[var(--theme-700)]">
-                  <AnimatedCounter value={metric.value} />
+                  {metric.value}
                 </p>
                 <p className="mt-1 text-sm text-slate-500">{metric.label}</p>
               </article>

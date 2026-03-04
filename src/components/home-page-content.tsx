@@ -257,6 +257,53 @@ export function buildSchema(
     },
     {
       "@context": "https://schema.org",
+      "@type": "Service",
+      name: `Výkup nemovitostí – ${region.name}`,
+      description: `Rychlý výkup nemovitostí ${region.locative}. Nabídka do 24 hodin, peníze do 3 dnů. Bez provize, právní servis zdarma.`,
+      serviceType: "Výkup nemovitostí",
+      areaServed: {
+        "@type": "AdministrativeArea",
+        name: region.name,
+      },
+      provider: {
+        "@type": "Organization",
+        name: COMPANY_NAME,
+        url: "https://vykoupim-nemovitost.cz",
+        telephone: region.phone,
+      },
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Služby výkupu nemovitostí",
+        itemListElement: [
+          {
+            "@type": "Offer",
+            name: "Rychlý výkup nemovitosti",
+            description:
+              "Nabídka do 24 hodin, vyplacení do 3 dnů. Vykupujeme byty, domy, pozemky i spoluvlastnické podíly.",
+            priceCurrency: "CZK",
+            availability: "https://schema.org/InStock",
+          },
+          {
+            "@type": "Offer",
+            name: "Záloha při podpisu smlouvy",
+            description:
+              "Záloha vyplacena ihned při podpisu kupní smlouvy. Jistota a transparentnost.",
+            priceCurrency: "CZK",
+            availability: "https://schema.org/InStock",
+          },
+          {
+            "@type": "Offer",
+            name: "Výkup bez provize",
+            description:
+              "Žádná provize, žádné skryté poplatky. Právní servis a odhad nemovitosti zdarma.",
+            priceCurrency: "CZK",
+            availability: "https://schema.org/InStock",
+          },
+        ],
+      },
+    },
+    {
+      "@context": "https://schema.org",
       "@type": "FAQPage",
       mainEntity: [
         ...GENERAL_FAQ.map((item) => ({

@@ -15,12 +15,12 @@ test.describe("Lead form", () => {
 
     await nextButton.click();
     await page.locator("#address").fill("Vodičkova 30");
-    await page.locator("#postalCode").fill("110 00");
+    await page.locator("#postal-code").fill("110 00");
     await page.locator("#city").fill("Praha");
     await nextButton.click();
 
-    await page.locator("#name").fill("Test User");
-    await page.locator("#phone").fill("+420 777 888 999");
+    await page.locator("#lead-name").fill("E2E Test");
+    await page.locator("#lead-phone").fill("+420 777 888 999");
 
     await page.route("**/api/leads", (route) =>
       route.fulfill({
@@ -34,7 +34,7 @@ test.describe("Lead form", () => {
       }),
     );
 
-    await page.locator("#consent").check();
+    await page.getByLabel(/souhlasím se zpracováním/i).check();
     await page.getByRole("button", { name: /odeslat/i }).click();
 
     await expect(page).toHaveURL(/\/dekujeme/, { timeout: 10_000 });

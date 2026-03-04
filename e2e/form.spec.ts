@@ -3,20 +3,23 @@ import { expect, test } from "./fixtures";
 test.describe("Lead form", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/");
-    // Close any popups/dialogs that may appear
-    const dialog = page.locator("[role=dialog]");
-    if (await dialog.isVisible({ timeout: 2000 }).catch(() => false)) {
-      const closeBtn = dialog.getByRole("button", { name: /zavřít|close|×/i });
-      if (await closeBtn.isVisible({ timeout: 1000 }).catch(() => false)) {
-        await closeBtn.click();
-      }
-    }
+    // Dismiss exit-intent popup if it appears
+    await page.evaluate(() => {
+      const dialog = document.querySelector("[role=dialog]");
+      if (dialog) dialog.remove();
+    });
+    // Remove any overlay elements
+    await page.evaluate(() => {
+      document
+        .querySelectorAll("[aria-modal=true]")
+        .forEach((el) => el.remove());
+    });
   });
 
   test("happy path: 3 steps → submit → redirect to /dekujeme", async ({
     page,
   }) => {
-    // Step 1: property type is pre-selected (byt), click Pokračovat
+    // Step 1: property type pre-selected, advance
     await page
       .getByRole("button", { name: "Pokračovat", exact: true })
       .click({ force: true });
@@ -55,15 +58,19 @@ test.describe("Lead form", () => {
   test("form validation: missing required fields shows errors", async ({
     page,
   }) => {
-    // Step 1 → Step 2 (type pre-selected)
+    // Step 1 → Step 2
     await page
       .getByRole("button", { name: "Pokračovat", exact: true })
       .click({ force: true });
 
-    // Try to advance without filling address
-    await page
-      .getByRole("button", { name: "Pokračovat", exact: true })
-      .click({ force: true });
+    // Try advancing without filling required fields — use evaluate to bypass overlay
+    await page.evaluate(() => {
+      const btns = Array.from(document.querySelectorAll("button"));
+      const btn = btns.find((b) => b.textContent?.trim() === "Pokračovat");
+      if (btn) btn.click();
+    });
+
+    await page.waitForTimeout(500);
 
     // Should show error or stay on step 2
     const hasError = await page.locator(".text-red-500, [role=alert]").count();

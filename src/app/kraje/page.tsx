@@ -3,6 +3,7 @@ import { MapPin } from "lucide-react";
 import { listRegions, getRegionUrl, getRegionSubdomainUrl } from "@/lib/config";
 import { getRequestHost } from "@/lib/request-host";
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { PRAHA_DISTRICTS } from "@/data/praha-districts";
 import { safeJsonLd } from "@/lib/jsonld";
 
 const SITE_URL = "https://vykoupim-nemovitost.cz";
@@ -75,6 +76,40 @@ export default async function KrajePage() {
                 </span>
               </a>
             ))}
+          </div>
+
+          {/* Praha districts */}
+          <div className="mt-16">
+            <h2 className="text-2xl font-bold tracking-tight text-slate-900">
+              Městské části Prahy
+            </h2>
+            <p className="mt-2 text-slate-600">
+              Nejžádanější pražské městské části s individuálním přístupem.
+            </p>
+            <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {PRAHA_DISTRICTS.map((district) => (
+                <a
+                  key={district.slug}
+                  href={`/praha/${district.slug}`}
+                  className="group flex flex-col rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-all hover:border-teal-200 hover:shadow-md"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-teal-50 text-teal-700">
+                      <MapPin className="h-5 w-5" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-slate-900 group-hover:text-teal-700">
+                      {district.name}
+                    </h3>
+                  </div>
+                  <p className="mt-3 line-clamp-2 text-sm text-slate-500">
+                    {district.fullName}
+                  </p>
+                  <span className="mt-auto pt-4 text-sm font-medium text-teal-700 group-hover:underline">
+                    Zjistit více →
+                  </span>
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </section>

@@ -12,6 +12,7 @@ import { ScrollTracker } from "@/components/scroll-tracker";
 import { FloatingDesktopCta } from "@/components/floating-desktop-cta";
 import { FaqAccordion } from "@/components/faq-accordion";
 import { NearbyRegions } from "@/components/nearby-regions";
+import { PRAHA_DISTRICTS } from "@/data/praha-districts";
 import { ComparisonCalculator } from "@/components/comparison-calculator";
 import { LeadForm } from "@/components/lead-form";
 import { GuaranteeCarousel } from "@/components/guarantee-carousel";
@@ -788,6 +789,43 @@ export function HomePageContent({
       </section>
 
       {/* ===== NEARBY REGIONS ===== */}
+
+      {/* ===== PRAHA DISTRICTS ===== */}
+      {region.key === "praha" && (
+        <section className="bg-slate-50 py-16">
+          <div className="mx-auto max-w-7xl px-6">
+            <h2 className="text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+              Městské části Prahy
+            </h2>
+            <p className="mx-auto mt-2 max-w-2xl text-center text-slate-600">
+              Vykupujeme nemovitosti v nejžádanějších pražských čtvrtích
+            </p>
+            <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {PRAHA_DISTRICTS.map((district) => (
+                <a
+                  key={district.slug}
+                  href={`/praha/${district.slug}`}
+                  className="group rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-all hover:border-[var(--theme-200)] hover:shadow-md"
+                >
+                  <h3 className="text-lg font-semibold text-slate-900 group-hover:text-[var(--theme-700)]">
+                    {district.name}
+                  </h3>
+                  <p className="mt-1 text-sm text-slate-500">
+                    {district.fullName}
+                  </p>
+                  <p className="mt-3 text-sm text-slate-600">
+                    Byty od {district.avgPriceFlat.split(" – ")[0]}
+                  </p>
+                  <span className="mt-3 inline-block text-sm font-medium text-[var(--theme-700)] group-hover:underline">
+                    Zjistit více →
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       <NearbyRegions regionKey={region.key} currentHost={currentHost} />
 
       {/* ===== REGION FAQ ===== */}

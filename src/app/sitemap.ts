@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { headers } from "next/headers";
 import { listRegions } from "@/lib/config";
 import { BLOG_POSTS } from "@/app/blog/data";
+import { DISTRICT_SLUGS } from "@/data/praha-districts";
 
 const ROOT_DOMAIN = "vykoupim-nemovitost.cz";
 
@@ -107,5 +108,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     });
   }
 
+  // Praha district pages
+  for (const slug of DISTRICT_SLUGS) {
+    entries.push({
+      url: `${baseUrl}/praha/${slug}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: {
+        languages: buildHreflangAlternates(`/praha/${slug}`),
+      },
+    });
+  }
   return entries;
 }

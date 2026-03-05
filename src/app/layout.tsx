@@ -70,6 +70,13 @@ export default async function RootLayout({
   return (
     <html lang="cs" className={inter.variable}>
       <head>
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://connect.facebook.net" />
+        <link rel="dns-prefetch" href="https://c.seznam.cz" />
+        {process.env.NEXT_PUBLIC_UMAMI_URL && (
+          <link rel="preconnect" href={process.env.NEXT_PUBLIC_UMAMI_URL} />
+        )}
         <HreflangTags />
       </head>
       <body

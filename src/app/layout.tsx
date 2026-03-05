@@ -50,6 +50,19 @@ export const metadata: Metadata = {
   },
 };
 
+function UmamiScript() {
+  const websiteId = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID;
+  const umamiUrl = process.env.NEXT_PUBLIC_UMAMI_URL;
+
+  if (!websiteId || !umamiUrl) {
+    return null;
+  }
+
+  return (
+    <script defer src={`${umamiUrl}/script.js`} data-website-id={websiteId} />
+  );
+}
+
 export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -71,6 +84,7 @@ export default async function RootLayout({
     <html lang="cs" className={inter.variable}>
       <head>
         <HreflangTags />
+        <UmamiScript />
       </head>
       <body
         className={`${inter.className} flex min-h-screen flex-col`}

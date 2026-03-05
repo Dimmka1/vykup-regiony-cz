@@ -2,6 +2,7 @@ import { appendFileSync } from "node:fs";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { calculateLeadScore } from "@/lib/lead-scoring";
+import { trackEvent } from "@/lib/server-analytics";
 
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX = 10;
@@ -518,6 +519,16 @@ export async function POST(request: Request): Promise<NextResponse> {
     });
 
     saveLeadToFile(notificationPayload);
+
+    // Server-side GA4 Measurement Protocol — generate_lead event
+    trackEvent("generate_lead", {
+      region: validatedData.region,
+      type: validatedData.property_type,
+      source: validatedData.situation_type,
+      lead_id: leadId,
+    }).catch(() => {
+      // fire-and-forget, already logged inside trackEvent
+    });
 
     const leadScore = calculateLeadScore({
       property_type: validatedData.property_type,

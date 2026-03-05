@@ -1,4 +1,5 @@
 import { appendFileSync } from "node:fs";
+import { getRedis } from "@/lib/redis";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { calculateLeadScore } from "@/lib/lead-scoring";
@@ -518,6 +519,17 @@ export async function POST(request: Request): Promise<NextResponse> {
     });
 
     saveLeadToFile(notificationPayload);
+
+    // VR-168: Clean up partial lead if session cookie is present
+    try {
+      const body = payload as Record<string, unknown>;
+      if (typeof body.session_id === "string" && body.session_id) {
+        const redis = getRedis();
+        await redis.del(`partial:${body.session_id}`);
+      }
+    } catch {
+      /* best-effort cleanup */
+    }
 
     const leadScore = calculateLeadScore({
       property_type: validatedData.property_type,

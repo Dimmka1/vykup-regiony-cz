@@ -6,6 +6,48 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { trackEvent } from "@/lib/analytics";
 import type { AnalyticsEventName } from "@/lib/analytics";
 
+/* ── Partial submission tracking (VR-168) ────────────────────── */
+
+function getFormSessionId(): string {
+  const KEY = "form_session_id";
+  try {
+    let id = sessionStorage.getItem(KEY);
+    if (!id) {
+      id = crypto.randomUUID();
+      sessionStorage.setItem(KEY, id);
+    }
+    return id;
+  } catch {
+    return crypto.randomUUID();
+  }
+}
+
+async function savePartialLead(
+  sessionId: string,
+  step: number,
+  data: Record<string, unknown>,
+): Promise<void> {
+  try {
+    await fetch("/api/partial-lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ sessionId, step, ...data }),
+    });
+  } catch {
+    /* best-effort */
+  }
+}
+
+async function deletePartialLead(sessionId: string): Promise<void> {
+  try {
+    await fetch(`/api/partial-lead?sessionId=${sessionId}`, {
+      method: "DELETE",
+    });
+  } catch {
+    /* best-effort */
+  }
+}
+
 /* ── GTM form-step tracking (VR-129) ─────────────────────────── */
 
 const STEP_EVENTS: readonly { event: AnalyticsEventName; stepName: string }[] =
@@ -129,6 +171,12 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
   const [currentStep, setCurrentStep] = useState<FormStep>(0);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const formRef = useRef<HTMLFormElement>(null);
+  const sessionIdRef = useRef<string>("");
+
+  // Initialize session ID
+  useEffect(() => {
+    sessionIdRef.current = getFormSessionId();
+  }, []);
   const router = useRouter();
 
   // VR-129: Track step 1 on mount
@@ -136,6 +184,20 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
     pushFormStepEvent(0, regionName);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // VR-168: Track form abandonment on page leave
+  useEffect(() => {
+    const handleBeforeUnload = (): void => {
+      if (currentStep > 0 && status !== "success") {
+        trackEvent("form_step_abandon", {
+          step: currentStep + 1,
+          region: regionName,
+        });
+      }
+    };
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+  }, [currentStep, status, regionName]);
 
   const isPhoneValid = useMemo(
     () => CZ_PHONE_REGEX.test(formData.phone.trim()),
@@ -180,6 +242,12 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
       pushFormStepEvent(1, regionName);
       setErrorMessage("");
       setFieldErrors({});
+      // VR-168: Save partial after step 1
+      savePartialLead(sessionIdRef.current, 1, {
+        propertyType: formData.propertyType,
+        situationType: formData.situationType,
+        region: regionName,
+      });
       return;
     }
 
@@ -198,6 +266,15 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
       setCurrentStep(2);
       pushFormStepEvent(2, regionName);
       setErrorMessage("");
+      // VR-168: Save partial after step 2
+      savePartialLead(sessionIdRef.current, 2, {
+        propertyType: formData.propertyType,
+        situationType: formData.situationType,
+        region: regionName,
+        address: formData.address,
+        postalCode: formData.postalCode,
+        city: formData.city,
+      });
     }
   };
 
@@ -247,6 +324,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
           consent_gdpr: formData.consent,
           email: formData.email,
           website: formData.website,
+          session_id: sessionIdRef.current,
         }),
       });
 
@@ -270,6 +348,8 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
       } catch {
         /* noop */
       }
+      // VR-168: Delete partial on full submit
+      deletePartialLead(sessionIdRef.current);
       router.push("/dekujeme");
       setCurrentStep(0);
       setFormData(INITIAL_FORM);

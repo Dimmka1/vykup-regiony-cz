@@ -240,6 +240,16 @@ export default async function VykupPriDedictviPage(): Promise<React.ReactElement
 
       <section className="bg-slate-50 py-12">
         <div className="mx-auto max-w-3xl px-4">
+          <p className="mt-6 text-sm text-slate-500">
+            Více pojmů najdete v našem{" "}
+            <Link
+              href="/slovnicek-pojmu#dedicke-rizeni"
+              className="text-[var(--theme-600)] underline hover:text-[var(--theme-700)]"
+            >
+              slovníčku pojmů
+            </Link>
+            .
+          </p>
           <RelatedArticles
             articles={getRelatedArticles("vykup-pri-dedictvi")}
           />

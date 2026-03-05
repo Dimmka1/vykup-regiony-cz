@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { headers } from "next/headers";
 import { listRegions } from "@/lib/config";
 import { BLOG_POSTS } from "@/app/blog/data";
+import { ALL_PROGRAMMATIC_SLUGS } from "@/data/programmatic-pages";
 
 const ROOT_DOMAIN = "vykoupim-nemovitost.cz";
 
@@ -103,6 +104,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
       alternates: {
         languages: buildHreflangAlternates(`/blog/${post.slug}`),
+      },
+    });
+  }
+
+  // Programmatic SEO pages (typ × situace)
+  for (const slug of ALL_PROGRAMMATIC_SLUGS) {
+    entries.push({
+      url: `${baseUrl}/${slug}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: {
+        languages: buildHreflangAlternates(`/${slug}`),
       },
     });
   }

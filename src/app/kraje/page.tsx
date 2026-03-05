@@ -4,6 +4,9 @@ import { listRegions, getRegionUrl, getRegionSubdomainUrl } from "@/lib/config";
 import { getRequestHost } from "@/lib/request-host";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { PRAHA_DISTRICTS } from "@/data/praha-districts";
+import { BRNO_DISTRICTS } from "@/data/brno-districts";
+import { OSTRAVA_DISTRICTS } from "@/data/ostrava-districts";
+import { PLZEN_DISTRICTS } from "@/data/plzen-districts";
 import { safeJsonLd } from "@/lib/jsonld";
 
 const SITE_URL = "https://vykoupim-nemovitost.cz";
@@ -105,6 +108,108 @@ export default async function KrajePage() {
                     {district.fullName}
                   </p>
                   <span className="mt-auto pt-4 text-sm font-medium text-teal-700 group-hover:underline">
+                    Zjistit více →
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Brno districts */}
+          <div className="mt-16">
+            <h2 className="text-2xl font-bold tracking-tight text-slate-900">
+              Okresy Brna
+            </h2>
+            <p className="mt-2 text-slate-600">
+              Výkup nemovitostí v Brně a okolí – centrum i příměstské oblasti.
+            </p>
+            <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {BRNO_DISTRICTS.map((district) => (
+                <a
+                  key={district.slug}
+                  href={`/brno/${district.slug}`}
+                  className="group flex flex-col rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-all hover:border-blue-200 hover:shadow-md"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-700">
+                      <MapPin className="h-5 w-5" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-slate-900 group-hover:text-blue-700">
+                      {district.name}
+                    </h3>
+                  </div>
+                  <p className="mt-3 line-clamp-2 text-sm text-slate-500">
+                    {district.fullName}
+                  </p>
+                  <span className="mt-auto pt-4 text-sm font-medium text-blue-700 group-hover:underline">
+                    Zjistit více →
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Ostrava districts */}
+          <div className="mt-16">
+            <h2 className="text-2xl font-bold tracking-tight text-slate-900">
+              Okresy Ostravy
+            </h2>
+            <p className="mt-2 text-slate-600">
+              Výkup nemovitostí v Ostravě – od centra po největší sídliště.
+            </p>
+            <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {OSTRAVA_DISTRICTS.map((district) => (
+                <a
+                  key={district.slug}
+                  href={`/ostrava/${district.slug}`}
+                  className="group flex flex-col rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-all hover:border-slate-300 hover:shadow-md"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-700">
+                      <MapPin className="h-5 w-5" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-slate-900 group-hover:text-slate-700">
+                      {district.name}
+                    </h3>
+                  </div>
+                  <p className="mt-3 line-clamp-2 text-sm text-slate-500">
+                    {district.fullName}
+                  </p>
+                  <span className="mt-auto pt-4 text-sm font-medium text-slate-700 group-hover:underline">
+                    Zjistit více →
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Plzeň districts */}
+          <div className="mt-16">
+            <h2 className="text-2xl font-bold tracking-tight text-slate-900">
+              Okresy Plzně
+            </h2>
+            <p className="mt-2 text-slate-600">
+              Výkup nemovitostí v Plzni a okolí – město i přilehlé okresy.
+            </p>
+            <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {PLZEN_DISTRICTS.map((district) => (
+                <a
+                  key={district.slug}
+                  href={`/plzen/${district.slug}`}
+                  className="group flex flex-col rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-all hover:border-amber-200 hover:shadow-md"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-amber-50 text-amber-700">
+                      <MapPin className="h-5 w-5" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-slate-900 group-hover:text-amber-700">
+                      {district.name}
+                    </h3>
+                  </div>
+                  <p className="mt-3 line-clamp-2 text-sm text-slate-500">
+                    {district.fullName}
+                  </p>
+                  <span className="mt-auto pt-4 text-sm font-medium text-amber-700 group-hover:underline">
                     Zjistit více →
                   </span>
                 </a>

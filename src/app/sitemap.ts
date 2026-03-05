@@ -3,6 +3,9 @@ import { headers } from "next/headers";
 import { listRegions } from "@/lib/config";
 import { BLOG_POSTS } from "@/app/blog/data";
 import { DISTRICT_SLUGS } from "@/data/praha-districts";
+import { BRNO_DISTRICT_SLUGS } from "@/data/brno-districts";
+import { OSTRAVA_DISTRICT_SLUGS } from "@/data/ostrava-districts";
+import { PLZEN_DISTRICT_SLUGS } from "@/data/plzen-districts";
 
 const ROOT_DOMAIN = "vykoupim-nemovitost.cz";
 
@@ -120,5 +123,44 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       },
     });
   }
+  // Brno district pages
+  for (const slug of BRNO_DISTRICT_SLUGS) {
+    entries.push({
+      url: `${baseUrl}/brno/${slug}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: {
+        languages: buildHreflangAlternates(`/brno/${slug}`),
+      },
+    });
+  }
+
+  // Ostrava district pages
+  for (const slug of OSTRAVA_DISTRICT_SLUGS) {
+    entries.push({
+      url: `${baseUrl}/ostrava/${slug}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: {
+        languages: buildHreflangAlternates(`/ostrava/${slug}`),
+      },
+    });
+  }
+
+  // Plzeň district pages
+  for (const slug of PLZEN_DISTRICT_SLUGS) {
+    entries.push({
+      url: `${baseUrl}/plzen/${slug}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: {
+        languages: buildHreflangAlternates(`/plzen/${slug}`),
+      },
+    });
+  }
+
   return entries;
 }

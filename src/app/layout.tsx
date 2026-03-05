@@ -87,14 +87,14 @@ export default async function RootLayout({
           </noscript>
         )}
         <a
-          href="#hlavni-obsah"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-slate-900 focus:shadow-lg focus:ring-2 focus:ring-[var(--theme-500)]"
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-white focus:px-4 focus:py-2 focus:shadow-lg"
         >
           Přeskočit na obsah
         </a>
         <SiteHeader phone={region.phone} />
         <WebVitalsReporter />
-        <main id="hlavni-obsah" className="flex-1">
+        <main id="main" className="flex-1">
           {children}
         </main>
         {!isStrippedLayout && <SiteFooter />}

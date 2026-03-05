@@ -2,6 +2,7 @@ import { appendFileSync } from "node:fs";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { calculateLeadScore } from "@/lib/lead-scoring";
+import { addSubscriber } from "@/lib/drip/subscriber";
 
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX = 10;
@@ -518,6 +519,22 @@ export async function POST(request: Request): Promise<NextResponse> {
     });
 
     saveLeadToFile(notificationPayload);
+
+    // Register for drip email sequence
+    if (validatedData.email && validatedData.email.trim()) {
+      try {
+        await addSubscriber(
+          validatedData.email.trim(),
+          validatedData.name,
+          validatedData.region,
+        );
+      } catch (error: unknown) {
+        console.error("[drip] Failed to register subscriber:", {
+          lead_id: leadId,
+          error: error instanceof Error ? error.message : String(error),
+        });
+      }
+    }
 
     const leadScore = calculateLeadScore({
       property_type: validatedData.property_type,

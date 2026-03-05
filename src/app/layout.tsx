@@ -6,6 +6,10 @@ import dynamic from "next/dynamic";
 import { CookieConsent } from "@/components/cookie-consent";
 import { TrackingPixels } from "@/components/tracking-pixels";
 
+const FaqChatbot = dynamic(
+  () => import("@/components/faq-chatbot").then((mod) => mod.FaqChatbot),
+  { ssr: true },
+);
 const ExitIntentPopup = dynamic(
   () =>
     import("@/components/exit-intent-popup").then((mod) => mod.ExitIntentPopup),
@@ -101,6 +105,7 @@ export default async function RootLayout({
         <ExitIntentPopup />
         <TrackingPixels />
         <SwRegister />
+        <FaqChatbot />
         <CookieConsent />
       </body>
     </html>

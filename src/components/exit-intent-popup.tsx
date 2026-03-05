@@ -9,6 +9,30 @@ const LS_KEY_SHOWN = "exit_popup_shown";
 const LS_KEY_FORM_SUBMITTED = "form_submitted";
 const CZ_PHONE_REGEX = /^(\+?420|00420)?\s?\d{3}\s?\d{3}\s?\d{3}$/;
 const SCROLL_THRESHOLD = 0.6;
+const COOKIE_OFFER_FIRST_SHOWN = "vn_offer_first_shown";
+const OFFER_TTL_MS = 48 * 60 * 60 * 1000;
+
+function getOfferFirstShown(): number | null {
+  if (typeof document === "undefined") return null;
+  const match = document.cookie.match(/(?:^|;\s*)vn_offer_first_shown=([^;]*)/);
+  return match?.[1] ? Number(match[1]) : null;
+}
+
+function setOfferFirstShown(ts: number): void {
+  if (typeof document === "undefined") return;
+  const expires = new Date(ts + OFFER_TTL_MS + 86400000).toUTCString();
+  document.cookie = `${COOKIE_OFFER_FIRST_SHOWN}=${ts}; path=/; expires=${expires}; SameSite=Lax`;
+}
+
+function getOfferTimerText(): string {
+  const firstShown = getOfferFirstShown();
+  if (!firstShown) return "Tato nabídka platí 48 hodin";
+  const remaining = firstShown + OFFER_TTL_MS - Date.now();
+  if (remaining <= 0) return "Nabídka stále platí — kontaktujte nás";
+  const hours = Math.ceil(remaining / (60 * 60 * 1000));
+  return `Tato nabídka platí ještě ${hours} h`;
+}
+
 function getRegionFromUrl(): string {
   if (typeof window === "undefined") return "cesko";
 
@@ -67,6 +91,7 @@ export function ExitIntentPopup(): ReactElement | null {
     "idle" | "submitting" | "success" | "error"
   >("idle");
   const triggeredRef = useRef(false);
+  const [timerText, setTimerText] = useState("");
 
   const show = useCallback(() => {
     if (triggeredRef.current || wasAlreadyShown() || wasFormSubmitted()) return;
@@ -74,6 +99,8 @@ export function ExitIntentPopup(): ReactElement | null {
     markShown();
     setVisible(true);
     trackEvent("exit_popup_shown");
+    if (!getOfferFirstShown()) setOfferFirstShown(Date.now());
+    setTimerText(getOfferTimerText());
   }, []);
 
   // Desktop: mouseleave with clientY < 0
@@ -162,10 +189,15 @@ export function ExitIntentPopup(): ReactElement | null {
             <h2 className="mb-2 pr-8 text-xl font-bold text-slate-900">
               Počkejte! Získejte nezávaznou nabídku zdarma
             </h2>
-            <p className="mb-5 text-sm text-slate-600">
+            <p className="mb-3 text-sm text-slate-600">
               Nechte nám telefon a my vám zavoláme s nabídkou - nezávazně a
               zdarma.
             </p>
+            {timerText && (
+              <p className="mb-4 text-xs font-medium text-amber-700">
+                ⏳ {timerText}
+              </p>
+            )}
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>

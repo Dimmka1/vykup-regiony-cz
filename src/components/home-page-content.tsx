@@ -1,3 +1,4 @@
+import { DailyCounter } from "@/components/daily-counter";
 import { safeJsonLd } from "@/lib/jsonld";
 import { SocialProofBar } from "@/components/social-proof-bar";
 import { getThemeStyle } from "@/lib/theme-colors";
@@ -414,6 +415,7 @@ export function HomePageContent({
           </div>
           <div className="mt-4">
             <CallbackForm regionName={region.name} />
+            <DailyCounter />
           </div>
           <div className="mt-4"></div>
           <p className="mt-3 text-sm text-slate-300">

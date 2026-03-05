@@ -6,6 +6,11 @@ import dynamic from "next/dynamic";
 import { CookieConsent } from "@/components/cookie-consent";
 import { TrackingPixels } from "@/components/tracking-pixels";
 
+const CapacityBanner = dynamic(
+  () =>
+    import("@/components/capacity-banner").then((mod) => mod.CapacityBanner),
+  { ssr: true },
+);
 const ExitIntentPopup = dynamic(
   () =>
     import("@/components/exit-intent-popup").then((mod) => mod.ExitIntentPopup),
@@ -99,6 +104,7 @@ export default async function RootLayout({
         </main>
         {!isStrippedLayout && <SiteFooter />}
         <ExitIntentPopup />
+        <CapacityBanner />
         <TrackingPixels />
         <SwRegister />
         <CookieConsent />

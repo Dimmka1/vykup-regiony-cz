@@ -118,6 +118,21 @@ export default function GaranceVykupuPage() {
         </div>
       </section>
 
+      {/* Price-match link */}
+      <section className="bg-white py-8">
+        <div className="mx-auto max-w-3xl px-6 text-center">
+          <p className="text-slate-600">
+            Máte nabídku od konkurence?{" "}
+            <Link
+              href="/cenova-garancia"
+              className="font-semibold text-emerald-600 underline hover:text-emerald-700"
+            >
+              Dorovnáme ji — cenová garance
+            </Link>
+          </p>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="bg-slate-50 py-16">
         <div className="mx-auto max-w-3xl px-6 text-center">

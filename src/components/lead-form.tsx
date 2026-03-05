@@ -58,6 +58,7 @@ interface FormDataState {
   postalCode: string;
   city: string;
   consent: boolean;
+  smsConsent: boolean;
   website: string;
 }
 
@@ -87,6 +88,7 @@ const INITIAL_FORM: FormDataState = {
   postalCode: "",
   city: "",
   consent: false,
+  smsConsent: false,
   website: "",
 };
 
@@ -245,6 +247,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
           postal_code: formData.postalCode,
           city: formData.city,
           consent_gdpr: formData.consent,
+          sms_consent: formData.smsConsent,
           email: formData.email,
           website: formData.website,
         }),
@@ -625,6 +628,21 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
           {fieldErrors["consent"] ? (
             <p className="text-xs text-red-600">{fieldErrors["consent"]}</p>
           ) : null}
+
+          <label className="flex items-start gap-2 text-sm">
+            <input
+              className="mt-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]"
+              type="checkbox"
+              checked={formData.smsConsent}
+              onChange={(event) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  smsConsent: event.target.checked,
+                }))
+              }
+            />
+            Souhlasím se zasíláním SMS
+          </label>
         </fieldset>
       ) : null}
 

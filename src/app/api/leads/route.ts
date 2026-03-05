@@ -2,6 +2,8 @@ import { appendFileSync } from "node:fs";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { calculateLeadScore } from "@/lib/lead-scoring";
+import { sendSms, SMS_TEMPLATES } from "@/lib/sms";
+import { Redis } from "@upstash/redis";
 
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX = 10;
@@ -15,6 +17,7 @@ const leadSchema = z.object({
   region: z.string().min(2),
   situation_type: z.string().min(2),
   consent_gdpr: z.literal(true),
+  sms_consent: z.boolean().optional().default(false),
   email: z.string().email().optional().or(z.literal("")),
   website: z.string().optional(),
 });
@@ -493,6 +496,7 @@ export async function POST(request: Request): Promise<NextResponse> {
         property_type: validatedData.property_type,
         region: validatedData.region,
         situation_type: validatedData.situation_type,
+        sms_consent: validatedData.sms_consent,
       },
     };
 
@@ -516,6 +520,48 @@ export async function POST(request: Request): Promise<NextResponse> {
         console.error(`[lead-notify] ${notifyNames[i]} failed:`, r.reason);
       }
     });
+
+    // Instant SMS (if phone + sms_consent)
+    if (validatedData.sms_consent && validatedData.phone) {
+      sendSms({
+        to: validatedData.phone,
+        text: SMS_TEMPLATES.instant,
+      })
+        .then((smsResult) => {
+          if (smsResult.ok) {
+            console.log("[sms] Instant SMS sent:", {
+              lead_id: leadId,
+              messageId: smsResult.messageId,
+            });
+          }
+        })
+        .catch((err: unknown) => {
+          console.error("[sms] Instant SMS error:", err);
+        });
+    }
+
+    // Save subscriber to Redis for drip sequence
+    if (
+      process.env.UPSTASH_REDIS_REST_URL &&
+      process.env.UPSTASH_REDIS_REST_TOKEN
+    ) {
+      try {
+        const redis = new Redis({
+          url: process.env.UPSTASH_REDIS_REST_URL,
+          token: process.env.UPSTASH_REDIS_REST_TOKEN,
+        });
+        await redis.set(`subscriber:${leadId}`, {
+          phone: validatedData.phone,
+          email: validatedData.email ?? undefined,
+          sms_consent: validatedData.sms_consent ?? false,
+          created_at: new Date().toISOString(),
+          email_sent_days: [],
+          sms_sent_days: [],
+        });
+      } catch (redisError: unknown) {
+        console.error("[lead] Redis subscriber save failed:", redisError);
+      }
+    }
 
     saveLeadToFile(notificationPayload);
 

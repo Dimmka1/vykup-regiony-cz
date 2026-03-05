@@ -1,6 +1,12 @@
 "use client";
 
-import { useState, type ReactElement } from "react";
+import {
+  useState,
+  useEffect,
+  useCallback,
+  useRef,
+  type ReactElement,
+} from "react";
 import {
   Check,
   Clock,
@@ -8,7 +14,9 @@ import {
   Users,
   ShieldCheck,
   TrendingUp,
+  Lock,
 } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 interface ComparisonRow {
   label: string;
@@ -52,6 +60,7 @@ const COMPARISON_ROWS: ComparisonRow[] = [
 
 const REALITKA_COMMISSION_MIN = 0.03;
 const REALITKA_COMMISSION_MAX = 0.05;
+const LEAD_COOKIE_NAME = "vn_lead";
 
 function formatCzk(value: number): string {
   return new Intl.NumberFormat("cs-CZ", {
@@ -67,8 +76,29 @@ function parseInputValue(raw: string): number {
   return Number.isFinite(parsed) && parsed >= 0 ? parsed : 0;
 }
 
+function hasLeadCookie(): boolean {
+  if (typeof document === "undefined") return false;
+  return document.cookie
+    .split(";")
+    .some((c) => c.trim().startsWith(`${LEAD_COOKIE_NAME}=`));
+}
+
+function setLeadCookie(): void {
+  const expires = new Date(
+    Date.now() + 365 * 24 * 60 * 60 * 1000,
+  ).toUTCString();
+  document.cookie = `${LEAD_COOKIE_NAME}=1; expires=${expires}; path=/; SameSite=Lax`;
+}
+
+type GateState = "idle" | "preview" | "gate" | "submitting" | "full";
+
 export function ComparisonCalculator(): ReactElement {
   const [rawValue, setRawValue] = useState("");
+  const [gateState, setGateState] = useState<GateState>("idle");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [formError, setFormError] = useState("");
+  const startTracked = useRef(false);
 
   const price = parseInputValue(rawValue);
   const commissionMin = Math.round(price * REALITKA_COMMISSION_MIN);
@@ -76,6 +106,95 @@ export function ComparisonCalculator(): ReactElement {
   const netVykup = price;
   const netRealitkaMin = price - commissionMax;
   const netRealitkaMax = price - commissionMin;
+  const savings = `${formatCzk(commissionMin)} – ${formatCzk(commissionMax)}`;
+
+  const isReturningLead = hasLeadCookie();
+
+  // Track calculator_start on first input
+  useEffect(() => {
+    if (price > 0 && !startTracked.current) {
+      startTracked.current = true;
+      trackEvent("calculator_start", { price });
+    }
+  }, [price]);
+
+  // Transition to preview/full when price entered
+  useEffect(() => {
+    if (price > 0 && gateState === "idle") {
+      if (isReturningLead) {
+        setGateState("full");
+        trackEvent("calculator_full_result", { price, returning: true });
+      } else {
+        setGateState("preview");
+        trackEvent("calculator_preview", { price });
+      }
+    } else if (price === 0 && gateState !== "idle") {
+      setGateState("idle");
+    }
+  }, [price, gateState, isReturningLead]);
+
+  const handleGateSubmit = useCallback(
+    async (e: React.FormEvent) => {
+      e.preventDefault();
+      setFormError("");
+
+      const trimmedEmail = email.trim();
+      const trimmedPhone = phone.trim();
+
+      if (!trimmedEmail && !trimmedPhone) {
+        setFormError("Vyplňte e-mail nebo telefon.");
+        return;
+      }
+
+      if (trimmedEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
+        setFormError("Zadejte platný e-mail.");
+        return;
+      }
+
+      if (
+        trimmedPhone &&
+        !/^(\+?420|00420)?\s?\d{3}\s?\d{3}\s?\d{3}$/.test(trimmedPhone)
+      ) {
+        setFormError("Zadejte platné telefonní číslo.");
+        return;
+      }
+
+      setGateState("submitting");
+
+      try {
+        const res = await fetch("/api/leads", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            type: "calculator",
+            source: "comparison-calculator",
+            email: trimmedEmail,
+            phone: trimmedPhone,
+            price,
+          }),
+        });
+
+        if (!res.ok) {
+          throw new Error("API error");
+        }
+
+        trackEvent("calculator_gate_submit", { price });
+        setLeadCookie();
+        setGateState("full");
+        trackEvent("calculator_full_result", { price });
+      } catch {
+        setFormError("Něco se pokazilo. Zkuste to prosím znovu.");
+        setGateState("gate");
+      }
+    },
+    [email, phone, price],
+  );
+
+  const showFullBreakdown = gateState === "full";
+  const showGate =
+    gateState === "preview" ||
+    gateState === "gate" ||
+    gateState === "submitting";
 
   return (
     <section className="py-16" id="srovnani">
@@ -151,35 +270,110 @@ export function ComparisonCalculator(): ReactElement {
               <div className="flex items-center px-4 py-4 text-slate-900">
                 Čistý výnos
               </div>
-              <div className="flex flex-col items-center justify-center border-l border-[var(--theme-200)] bg-[var(--theme-50)] px-4 py-4 text-[var(--theme-700)]">
-                <span className="text-base sm:text-lg">
-                  {formatCzk(netVykup)}
-                </span>
-              </div>
-              <div className="flex flex-col items-center justify-center border-l border-[var(--theme-200)] px-4 py-4 text-slate-500">
-                <span className="text-base sm:text-lg">
-                  {formatCzk(netRealitkaMin)}
-                </span>
-                <span className="text-xs font-normal">
-                  až {formatCzk(netRealitkaMax)}
-                </span>
-              </div>
+              {showFullBreakdown ? (
+                <>
+                  <div className="flex flex-col items-center justify-center border-l border-[var(--theme-200)] bg-[var(--theme-50)] px-4 py-4 text-[var(--theme-700)]">
+                    <span className="text-base sm:text-lg">
+                      {formatCzk(netVykup)}
+                    </span>
+                  </div>
+                  <div className="flex flex-col items-center justify-center border-l border-[var(--theme-200)] px-4 py-4 text-slate-500">
+                    <span className="text-base sm:text-lg">
+                      {formatCzk(netRealitkaMin)}
+                    </span>
+                    <span className="text-xs font-normal">
+                      až {formatCzk(netRealitkaMax)}
+                    </span>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="flex select-none items-center justify-center border-l border-[var(--theme-200)] bg-[var(--theme-50)] px-4 py-4 text-[var(--theme-700)] blur-sm">
+                    <span className="text-base sm:text-lg">
+                      {formatCzk(netVykup)}
+                    </span>
+                  </div>
+                  <div className="flex select-none items-center justify-center border-l border-[var(--theme-200)] px-4 py-4 text-slate-500 blur-sm">
+                    <span className="text-base sm:text-lg">
+                      {formatCzk(netRealitkaMin)}
+                    </span>
+                  </div>
+                </>
+              )}
             </div>
           )}
         </div>
 
-        {/* Savings highlight */}
+        {/* Savings preview (always visible when price > 0) */}
         {price > 0 && (
           <div className="mx-auto mt-6 max-w-3xl rounded-2xl border border-[var(--theme-200)] bg-[var(--theme-50)] p-6 text-center">
             <p className="text-sm text-[var(--theme-700)]">
-              S přímým výkupem ušetříte
+              S přímým výkupem ušetříte přibližně
             </p>
             <p className="mt-1 text-2xl font-bold text-[var(--theme-800)] sm:text-3xl">
-              {formatCzk(commissionMin)} – {formatCzk(commissionMax)}
+              {savings}
             </p>
             <p className="mt-1 text-xs text-[var(--theme-600)]">
               oproti prodeji přes realitní kancelář
             </p>
+          </div>
+        )}
+
+        {/* Lead capture gate */}
+        {showGate && (
+          <div className="mx-auto mt-6 max-w-lg">
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-md">
+              <div className="mb-4 flex items-center justify-center gap-2 text-slate-700">
+                <Lock className="h-5 w-5" />
+                <span className="font-semibold">Detailní výpočet</span>
+              </div>
+              <p className="mb-4 text-center text-sm text-slate-600">
+                Pro detailní výpočet zadejte kontakt — pošleme vám osobní
+                kalkulaci
+              </p>
+              <form onSubmit={handleGateSubmit} className="space-y-3">
+                <div>
+                  <input
+                    type="email"
+                    placeholder="E-mail"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="focus:ring-[var(--theme-500)]/30 block w-full rounded-xl border border-slate-300 px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[var(--theme-500)] focus:outline-none focus:ring-2"
+                  />
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="h-px flex-1 bg-slate-200" />
+                  <span className="text-xs text-slate-400">nebo</span>
+                  <div className="h-px flex-1 bg-slate-200" />
+                </div>
+                <div>
+                  <input
+                    type="tel"
+                    placeholder="Telefon"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    className="focus:ring-[var(--theme-500)]/30 block w-full rounded-xl border border-slate-300 px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[var(--theme-500)] focus:outline-none focus:ring-2"
+                  />
+                </div>
+                {formError && (
+                  <p className="text-center text-sm text-red-600">
+                    {formError}
+                  </p>
+                )}
+                <button
+                  type="submit"
+                  disabled={gateState === "submitting"}
+                  className="w-full rounded-xl bg-[var(--theme-600)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[var(--theme-700)] disabled:opacity-50"
+                >
+                  {gateState === "submitting"
+                    ? "Odesílám..."
+                    : "Zobrazit detailní výpočet"}
+                </button>
+                <p className="text-center text-xs text-slate-400">
+                  Odesláním souhlasíte se zpracováním osobních údajů.
+                </p>
+              </form>
+            </div>
           </div>
         )}
       </div>

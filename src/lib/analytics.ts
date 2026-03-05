@@ -20,7 +20,11 @@ export type AnalyticsEventName =
   | "lead_magnet_submit"
   | "form_submit"
   | "quick_estimate_psc"
-  | "quick_estimate_phone_submit";
+  | "quick_estimate_phone_submit"
+  | "calculator_start"
+  | "calculator_preview"
+  | "calculator_gate_submit"
+  | "calculator_full_result";
 
 type Primitive = string | number | boolean;
 

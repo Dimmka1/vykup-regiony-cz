@@ -26,6 +26,21 @@ const callbackSchema = z.object({
   region: z.string().min(2),
 });
 
+const calculatorSchema = z
+  .object({
+    type: z.literal("calculator"),
+    source: z.string().min(1),
+    email: z.string().email().optional().or(z.literal("")),
+    phone: z
+      .string()
+      .regex(/^(\+?420|00420)?\s?\d{3}\s?\d{3}\s?\d{3}$/)
+      .optional()
+      .or(z.literal("")),
+    price: z.number().positive(),
+  })
+  .refine((d) => (d.email && d.email.trim()) || (d.phone && d.phone.trim()), {
+    message: "Email or phone required",
+  });
 const quickEstimateSchema = z.object({
   type: z.literal("quick-estimate"),
   phone: z.string().regex(/^(\+?420|00420)?\s?\d{3}\s?\d{3}\s?\d{3}$/),
@@ -419,6 +434,77 @@ export async function POST(request: Request): Promise<NextResponse> {
 
       return NextResponse.json(
         { ok: true, lead_id: leadId, message: "Callback lead accepted" },
+        { status: 200 },
+      );
+    }
+
+    const isCalculator =
+      typeof (payload as Record<string, unknown>).type === "string" &&
+      (payload as Record<string, unknown>).type === "calculator";
+
+    if (isCalculator) {
+      const calcResult = calculatorSchema.safeParse(payload);
+      if (!calcResult.success) {
+        return NextResponse.json(
+          { ok: false, code: "VALIDATION_ERROR" },
+          { status: 400 },
+        );
+      }
+
+      const leadId = `calc_${Date.now().toString(36)}`;
+      const calcData = calcResult.data;
+
+      const calcTelegramPayload = {
+        lead_id: leadId,
+        timestamp: new Date().toISOString(),
+        ip: clientIp,
+      };
+
+      // Send calculator-specific Telegram notification
+      const botToken = process.env.TELEGRAM_BOT_TOKEN;
+      const chatId = process.env.TELEGRAM_CHAT_ID;
+      if (botToken && chatId) {
+        const contact = calcData.phone || calcData.email || "N/A";
+        const text = [
+          "🧮 <b>Calculator lead!</b>",
+          "",
+          `📊 <b>Cena:</b> ${new Intl.NumberFormat("cs-CZ").format(calcData.price)} Kč`,
+          calcData.phone ? `📞 <b>Telefon:</b> ${calcData.phone}` : "",
+          calcData.email ? `📧 <b>Email:</b> ${calcData.email}` : "",
+          `📋 <b>Zdroj:</b> ${calcData.source}`,
+          `🕐 <b>Čas:</b> ${calcTelegramPayload.timestamp}`,
+          `🆔 <b>ID:</b> ${leadId}`,
+        ]
+          .filter(Boolean)
+          .join("\n");
+
+        await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chat_id: chatId,
+            text,
+            parse_mode: "HTML",
+          }),
+        }).catch((err: unknown) => {
+          console.error("[lead-notify] Calculator Telegram failed:", err);
+        });
+      }
+
+      saveLeadToFile({
+        lead_id: leadId,
+        timestamp: new Date().toISOString(),
+        ip: clientIp,
+        data: {
+          type: "callback",
+          phone: calcData.phone || "",
+          source: calcData.source,
+          region: "calculator",
+        },
+      });
+
+      return NextResponse.json(
+        { ok: true, lead_id: leadId, message: "Calculator lead accepted" },
         { status: 200 },
       );
     }

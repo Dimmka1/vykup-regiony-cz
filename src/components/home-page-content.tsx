@@ -6,6 +6,8 @@ import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { CtaLink } from "@/components/cta-link";
+import { GeoHeroOverlay } from "@/components/geo-hero-overlay";
+import { listRegions } from "@/lib/config";
 import { CallbackForm } from "@/components/callback-form";
 import { PropertyEstimator } from "@/components/property-estimator";
 import { ScrollTracker } from "@/components/scroll-tracker";
@@ -348,6 +350,14 @@ export function HomePageContent({
 
   const themeStyle = getThemeStyle(region.themeColor);
 
+  const geoHeroRegions = listRegions().map((r) => ({
+    key: r.key,
+    name: r.name,
+    locative: r.locative,
+    h1: r.h1,
+    heroCta: r.heroCta,
+  }));
+
   return (
     <div style={themeStyle}>
       <ScrollTracker regionName={region.name} />
@@ -401,7 +411,7 @@ export function HomePageContent({
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
             <CtaLink
               href="#kontakt"
-              label={region.heroCta}
+              label={`Chci nabídku pro ${region.name}`}
               regionName={region.name}
             />
             <a
@@ -416,6 +426,10 @@ export function HomePageContent({
             <CallbackForm regionName={region.name} />
           </div>
           <div className="mt-4"></div>
+          <GeoHeroOverlay
+            regions={geoHeroRegions}
+            currentRegionKey={region.key}
+          />
           <p className="mt-3 text-sm text-slate-300">
             Zálohu vyplácíme při podpisu smlouvy. Celý proces trvá 3–7 dní.
           </p>

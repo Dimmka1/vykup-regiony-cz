@@ -12,6 +12,8 @@ const ExitIntentPopup = dynamic(
   { ssr: true },
 );
 import { SiteHeader } from "@/components/site-header";
+import { GeoBanner } from "@/components/geo-banner";
+import { listRegions, getRegionSubdomainUrl } from "@/lib/config";
 import { SiteFooter } from "@/components/site-footer";
 import { SwRegister } from "@/components/sw-register";
 import { WebVitalsReporter } from "@/components/web-vitals-reporter";
@@ -67,6 +69,13 @@ export default async function RootLayout({
   if (!region) region = getDefaultRegion();
   const themeStyle = getThemeStyle(region.themeColor);
 
+  const geoRegions = listRegions().map((r) => ({
+    key: r.key,
+    name: r.name,
+    locative: r.locative,
+    subdomainUrl: getRegionSubdomainUrl(r.key),
+  }));
+
   return (
     <html lang="cs" className={inter.variable}>
       <head>
@@ -93,6 +102,7 @@ export default async function RootLayout({
           Přeskočit na obsah
         </a>
         <SiteHeader phone={region.phone} />
+        <GeoBanner regions={geoRegions} currentRegionKey={region.key} />
         <WebVitalsReporter />
         <main id="hlavni-obsah" className="flex-1">
           {children}

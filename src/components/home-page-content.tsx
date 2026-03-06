@@ -17,6 +17,7 @@ import { LeadForm } from "@/components/lead-form";
 import { GuaranteeCarousel } from "@/components/guarantee-carousel";
 import { getRegionSubdomainUrl, isProductionHost } from "@/lib/config";
 import type { RegionConfig } from "@/lib/types";
+import { getRegionVykupPrices } from "@/lib/price-data";
 import {
   Check,
   FileText,
@@ -216,6 +217,35 @@ export function buildSchema(
   canonicalUrl: string,
 ): object[] {
   const ogImageUrl = `${canonicalUrl}/opengraph-image`;
+  const vykupPrices = getRegionVykupPrices(region.key);
+
+  const aggregateOfferSchema = vykupPrices
+    ? [
+        {
+          "@context": "https://schema.org",
+          "@type": "Service",
+          name: `Výkup nemovitostí – ${region.name}`,
+          serviceType: "Výkup nemovitostí",
+          areaServed: {
+            "@type": "AdministrativeArea",
+            name: region.name,
+          },
+          provider: {
+            "@type": "RealEstateAgent",
+            name: COMPANY_NAME,
+            url: "https://vykoupim-nemovitost.cz",
+          },
+          offers: {
+            "@type": "AggregateOffer",
+            lowPrice: vykupPrices.lowPrice,
+            highPrice: vykupPrices.highPrice,
+            priceCurrency: "CZK",
+            offerCount: vykupPrices.offerCount,
+          },
+        },
+      ]
+    : [];
+
   return [
     {
       "@context": "https://schema.org",
@@ -300,6 +330,7 @@ export function buildSchema(
         ],
       },
     },
+    ...aggregateOfferSchema,
     {
       "@context": "https://schema.org",
       "@type": "FAQPage",

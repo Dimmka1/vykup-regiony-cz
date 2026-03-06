@@ -15,7 +15,9 @@ import { NearbyRegions } from "@/components/nearby-regions";
 import { ComparisonCalculator } from "@/components/comparison-calculator";
 import { LeadForm } from "@/components/lead-form";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { StaggerReveal, StaggerItem } from "@/components/stagger-reveal";
 import { HeroStagger } from "@/components/hero-stagger";
+import { AnimatedNumber } from "@/components/animated-number";
 import { getRegionSubdomainUrl, isProductionHost } from "@/lib/config";
 import type { RegionConfig } from "@/lib/types";
 import {
@@ -357,7 +359,7 @@ export function HomePageContent({
       <FloatingDesktopCta />
 
       {/* ===== HERO ===== */}
-      <section className="relative min-h-[520px] overflow-hidden sm:min-h-[480px]">
+      <section className="relative min-h-[600px] overflow-hidden lg:min-h-[700px]">
         <Image
           src={
             region.key === "praha"
@@ -373,7 +375,9 @@ export function HomePageContent({
           className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-slate-900/60 to-slate-800/40"
           aria-hidden="true"
         />
-        <div className="relative mx-auto flex min-h-[520px] max-w-7xl flex-col justify-center px-6 py-24 sm:min-h-[480px]">
+        <div className="hero-blob" aria-hidden="true" />
+        <div className="hero-blob-2" aria-hidden="true" />
+        <div className="relative mx-auto flex min-h-[600px] max-w-7xl flex-col justify-center px-6 py-24 lg:min-h-[700px]">
           <HeroStagger delay={1}>
             <div className="mb-4 flex flex-wrap items-center gap-3">
               <p className="glass inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white">
@@ -511,13 +515,14 @@ export function HomePageContent({
         </section>
       )}
 
+      <div className="divider-gradient" />
       {/* ===== TRUST METRICS ===== */}
-      <section className="py-20">
+      <section className="py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          <StaggerReveal className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             {TRUST_METRICS.map((metric, idx) => (
-              <ScrollReveal key={metric.label} delay={idx * 100}>
-                <article className="card-hover-lift shadow-layered flex flex-col items-center rounded-2xl bg-white p-6 text-center">
+              <StaggerItem key={metric.label}>
+                <article className="shadow-premium hover-lift flex flex-col items-center rounded-2xl bg-white p-6 text-center">
                   <metric.Icon
                     className="mb-3 h-7 w-7 text-[var(--theme-500)]"
                     aria-hidden="true"
@@ -527,14 +532,15 @@ export function HomePageContent({
                   </p>
                   <p className="mt-1 text-sm text-slate-500">{metric.label}</p>
                 </article>
-              </ScrollReveal>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerReveal>
         </div>
       </section>
 
+      <div className="divider-gradient" />
       {/* ===== JAK TO FUNGUJE (PROCESS STEPS) ===== */}
-      <section className="py-20">
+      <section className="py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-6">
           <ScrollReveal>
             <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
@@ -576,7 +582,7 @@ export function HomePageContent({
                   .slice(0, 2)
                   .map((step, index) => (
                     <ScrollReveal key={step.title} delay={index * 200}>
-                      <div className="card-hover-lift shadow-layered flex gap-4 rounded-2xl border border-slate-100 bg-white p-6">
+                      <div className="card-accent shadow-premium hover-lift flex gap-4 rounded-2xl border border-slate-100 bg-white p-6">
                         <div className="flex flex-col items-center gap-2">
                           <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--theme-50)] text-[var(--theme-600)]">
                             <step.Icon className="h-6 w-6" aria-hidden="true" />
@@ -608,7 +614,7 @@ export function HomePageContent({
                   .slice(2, 4)
                   .map((step, index) => (
                     <ScrollReveal key={step.title} delay={index * 200}>
-                      <div className="card-hover-lift shadow-layered flex gap-4 rounded-2xl border border-slate-100 bg-white p-6">
+                      <div className="card-accent shadow-premium hover-lift flex gap-4 rounded-2xl border border-slate-100 bg-white p-6">
                         <div className="flex flex-col items-center gap-2">
                           <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--theme-50)] text-[var(--theme-600)]">
                             <step.Icon className="h-6 w-6" aria-hidden="true" />
@@ -679,8 +685,9 @@ export function HomePageContent({
         </div>
       </section>
 
+      <div className="divider-gradient" />
       {/* ===== ŘEŠÍME I SLOŽITÉ SITUACE ===== */}
-      <section className="bg-gradient-to-b from-white to-slate-50 py-20">
+      <section className="bg-gradient-to-b from-white to-slate-50 py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-6">
           <ScrollReveal>
             <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
@@ -694,7 +701,7 @@ export function HomePageContent({
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {getComplexSituations(region).map((situation, idx) => (
               <ScrollReveal key={situation.label} delay={idx * 80}>
-                <div className="card-hover-lift shadow-layered flex gap-4 rounded-2xl border border-slate-100 bg-white p-6">
+                <div className="card-accent shadow-premium hover-lift flex gap-4 rounded-2xl border border-slate-100 bg-white p-6">
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--theme-50)] text-[var(--theme-600)]">
                     <situation.Icon className="h-5 w-5" aria-hidden="true" />
                   </span>
@@ -752,7 +759,7 @@ export function HomePageContent({
       </section>
 
       {/* ===== PROČ KLIENTI VOLÍ NÁS (USP) ===== */}
-      <section className="bg-gradient-to-br from-[var(--theme-700)] via-[var(--theme-800)] to-[var(--theme-900)] py-20 text-white">
+      <section className="bg-gradient-to-br from-[var(--theme-700)] via-[var(--theme-800)] to-[var(--theme-900)] py-20 text-white md:py-28">
         <div className="mx-auto max-w-7xl px-6">
           <ScrollReveal>
             <h2 className="text-2xl font-bold text-white sm:text-3xl">
@@ -776,7 +783,7 @@ export function HomePageContent({
       </section>
 
       {/* ===== O NÁS ===== */}
-      <section className="py-24">
+      <section className="py-24 md:py-32">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid items-center gap-10 lg:grid-cols-2">
             <ScrollReveal className="img-zoom-hover shadow-layered relative aspect-[4/3] overflow-hidden rounded-2xl">
@@ -899,7 +906,7 @@ export function HomePageContent({
       <PropertyEstimator regionKey={region.key} />
 
       {/* ===== TESTIMONIALS ===== */}
-      <section className="relative py-20">
+      <section className="relative py-20 md:py-28">
         <Image
           src="/images/testimonial-bg.jpg"
           alt={`Střechy českého města při západu slunce – výkup nemovitostí ${region.locative}`}

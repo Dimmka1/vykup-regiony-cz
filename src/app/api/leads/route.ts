@@ -517,7 +517,12 @@ export async function POST(request: Request): Promise<NextResponse> {
       }
     });
 
-    saveLeadToFile(notificationPayload);
+    saveLeadToFile({
+      ...notificationPayload,
+      ...(validatedData.email && validatedData.email.trim()
+        ? { email: validatedData.email.trim() }
+        : {}),
+    });
 
     const leadScore = calculateLeadScore({
       property_type: validatedData.property_type,

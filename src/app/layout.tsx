@@ -70,6 +70,12 @@ export default async function RootLayout({
   return (
     <html lang="cs" className={inter.variable}>
       <head>
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="Blog RSS"
+          href="/blog/feed.xml"
+        />
         <HreflangTags />
       </head>
       <body

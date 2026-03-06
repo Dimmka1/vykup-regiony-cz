@@ -8,14 +8,711 @@ import { getRelatedArticles } from "@/lib/related-articles";
 import { BLOG_POSTS } from "../data";
 import { AllRegionsSection } from "@/components/all-regions-section";
 import { getRequestHost } from "@/lib/request-host";
+import { UpdatedBadge } from "@/components/updated-badge";
 
 interface ArticleContent {
   title: string;
   date: string;
+  dateModified?: string;
   body: React.ReactElement;
 }
 
 const ARTICLES: Record<string, ArticleContent> = {
+  "prodej-nemovitosti-v-insolvenci": {
+    title: "Prodej nemovitosti v insolvenci — jak na to a na co si dát pozor",
+    date: "2026-03-06",
+    dateModified: "2026-03-06",
+    body: (
+      <>
+        <p>
+          Prodej nemovitosti v insolvenci je v Česku častější, než si většina
+          lidí myslí. Jakmile dlužník vstoupí do insolvenčního řízení, jakékoli
+          nakládání s majetkem podléhá přísným pravidlům. Pro vlastníka to
+          znamená, že už nestačí „jen najít kupce“ a podepsat kupní smlouvu. Je
+          nutné respektovat insolvenční zákon, pokyny insolvenčního správce a
+          často i rozhodnutí insolvenčního soudu. Dobrá zpráva je, že i v této
+          složité situaci lze nemovitost prodat bezpečně, legálně a relativně
+          rychle — pokud zvolíte správný postup a nenecháte věc dojít až do
+          krajních scénářů.
+        </p>
+
+        <h2>Co přesně znamená, že je nemovitost „v insolvenci“</h2>
+        <p>
+          V praxi může jít o dvě situace. Buď je v insolvenci fyzická osoba a
+          nemovitost je součástí majetkové podstaty, nebo je v insolvenci
+          právnická osoba, která nemovitost vlastní. V obou případech platí, že
+          o osudu majetku nerozhoduje pouze vlastník, ale zásadní roli má
+          insolvenční správce. Ten zajišťuje, aby zpeněžení majetku proběhlo
+          transparentně a v zájmu věřitelů. Pokud dlužník jedná bez jeho
+          souhlasu, může být právní úkon neplatný nebo neúčinný.
+        </p>
+        <p>
+          Mnoho lidí si insolvenci plete s exekucí. Exekuce je individuální
+          vymáhání konkrétního věřitele, zatímco insolvence je kolektivní
+          řízení, kde se řeší všichni věřitelé najednou. Pokud řešíš problém s
+          exekucí, podívej se i na stránku{" "}
+          <Link
+            href="/vykup-pri-exekuci"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            výkup při exekuci
+          </Link>
+          . U insolvence je ale proces zpravidla formalizovanější a více
+          kontrolovaný soudem.
+        </p>
+
+        <h2>Jak probíhá prodej nemovitosti v insolvenci krok za krokem</h2>
+        <p>
+          První krok je vždy analýza stavu řízení. Je rozdíl, zda je insolvence
+          teprve zahájena, schváleno oddlužení, nebo probíhá konkurs. Každá fáze
+          má odlišná pravidla pro zpeněžení majetku. Druhý krok je komunikace s
+          insolvenčním správcem. Bez něj se transakce prakticky nehne. Správce
+          určí podmínky prodeje, požadavky na cenu, formu nabídky a často i
+          lhůty.
+        </p>
+        <p>
+          Třetí krok je ocenění nemovitosti. Většinou je potřeba znalecký
+          posudek nebo jiné odůvodnění, že sjednaná cena odpovídá tržním
+          podmínkám. Čtvrtý krok je výběr kupujícího a příprava smluvní
+          dokumentace. Pátý krok zahrnuje schválení příslušnými subjekty
+          (správce, případně věřitelský výbor či soud) a následně podpis kupní
+          smlouvy. Šestý krok je vypořádání ceny, její rozdělení v souladu s
+          pravidly insolvence a podání návrhu na vklad do katastru.
+        </p>
+
+        <h2>Právní aspekty, na které se nejčastěji zapomíná</h2>
+        <p>
+          Nejčastější chyba je podcenění souhlasu správce. Druhá častá chyba je
+          nerealistická cenová očekávání. Pokud je cena výrazně mimo trh,
+          správce prodej nepodpoří. Třetí problém vzniká, když dlužník zatají
+          závady nebo právní omezení na nemovitosti. U insolvenčního prodeje je
+          transparentnost klíčová, protože každá nejasnost může celý proces
+          vrátit o týdny zpět.
+        </p>
+        <p>
+          Dále je potřeba řešit zástavní práva bank, případná věcná břemena,
+          nájemní vztahy a daňové dopady. Pokud je nemovitost zatížená
+          hypotékou, doporučujeme prostudovat také{" "}
+          <Link
+            href="/vykup-nemovitosti-s-hypotekou"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            výkup nemovitosti s hypotékou
+          </Link>
+          . Správně nastavené vypořádání mezi kupní cenou, věřiteli a bankou je
+          zásadní pro to, aby se transakce nezasekla těsně před dokončením.
+        </p>
+
+        <h2>Proč je čas v insolvenci kritický</h2>
+        <p>
+          V insolvenci běží lhůty a každý odklad může znamenat horší výsledek.
+          Čím déle se prodej odkládá, tím větší je tlak věřitelů, náklady řízení
+          a riziko, že nemovitost půjde cestou, která je pro dlužníka méně
+          výhodná. Včasný prodej za rozumnou cenu často přinese lepší ekonomický
+          výsledek než pasivní čekání. Navíc dlužník získá větší šanci na klidné
+          uzavření celé situace.
+        </p>
+
+        <h2>Výkup jako praktická alternativa v insolvenci</h2>
+        <p>
+          Klasický prodej přes inzerci může v insolvenci fungovat, ale bývá
+          pomalý a administrativně náročný. Kupující často váhají, protože se
+          obávají právních komplikací. Přímý výkup je oproti tomu rychlejší
+          varianta: kupující má zkušenost se složitými případy, umí jednat se
+          správcem a připraví dokumentaci tak, aby odpovídala insolvenčním
+          pravidlům. Typicky to výrazně zkrátí dobu od první poptávky k
+          finálnímu podpisu.
+        </p>
+        <p>
+          Pokud potřebuješ rychlé a bezpečné řešení, podívej se na{" "}
+          <Link
+            href="/jak-to-funguje"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            jak celý výkup funguje
+          </Link>
+          . V praxi se řeší nejen samotná kupní cena, ale i koordinace se
+          správcem, notářem či advokátem a nastavení úschovy tak, aby byly
+          chráněny všechny strany.
+        </p>
+
+        <h2>Jak připravit nemovitost a podklady</h2>
+        <p>
+          Čím lepší podklady dodáš na začátku, tím rychleji se proces pohne.
+          Standardně se připravuje list vlastnictví, dokumentace k nabytí
+          nemovitosti, informace o závazcích, případné nájemní smlouvy a
+          podklady od správce. Praktický seznam dokumentů najdeš v článku{" "}
+          <Link
+            href="/blog/jake-dokumenty-potrebuji"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            jaké dokumenty potřebujete k výkupu
+          </Link>
+          . Když chybí některé dokumenty, dá se to řešit, ale vždy to přidává
+          čas.
+        </p>
+
+        <h2>Nejčastější otázky lidí v insolvenci</h2>
+        <p>
+          Lidé se často ptají, zda vůbec mohou nemovitost prodat. Odpověď zní:
+          ano, ale jen podle pravidel insolvenčního řízení. Dále se ptají, zda o
+          všem rozhoduje soud. Ve většině případů je klíčovým partnerem správce
+          a soud vstupuje hlavně tam, kde je potřeba schválení nebo řešení
+          sporu. Další obava je, že „už je pozdě“. Ve skutečnosti platí, že
+          smysluplný postup existuje téměř vždy — zásadní je začít okamžitě a
+          nečekat, až se možnosti zúží.
+        </p>
+
+        <h2>Závěr: postupuj legálně, rychle a s plánem</h2>
+        <p>
+          Prodej nemovitosti v insolvenci není jednoduchá transakce, ale při
+          správném vedení je plně zvládnutelná. Klíčem je respektovat právní
+          rámec, jednat otevřeně s insolvenčním správcem a zvolit takový model
+          prodeje, který minimalizuje rizika a časové průtahy. Přímý výkup v
+          těchto situacích často funguje jako nejpraktičtější cesta, protože
+          spojuje rychlost, zkušenost a právní bezpečnost.
+        </p>
+        <p>
+          Chceš nezávazně prověřit, jaké máš možnosti právě ve své situaci?
+          Vyplň{" "}
+          <Link href="/" className="text-emerald-600 hover:text-emerald-500">
+            formulář pro bezplatnou konzultaci
+          </Link>{" "}
+          a připravíme konkrétní postup i orientační nabídku.
+        </p>
+      </>
+    ),
+  },
+  "jak-prodat-dum-s-vecnym-bremenem": {
+    title: "Jak prodat dům s věcným břemenem — praktický průvodce",
+    date: "2026-03-06",
+    dateModified: "2026-03-06",
+    body: (
+      <>
+        <p>
+          Prodej domu s věcným břemenem je specifická disciplína. Zájemce o
+          koupi nehodnotí jen lokalitu, dispozici nebo technický stav domu, ale
+          také právní omezení, která jsou vázaná na konkrétní nemovitost. Věcné
+          břemeno může výrazně ovlivnit cenu, rychlost prodeje i okruh
+          potenciálních kupujících. To ale neznamená, že je nemovitost
+          „neprodejná“. Znamená to jen, že je potřeba správný postup,
+          realistické nastavení ceny a profesionální právní příprava.
+        </p>
+
+        <h2>Co je věcné břemeno a jaké typy existují</h2>
+        <p>
+          Věcné břemeno je právo třetí osoby užívat cizí nemovitost nebo
+          požadovat, aby vlastník něco strpěl či se něčeho zdržel. Nejčastěji
+          jde o právo dožití, právo užívání části domu, služebnost cesty, vedení
+          inženýrských sítí nebo právo vstupu kvůli údržbě. V praxi má největší
+          dopad na prodej právo dožití, protože budoucí kupující musí
+          akceptovat, že v domě může dlouhodobě bydlet oprávněná osoba.
+        </p>
+        <p>
+          Každé břemeno má jiné ekonomické důsledky. Některá omezují využití jen
+          minimálně, jiná zásadně. Proto je důležité nejdřív přesně zjistit, co
+          je zapsáno v katastru, jaké jsou podmínky břemene a zda existuje
+          možnost jeho změny nebo zániku.
+        </p>
+
+        <h2>Jak věcné břemeno ovlivňuje cenu nemovitosti</h2>
+        <p>
+          Cena domu s věcným břemenem bývá nižší než u srovnatelné „čisté“
+          nemovitosti. Snížení může být mírné i velmi výrazné — záleží na typu
+          břemene, věku oprávněné osoby, rozsahu omezení a možnostech budoucího
+          využití. Pokud jde například o služebnost inženýrských sítí na okraji
+          pozemku, dopad bývá malý. U práva dožití se ale kupující často dívají
+          na nemovitost jako na dlouhodobou investici bez okamžitého užitku, což
+          cenu tlačí níž.
+        </p>
+        <p>
+          Největší chyba prodávajících je porovnávat cenu s běžnými domy bez
+          právních vad. Realistické ocenění je klíčové. Když je cena
+          přestřelená, inzerát stojí měsíce bez výsledku a následné slevy působí
+          nedůvěryhodně.
+        </p>
+
+        <h2>Je možné věcné břemeno před prodejem zrušit?</h2>
+        <p>
+          Někdy ano, někdy ne. Věcné břemeno může zaniknout dohodou oprávněné a
+          povinné osoby, uplynutím doby, smrtí oprávněného (u osobních
+          služebností), rozhodnutím soudu nebo splynutím práv. V reálném světě
+          bývá nejpraktičtější dohoda, případně finanční kompenzace oprávněnému
+          za vzdání se práva. Je ale potřeba vše právně správně sepsat a provést
+          výmaz z katastru.
+        </p>
+        <p>
+          Pokud zrušení není možné nebo smysluplné, dům se prodává i s břemenem.
+          V takovém případě je klíčová transparentní komunikace a přesná smluvní
+          dokumentace, aby kupující předem věděl, co kupuje.
+        </p>
+
+        <h2>Výkup nemovitosti s věcným břemenem jako rychlé řešení</h2>
+        <p>
+          U běžného prodeje přes inzerci je problém v tom, že většina kupujících
+          chce „bezstarostnou“ nemovitost. Jakmile uvidí věcné břemeno v listu
+          vlastnictví, často ztrácí zájem. Výkupní model je jiný: kupující
+          specializovaný na komplikované případy umí riziko vyhodnotit,
+          započítat do ceny a převzít administrativu. To výrazně zrychluje celý
+          proces.
+        </p>
+        <p>
+          Pokud řešíš tento typ situace, podívej se přímo na{" "}
+          <Link
+            href="/vykup-nemovitosti-s-vecnym-bremenem"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            výkup nemovitosti s věcným břemenem
+          </Link>
+          . Získáš jasný přehled, co je potřeba připravit a jak se nastavuje
+          bezpečný převod.
+        </p>
+
+        <h2>Jak připravit dům s břemenem na prodej</h2>
+        <p>
+          Začni dokumenty: list vlastnictví, přesný text břemene, případné
+          dohody s oprávněnou osobou, stavební dokumentaci a informace o
+          technickém stavu domu. Poté připrav realistické ocenění. Následuje
+          volba strategie: klasický trh vs. přímý výkup. U klasiky se připrav na
+          delší časovou osu a opakované vyjednávání. U výkupu je proces kratší,
+          protože kupující zpravidla rozumí právním omezením a neodstupuje kvůli
+          „překvapení“ během prověřování.
+        </p>
+
+        <h2>Časté chyby prodávajících</h2>
+        <p>
+          První chyba: nejasný popis břemene v inzerci. Kupující si pak myslí,
+          že je něco skrýváno. Druhá chyba: snaha obejít problém neúplnými
+          informacemi. Třetí chyba: podpis smlouvy bez kvalitní právní kontroly.
+          Čtvrtá chyba: čekání na „ideálního kupce“, který zaplatí cenu běžného
+          domu. Výsledek bývá jen ztracený čas.
+        </p>
+
+        <h2>Jak probíhá bezpečná transakce</h2>
+        <p>
+          Bezpečný postup zahrnuje právní prověrku, nastavení kupní ceny,
+          přípravu smluv, úschovu kupní ceny a koordinaci vkladu do katastru.
+          Pokud se zároveň řeší změna nebo zánik břemene, musí být kroky přesně
+          načasované. Více o samotném procesu najdeš v průvodci{" "}
+          <Link
+            href="/blog/vykup-krok-za-krokem"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            výkup krok za krokem
+          </Link>
+          .
+        </p>
+
+        <h2>Modelový příklad z praxe</h2>
+        <p>
+          Představ si dům v menším městě, kde je zapsáno právo dožití pro
+          seniora. Na otevřeném trhu se inzerát drží měsíce bez vážného zájemce,
+          protože běžní kupující chtějí dům užívat ihned. Po přechodu na
+          specializované řešení se nejprve právně vyjasní rozsah břemene,
+          následně se nastaví realistická kupní cena a připraví harmonogram
+          převodu. Výsledek: transakce je dokončena v řádu týdnů, nikoliv
+          měsíců, a prodávající má jistotu právně čistého postupu.
+        </p>
+
+        <h2>Checklist před podpisem smlouvy</h2>
+        <p>
+          Než cokoliv podepíšeš, ověř si pět věcí: za prvé přesné znění břemene
+          v katastru, za druhé identitu a práva oprávněné osoby, za třetí reálný
+          dopad břemene na užívání domu, za čtvrté kompletní nákladovou
+          strukturu transakce a za páté mechanismus výplaty kupní ceny přes
+          bezpečnou úschovu. Pokud některý bod chybí, obchod neurychluj. Právě
+          důsledná příprava odděluje rychlý a bezpečný prodej od vleklého sporu.
+        </p>
+
+        <h2>Daňové a praktické dopady po prodeji</h2>
+        <p>
+          Po úspěšném převodu nezapomeň řešit i navazující povinnosti: odhlášení
+          služeb, předávací protokol, informování správců sítí a případné daňové
+          vyhodnocení podle délky vlastnictví a způsobu využití nemovitosti.
+          Správné „dotažení“ po prodeji je stejně důležité jako samotná kupní
+          smlouva — předejdeš tím budoucím nejasnostem i zbytečným finančním
+          ztrátám.
+        </p>
+
+        <h2>Závěr: dům s břemenem se prodat dá — když zvolíš správný model</h2>
+        <p>
+          Věcné břemeno není konec hry, ale parametr, se kterým je potřeba
+          pracovat profesionálně. Kdo postupuje transparentně, má kvalitní
+          právní podklady a zvolí adekvátní prodejní kanál, ten dům prodá. V
+          praxi často vede nejkratší cesta přes specializovaný výkup, protože
+          snižuje počet slepých jednání a právních komplikací.
+        </p>
+        <p>
+          Chceš zjistit orientační cenu domu s věcným břemenem a doporučený
+          postup? Vyplň{" "}
+          <Link href="/" className="text-emerald-600 hover:text-emerald-500">
+            nezávazný formulář
+          </Link>{" "}
+          a ozveme se ti s konkrétním řešením.
+        </p>
+      </>
+    ),
+  },
+  "vykup-nemovitosti-bez-realitky": {
+    title: "Výkup nemovitosti bez realitky — proč je rychlejší a jednodušší",
+    date: "2026-03-06",
+    dateModified: "2026-03-06",
+    body: (
+      <>
+        <p>
+          Když člověk řeší prodej nemovitosti, nejčastěji slyší dvě cesty:
+          realitní kancelář, nebo přímý výkup. Obě varianty mají své místo, ale
+          pokud je prioritou rychlost, jistota a minimum starostí, výkup bez
+          realitky dává ve většině praktických situací větší smysl. Tento článek
+          srovnává obě možnosti bez marketingové omáčky — podle času, nákladů,
+          administrativy a rizika, že se obchod na poslední chvíli rozpadne.
+        </p>
+
+        <h2>Jak funguje klasický prodej přes realitní kancelář</h2>
+        <p>
+          Realitní kancelář připraví inzerci, organizuje prohlídky, jedná se
+          zájemci a typicky zajistí i část smluvního servisu. To zní pohodlně,
+          ale proces má několik slabých míst: délka prodeje, nejistota
+          financování kupujícího a provize. I při dobrém makléři často trvá
+          několik měsíců, než se objeví vhodný kupec, proběhne hypotéka a
+          dokončí převod. Pokud kupec odstoupí nebo mu banka úvěr neschválí, vše
+          začíná znovu.
+        </p>
+
+        <h2>Jak funguje výkup bez realitky</h2>
+        <p>
+          U výkupu nečekáš na „trh“. Nemovitost kupuje přímo investor nebo
+          společnost, která má vlastní kapitál a rozhodovací proces v řádu dnů.
+          Po úvodním posouzení následuje nabídka, prohlídka, finalizace ceny,
+          smlouvy a převod. Obvykle jde o časovou osu kolem 7–14 dnů podle
+          složitosti případu. Pokud chceš detailní průběh, podívej se na{" "}
+          <Link
+            href="/blog/vykup-krok-za-krokem"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            krokový popis výkupu
+          </Link>
+          .
+        </p>
+
+        <h2>Čas: největší rozdíl mezi oběma cestami</h2>
+        <p>
+          U realitky je standard několik měsíců. U výkupu spíš dny až týdny.
+          Není to proto, že by někdo „zázračně přeskočil“ právní kroky, ale
+          proto, že odpadá dlouhé hledání kupce, opakované prohlídky a čekání na
+          hypoteční schválení. Pro lidi, kteří řeší stěhování, rozvod, dědictví,
+          dluhy nebo potřebují rychlou likviditu, je právě čas hlavní argument.
+        </p>
+
+        <h2>Náklady: provize, doplňkové služby a skryté výdaje</h2>
+        <p>
+          U realitky je běžná provize 3–5 % z ceny nemovitosti. K tomu se
+          přidávají náklady na prezentaci, někdy právní servis, případně opravy
+          či home staging. U výkupu obvykle žádná provize pro prodávajícího
+          není, protože kupující vydělává na rozdílu mezi nákupní cenou a
+          budoucím zhodnocením. Často tedy zaplatíš méně „vedlejších“ výdajů, i
+          když samotná kupní cena může být nižší než teoretické maximum na
+          otevřeném trhu.
+        </p>
+        <p>
+          Pokud tě zajímá detailní rozpad nákladů, mrkni na{" "}
+          <Link
+            href="/blog/kolik-stoji-vykup"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            kolik stojí výkup nemovitosti
+          </Link>
+          .
+        </p>
+
+        <h2>Administrativní zátěž a „hassle factor“</h2>
+        <p>
+          U prodeje přes realitku řešíš více prohlídek, telefonátů, opakovaných
+          dotazů a často i vyjednávání s několika zájemci najednou. Je to práce
+          navíc a psychická zátěž, hlavně když současně řešíš vlastní životní
+          změnu. Výkup je v tomto směru výrazně přímočařejší: jedno jednání,
+          jedna nabídka, jeden harmonogram. Právě tento „hassle factor“ je
+          důvod, proč mnoho prodávajících preferuje přímé řešení i za cenu mírně
+          nižší kupní ceny.
+        </p>
+
+        <h2>Riziko nedokončení obchodu</h2>
+        <p>
+          U běžného trhu není výjimkou, že obchod padne ve finále. Důvodem bývá
+          hypotéka, právní nález při prověřování nebo změna rozhodnutí
+          kupujícího. U výkupu je tento scénář méně častý, protože kupující
+          vstupuje do procesu s jasným záměrem a financováním. Pro prodávajícího
+          to znamená vyšší předvídatelnost a méně nepříjemných překvapení.
+        </p>
+
+        <h2>Kdy dává výkup bez realitky největší smysl</h2>
+        <p>
+          Nejvíc se osvědčuje tam, kde je potřeba rychlé nebo technicky
+          složitější řešení: nemovitosti po dědictví, při rozvodu, při exekuci,
+          s věcným břemenem, se spoluvlastnickým podílem nebo ve špatném
+          technickém stavu. Pro tyto use-cases se podívej na{" "}
+          <Link
+            href="/vykup-pri-dedictvi"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            výkup při dědictví
+          </Link>
+          ,{" "}
+          <Link
+            href="/vykup-pri-rozvodu"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            výkup při rozvodu
+          </Link>{" "}
+          a{" "}
+          <Link
+            href="/vykup-pri-exekuci"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            výkup při exekuci
+          </Link>
+          .
+        </p>
+
+        <h2>Kdy může být realitka lepší volba</h2>
+        <p>
+          Pokud máš čas, nemovitost je atraktivní, ve výborném stavu a cílem je
+          maximalizace ceny bez tlaku na termín, realitní kancelář může být
+          vhodná. Je fér říct, že výkup není univerzálně nejlepší pro každého.
+          Je to nástroj pro situace, kde je klíčová rychlost, jistota a
+          jednoduchost. Strategicky nejlepší je často porovnat obě nabídky a
+          vybrat podle čistého výsledku, ne podle dojmu.
+        </p>
+
+        <h2>Jak porovnat nabídky správně</h2>
+        <p>
+          Neřeš jen nominální cenu. Porovnej čistý výnos po všech nákladech, čas
+          do vyplacení, míru administrativy a pravděpodobnost dokončení. Přidej
+          i svůj „časový náklad“: kolik tě stojí, když peníze dostaneš o tři
+          měsíce později. Takové srovnání bývá mnohem přesnější než prostá
+          otázka „kdo dá víc na papíře“.
+        </p>
+
+        <h2>Čísla, která rozhodují</h2>
+        <p>
+          V reálných případech lidé často porovnávají jen „nabídkovou cenu“, ale
+          opomíjejí čas a pravděpodobnost dokončení. Pokud přes realitku čekáš
+          čtyři měsíce a mezitím neseš náklady na provoz nemovitosti, hypotéku
+          nebo nájem jinde, skutečný finanční výsledek může být slabší, než když
+          přijmeš o něco nižší, ale okamžitě realizovatelnou nabídku výkupu. Do
+          výpočtu je potřeba zahrnout i riziko, že kupec s hypotékou na poslední
+          chvíli odpadne.
+        </p>
+
+        <h2>Prodej nemovitosti ve špatném stavu</h2>
+        <p>
+          Velká část nemovitostí na trhu vyžaduje rekonstrukci. U klasického
+          prodeje to znamená buď investovat vlastní peníze do oprav, nebo
+          akceptovat dlouhé vyjednávání o slevě. Výkup bez realitky umí tento
+          problém eliminovat, protože specializovaný kupující počítá s
+          rekonstrukcí už od začátku. Prodávající tak nemusí financovat opravy
+          ani organizovat řemeslníky, což je v časově citlivých situacích
+          zásadní výhoda.
+        </p>
+
+        <h2>Bezpečnost převodu a vyplacení kupní ceny</h2>
+        <p>
+          Ať zvolíš jakýkoli model, trvej na právně bezpečné transakci.
+          Standardem je kvalitní smluvní dokumentace, jasné podmínky plnění a
+          úschova kupní ceny. U výkupu je výhodou, že proces bývá centralizovaný
+          a předvídatelný: jeden partner, jedno jednání, jeden harmonogram. To
+          snižuje riziko chyb a urychluje celý převod do katastru.
+        </p>
+
+        <h2>Závěr: výkup bez realitky = rychlost a jistota</h2>
+        <p>
+          Výkup nemovitosti bez realitky není zkratka ani nouzové řešení. Je to
+          legitimní prodejní model, který prioritizuje rychlost, předvídatelnost
+          a nízkou zátěž pro prodávajícího. Pokud právě řešíš prodej a nechceš
+          měsíce čekat, dává smysl nechat si připravit nezávaznou nabídku a
+          porovnat ji s trhem.
+        </p>
+        <p>
+          Chceš rychlé porovnání pro svůj konkrétní případ? Vyplň{" "}
+          <Link href="/" className="text-emerald-600 hover:text-emerald-500">
+            formulář zdarma
+          </Link>{" "}
+          a pošleme ti konkrétní varianty řešení.
+        </p>
+      </>
+    ),
+  },
+  "prodej-spoluvlastnickeho-podilu": {
+    title:
+      "Prodej spoluvlastnického podílu na nemovitosti — právní rámec a možnosti",
+    date: "2026-03-06",
+    dateModified: "2026-03-06",
+    body: (
+      <>
+        <p>
+          Prodej spoluvlastnického podílu je jedna z nejkomplikovanějších
+          realitních transakcí, se kterou se běžný vlastník může setkat. Důvod
+          je jednoduchý: neprodává se „celý byt“ nebo „celý dům“, ale jen
+          ideální podíl, tedy právo k určité části vlastnictví. Na papíře to zní
+          jednoduše, v praxi to znamená právní i obchodní výzvy. Přesto existují
+          funkční cesty, jak podíl prodat rychle a bezpečně — včetně
+          specializovaného výkupu podílu.
+        </p>
+
+        <h2>Co je spoluvlastnický podíl a co kupující skutečně kupuje</h2>
+        <p>
+          Spoluvlastnický podíl vyjadřuje míru účasti na vlastnickém právu,
+          například 1/2, 1/3 nebo 1/6. Kupující podílu obvykle nezískává
+          konkrétní „pokoj“ nebo fyzicky oddělenou část domu, ale právní účast
+          na celé nemovitosti. Práva a povinnosti se pak řídí občanským
+          zákoníkem a dohodami spoluvlastníků. Právě tato neurčitost je důvod,
+          proč je prodej podílu na volném trhu složitější než prodej celé
+          nemovitosti.
+        </p>
+
+        <h2>Předkupní právo: platí, nebo neplatí?</h2>
+        <p>
+          Téma předkupního práva kolem podílů je v Česku dlouhodobě diskutované.
+          Obecně dnes platí, že zákonné předkupní právo mezi spoluvlastníky není
+          univerzální jako dříve, ale existují výjimky a konkrétní situace, kdy
+          se předkupní mechanismy stále uplatní (například při určitých
+          převodech nebo smluvních ujednáních). Proto je nezbytné každou
+          transakci posuzovat individuálně a nespoléhat na „rady z internetu“
+          bez právní kontroly.
+        </p>
+        <p>
+          V praxi se doporučuje ostatní spoluvlastníky o zamýšleném prodeji
+          informovat transparentně. I když nejde o striktní povinnost v každém
+          případě, snižuje to riziko pozdějších sporů a napadání transakce.
+        </p>
+
+        <h2>Proč je prodej podílu na běžném trhu náročný</h2>
+        <p>
+          Běžní kupující hledají nemovitost, kterou mohou ihned užívat nebo
+          financovat hypotékou. U podílů je to komplikovanější: využití je
+          omezené, dohoda se spoluvlastníky nejistá a banky bývají opatrnější.
+          To vede k menší poptávce, delšímu prodeji a silnému tlaku na cenu.
+          Prodávající tak často stráví měsíce jednáním bez výsledku.
+        </p>
+
+        <h2>Výkup spoluvlastnického podílu jako praktické řešení</h2>
+        <p>
+          Specializovaný výkup podílu funguje jinak než klasický trh. Kupující
+          je připraven pracovat s právní složitostí, vyhodnotí riziko, navrhne
+          cenu a zajistí dokumentaci. Pro prodávajícího to znamená především
+          rychlost a jistotu, že transakce nebude závislá na desítkách náhodných
+          faktorů. Pokud chceš detail, podívej se na{" "}
+          <Link
+            href="/vykup-spoluvlastnickeho-podilu"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            výkup spoluvlastnického podílu
+          </Link>
+          .
+        </p>
+
+        <h2>Právní rámec pro bezpečný převod podílu</h2>
+        <p>
+          Základ je přesná identifikace podílu v kupní smlouvě, ověření
+          návaznosti na list vlastnictví, kontrola případných zástav, exekucí
+          nebo věcných břemen a správné nastavení úhrady ceny. Bezpečný standard
+          je advokátní nebo notářská úschova. Po podpisu následuje návrh na
+          vklad do katastru. U složitějších vztahů mezi spoluvlastníky je vhodné
+          řešit i navazující dohodu o správě a užívání nemovitosti.
+        </p>
+
+        <h2>Kdy řešit podíl okamžitě</h2>
+        <p>
+          Nejčastěji po dědictví, kdy se dědici neshodnou na dalším postupu.
+          Dále při rozvodu, dlouhodobých konfliktech mezi spoluvlastníky nebo
+          finančním tlaku, kdy vlastník potřebuje rychle uvolnit kapitál. V
+          těchto situacích má odkládání prodeje většinou negativní dopad. Pro
+          příbuzné scénáře doporučujeme i stránky{" "}
+          <Link
+            href="/vykup-pri-dedictvi"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            výkup při dědictví
+          </Link>{" "}
+          a{" "}
+          <Link
+            href="/vykup-pri-rozvodu"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            výkup při rozvodu
+          </Link>
+          .
+        </p>
+
+        <h2>Jak zvýšit šanci na dobrou cenu podílu</h2>
+        <p>
+          Připrav kompletní podklady: list vlastnictví, historii nabytí,
+          informace o vztazích mezi spoluvlastníky a stavu nemovitosti. Vyplatí
+          se také mít jasně popsané, jak je nemovitost fakticky užívaná. Čím
+          méně nejistoty pro kupujícího, tím lepší cenová nabídka. Důležité je
+          oslovit subjekty, které s podíly běžně pracují, ne jen širokou
+          veřejnost.
+        </p>
+
+        <h2>Nejčastější chyby při prodeji podílu</h2>
+        <p>
+          Chyba číslo jedna je nereálné nacenění podle cen celých nemovitostí.
+          Chyba číslo dvě je podcenění právní přípravy. Chyba číslo tři je
+          konflikt se spoluvlastníky bez jakéhokoli plánu komunikace. A chyba
+          číslo čtyři: podpis nevýhodné smlouvy pod časovým tlakem bez odborné
+          kontroly.
+        </p>
+
+        <h2>Co když spoluvlastníci nespolupracují</h2>
+        <p>
+          V praxi je častý scénář, kdy jeden spoluvlastník chce situaci řešit a
+          ostatní komunikaci blokují. I tehdy existují právní nástroje: od
+          formálních výzev přes návrhy dohody až po soudní řešení správy
+          společné věci nebo vypořádání spoluvlastnictví. Tyto kroky jsou ale
+          časově i finančně náročné. Proto dává smysl nejdřív hledat obchodně
+          proveditelné řešení, které umožní podíl převést bez vleklého
+          konfliktu.
+        </p>
+
+        <h2>Podíl zatížený dluhem nebo exekucí</h2>
+        <p>
+          Pokud je podíl zatížen exekucí či zástavou, je nutné řešit pořadí
+          úhrad a součinnost věřitelů. Správně nastavené vypořádání zajistí, že
+          se závazky uhrazené z kupní ceny promítnou do čistého převodu
+          vlastnického práva. U těchto případů je zásadní zkušenost s právní
+          koordinací, protože chyba v postupu může převod zastavit na katastru
+          nebo otevřít další spor.
+        </p>
+
+        <h2>Praktický plán pro majitele podílu</h2>
+        <p>
+          Nejprve shromáždi dokumenty a ověř aktuální právní stav. Následně si
+          nech připravit realistické ocenění a porovnej dvě cesty: otevřený trh
+          a specializovaný výkup podílu. Ve třetím kroku nastav harmonogram
+          převodu včetně úschovy ceny a termínů pro podání na katastr. Když máš
+          tento plán předem, výrazně klesá riziko improvizace a zbytečného
+          prodlužování celé transakce.
+        </p>
+
+        <h2>Závěr: podíl prodat jde, když se držíš správné strategie</h2>
+        <p>
+          Prodej spoluvlastnického podílu je specializovaná disciplína, ne
+          standardní inzerát. Pokud znáš právní rámec, realisticky naceníš podíl
+          a zvolíš správný model převodu, lze dosáhnout rychlého a bezpečného
+          výsledku. V mnoha případech je právě výkup podílu nejefektivnější
+          cesta, protože odstraňuje dlouhé čekání a nejistotu běžného trhu.
+        </p>
+        <p>
+          Potřebuješ rychle zjistit, co je reálné ve tvém konkrétním případě?
+          Vyplň{" "}
+          <Link href="/" className="text-emerald-600 hover:text-emerald-500">
+            nezávazný formulář
+          </Link>{" "}
+          a připravíme postup i orientační nabídku.
+        </p>
+      </>
+    ),
+  },
   "jake-dokumenty-potrebuji": {
     title: "Jaké dokumenty potřebuji k výkupu nemovitosti?",
     date: "2026-03-02",
@@ -1543,6 +2240,7 @@ export async function generateMetadata({
       description: post?.excerpt ?? "",
       type: "article",
       publishedTime: article.date,
+      modifiedTime: article.dateModified ?? article.date,
       images: ["/blog/" + slug + "/opengraph-image"],
     },
     alternates: { canonical: `https://vykoupim-nemovitost.cz/blog/${slug}` },
@@ -1567,6 +2265,7 @@ export default async function BlogArticlePage({
     "@type": "Article",
     headline: article.title,
     datePublished: article.date,
+    dateModified: article.dateModified ?? article.date,
     author: {
       "@type": "Organization",
       name: "Vykoupím Nemovitost",
@@ -1609,6 +2308,12 @@ export default async function BlogArticlePage({
             <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
               {article.title}
             </h1>
+            <div className="mt-3">
+              <UpdatedBadge
+                dateModified={article.dateModified ?? article.date}
+                datePublished={article.date}
+              />
+            </div>
           </header>
 
           <div className="prose-article mt-10 rounded-2xl bg-white p-8 shadow-sm">

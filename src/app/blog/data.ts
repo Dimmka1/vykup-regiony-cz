@@ -4,9 +4,47 @@ export interface BlogPost {
   excerpt: string;
   date: string;
   readingTime: string;
+  dateModified?: string;
 }
 
 export const BLOG_POSTS: readonly BlogPost[] = [
+  {
+    slug: "prodej-nemovitosti-v-insolvenci",
+    title: "Prodej nemovitosti v insolvenci — jak na to a na co si dát pozor",
+    excerpt:
+      "Kompletní průvodce prodejem nemovitosti v insolvenci. Právní rámec, role insolvenčního správce a výkup jako rychlá alternativa.",
+    date: "2026-03-06",
+    readingTime: "8 min",
+    dateModified: "2026-03-06",
+  },
+  {
+    slug: "jak-prodat-dum-s-vecnym-bremenem",
+    title: "Jak prodat dům s věcným břemenem — praktický průvodce",
+    excerpt:
+      "Věcné břemeno komplikuje prodej nemovitosti. Zjistěte, jak ovlivňuje cenu, jaké máte možnosti a proč je výkup nejrychlejší řešení.",
+    date: "2026-03-06",
+    readingTime: "8 min",
+    dateModified: "2026-03-06",
+  },
+  {
+    slug: "vykup-nemovitosti-bez-realitky",
+    title: "Výkup nemovitosti bez realitky — proč je rychlejší a jednodušší",
+    excerpt:
+      "Srovnání výkupu nemovitosti a prodeje přes realitní kancelář. Čas, provize, pohodlí — proč stále více lidí volí přímý výkup.",
+    date: "2026-03-06",
+    readingTime: "7 min",
+    dateModified: "2026-03-06",
+  },
+  {
+    slug: "prodej-spoluvlastnickeho-podilu",
+    title:
+      "Prodej spoluvlastnického podílu na nemovitosti — právní rámec a možnosti",
+    excerpt:
+      "Jak prodat spoluvlastnický podíl na nemovitosti. Předkupní právo, právní postupy a výkup podílu jako nejrychlejší cesta.",
+    date: "2026-03-06",
+    readingTime: "8 min",
+    dateModified: "2026-03-06",
+  },
   {
     slug: "jake-dokumenty-potrebuji",
     title: "Jaké dokumenty potřebuji k výkupu nemovitosti?",

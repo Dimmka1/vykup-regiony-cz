@@ -96,15 +96,21 @@ const articleJsonLd = {
   headline: "Proč prodat nemovitost nám | Výkup vs realitka vs dražba",
   description:
     "Srovnání výkupu nemovitosti přes nás, realitní kancelář a dražbu. Rychlost, záloha, provize, právní servis.",
+  datePublished: "2025-01-15",
+  image: "https://vykoupim-nemovitost.cz/opengraph-image",
   author: {
     "@type": "Organization",
-    name: "Výkup Nemovitostí",
+    name: "Vykoupím Nemovitost",
     url: "https://vykoupim-nemovitost.cz",
   },
   publisher: {
     "@type": "Organization",
-    name: "Výkup Nemovitostí",
+    name: "Vykoupím Nemovitost",
     url: "https://vykoupim-nemovitost.cz",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://vykoupim-nemovitost.cz/icon.svg",
+    },
   },
   mainEntityOfPage: "https://vykoupim-nemovitost.cz/proc-my",
 };

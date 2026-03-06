@@ -86,45 +86,26 @@ export default async function ZpetnyNajemPage(): Promise<React.ReactElement> {
     headline: "Zpětný nájem nemovitosti — prodejte a zůstaňte bydlet",
     description:
       "Prodejte nemovitost a zůstaňte v ní bydlet díky zpětnému nájmu. Získejte peníze ihned a bydlete dál bez starostí.",
+    datePublished: "2025-01-15",
+    image: "https://vykoupim-nemovitost.cz/opengraph-image",
     author: {
       "@type": "Organization",
-      name: "vykoupim-nemovitost.cz",
+      name: "Vykoupím Nemovitost",
       url: "https://vykoupim-nemovitost.cz",
     },
     publisher: {
       "@type": "Organization",
-      name: "vykoupim-nemovitost.cz",
+      name: "Vykoupím Nemovitost",
       url: "https://vykoupim-nemovitost.cz",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://vykoupim-nemovitost.cz/icon.svg",
+      },
     },
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": "https://vykoupim-nemovitost.cz/zpetny-najem",
     },
-  };
-
-  const breadcrumbJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Domů",
-        item: "https://vykoupim-nemovitost.cz",
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Služby",
-        item: "https://vykoupim-nemovitost.cz/#sluzby",
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name: "Zpětný nájem",
-        item: "https://vykoupim-nemovitost.cz/zpetny-najem",
-      },
-    ],
   };
 
   const faqJsonLd = {
@@ -142,10 +123,6 @@ export default async function ZpetnyNajemPage(): Promise<React.ReactElement> {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonLd(articleJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbJsonLd) }}
       />
       <script
         type="application/ld+json"

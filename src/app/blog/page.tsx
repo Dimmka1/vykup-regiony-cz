@@ -1,3 +1,4 @@
+import { safeJsonLd } from "@/lib/jsonld";
 import { LeadMagnetCta } from "@/components/lead-magnet-cta";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -34,7 +35,7 @@ function BlogJsonLd(): React.ReactElement {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
     />
   );
 }

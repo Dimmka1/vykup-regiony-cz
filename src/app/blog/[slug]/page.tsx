@@ -1567,13 +1567,24 @@ export default async function BlogArticlePage({
     "@type": "Article",
     headline: article.title,
     datePublished: article.date,
+    image: "https://vykoupim-nemovitost.cz/opengraph-image",
     author: {
       "@type": "Organization",
       name: "Vykoupím Nemovitost",
+      url: "https://vykoupim-nemovitost.cz",
     },
     publisher: {
       "@type": "Organization",
       name: "Vykoupím Nemovitost",
+      url: "https://vykoupim-nemovitost.cz",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://vykoupim-nemovitost.cz/icon.svg",
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://vykoupim-nemovitost.cz/blog/${slug}`,
     },
   };
 

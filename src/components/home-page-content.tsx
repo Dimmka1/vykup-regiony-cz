@@ -14,7 +14,6 @@ import { FaqAccordion } from "@/components/faq-accordion";
 import { NearbyRegions } from "@/components/nearby-regions";
 import { ComparisonCalculator } from "@/components/comparison-calculator";
 import { LeadForm } from "@/components/lead-form";
-import { GuaranteeCarousel } from "@/components/guarantee-carousel";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { HeroStagger } from "@/components/hero-stagger";
 import { getRegionSubdomainUrl, isProductionHost } from "@/lib/config";
@@ -41,38 +40,36 @@ import {
 
 export const COMPANY_NAME = "Vykoupím Nemovitost";
 
-export const GENERAL_FAQ: { question: string; answer: string }[] = [
-  {
-    question: "Jak dlouho trvá celý proces výkupu nemovitosti?",
-    answer:
-      "Celý proces od prvního kontaktu po vyplacení peněz trvá obvykle 7–14 dní. V urgentních případech dokážeme vše vyřídit i do 48 hodin. Záleží na složitosti případu a stavu katastru nemovitostí.",
-  },
-  {
-    question: "Kolik peněz za svou nemovitost dostanu?",
-    answer:
-      "Nabízíme férovou tržní cenu stanovenou na základě aktuálních dat z realitního trhu a individuálního posouzení stavu nemovitosti. Cenovou nabídku dostanete zdarma a nezávazně do 24 hodin.",
-  },
-  {
-    question: "Je výkup nemovitosti bezpečný?",
-    answer:
-      "Ano. Celý proces zajišťují naši právníci, kupní smlouvu připravujeme s advokátní úschovou kupní ceny. Peníze jsou chráněny na úschovním účtu a uvolněny až po zápisu do katastru.",
-  },
-  {
-    question: "Musím platit provizi nebo nějaké poplatky?",
-    answer:
-      "Ne. Výkup je pro vás zcela bez poplatků a bez provize. Veškeré náklady spojené s převodem, včetně právního servisu a poplatků za katastr, hradíme my.",
-  },
-  {
-    question: "Vykupujete i nemovitosti s hypotékou nebo exekucí?",
-    answer:
-      "Ano, běžně řešíme nemovitosti zatížené hypotékou, exekucí, věcným břemenem nebo zástavním právem. Pomůžeme vám s vypořádáním všech závazků v rámci výkupu.",
-  },
-  {
-    question: "Jak probíhá ocenění nemovitosti?",
-    answer:
-      "Po vyplnění formuláře náš odborník provede analýzu na základě lokality, stavu a aktuálních tržních cen. U složitějších případů nabídneme osobní prohlídku. Ocenění je vždy zdarma a nezávazné.",
-  },
-];
+export function getRegionalFaq(
+  region: RegionConfig,
+): { question: string; answer: string }[] {
+  return [
+    {
+      question: `Jak dlouho trvá celý proces výkupu nemovitosti ${region.locative}?`,
+      answer: `Celý proces výkupu nemovitosti ${region.locative} trvá obvykle 7–14 dní od prvního kontaktu. V urgentních případech v ${region.primaryCity} a okolí dokážeme vše vyřídit i do 48 hodin.`,
+    },
+    {
+      question: `Kolik peněz za nemovitost ${region.locative} dostanu?`,
+      answer: `Nabízíme férovou tržní cenu stanovenou na základě aktuálních dat z realitního trhu ${region.locative} a individuálního posouzení stavu nemovitosti. Cenovou nabídku pro ${region.name} dostanete zdarma a nezávazně do 24 hodin.`,
+    },
+    {
+      question: `Je výkup nemovitosti ${region.locative} bezpečný?`,
+      answer: `Ano. Celý proces výkupu ${region.locative} zajišťují naši právníci, kupní smlouvu připravujeme s advokátní úschovou kupní ceny. Peníze jsou chráněny na úschovním účtu a uvolněny až po zápisu do katastru.`,
+    },
+    {
+      question: "Musím platit provizi nebo nějaké poplatky?",
+      answer: `Ne. Výkup nemovitosti ${region.locative} je pro vás zcela bez poplatků a bez provize. Veškeré náklady spojené s převodem, včetně právního servisu a poplatků za katastr, hradíme my.`,
+    },
+    {
+      question: `Vykupujete ${region.locative} i nemovitosti s hypotékou nebo exekucí?`,
+      answer: `Ano, ${region.locative} běžně řešíme nemovitosti zatížené hypotékou, exekucí, věcným břemenem nebo zástavním právem. Pomůžeme vám s vypořádáním všech závazků v rámci výkupu v ${region.primaryCity} a okolí.`,
+    },
+    {
+      question: `Jak probíhá ocenění nemovitosti ${region.locative}?`,
+      answer: `Po vyplnění formuláře náš odborník provede analýzu na základě lokality ${region.locative}, stavu a aktuálních tržních cen v ${region.primaryCity}. U složitějších případů nabídneme osobní prohlídku. Ocenění je vždy zdarma a nezávazné.`,
+    },
+  ];
+}
 
 const HERO_BADGES = [
   `Záloha až ${process.env.NEXT_PUBLIC_ZALOH_VARIANT || "500 000"} Kč ihned`,
@@ -80,32 +77,34 @@ const HERO_BADGES = [
   "Bez provize a skrytých poplatků",
 ] as const;
 
-const PROCESS_STEPS = [
-  {
-    title: "Vyplníte formulář",
-    eta: "2 min",
-    Icon: FileText,
-    description: "Stačí základní údaje o nemovitosti",
-  },
-  {
-    title: "Nabídka do 24h",
-    eta: "24 h",
-    Icon: Zap,
-    description: "Připravíme nezávaznou cenovou nabídku",
-  },
-  {
-    title: "Podpis smlouvy",
-    eta: "dle dohody",
-    Icon: FileSignature,
-    description: "Vše vyřídíme za vás, včetně právního servisu",
-  },
-  {
-    title: "Peníze na účtu",
-    eta: "do 48h",
-    Icon: Banknote,
-    description: "Výplata ihned po podpisu smlouvy",
-  },
-] as const;
+function getProcessSteps(region: RegionConfig) {
+  return [
+    {
+      title: "Vyplníte formulář",
+      eta: "2 min",
+      Icon: FileText,
+      description: `Stačí základní údaje o nemovitosti ${region.locative}`,
+    },
+    {
+      title: "Nabídka do 24h",
+      eta: "24 h",
+      Icon: Zap,
+      description: `Připravíme nezávaznou cenovou nabídku pro ${region.name}`,
+    },
+    {
+      title: "Podpis smlouvy",
+      eta: "dle dohody",
+      Icon: FileSignature,
+      description: `Vše vyřídíme za vás ${region.locative}, včetně právního servisu`,
+    },
+    {
+      title: "Peníze na účtu",
+      eta: "do 48h",
+      Icon: Banknote,
+      description: `Výplata ihned po podpisu smlouvy za nemovitost ${region.locative}`,
+    },
+  ];
+}
 
 const TRUST_METRICS = [
   { label: "Bez provize", value: "0 Kč", Icon: HandCoins },
@@ -120,38 +119,40 @@ const ABOUT_STATS = [
   { value: "14", label: "krajů ČR" },
 ] as const;
 
-const COMPLEX_SITUATIONS = [
-  {
-    label: "Exekuce",
-    Icon: Gavel,
-    description: "Vykoupíme nemovitost i s exekucí a pomůžeme s oddlužením",
-  },
-  {
-    label: "Insolvence",
-    Icon: FileWarning,
-    description: "Řešení pro nemovitosti v insolvenčním řízení",
-  },
-  {
-    label: "Hypotéka",
-    Icon: Landmark,
-    description: "Převezmeme nemovitost se zatížením hypotékou",
-  },
-  {
-    label: "Dědictví",
-    Icon: ScrollText,
-    description: "Rychlý výkup zděděných nemovitostí bez komplikací",
-  },
-  {
-    label: "Spoluvlastnický podíl",
-    Icon: Users,
-    description: "Odkoupíme i podíl na nemovitosti bez souhlasu ostatních",
-  },
-  {
-    label: "Věcné břemeno",
-    Icon: Link2,
-    description: "Nemovitosti s věcným břemenem nejsou problém",
-  },
-] as const;
+function getComplexSituations(region: RegionConfig) {
+  return [
+    {
+      label: "Exekuce",
+      Icon: Gavel,
+      description: `Vykoupíme nemovitost ${region.locative} i s exekucí a pomůžeme s oddlužením`,
+    },
+    {
+      label: "Insolvence",
+      Icon: FileWarning,
+      description: `Řešení pro nemovitosti v insolvenčním řízení ${region.locative}`,
+    },
+    {
+      label: "Hypotéka",
+      Icon: Landmark,
+      description: `Převezmeme nemovitost ${region.locative} se zatížením hypotékou`,
+    },
+    {
+      label: "Dědictví",
+      Icon: ScrollText,
+      description: `Rychlý výkup zděděných nemovitostí ${region.locative} bez komplikací`,
+    },
+    {
+      label: "Spoluvlastnický podíl",
+      Icon: Users,
+      description: `Odkoupíme i podíl na nemovitosti ${region.locative} bez souhlasu ostatních`,
+    },
+    {
+      label: "Věcné břemeno",
+      Icon: Link2,
+      description: `Nemovitosti s věcným břemenem ${region.locative} nejsou problém`,
+    },
+  ];
+}
 
 const FORM_BENEFITS = [
   "Zavoláme vám do 30 minut",
@@ -306,7 +307,7 @@ export function buildSchema(
       "@context": "https://schema.org",
       "@type": "FAQPage",
       mainEntity: [
-        ...GENERAL_FAQ.map((item) => ({
+        ...getRegionalFaq(region).map((item) => ({
           "@type": "Question" as const,
           name: item.question,
           acceptedAnswer: {
@@ -517,61 +518,65 @@ export function HomePageContent({
                 </ScrollReveal>
               </div>
               <div className="space-y-6">
-                {PROCESS_STEPS.slice(0, 2).map((step, index) => (
-                  <ScrollReveal key={step.title} delay={index * 200}>
-                    <div className="card-hover-lift shadow-layered flex gap-4 rounded-2xl border border-slate-100 bg-white p-6">
-                      <div className="flex flex-col items-center gap-2">
-                        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--theme-50)] text-[var(--theme-600)]">
-                          <step.Icon className="h-6 w-6" aria-hidden="true" />
-                        </span>
-                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[var(--theme-600)] text-xs font-bold text-white">
-                          {index + 1}
-                        </span>
+                {getProcessSteps(region)
+                  .slice(0, 2)
+                  .map((step, index) => (
+                    <ScrollReveal key={step.title} delay={index * 200}>
+                      <div className="card-hover-lift shadow-layered flex gap-4 rounded-2xl border border-slate-100 bg-white p-6">
+                        <div className="flex flex-col items-center gap-2">
+                          <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--theme-50)] text-[var(--theme-600)]">
+                            <step.Icon className="h-6 w-6" aria-hidden="true" />
+                          </span>
+                          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[var(--theme-600)] text-xs font-bold text-white">
+                            {index + 1}
+                          </span>
+                        </div>
+                        <div>
+                          <h3 className="text-base font-semibold text-slate-900">
+                            {step.title}
+                          </h3>
+                          <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                            {step.description}
+                          </p>
+                          <p className="mt-2 text-xs font-medium text-[var(--theme-600)]">
+                            {step.eta}
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h3 className="text-base font-semibold text-slate-900">
-                          {step.title}
-                        </h3>
-                        <p className="mt-1 text-sm leading-relaxed text-slate-600">
-                          {step.description}
-                        </p>
-                        <p className="mt-2 text-xs font-medium text-[var(--theme-600)]">
-                          {step.eta}
-                        </p>
-                      </div>
-                    </div>
-                  </ScrollReveal>
-                ))}
+                    </ScrollReveal>
+                  ))}
               </div>
             </div>
 
             <div className="grid items-center gap-8 lg:grid-cols-2">
               <div className="order-2 space-y-6 lg:order-1">
-                {PROCESS_STEPS.slice(2, 4).map((step, index) => (
-                  <ScrollReveal key={step.title} delay={index * 200}>
-                    <div className="card-hover-lift shadow-layered flex gap-4 rounded-2xl border border-slate-100 bg-white p-6">
-                      <div className="flex flex-col items-center gap-2">
-                        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--theme-50)] text-[var(--theme-600)]">
-                          <step.Icon className="h-6 w-6" aria-hidden="true" />
-                        </span>
-                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[var(--theme-600)] text-xs font-bold text-white">
-                          {index + 3}
-                        </span>
+                {getProcessSteps(region)
+                  .slice(2, 4)
+                  .map((step, index) => (
+                    <ScrollReveal key={step.title} delay={index * 200}>
+                      <div className="card-hover-lift shadow-layered flex gap-4 rounded-2xl border border-slate-100 bg-white p-6">
+                        <div className="flex flex-col items-center gap-2">
+                          <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--theme-50)] text-[var(--theme-600)]">
+                            <step.Icon className="h-6 w-6" aria-hidden="true" />
+                          </span>
+                          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[var(--theme-600)] text-xs font-bold text-white">
+                            {index + 3}
+                          </span>
+                        </div>
+                        <div>
+                          <h3 className="text-base font-semibold text-slate-900">
+                            {step.title}
+                          </h3>
+                          <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                            {step.description}
+                          </p>
+                          <p className="mt-2 text-xs font-medium text-[var(--theme-600)]">
+                            {step.eta}
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h3 className="text-base font-semibold text-slate-900">
-                          {step.title}
-                        </h3>
-                        <p className="mt-1 text-sm leading-relaxed text-slate-600">
-                          {step.description}
-                        </p>
-                        <p className="mt-2 text-xs font-medium text-[var(--theme-600)]">
-                          {step.eta}
-                        </p>
-                      </div>
-                    </div>
-                  </ScrollReveal>
-                ))}
+                    </ScrollReveal>
+                  ))}
               </div>
               <div className="order-1 grid grid-cols-2 gap-4 lg:order-2">
                 <ScrollReveal
@@ -633,7 +638,7 @@ export function HomePageContent({
             </p>
           </ScrollReveal>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {COMPLEX_SITUATIONS.map((situation, idx) => (
+            {getComplexSituations(region).map((situation, idx) => (
               <ScrollReveal key={situation.label} delay={idx * 80}>
                 <div className="card-hover-lift shadow-layered flex gap-4 rounded-2xl border border-slate-100 bg-white p-6">
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--theme-50)] text-[var(--theme-600)]">
@@ -686,7 +691,8 @@ export function HomePageContent({
         />
         <div className="relative flex h-full items-center justify-center px-6">
           <p className="text-center text-xl font-bold text-white sm:text-2xl lg:text-3xl">
-            Pomáháme majitelům nemovitostí po celé České republice
+            Pomáháme majitelům nemovitostí {region.locative} i po celé České
+            republice
           </p>
         </div>
       </section>
@@ -733,10 +739,11 @@ export function HomePageContent({
                   O nás
                 </h2>
                 <p className="mt-4 leading-relaxed text-slate-700">
-                  Specializujeme se na rychlý a férový výkup nemovitostí v celé
-                  České republice. Nabízíme transparentní proces, férovou cenu a
-                  kompletní právní servis zdarma. Působíme {region.locative} a
-                  po celém Česku.
+                  Specializujeme se na rychlý a férový výkup nemovitostí{" "}
+                  {region.locative}. Nabízíme transparentní proces, férovou cenu
+                  a kompletní právní servis zdarma. V {region.primaryCity} a
+                  okolí jsme pro vás k dispozici osobně, po celém {region.name}{" "}
+                  zajistíme kompletní servis na dálku.
                 </p>
                 <div className="mt-8 grid gap-4 sm:grid-cols-3">
                   {ABOUT_STATS.map((stat) => (
@@ -849,10 +856,37 @@ export function HomePageContent({
         <div className="relative mx-auto max-w-7xl px-6">
           <ScrollReveal>
             <h2 className="mb-8 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
-              Naše garance
+              Co říkají naši klienti {region.locative}
             </h2>
           </ScrollReveal>
-          <GuaranteeCarousel />
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {(region.testimonials ?? []).map((testimonial, idx) => (
+              <ScrollReveal key={idx} delay={idx * 100}>
+                <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
+                  <Quote
+                    className="mb-3 h-6 w-6 text-[var(--theme-300)]"
+                    aria-hidden="true"
+                  />
+                  <p className="text-sm leading-relaxed text-slate-600">
+                    &ldquo;{testimonial.text}&rdquo;
+                  </p>
+                  <div className="mt-4 flex items-center gap-2">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--theme-100)] text-xs font-bold text-[var(--theme-700)]">
+                      {testimonial.name.charAt(0)}
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-slate-900">
+                        {testimonial.name}
+                      </p>
+                      <p className="text-xs text-slate-500">
+                        {testimonial.location}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -870,7 +904,7 @@ export function HomePageContent({
         />
         <div className="relative flex h-full items-center justify-center px-6">
           <p className="text-center text-xl font-bold text-white sm:text-2xl lg:text-3xl">
-            Vaše nemovitost si zaslouží férové jednání
+            Vaše nemovitost {region.locative} si zaslouží férové jednání
           </p>
         </div>
       </section>
@@ -906,7 +940,9 @@ export function HomePageContent({
           </ScrollReveal>
           <ScrollReveal delay={200}>
             <div className="mt-8">
-              <FaqAccordion items={[...GENERAL_FAQ, ...region.faq]} />
+              <FaqAccordion
+                items={[...getRegionalFaq(region), ...region.faq]}
+              />
             </div>
           </ScrollReveal>
         </div>

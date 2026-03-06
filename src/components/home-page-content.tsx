@@ -435,6 +435,19 @@ export function HomePageContent({
         </section>
       )}
 
+      {/* ===== REGION INTRO ===== */}
+      {region.regionIntro && (
+        <section className="py-12">
+          <div className="mx-auto max-w-7xl px-6">
+            <div className="prose prose-slate mx-auto max-w-4xl">
+              <p className="text-base leading-relaxed text-slate-700 md:text-lg">
+                {region.regionIntro}
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ===== TRUST METRICS ===== */}
       <section className="py-16">
         <div className="mx-auto max-w-7xl px-6">
@@ -786,6 +799,19 @@ export function HomePageContent({
           </p>
         </div>
       </section>
+
+      {/* ===== REGION OUTRO ===== */}
+      {region.regionOutro && (
+        <section className="bg-slate-50 py-12">
+          <div className="mx-auto max-w-7xl px-6">
+            <div className="prose prose-slate mx-auto max-w-4xl">
+              <p className="text-base leading-relaxed text-slate-700 md:text-lg">
+                {region.regionOutro}
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ===== NEARBY REGIONS ===== */}
       <NearbyRegions regionKey={region.key} currentHost={currentHost} />

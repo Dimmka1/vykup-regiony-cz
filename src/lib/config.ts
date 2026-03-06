@@ -38,6 +38,8 @@ const regionSchema = z.object({
       }),
     )
     .optional(),
+  regionIntro: z.string().optional(),
+  regionOutro: z.string().optional(),
 });
 
 const dataSchema = z.object({

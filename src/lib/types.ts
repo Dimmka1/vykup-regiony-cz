@@ -25,6 +25,8 @@ export interface RegionConfig {
   marketInfo?: string;
   themeColor?: string;
   regionFaq?: FaqItem[];
+  regionIntro?: string;
+  regionOutro?: string;
 }
 
 export interface RegionDataFile {

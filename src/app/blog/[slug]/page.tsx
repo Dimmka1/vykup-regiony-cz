@@ -5,6 +5,7 @@ import { safeJsonLd } from "@/lib/jsonld";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
+import { ShareButtons } from "@/components/share-buttons";
 import { BLOG_POSTS } from "../data";
 import { AllRegionsSection } from "@/components/all-regions-section";
 import { getRequestHost } from "@/lib/request-host";
@@ -1613,6 +1614,10 @@ export default async function BlogArticlePage({
 
           <div className="prose-article mt-10 rounded-2xl bg-white p-8 shadow-sm">
             {article.body}
+          </div>
+
+          <div className="mt-8">
+            <ShareButtons title={article.title} />
           </div>
 
           <div className="mt-12 rounded-2xl bg-emerald-50 p-8 text-center">

@@ -1,4 +1,5 @@
 import { LeadMagnetCta } from "@/components/lead-magnet-cta";
+import { ShareButtons } from "@/components/share-buttons";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Shield, Clock, BadgeCheck, HandCoins } from "lucide-react";
@@ -233,6 +234,9 @@ export default async function VykupPriExekuciPage(): Promise<React.ReactElement>
 
       <section className="bg-slate-50 py-12">
         <div className="mx-auto max-w-3xl px-4">
+          <div className="mb-8 mt-8">
+            <ShareButtons />
+          </div>
           <RelatedArticles articles={getRelatedArticles("vykup-pri-exekuci")} />
         </div>
       </section>

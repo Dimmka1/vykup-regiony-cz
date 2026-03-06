@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ShareButtons } from "@/components/share-buttons";
 import Link from "next/link";
 import {
   Shield,
@@ -330,6 +331,9 @@ export default async function VykupPozemkuPage(): Promise<React.ReactElement> {
 
       <section className="bg-slate-50 py-12">
         <div className="mx-auto max-w-3xl px-4">
+          <div className="mb-8 mt-8">
+            <ShareButtons />
+          </div>
           <RelatedArticles articles={getRelatedArticles("vykup-pozemku")} />
         </div>
       </section>

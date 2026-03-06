@@ -8,6 +8,38 @@ export interface BlogPost {
 
 export const BLOG_POSTS: readonly BlogPost[] = [
   {
+    slug: "prodej-zdenene-nemovitosti",
+    title: "Prodej zděděné nemovitosti — kompletní průvodce",
+    excerpt:
+      "Jak prodat zděděnou nemovitost? Dědické řízení, daňové aspekty, potřebné dokumenty a výkup jako rychlé řešení pro dědice.",
+    date: "2026-03-06",
+    readingTime: "8 min",
+  },
+  {
+    slug: "jak-zjistit-trzni-cenu-nemovitosti",
+    title: "Jak zjistit tržní cenu nemovitosti — 4 spolehlivé metody",
+    excerpt:
+      "Znalecký posudek, cenové mapy, online odhad nebo výkupní nabídka? Přehled způsobů, jak zjistit reálnou hodnotu nemovitosti.",
+    date: "2026-03-06",
+    readingTime: "7 min",
+  },
+  {
+    slug: "prodej-bytu-s-najemniky",
+    title: "Prodej bytu s nájemníky — práva, cena a výkup",
+    excerpt:
+      "Jak prodat nemovitost obsazenou nájemníky? Práva nájemníků, dopad na cenu, výkup s nájemníky jako nejrychlejší řešení.",
+    date: "2026-03-06",
+    readingTime: "8 min",
+  },
+  {
+    slug: "prodej-nemovitosti-ze-zahranici",
+    title: "Prodej nemovitosti z ČR ze zahraničí — jak na to",
+    excerpt:
+      "Jak prodat českou nemovitost, když žijete v zahraničí? Plná moc, daňové povinnosti, výkup na dálku bez nutnosti cestovat.",
+    date: "2026-03-06",
+    readingTime: "7 min",
+  },
+  {
     slug: "jake-dokumenty-potrebuji",
     title: "Jaké dokumenty potřebuji k výkupu nemovitosti?",
     excerpt:

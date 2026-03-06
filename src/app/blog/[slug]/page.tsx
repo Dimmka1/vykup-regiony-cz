@@ -16,6 +16,839 @@ interface ArticleContent {
 }
 
 const ARTICLES: Record<string, ArticleContent> = {
+  "prodej-zdenene-nemovitosti": {
+    title: "Prodej zděděné nemovitosti — kompletní průvodce",
+    date: "2026-03-06",
+    body: (
+      <>
+        <p>
+          Zdědili jste nemovitost a přemýšlíte, co s ní? Prodej zděděné
+          nemovitosti je jednou z nejčastějších situací, se kterou se na nás
+          klienti obracejí. Ať už jde o byt po prarodičích, rodinný dům nebo
+          pozemek, celý proces má svá specifika — od dědického řízení přes
+          daňové povinnosti až po samotný prodej. V tomto článku vám přinášíme
+          kompletní průvodce, který vás provede každým krokem a pomůže vám
+          udělat správné rozhodnutí.
+        </p>
+
+        <h2>Dědické řízení — první krok k prodeji</h2>
+        <p>
+          Než můžete zděděnou nemovitost prodat, musíte projít dědickým řízením.
+          Dědické řízení zahajuje notář pověřený příslušným okresním soudem, a
+          to na základě úmrtního listu zůstavitele. Notář zjistí okruh dědiců,
+          rozsah pozůstalosti a případné dluhy zůstavitele. Celý proces trvá
+          obvykle 3 až 6 měsíců, v komplikovanějších případech i déle.
+        </p>
+        <p>
+          Klíčovým dokumentem je usnesení o dědictví, které vydá soud po
+          skončení dědického řízení. Tímto usnesením se stáváte právoplatným
+          vlastníkem nemovitosti a můžete s ní volně nakládat — tedy i ji
+          prodat. Bez pravomocného usnesení o dědictví prodej nemovitosti není
+          možný, protože v katastru nemovitostí budete zapsáni jako vlastník až
+          po jeho právní moci.
+        </p>
+        <p>
+          Pokud dědí více dědiců, musí se všichni dohodnout na způsobu
+          vypořádání. Nemovitost lze rozdělit, jeden z dědiců může ostatní
+          vyplatit, nebo se všichni dohodnou na společném prodeji. Právě
+          společný prodej bývá nejčastějším a nejpraktičtějším řešením, zejména
+          když žádný z dědiců nechce nemovitost užívat. Více o dědických
+          situacích najdete na stránce{" "}
+          <Link
+            href="/vykup-pri-dedictvi"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Výkup nemovitosti při dědictví
+          </Link>
+          .
+        </p>
+
+        <h2>Spoluvlastnictví dědiců — jak se dohodnout</h2>
+        <p>
+          Jedním z nejčastějších problémů při dědění nemovitosti je
+          spoluvlastnictví více dědiců. Pokud například tři sourozenci zdědí
+          rodinný dům, stávají se podílovými spoluvlastníky. Každý z nich má
+          právo se svým podílem nakládat, ale prodej celé nemovitosti vyžaduje
+          souhlas všech spoluvlastníků. To může být zdrojem konfliktů, zejména
+          pokud mají dědicové rozdílné představy o tom, co s nemovitostí dělat.
+        </p>
+        <p>
+          V praxi se setkáváme s několika scénáři. Někteří dědicové chtějí
+          nemovitost prodat co nejrychleji, zatímco jiní by ji chtěli ponechat v
+          rodině. Dalším častým problémem je neshoda ohledně ceny — jeden dědic
+          může mít nerealistická očekávání. V těchto situacích může být výkupní
+          firma ideálním řešením, protože nabízí transparentní ocenění a rychlý
+          proces, na kterém se mohou všichni shodnout. Informace o prodeji
+          spoluvlastnického podílu najdete na stránce{" "}
+          <Link
+            href="/vykup-spoluvlastnickeho-podilu"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Výkup spoluvlastnického podílu
+          </Link>
+          .
+        </p>
+
+        <h2>Daňové aspekty prodeje zděděné nemovitosti</h2>
+        <p>
+          Důležitou otázkou při prodeji zděděné nemovitosti jsou daně. V České
+          republice platí několik pravidel, která byste měli znát. Dědická daň
+          byla v roce 2014 zrušena, takže samotné nabytí nemovitosti dědictvím
+          je od daně osvobozeno. Pozor ale na daň z příjmů při následném
+          prodeji. Příjem z prodeje nemovitosti je osvobozen od daně z příjmů,
+          pokud splníte jednu z následujících podmínek: nemovitost jste
+          vlastnili alespoň 5 let (u nemovitostí nabytých do roku 2020) nebo
+          alespoň 10 let (u nemovitostí nabytých od roku 2021).
+        </p>
+        <p>
+          U zděděných nemovitostí se do doby vlastnictví započítává i doba, po
+          kterou nemovitost vlastnil zůstavitel. To je velmi důležité pravidlo.
+          Pokud tedy vaši rodiče vlastnili byt 20 let a vy jej zdědíte a ihned
+          prodáte, příjem z prodeje bude osvobozen od daně z příjmů, protože
+          celková doba vlastnictví (včetně doby vlastnictví zůstavitele)
+          přesáhla zákonný limit. Doporučujeme nicméně vždy konzultovat
+          konkrétní situaci s daňovým poradcem, protože pravidla mají řadu
+          výjimek a specifických podmínek.
+        </p>
+        <p>
+          Dalším daňovým aspektem je daň z nemovitých věcí, kterou jako nový
+          vlastník musíte platit od roku následujícího po nabytí nemovitosti.
+          Přiznání k dani z nemovitých věcí je třeba podat do 31. ledna
+          příslušného roku. Pokud nemovitost plánujete prodat, je důležité mít
+          tuto povinnost splněnou, aby nedošlo ke komplikacím při převodu.
+        </p>
+
+        <h2>Jaké dokumenty potřebujete k prodeji</h2>
+        <p>
+          K prodeji zděděné nemovitosti budete potřebovat několik klíčových
+          dokumentů. Především pravomocné usnesení o dědictví, které prokazuje
+          vaše vlastnické právo. Dále aktuální list vlastnictví z katastru
+          nemovitostí, kde byste již měli být zapsáni jako vlastník. Potřebujete
+          také platný občanský průkaz a energetický průkaz budovy (PENB).
+        </p>
+        <p>
+          V případě, že nemovitost prodávají všichni spoluvlastníci společně,
+          musí každý z nich poskytnout svůj doklad totožnosti a podepsat kupní
+          smlouvu (nebo udělit plnou moc jinému spoluvlastníkovi či třetí
+          osobě). Kompletní přehled potřebných dokumentů najdete v článku{" "}
+          <Link
+            href="/blog/jake-dokumenty-potrebuji"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Jaké dokumenty potřebuji k výkupu nemovitosti
+          </Link>
+          .
+        </p>
+
+        <h2>Stav zděděné nemovitosti — rekonstrukce, nebo prodej?</h2>
+        <p>
+          Zděděné nemovitosti bývají často ve stavu, který vyžaduje
+          rekonstrukci. Starší domy mohou mít zastaralé rozvody, střechu v
+          havarijním stavu nebo vlhkost. Byty v panelových domech mohou
+          potřebovat nová okna, koupelnu nebo kuchyň. Otázka zní: vyplatí se
+          investovat do rekonstrukce před prodejem, nebo prodat v aktuálním
+          stavu?
+        </p>
+        <p>
+          Odpověď závisí na několika faktorech. Pokud máte čas a finanční
+          prostředky na rekonstrukci, může se investice vrátit ve vyšší prodejní
+          ceně. Nicméně rekonstrukce trvá měsíce, stojí statisíce až miliony
+          korun a nese riziko neočekávaných nákladů. Pro mnoho dědiců je proto
+          výhodnější prodat nemovitost v aktuálním stavu výkupní firmě, která
+          nemovitost koupí bez ohledu na její stav a o rekonstrukci se postará
+          sama. Podrobnosti o tom, jak celý výkup probíhá, najdete na stránce{" "}
+          <Link
+            href="/jak-to-funguje"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Jak to funguje
+          </Link>
+          .
+        </p>
+
+        <h2>Proč dědici volí výkup nemovitosti</h2>
+        <p>
+          Z naší zkušenosti volí dědici výkup nemovitosti z několika důvodů.
+          Prvním je rychlost — peníze z dědictví často potřebují k řešení jiných
+          záležitostí a nechtějí čekat měsíce na klasický prodej. Druhým důvodem
+          je jednoduchost — výkupní firma zajistí vše od ocenění přes právní
+          servis až po úhradu, takže se dědici nemusí stresovat s byrokratickými
+          záležitostmi.
+        </p>
+        <p>
+          Třetím důvodem je řešení sporů mezi dědici. Když se sourozenci nemohou
+          dohodnout na ceně, nezávislé ocenění výkupní firmy může posloužit jako
+          objektivní základ pro dohodu. Čtvrtým důvodem je stav nemovitosti —
+          mnozí dědici nechtějí investovat do oprav nemovitosti, kterou
+          nehodlají užívat.
+        </p>
+
+        <h2>Emocionální stránka prodeje zděděné nemovitosti</h2>
+        <p>
+          Prodej zděděné nemovitosti není jen finanční rozhodnutí — má i silnou
+          emocionální stránku. Rodinný dům, kde jste vyrůstali, byt prarodičů
+          plný vzpomínek. Je přirozené cítit nostalgii a váhání. Důležité je ale
+          rozhodovat se racionálně. Nemovitost, která leží ladem, postupně
+          chátrá a generuje náklady (daň z nemovitosti, energie, pojištění,
+          údržba). Pokud ji žádný z dědiců nechce nebo nemůže využívat, prodej
+          je ekonomicky rozumné rozhodnutí.
+        </p>
+        <p>
+          Před prodejem si vezměte čas na roztřídění osobních věcí a vzpomínek.
+          Pořiďte fotografie prostor, uložte si rodinné památky. Prodej
+          nemovitosti neznamená ztrátu vzpomínek — ty zůstávají s vámi bez
+          ohledu na to, kdo nemovitost vlastní.
+        </p>
+
+        <h2>Jak postupovat — praktický návod pro dědice</h2>
+        <p>
+          Pokud jste zdědili nemovitost a chcete ji prodat, doporučujeme
+          následující postup. Nejprve vyčkejte na pravomocné usnesení o dědictví
+          a zápis do katastru nemovitostí. Poté se dohodněte se všemi
+          spoluvlastníky na prodeji. Následně nás kontaktujte prostřednictvím
+          formuláře na stránkách — do 24 hodin vám připravíme nezávaznou cenovou
+          nabídku.
+        </p>
+        <p>
+          Po prohlídce nemovitosti vám předložíme finální nabídku. Pokud ji
+          přijmete, náš právní tým připraví veškerou dokumentaci a celý převod
+          dokončíme obvykle za 7 až 14 dní. Peníze obdržíte přes bezpečnou
+          advokátní úschovu. Celý proces je navržen tak, aby byl pro vás co
+          nejjednodušší — a to i v emocionálně náročném období po ztrátě
+          blízkého člověka.
+        </p>
+
+        <h2>Máte otázky? Kontaktujte nás</h2>
+        <p>
+          Zdědili jste nemovitost a nevíte, jak postupovat? Rádi vám poradíme
+          zdarma a nezávazně. Naše konzultace jsou diskrétní a bez jakýchkoliv
+          závazků. Pomohli jsme stovkám dědiců po celé České republice vyřešit
+          jejich situaci rychle a bezpečně.{" "}
+          <Link href="/" className="text-emerald-600 hover:text-emerald-500">
+            Vyplňte formulář
+          </Link>{" "}
+          a ozveme se vám do 24 hodin s nabídkou.
+        </p>
+      </>
+    ),
+  },
+  "jak-zjistit-trzni-cenu-nemovitosti": {
+    title: "Jak zjistit tržní cenu nemovitosti — 4 spolehlivé metody",
+    date: "2026-03-06",
+    body: (
+      <>
+        <p>
+          Znát reálnou tržní cenu nemovitosti je klíčové, ať už ji chcete
+          prodat, koupit, pojistit nebo řešit dědictví. Bohužel mnoho majitelů
+          nemovitostí má o hodnotě svého majetku nerealistické představy — ať už
+          příliš vysoké, nebo naopak příliš nízké. V tomto článku vám
+          představíme čtyři spolehlivé metody, jak zjistit skutečnou tržní cenu
+          nemovitosti, a porovnáme jejich výhody a nevýhody.
+        </p>
+
+        <h2>Co je tržní cena a proč je důležitá</h2>
+        <p>
+          Tržní cena nemovitosti je částka, za kterou by se nemovitost prodala
+          na volném trhu za standardních podmínek — tedy mezi ochotným kupujícím
+          a ochotným prodávajícím, kteří jednají bez nátlaku a s dostatečnými
+          informacemi. Tržní cena se liší od ceny účetní, pojistné nebo úřední —
+          každá z nich slouží jinému účelu a stanovuje se jinou metodikou.
+        </p>
+        <p>
+          Znalost tržní ceny je zásadní v několika situacích. Při prodeji
+          nemovitosti vám pomůže nastavit správnou cenu a vyhnout se jak
+          předražení (které odradí kupce), tak podhodnocení (které znamená
+          finanční ztrátu). Při koupi vám umožní posoudit, zda je požadovaná
+          cena přiměřená. Při dědickém řízení je ocenění nutné pro spravedlivé
+          vypořádání mezi dědici. A při žádosti o hypotéku banka vyžaduje odhad
+          nemovitosti jako zajištění úvěru.
+        </p>
+
+        <h2>Metoda 1: Znalecký posudek od soudního znalce</h2>
+        <p>
+          Znalecký posudek je nejpřesnější a právně nejsilnější způsob ocenění
+          nemovitosti. Zpracovává jej soudní znalec zapsaný v seznamu znalců
+          Ministerstva spravedlnosti. Znalec provede důkladnou prohlídku
+          nemovitosti, posoudí její technický stav, lokalitu, dispozice a další
+          faktory ovlivňující hodnotu. Výsledkem je podrobný dokument s
+          odůvodněním stanovené ceny.
+        </p>
+        <p>
+          Znalecký posudek je vyžadován v některých právních situacích —
+          například při dědickém řízení, soudních sporech nebo pro daňové účely.
+          Jeho nevýhodou je cena, která se pohybuje od 5 000 do 15 000 Kč v
+          závislosti na typu a složitosti nemovitosti. Zpracování trvá obvykle 1
+          až 3 týdny. Výhodou je vysoká přesnost a právní relevance — znalecký
+          posudek je akceptován soudy, bankami i úřady.
+        </p>
+
+        <h2>Metoda 2: Cenové mapy a srovnávací analýza</h2>
+        <p>
+          Cenové mapy jsou dostupné online a umožňují rychlou orientaci v cenách
+          nemovitostí v konkrétní lokalitě. Nejznámější české cenové mapy
+          provozují servery jako Sreality, Bezrealitky nebo Český statistický
+          úřad. Cenové mapy zobrazují průměrné ceny za metr čtvereční v dané
+          oblasti, členěné podle typu nemovitosti (byt, dům, pozemek) a dalších
+          parametrů.
+        </p>
+        <p>
+          Srovnávací analýza (komparativní metoda) spočívá v porovnání vaší
+          nemovitosti s podobnými nemovitostmi, které se nedávno prodaly v
+          okolí. Tato metoda je intuitivní a poměrně přesná, pokud máte dostatek
+          srovnatelných transakcí. Výhodou cenových map je, že jsou zdarma nebo
+          za minimální poplatek a poskytují okamžitý výsledek. Nevýhodou je
+          omezená přesnost — cenové mapy pracují s průměry a nezohledňují
+          individuální vlastnosti nemovitosti, jako je stav, patro, výhled nebo
+          vybavení.
+        </p>
+        <p>
+          Pro získání přesnějšího odhadu doporučujeme kombinovat cenové mapy s
+          prohlížením aktuálních inzerátů na realitních portálech. Pozor ale na
+          to, že inzertní ceny jsou často vyšší než skutečné prodejní ceny — k
+          prodeji obvykle dochází za cenu o 5 až 15 procent nižší, než je cena v
+          inzerátu.
+        </p>
+
+        <h2>Metoda 3: Online odhad nemovitosti</h2>
+        <p>
+          V posledních letech se stále více rozšiřují online nástroje pro odhad
+          ceny nemovitosti. Tyto nástroje využívají algoritmy a strojové učení k
+          analýze velkého množství dat z realitního trhu. Stačí zadat základní
+          parametry nemovitosti — typ, lokalitu, velikost, stav — a během
+          několika sekund obdržíte odhad tržní ceny.
+        </p>
+        <p>
+          Mezi nejznámější české online nástroje patří odhady na portálech
+          Sreality, Bezrealitky nebo specializované služby jako
+          OceňováníNemovitostí.cz. Výhodou je rychlost a nulová nebo minimální
+          cena. Nevýhodou je nižší přesnost ve srovnání se znaleckým posudkem —
+          online nástroje nemohou posoudit individuální faktory jako specifický
+          technický stav, kvalitu rekonstrukce nebo sousedské vztahy. Odchylka
+          od skutečné tržní ceny se může pohybovat v rozmezí 10 až 20 procent.
+        </p>
+        <p>
+          Online odhad je vhodný jako první orientační krok, který vám napoví, v
+          jakém cenovém rozmezí se vaše nemovitost pohybuje. Pro přesnější
+          ocenění doporučujeme kombinovat online odhad s dalšími metodami.
+        </p>
+
+        <h2>Metoda 4: Výkupní nabídka od specializované firmy</h2>
+        <p>
+          Čtvrtou a často opomíjenou metodou, jak zjistit hodnotu nemovitosti,
+          je nechat si vypracovat nezávaznou nabídku od výkupní firmy. Tento
+          způsob je zcela zdarma a přináší konkrétní, reálnou cenu, za kterou je
+          někdo ochoten vaši nemovitost skutečně koupit. To je zásadní rozdíl
+          oproti ostatním metodám, které poskytují pouze odhad.
+        </p>
+        <p>
+          Výkupní firma provede vlastní analýzu nemovitosti — ověří údaje v
+          katastru, posoudí lokalitu, stav a tržní podmínky. Do 24 hodin vám
+          předloží konkrétní cenovou nabídku. Tato nabídka je nezávazná — pokud
+          se rozhodnete nemovitost neprodat, nic se neděje. Ale získáte cennou
+          informaci o reálné hodnotě vaší nemovitosti, kterou můžete využít i
+          při jednání s realitní kanceláří nebo při rozhodování o dalším
+          postupu.
+        </p>
+        <p>
+          Je důležité vědět, že výkupní cena bývá obvykle 80 až 90 procent plné
+          tržní hodnoty. To je dáno obchodním modelem výkupní firmy, která nese
+          náklady na právní servis, případnou rekonstrukci a riziko. Pokud tedy
+          od výkupní firmy dostanete nabídku například 3 400 000 Kč, můžete
+          odhadnout, že plná tržní hodnota nemovitosti se pohybuje kolem 3 800
+          000 až 4 250 000 Kč. Více o cenách výkupu najdete v článku{" "}
+          <Link
+            href="/blog/kolik-stoji-vykup"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Kolik stojí výkup nemovitosti
+          </Link>
+          .
+        </p>
+
+        <h2>Faktory ovlivňující cenu nemovitosti</h2>
+        <p>
+          Bez ohledu na zvolenou metodu ocenění existují klíčové faktory, které
+          nejvíce ovlivňují cenu nemovitosti. Lokalita je tradičně
+          nejdůležitějším faktorem — stejný byt v Praze a v malém městě bude mít
+          zcela odlišnou hodnotu. V rámci jednoho města záleží na čtvrti,
+          dostupnosti MHD, občanské vybavenosti a bezpečnosti.
+        </p>
+        <p>
+          Technický stav nemovitosti je druhým nejdůležitějším faktorem.
+          Nemovitost po kompletní rekonstrukci má výrazně vyšší hodnotu než
+          stejná nemovitost v původním stavu. Mezi další faktory patří velikost
+          a dispozice (počet pokojů, patro, balkon), energetická náročnost,
+          parkování, úložné prostory a celkový stav domu nebo bytového komplexu.
+        </p>
+        <p>
+          Právní stav nemovitosti může cenu výrazně ovlivnit — nemovitost
+          zatížená{" "}
+          <Link
+            href="/vykup-pri-exekuci"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            exekucí
+          </Link>
+          ,{" "}
+          <Link
+            href="/vykup-nemovitosti-s-vecnym-bremenem"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            věcným břemenem
+          </Link>{" "}
+          nebo{" "}
+          <Link
+            href="/vykup-nemovitosti-s-hypotekou"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            nesplacenou hypotékou
+          </Link>{" "}
+          má nižší hodnotu než právně čistá nemovitost. Na druhou stranu,
+          výkupní firmy se na tyto případy specializují a dokáží nabídnout
+          férovou cenu i za komplikované nemovitosti.
+        </p>
+
+        <h2>Kterou metodu zvolit</h2>
+        <p>
+          Optimální přístup závisí na vaší situaci. Pokud potřebujete právně
+          závazné ocenění (dědictví, soud, daně), zvolte znalecký posudek. Pokud
+          chcete rychlou orientaci zdarma, začněte s cenovými mapami a online
+          odhady. Pokud zvažujete prodej a chcete znát reálnou cenu, nechte si
+          vypracovat nezávaznou výkupní nabídku.
+        </p>
+        <p>
+          Nejpřesnějšího výsledku dosáhnete kombinací více metod. Porovnejte
+          online odhad s cenovými mapami a výkupní nabídkou — pokud se všechny
+          tři zdroje shodnou na podobném cenovém rozmezí, můžete si být jisti,
+          že znáte reálnou hodnotu své nemovitosti. Pokud se výrazně liší,
+          doporučujeme investovat do znaleckého posudku.
+        </p>
+
+        <h2>Máte otázky? Kontaktujte nás</h2>
+        <p>
+          Chcete zjistit, kolik vaše nemovitost stojí? Nabízíme bezplatné a
+          nezávazné ocenění do 24 hodin. Stačí vyplnit krátký formulář s
+          informacemi o nemovitosti a náš tým vám připraví konkrétní cenovou
+          nabídku. Žádné závazky, žádné poplatky — jen férová cena od
+          profesionálů s dlouholetou zkušeností na českém realitním trhu.{" "}
+          <Link href="/" className="text-emerald-600 hover:text-emerald-500">
+            Vyplňte formulář
+          </Link>{" "}
+          a do 24 hodin se vám ozveme.
+        </p>
+      </>
+    ),
+  },
+  "prodej-bytu-s-najemniky": {
+    title: "Prodej bytu s nájemníky — práva, cena a výkup",
+    date: "2026-03-06",
+    body: (
+      <>
+        <p>
+          Prodej nemovitosti obsazené nájemníky je specifická situace, která
+          přináší řadu právních, finančních i praktických otázek. Mnoho majitelů
+          bytů se ocitá v situaci, kdy potřebují nemovitost prodat, ale mají v
+          ní nájemníky s platnou nájemní smlouvou. Jak postupovat? Jaká jsou
+          práva nájemníků? Jak přítomnost nájemníků ovlivňuje cenu? A proč může
+          být výkup nejlepším řešením? Na tyto otázky odpovídáme v tomto
+          komplexním průvodci.
+        </p>
+
+        <h2>Právní rámec — práva nájemníků při prodeji</h2>
+        <p>
+          Prodej nemovitosti s nájemníky je v České republice zcela legální a
+          nájemníci jej nemohou blokovat. Klíčovým principem českého občanského
+          zákoníku (zákon č. 89/2012 Sb.) je, že změna vlastníka nemovitosti
+          nemá vliv na existující nájemní vztah. To znamená, že nový vlastník
+          automaticky vstupuje do práv a povinností pronajímatele. Nájemní
+          smlouva zůstává v platnosti za stejných podmínek — včetně výše
+          nájemného, doby trvání a dalších ujednání.
+        </p>
+        <p>
+          Nájemníci mají ze zákona několik důležitých práv. Především právo na
+          zachování nájemní smlouvy v nezměněné podobě. Nový vlastník nemůže
+          jednostranně změnit podmínky nájmu, zvýšit nájemné nad zákonem
+          stanovený limit nebo nájemníka bezdůvodně vystěhovat. Výpověď z nájmu
+          je možná pouze ze zákonem stanovených důvodů — například hrubé
+          porušení povinností nájemcem, neplacení nájemného nebo potřeba bytu
+          pro vlastní bydlení nového vlastníka. I v těchto případech platí
+          zákonná výpovědní lhůta, která činí minimálně 3 měsíce.
+        </p>
+        <p>
+          Důležité je také předkupní právo nájemníka. Podle českého práva má
+          nájemník při prvním prodeji bytové jednotky předkupní právo, pokud byl
+          nájemcem v době, kdy došlo k vymezení bytových jednotek v domě. V
+          ostatních případech předkupní právo neplatí, pokud není sjednáno ve
+          smlouvě. Doporučujeme vždy zkontrolovat konkrétní nájemní smlouvu a
+          případně konzultovat situaci s právníkem.
+        </p>
+
+        <h2>Jak přítomnost nájemníků ovlivňuje cenu</h2>
+        <p>
+          Přítomnost nájemníků v nemovitosti má zásadní vliv na její prodejní
+          cenu. Nemovitost obsazená nájemníky se na trhu prodává obvykle za 10
+          až 30 procent méně než srovnatelná volná nemovitost. Důvodem je
+          několik faktorů. Kupující z řad investorů ocení stabilní příjem z
+          nájmu, ale budou požadovat odpovídající výnos. Kupující, kteří chtějí
+          nemovitost užívat sami, musí počítat s tím, že nebudou moci nemovitost
+          ihned využívat — musí vyčkat na skončení nájemní smlouvy nebo projít
+          výpovědním procesem.
+        </p>
+        <p>
+          Výše slevy závisí na několika faktorech. Pokud je nájemní smlouva na
+          dobu určitou a končí v blízké době (do několika měsíců), sleva bude
+          menší. Pokud je smlouva na dobu neurčitou s řádně platícím nájemníkem,
+          kupující musí počítat s delším obdobím, než bude moci nemovitost
+          využít, a sleva bude vyšší. Výše nájemného je dalším faktorem — nízké
+          nájemné pod tržní úrovní snižuje atraktivitu nemovitosti pro
+          investory.
+        </p>
+        <p>
+          Pro klasický prodej přes realitní kancelář je přítomnost nájemníků
+          výraznou komplikací. Prohlídky nemovitosti jsou obtížnější (nájemník
+          musí souhlasit a být přítomen), marketing je omezený a okruh
+          potenciálních kupců se zúží. To vše prodlužuje dobu prodeje a tlačí
+          cenu dolů.
+        </p>
+
+        <h2>Výkup nemovitosti s nájemníky — nejrychlejší řešení</h2>
+        <p>
+          Výkupní firma je v případě prodeje nemovitosti s nájemníky často
+          ideálním řešením. Na rozdíl od běžných kupujících se výkupní firmy na
+          tyto situace specializují a nemovitost s nájemníky pro ně
+          nepředstavuje problém. Firma kupuje nemovitost v aktuálním právním
+          stavu — včetně existujících nájemních vztahů — a o vše se postará
+          sama.
+        </p>
+        <p>
+          Výhodou výkupu je, že nemusíte řešit nájemníky před prodejem. Nemusíte
+          jim dávat výpověď, nemusíte čekat na uplynutí výpovědní lhůty a
+          nemusíte řešit případné spory. Výkupní firma přebírá veškerá práva a
+          povinnosti pronajímatele a nájemníci pokračují v bydlení za stejných
+          podmínek. Celý proces prodeje trvá obvykle 7 až 14 dní. Více o procesu
+          výkupu najdete na stránce{" "}
+          <Link
+            href="/jak-to-funguje"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Jak to funguje
+          </Link>
+          .
+        </p>
+
+        <h2>Praktické tipy pro prodej s nájemníky</h2>
+        <p>
+          Pokud se rozhodnete prodat nemovitost s nájemníky, doporučujeme
+          několik praktických kroků. Především informujte nájemníky o svém
+          záměru. Ze zákona sice nemáte povinnost nájemníky o prodeji informovat
+          předem (stačí oznámit změnu pronajímatele po prodeji), ale otevřená
+          komunikace předejde nedorozuměním a konfliktům. Nájemníci se mohou
+          cítit nejistě a otevřený rozhovor je uklidní.
+        </p>
+        <p>
+          Zkontrolujte stav nájemní smlouvy. Je platná? Jsou v ní všechna
+          zákonem vyžadovaná ujednání? Existují nějaké nedoplatky na nájemném
+          nebo službách? Mají nájemníci složenou kauci? Všechny tyto informace
+          bude nový vlastník potřebovat a ovlivní i cenu nemovitosti.
+        </p>
+        <p>
+          Připravte přehled příjmů z nájmu za poslední rok. Pro investorské
+          kupce je výnosnost klíčovým faktorem rozhodování. Čím vyšší a
+          stabilnější příjem z nájmu, tím atraktivnější je nemovitost pro
+          investora. Pokud je nájemné výrazně pod tržní úrovní, zvažte vyjednání
+          s nájemníkem o zvýšení — to může zvýšit prodejní cenu nemovitosti.
+        </p>
+
+        <h2>Situace, kdy je prodej s nájemníky výhodný</h2>
+        <p>
+          Existují situace, kdy přítomnost nájemníků může být dokonce výhodou.
+          Pro investorské kupce je nemovitost s kvalitním, dlouhodobým
+          nájemníkem atraktivní — mají okamžitý příjem z nájmu bez nutnosti
+          hledat nového nájemce. Pokud je nájemné na tržní úrovni a nájemník má
+          dobrou platební historii, nemovitost se může prodat za cenu blízkou
+          volné nemovitosti.
+        </p>
+        <p>
+          Dalším případem je prodej celého bytového domu nebo většího portfolia
+          bytů. Investoři kupující celé domy očekávají obsazenost a stabilní
+          cash flow z nájmů. V tomto segmentu je nemovitost s nájemníky
+          standardem, nikoliv komplikací.
+        </p>
+
+        <h2>Čemu se vyhnout</h2>
+        <p>
+          Při prodeji nemovitosti s nájemníky se vyvarujte několika častých
+          chyb. Nikdy nenátlakově nevystěhovávejte nájemníky — je to nezákonné a
+          hrozí vám žaloba a náhrada škody. Nezatajujte kupujícímu existenci
+          nájemních vztahů — to je podvod, který může vést k neplatnosti kupní
+          smlouvy. Neměňte podmínky nájemní smlouvy těsně před prodejem bez
+          souhlasu nájemníka — takové změny by byly neplatné.
+        </p>
+        <p>
+          Nepokoušejte se obejít předkupní právo nájemníka, pokud existuje —
+          porušení předkupního práva dává nájemníkovi možnost domáhat se u soudu
+          převodu nemovitosti na sebe za stejnou cenu. A nepodceňujte právní
+          stránku věci — vždy konzultujte prodej s právníkem nebo svěřte celý
+          proces výkupní firmě, která má s těmito situacemi bohaté zkušenosti.
+        </p>
+
+        <h2>Porovnání možností prodeje nemovitosti s nájemníky</h2>
+        <p>
+          Pro lepší orientaci shrnujeme tři hlavní způsoby prodeje. Prodej přes
+          realitku: doba 4 až 8 měsíců, cena snížená o 10 až 30 procent oproti
+          volné nemovitosti plus provize 3 až 5 procent, komplikované prohlídky
+          a omezený okruh kupců. Prodej na vlastní pěst: doba 3 až 12 měsíců,
+          úspora na provizi, ale nutnost zvládnout vše sami. Výkup nemovitosti:
+          doba 7 až 14 dní, cena 80 až 90 procent tržní hodnoty, žádné náklady
+          pro prodávajícího, nulové komplikace s nájemníky.
+        </p>
+
+        <h2>Máte otázky? Kontaktujte nás</h2>
+        <p>
+          Prodáváte nemovitost s nájemníky a hledáte rychlé a bezproblémové
+          řešení? Specializujeme se na výkup nemovitostí ve všech situacích —
+          včetně bytů a domů s nájemníky. Nabídku vám připravíme do 24 hodin,
+          zdarma a nezávazně. O nájemníky a veškeré právní záležitosti se
+          postaráme za vás.{" "}
+          <Link href="/" className="text-emerald-600 hover:text-emerald-500">
+            Vyplňte formulář
+          </Link>{" "}
+          nebo nám zavolejte — jsme tu pro vás.
+        </p>
+      </>
+    ),
+  },
+  "prodej-nemovitosti-ze-zahranici": {
+    title: "Prodej nemovitosti z ČR ze zahraničí — jak na to",
+    date: "2026-03-06",
+    body: (
+      <>
+        <p>
+          Žijete v zahraničí a vlastníte nemovitost v České republice, kterou
+          chcete prodat? Nejste sami — tisíce Čechů žijících v zahraničí řeší
+          každý rok prodej nemovitosti na dálku. Ať už jste se přestěhovali za
+          prací, za rodinou nebo jste zdědili nemovitost po příbuzných, prodej
+          ze zahraničí přináší specifické výzvy. V tomto průvodci vám
+          vysvětlíme, jak celý proces zvládnout hladce, jaké dokumenty
+          potřebujete a proč je výkup na dálku nejjednodušší řešení.
+        </p>
+
+        <h2>Hlavní výzvy prodeje ze zahraničí</h2>
+        <p>
+          Prodej nemovitosti z ČR ze zahraničí přináší několik praktických
+          komplikací. Předně nemůžete být osobně přítomni na prohlídkách s
+          potenciálními kupci, na jednáních s realitní kanceláří ani na podpisu
+          smlouvy u notáře. Komunikace na dálku je časově náročnější a
+          komplikovanější — zvláště pokud žijete v jiném časovém pásmu. Dále
+          může být obtížné získat potřebné dokumenty, jako je výpis z katastru
+          nebo energetický průkaz.
+        </p>
+        <p>
+          Dalším problémem je omezená kontrola nad stavem nemovitosti. Pokud
+          nemovitost leží ladem nebo je pronajímána, nemusíte mít aktuální
+          přehled o jejím technickém stavu. To komplikuje ocenění i samotný
+          prodej. A konečně, daňové a právní záležitosti mohou být složitější,
+          pokud máte daňové rezidentství v jiné zemi.
+        </p>
+
+        <h2>Plná moc — klíčový dokument pro prodej na dálku</h2>
+        <p>
+          Plná moc je absolutně nezbytný dokument pro prodej nemovitosti ze
+          zahraničí. Umožňuje zmocněné osobě — ať už příbuznému, právníkovi nebo
+          zástupci výkupní firmy — jednat vaším jménem při všech úkonech
+          spojených s prodejem. Plná moc musí být udělena v písemné formě s
+          úředně ověřeným podpisem a musí jasně specifikovat nemovitost a rozsah
+          oprávnění.
+        </p>
+        <p>
+          Úřední ověření podpisu v zahraničí provádí český zastupitelský úřad
+          (konzulát nebo velvyslanectví) v zemi vašeho pobytu. Alternativně lze
+          podpis ověřit u místního notáře s následnou superlegalizací nebo
+          apostilou — podle toho, zda je země účastníkem Haagské úmluvy o
+          apostile. U zemí EU, USA, Kanady nebo Austrálie postačí apostila,
+          kterou vydá příslušný orgán dané země.
+        </p>
+        <p>
+          Plná moc by měla obsahovat přesnou identifikaci zmocnitele (vás) i
+          zmocněnce, jednoznačné určení nemovitosti (katastrální území, číslo
+          parcely, číslo popisné), rozsah oprávnění (prodej za stanovenou
+          minimální cenu, podpis kupní smlouvy, zastupování na katastru) a datum
+          platnosti. Doporučujeme nechat plnou moc připravit českým advokátem,
+          který zajistí, že bude obsahovat vše potřebné. Více o dokumentech
+          potřebných k prodeji najdete v článku{" "}
+          <Link
+            href="/blog/jake-dokumenty-potrebuji"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Jaké dokumenty potřebuji k výkupu nemovitosti
+          </Link>
+          .
+        </p>
+
+        <h2>Daňové povinnosti při prodeji ze zahraničí</h2>
+        <p>
+          Daňová situace při prodeji nemovitosti v ČR ze zahraničí závisí na
+          vašem daňovém rezidentství a na smlouvě o zamezení dvojího zdanění
+          mezi Českou republikou a zemí vašeho pobytu. Obecně platí, že příjem z
+          prodeje nemovitosti na území ČR podléhá české dani z příjmů — a to bez
+          ohledu na to, kde má prodávající bydliště.
+        </p>
+        <p>
+          Osvobození od daně z příjmů platí stejně jako pro rezidenty: pokud v
+          nemovitosti máte bydliště alespoň 2 roky nebo ji vlastníte alespoň 5
+          let (resp. 10 let u nemovitostí nabytých od roku 2021), je příjem z
+          prodeje osvobozen. U zděděných nemovitostí se do doby vlastnictví
+          započítává i doba vlastnictví zůstavitele. Pokud podmínky pro
+          osvobození nesplňujete, musíte podat daňové přiznání v České republice
+          a zaplatit daň z příjmů ve výši 15 procent ze zisku (rozdíl mezi
+          prodejní a pořizovací cenou).
+        </p>
+        <p>
+          Česká republika má uzavřeny smlouvy o zamezení dvojího zdanění s
+          většinou zemí. To znamená, že daň zaplacená v ČR se vám obvykle
+          započítá proti dani ve vaší zemi rezidence. Nicméně daňové povinnosti
+          v zemi vašeho pobytu se liší stát od státu a doporučujeme konzultovat
+          situaci s daňovým poradcem, který se specializuje na mezinárodní
+          zdanění.
+        </p>
+
+        <h2>Klasický prodej přes realitku vs. výkup na dálku</h2>
+        <p>
+          Prodej přes realitní kancelář ze zahraničí je možný, ale komplikovaný.
+          Musíte najít důvěryhodnou realitku, komunikovat na dálku, řešit
+          prohlídky a udržovat nemovitost v prezentovatelném stavu. Celý proces
+          trvá standardně 3 až 6 měsíců a vyžaduje vaši aktivní účast — byť na
+          dálku. Navíc platíte provizi 3 až 5 procent z prodejní ceny.
+        </p>
+        <p>
+          Výkup nemovitosti na dálku je výrazně jednodušší. Celý proces lze
+          zvládnout bez jediné návštěvy České republiky. Kontaktujete výkupní
+          firmu online, poskytnete základní informace o nemovitosti a firma
+          provede ocenění na základě vlastní prohlídky a analýzy. Nabídku
+          obdržíte do 24 hodin. Pokud ji přijmete, stačí udělit plnou moc a vše
+          ostatní zařídí firma — od přípravy smlouvy přes podpis u notáře až po
+          zápis do katastru. Peníze obdržíte na svůj účet prostřednictvím
+          advokátní úschovy, a to i na zahraniční bankovní účet.
+        </p>
+
+        <h2>Jak probíhá výkup na dálku krok za krokem</h2>
+        <p>
+          Celý proces výkupu na dálku se skládá z několika kroků. Prvním krokem
+          je kontaktování výkupní firmy — stačí vyplnit online formulář nebo
+          zavolat. Sdělíte základní informace o nemovitosti a vaší situaci.
+          Druhým krokem je ocenění — firma provede prohlídku nemovitosti (bez
+          vaší přítomnosti) a do 24 hodin vám předloží cenovou nabídku. Pokud
+          nemovitost pronajímáte, prohlídku koordinujeme s nájemníkem.
+        </p>
+        <p>
+          Třetím krokem je udělení plné moci. Na základě instrukcí od firmy
+          navštívíte český konzulát nebo místního notáře a necháte ověřit podpis
+          na plné moci. Plnou moc poté zašlete poštou nebo kurýrem do České
+          republiky. Čtvrtým krokem je podpis kupní smlouvy — zmocněnec podepíše
+          smlouvu vaším jménem a kupní cena je složena do advokátní úschovy.
+        </p>
+        <p>
+          Pátým krokem je zápis do katastru a vyplacení peněz. Po provedení
+          vkladu vlastnického práva do katastru nemovitostí advokát uvolní kupní
+          cenu z úschovy na váš bankovní účet. Celý proces od prvního kontaktu
+          po přijetí peněz trvá obvykle 2 až 4 týdny. Podrobnosti o výkupním
+          procesu najdete na stránce{" "}
+          <Link
+            href="/jak-to-funguje"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Jak to funguje
+          </Link>
+          .
+        </p>
+
+        <h2>Převod peněz do zahraničí</h2>
+        <p>
+          Příjem z prodeje nemovitosti lze převést na zahraniční bankovní účet.
+          Převod probíhá standardním bankovním převodem (SWIFT/SEPA). U převodů
+          v rámci EU/EEA v eurech je proces jednoduchý a rychlý díky systému
+          SEPA. U převodů mimo EU nebo v jiných měnách mohou být vyšší poplatky
+          za konverzi měn a mezinárodní převod.
+        </p>
+        <p>
+          Doporučujeme zvážit i specializované služby pro převod peněz, jako je
+          Wise (dříve TransferWise), které nabízejí výhodnější směnné kurzy a
+          nižší poplatky než tradiční banky. Při velkých částkách může rozdíl v
+          kurzu činit desítky tisíc korun. Důležité je také zkontrolovat
+          povinnost hlášení devizových operací ve vaší zemi pobytu — některé
+          státy vyžadují hlášení příchozích plateb nad určitý limit.
+        </p>
+
+        <h2>Specifické situace</h2>
+        <p>
+          Prodej zděděné nemovitosti ze zahraničí je častým scénářem. Pokud jste
+          zdědili nemovitost v ČR, ale žijete v zahraničí, celý dědický proces
+          probíhá v České republice u notáře pověřeného soudem. I v tomto
+          případě můžete jednat prostřednictvím plné moci. Po nabytí dědictví
+          můžete nemovitost ihned prodat. Podrobnosti o prodeji zděděné
+          nemovitosti najdete v článku{" "}
+          <Link
+            href="/blog/prodej-zdenene-nemovitosti"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Prodej zděděné nemovitosti
+          </Link>{" "}
+          a na stránce{" "}
+          <Link
+            href="/vykup-pri-dedictvi"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Výkup nemovitosti při dědictví
+          </Link>
+          .
+        </p>
+        <p>
+          Prodej nemovitosti s nájemníky ze zahraničí je další častá situace.
+          Pokud nemovitost pronajímáte, výkupní firma ji koupí i s existujícími
+          nájemníky — nemusíte řešit výpovědi ani stěhování. Více o tomto tématu
+          najdete v článku{" "}
+          <Link
+            href="/blog/prodej-bytu-s-najemniky"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Prodej bytu s nájemníky
+          </Link>
+          .
+        </p>
+
+        <h2>Proč Češi v zahraničí volí výkup</h2>
+        <p>
+          Z naší zkušenosti volí Češi žijící v zahraničí výkup nemovitosti z
+          několika klíčových důvodů. Především je to pohodlí — celý proces lze
+          zvládnout na dálku bez nutnosti cestovat do České republiky. Dále je
+          to rychlost — zatímco klasický prodej přes realitku vyžaduje měsíce
+          aktivní účasti, výkup zvládneme za 2 až 4 týdny. Důležitá je i jistota
+          — závazná nabídka a advokátní úschova garantují bezpečnost celé
+          transakce.
+        </p>
+        <p>
+          Dalším důvodem je úspora na cestovních nákladech. Letenky, ubytování a
+          volno z práce pro jednání v ČR představují nezanedbatelné náklady,
+          které při výkupu na dálku zcela odpadají. A konečně, výkupní firma se
+          postará o veškerý právní a administrativní servis — od přípravy
+          smlouvy přes jednání s katastrem až po daňové povinnosti.
+        </p>
+
+        <h2>Máte otázky? Kontaktujte nás</h2>
+        <p>
+          Žijete v zahraničí a chcete prodat nemovitost v České republice?
+          Specializujeme se na výkup na dálku a celý proces přizpůsobíme vaší
+          situaci. Komunikujeme e-mailem, telefonicky i přes videohovory — v
+          češtině i angličtině. Nabídku vám připravíme do 24 hodin, zdarma a
+          nezávazně.{" "}
+          <Link href="/" className="text-emerald-600 hover:text-emerald-500">
+            Vyplňte formulář
+          </Link>{" "}
+          a ozveme se vám — bez ohledu na to, kde na světě se nacházíte.
+        </p>
+      </>
+    ),
+  },
   "jake-dokumenty-potrebuji": {
     title: "Jaké dokumenty potřebuji k výkupu nemovitosti?",
     date: "2026-03-02",
@@ -1567,6 +2400,7 @@ export default async function BlogArticlePage({
     "@type": "Article",
     headline: article.title,
     datePublished: article.date,
+    dateModified: article.date,
     author: {
       "@type": "Organization",
       name: "Vykoupím Nemovitost",

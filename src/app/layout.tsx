@@ -14,6 +14,7 @@ const ExitIntentPopup = dynamic(
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { SwRegister } from "@/components/sw-register";
+import { RetargetingTracker } from "@/components/retargeting-tracker";
 import { WebVitalsReporter } from "@/components/web-vitals-reporter";
 import {
   getDefaultRegion,
@@ -101,6 +102,7 @@ export default async function RootLayout({
         <ExitIntentPopup />
         <TrackingPixels />
         <SwRegister />
+        <RetargetingTracker />
         <CookieConsent />
       </body>
     </html>

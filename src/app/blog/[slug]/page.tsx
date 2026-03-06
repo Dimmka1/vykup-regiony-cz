@@ -1,3 +1,4 @@
+import { BlogScrollTracker } from "@/components/blog-scroll-tracker";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -1631,6 +1632,7 @@ export default async function BlogArticlePage({
           </div>
 
           <RelatedArticles articles={relatedArticles} />
+          <BlogScrollTracker slug={slug} />
 
           <div className="mt-8 flex justify-center gap-4 text-sm">
             <Link

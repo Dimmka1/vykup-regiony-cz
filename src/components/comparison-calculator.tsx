@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, type ReactElement } from "react";
+import { useState, useEffect, useRef, type ReactElement } from "react";
+import { trackEvent } from "@/lib/analytics";
 import {
   Check,
   Clock,
@@ -69,6 +70,7 @@ function parseInputValue(raw: string): number {
 
 export function ComparisonCalculator(): ReactElement {
   const [rawValue, setRawValue] = useState("");
+  const calculatorTracked = useRef(false);
 
   const price = parseInputValue(rawValue);
   const commissionMin = Math.round(price * REALITKA_COMMISSION_MIN);
@@ -76,6 +78,13 @@ export function ComparisonCalculator(): ReactElement {
   const netVykup = price;
   const netRealitkaMin = price - commissionMax;
   const netRealitkaMax = price - commissionMin;
+
+  useEffect(() => {
+    if (price > 0 && !calculatorTracked.current) {
+      calculatorTracked.current = true;
+      trackEvent("calculator_completed", { price });
+    }
+  }, [price]);
 
   return (
     <section className="py-16" id="srovnani">

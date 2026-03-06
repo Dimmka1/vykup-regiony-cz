@@ -134,6 +134,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
   // VR-129: Track step 1 on mount
   useEffect(() => {
     pushFormStepEvent(0, regionName);
+    trackEvent("form_step_1", { region: regionName });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -178,6 +179,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
     if (currentStep === 0) {
       setCurrentStep(1);
       pushFormStepEvent(1, regionName);
+      trackEvent("form_step_2", { region: regionName });
       setErrorMessage("");
       setFieldErrors({});
       return;
@@ -197,6 +199,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
       setFieldErrors({});
       setCurrentStep(2);
       pushFormStepEvent(2, regionName);
+      trackEvent("form_step_3", { region: regionName });
       setErrorMessage("");
     }
   };
@@ -255,6 +258,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
       }
 
       // VR-129: Track form submission
+      trackEvent("form_submitted", { region: regionName });
       trackEvent("form_submit", {
         step: 4,
         stepName: "submit",

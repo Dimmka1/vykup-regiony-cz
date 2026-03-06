@@ -12,7 +12,9 @@
     "format:check": "prettier --check .",
     "test": "vitest run",
     "ci": "npm run lint && npm run format:check && tsc --noEmit && npm run build",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "optimize-images": "node scripts/optimize-images.mjs",
+    "optimize-images:avif": "node scripts/optimize-images.mjs --avif"
   },
   "dependencies": {
     "lucide-react": "^0.575.0",
@@ -38,6 +40,7 @@
     "postcss": "^8.4.49",
     "prettier": "^3.8.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
+    "sharp": "^0.34.5",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.7.2",
     "vitest": "^4.0.18"

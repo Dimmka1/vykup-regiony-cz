@@ -26,6 +26,10 @@ export interface RegionConfig {
   themeColor?: string;
   regionFaq?: FaqItem[];
   testimonials?: { name: string; text: string; location: string }[];
+  marketAnalysis?: string;
+  localProcess?: string;
+  neighborhoodGuide?: string;
+  additionalFaq?: FaqItem[];
 }
 
 export interface RegionDataFile {

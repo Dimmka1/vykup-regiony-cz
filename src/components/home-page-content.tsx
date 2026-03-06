@@ -1,3 +1,5 @@
+import { TeamSection } from "@/components/team-section";
+import { getTeamMembers, buildTeamJsonLd } from "@/lib/team";
 import { safeJsonLd } from "@/lib/jsonld";
 import { SocialProofBar } from "@/components/social-proof-bar";
 import { getThemeStyle } from "@/lib/theme-colors";
@@ -345,6 +347,8 @@ export function HomePageContent({
   currentHost,
 }: HomePageContentProps): ReactElement {
   const schema = buildSchema(region, canonicalUrl);
+  const teamMembers = getTeamMembers();
+  const teamJsonLd = buildTeamJsonLd(teamMembers);
 
   const themeStyle = getThemeStyle(region.themeColor);
 
@@ -689,6 +693,8 @@ export function HomePageContent({
         </div>
       </section>
 
+      {/* ===== NÁŠ TÝM ===== */}
+      <TeamSection members={teamMembers} />
       {/* ===== PROPERTY ESTIMATOR ===== */}
 
       {/* ===== COMPARISON CALCULATOR ===== */}
@@ -844,6 +850,10 @@ export function HomePageContent({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonLd(schema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(teamJsonLd) }}
       />
     </div>
   );

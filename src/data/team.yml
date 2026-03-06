@@ -1,0 +1,22 @@
+# Team configuration
+# Owner: update names, photos, and bios as needed.
+# Photos are stored in public/images/team/
+
+members:
+  - name: "Jan Novák"
+    role: "Zakladatel & jednatel"
+    photo: "/images/team/jan-novak.jpg"
+    bio: "Jan má více než 15 let zkušeností v oblasti nemovitostí. Specializuje se na rychlé a férové výkupy po celé České republice. Jeho cílem je pomáhat majitelům v obtížných situacích."
+    yearsExperience: 15
+
+  - name: "Petra Svobodová"
+    role: "Právní specialistka"
+    photo: "/images/team/petra-svobodova.jpg"
+    bio: "Petra zajišťuje kompletní právní servis při každém výkupu. S více než 10letou praxí v realitním právu garantuje bezpečný a transparentní průběh celé transakce."
+    yearsExperience: 10
+
+  - name: "Martin Dvořák"
+    role: "Odhadce nemovitostí"
+    photo: "/images/team/martin-dvorak.jpg"
+    bio: "Martin je certifikovaný odhadce s 8letou praxí. Provádí přesné ocenění nemovitostí na základě aktuálních tržních dat a individuálního posouzení stavu."
+    yearsExperience: 8

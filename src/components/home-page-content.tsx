@@ -357,7 +357,7 @@ export function HomePageContent({
       <FloatingDesktopCta />
 
       {/* ===== HERO ===== */}
-      <section className="relative min-h-[520px] overflow-hidden sm:min-h-[480px]">
+      <section className="relative min-h-[90vh] overflow-hidden">
         <Image
           src={
             region.key === "praha"
@@ -373,7 +373,7 @@ export function HomePageContent({
           className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-slate-900/60 to-slate-800/40"
           aria-hidden="true"
         />
-        <div className="relative mx-auto flex min-h-[520px] max-w-7xl flex-col justify-center px-6 py-24 sm:min-h-[480px]">
+        <div className="relative mx-auto flex min-h-[90vh] max-w-7xl flex-col justify-center px-6 py-24 md:px-8 lg:px-12">
           <HeroStagger delay={1}>
             <div className="mb-4 flex flex-wrap items-center gap-3">
               <p className="glass inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white">
@@ -448,7 +448,7 @@ export function HomePageContent({
       {region.marketInfo && (
         <ScrollReveal>
           <section className="bg-gradient-to-b from-slate-50 to-white py-10">
-            <div className="mx-auto max-w-7xl px-6">
+            <div className="mx-auto max-w-3xl px-6 md:px-8 lg:px-12">
               <p className="text-center text-sm leading-relaxed text-slate-600 md:text-base">
                 {region.marketInfo}
               </p>
@@ -458,8 +458,8 @@ export function HomePageContent({
       )}
 
       {/* ===== TRUST METRICS ===== */}
-      <section className="py-20">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="py-24 md:py-32 lg:py-40">
+        <div className="mx-auto max-w-3xl px-6 md:px-8 lg:px-12">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             {TRUST_METRICS.map((metric, idx) => (
               <ScrollReveal key={metric.label} delay={idx * 100}>
@@ -480,8 +480,8 @@ export function HomePageContent({
       </section>
 
       {/* ===== JAK TO FUNGUJE (PROCESS STEPS) ===== */}
-      <section className="py-20">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="py-24 md:py-32 lg:py-40">
+        <div className="mx-auto max-w-7xl px-6 md:px-8 lg:px-12">
           <ScrollReveal>
             <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
               Jak to funguje
@@ -626,8 +626,8 @@ export function HomePageContent({
       </section>
 
       {/* ===== ŘEŠÍME I SLOŽITÉ SITUACE ===== */}
-      <section className="bg-gradient-to-b from-white to-slate-50 py-20">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="bg-gradient-to-b from-white to-slate-50 py-24 md:py-32 lg:py-40">
+        <div className="mx-auto max-w-7xl px-6 md:px-8 lg:px-12">
           <ScrollReveal>
             <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
               Řešíme i složité situace
@@ -678,7 +678,7 @@ export function HomePageContent({
       </section>
 
       {/* ===== VISUAL BREAK: PROPERTY EXTERIOR ===== */}
-      <section className="relative h-[150px] sm:h-[200px] lg:h-[250px]">
+      <section className="relative h-[300px] lg:h-[400px]">
         <Image
           src="/images/property-exterior.jpg"
           alt={`Rezidenční čtvrť v České republice – nemovitosti k výkupu ${region.locative}`}
@@ -698,8 +698,8 @@ export function HomePageContent({
       </section>
 
       {/* ===== PROČ KLIENTI VOLÍ NÁS (USP) ===== */}
-      <section className="bg-gradient-to-br from-[var(--theme-700)] via-[var(--theme-800)] to-[var(--theme-900)] py-20 text-white">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 py-24 text-white md:py-32 lg:py-40">
+        <div className="mx-auto max-w-7xl px-6 md:px-8 lg:px-12">
           <ScrollReveal>
             <h2 className="text-2xl font-bold text-white sm:text-3xl">
               Proč klienti volí nás
@@ -723,7 +723,7 @@ export function HomePageContent({
 
       {/* ===== O NÁS ===== */}
       <section className="py-24">
-        <div className="mx-auto max-w-7xl px-6">
+        <div className="mx-auto max-w-7xl px-6 md:px-8 lg:px-12">
           <div className="grid items-center gap-10 lg:grid-cols-2">
             <ScrollReveal className="img-zoom-hover shadow-layered relative aspect-[4/3] overflow-hidden rounded-2xl">
               <Image
@@ -785,7 +785,7 @@ export function HomePageContent({
         className="border-t border-[var(--theme-200)] bg-gradient-to-b from-[var(--theme-50)] to-white py-20"
         id="kontakt"
       >
-        <div className="mx-auto max-w-7xl px-6">
+        <div className="mx-auto max-w-7xl px-6 md:px-8 lg:px-12">
           <div className="grid gap-8 lg:grid-cols-2">
             <ScrollReveal>
               <LeadForm regionName={region.name} />
@@ -825,7 +825,7 @@ export function HomePageContent({
                   </div>
                 </div>
 
-                <div className="mt-8">
+                <div className="mt-12 md:mt-16">
                   <h3 className="text-lg font-semibold text-slate-900">
                     Nezávazná konzultace zdarma
                   </h3>
@@ -891,7 +891,7 @@ export function HomePageContent({
       </section>
 
       {/* ===== VISUAL BREAK: HAPPY FAMILY HOME ===== */}
-      <section className="relative h-[150px] sm:h-[200px] lg:h-[250px]">
+      <section className="relative h-[300px] lg:h-[400px]">
         <Image
           src="/images/happy-family-home.jpg"
           alt={`Moderní rodinný dům se zahradou – nemovitosti k výkupu ${region.locative}`}
@@ -915,14 +915,14 @@ export function HomePageContent({
       {/* ===== REGION FAQ ===== */}
       {region.regionFaq && region.regionFaq.length > 0 && (
         <section className="bg-gradient-to-b from-slate-50 to-white py-20">
-          <div className="mx-auto max-w-7xl px-6">
+          <div className="mx-auto max-w-7xl px-6 md:px-8 lg:px-12">
             <ScrollReveal>
               <h2 className="text-center text-2xl font-bold text-slate-900 sm:text-3xl">
                 Otázky k výkupu {region.locative}
               </h2>
             </ScrollReveal>
             <ScrollReveal delay={200}>
-              <div className="mt-8">
+              <div className="mt-12 md:mt-16">
                 <FaqAccordion items={region.regionFaq} />
               </div>
             </ScrollReveal>
@@ -931,15 +931,15 @@ export function HomePageContent({
       )}
 
       {/* ===== FAQ ===== */}
-      <section className="py-20">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="py-24 md:py-32 lg:py-40">
+        <div className="mx-auto max-w-7xl px-6 md:px-8 lg:px-12">
           <ScrollReveal>
             <h2 className="text-center text-2xl font-bold text-slate-900 sm:text-3xl">
               Časté dotazy
             </h2>
           </ScrollReveal>
           <ScrollReveal delay={200}>
-            <div className="mt-8">
+            <div className="mt-12 md:mt-16">
               <FaqAccordion
                 items={[...getRegionalFaq(region), ...region.faq]}
               />
@@ -951,7 +951,7 @@ export function HomePageContent({
       {/* ===== STICKY MOBILE BAR ===== */}
       <nav
         aria-label="Rychlé akce – kontakt a telefon"
-        className="mobile-bar-glass fixed inset-x-0 bottom-0 z-20 border-t border-slate-200 px-4 py-3 supports-[padding:max(0px)]:pb-[max(0.75rem,env(safe-area-inset-bottom))] lg:hidden"
+        className="mobile-bar-glass fixed inset-x-0 bottom-0 z-20 border-t border-white/20 bg-white/80 px-4 py-3 backdrop-blur-xl supports-[padding:max(0px)]:pb-[max(0.75rem,env(safe-area-inset-bottom))] lg:hidden"
       >
         <p className="mb-2 text-center text-xs text-slate-500">
           ✓ Bez provize &nbsp;·&nbsp; ✓ Nabídka do 24h &nbsp;·&nbsp; ✓ Právní

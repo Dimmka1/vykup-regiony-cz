@@ -17,11 +17,11 @@ export function FaqAccordion({ items }: FaqAccordionProps): ReactElement {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <div className="mx-auto max-w-3xl divide-y divide-slate-100">
+    <div className="mx-auto max-w-3xl divide-y divide-slate-200">
       {items.map((item, index) => {
         const isOpen = openIndex === index;
         return (
-          <div key={item.question} className="py-5">
+          <div key={item.question} className="py-6">
             <button
               type="button"
               className="flex w-full items-center justify-between text-left"
@@ -29,7 +29,7 @@ export function FaqAccordion({ items }: FaqAccordionProps): ReactElement {
               aria-expanded={isOpen}
               aria-label={`${isOpen ? "Zavřít" : "Otevřít"} odpověď: ${item.question}`}
             >
-              <span className="pr-4 font-semibold text-slate-800">
+              <span className="pr-4 text-lg font-semibold text-slate-800">
                 {item.question}
               </span>
               <ChevronDown
@@ -44,7 +44,7 @@ export function FaqAccordion({ items }: FaqAccordionProps): ReactElement {
                 isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
               }`}
             >
-              <p className="pt-3 leading-relaxed text-slate-600">
+              <p className="mt-3 text-base leading-relaxed text-slate-600">
                 {item.answer}
               </p>
             </div>

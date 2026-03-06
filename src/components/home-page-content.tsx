@@ -15,6 +15,8 @@ import { NearbyRegions } from "@/components/nearby-regions";
 import { ComparisonCalculator } from "@/components/comparison-calculator";
 import { LeadForm } from "@/components/lead-form";
 import { GuaranteeCarousel } from "@/components/guarantee-carousel";
+import { ScrollReveal } from "@/components/scroll-reveal";
+import { HeroStagger } from "@/components/hero-stagger";
 import { getRegionSubdomainUrl, isProductionHost } from "@/lib/config";
 import type { RegionConfig } from "@/lib/types";
 import {
@@ -361,64 +363,81 @@ export function HomePageContent({
               ? "/images/hero-prague.jpg"
               : `/images/hero-${region.key}.jpg`
           }
-          alt={`Panorama města ${region.primaryCity}`}
+          alt={`Panorama města ${region.primaryCity} – výkup nemovitostí ${region.locative}`}
           fill
           priority
           className="object-cover"
         />
         <div
-          className="absolute inset-0 bg-gradient-to-r from-slate-900/85 via-slate-900/50 to-slate-900/30"
+          className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-slate-900/60 to-slate-800/40"
           aria-hidden="true"
         />
-        <div className="relative mx-auto flex min-h-[520px] max-w-7xl flex-col justify-center px-6 py-20 sm:min-h-[480px]">
-          <div className="mb-4 flex flex-wrap items-center gap-3">
-            <p className="inline-flex rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white backdrop-blur-sm">
-              {region.locative}
-            </p>
-            <p className="border-[var(--theme-200)]/40 bg-[var(--theme-500)]/10 inline-flex rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[var(--theme-200)] backdrop-blur-sm">
-              Nejsme realitka - jsme přímý kupec
-            </p>
-          </div>
-          <h1 className="max-w-3xl text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl">
+        <div className="relative mx-auto flex min-h-[520px] max-w-7xl flex-col justify-center px-6 py-24 sm:min-h-[480px]">
+          <HeroStagger delay={1}>
+            <div className="mb-4 flex flex-wrap items-center gap-3">
+              <p className="glass inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white">
+                {region.locative}
+              </p>
+              <p className="glass inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[var(--theme-200)]">
+                Nejsme realitka - jsme přímý kupec
+              </p>
+            </div>
+          </HeroStagger>
+          <HeroStagger
+            delay={2}
+            as="h1"
+            className="max-w-3xl text-5xl font-extrabold leading-[1.1] tracking-tight text-white md:text-7xl"
+          >
             {region.h1}
-          </h1>
-          <p className="mt-4 hidden max-w-2xl text-base leading-relaxed text-slate-200 md:block md:text-lg">
-            {region.description}
-          </p>
+          </HeroStagger>
+          <HeroStagger delay={3}>
+            <p className="mt-4 hidden max-w-2xl text-base leading-relaxed text-slate-200 md:block md:text-lg">
+              {region.description}
+            </p>
+          </HeroStagger>
 
-          <ul className="mt-6 flex flex-wrap gap-2 text-sm text-white">
+          <HeroStagger
+            delay={3}
+            as="ul"
+            className="mt-6 flex flex-wrap gap-2 text-sm text-white"
+          >
             {HERO_BADGES.map((badge) => (
               <li
                 key={badge}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-white/20 bg-white/10 px-3 py-2 backdrop-blur-sm"
+                className="glass inline-flex items-center gap-1.5 rounded-lg px-3 py-2"
               >
-                <Check className="h-4 w-4 text-[var(--theme-400)]" />
+                <Check
+                  className="h-4 w-4 text-[var(--theme-400)]"
+                  aria-hidden="true"
+                />
                 {badge}
               </li>
             ))}
-          </ul>
+          </HeroStagger>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <CtaLink
-              href="#kontakt"
-              label={region.heroCta}
-              regionName={region.name}
-            />
-            <a
-              href={`tel:${region.phone}`}
-              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/40 px-6 py-3 text-base font-semibold text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
-            >
-              <Phone className="h-5 w-5" />
-              Zavolat: {region.phone}
-            </a>
-          </div>
-          <div className="mt-4">
-            <CallbackForm regionName={region.name} />
-          </div>
-          <div className="mt-4"></div>
-          <p className="mt-3 text-sm text-slate-300">
-            Zálohu vyplácíme při podpisu smlouvy. Celý proces trvá 3–7 dní.
-          </p>
+          <HeroStagger delay={4}>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <CtaLink
+                href="#kontakt"
+                label={region.heroCta}
+                regionName={region.name}
+              />
+              <a
+                href={`tel:${region.phone}`}
+                aria-label={`Zavolat na číslo ${region.phone}`}
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/40 px-6 py-3 text-base font-semibold text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+              >
+                <Phone className="h-5 w-5" aria-hidden="true" />
+                Zavolat: {region.phone}
+              </a>
+            </div>
+            <div className="mt-4">
+              <CallbackForm regionName={region.name} />
+            </div>
+            <p className="mt-3 text-sm text-slate-300">
+              Zálohu vyplácíme při podpisu smlouvy. Celý proces trvá 3–7 dní.
+            </p>
+          </HeroStagger>
         </div>
       </section>
 
@@ -426,91 +445,102 @@ export function HomePageContent({
 
       {/* ===== MARKET INFO ===== */}
       {region.marketInfo && (
-        <section className="bg-slate-50 py-8">
-          <div className="mx-auto max-w-7xl px-6">
-            <p className="text-center text-sm leading-relaxed text-slate-600 md:text-base">
-              {region.marketInfo}
-            </p>
-          </div>
-        </section>
+        <ScrollReveal>
+          <section className="bg-gradient-to-b from-slate-50 to-white py-10">
+            <div className="mx-auto max-w-7xl px-6">
+              <p className="text-center text-sm leading-relaxed text-slate-600 md:text-base">
+                {region.marketInfo}
+              </p>
+            </div>
+          </section>
+        </ScrollReveal>
       )}
 
       {/* ===== TRUST METRICS ===== */}
-      <section className="py-16">
+      <section className="py-20">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-            {TRUST_METRICS.map((metric) => (
-              <article
-                key={metric.label}
-                className="flex flex-col items-center rounded-2xl bg-slate-50 p-6 text-center"
-              >
-                <metric.Icon className="mb-3 h-7 w-7 text-[var(--theme-500)]" />
-                <p className="text-3xl font-bold text-[var(--theme-700)]">
-                  {metric.value}
-                </p>
-                <p className="mt-1 text-sm text-slate-500">{metric.label}</p>
-              </article>
+            {TRUST_METRICS.map((metric, idx) => (
+              <ScrollReveal key={metric.label} delay={idx * 100}>
+                <article className="card-hover-lift shadow-layered flex flex-col items-center rounded-2xl bg-white p-6 text-center">
+                  <metric.Icon
+                    className="mb-3 h-7 w-7 text-[var(--theme-500)]"
+                    aria-hidden="true"
+                  />
+                  <p className="text-3xl font-bold text-[var(--theme-700)]">
+                    {metric.value}
+                  </p>
+                  <p className="mt-1 text-sm text-slate-500">{metric.label}</p>
+                </article>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
       {/* ===== JAK TO FUNGUJE (PROCESS STEPS) ===== */}
-      <section className="py-16">
+      <section className="py-20">
         <div className="mx-auto max-w-7xl px-6">
-          <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
-            Jak to funguje
-          </h2>
-          <p className="mt-2 text-slate-600">
-            Od prvního kontaktu k penězům na účtu - jednoduše a rychle.
-          </p>
+          <ScrollReveal>
+            <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
+              Jak to funguje
+            </h2>
+            <p className="mt-2 text-slate-600">
+              Od prvního kontaktu k penězům na účtu - jednoduše a rychle.
+            </p>
+          </ScrollReveal>
 
           <div className="mt-10 space-y-12">
             <div className="grid items-center gap-8 lg:grid-cols-2">
               <div className="grid grid-cols-2 gap-4">
-                <div className="relative aspect-[3/4] overflow-hidden rounded-2xl shadow-lg">
+                <ScrollReveal
+                  delay={0}
+                  className="img-zoom-hover shadow-layered relative aspect-[3/4] overflow-hidden rounded-2xl"
+                >
                   <Image
                     src="/images/process-consultation.webp"
-                    alt="Činžovní dům v secesním stylu v Praze - výkup nemovitostí"
+                    alt={`Činžovní dům v secesním stylu ${region.locative} – expresní výkup nemovitostí`}
                     fill
                     className="object-cover"
                   />
-                </div>
-                <div className="relative aspect-[3/4] overflow-hidden rounded-2xl shadow-lg">
+                </ScrollReveal>
+                <ScrollReveal
+                  delay={100}
+                  className="img-zoom-hover shadow-layered relative aspect-[3/4] overflow-hidden rounded-2xl"
+                >
                   <Image
                     src="/images/process-valuation.webp"
-                    alt="Typický český rodinný dům - ocenění nemovitosti"
+                    alt={`Rodinný dům k ocenění – profesionální posouzení nemovitosti ${region.locative}`}
                     fill
                     className="object-cover"
                   />
-                </div>
+                </ScrollReveal>
               </div>
               <div className="space-y-6">
                 {PROCESS_STEPS.slice(0, 2).map((step, index) => (
-                  <div
-                    key={step.title}
-                    className="flex gap-4 rounded-2xl border border-slate-100 bg-white p-6"
-                  >
-                    <div className="flex flex-col items-center gap-2">
-                      <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--theme-50)] text-[var(--theme-600)]">
-                        <step.Icon className="h-6 w-6" />
-                      </span>
-                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[var(--theme-600)] text-xs font-bold text-white">
-                        {index + 1}
-                      </span>
+                  <ScrollReveal key={step.title} delay={index * 200}>
+                    <div className="card-hover-lift shadow-layered flex gap-4 rounded-2xl border border-slate-100 bg-white p-6">
+                      <div className="flex flex-col items-center gap-2">
+                        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--theme-50)] text-[var(--theme-600)]">
+                          <step.Icon className="h-6 w-6" aria-hidden="true" />
+                        </span>
+                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[var(--theme-600)] text-xs font-bold text-white">
+                          {index + 1}
+                        </span>
+                      </div>
+                      <div>
+                        <h3 className="text-base font-semibold text-slate-900">
+                          {step.title}
+                        </h3>
+                        <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                          {step.description}
+                        </p>
+                        <p className="mt-2 text-xs font-medium text-[var(--theme-600)]">
+                          {step.eta}
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-base font-semibold text-slate-900">
-                        {step.title}
-                      </h3>
-                      <p className="mt-1 text-sm leading-relaxed text-slate-600">
-                        {step.description}
-                      </p>
-                      <p className="mt-2 text-xs font-medium text-[var(--theme-600)]">
-                        {step.eta}
-                      </p>
-                    </div>
-                  </div>
+                  </ScrollReveal>
                 ))}
               </div>
             </div>
@@ -518,99 +548,127 @@ export function HomePageContent({
             <div className="grid items-center gap-8 lg:grid-cols-2">
               <div className="order-2 space-y-6 lg:order-1">
                 {PROCESS_STEPS.slice(2, 4).map((step, index) => (
-                  <div
-                    key={step.title}
-                    className="flex gap-4 rounded-2xl border border-slate-100 bg-white p-6"
-                  >
-                    <div className="flex flex-col items-center gap-2">
-                      <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--theme-50)] text-[var(--theme-600)]">
-                        <step.Icon className="h-6 w-6" />
-                      </span>
-                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[var(--theme-600)] text-xs font-bold text-white">
-                        {index + 3}
-                      </span>
+                  <ScrollReveal key={step.title} delay={index * 200}>
+                    <div className="card-hover-lift shadow-layered flex gap-4 rounded-2xl border border-slate-100 bg-white p-6">
+                      <div className="flex flex-col items-center gap-2">
+                        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--theme-50)] text-[var(--theme-600)]">
+                          <step.Icon className="h-6 w-6" aria-hidden="true" />
+                        </span>
+                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[var(--theme-600)] text-xs font-bold text-white">
+                          {index + 3}
+                        </span>
+                      </div>
+                      <div>
+                        <h3 className="text-base font-semibold text-slate-900">
+                          {step.title}
+                        </h3>
+                        <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                          {step.description}
+                        </p>
+                        <p className="mt-2 text-xs font-medium text-[var(--theme-600)]">
+                          {step.eta}
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-base font-semibold text-slate-900">
-                        {step.title}
-                      </h3>
-                      <p className="mt-1 text-sm leading-relaxed text-slate-600">
-                        {step.description}
-                      </p>
-                      <p className="mt-2 text-xs font-medium text-[var(--theme-600)]">
-                        {step.eta}
-                      </p>
-                    </div>
-                  </div>
+                  </ScrollReveal>
                 ))}
               </div>
               <div className="order-1 grid grid-cols-2 gap-4 lg:order-2">
-                <div className="relative aspect-[3/4] overflow-hidden rounded-2xl shadow-lg">
+                <ScrollReveal
+                  delay={0}
+                  className="img-zoom-hover shadow-layered relative aspect-[3/4] overflow-hidden rounded-2xl"
+                >
                   <Image
                     src="/images/process-contract.webp"
-                    alt="Renovovaný panelový dům - kupní smlouva"
+                    alt={`Kupní smlouva na nemovitost – bezpečný právní postup ${region.locative}`}
                     fill
                     className="object-cover"
                   />
-                </div>
-                <div className="relative aspect-[3/4] overflow-hidden rounded-2xl shadow-lg">
+                </ScrollReveal>
+                <ScrollReveal
+                  delay={100}
+                  className="img-zoom-hover shadow-layered relative aspect-[3/4] overflow-hidden rounded-2xl"
+                >
                   <Image
                     src="/images/process-keys.webp"
-                    alt="Prázdný byt připravený pro nové majitele - předání klíčů"
+                    alt={`Předání klíčů novým majitelům – dokončení výkupu ${region.locative}`}
                     fill
                     className="object-cover"
                   />
-                </div>
+                </ScrollReveal>
               </div>
             </div>
           </div>
-          <div className="mt-8 text-center">
-            <Link
-              href="/jak-to-funguje"
-              className="inline-flex items-center gap-1 text-sm font-medium text-[var(--theme-700)] transition hover:text-[var(--theme-600)]"
-            >
-              Více o celém procesu →
-            </Link>
-            <Link
-              href="/garance-vykupu"
-              className="inline-flex items-center gap-1 text-sm font-medium text-[var(--theme-700)] transition hover:text-[var(--theme-600)]"
-            >
-              Naše garance →
-            </Link>
-          </div>
+          <ScrollReveal>
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
+              <Link
+                href="/jak-to-funguje"
+                className="inline-flex items-center gap-1 text-sm font-medium text-[var(--theme-700)] transition hover:text-[var(--theme-600)]"
+                aria-label="Zjistěte více o celém procesu výkupu nemovitostí"
+              >
+                Více o celém procesu →
+              </Link>
+              <Link
+                href="/garance-vykupu"
+                className="inline-flex items-center gap-1 text-sm font-medium text-[var(--theme-700)] transition hover:text-[var(--theme-600)]"
+                aria-label="Prohlédněte si naše garance výkupu"
+              >
+                Naše garance →
+              </Link>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* ===== ŘEŠÍME I SLOŽITÉ SITUACE ===== */}
-      <section className="py-16">
+      <section className="bg-gradient-to-b from-white to-slate-50 py-20">
         <div className="mx-auto max-w-7xl px-6">
-          <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
-            Řešíme i složité situace
-          </h2>
-          <p className="mt-2 text-slate-600">
-            Nemovitost s problémem? Žádný strach - máme řešení pro každou
-            situaci.
-          </p>
+          <ScrollReveal>
+            <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
+              Řešíme i složité situace
+            </h2>
+            <p className="mt-2 text-slate-600">
+              Nemovitost s problémem? Žádný strach - máme řešení pro každou
+              situaci.
+            </p>
+          </ScrollReveal>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {COMPLEX_SITUATIONS.map((situation) => (
-              <div
-                key={situation.label}
-                className="flex gap-4 rounded-2xl border border-slate-100 bg-white p-6 transition hover:-translate-y-0.5 hover:shadow-lg"
-              >
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--theme-50)] text-[var(--theme-600)]">
-                  <situation.Icon className="h-5 w-5" />
-                </span>
-                <div>
-                  <h3 className="font-semibold text-slate-900">
-                    {situation.label}
-                  </h3>
-                  <p className="mt-1 text-sm leading-relaxed text-slate-500">
-                    {situation.description}
-                  </p>
+            {COMPLEX_SITUATIONS.map((situation, idx) => (
+              <ScrollReveal key={situation.label} delay={idx * 80}>
+                <div className="card-hover-lift shadow-layered flex gap-4 rounded-2xl border border-slate-100 bg-white p-6">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--theme-50)] text-[var(--theme-600)]">
+                    <situation.Icon className="h-5 w-5" aria-hidden="true" />
+                  </span>
+                  <div>
+                    <h3 className="font-semibold text-slate-900">
+                      {situation.label}
+                    </h3>
+                    <p className="mt-1 text-sm leading-relaxed text-slate-500">
+                      {situation.description}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
+          <ScrollReveal>
+            <div className="mt-6 text-center">
+              <Link
+                href="/vykup-pri-exekuci"
+                className="mr-4 inline-flex items-center gap-1 text-sm font-medium text-[var(--theme-700)] transition hover:text-[var(--theme-600)]"
+                aria-label="Více informací o výkupu nemovitostí při exekuci"
+              >
+                Výkup při exekuci →
+              </Link>
+              <Link
+                href="/vykup-pri-dedictvi"
+                className="inline-flex items-center gap-1 text-sm font-medium text-[var(--theme-700)] transition hover:text-[var(--theme-600)]"
+                aria-label="Více informací o výkupu nemovitostí při dědictví"
+              >
+                Výkup při dědictví →
+              </Link>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -618,11 +676,14 @@ export function HomePageContent({
       <section className="relative h-[150px] sm:h-[200px] lg:h-[250px]">
         <Image
           src="/images/property-exterior.jpg"
-          alt="Rezidenční čtvrť v České republice - autentická architektura"
+          alt={`Rezidenční čtvrť v České republice – nemovitosti k výkupu ${region.locative}`}
           fill
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-slate-900/60" aria-hidden="true" />
+        <div
+          className="absolute inset-0 bg-gradient-to-r from-slate-900/70 to-slate-900/50"
+          aria-hidden="true"
+        />
         <div className="relative flex h-full items-center justify-center px-6">
           <p className="text-center text-xl font-bold text-white sm:text-2xl lg:text-3xl">
             Pomáháme majitelům nemovitostí po celé České republice
@@ -631,60 +692,78 @@ export function HomePageContent({
       </section>
 
       {/* ===== PROČ KLIENTI VOLÍ NÁS (USP) ===== */}
-      <section className="bg-gradient-to-br from-[var(--theme-700)] to-[var(--theme-900)] py-16 text-white">
+      <section className="bg-gradient-to-br from-[var(--theme-700)] via-[var(--theme-800)] to-[var(--theme-900)] py-20 text-white">
         <div className="mx-auto max-w-7xl px-6">
-          <h2 className="text-2xl font-bold text-white sm:text-3xl">
-            Proč klienti volí nás
-          </h2>
+          <ScrollReveal>
+            <h2 className="text-2xl font-bold text-white sm:text-3xl">
+              Proč klienti volí nás
+            </h2>
+          </ScrollReveal>
           <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {region.uspPoints.map((point) => (
-              <li
-                key={point}
-                className="flex items-start gap-3 rounded-2xl border border-white/20 bg-white/10 p-6 backdrop-blur"
-              >
-                <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-[var(--theme-400)]" />
-                <span className="text-white/90">{point}</span>
-              </li>
+            {region.uspPoints.map((point, idx) => (
+              <ScrollReveal key={point} delay={idx * 100} as="li">
+                <div className="glass flex h-full items-start gap-3 rounded-2xl p-6">
+                  <CheckCircle
+                    className="mt-0.5 h-5 w-5 shrink-0 text-[var(--theme-400)]"
+                    aria-hidden="true"
+                  />
+                  <span className="text-white/90">{point}</span>
+                </div>
+              </ScrollReveal>
             ))}
           </ul>
         </div>
       </section>
 
       {/* ===== O NÁS ===== */}
-      <section className="py-16">
+      <section className="py-24">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid items-center gap-10 lg:grid-cols-2">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-xl">
+            <ScrollReveal className="img-zoom-hover shadow-layered relative aspect-[4/3] overflow-hidden rounded-2xl">
               <Image
                 src="/images/property-exterior.jpg"
-                alt="Rezidenční čtvrť v České republice - působíme po celé zemi"
+                alt={`Rezidenční nemovitosti v ${region.name} – profesionální výkup v celém kraji`}
                 fill
                 className="object-cover"
               />
-            </div>
-            <div>
-              <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
-                O nás
-              </h2>
-              <p className="mt-4 leading-relaxed text-slate-700">
-                Specializujeme se na rychlý a férový výkup nemovitostí v celé
-                České republice. Nabízíme transparentní proces, férovou cenu a
-                kompletní právní servis zdarma.
-              </p>
-              <div className="mt-8 grid gap-4 sm:grid-cols-3">
-                {ABOUT_STATS.map((stat) => (
-                  <div
-                    key={stat.label}
-                    className="border-l-2 border-[var(--theme-500)] pl-4"
+            </ScrollReveal>
+            <ScrollReveal delay={200}>
+              <div>
+                <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
+                  O nás
+                </h2>
+                <p className="mt-4 leading-relaxed text-slate-700">
+                  Specializujeme se na rychlý a férový výkup nemovitostí v celé
+                  České republice. Nabízíme transparentní proces, férovou cenu a
+                  kompletní právní servis zdarma. Působíme {region.locative} a
+                  po celém Česku.
+                </p>
+                <div className="mt-8 grid gap-4 sm:grid-cols-3">
+                  {ABOUT_STATS.map((stat) => (
+                    <div
+                      key={stat.label}
+                      className="border-l-2 border-[var(--theme-500)] pl-4"
+                    >
+                      <p className="text-2xl font-bold text-[var(--theme-700)]">
+                        {stat.value}
+                      </p>
+                      <p className="mt-1 text-sm text-slate-600">
+                        {stat.label}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-6">
+                  <Link
+                    href="/proc-my"
+                    className="inline-flex items-center gap-1 text-sm font-medium text-[var(--theme-700)] transition hover:text-[var(--theme-600)]"
+                    aria-label="Zjistěte proč si vybrat nás pro výkup nemovitostí"
                   >
-                    <p className="text-2xl font-bold text-[var(--theme-700)]">
-                      {stat.value}
-                    </p>
-                    <p className="mt-1 text-sm text-slate-600">{stat.label}</p>
-                  </div>
-                ))}
+                    Zjistěte více o nás →
+                  </Link>
+                </div>
               </div>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -696,77 +775,83 @@ export function HomePageContent({
 
       {/* ===== LEAD FORM + CO SE STANE PO ODESLÁNÍ ===== */}
       <section
-        className="border-t border-[var(--theme-200)] bg-[var(--theme-50)] py-16"
+        className="border-t border-[var(--theme-200)] bg-gradient-to-b from-[var(--theme-50)] to-white py-20"
         id="kontakt"
       >
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid gap-8 lg:grid-cols-2">
-            <LeadForm regionName={region.name} />
+            <ScrollReveal>
+              <LeadForm regionName={region.name} />
+            </ScrollReveal>
 
-            <div className="rounded-2xl border border-slate-100 bg-white p-8 shadow-sm">
-              <h2 className="text-2xl font-bold text-slate-900">
-                Co se stane po odeslání
-              </h2>
-              <ul className="mt-6 space-y-4">
-                {FORM_BENEFITS.map((benefit) => (
-                  <li key={benefit} className="flex items-start gap-3">
-                    <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--theme-100)] text-[var(--theme-600)]">
-                      <Check className="h-4 w-4" />
-                    </span>
-                    <span className="text-slate-700">{benefit}</span>
-                  </li>
-                ))}
-              </ul>
+            <ScrollReveal delay={200}>
+              <div className="shadow-layered rounded-2xl border border-slate-100 bg-white p-8">
+                <h2 className="text-2xl font-bold text-slate-900">
+                  Co se stane po odeslání
+                </h2>
+                <ul className="mt-6 space-y-4">
+                  {FORM_BENEFITS.map((benefit) => (
+                    <li key={benefit} className="flex items-start gap-3">
+                      <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--theme-100)] text-[var(--theme-600)]">
+                        <Check className="h-4 w-4" aria-hidden="true" />
+                      </span>
+                      <span className="text-slate-700">{benefit}</span>
+                    </li>
+                  ))}
+                </ul>
 
-              <div className="relative mt-6 aspect-[16/9] overflow-hidden rounded-2xl">
-                <Image
-                  src="/images/texture-brick.webp"
-                  alt="Textura české cihlové zdi - detail historického zdiva"
-                  fill
-                  className="object-cover"
-                />
-                <div
-                  className="absolute inset-0 bg-slate-900/60"
-                  aria-hidden="true"
-                />
-                <div className="relative flex h-full items-center justify-center px-6">
-                  <p className="text-center text-lg font-bold text-white">
-                    Férové jednání je náš standard
+                <div className="img-zoom-hover relative mt-6 aspect-[16/9] overflow-hidden rounded-2xl">
+                  <Image
+                    src="/images/texture-brick.webp"
+                    alt={`Historická cihlová zeď – tradice a spolehlivost výkupu nemovitostí ${region.locative}`}
+                    fill
+                    className="object-cover"
+                  />
+                  <div
+                    className="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-slate-900/40"
+                    aria-hidden="true"
+                  />
+                  <div className="relative flex h-full items-center justify-center px-6">
+                    <p className="text-center text-lg font-bold text-white">
+                      Férové jednání je náš standard
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-8">
+                  <h3 className="text-lg font-semibold text-slate-900">
+                    Nezávazná konzultace zdarma
+                  </h3>
+                  <p className="mt-2 text-sm text-slate-600">
+                    Primárně {region.primaryCity} a okolí, dále:{" "}
+                    {region.supportedCities.join(", ")}.
+                  </p>
+                  <p className="mt-4 text-xs text-slate-500">
+                    {region.legalDisclaimer}
                   </p>
                 </div>
               </div>
-
-              <div className="mt-8">
-                <h3 className="text-lg font-semibold text-slate-900">
-                  Nezávazná konzultace zdarma
-                </h3>
-                <p className="mt-2 text-sm text-slate-600">
-                  Primárně {region.primaryCity} a okolí, dále:{" "}
-                  {region.supportedCities.join(", ")}.
-                </p>
-                <p className="mt-4 text-xs text-slate-500">
-                  {region.legalDisclaimer}
-                </p>
-              </div>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
       <PropertyEstimator regionKey={region.key} />
 
       {/* ===== TESTIMONIALS ===== */}
-      <section className="relative py-16">
+      <section className="relative py-20">
         <Image
           src="/images/testimonial-bg.jpg"
-          alt="Střechy českého města při západu slunce"
+          alt={`Střechy českého města při západu slunce – výkup nemovitostí ${region.locative}`}
           fill
           className="object-cover"
         />
         <div className="absolute inset-0 bg-white/90" aria-hidden="true" />
         <div className="relative mx-auto max-w-7xl px-6">
-          <h2 className="mb-8 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
-            Naše garance
-          </h2>
+          <ScrollReveal>
+            <h2 className="mb-8 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+              Naše garance
+            </h2>
+          </ScrollReveal>
           <GuaranteeCarousel />
         </div>
       </section>
@@ -775,11 +860,14 @@ export function HomePageContent({
       <section className="relative h-[150px] sm:h-[200px] lg:h-[250px]">
         <Image
           src="/images/happy-family-home.jpg"
-          alt="Moderní český rodinný dům se zahradou"
+          alt={`Moderní rodinný dům se zahradou – nemovitosti k výkupu ${region.locative}`}
           fill
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-slate-900/60" aria-hidden="true" />
+        <div
+          className="absolute inset-0 bg-gradient-to-r from-slate-900/70 to-slate-900/40"
+          aria-hidden="true"
+        />
         <div className="relative flex h-full items-center justify-center px-6">
           <p className="text-center text-xl font-bold text-white sm:text-2xl lg:text-3xl">
             Vaše nemovitost si zaslouží férové jednání
@@ -792,34 +880,42 @@ export function HomePageContent({
 
       {/* ===== REGION FAQ ===== */}
       {region.regionFaq && region.regionFaq.length > 0 && (
-        <section className="bg-slate-50 py-16">
+        <section className="bg-gradient-to-b from-slate-50 to-white py-20">
           <div className="mx-auto max-w-7xl px-6">
-            <h2 className="text-center text-2xl font-bold text-slate-900 sm:text-3xl">
-              Otázky k výkupu {region.locative}
-            </h2>
-            <div className="mt-8">
-              <FaqAccordion items={region.regionFaq} />
-            </div>
+            <ScrollReveal>
+              <h2 className="text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+                Otázky k výkupu {region.locative}
+              </h2>
+            </ScrollReveal>
+            <ScrollReveal delay={200}>
+              <div className="mt-8">
+                <FaqAccordion items={region.regionFaq} />
+              </div>
+            </ScrollReveal>
           </div>
         </section>
       )}
 
       {/* ===== FAQ ===== */}
-      <section className="py-16">
+      <section className="py-20">
         <div className="mx-auto max-w-7xl px-6">
-          <h2 className="text-center text-2xl font-bold text-slate-900 sm:text-3xl">
-            Časté dotazy
-          </h2>
-          <div className="mt-8">
-            <FaqAccordion items={[...GENERAL_FAQ, ...region.faq]} />
-          </div>
+          <ScrollReveal>
+            <h2 className="text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+              Časté dotazy
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal delay={200}>
+            <div className="mt-8">
+              <FaqAccordion items={[...GENERAL_FAQ, ...region.faq]} />
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* ===== STICKY MOBILE BAR ===== */}
       <nav
-        aria-label="Rychlé akce"
-        className="fixed inset-x-0 bottom-0 z-20 border-t border-slate-200 bg-white/95 px-4 py-3 backdrop-blur supports-[padding:max(0px)]:pb-[max(0.75rem,env(safe-area-inset-bottom))] lg:hidden"
+        aria-label="Rychlé akce – kontakt a telefon"
+        className="mobile-bar-glass fixed inset-x-0 bottom-0 z-20 border-t border-slate-200 px-4 py-3 supports-[padding:max(0px)]:pb-[max(0.75rem,env(safe-area-inset-bottom))] lg:hidden"
       >
         <p className="mb-2 text-center text-xs text-slate-500">
           ✓ Bez provize &nbsp;·&nbsp; ✓ Nabídka do 24h &nbsp;·&nbsp; ✓ Právní
@@ -828,13 +924,15 @@ export function HomePageContent({
         <div className="mx-auto flex max-w-7xl gap-2">
           <a
             href="#kontakt"
-            className="inline-flex min-h-11 flex-1 items-center justify-center rounded-xl bg-[var(--theme-600)] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[var(--theme-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
+            className="cta-glow btn-ripple inline-flex min-h-11 flex-1 items-center justify-center rounded-xl bg-gradient-to-r from-[var(--theme-600)] to-[var(--theme-700)] px-4 py-3 text-sm font-semibold text-white transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
+            aria-label="Odeslat nezávaznou poptávku výkupu nemovitosti zdarma"
           >
             Odeslat poptávku - zdarma
           </a>
           <a
             href={`tel:${region.phone}`}
-            className="inline-flex min-h-11 flex-1 items-center justify-center rounded-xl border border-slate-300 px-4 py-3 text-sm font-semibold text-slate-800 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
+            className="btn-ripple inline-flex min-h-11 flex-1 items-center justify-center rounded-xl border border-slate-300 px-4 py-3 text-sm font-semibold text-slate-800 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
+            aria-label={`Zavolat na číslo ${region.phone}`}
           >
             Zavolat
           </a>

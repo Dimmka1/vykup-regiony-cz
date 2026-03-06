@@ -82,7 +82,7 @@ export function CallbackForm({ regionName }: CallbackFormProps): ReactElement {
       <button
         type="button"
         onClick={handleToggle}
-        className="inline-flex items-center gap-2 rounded-lg border-2 border-[var(--theme-600)] bg-white px-5 py-3 text-sm font-semibold text-[var(--theme-700)] transition hover:bg-[var(--theme-50)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
+        className="btn-ripple inline-flex items-center gap-2 rounded-lg border-2 border-[var(--theme-600)] bg-white px-5 py-3 text-sm font-semibold text-[var(--theme-700)] transition hover:bg-[var(--theme-50)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
       >
         <Phone className="h-4 w-4" />
         Zavolejte mi zpět
@@ -114,7 +114,7 @@ export function CallbackForm({ regionName }: CallbackFormProps): ReactElement {
             setPhone(normalizePhone(e.target.value));
             if (error) setError("");
           }}
-          className={`min-h-11 w-full rounded border px-3 py-2.5 text-base transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] ${
+          className={`input-focus-glow min-h-11 w-full rounded border px-3 py-2.5 text-base transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] ${
             error ? "border-red-500" : "border-slate-300"
           }`}
           required
@@ -128,7 +128,8 @@ export function CallbackForm({ regionName }: CallbackFormProps): ReactElement {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="inline-flex min-h-11 items-center justify-center gap-2 rounded bg-[var(--theme-600)] px-5 py-2.5 text-base font-semibold text-white transition hover:bg-[var(--theme-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 disabled:opacity-70"
+        aria-label="Odeslat žádost o zpětné zavolání"
+        className="cta-glow btn-ripple inline-flex min-h-11 items-center justify-center gap-2 rounded bg-[var(--theme-600)] px-5 py-2.5 text-base font-semibold text-white transition hover:bg-[var(--theme-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 disabled:opacity-70"
       >
         <Phone className="h-4 w-4" />
         {status === "submitting" ? "Odesílám..." : "Zavolejte mi"}

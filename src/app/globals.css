@@ -7,11 +7,13 @@
   --theme-50: #f0fdfa;
   --theme-100: #ccfbf1;
   --theme-200: #99f6e4;
+  --theme-400: #2dd4bf;
   --theme-500: #14b8a6;
   --theme-600: #0d9488;
   --theme-700: #0f766e;
   --theme-800: #115e59;
   --theme-900: #134e4a;
+  --theme-rgb: 13, 148, 136;
 }
 
 html {
@@ -52,6 +54,218 @@ input[type="radio"] {
 /* Elements with Tailwind focus-visible classes handle their own styles */
 [class*="focus-visible:"]:focus-visible {
   outline: none;
+}
+
+input:not([type="checkbox"]):not([type="radio"]),
+select,
+textarea {
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+input:not([type="checkbox"]):not([type="radio"]):focus,
+select:focus,
+textarea:focus {
+  border-color: var(--theme-500);
+  box-shadow: 0 0 0 3px rgba(var(--theme-rgb), 0.15);
+}
+
+/* ===== SCROLL REVEAL ANIMATIONS ===== */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== HERO STAGGERED ENTRANCE ===== */
+.hero-stagger {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-stagger--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-stagger--delay-1 {
+  transition-delay: 100ms;
+}
+.hero-stagger--delay-2 {
+  transition-delay: 200ms;
+}
+.hero-stagger--delay-3 {
+  transition-delay: 300ms;
+}
+.hero-stagger--delay-4 {
+  transition-delay: 400ms;
+}
+
+/* ===== CARD HOVER LIFT ===== */
+.card-hover-lift {
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 10px 25px -5px rgba(0, 0, 0, 0.1),
+    0 8px 10px -6px rgba(0, 0, 0, 0.06);
+}
+
+/* ===== IMAGE ZOOM ON HOVER ===== */
+.img-zoom-hover {
+  overflow: hidden;
+}
+
+.img-zoom-hover img {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.img-zoom-hover:hover img {
+  transform: scale(1.05);
+}
+
+@keyframes ctaPulseGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(var(--theme-rgb), 0.22);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(var(--theme-rgb), 0);
+  }
+}
+
+/* ===== CTA BUTTON PULSE/GLOW ===== */
+.cta-glow {
+  position: relative;
+  animation: ctaPulseGlow 3.2s ease-in-out infinite;
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cta-glow:hover {
+  transform: scale(1.02);
+  box-shadow:
+    0 0 20px rgba(var(--theme-rgb, 13, 148, 136), 0.3),
+    0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== BUTTON RIPPLE (CSS only) ===== */
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-ripple::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.3) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transform: scale(0);
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+
+.btn-ripple:active::after {
+  opacity: 1;
+  transform: scale(2.5);
+  transition: 0s;
+}
+
+/* ===== INPUT FOCUS GLOW ===== */
+.input-focus-glow {
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.input-focus-glow:focus {
+  border-color: var(--theme-500);
+  box-shadow: 0 0 0 3px rgba(var(--theme-rgb, 13, 148, 136), 0.15);
+}
+
+/* ===== GLASS MORPHISM ===== */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glass-dark {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ===== LAYERED SHADOWS ===== */
+.shadow-layered {
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 4px 8px rgba(0, 0, 0, 0.04),
+    0 12px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* ===== STICKY MOBILE BAR GLASS ===== */
+.mobile-bar-glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* ===== REDUCED MOTION: DISABLE ALL ANIMATIONS ===== */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal,
+  .hero-stagger {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .card-hover-lift:hover {
+    transform: none;
+  }
+
+  .img-zoom-hover:hover img {
+    transform: none;
+  }
+
+  .cta-glow,
+  .cta-glow:hover {
+    animation: none;
+    transform: none;
+  }
+
+  .btn-ripple::after {
+    display: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 /* Blog article prose styles */

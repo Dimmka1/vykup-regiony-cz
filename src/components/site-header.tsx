@@ -121,7 +121,7 @@ export function SiteHeader({ phone = "+420 776 424 145" }: SiteHeaderProps) {
           </a>
           <a
             href="#kontakt"
-            className="hidden min-h-[44px] items-center rounded-xl bg-[var(--theme-700)] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[var(--theme-600)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 md:inline-flex"
+            className="cta-glow btn-ripple hidden min-h-[44px] items-center rounded-xl bg-[var(--theme-700)] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[var(--theme-600)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 md:inline-flex"
           >
             Nezávazná poptávka
           </a>
@@ -193,8 +193,9 @@ export function SiteHeader({ phone = "+420 776 424 145" }: SiteHeaderProps) {
             </a>
             <a
               href="#kontakt"
-              className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-[var(--theme-700)] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[var(--theme-600)]"
+              className="cta-glow btn-ripple inline-flex min-h-[44px] items-center justify-center rounded-xl bg-[var(--theme-700)] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[var(--theme-600)]"
               onClick={() => setMobileOpen(false)}
+              aria-label="Přejít na nezávaznou poptávku výkupu nemovitosti"
             >
               Nezávazná poptávka
             </a>

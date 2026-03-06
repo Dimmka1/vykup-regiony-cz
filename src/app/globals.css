@@ -335,3 +335,113 @@ textarea:focus {
 .animate-scroll-bounce {
   animation: scrollBounce 2s infinite;
 }
+
+/* ===== PREMIUM UI SYSTEM (VR-203) ===== */
+.gradient-premium {
+  background: linear-gradient(
+    135deg,
+    var(--theme-700) 0%,
+    var(--theme-900) 100%
+  );
+}
+.gradient-text {
+  background: linear-gradient(135deg, var(--theme-600), var(--theme-800));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.glass {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.glass-white {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.shadow-premium {
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.04),
+    0 8px 24px rgba(0, 0, 0, 0.06);
+}
+.shadow-premium-lg {
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.06),
+    0 20px 48px rgba(0, 0, 0, 0.12);
+}
+.card-accent {
+  position: relative;
+}
+.card-accent::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  border-radius: 9999px 9999px 0 0;
+  background: linear-gradient(90deg, var(--theme-500), var(--theme-700));
+}
+.divider-gradient {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--theme-200, #e2e8f0),
+    transparent
+  );
+  max-width: 80%;
+  margin: 0 auto;
+}
+.hero-blob {
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--theme-500) 0%, transparent 70%);
+  opacity: 0.08;
+  filter: blur(80px);
+  pointer-events: none;
+}
+.hero-blob-2 {
+  position: absolute;
+  bottom: -30%;
+  left: -15%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--theme-400) 0%, transparent 70%);
+  opacity: 0.06;
+  filter: blur(100px);
+  pointer-events: none;
+}
+.hover-lift {
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+}
+@keyframes cta-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(var(--theme-rgb, 59 130 246), 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(var(--theme-rgb, 59 130 246), 0);
+  }
+}
+.animate-cta-glow {
+  animation: cta-glow 3s infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hover-lift:hover {
+    transform: none;
+  }
+  .animate-cta-glow {
+    animation: none;
+  }
+}

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Shield, Clock, BadgeCheck, HandCoins } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
+import { UpdatedBadge } from "@/components/updated-badge";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
@@ -87,8 +88,28 @@ export default async function VykupPriExekuciPage(): Promise<React.ReactElement>
     })),
   };
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "Výkup nemovitosti při exekuci",
+    datePublished: "2026-02-01",
+    dateModified: "2026-03-04",
+    author: {
+      "@type": "Organization",
+      name: "Vykoupím Nemovitost",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Vykoupím Nemovitost",
+    },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(articleJsonLd) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonLd(faqJsonLd) }}
@@ -107,6 +128,9 @@ export default async function VykupPriExekuciPage(): Promise<React.ReactElement>
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
             Výkup nemovitosti při exekuci
           </h1>
+          <div className="mt-3">
+            <UpdatedBadge date="2026-03-04" />
+          </div>
           <p className="mt-4 text-lg text-slate-600">
             Exekuce na nemovitost je stresující situace, ale existuje cesta ven.
             Pomůžeme vám nemovitost rychle prodat, uhradit dluhy a začít znovu -

@@ -11,6 +11,7 @@ import {
   Users,
 } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
+import { UpdatedBadge } from "@/components/updated-badge";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
@@ -135,8 +136,28 @@ export default async function VykupDomuPage(): Promise<React.ReactElement> {
     isPartOf: { "@type": "WebSite", url: "https://vykoupim-nemovitost.cz" },
   };
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "Výkup domů - rychlý prodej domu za hotové",
+    datePublished: "2026-02-01",
+    dateModified: "2026-03-04",
+    author: {
+      "@type": "Organization",
+      name: "Vykoupím Nemovitost",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Vykoupím Nemovitost",
+    },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(articleJsonLd) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonLd(faqJsonLd) }}
@@ -159,6 +180,9 @@ export default async function VykupDomuPage(): Promise<React.ReactElement> {
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
             Výkup rodinných domů - rychle, férově a bez provize
           </h1>
+          <div className="mt-3">
+            <UpdatedBadge date="2026-03-04" />
+          </div>
           <p className="mt-4 text-lg text-slate-600">
             Chcete prodat rodinný dům rychle a bez komplikací? Vykoupíme váš dům
             za férovou cenu odpovídající 80–90 % tržní hodnoty. Celý proces

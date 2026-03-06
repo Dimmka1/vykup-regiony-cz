@@ -31,25 +31,41 @@ function buildHreflangAlternates(path: string) {
 }
 
 const CONTENT_PATHS = [
-  { path: "/", priority: 1.0 },
-  { path: "/caste-dotazy", priority: 0.8 },
-  { path: "/blog", priority: 0.8 },
-  { path: "/vykup-pri-exekuci", priority: 0.8 },
-  { path: "/vykup-pri-dedictvi", priority: 0.8 },
-  { path: "/vykup-pri-rozvodu", priority: 0.8 },
-  { path: "/vykup-spoluvlastnickeho-podilu", priority: 0.8 },
-  { path: "/vykup-nemovitosti-s-hypotekou", priority: 0.8 },
-  { path: "/vykup-nemovitosti-s-vecnym-bremenem", priority: 0.8 },
-  { path: "/zpetny-najem", priority: 0.8 },
-  { path: "/vykup-bytu", priority: 0.8 },
-  { path: "/vykup-domu", priority: 0.8 },
-  { path: "/vykup-pozemku", priority: 0.8 },
-  { path: "/reference", priority: 0.6 },
-  { path: "/jak-to-funguje", priority: 0.7 },
-  { path: "/proc-my", priority: 0.8 },
-  { path: "/kraje", priority: 0.7 },
-  { path: "/ochrana-osobnich-udaju", priority: 0.3 },
-  { path: "/cookies", priority: 0.3 },
+  { path: "/", priority: 1.0, lastModified: "2026-03-06" },
+  { path: "/caste-dotazy", priority: 0.8, lastModified: "2026-03-03" },
+  { path: "/blog", priority: 0.8, lastModified: "2026-03-06" },
+  { path: "/vykup-pri-exekuci", priority: 0.8, lastModified: "2026-03-04" },
+  { path: "/vykup-pri-dedictvi", priority: 0.8, lastModified: "2026-03-04" },
+  { path: "/vykup-pri-rozvodu", priority: 0.8, lastModified: "2026-03-04" },
+  {
+    path: "/vykup-spoluvlastnickeho-podilu",
+    priority: 0.8,
+    lastModified: "2026-03-03",
+  },
+  {
+    path: "/vykup-nemovitosti-s-hypotekou",
+    priority: 0.8,
+    lastModified: "2026-03-03",
+  },
+  {
+    path: "/vykup-nemovitosti-s-vecnym-bremenem",
+    priority: 0.8,
+    lastModified: "2026-03-03",
+  },
+  { path: "/zpetny-najem", priority: 0.8, lastModified: "2026-03-02" },
+  { path: "/vykup-bytu", priority: 0.8, lastModified: "2026-03-04" },
+  { path: "/vykup-domu", priority: 0.8, lastModified: "2026-03-04" },
+  { path: "/vykup-pozemku", priority: 0.8, lastModified: "2026-03-03" },
+  { path: "/reference", priority: 0.6, lastModified: "2026-02-20" },
+  { path: "/jak-to-funguje", priority: 0.7, lastModified: "2026-03-01" },
+  { path: "/proc-my", priority: 0.8, lastModified: "2026-03-01" },
+  { path: "/kraje", priority: 0.7, lastModified: "2026-02-25" },
+  {
+    path: "/ochrana-osobnich-udaju",
+    priority: 0.3,
+    lastModified: "2026-01-15",
+  },
+  { path: "/cookies", priority: 0.3, lastModified: "2026-01-15" },
 ] as const;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -86,7 +102,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Root domain sitemap: all content pages + blog posts
   const entries: MetadataRoute.Sitemap = CONTENT_PATHS.map((entry) => ({
     url: `${baseUrl}${entry.path}`,
-    lastModified: now,
+    lastModified: new Date(entry.lastModified),
     changeFrequency: "monthly" as const,
     priority: entry.priority,
     alternates: {
@@ -98,7 +114,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   for (const post of BLOG_POSTS) {
     entries.push({
       url: `${baseUrl}/blog/${post.slug}`,
-      lastModified: now,
+      lastModified: new Date(post.dateModified),
       changeFrequency: "monthly",
       priority: 0.7,
       alternates: {

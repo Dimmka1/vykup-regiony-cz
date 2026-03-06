@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Home, FileSignature, HandCoins, KeyRound } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
+import { UpdatedBadge } from "@/components/updated-badge";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
@@ -165,6 +166,9 @@ export default async function ZpetnyNajemPage(): Promise<React.ReactElement> {
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
             Prodejte nemovitost a zůstaňte bydlet — zpětný nájem
           </h1>
+          <div className="mt-3">
+            <UpdatedBadge date="2026-03-02" />
+          </div>
           <p className="mt-4 text-lg text-slate-600">
             Zpětný nájem (sale and leaseback) je moderní způsob, jak získat
             peníze z nemovitosti, aniž byste se museli stěhovat. Prodáte nám

@@ -3,6 +3,7 @@ export interface BlogPost {
   title: string;
   excerpt: string;
   date: string;
+  dateModified: string;
   readingTime: string;
 }
 
@@ -13,6 +14,7 @@ export const BLOG_POSTS: readonly BlogPost[] = [
     excerpt:
       "Kompletní přehled dokumentů potřebných k prodeji nemovitosti přes výkupní firmu. List vlastnictví, kupní smlouva, občanský průkaz a další.",
     date: "2026-03-02",
+    dateModified: "2026-03-06",
     readingTime: "6 min",
   },
   {
@@ -21,6 +23,7 @@ export const BLOG_POSTS: readonly BlogPost[] = [
     excerpt:
       "Podrobný průvodce celým procesem výkupu nemovitosti od prvního kontaktu po vyplacení peněz. Celý proces trvá jen 7–14 dní.",
     date: "2026-03-02",
+    dateModified: "2026-03-06",
     readingTime: "7 min",
   },
   {
@@ -29,6 +32,7 @@ export const BLOG_POSTS: readonly BlogPost[] = [
     excerpt:
       "Srovnání výkupu nemovitosti a dražby. Čas, cena, jistota, náklady a stres — kompletní analýza obou variant.",
     date: "2026-03-02",
+    dateModified: "2026-03-06",
     readingTime: "7 min",
   },
   {
@@ -37,6 +41,7 @@ export const BLOG_POSTS: readonly BlogPost[] = [
     excerpt:
       "Zjistěte, kolik ve skutečnosti zaplatíte při výkupu nemovitosti. Srovnání s realitní kanceláří a dražbou.",
     date: "2026-03-02",
+    dateModified: "2026-03-05",
     readingTime: "6 min",
   },
   {
@@ -45,6 +50,7 @@ export const BLOG_POSTS: readonly BlogPost[] = [
     excerpt:
       "Kompletní průvodce rychlým prodejem nemovitosti v roce 2026 - od přípravy až po předání klíčů. Praktické tipy, které vám ušetří čas i peníze.",
     date: "2026-03-01",
+    dateModified: "2026-03-04",
     readingTime: "7 min",
   },
   {
@@ -53,6 +59,7 @@ export const BLOG_POSTS: readonly BlogPost[] = [
     excerpt:
       "Srovnání dvou nejčastějších způsobů prodeje nemovitosti. Kdy zvolit výkup a kdy realitní kancelář? Objektivní analýza výhod a nevýhod.",
     date: "2026-02-25",
+    dateModified: "2026-03-03",
     readingTime: "8 min",
   },
   {
@@ -61,6 +68,7 @@ export const BLOG_POSTS: readonly BlogPost[] = [
     excerpt:
       "Vše, co potřebujete vědět o prodeji nemovitosti zatížené exekucí. Právní možnosti, postup krok za krokem a jak získat co nejvíce.",
     date: "2026-02-20",
+    dateModified: "2026-03-02",
     readingTime: "9 min",
   },
   {
@@ -69,6 +77,7 @@ export const BLOG_POSTS: readonly BlogPost[] = [
     excerpt:
       "Kompletní průvodce procesem rychlého výkupu - od prvního kontaktu po vyplacení peněz. Co vás čeká a na co se připravit.",
     date: "2026-02-15",
+    dateModified: "2026-03-01",
     readingTime: "5 min",
   },
   {
@@ -77,6 +86,7 @@ export const BLOG_POSTS: readonly BlogPost[] = [
     excerpt:
       "Proč stále více majitelů volí rychlý výkup místo klasického prodeje přes realitku? Podívejte se na hlavní výhody.",
     date: "2026-02-10",
+    dateModified: "2026-02-28",
     readingTime: "4 min",
   },
   {
@@ -85,6 +95,7 @@ export const BLOG_POSTS: readonly BlogPost[] = [
     excerpt:
       "Praktický průvodce prodejem nemovitosti zatížené exekucí. Jaké máte možnosti a jak celý proces funguje.",
     date: "2026-02-05",
+    dateModified: "2026-02-27",
     readingTime: "6 min",
   },
 ] as const;

@@ -11,6 +11,7 @@ import {
   Building2,
 } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
+import { UpdatedBadge } from "@/components/updated-badge";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
@@ -135,8 +136,28 @@ export default async function VykupPozemkuPage(): Promise<React.ReactElement> {
     isPartOf: { "@type": "WebSite", url: "https://vykoupim-nemovitost.cz" },
   };
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "Výkup pozemků - rychlý prodej pozemku",
+    datePublished: "2026-02-01",
+    dateModified: "2026-03-03",
+    author: {
+      "@type": "Organization",
+      name: "Vykoupím Nemovitost",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Vykoupím Nemovitost",
+    },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(articleJsonLd) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonLd(faqJsonLd) }}
@@ -159,6 +180,9 @@ export default async function VykupPozemkuPage(): Promise<React.ReactElement> {
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
             Výkup pozemků a parcel - rychle, férově a bez provize
           </h1>
+          <div className="mt-3">
+            <UpdatedBadge date="2026-03-03" />
+          </div>
           <p className="mt-4 text-lg text-slate-600">
             Chcete prodat pozemek rychle a bez zbytečných komplikací? Vykoupíme
             váš pozemek za férovou cenu a peníze vyplatíme do 7 dnů. Žádné

@@ -12,6 +12,7 @@ import { getRequestHost } from "@/lib/request-host";
 interface ArticleContent {
   title: string;
   date: string;
+  dateModified: string;
   body: React.ReactElement;
 }
 
@@ -19,6 +20,7 @@ const ARTICLES: Record<string, ArticleContent> = {
   "jake-dokumenty-potrebuji": {
     title: "Jaké dokumenty potřebuji k výkupu nemovitosti?",
     date: "2026-03-02",
+    dateModified: "2026-03-06",
     body: (
       <>
         <p>
@@ -220,6 +222,7 @@ const ARTICLES: Record<string, ArticleContent> = {
   "vykup-krok-za-krokem": {
     title: "Výkup nemovitosti krok za krokem — jak to funguje",
     date: "2026-03-02",
+    dateModified: "2026-03-06",
     body: (
       <>
         <p>
@@ -387,6 +390,7 @@ const ARTICLES: Record<string, ArticleContent> = {
   "vykup-vs-drazba": {
     title: "Výkup nemovitosti vs. dražba — co je výhodnější?",
     date: "2026-03-02",
+    dateModified: "2026-03-06",
     body: (
       <>
         <p>
@@ -565,6 +569,7 @@ const ARTICLES: Record<string, ArticleContent> = {
   "kolik-stoji-vykup": {
     title: "Kolik stojí výkup nemovitosti? Kompletní přehled nákladů",
     date: "2026-03-02",
+    dateModified: "2026-03-05",
     body: (
       <>
         <p>
@@ -758,6 +763,7 @@ const ARTICLES: Record<string, ArticleContent> = {
   "jak-rychle-prodat-nemovitost": {
     title: "Jak rychle prodat nemovitost v roce 2026",
     date: "2026-03-01",
+    dateModified: "2026-03-04",
     body: (
       <>
         <p>
@@ -954,6 +960,7 @@ const ARTICLES: Record<string, ArticleContent> = {
   "vykup-nemovitosti-vs-realitni-kancelar": {
     title: "Výkup nemovitosti vs realitní kancelář - co se vyplatí",
     date: "2026-02-25",
+    dateModified: "2026-03-03",
     body: (
       <>
         <p>
@@ -1110,6 +1117,7 @@ const ARTICLES: Record<string, ArticleContent> = {
   "nemovitost-v-exekuci-pruvodce": {
     title: "Nemovitost v exekuci - kompletní průvodce",
     date: "2026-02-20",
+    dateModified: "2026-03-02",
     body: (
       <>
         <p>
@@ -1300,6 +1308,7 @@ const ARTICLES: Record<string, ArticleContent> = {
   "jak-probiha-rychly-vykup": {
     title: "Jak probíhá rychlý výkup nemovitosti",
     date: "2026-02-15",
+    dateModified: "2026-03-01",
     body: (
       <>
         <p>
@@ -1360,6 +1369,7 @@ const ARTICLES: Record<string, ArticleContent> = {
   "5-duvodu-proc-prodat": {
     title: "5 důvodů proč prodat nemovitost přes výkupní firmu",
     date: "2026-02-10",
+    dateModified: "2026-02-28",
     body: (
       <>
         <p>
@@ -1443,6 +1453,7 @@ const ARTICLES: Record<string, ArticleContent> = {
   "vykup-v-exekuci": {
     title: "Výkup nemovitosti v exekuci - co potřebujete vědět",
     date: "2026-02-05",
+    dateModified: "2026-02-27",
     body: (
       <>
         <p>
@@ -1543,6 +1554,7 @@ export async function generateMetadata({
       description: post?.excerpt ?? "",
       type: "article",
       publishedTime: article.date,
+      modifiedTime: post?.dateModified ?? article.date,
       images: ["/blog/" + slug + "/opengraph-image"],
     },
     alternates: { canonical: `https://vykoupim-nemovitost.cz/blog/${slug}` },
@@ -1567,6 +1579,7 @@ export default async function BlogArticlePage({
     "@type": "Article",
     headline: article.title,
     datePublished: article.date,
+    dateModified: article.dateModified,
     author: {
       "@type": "Organization",
       name: "Vykoupím Nemovitost",
@@ -1606,6 +1619,14 @@ export default async function BlogArticlePage({
                 year: "numeric",
               })}
             </time>
+            <span className="ml-3 inline-flex items-center rounded-full bg-emerald-100 px-2.5 py-0.5 text-xs font-medium text-emerald-800">
+              Aktualizováno{" "}
+              {new Date(article.dateModified).toLocaleDateString("cs-CZ", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+              })}
+            </span>
             <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
               {article.title}
             </h1>

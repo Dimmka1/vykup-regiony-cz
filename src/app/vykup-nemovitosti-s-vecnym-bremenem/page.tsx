@@ -9,6 +9,7 @@ import {
   ScrollText,
 } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
+import { UpdatedBadge } from "@/components/updated-badge";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
@@ -112,8 +113,28 @@ export default async function VykupNemovitostiSVecnymBremenem(): Promise<React.R
     },
   };
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "Výkup nemovitosti s věcným břemenem",
+    datePublished: "2026-02-01",
+    dateModified: "2026-03-03",
+    author: {
+      "@type": "Organization",
+      name: "Vykoupím Nemovitost",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Vykoupím Nemovitost",
+    },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(articleJsonLd) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonLd(faqJsonLd) }}
@@ -139,6 +160,9 @@ export default async function VykupNemovitostiSVecnymBremenem(): Promise<React.R
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
             Výkup nemovitosti s věcným břemenem
           </h1>
+          <div className="mt-3">
+            <UpdatedBadge date="2026-03-03" />
+          </div>
           <p className="mt-4 text-lg text-slate-600">
             Vlastníte nemovitost zatíženou věcným břemenem a nevíte, jak ji
             prodat? Věcné břemeno - ať už jde o právo doživotního bydlení,

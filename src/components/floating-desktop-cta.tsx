@@ -43,7 +43,8 @@ export function FloatingDesktopCta() {
           .getElementById("kontakt")
           ?.scrollIntoView({ behavior: "smooth" });
       }}
-      className="fixed bottom-6 right-6 z-40 hidden rounded-full bg-[var(--theme-600)] px-6 py-3 font-semibold text-white shadow-lg transition hover:bg-[var(--theme-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 md:block"
+      className="cta-glow btn-ripple fixed bottom-6 right-6 z-40 hidden rounded-full bg-gradient-to-r from-[var(--theme-600)] to-[var(--theme-700)] px-6 py-3 font-semibold text-white shadow-lg transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 md:block"
+      aria-label="Přejít na formulář kontaktu a získat nezávaznou nabídku"
     >
       Nezávazná nabídka →
     </a>

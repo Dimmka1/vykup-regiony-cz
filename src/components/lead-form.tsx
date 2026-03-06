@@ -348,7 +348,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
           </label>
           <select
             id="property-type"
-            className="min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]"
+            className="input-focus-glow min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]"
             value={formData.propertyType}
             onChange={(event) =>
               setFormData((prev) => ({
@@ -368,7 +368,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
           </label>
           <select
             id="situation-type"
-            className="min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]"
+            className="input-focus-glow min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]"
             value={formData.situationType}
             onChange={(event) =>
               setFormData((prev) => ({
@@ -394,7 +394,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
             </label>
             <input
               id="address"
-              className={`mt-1 min-h-11 w-full rounded border ${inputBorderClass("address", fieldErrors)} px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]`}
+              className={`input-focus-glow mt-1 min-h-11 w-full rounded border ${inputBorderClass("address", fieldErrors)} px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]`}
               placeholder="Např. Revoluční 12"
               autoComplete="street-address"
               enterKeyHint="next"
@@ -428,7 +428,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
               </label>
               <input
                 id="city"
-                className={`mt-1 min-h-11 w-full rounded border ${inputBorderClass("city", fieldErrors)} px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]`}
+                className={`input-focus-glow mt-1 min-h-11 w-full rounded border ${inputBorderClass("city", fieldErrors)} px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]`}
                 placeholder="Např. Brno"
                 autoComplete="address-level2"
                 enterKeyHint="next"
@@ -461,7 +461,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
               </label>
               <input
                 id="postal-code"
-                className={`mt-1 min-h-11 w-full rounded border ${inputBorderClass("postal-code", fieldErrors)} px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]`}
+                className={`input-focus-glow mt-1 min-h-11 w-full rounded border ${inputBorderClass("postal-code", fieldErrors)} px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]`}
                 placeholder="123 45"
                 inputMode="numeric"
                 autoComplete="postal-code"
@@ -510,7 +510,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
             </label>
             <input
               id="lead-name"
-              className={`mt-1 min-h-11 w-full rounded border ${inputBorderClass("lead-name", fieldErrors)} px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]`}
+              className={`input-focus-glow mt-1 min-h-11 w-full rounded border ${inputBorderClass("lead-name", fieldErrors)} px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]`}
               value={formData.name}
               autoComplete="name"
               enterKeyHint="next"
@@ -539,7 +539,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
             </label>
             <input
               id="lead-phone"
-              className={`mt-1 min-h-11 w-full rounded border ${inputBorderClass("lead-phone", fieldErrors)} px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]`}
+              className={`input-focus-glow mt-1 min-h-11 w-full rounded border ${inputBorderClass("lead-phone", fieldErrors)} px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]`}
               placeholder="+420 777 123 456"
               inputMode="tel"
               autoComplete="tel"
@@ -574,7 +574,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
             <input
               id="lead-email"
               type="email"
-              className="mt-1 min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]"
+              className="input-focus-glow mt-1 min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]"
               placeholder="jan@example.cz"
               autoComplete="email"
               enterKeyHint="next"
@@ -633,7 +633,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
           <button
             type="button"
             onClick={handleNextStep}
-            className={`inline-flex min-h-11 items-center justify-center rounded bg-[var(--theme-600)] px-5 py-3 text-base font-semibold text-white transition hover:bg-[var(--theme-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 ${currentStep === 1 && (!isAddressValid || !isCityValid || !isPostalCodeValid) ? "pointer-events-none cursor-not-allowed opacity-60" : ""}`}
+            className={`cta-glow btn-ripple inline-flex min-h-11 items-center justify-center rounded bg-[var(--theme-600)] px-5 py-3 text-base font-semibold text-white transition hover:bg-[var(--theme-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 ${currentStep === 1 && (!isAddressValid || !isCityValid || !isPostalCodeValid) ? "pointer-events-none cursor-not-allowed opacity-60" : ""}`}
           >
             Pokračovat
           </button>
@@ -641,7 +641,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
           <button
             type="submit"
             disabled={status === "submitting"}
-            className="inline-flex min-h-11 items-center justify-center rounded bg-[var(--theme-600)] px-5 py-3 text-base font-semibold text-white transition hover:bg-[var(--theme-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 disabled:opacity-70"
+            className="cta-glow btn-ripple inline-flex min-h-11 items-center justify-center rounded bg-[var(--theme-600)] px-5 py-3 text-base font-semibold text-white transition hover:bg-[var(--theme-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 disabled:opacity-70"
           >
             {status === "submitting" ? "Odesílám..." : "Odeslat poptávku"}
           </button>

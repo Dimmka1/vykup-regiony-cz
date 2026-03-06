@@ -27,28 +27,26 @@ export function FaqAccordion({ items }: FaqAccordionProps): ReactElement {
               className="flex w-full items-center justify-between text-left"
               onClick={() => setOpenIndex(isOpen ? null : index)}
               aria-expanded={isOpen}
+              aria-label={`${isOpen ? "Zavřít" : "Otevřít"} odpověď: ${item.question}`}
             >
               <span className="pr-4 font-semibold text-slate-800">
                 {item.question}
               </span>
               <ChevronDown
-                className={`h-5 w-5 shrink-0 text-slate-400 transition-transform duration-200 ${
+                className={`h-5 w-5 shrink-0 text-slate-400 transition-transform duration-300 ${
                   isOpen ? "rotate-180" : ""
                 }`}
+                aria-hidden="true"
               />
             </button>
             <div
-              className={`grid transition-all duration-200 ${
-                isOpen
-                  ? "grid-rows-[1fr] opacity-100"
-                  : "grid-rows-[0fr] opacity-0"
+              className={`overflow-hidden transition-[max-height,opacity] duration-300 ease-in-out ${
+                isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
               }`}
             >
-              <div className="overflow-hidden">
-                <p className="pt-3 leading-relaxed text-slate-600">
-                  {item.answer}
-                </p>
-              </div>
+              <p className="pt-3 leading-relaxed text-slate-600">
+                {item.answer}
+              </p>
             </div>
           </div>
         );

@@ -89,6 +89,65 @@ const ALL_PAGES: Record<string, RelatedArticle> = {
     title: "Zpětný nájem",
     description: "Prodejte nemovitost a zůstaňte bydlet díky zpětnému nájmu.",
   },
+  // Info pages
+  "garance-vykupu": {
+    href: "/garance-vykupu",
+    title: "Garance výkupu",
+    description: "5 garancí pro bezstarostný prodej vaší nemovitosti.",
+  },
+  "pruvodce-vykupem": {
+    href: "/pruvodce-vykupem",
+    title: "Průvodce výkupem",
+    description: "Kompletní průvodce procesem výkupu nemovitosti.",
+  },
+  "jak-to-funguje": {
+    href: "/jak-to-funguje",
+    title: "Jak to funguje",
+    description: "Celý proces výkupu nemovitosti krok za krokem.",
+  },
+  "proc-my": {
+    href: "/proc-my",
+    title: "Proč prodat nám",
+    description: "Proč zvolit náš výkup nemovitostí.",
+  },
+  kraje: {
+    href: "/kraje",
+    title: "Kde působíme",
+    description: "Vykupujeme nemovitosti ve všech 14 krajích ČR.",
+  },
+  reference: {
+    href: "/reference",
+    title: "Reference",
+    description: "Co o nás říkají naši klienti.",
+  },
+  "caste-dotazy": {
+    href: "/caste-dotazy",
+    title: "Časté dotazy",
+    description: "Odpovědi na nejčastější otázky o výkupu nemovitostí.",
+  },
+  // Additional blog posts
+  "blog/jake-dokumenty-potrebuji": {
+    href: "/blog/jake-dokumenty-potrebuji",
+    title: "Jaké dokumenty potřebuji k výkupu?",
+    description:
+      "Kompletní přehled dokumentů potřebných k prodeji nemovitosti.",
+  },
+  "blog/vykup-krok-za-krokem": {
+    href: "/blog/vykup-krok-za-krokem",
+    title: "Výkup krok za krokem",
+    description: "Podrobný průvodce celým procesem výkupu nemovitosti.",
+  },
+  "blog/vykup-vs-drazba": {
+    href: "/blog/vykup-vs-drazba",
+    title: "Výkup vs. dražba",
+    description: "Srovnání výkupu nemovitosti a dražby — co je výhodnější?",
+  },
+  "blog/kolik-stoji-vykup": {
+    href: "/blog/kolik-stoji-vykup",
+    title: "Kolik stojí výkup?",
+    description:
+      "Zjistěte kolik ve skutečnosti zaplatíte při výkupu nemovitosti.",
+  },
 };
 
 /** Mapping: page key → array of related page keys */
@@ -190,6 +249,37 @@ const RELATED_MAP: Record<string, string[]> = {
     "vykup-nemovitosti-s-hypotekou",
     "blog/jak-rychle-prodat-nemovitost",
     "vykup-bytu",
+  ],
+  // Info pages
+  "garance-vykupu": [
+    "jak-to-funguje",
+    "proc-my",
+    "caste-dotazy",
+    "blog/jak-probiha-rychly-vykup",
+  ],
+  "pruvodce-vykupem": [
+    "jak-to-funguje",
+    "garance-vykupu",
+    "caste-dotazy",
+    "blog/vykup-krok-za-krokem",
+  ],
+  "jak-to-funguje": [
+    "garance-vykupu",
+    "caste-dotazy",
+    "proc-my",
+    "blog/jak-probiha-rychly-vykup",
+  ],
+  "proc-my": [
+    "garance-vykupu",
+    "jak-to-funguje",
+    "reference",
+    "blog/5-duvodu-proc-prodat",
+  ],
+  kraje: [
+    "jak-to-funguje",
+    "caste-dotazy",
+    "blog/jak-rychle-prodat-nemovitost",
+    "garance-vykupu",
   ],
 };
 

@@ -9,12 +9,27 @@ const PHONE = "+420 776 424 145";
 const PHONE_HREF = "tel:+420776424145";
 
 const POPULAR_REGIONS = [
-  { label: "Praha", href: "/praha" },
-  { label: "Středočeský kraj", href: "/stredocesky-kraj" },
-  { label: "Jihomoravský kraj", href: "/jihomoravsky-kraj" },
-  { label: "Moravskoslezský kraj", href: "/moravskoslezsky-kraj" },
-  { label: "Plzeňský kraj", href: "/plzensky-kraj" },
-  { label: "Ústecký kraj", href: "/ustecky-kraj" },
+  { label: "Praha", href: "https://praha.vykoupim-nemovitost.cz" },
+  {
+    label: "Středočeský kraj",
+    href: "https://stredocesky-kraj.vykoupim-nemovitost.cz",
+  },
+  {
+    label: "Jihomoravský kraj",
+    href: "https://jihomoravsky-kraj.vykoupim-nemovitost.cz",
+  },
+  {
+    label: "Moravskoslezský kraj",
+    href: "https://moravskoslezsky-kraj.vykoupim-nemovitost.cz",
+  },
+  {
+    label: "Plzeňský kraj",
+    href: "https://plzensky-kraj.vykoupim-nemovitost.cz",
+  },
+  {
+    label: "Ústecký kraj",
+    href: "https://ustecky-kraj.vykoupim-nemovitost.cz",
+  },
 ];
 
 export default function NotFound() {
@@ -25,7 +40,7 @@ export default function NotFound() {
   return (
     <section className="flex min-h-[70vh] items-center justify-center px-4 py-16">
       <div className="mx-auto max-w-2xl text-center">
-        <Breadcrumbs items={[{ label: "Stránka nenalezena", href: "/404" }]} />
+        <Breadcrumbs items={[{ label: "Stránka nenalezena", href: "/" }]} />
 
         {/* Hero */}
         <div className="mt-8">

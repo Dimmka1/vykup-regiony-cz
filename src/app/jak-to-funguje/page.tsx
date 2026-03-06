@@ -9,6 +9,8 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
+import { RelatedArticles } from "@/components/related-articles";
+import { getRelatedArticles } from "@/lib/related-articles";
 
 export const metadata: Metadata = {
   title: "Jak funguje výkup nemovitosti | Vykoupíme Nemovitost",
@@ -173,6 +175,7 @@ export default function JakToFungujePage() {
           </div>
         </div>
       </section>
+      <RelatedArticles articles={getRelatedArticles("jak-to-funguje")} />
     </>
   );
 }

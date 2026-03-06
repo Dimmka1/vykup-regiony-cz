@@ -4,6 +4,8 @@ import { listRegions, getRegionUrl, getRegionSubdomainUrl } from "@/lib/config";
 import { getRequestHost } from "@/lib/request-host";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { safeJsonLd } from "@/lib/jsonld";
+import { RelatedArticles } from "@/components/related-articles";
+import { getRelatedArticles } from "@/lib/related-articles";
 
 const SITE_URL = "https://vykoupim-nemovitost.cz";
 
@@ -78,6 +80,7 @@ export default async function KrajePage() {
           </div>
         </div>
       </section>
+      <RelatedArticles articles={getRelatedArticles("kraje")} />
     </>
   );
 }

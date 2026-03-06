@@ -10,6 +10,8 @@ import {
 } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { RelatedArticles } from "@/components/related-articles";
+import { getRelatedArticles } from "@/lib/related-articles";
 
 export const metadata: Metadata = {
   title: "Garance výkupu nemovitosti | vykoupim-nemovitost.cz",
@@ -145,6 +147,7 @@ export default function GaranceVykupuPage() {
           </div>
         </div>
       </section>
+      <RelatedArticles articles={getRelatedArticles("garance-vykupu")} />
     </>
   );
 }

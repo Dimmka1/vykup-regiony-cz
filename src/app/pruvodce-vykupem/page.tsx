@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { LeadMagnetForm } from "@/components/lead-magnet-form";
+import { RelatedArticles } from "@/components/related-articles";
+import { getRelatedArticles } from "@/lib/related-articles";
 
 export const metadata: Metadata = {
   alternates: {
@@ -77,6 +79,7 @@ export default function PruvodceVykupemPage(): React.ReactElement {
           </div>
         </div>
       </section>
+      <RelatedArticles articles={getRelatedArticles("pruvodce-vykupem")} />
     </>
   );
 }

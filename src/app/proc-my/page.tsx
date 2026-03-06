@@ -12,6 +12,8 @@ import {
 import { safeJsonLd } from "@/lib/jsonld";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { LeadForm } from "@/components/lead-form";
+import { RelatedArticles } from "@/components/related-articles";
+import { getRelatedArticles } from "@/lib/related-articles";
 
 export const metadata: Metadata = {
   title: "Proč prodat nemovitost nám | Výkup vs realitka vs dražba",
@@ -247,6 +249,7 @@ export default function ProcMyPage() {
           </div>
         </section>
       </main>
+      <RelatedArticles articles={getRelatedArticles("proc-my")} />
     </>
   );
 }

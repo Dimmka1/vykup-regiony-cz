@@ -457,6 +457,60 @@ export function HomePageContent({
         </ScrollReveal>
       )}
 
+      {/* ===== TRH V REGIONU ===== */}
+      {region.marketAnalysis && (
+        <section className="bg-white py-16 md:py-20">
+          <div className="mx-auto max-w-7xl px-6">
+            <ScrollReveal>
+              <h2 className="text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+                Trh v regionu {region.name}
+              </h2>
+            </ScrollReveal>
+            <ScrollReveal delay={200}>
+              <div className="mt-8 whitespace-pre-line text-base leading-relaxed text-slate-600">
+                {region.marketAnalysis}
+              </div>
+            </ScrollReveal>
+          </div>
+        </section>
+      )}
+
+      {/* ===== JAK PROBÍHÁ VÝKUP ===== */}
+      {region.localProcess && (
+        <section className="bg-gradient-to-b from-slate-50 to-white py-16 md:py-20">
+          <div className="mx-auto max-w-7xl px-6">
+            <ScrollReveal>
+              <h2 className="text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+                Jak probíhá výkup {region.locative}
+              </h2>
+            </ScrollReveal>
+            <ScrollReveal delay={200}>
+              <div className="mt-8 whitespace-pre-line text-base leading-relaxed text-slate-600">
+                {region.localProcess}
+              </div>
+            </ScrollReveal>
+          </div>
+        </section>
+      )}
+
+      {/* ===== KDE VYKUPUJEME ===== */}
+      {region.neighborhoodGuide && (
+        <section className="bg-white py-16 md:py-20">
+          <div className="mx-auto max-w-7xl px-6">
+            <ScrollReveal>
+              <h2 className="text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+                Kde vykupujeme {region.locative}
+              </h2>
+            </ScrollReveal>
+            <ScrollReveal delay={200}>
+              <div className="mt-8 whitespace-pre-line text-base leading-relaxed text-slate-600">
+                {region.neighborhoodGuide}
+              </div>
+            </ScrollReveal>
+          </div>
+        </section>
+      )}
+
       {/* ===== TRUST METRICS ===== */}
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-6">
@@ -913,7 +967,8 @@ export function HomePageContent({
       <NearbyRegions regionKey={region.key} currentHost={currentHost} />
 
       {/* ===== REGION FAQ ===== */}
-      {region.regionFaq && region.regionFaq.length > 0 && (
+      {((region.regionFaq && region.regionFaq.length > 0) ||
+        (region.additionalFaq && region.additionalFaq.length > 0)) && (
         <section className="bg-gradient-to-b from-slate-50 to-white py-20">
           <div className="mx-auto max-w-7xl px-6">
             <ScrollReveal>
@@ -923,7 +978,12 @@ export function HomePageContent({
             </ScrollReveal>
             <ScrollReveal delay={200}>
               <div className="mt-8">
-                <FaqAccordion items={region.regionFaq} />
+                <FaqAccordion
+                  items={[
+                    ...(region.regionFaq ?? []),
+                    ...(region.additionalFaq ?? []),
+                  ]}
+                />
               </div>
             </ScrollReveal>
           </div>

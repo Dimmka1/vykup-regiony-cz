@@ -18,7 +18,11 @@ import { ScrollReveal } from "@/components/scroll-reveal";
 import { StaggerReveal, StaggerItem } from "@/components/stagger-reveal";
 import { HeroStagger } from "@/components/hero-stagger";
 import { AnimatedNumber } from "@/components/animated-number";
-import { getRegionSubdomainUrl, isProductionHost } from "@/lib/config";
+import {
+  getRegionSubdomainUrl,
+  isProductionHost,
+  listRegions,
+} from "@/lib/config";
 import type { RegionConfig } from "@/lib/types";
 import {
   Check,
@@ -334,6 +338,32 @@ export function buildSchema(
           },
         })),
       ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "@id": canonicalUrl + "#business",
+      name: `Výkup nemovitostí ${region.name}`,
+      description: region.seoDescription,
+      url: canonicalUrl,
+      telephone: region.phone,
+      email: region.email,
+      areaServed: {
+        "@type": "AdministrativeArea",
+        name: region.name,
+      },
+      address: {
+        "@type": "PostalAddress",
+        addressRegion: region.name,
+        addressCountry: "CZ",
+      },
+      priceRange: "$$",
+      openingHoursSpecification: {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        opens: "08:00",
+        closes: "18:00",
+      },
     },
   ];
 }
@@ -1012,6 +1042,26 @@ export function HomePageContent({
               />
             </div>
           </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Regional internal links for SEO */}
+      <section className="bg-slate-50 py-16 md:py-20">
+        <div className="mx-auto max-w-5xl px-6">
+          <h2 className="mb-8 text-center text-2xl font-bold">
+            Působíme v celé České republice
+          </h2>
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
+            {listRegions().map((r) => (
+              <a
+                key={r.key}
+                href={getRegionSubdomainUrl(r.key)}
+                className="rounded-lg px-3 py-2 text-sm text-slate-600 transition-colors hover:bg-white hover:text-[var(--theme-700)] hover:shadow-sm"
+              >
+                Výkup {r.name}
+              </a>
+            ))}
+          </div>
         </div>
       </section>
 

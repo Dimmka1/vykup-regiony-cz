@@ -202,6 +202,7 @@ export function SiteHeader({ phone = "+420 776 424 145" }: SiteHeaderProps) {
           </div>
         </div>
       )}
+      <div className="via-[var(--theme-500)]/20 absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent to-transparent" />
     </header>
   );
 }

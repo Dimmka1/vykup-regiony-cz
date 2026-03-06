@@ -286,7 +286,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
   return (
     <form
       ref={formRef}
-      className="space-y-4 rounded-xl bg-white p-4 shadow sm:p-6"
+      className="shadow-premium-lg space-y-4 rounded-2xl bg-white p-4 sm:p-6"
       onSubmit={handleSubmit}
       aria-label="Formulář poptávky výkupu nemovitosti"
     >
@@ -641,7 +641,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
           <button
             type="submit"
             disabled={status === "submitting"}
-            className="cta-glow btn-ripple inline-flex min-h-11 items-center justify-center rounded bg-[var(--theme-600)] px-5 py-3 text-base font-semibold text-white transition hover:bg-[var(--theme-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 disabled:opacity-70"
+            className="cta-glow btn-ripple gradient-premium inline-flex min-h-11 items-center justify-center rounded px-5 py-3 text-base font-semibold text-white transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 disabled:opacity-70"
           >
             {status === "submitting" ? "Odesílám..." : "Odeslat poptávku"}
           </button>

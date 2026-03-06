@@ -3,7 +3,7 @@ import { MapPin, Phone } from "lucide-react";
 import { listRegions, getRegionSubdomainUrl } from "@/lib/config";
 
 const linkClass =
-  "text-sm text-slate-400 hover:text-white transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900";
+  "text-sm text-slate-400 hover:text-white transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900";
 
 function RegionCrossLinks() {
   const regions = listRegions();
@@ -30,8 +30,9 @@ function RegionCrossLinks() {
 
 export function SiteFooter() {
   return (
-    <footer className="bg-slate-900 pb-[env(safe-area-inset-bottom)] text-white">
-      <div className="mx-auto max-w-7xl px-6 py-12">
+    <footer className="bg-gradient-to-b from-slate-900 to-slate-950 pb-[env(safe-area-inset-bottom)] text-white">
+      <div className="h-px bg-gradient-to-r from-transparent via-[var(--theme-500)] to-transparent" />
+      <div className="mx-auto max-w-7xl px-6 py-16 md:py-20">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-5">
           {/* Služby */}
           <div>

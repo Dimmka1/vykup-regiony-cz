@@ -101,6 +101,9 @@ export function SiteFooter() {
               <Link href="/garance-vykupu" className={linkClass}>
                 Garance výkupu
               </Link>
+              <Link href="/doporucte-nas" className={linkClass}>
+                Doporučte nás
+              </Link>
               <Link href="/blog" className={linkClass}>
                 Blog
               </Link>

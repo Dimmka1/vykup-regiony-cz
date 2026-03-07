@@ -9,6 +9,7 @@ import { CtaLink } from "@/components/cta-link";
 import { CallbackForm } from "@/components/callback-form";
 import { PropertyEstimator } from "@/components/property-estimator";
 import { ScrollTracker } from "@/components/scroll-tracker";
+import { HeroImage } from "@/components/hero-image";
 import { FloatingDesktopCta } from "@/components/floating-desktop-cta";
 import { FaqAccordion } from "@/components/faq-accordion";
 import { ParallaxImage } from "@/components/parallax-image";
@@ -398,22 +399,15 @@ export function HomePageContent({
       {/* ===== HERO — CINEMATIC PARALLAX ===== */}
       <section className="scan-line relative min-h-[80vh] overflow-hidden lg:min-h-[90vh]">
         {/* Layer 1: Background image */}
-        <Image
+        <HeroImage
           src={
             region.key === "praha"
               ? "/images/hero-prague.jpg"
               : `/images/hero-${region.key}.jpg`
           }
           alt={`Panorama města ${region.primaryCity} – výkup nemovitostí ${region.locative}`}
-          fill
           priority
           className="object-cover"
-          onError={(e) => {
-            const target = e.currentTarget as HTMLImageElement;
-            if (!target.src.includes("hero-default.png")) {
-              target.src = "/images/hero-default.png";
-            }
-          }}
         />
         {/* Layer 2: Animated gradient overlay */}
         <div

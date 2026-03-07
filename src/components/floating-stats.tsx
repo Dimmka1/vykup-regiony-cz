@@ -110,7 +110,7 @@ function StatCard({ metric, index }: { metric: Metric; index: number }) {
           aria-hidden="true"
         />
 
-        <div className="flex items-start gap-5">
+        <div className="flex min-w-0 items-start gap-5">
           <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[var(--theme-50)] to-[var(--theme-100)]">
             {ICON_MAP[metric.icon] &&
               (() => {
@@ -123,8 +123,8 @@ function StatCard({ metric, index }: { metric: Metric; index: number }) {
                 );
               })()}
           </span>
-          <div>
-            <p className="text-3xl font-extrabold text-[var(--theme-700)] sm:text-4xl md:text-5xl">
+          <div className="min-w-0 flex-1">
+            <p className="text-2xl font-extrabold text-[var(--theme-700)] sm:text-3xl md:text-4xl lg:text-5xl">
               <SlotCounter value={metric.value} />
             </p>
             <p className="mt-2 text-sm text-slate-500">{metric.label}</p>
@@ -137,7 +137,7 @@ function StatCard({ metric, index }: { metric: Metric; index: number }) {
 
 export function FloatingStats({ metrics }: FloatingStatsProps) {
   return (
-    <div className="grid grid-cols-2 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
       {metrics.map((metric, idx) => (
         <StatCard key={metric.label} metric={metric} index={idx} />
       ))}

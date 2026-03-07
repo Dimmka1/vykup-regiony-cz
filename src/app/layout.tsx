@@ -1,19 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import dynamic from "next/dynamic";
-import { CookieConsent } from "@/components/cookie-consent";
-import { TrackingPixels } from "@/components/tracking-pixels";
 
-const ExitIntentPopup = dynamic(
-  () =>
-    import("@/components/exit-intent-popup").then((mod) => mod.ExitIntentPopup),
-  { ssr: true },
-);
 import { SiteHeader } from "@/components/site-header";
+import { LazyLayoutExtras } from "@/components/lazy-layout-extras";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { SiteFooter } from "@/components/site-footer";
-import { SwRegister } from "@/components/sw-register";
 import { WebVitalsReporter } from "@/components/web-vitals-reporter";
 import {
   getDefaultRegion,
@@ -97,10 +89,7 @@ export default async function RootLayout({
           {children}
         </main>
         {!isStrippedLayout && <SiteFooter />}
-        <ExitIntentPopup />
-        <TrackingPixels />
-        <SwRegister />
-        <CookieConsent />
+        <LazyLayoutExtras />
       </body>
     </html>
   );

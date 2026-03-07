@@ -4,15 +4,15 @@ import { getThemeStyle } from "@/lib/theme-colors";
 import type { ReactElement } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import dynamic from "next/dynamic";
+
 import { CtaLink } from "@/components/cta-link";
 import { CallbackForm } from "@/components/callback-form";
-import { PropertyEstimator } from "@/components/property-estimator";
+import { LazyPropertyEstimator } from "@/components/lazy-property-estimator";
 import { ScrollTracker } from "@/components/scroll-tracker";
-import { FloatingDesktopCta } from "@/components/floating-desktop-cta";
+import { LazyFloatingDesktopCta } from "@/components/lazy-floating-desktop-cta";
 import { FaqAccordion } from "@/components/faq-accordion";
 import { NearbyRegions } from "@/components/nearby-regions";
-import { ComparisonCalculator } from "@/components/comparison-calculator";
+import { LazyComparisonCalculator } from "@/components/lazy-comparison-calculator";
 import { LeadForm } from "@/components/lead-form";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { StaggerReveal, StaggerItem } from "@/components/stagger-reveal";
@@ -393,7 +393,7 @@ export function HomePageContent({
   return (
     <div style={themeStyle}>
       <ScrollTracker regionName={region.name} />
-      <FloatingDesktopCta />
+      <LazyFloatingDesktopCta />
 
       {/* ===== HERO ===== */}
       <section className="relative min-h-[80vh] overflow-hidden lg:min-h-[90vh]">
@@ -918,7 +918,7 @@ export function HomePageContent({
       {/* ===== PROPERTY ESTIMATOR ===== */}
 
       {/* ===== COMPARISON CALCULATOR ===== */}
-      <ComparisonCalculator />
+      <LazyComparisonCalculator />
 
       {/* ===== LEAD FORM + CO SE STANE PO ODESLÁNÍ ===== */}
       <section
@@ -1025,7 +1025,7 @@ export function HomePageContent({
           </div>
         </div>
       </section>
-      <PropertyEstimator regionKey={region.key} />
+      <LazyPropertyEstimator regionKey={region.key} />
 
       {/* ===== TESTIMONIALS ===== */}
       <section className="section-md relative">

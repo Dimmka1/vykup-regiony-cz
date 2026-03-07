@@ -51,7 +51,7 @@
     @apply mx-auto max-w-4xl px-6 lg:px-8;
   }
   .container-wide {
-    @apply mx-auto max-w-7xl px-6 lg:px-8;
+    @apply mx-auto max-w-[1400px] px-6 lg:px-8;
   }
 }
 

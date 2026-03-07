@@ -3,6 +3,7 @@ export {
   motion,
   AnimatePresence,
   useScroll,
+  useTransform,
   useMotionValueEvent,
   useReducedMotion,
   useInView,

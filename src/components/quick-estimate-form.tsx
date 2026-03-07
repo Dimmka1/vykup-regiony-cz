@@ -3,6 +3,7 @@
 import { useState, useCallback, type ReactElement } from "react";
 import { MapPin, Phone, ArrowRight, CheckCircle, Loader2 } from "lucide-react";
 import { resolveRegionByPsc, type PscLookupResult } from "@/lib/psc-regions";
+import { getGclid } from "@/lib/use-gclid";
 import { trackEvent } from "@/lib/analytics";
 
 /** Average byt price per m² by region — used for quick range estimate */
@@ -102,6 +103,7 @@ export function QuickEstimateForm({
             source: "quick-estimate-hero",
             region: region?.regionName ?? regionName,
             psc: psc.trim(),
+            gclid: getGclid(),
           }),
         });
 

@@ -2,8 +2,9 @@
 
 import type { ReactElement } from "react";
 import { useRouter } from "next/navigation";
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { trackEvent } from "@/lib/analytics";
+import { captureGclid, getGclid } from "@/lib/use-gclid";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
@@ -48,6 +49,11 @@ export function PpcLeadForm({
   const formRef = useRef<HTMLFormElement>(null);
   const router = useRouter();
 
+  // VR-206: capture gclid from URL on mount
+  useEffect(() => {
+    captureGclid();
+  }, []);
+
   const isPhoneValid = useMemo(
     () => CZ_PHONE_REGEX.test(formData.phone.trim()),
     [formData.phone],
@@ -79,6 +85,7 @@ export function PpcLeadForm({
             region: regionName,
             consent_gdpr: formData.consent,
             website: formData.website,
+            gclid: getGclid(),
             utm_source: utmSource,
             utm_medium: utmMedium,
             utm_campaign: utmCampaign,

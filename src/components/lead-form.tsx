@@ -4,6 +4,7 @@ import type { ReactElement } from "react";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { trackEvent } from "@/lib/analytics";
+import { captureGclid, getGclid } from "@/lib/use-gclid";
 import type { AnalyticsEventName } from "@/lib/analytics";
 
 /* ── GTM form-step tracking (VR-129) ─────────────────────────── */
@@ -131,8 +132,9 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
   const formRef = useRef<HTMLFormElement>(null);
   const router = useRouter();
 
-  // VR-129: Track step 1 on mount
+  // VR-129: Track step 1 on mount + VR-206: capture gclid
   useEffect(() => {
+    captureGclid();
     pushFormStepEvent(0, regionName);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -247,6 +249,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
           consent_gdpr: formData.consent,
           email: formData.email,
           website: formData.website,
+          gclid: getGclid(),
         }),
       });
 

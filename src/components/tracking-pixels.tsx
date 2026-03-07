@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { captureGclid } from "@/lib/use-gclid";
 import { usePathname } from "next/navigation";
 import Script from "next/script";
 
@@ -37,7 +38,16 @@ function useConversionEvents(): void {
   }, [pathname]);
 }
 
+// VR-206: Capture gclid globally on every page
+function useCaptureGclid(): void {
+  useEffect(() => {
+    captureGclid();
+  }, []);
+}
+
 export function TrackingPixels(): React.ReactElement | null {
+  useCaptureGclid();
+
   useConversionEvents();
 
   return (

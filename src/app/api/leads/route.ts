@@ -2,6 +2,7 @@ import { appendFileSync } from "node:fs";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { calculateLeadScore } from "@/lib/lead-scoring";
+import { sendEnhancedConversion } from "@/lib/google-ads-conversion";
 
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX = 10;
@@ -17,6 +18,7 @@ const leadSchema = z.object({
   consent_gdpr: z.literal(true),
   email: z.string().email().optional().or(z.literal("")),
   website: z.string().optional(),
+  gclid: z.string().optional().or(z.literal("")),
 });
 
 const callbackSchema = z.object({
@@ -24,6 +26,7 @@ const callbackSchema = z.object({
   phone: z.string().regex(/^(\+?420|00420)?\s?\d{3}\s?\d{3}\s?\d{3}$/),
   source: z.string().min(1),
   region: z.string().min(2),
+  gclid: z.string().optional().or(z.literal("")),
 });
 
 const quickEstimateSchema = z.object({
@@ -32,6 +35,7 @@ const quickEstimateSchema = z.object({
   source: z.string().min(1),
   region: z.string().min(2),
   psc: z.string().optional(),
+  gclid: z.string().optional().or(z.literal("")),
 });
 
 type LeadData = z.infer<typeof leadSchema>;
@@ -404,6 +408,11 @@ export async function POST(request: Request): Promise<NextResponse> {
 
       const cbResults = await Promise.allSettled([
         sendCallbackTelegramNotification(cbPayload),
+        sendEnhancedConversion({
+          gclid: cbData.gclid || undefined,
+          phone: cbData.phone,
+          conversionDateTime: cbPayload.timestamp,
+        }),
       ]);
 
       cbResults.forEach((r, i) => {
@@ -453,6 +462,11 @@ export async function POST(request: Request): Promise<NextResponse> {
 
       const qeResults = await Promise.allSettled([
         sendCallbackTelegramNotification(qePayload),
+        sendEnhancedConversion({
+          gclid: qeData.gclid || undefined,
+          phone: qeData.phone,
+          conversionDateTime: qePayload.timestamp,
+        }),
       ]);
 
       qeResults.forEach((r, i) => {
@@ -508,9 +522,21 @@ export async function POST(request: Request): Promise<NextResponse> {
             }),
           ]
         : []),
+      sendEnhancedConversion({
+        gclid: validatedData.gclid || undefined,
+        email: validatedData.email || undefined,
+        phone: validatedData.phone,
+        conversionDateTime: notificationPayload.timestamp,
+      }),
     ]);
 
-    const notifyNames = ["webhook", "email", "telegram", "auto-reply"];
+    const notifyNames = [
+      "webhook",
+      "email",
+      "telegram",
+      "auto-reply",
+      "enhanced-conversions",
+    ];
     notifyResults.forEach((r, i) => {
       if (r.status === "rejected") {
         console.error(`[lead-notify] ${notifyNames[i]} failed:`, r.reason);

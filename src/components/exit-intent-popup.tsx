@@ -4,6 +4,7 @@ import type { ReactElement } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { X } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
+import { getGclid } from "@/lib/use-gclid";
 
 const LS_KEY_SHOWN = "exit_popup_shown";
 const LS_KEY_FORM_SUBMITTED = "form_submitted";
@@ -116,6 +117,7 @@ export function ExitIntentPopup(): ReactElement | null {
           phone: phone.trim(),
           source: "exit_popup",
           region: getRegionFromUrl(),
+          gclid: getGclid(),
         }),
       });
       if (!res.ok) throw new Error("API error");

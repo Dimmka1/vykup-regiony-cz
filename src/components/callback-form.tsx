@@ -3,6 +3,7 @@
 import type { ReactElement } from "react";
 import { useCallback, useState } from "react";
 import { Phone } from "lucide-react";
+import { getGclid } from "@/lib/use-gclid";
 import { trackEvent } from "@/lib/analytics";
 
 type CallbackStatus = "idle" | "open" | "submitting" | "success" | "error";
@@ -50,6 +51,7 @@ export function CallbackForm({ regionName }: CallbackFormProps): ReactElement {
             phone: phone.trim(),
             source: "callback-form",
             region: regionName,
+            gclid: getGclid(),
           }),
         });
 

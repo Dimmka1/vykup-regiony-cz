@@ -12,6 +12,7 @@ import { ScrollTracker } from "@/components/scroll-tracker";
 import { FloatingDesktopCta } from "@/components/floating-desktop-cta";
 import { FaqAccordion } from "@/components/faq-accordion";
 import { ParallaxImage } from "@/components/parallax-image";
+import { ParallaxSection } from "@/components/parallax-section";
 import { NearbyRegions } from "@/components/nearby-regions";
 import { ComparisonCalculator } from "@/components/comparison-calculator";
 import { LeadForm } from "@/components/lead-form";
@@ -407,38 +408,19 @@ export function HomePageContent({
           fill
           priority
           className="object-cover"
+          onError={(e) => {
+            const target = e.currentTarget as HTMLImageElement;
+            if (!target.src.includes("hero-default.png")) {
+              target.src = "/images/hero-default.png";
+            }
+          }}
         />
         {/* Layer 2: Animated gradient overlay */}
         <div
           className="absolute inset-0 bg-gradient-to-b from-slate-900/95 via-slate-900/70 to-slate-900/90"
           aria-hidden="true"
         />
-        {/* Layer 3: Floating geometric shapes */}
-        <div
-          className="pointer-events-none absolute inset-0 overflow-hidden"
-          aria-hidden="true"
-        >
-          <div
-            className="float-shape border-[var(--theme-400)]/20 bg-[var(--theme-500)]/5 absolute left-[10%] top-[20%] h-16 w-16 rounded-xl border backdrop-blur-sm"
-            style={{ animationDelay: "0s", animationDuration: "18s" }}
-          />
-          <div
-            className="float-shape border-[var(--theme-300)]/15 bg-[var(--theme-400)]/5 absolute right-[15%] top-[30%] h-12 w-12 rotate-45 border backdrop-blur-sm"
-            style={{ animationDelay: "3s", animationDuration: "22s" }}
-          />
-          <div
-            className="float-shape border-[var(--theme-400)]/10 bg-[var(--theme-500)]/3 absolute bottom-[25%] left-[20%] h-20 w-20 rounded-full border backdrop-blur-sm"
-            style={{ animationDelay: "6s", animationDuration: "20s" }}
-          />
-          <div
-            className="float-shape absolute bottom-[35%] right-[25%] h-10 w-10 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm"
-            style={{ animationDelay: "9s", animationDuration: "16s" }}
-          />
-          <div
-            className="float-shape border-[var(--theme-300)]/10 bg-[var(--theme-400)]/5 absolute left-[50%] top-[15%] h-8 w-8 rotate-12 border"
-            style={{ animationDelay: "2s", animationDuration: "25s" }}
-          />
-        </div>
+
         <div className="hero-blob" aria-hidden="true" />
         <div className="hero-blob-2" aria-hidden="true" />
         <div className="relative mx-auto flex min-h-[80vh] max-w-7xl flex-col justify-center px-6 py-24 lg:min-h-[90vh]">
@@ -628,7 +610,19 @@ export function HomePageContent({
           aria-hidden="true"
         />
         <div className="container-wide relative">
-          <FloatingStats metrics={TRUST_METRICS} />
+          <div className="mb-10 grid items-center gap-8 lg:grid-cols-[2fr_1fr]">
+            <FloatingStats metrics={TRUST_METRICS} />
+            <ScrollReveal delay={200}>
+              <div className="relative aspect-[3/4] overflow-hidden rounded-3xl shadow-lg">
+                <Image
+                  src="/images/section-trust.png"
+                  alt="Důvěryhodný výkup nemovitostí – spokojení klienti"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 
@@ -639,13 +633,25 @@ export function HomePageContent({
       <section className="section-md bg-luxury-warm noise-overlay">
         <div className="container-wide">
           <ScrollReveal>
-            <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
-              Jak to funguje
-            </h2>
-            <p className="mt-2 text-slate-600">
-              Od prvního kontaktu k penězům na účtu — sledujte, jak vaše
-              budoucnost roste.
-            </p>
+            <div className="grid items-center gap-8 lg:grid-cols-[1fr_1fr]">
+              <div>
+                <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
+                  Jak to funguje
+                </h2>
+                <p className="mt-2 text-slate-600">
+                  Od prvního kontaktu k penězům na účtu — sledujte, jak vaše
+                  budoucnost roste.
+                </p>
+              </div>
+              <div className="relative aspect-[16/10] overflow-hidden rounded-3xl shadow-lg">
+                <Image
+                  src="/images/section-process.png"
+                  alt="Proces výkupu nemovitosti – profesionální jednání"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </div>
           </ScrollReveal>
 
           <div className="mt-10">
@@ -850,48 +856,52 @@ export function HomePageContent({
       </section>
 
       {/* ===== VISUAL BREAK: PROPERTY EXTERIOR ===== */}
-      <section className="relative h-[200px] sm:h-[250px] lg:h-[300px]">
-        <Image
-          src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1400&q=80"
-          alt={`Rezidenční nemovitost ${region.locative} – profesionální výkup`}
-          fill
-          className="object-cover"
-        />
-        <div
-          className="absolute inset-0 bg-gradient-to-r from-slate-900/70 to-slate-900/50"
-          aria-hidden="true"
-        />
-        <div className="relative flex h-full items-center justify-center px-6">
-          <p className="text-center text-xl font-bold text-white sm:text-2xl lg:text-3xl">
-            Pomáháme majitelům nemovitostí {region.locative} i po celé České
-            republice
-          </p>
-        </div>
-      </section>
+      <ParallaxSection offset={40}>
+        <section className="relative h-[200px] sm:h-[250px] lg:h-[300px]">
+          <Image
+            src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1400&q=80"
+            alt={`Rezidenční nemovitost ${region.locative} – profesionální výkup`}
+            fill
+            className="object-cover"
+          />
+          <div
+            className="absolute inset-0 bg-gradient-to-r from-slate-900/70 to-slate-900/50"
+            aria-hidden="true"
+          />
+          <div className="relative flex h-full items-center justify-center px-6">
+            <p className="text-center text-xl font-bold text-white sm:text-2xl lg:text-3xl">
+              Pomáháme majitelům nemovitostí {region.locative} i po celé České
+              republice
+            </p>
+          </div>
+        </section>
+      </ParallaxSection>
 
       {/* ===== PROČ KLIENTI VOLÍ NÁS (USP) ===== */}
-      <section className="section-md bg-gradient-to-br from-[var(--theme-700)] via-[var(--theme-800)] to-[var(--theme-900)] text-white">
-        <div className="mx-auto max-w-7xl px-6">
-          <ScrollReveal>
-            <h2 className="text-2xl font-bold text-white sm:text-3xl">
-              Proč klienti volí nás
-            </h2>
-          </ScrollReveal>
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {region.uspPoints.map((point, idx) => (
-              <ScrollReveal key={point} delay={idx * 100} as="li">
-                <div className="glass flex h-full items-start gap-3 rounded-2xl p-6">
-                  <CheckCircle
-                    className="mt-0.5 h-5 w-5 shrink-0 text-[var(--theme-400)]"
-                    aria-hidden="true"
-                  />
-                  <span className="text-white/90">{point}</span>
-                </div>
-              </ScrollReveal>
-            ))}
-          </ul>
-        </div>
-      </section>
+      <ParallaxSection offset={20}>
+        <section className="section-md bg-gradient-to-br from-[var(--theme-700)] via-[var(--theme-800)] to-[var(--theme-900)] text-white">
+          <div className="mx-auto max-w-7xl px-6">
+            <ScrollReveal>
+              <h2 className="text-2xl font-bold text-white sm:text-3xl">
+                Proč klienti volí nás
+              </h2>
+            </ScrollReveal>
+            <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {region.uspPoints.map((point, idx) => (
+                <ScrollReveal key={point} delay={idx * 100} as="li">
+                  <div className="glass flex h-full items-start gap-3 rounded-2xl p-6">
+                    <CheckCircle
+                      className="mt-0.5 h-5 w-5 shrink-0 text-[var(--theme-400)]"
+                      aria-hidden="true"
+                    />
+                    <span className="text-white/90">{point}</span>
+                  </div>
+                </ScrollReveal>
+              ))}
+            </ul>
+          </div>
+        </section>
+      </ParallaxSection>
 
       {/* ===== O NÁS ===== */}
       <section className="section-lg bg-luxury-mesh relative overflow-hidden">
@@ -1085,21 +1095,26 @@ export function HomePageContent({
       <PropertyEstimator regionKey={region.key} />
 
       {/* ===== TESTIMONIALS ===== */}
-      <section className="section-md bg-luxury-dark relative overflow-hidden">
-        <div className="orb orb-theme-1 -right-40 top-20" aria-hidden="true" />
-        <div
-          className="orb orb-theme-2 -bottom-20 left-20"
-          aria-hidden="true"
-        />
-        <div className="relative mx-auto max-w-7xl px-6">
-          <ScrollReveal>
-            <h2 className="mb-8 text-center text-2xl font-bold text-white sm:text-3xl">
-              Co říkají naši klienti {region.locative}
-            </h2>
-          </ScrollReveal>
-          <QuoteBubbles testimonials={region.testimonials ?? []} />
-        </div>
-      </section>
+      <ParallaxSection offset={25}>
+        <section className="section-md bg-luxury-dark relative overflow-hidden">
+          <div
+            className="orb orb-theme-1 -right-40 top-20"
+            aria-hidden="true"
+          />
+          <div
+            className="orb orb-theme-2 -bottom-20 left-20"
+            aria-hidden="true"
+          />
+          <div className="relative mx-auto max-w-7xl px-6">
+            <ScrollReveal>
+              <h2 className="mb-8 text-center text-2xl font-bold text-white sm:text-3xl">
+                Co říkají naši klienti {region.locative}
+              </h2>
+            </ScrollReveal>
+            <QuoteBubbles testimonials={region.testimonials ?? []} />
+          </div>
+        </section>
+      </ParallaxSection>
 
       {/* ===== VISUAL BREAK: HAPPY FAMILY HOME ===== */}
       <section className="relative h-[200px] sm:h-[250px] lg:h-[300px]">

@@ -49,18 +49,18 @@ export function SiteHeader({ phone = "+420 776 424 145" }: SiteHeaderProps) {
     <header
       className={`fixed top-0 z-50 w-full transition-all duration-300 ${
         showSolid
-          ? "border-b border-slate-200 bg-white/90 shadow-sm backdrop-blur-md"
+          ? "border-b border-slate-200/80 bg-white/90 shadow-sm backdrop-blur-xl"
           : "bg-transparent"
       }`}
     >
       <nav
         aria-label="Hlavní navigace"
-        className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3"
+        className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 md:h-24"
       >
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-8">
           <Link
             href="/"
-            className={`inline-flex min-h-[44px] items-center text-xl font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 ${
+            className={`inline-flex min-h-[48px] items-center text-xl font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 ${
               showSolid ? "text-slate-900" : "text-white"
             }`}
             aria-label="Výkup Nemovitostí - domovská stránka"
@@ -69,7 +69,7 @@ export function SiteHeader({ phone = "+420 776 424 145" }: SiteHeaderProps) {
           </Link>
           <Link
             href="/jak-to-funguje"
-            className={`hidden min-h-[44px] items-center text-sm font-medium transition-colors hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 md:inline-flex ${
+            className={`hidden min-h-[48px] items-center text-sm font-medium transition-colors hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 md:inline-flex ${
               showSolid ? "text-slate-700" : "text-white/80"
             }`}
           >
@@ -77,7 +77,7 @@ export function SiteHeader({ phone = "+420 776 424 145" }: SiteHeaderProps) {
           </Link>
           <Link
             href="/kraje"
-            className={`hidden min-h-[44px] items-center text-sm font-medium transition-colors hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 md:inline-flex ${
+            className={`hidden min-h-[48px] items-center text-sm font-medium transition-colors hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 md:inline-flex ${
               showSolid ? "text-slate-700" : "text-white/80"
             }`}
           >
@@ -87,7 +87,7 @@ export function SiteHeader({ phone = "+420 776 424 145" }: SiteHeaderProps) {
         <div className="flex items-center gap-4">
           <Link
             href="/caste-dotazy"
-            className={`hidden min-h-[44px] items-center text-sm font-medium transition-colors hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 md:inline-flex ${
+            className={`hidden min-h-[48px] items-center text-sm font-medium transition-colors hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 md:inline-flex ${
               showSolid ? "text-slate-700" : "text-white/80"
             }`}
           >
@@ -95,7 +95,7 @@ export function SiteHeader({ phone = "+420 776 424 145" }: SiteHeaderProps) {
           </Link>
           <Link
             href="/reference"
-            className={`hidden min-h-[44px] items-center text-sm font-medium transition-colors hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 md:inline-flex ${
+            className={`hidden min-h-[48px] items-center text-sm font-medium transition-colors hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 md:inline-flex ${
               showSolid ? "text-slate-700" : "text-white/80"
             }`}
           >
@@ -103,7 +103,7 @@ export function SiteHeader({ phone = "+420 776 424 145" }: SiteHeaderProps) {
           </Link>
           <Link
             href="/blog"
-            className={`hidden min-h-[44px] items-center text-sm font-medium transition-colors hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 md:inline-flex ${
+            className={`hidden min-h-[48px] items-center text-sm font-medium transition-colors hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 md:inline-flex ${
               showSolid ? "text-slate-700" : "text-white/80"
             }`}
           >
@@ -111,7 +111,7 @@ export function SiteHeader({ phone = "+420 776 424 145" }: SiteHeaderProps) {
           </Link>
           <a
             href={`tel:${phone}`}
-            className={`inline-flex min-h-[44px] items-center gap-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 ${
+            className={`inline-flex min-h-[48px] items-center gap-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 ${
               showSolid ? "text-slate-600" : "text-white/80"
             }`}
             aria-label={`Zavolat na ${phone}`}
@@ -121,13 +121,13 @@ export function SiteHeader({ phone = "+420 776 424 145" }: SiteHeaderProps) {
           </a>
           <a
             href="#kontakt"
-            className="cta-glow btn-ripple hidden min-h-[44px] items-center rounded-xl bg-[var(--theme-700)] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[var(--theme-600)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 md:inline-flex"
+            className="cta-glow btn-ripple shadow-[var(--theme-600)]/20 hidden min-h-[48px] items-center rounded-full bg-gradient-to-r from-[var(--theme-600)] to-[var(--theme-700)] px-6 py-2.5 text-sm font-semibold text-white shadow-lg transition hover:from-[var(--theme-500)] hover:to-[var(--theme-600)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 md:inline-flex"
           >
             Nezávazná poptávka
           </a>
           <button
             type="button"
-            className="inline-flex min-h-[44px] items-center justify-center rounded-lg p-2 transition md:hidden"
+            className="inline-flex min-h-[48px] items-center justify-center rounded-lg p-2 transition md:hidden"
             onClick={() => setMobileOpen((v) => !v)}
             aria-label={mobileOpen ? "Zavřít menu" : "Otevřít menu"}
             aria-expanded={mobileOpen}
@@ -151,49 +151,49 @@ export function SiteHeader({ phone = "+420 776 424 145" }: SiteHeaderProps) {
           <div className="flex flex-col gap-3">
             <Link
               href="/jak-to-funguje"
-              className="min-h-[44px] text-sm font-medium text-slate-700 hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
+              className="min-h-[48px] text-sm font-medium text-slate-700 hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
               onClick={() => setMobileOpen(false)}
             >
               Jak to funguje
             </Link>
             <Link
               href="/kraje"
-              className="min-h-[44px] text-sm font-medium text-slate-700 hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
+              className="min-h-[48px] text-sm font-medium text-slate-700 hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
               onClick={() => setMobileOpen(false)}
             >
               Kde působíme
             </Link>
             <Link
               href="/caste-dotazy"
-              className="min-h-[44px] text-sm font-medium text-slate-700 hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
+              className="min-h-[48px] text-sm font-medium text-slate-700 hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
               onClick={() => setMobileOpen(false)}
             >
               Časté dotazy
             </Link>
             <Link
               href="/reference"
-              className="min-h-[44px] text-sm font-medium text-slate-700 hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
+              className="min-h-[48px] text-sm font-medium text-slate-700 hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
               onClick={() => setMobileOpen(false)}
             >
               Reference
             </Link>
             <Link
               href="/blog"
-              className="min-h-[44px] text-sm font-medium text-slate-700 hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
+              className="min-h-[48px] text-sm font-medium text-slate-700 hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
               onClick={() => setMobileOpen(false)}
             >
               Blog
             </Link>
             <a
               href={`tel:${phone}`}
-              className="inline-flex min-h-[44px] items-center gap-1.5 text-sm font-medium text-slate-600"
+              className="inline-flex min-h-[48px] items-center gap-1.5 text-sm font-medium text-slate-600"
             >
               <Phone className="h-4 w-4" />
               {phone}
             </a>
             <a
               href="#kontakt"
-              className="cta-glow btn-ripple inline-flex min-h-[44px] items-center justify-center rounded-xl bg-[var(--theme-700)] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[var(--theme-600)]"
+              className="cta-glow btn-ripple inline-flex min-h-[48px] items-center justify-center rounded-full bg-gradient-to-r from-[var(--theme-600)] to-[var(--theme-700)] px-6 py-3 text-sm font-semibold text-white transition hover:from-[var(--theme-500)] hover:to-[var(--theme-600)]"
               onClick={() => setMobileOpen(false)}
               aria-label="Přejít na nezávaznou poptávku výkupu nemovitosti"
             >

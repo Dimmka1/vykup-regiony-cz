@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MapPin, Phone } from "lucide-react";
+import { MapPin, Phone, Mail } from "lucide-react";
 import { listRegions, getRegionSubdomainUrl } from "@/lib/config";
 
 const linkClass =
@@ -8,11 +8,11 @@ const linkClass =
 function RegionCrossLinks() {
   const regions = listRegions();
   return (
-    <div className="mt-8">
-      <p className="mb-3 text-sm font-semibold text-slate-300">
+    <div className="mt-12">
+      <p className="mb-4 text-sm font-semibold text-slate-300">
         Výkup nemovitostí v regionech
       </p>
-      <ul className="flex flex-wrap gap-x-4 gap-y-1 text-sm">
+      <ul className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
         {regions.map((r) => (
           <li key={r.key}>
             <a
@@ -32,12 +32,14 @@ export function SiteFooter() {
   return (
     <footer className="bg-gradient-to-b from-slate-900 to-slate-950 pb-[env(safe-area-inset-bottom)] text-white">
       <div className="h-px bg-gradient-to-r from-transparent via-[var(--theme-500)] to-transparent" />
-      <div className="mx-auto max-w-7xl px-6 py-16 md:py-20">
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-5">
+      <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-5">
           {/* Služby */}
           <div>
-            <h3 className="mb-3 text-sm font-semibold text-white">Služby</h3>
-            <nav aria-label="Služby" className="flex flex-col gap-2">
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
+              Služby
+            </h3>
+            <nav aria-label="Služby" className="flex flex-col gap-3">
               <Link href="/vykup-pri-exekuci" className={linkClass}>
                 Výkup při exekuci
               </Link>
@@ -67,10 +69,10 @@ export function SiteFooter() {
 
           {/* Typy nemovitostí */}
           <div>
-            <h3 className="mb-3 text-sm font-semibold text-white">
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
               Typy nemovitostí
             </h3>
-            <nav aria-label="Typy nemovitostí" className="flex flex-col gap-2">
+            <nav aria-label="Typy nemovitostí" className="flex flex-col gap-3">
               <Link href="/vykup-bytu" className={linkClass}>
                 Výkup bytů
               </Link>
@@ -85,8 +87,10 @@ export function SiteFooter() {
 
           {/* Informace */}
           <div>
-            <h3 className="mb-3 text-sm font-semibold text-white">Informace</h3>
-            <nav aria-label="Informace" className="flex flex-col gap-2">
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
+              Informace
+            </h3>
+            <nav aria-label="Informace" className="flex flex-col gap-3">
               <Link href="/kraje" className={linkClass}>
                 Kde působíme
               </Link>
@@ -110,8 +114,10 @@ export function SiteFooter() {
 
           {/* Právní */}
           <div>
-            <h3 className="mb-3 text-sm font-semibold text-white">Právní</h3>
-            <nav aria-label="Právní" className="flex flex-col gap-2">
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
+              Právní
+            </h3>
+            <nav aria-label="Právní" className="flex flex-col gap-3">
               <Link href="/ochrana-osobnich-udaju" className={linkClass}>
                 Ochrana osobních údajů
               </Link>
@@ -123,8 +129,10 @@ export function SiteFooter() {
 
           {/* Kontakt */}
           <div>
-            <h3 className="mb-3 text-sm font-semibold text-white">Kontakt</h3>
-            <div className="flex flex-col gap-2">
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
+              Kontakt
+            </h3>
+            <div className="flex flex-col gap-3">
               <span className="flex items-center gap-2 whitespace-nowrap text-sm text-slate-400">
                 <MapPin className="h-4 w-4 shrink-0" /> Česká republika
               </span>
@@ -140,8 +148,27 @@ export function SiteFooter() {
 
         <RegionCrossLinks />
 
-        <div className="mt-10 border-t border-slate-700 pt-6 text-center text-sm text-slate-400">
-          © 2026 Výkup Nemovitostí. Všechna práva vyhrazena.
+        {/* Bottom bar with separator */}
+        <div className="mt-12 border-t border-slate-800 pt-8">
+          <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
+            <p className="text-sm text-slate-500">
+              © 2026 Výkup Nemovitostí. Všechna práva vyhrazena.
+            </p>
+            <div className="flex items-center gap-6">
+              <Link
+                href="/ochrana-osobnich-udaju"
+                className="text-xs text-slate-500 transition hover:text-slate-300"
+              >
+                Ochrana osobních údajů
+              </Link>
+              <Link
+                href="/cookies"
+                className="text-xs text-slate-500 transition hover:text-slate-300"
+              >
+                Cookies
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

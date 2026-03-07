@@ -42,6 +42,13 @@ import {
   CheckCircle,
   Quote,
   Phone,
+  TrendingUp,
+  MapPin,
+  Building,
+  Star,
+  Shield,
+  Lock,
+  Scale,
 } from "lucide-react";
 
 export const COMPANY_NAME = "Vykoupím Nemovitost";
@@ -389,7 +396,7 @@ export function HomePageContent({
       <FloatingDesktopCta />
 
       {/* ===== HERO ===== */}
-      <section className="relative min-h-[600px] overflow-hidden lg:min-h-[700px]">
+      <section className="relative min-h-[80vh] overflow-hidden lg:min-h-[90vh]">
         <Image
           src={
             region.key === "praha"
@@ -402,18 +409,18 @@ export function HomePageContent({
           className="object-cover"
         />
         <div
-          className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-slate-900/60 to-slate-800/40"
+          className="absolute inset-0 bg-gradient-to-b from-slate-900/95 via-slate-900/70 to-slate-900/90"
           aria-hidden="true"
         />
         <div className="hero-blob" aria-hidden="true" />
         <div className="hero-blob-2" aria-hidden="true" />
-        <div className="relative mx-auto flex min-h-[600px] max-w-7xl flex-col justify-center px-6 py-24 lg:min-h-[700px]">
+        <div className="relative mx-auto flex min-h-[80vh] max-w-7xl flex-col justify-center px-6 py-24 lg:min-h-[90vh]">
           <HeroStagger delay={1}>
             <div className="mb-4 flex flex-wrap items-center gap-3">
-              <p className="glass inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white">
+              <p className="glass inline-flex rounded-full border border-white/20 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-white backdrop-blur-md">
                 {region.locative}
               </p>
-              <p className="glass inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[var(--theme-200)]">
+              <p className="glass inline-flex rounded-full border border-white/20 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-[var(--theme-200)] backdrop-blur-md">
                 Nejsme realitka - jsme přímý kupec
               </p>
             </div>
@@ -421,7 +428,7 @@ export function HomePageContent({
           <HeroStagger
             delay={2}
             as="h1"
-            className="max-w-3xl text-5xl font-extrabold leading-[1.1] tracking-tight text-white md:text-7xl"
+            className="text-display max-w-4xl text-5xl font-extrabold leading-[1.05] text-white sm:text-6xl md:text-7xl lg:text-8xl"
           >
             {region.h1}
           </HeroStagger>
@@ -439,7 +446,7 @@ export function HomePageContent({
             {HERO_BADGES.map((badge) => (
               <li
                 key={badge}
-                className="glass inline-flex items-center gap-1.5 rounded-lg px-3 py-2"
+                className="glass inline-flex items-center gap-2 rounded-xl border border-white/20 px-4 py-2.5 text-sm backdrop-blur-md"
               >
                 <Check
                   className="h-4 w-4 text-[var(--theme-400)]"
@@ -460,7 +467,7 @@ export function HomePageContent({
               <a
                 href={`tel:${region.phone}`}
                 aria-label={`Zavolat na číslo ${region.phone}`}
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/40 px-6 py-3 text-base font-semibold text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/5 px-8 py-4 text-lg font-semibold text-white backdrop-blur-sm transition hover:border-white/50 hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
               >
                 <Phone className="h-5 w-5" aria-hidden="true" />
                 Zavolat: {region.phone}
@@ -472,8 +479,23 @@ export function HomePageContent({
             <p className="mt-3 text-sm text-slate-300">
               Zálohu vyplácíme při podpisu smlouvy. Celý proces trvá 3–7 dní.
             </p>
+            <div className="mt-5 flex items-center gap-2 text-sm text-white/80">
+              <div className="flex gap-0.5">
+                {[...Array(5)].map((_, i) => (
+                  <svg
+                    key={i}
+                    className="h-4 w-4 fill-yellow-400 text-yellow-400"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+              <span>Důvěřuje nám 500+ klientů v celé ČR</span>
+            </div>
           </HeroStagger>
         </div>
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[var(--theme-500)] to-transparent" />
       </section>
 
       <SocialProofBar />
@@ -493,74 +515,101 @@ export function HomePageContent({
 
       {/* ===== TRH V REGIONU ===== */}
       {region.marketAnalysis && (
-        <section className="bg-white py-16 md:py-20">
-          <div className="mx-auto max-w-7xl px-6">
-            <ScrollReveal>
-              <h2 className="text-center text-2xl font-bold text-slate-900 sm:text-3xl">
-                Trh v regionu {region.name}
-              </h2>
-            </ScrollReveal>
-            <ScrollReveal delay={200}>
-              <div className="mt-8 whitespace-pre-line text-base leading-relaxed text-slate-600">
-                {region.marketAnalysis}
-              </div>
-            </ScrollReveal>
+        <section className="section-md bg-white">
+          <div className="container-wide">
+            <div className="grid gap-10 lg:grid-cols-[1fr_2fr]">
+              <ScrollReveal>
+                <div className="lg:sticky lg:top-28">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--theme-50)] text-[var(--theme-600)]">
+                    <TrendingUp className="h-6 w-6" aria-hidden="true" />
+                  </span>
+                  <h2 className="mt-4 text-2xl font-bold text-slate-900 sm:text-3xl">
+                    Trh v regionu {region.name}
+                  </h2>
+                </div>
+              </ScrollReveal>
+              <ScrollReveal delay={200}>
+                <div className="whitespace-pre-line text-lg leading-relaxed text-slate-600">
+                  {region.marketAnalysis}
+                </div>
+              </ScrollReveal>
+            </div>
           </div>
         </section>
       )}
 
       {/* ===== JAK PROBÍHÁ VÝKUP ===== */}
       {region.localProcess && (
-        <section className="bg-gradient-to-b from-slate-50 to-white py-16 md:py-20">
-          <div className="mx-auto max-w-7xl px-6">
-            <ScrollReveal>
-              <h2 className="text-center text-2xl font-bold text-slate-900 sm:text-3xl">
-                Jak probíhá výkup {region.locative}
-              </h2>
-            </ScrollReveal>
-            <ScrollReveal delay={200}>
-              <div className="mt-8 whitespace-pre-line text-base leading-relaxed text-slate-600">
-                {region.localProcess}
-              </div>
-            </ScrollReveal>
+        <section className="section-md bg-slate-50">
+          <div className="container-wide">
+            <div className="grid gap-10 lg:grid-cols-[1fr_2fr]">
+              <ScrollReveal>
+                <div className="lg:sticky lg:top-28">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--theme-50)] text-[var(--theme-600)]">
+                    <Building className="h-6 w-6" aria-hidden="true" />
+                  </span>
+                  <h2 className="mt-4 text-2xl font-bold text-slate-900 sm:text-3xl">
+                    Jak probíhá výkup {region.locative}
+                  </h2>
+                </div>
+              </ScrollReveal>
+              <ScrollReveal delay={200}>
+                <div className="whitespace-pre-line text-lg leading-relaxed text-slate-600">
+                  {region.localProcess}
+                </div>
+              </ScrollReveal>
+            </div>
           </div>
         </section>
       )}
 
       {/* ===== KDE VYKUPUJEME ===== */}
       {region.neighborhoodGuide && (
-        <section className="bg-white py-16 md:py-20">
-          <div className="mx-auto max-w-7xl px-6">
-            <ScrollReveal>
-              <h2 className="text-center text-2xl font-bold text-slate-900 sm:text-3xl">
-                Kde vykupujeme {region.locative}
-              </h2>
-            </ScrollReveal>
-            <ScrollReveal delay={200}>
-              <div className="mt-8 whitespace-pre-line text-base leading-relaxed text-slate-600">
-                {region.neighborhoodGuide}
-              </div>
-            </ScrollReveal>
+        <section className="section-md bg-white">
+          <div className="container-wide">
+            <div className="grid gap-10 lg:grid-cols-[1fr_2fr]">
+              <ScrollReveal>
+                <div className="lg:sticky lg:top-28">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--theme-50)] text-[var(--theme-600)]">
+                    <MapPin className="h-6 w-6" aria-hidden="true" />
+                  </span>
+                  <h2 className="mt-4 text-2xl font-bold text-slate-900 sm:text-3xl">
+                    Kde vykupujeme {region.locative}
+                  </h2>
+                </div>
+              </ScrollReveal>
+              <ScrollReveal delay={200}>
+                <div className="whitespace-pre-line text-lg leading-relaxed text-slate-600">
+                  {region.neighborhoodGuide}
+                </div>
+              </ScrollReveal>
+            </div>
           </div>
         </section>
       )}
 
       <div className="divider-gradient" />
       {/* ===== TRUST METRICS ===== */}
-      <section className="py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-6">
-          <StaggerReveal className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+      <section className="section-md">
+        <div className="container-wide">
+          <StaggerReveal className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {TRUST_METRICS.map((metric, idx) => (
               <StaggerItem key={metric.label}>
-                <article className="shadow-premium hover-lift flex flex-col items-center rounded-2xl bg-white p-6 text-center">
-                  <metric.Icon
-                    className="mb-3 h-7 w-7 text-[var(--theme-500)]"
-                    aria-hidden="true"
-                  />
-                  <p className="text-3xl font-bold text-[var(--theme-700)]">
-                    {metric.value}
-                  </p>
-                  <p className="mt-1 text-sm text-slate-500">{metric.label}</p>
+                <article className="card-premium flex items-start gap-5 border-l-4 border-[var(--theme-500)]">
+                  <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[var(--theme-50)]">
+                    <metric.Icon
+                      className="h-7 w-7 text-[var(--theme-600)]"
+                      aria-hidden="true"
+                    />
+                  </span>
+                  <div>
+                    <p className="text-4xl font-extrabold text-[var(--theme-700)] md:text-5xl">
+                      {metric.value}
+                    </p>
+                    <p className="mt-2 text-sm text-slate-500">
+                      {metric.label}
+                    </p>
+                  </div>
                 </article>
               </StaggerItem>
             ))}
@@ -570,8 +619,8 @@ export function HomePageContent({
 
       <div className="divider-gradient" />
       {/* ===== JAK TO FUNGUJE (PROCESS STEPS) ===== */}
-      <section className="py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="section-md">
+        <div className="container-wide">
           <ScrollReveal>
             <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
               Jak to funguje
@@ -586,7 +635,7 @@ export function HomePageContent({
               <div className="grid grid-cols-2 gap-4">
                 <ScrollReveal
                   delay={0}
-                  className="img-zoom-hover shadow-layered relative aspect-[3/4] overflow-hidden rounded-2xl"
+                  className="img-zoom-hover shadow-layered relative aspect-[3/4] overflow-hidden rounded-3xl"
                 >
                   <Image
                     src="/images/process-consultation.webp"
@@ -597,7 +646,7 @@ export function HomePageContent({
                 </ScrollReveal>
                 <ScrollReveal
                   delay={100}
-                  className="img-zoom-hover shadow-layered relative aspect-[3/4] overflow-hidden rounded-2xl"
+                  className="img-zoom-hover shadow-layered relative aspect-[3/4] overflow-hidden rounded-3xl"
                 >
                   <Image
                     src="/images/process-valuation.webp"
@@ -612,12 +661,12 @@ export function HomePageContent({
                   .slice(0, 2)
                   .map((step, index) => (
                     <ScrollReveal key={step.title} delay={index * 200}>
-                      <div className="card-accent shadow-premium hover-lift flex gap-4 rounded-2xl border border-slate-100 bg-white p-6">
+                      <div className="card-premium card-accent flex gap-5 border border-slate-100">
                         <div className="flex flex-col items-center gap-2">
-                          <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--theme-50)] text-[var(--theme-600)]">
+                          <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--theme-50)] text-[var(--theme-600)]">
                             <step.Icon className="h-6 w-6" aria-hidden="true" />
                           </span>
-                          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[var(--theme-600)] text-xs font-bold text-white">
+                          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--theme-600)] text-sm font-bold text-white">
                             {index + 1}
                           </span>
                         </div>
@@ -644,12 +693,12 @@ export function HomePageContent({
                   .slice(2, 4)
                   .map((step, index) => (
                     <ScrollReveal key={step.title} delay={index * 200}>
-                      <div className="card-accent shadow-premium hover-lift flex gap-4 rounded-2xl border border-slate-100 bg-white p-6">
+                      <div className="card-premium card-accent flex gap-5 border border-slate-100">
                         <div className="flex flex-col items-center gap-2">
-                          <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--theme-50)] text-[var(--theme-600)]">
+                          <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--theme-50)] text-[var(--theme-600)]">
                             <step.Icon className="h-6 w-6" aria-hidden="true" />
                           </span>
-                          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[var(--theme-600)] text-xs font-bold text-white">
+                          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--theme-600)] text-sm font-bold text-white">
                             {index + 3}
                           </span>
                         </div>
@@ -671,7 +720,7 @@ export function HomePageContent({
               <div className="order-1 grid grid-cols-2 gap-4 lg:order-2">
                 <ScrollReveal
                   delay={0}
-                  className="img-zoom-hover shadow-layered relative aspect-[3/4] overflow-hidden rounded-2xl"
+                  className="img-zoom-hover shadow-layered relative aspect-[3/4] overflow-hidden rounded-3xl"
                 >
                   <Image
                     src="/images/process-contract.webp"
@@ -682,7 +731,7 @@ export function HomePageContent({
                 </ScrollReveal>
                 <ScrollReveal
                   delay={100}
-                  className="img-zoom-hover shadow-layered relative aspect-[3/4] overflow-hidden rounded-2xl"
+                  className="img-zoom-hover shadow-layered relative aspect-[3/4] overflow-hidden rounded-3xl"
                 >
                   <Image
                     src="/images/process-keys.webp"
@@ -731,7 +780,7 @@ export function HomePageContent({
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {getComplexSituations(region).map((situation, idx) => (
               <ScrollReveal key={situation.label} delay={idx * 80}>
-                <div className="card-accent shadow-premium hover-lift flex gap-4 rounded-2xl border border-slate-100 bg-white p-6">
+                <div className="card-premium card-accent flex gap-5 border border-slate-100">
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--theme-50)] text-[var(--theme-600)]">
                     <situation.Icon className="h-5 w-5" aria-hidden="true" />
                   </span>
@@ -769,7 +818,7 @@ export function HomePageContent({
       </section>
 
       {/* ===== VISUAL BREAK: PROPERTY EXTERIOR ===== */}
-      <section className="relative h-[150px] sm:h-[200px] lg:h-[250px]">
+      <section className="relative h-[200px] sm:h-[250px] lg:h-[300px]">
         <Image
           src="/images/property-exterior.jpg"
           alt={`Rezidenční čtvrť v České republice – nemovitosti k výkupu ${region.locative}`}
@@ -789,7 +838,7 @@ export function HomePageContent({
       </section>
 
       {/* ===== PROČ KLIENTI VOLÍ NÁS (USP) ===== */}
-      <section className="bg-gradient-to-br from-[var(--theme-700)] via-[var(--theme-800)] to-[var(--theme-900)] py-20 text-white md:py-28">
+      <section className="section-md bg-gradient-to-br from-[var(--theme-700)] via-[var(--theme-800)] to-[var(--theme-900)] text-white">
         <div className="mx-auto max-w-7xl px-6">
           <ScrollReveal>
             <h2 className="text-2xl font-bold text-white sm:text-3xl">
@@ -813,10 +862,10 @@ export function HomePageContent({
       </section>
 
       {/* ===== O NÁS ===== */}
-      <section className="py-24 md:py-32">
+      <section className="section-lg">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid items-center gap-10 lg:grid-cols-2">
-            <ScrollReveal className="img-zoom-hover shadow-layered relative aspect-[4/3] overflow-hidden rounded-2xl">
+            <ScrollReveal className="img-zoom-hover shadow-layered relative aspect-[4/3] overflow-hidden rounded-3xl">
               <Image
                 src="/images/property-exterior.jpg"
                 alt={`Rezidenční nemovitosti v ${region.name} – profesionální výkup v celém kraji`}
@@ -873,32 +922,47 @@ export function HomePageContent({
 
       {/* ===== LEAD FORM + CO SE STANE PO ODESLÁNÍ ===== */}
       <section
-        className="border-t border-[var(--theme-200)] bg-gradient-to-b from-[var(--theme-50)] to-white py-20"
+        className="section-md relative overflow-hidden bg-slate-900"
         id="kontakt"
       >
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="grid gap-8 lg:grid-cols-2">
-            <ScrollReveal>
-              <LeadForm regionName={region.name} />
-            </ScrollReveal>
-
+        {/* Subtle pattern overlay */}
+        <div
+          className="absolute inset-0 opacity-5"
+          style={{
+            backgroundImage:
+              "url(\"data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.4\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+          }}
+          aria-hidden="true"
+        />
+        <div className="container-wide relative">
+          <ScrollReveal>
+            <div className="mb-12 text-center">
+              <h2 className="text-2xl font-bold text-white sm:text-3xl lg:text-4xl">
+                Získejte nezávaznou nabídku
+              </h2>
+              <p className="mt-3 text-lg text-slate-400">
+                Vyplňte formulář a my vás kontaktujeme do 30 minut
+              </p>
+            </div>
+          </ScrollReveal>
+          <div className="grid gap-10 lg:grid-cols-2">
             <ScrollReveal delay={200}>
-              <div className="shadow-layered rounded-2xl border border-slate-100 bg-white p-8">
-                <h2 className="text-2xl font-bold text-slate-900">
+              <div className="flex flex-col justify-center">
+                <h3 className="text-xl font-semibold text-white">
                   Co se stane po odeslání
-                </h2>
-                <ul className="mt-6 space-y-4">
+                </h3>
+                <ul className="mt-6 space-y-5">
                   {FORM_BENEFITS.map((benefit) => (
                     <li key={benefit} className="flex items-start gap-3">
-                      <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--theme-100)] text-[var(--theme-600)]">
+                      <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--theme-600)] text-white">
                         <Check className="h-4 w-4" aria-hidden="true" />
                       </span>
-                      <span className="text-slate-700">{benefit}</span>
+                      <span className="text-lg text-slate-300">{benefit}</span>
                     </li>
                   ))}
                 </ul>
 
-                <div className="img-zoom-hover relative mt-6 aspect-[16/9] overflow-hidden rounded-2xl">
+                <div className="img-zoom-hover relative mt-8 aspect-[16/9] overflow-hidden rounded-3xl">
                   <Image
                     src="/images/texture-brick.webp"
                     alt={`Historická cihlová zeď – tradice a spolehlivost výkupu nemovitostí ${region.locative}`}
@@ -917,10 +981,10 @@ export function HomePageContent({
                 </div>
 
                 <div className="mt-8">
-                  <h3 className="text-lg font-semibold text-slate-900">
+                  <h3 className="text-lg font-semibold text-white">
                     Nezávazná konzultace zdarma
                   </h3>
-                  <p className="mt-2 text-sm text-slate-600">
+                  <p className="mt-2 text-sm text-slate-400">
                     Primárně {region.primaryCity} a okolí, dále:{" "}
                     {region.supportedCities.join(", ")}.
                   </p>
@@ -930,13 +994,41 @@ export function HomePageContent({
                 </div>
               </div>
             </ScrollReveal>
+
+            <ScrollReveal>
+              <LeadForm regionName={region.name} />
+              {/* Trust badges below form */}
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-6">
+                <div className="flex items-center gap-2 text-sm text-slate-400">
+                  <Lock
+                    className="h-4 w-4 text-[var(--theme-500)]"
+                    aria-hidden="true"
+                  />
+                  <span>256-bit SSL</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-slate-400">
+                  <Shield
+                    className="h-4 w-4 text-[var(--theme-500)]"
+                    aria-hidden="true"
+                  />
+                  <span>GDPR</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-slate-400">
+                  <Scale
+                    className="h-4 w-4 text-[var(--theme-500)]"
+                    aria-hidden="true"
+                  />
+                  <span>Advokátní úschova</span>
+                </div>
+              </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
       <PropertyEstimator regionKey={region.key} />
 
       {/* ===== TESTIMONIALS ===== */}
-      <section className="relative py-20 md:py-28">
+      <section className="section-md relative">
         <Image
           src="/images/testimonial-bg.jpg"
           alt={`Střechy českého města při západu slunce – výkup nemovitostí ${region.locative}`}
@@ -953,7 +1045,7 @@ export function HomePageContent({
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {(region.testimonials ?? []).map((testimonial, idx) => (
               <ScrollReveal key={idx} delay={idx * 100}>
-                <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
+                <div className="card-premium">
                   <Quote
                     className="mb-3 h-6 w-6 text-[var(--theme-300)]"
                     aria-hidden="true"
@@ -982,7 +1074,7 @@ export function HomePageContent({
       </section>
 
       {/* ===== VISUAL BREAK: HAPPY FAMILY HOME ===== */}
-      <section className="relative h-[150px] sm:h-[200px] lg:h-[250px]">
+      <section className="relative h-[200px] sm:h-[250px] lg:h-[300px]">
         <Image
           src="/images/happy-family-home.jpg"
           alt={`Moderní rodinný dům se zahradou – nemovitosti k výkupu ${region.locative}`}
@@ -1006,15 +1098,20 @@ export function HomePageContent({
       {/* ===== REGION FAQ ===== */}
       {((region.regionFaq && region.regionFaq.length > 0) ||
         (region.additionalFaq && region.additionalFaq.length > 0)) && (
-        <section className="bg-gradient-to-b from-slate-50 to-white py-20">
-          <div className="mx-auto max-w-7xl px-6">
+        <section className="section-md bg-gradient-to-b from-slate-50 to-white">
+          <div className="container-narrow">
             <ScrollReveal>
-              <h2 className="text-center text-2xl font-bold text-slate-900 sm:text-3xl">
-                Otázky k výkupu {region.locative}
-              </h2>
+              <div className="text-center">
+                <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
+                  Otázky k výkupu {region.locative}
+                </h2>
+                <p className="mt-3 text-lg text-slate-600">
+                  Odpovědi na nejčastější dotazy specifické pro váš region
+                </p>
+              </div>
             </ScrollReveal>
             <ScrollReveal delay={200}>
-              <div className="mt-8">
+              <div className="mt-10">
                 <FaqAccordion
                   items={[
                     ...(region.regionFaq ?? []),
@@ -1028,15 +1125,20 @@ export function HomePageContent({
       )}
 
       {/* ===== FAQ ===== */}
-      <section className="py-20">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="section-md">
+        <div className="container-narrow">
           <ScrollReveal>
-            <h2 className="text-center text-2xl font-bold text-slate-900 sm:text-3xl">
-              Časté dotazy
-            </h2>
+            <div className="text-center">
+              <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
+                Časté dotazy
+              </h2>
+              <p className="mt-3 text-lg text-slate-600">
+                Vše, co potřebujete vědět o výkupu nemovitostí
+              </p>
+            </div>
           </ScrollReveal>
           <ScrollReveal delay={200}>
-            <div className="mt-8">
+            <div className="mt-10">
               <FaqAccordion
                 items={[...getRegionalFaq(region), ...region.faq]}
               />
@@ -1046,7 +1148,7 @@ export function HomePageContent({
       </section>
 
       {/* Regional internal links for SEO */}
-      <section className="bg-slate-50 py-16 md:py-20">
+      <section className="section-md bg-slate-50">
         <div className="mx-auto max-w-5xl px-6">
           <h2 className="mb-8 text-center text-2xl font-bold">
             Působíme v celé České republice

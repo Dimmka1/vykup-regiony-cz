@@ -389,7 +389,7 @@ export function HomePageContent({
       <FloatingDesktopCta />
 
       {/* ===== HERO ===== */}
-      <section className="relative min-h-[600px] overflow-hidden lg:min-h-[700px]">
+      <section className="relative min-h-[80vh] overflow-hidden lg:min-h-[90vh]">
         <Image
           src={
             region.key === "praha"
@@ -402,18 +402,18 @@ export function HomePageContent({
           className="object-cover"
         />
         <div
-          className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-slate-900/60 to-slate-800/40"
+          className="absolute inset-0 bg-gradient-to-b from-slate-900/95 via-slate-900/70 to-slate-900/90"
           aria-hidden="true"
         />
         <div className="hero-blob" aria-hidden="true" />
         <div className="hero-blob-2" aria-hidden="true" />
-        <div className="relative mx-auto flex min-h-[600px] max-w-7xl flex-col justify-center px-6 py-24 lg:min-h-[700px]">
+        <div className="relative mx-auto flex min-h-[80vh] max-w-7xl flex-col justify-center px-6 py-24 lg:min-h-[90vh]">
           <HeroStagger delay={1}>
             <div className="mb-4 flex flex-wrap items-center gap-3">
-              <p className="glass inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white">
+              <p className="glass inline-flex rounded-full border border-white/20 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-white backdrop-blur-md">
                 {region.locative}
               </p>
-              <p className="glass inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[var(--theme-200)]">
+              <p className="glass inline-flex rounded-full border border-white/20 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-[var(--theme-200)] backdrop-blur-md">
                 Nejsme realitka - jsme přímý kupec
               </p>
             </div>
@@ -421,7 +421,7 @@ export function HomePageContent({
           <HeroStagger
             delay={2}
             as="h1"
-            className="max-w-3xl text-5xl font-extrabold leading-[1.1] tracking-tight text-white md:text-7xl"
+            className="text-display max-w-4xl text-5xl font-extrabold leading-[1.05] text-white sm:text-6xl md:text-7xl lg:text-8xl"
           >
             {region.h1}
           </HeroStagger>
@@ -439,7 +439,7 @@ export function HomePageContent({
             {HERO_BADGES.map((badge) => (
               <li
                 key={badge}
-                className="glass inline-flex items-center gap-1.5 rounded-lg px-3 py-2"
+                className="glass inline-flex items-center gap-2 rounded-xl border border-white/20 px-4 py-2.5 text-sm backdrop-blur-md"
               >
                 <Check
                   className="h-4 w-4 text-[var(--theme-400)]"
@@ -460,7 +460,7 @@ export function HomePageContent({
               <a
                 href={`tel:${region.phone}`}
                 aria-label={`Zavolat na číslo ${region.phone}`}
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/40 px-6 py-3 text-base font-semibold text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/5 px-8 py-4 text-lg font-semibold text-white backdrop-blur-sm transition hover:border-white/50 hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
               >
                 <Phone className="h-5 w-5" aria-hidden="true" />
                 Zavolat: {region.phone}
@@ -472,8 +472,23 @@ export function HomePageContent({
             <p className="mt-3 text-sm text-slate-300">
               Zálohu vyplácíme při podpisu smlouvy. Celý proces trvá 3–7 dní.
             </p>
+            <div className="mt-5 flex items-center gap-2 text-sm text-white/80">
+              <div className="flex gap-0.5">
+                {[...Array(5)].map((_, i) => (
+                  <svg
+                    key={i}
+                    className="h-4 w-4 fill-yellow-400 text-yellow-400"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+              <span>Důvěřuje nám 500+ klientů v celé ČR</span>
+            </div>
           </HeroStagger>
         </div>
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[var(--theme-500)] to-transparent" />
       </section>
 
       <SocialProofBar />
@@ -547,20 +562,26 @@ export function HomePageContent({
 
       <div className="divider-gradient" />
       {/* ===== TRUST METRICS ===== */}
-      <section className="py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-6">
-          <StaggerReveal className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+      <section className="section-md">
+        <div className="container-wide">
+          <StaggerReveal className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {TRUST_METRICS.map((metric, idx) => (
               <StaggerItem key={metric.label}>
-                <article className="shadow-premium hover-lift flex flex-col items-center rounded-2xl bg-white p-6 text-center">
-                  <metric.Icon
-                    className="mb-3 h-7 w-7 text-[var(--theme-500)]"
-                    aria-hidden="true"
-                  />
-                  <p className="text-3xl font-bold text-[var(--theme-700)]">
-                    {metric.value}
-                  </p>
-                  <p className="mt-1 text-sm text-slate-500">{metric.label}</p>
+                <article className="card-premium flex items-start gap-5 border-l-4 border-[var(--theme-500)]">
+                  <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[var(--theme-50)]">
+                    <metric.Icon
+                      className="h-7 w-7 text-[var(--theme-600)]"
+                      aria-hidden="true"
+                    />
+                  </span>
+                  <div>
+                    <p className="text-4xl font-extrabold text-[var(--theme-700)] md:text-5xl">
+                      {metric.value}
+                    </p>
+                    <p className="mt-2 text-sm text-slate-500">
+                      {metric.label}
+                    </p>
+                  </div>
                 </article>
               </StaggerItem>
             ))}
@@ -570,8 +591,8 @@ export function HomePageContent({
 
       <div className="divider-gradient" />
       {/* ===== JAK TO FUNGUJE (PROCESS STEPS) ===== */}
-      <section className="py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="section-md">
+        <div className="container-wide">
           <ScrollReveal>
             <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
               Jak to funguje
@@ -586,7 +607,7 @@ export function HomePageContent({
               <div className="grid grid-cols-2 gap-4">
                 <ScrollReveal
                   delay={0}
-                  className="img-zoom-hover shadow-layered relative aspect-[3/4] overflow-hidden rounded-2xl"
+                  className="img-zoom-hover shadow-layered relative aspect-[3/4] overflow-hidden rounded-3xl"
                 >
                   <Image
                     src="/images/process-consultation.webp"
@@ -597,7 +618,7 @@ export function HomePageContent({
                 </ScrollReveal>
                 <ScrollReveal
                   delay={100}
-                  className="img-zoom-hover shadow-layered relative aspect-[3/4] overflow-hidden rounded-2xl"
+                  className="img-zoom-hover shadow-layered relative aspect-[3/4] overflow-hidden rounded-3xl"
                 >
                   <Image
                     src="/images/process-valuation.webp"
@@ -612,12 +633,12 @@ export function HomePageContent({
                   .slice(0, 2)
                   .map((step, index) => (
                     <ScrollReveal key={step.title} delay={index * 200}>
-                      <div className="card-accent shadow-premium hover-lift flex gap-4 rounded-2xl border border-slate-100 bg-white p-6">
+                      <div className="card-premium card-accent flex gap-5 border border-slate-100">
                         <div className="flex flex-col items-center gap-2">
-                          <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--theme-50)] text-[var(--theme-600)]">
+                          <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--theme-50)] text-[var(--theme-600)]">
                             <step.Icon className="h-6 w-6" aria-hidden="true" />
                           </span>
-                          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[var(--theme-600)] text-xs font-bold text-white">
+                          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--theme-600)] text-sm font-bold text-white">
                             {index + 1}
                           </span>
                         </div>
@@ -644,12 +665,12 @@ export function HomePageContent({
                   .slice(2, 4)
                   .map((step, index) => (
                     <ScrollReveal key={step.title} delay={index * 200}>
-                      <div className="card-accent shadow-premium hover-lift flex gap-4 rounded-2xl border border-slate-100 bg-white p-6">
+                      <div className="card-premium card-accent flex gap-5 border border-slate-100">
                         <div className="flex flex-col items-center gap-2">
-                          <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--theme-50)] text-[var(--theme-600)]">
+                          <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--theme-50)] text-[var(--theme-600)]">
                             <step.Icon className="h-6 w-6" aria-hidden="true" />
                           </span>
-                          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[var(--theme-600)] text-xs font-bold text-white">
+                          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--theme-600)] text-sm font-bold text-white">
                             {index + 3}
                           </span>
                         </div>
@@ -671,7 +692,7 @@ export function HomePageContent({
               <div className="order-1 grid grid-cols-2 gap-4 lg:order-2">
                 <ScrollReveal
                   delay={0}
-                  className="img-zoom-hover shadow-layered relative aspect-[3/4] overflow-hidden rounded-2xl"
+                  className="img-zoom-hover shadow-layered relative aspect-[3/4] overflow-hidden rounded-3xl"
                 >
                   <Image
                     src="/images/process-contract.webp"
@@ -682,7 +703,7 @@ export function HomePageContent({
                 </ScrollReveal>
                 <ScrollReveal
                   delay={100}
-                  className="img-zoom-hover shadow-layered relative aspect-[3/4] overflow-hidden rounded-2xl"
+                  className="img-zoom-hover shadow-layered relative aspect-[3/4] overflow-hidden rounded-3xl"
                 >
                   <Image
                     src="/images/process-keys.webp"
@@ -731,7 +752,7 @@ export function HomePageContent({
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {getComplexSituations(region).map((situation, idx) => (
               <ScrollReveal key={situation.label} delay={idx * 80}>
-                <div className="card-accent shadow-premium hover-lift flex gap-4 rounded-2xl border border-slate-100 bg-white p-6">
+                <div className="card-premium card-accent flex gap-5 border border-slate-100">
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--theme-50)] text-[var(--theme-600)]">
                     <situation.Icon className="h-5 w-5" aria-hidden="true" />
                   </span>

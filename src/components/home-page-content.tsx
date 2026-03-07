@@ -24,7 +24,7 @@ import { CzechMap } from "@/components/czech-map";
 import { BuildingTimeline } from "@/components/building-timeline";
 import { FloatingStats } from "@/components/floating-stats";
 import { DoorCards } from "@/components/door-cards";
-import { QuoteBubbles } from "@/components/quote-bubbles";
+import { LeadForm } from "@/components/lead-form";
 import { SlotCounter } from "@/components/slot-counter";
 import {
   getRegionSubdomainUrl,
@@ -413,7 +413,7 @@ export function HomePageContent({
 
         {/* Bottom fade into content */}
         <div
-          className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent via-slate-900/50 to-slate-900/95"
+          className="pointer-events-none absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent to-slate-900"
           aria-hidden="true"
         />
 
@@ -505,14 +505,7 @@ export function HomePageContent({
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[var(--theme-500)] to-transparent" />
       </section>
 
-      {/* Hero → Content transition */}
-      <div className="relative -mt-1 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-50 py-16">
-        <div className="mx-auto max-w-4xl px-6 text-center">
-          <p className="text-sm font-medium uppercase tracking-widest text-slate-400">
-            Rychlý a férový výkup nemovitostí
-          </p>
-        </div>
-      </div>
+
 
       <SocialProofBar />
 
@@ -604,59 +597,48 @@ export function HomePageContent({
         </section>
       )}
 
-      <div className="section-divider">
-        <div className="divider-ornament" />
-      </div>
-      {/* ===== TRUST METRICS — 3D FLOATING CARDS ===== */}
+            {/* ===== TRUST METRICS — 3D FLOATING CARDS ===== */}
       <section className="bg-luxury-mesh noise-overlay section-lg relative overflow-hidden">
         <div className="orb orb-theme-1 -right-40 -top-40" aria-hidden="true" />
-        <div
-          className="orb orb-theme-2 -bottom-20 left-10"
-          aria-hidden="true"
-        />
+        <div className="orb orb-theme-2 -bottom-20 left-10" aria-hidden="true" />
         <div className="relative mx-auto max-w-[1400px] px-6">
           <ScrollReveal>
-            <div className="mb-10 text-center">
-              <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
+            <div className="mb-12 text-center">
+              <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-[var(--theme-600)]">Výsledky mluví za nás</p>
+              <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl lg:text-4xl">
                 Proč nám důvěřují stovky klientů
               </h2>
-              <p className="mt-3 text-lg text-slate-600">
-                Čísla mluví za nás — transparentní a férový výkup bez skrytých
-                poplatků
+              <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-600">
+                Transparentní a férový výkup bez skrytých poplatků — od prvního kontaktu po peníze na účtu
               </p>
             </div>
           </ScrollReveal>
-          <div className="grid items-center gap-10 lg:grid-cols-[3fr_2fr]">
-            <FloatingStats metrics={TRUST_METRICS} />
-            <ScrollReveal delay={200}>
-              <div className="space-y-6">
-                <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-lg">
-                  <Image
-                    src="/images/section-trust.png"
-                    alt="Důvěryhodný výkup nemovitostí – spokojení klienti"
-                    fill
-                    className="object-cover"
-                  />
+          <FloatingStats metrics={TRUST_METRICS} />
+          <ScrollReveal delay={300}>
+            <div className="mt-12 grid gap-6 sm:grid-cols-3">
+              <div className="rounded-2xl border border-[var(--theme-100)] bg-white/60 p-6 text-center backdrop-blur-sm">
+                <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--theme-50)]">
+                  <Star className="h-6 w-6 text-[var(--theme-600)]" aria-hidden="true" />
                 </div>
-                <div className="rounded-2xl border border-slate-200 bg-white/80 p-6 backdrop-blur-sm">
-                  <p className="text-sm font-medium text-slate-700">
-                    {
-                      "„Celý proces trval 5 dní. Peníze na účtu, žádné skryté poplatky. Doporučuji každému.“"
-                    }
-                  </p>
-                  <p className="mt-2 text-xs text-slate-500">
-                    — Spokojený klient z Prahy
-                  </p>
-                </div>
+                <p className="text-sm font-medium text-slate-700">Férová cena stanovená na základě aktuálního trhu</p>
               </div>
-            </ScrollReveal>
-          </div>
+              <div className="rounded-2xl border border-[var(--theme-100)] bg-white/60 p-6 text-center backdrop-blur-sm">
+                <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--theme-50)]">
+                  <FileSignature className="h-6 w-6 text-[var(--theme-600)]" aria-hidden="true" />
+                </div>
+                <p className="text-sm font-medium text-slate-700">Advokátní úschova kupní ceny pro vaši bezpečnost</p>
+              </div>
+              <div className="rounded-2xl border border-[var(--theme-100)] bg-white/60 p-6 text-center backdrop-blur-sm">
+                <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--theme-50)]">
+                  <Banknote className="h-6 w-6 text-[var(--theme-600)]" aria-hidden="true" />
+                </div>
+                <p className="text-sm font-medium text-slate-700">Záloha vyplacena ihned při podpisu smlouvy</p>
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
-      <div className="section-divider">
-        <div className="divider-ornament" />
-      </div>
       {/* ===== JAK TO FUNGUJE — BUILDING TIMELINE ===== */}
       <section className="section-md bg-luxury-warm noise-overlay">
         <div className="container-wide">
@@ -707,9 +689,6 @@ export function HomePageContent({
         </div>
       </section>
 
-      <div className="section-divider">
-        <div className="divider-ornament" />
-      </div>
       {/* ===== ŘEŠÍME I SLOŽITÉ SITUACE ===== */}
       <section className="bg-luxury-dark relative overflow-hidden py-20 md:py-28">
         <div className="orb orb-theme-1 -left-40 -top-40" aria-hidden="true" />
@@ -751,16 +730,8 @@ export function HomePageContent({
         </div>
       </section>
 
-      {/* ===== VISUAL BREAK: PROPERTY EXTERIOR ===== */}
-      <section className="relative h-[250px] overflow-hidden sm:h-[300px] lg:h-[350px]">
-        <div
-          className="absolute inset-x-0 top-0 z-10 h-16 bg-gradient-to-b from-white to-transparent"
-          aria-hidden="true"
-        />
-        <div
-          className="absolute inset-x-0 bottom-0 z-10 h-16 bg-gradient-to-t from-white to-transparent"
-          aria-hidden="true"
-        />
+            {/* ===== VISUAL BREAK: PROPERTY EXTERIOR ===== */}
+      <ParallaxSection offset={40} className="relative h-[300px] overflow-hidden sm:h-[350px] lg:h-[400px]">
         <Image
           src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1400&q=80"
           alt={`Rezidenční nemovitost ${region.locative} – profesionální výkup`}
@@ -768,16 +739,16 @@ export function HomePageContent({
           className="object-cover"
         />
         <div
-          className="absolute inset-0 bg-gradient-to-r from-slate-900/70 to-slate-900/50"
+          className="absolute inset-0 bg-gradient-to-r from-slate-900/80 to-slate-900/50"
           aria-hidden="true"
         />
         <div className="relative flex h-full items-center justify-center px-6">
-          <p className="text-center text-xl font-bold text-white sm:text-2xl lg:text-3xl">
+          <p className="text-center text-xl font-bold text-white drop-shadow-lg sm:text-2xl lg:text-3xl">
             Pomáháme majitelům nemovitostí {region.locative} i po celé České
             republice
           </p>
         </div>
-      </section>
+      </ParallaxSection>
 
       {/* ===== PROČ KLIENTI VOLÍ NÁS (USP) ===== */}
       <ParallaxSection offset={20}>
@@ -961,51 +932,13 @@ export function HomePageContent({
                 </div>
               </div>
             </ScrollReveal>
+            <div className="mt-10">
+              <LeadForm regionName={region.name} />
+            </div>
           </div>
         </div>
       </section>
       <PropertyEstimator regionKey={region.key} />
-
-      {/* ===== TESTIMONIALS ===== */}
-      <ParallaxSection offset={25}>
-        <section className="section-md bg-luxury-dark relative overflow-hidden">
-          <div
-            className="orb orb-theme-1 -right-40 top-20"
-            aria-hidden="true"
-          />
-          <div
-            className="orb orb-theme-2 -bottom-20 left-20"
-            aria-hidden="true"
-          />
-          <div className="relative mx-auto max-w-[1400px] px-6">
-            <ScrollReveal>
-              <h2 className="mb-8 text-center text-2xl font-bold text-white sm:text-3xl">
-                Co říkají naši klienti {region.locative}
-              </h2>
-            </ScrollReveal>
-            <QuoteBubbles testimonials={region.testimonials ?? []} />
-          </div>
-        </section>
-      </ParallaxSection>
-
-      {/* ===== VISUAL BREAK: HAPPY FAMILY HOME ===== */}
-      <section className="relative h-[200px] sm:h-[250px] lg:h-[300px]">
-        <Image
-          src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=1400&q=80"
-          alt={`Moderní bydlení – transparentní výkup nemovitostí ${region.locative}`}
-          fill
-          className="object-cover"
-        />
-        <div
-          className="absolute inset-0 bg-gradient-to-r from-slate-900/70 to-slate-900/40"
-          aria-hidden="true"
-        />
-        <div className="relative flex h-full items-center justify-center px-6">
-          <p className="text-center text-xl font-bold text-white sm:text-2xl lg:text-3xl">
-            Vaše nemovitost {region.locative} si zaslouží férové jednání
-          </p>
-        </div>
-      </section>
 
       {/* ===== NEARBY REGIONS ===== */}
       <NearbyRegions regionKey={region.key} currentHost={currentHost} />

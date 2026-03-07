@@ -42,9 +42,6 @@ export function HeroImage({
       <motion.div
         className="absolute inset-0"
         style={reduced ? {} : { y, scale, opacity }}
-        initial={reduced ? false : { scale: 1.08 }}
-        animate={{ scale: 1.02 }}
-        transition={{ duration: 4, ease: [0.25, 0.1, 0.25, 1] }}
       >
         <Image
           src={src}

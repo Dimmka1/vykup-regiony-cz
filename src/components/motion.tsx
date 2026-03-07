@@ -7,4 +7,7 @@ export {
   useMotionValueEvent,
   useReducedMotion,
   useInView,
+  useSpring,
+  useMotionValue,
+  useAnimation,
 } from "framer-motion";

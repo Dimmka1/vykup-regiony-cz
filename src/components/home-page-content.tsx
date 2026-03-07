@@ -812,6 +812,13 @@ export function HomePageContent({
               >
                 Výkup při dědictví →
               </Link>
+              <Link
+                href="/konec-fixace-hypoteky"
+                className="inline-flex items-center gap-1 text-sm font-medium text-[var(--theme-700)] transition hover:text-[var(--theme-600)]"
+                aria-label="Konec fixace hypotéky 2026 — co vás čeká"
+              >
+                Konec fixace hypotéky →
+              </Link>
             </div>
           </ScrollReveal>
         </div>

@@ -38,6 +38,11 @@ const ALL_PAGES: Record<string, RelatedArticle> = {
     title: "Výkup nemovitosti v exekuci",
     description: "Praktický průvodce prodejem nemovitosti zatížené exekucí.",
   },
+  "konec-fixace-hypoteky": {
+    href: "/konec-fixace-hypoteky",
+    title: "Konec fixace hypotéky 2026",
+    description: "Končí vám fixace hypotéky? Zjistěte, jaké máte možnosti.",
+  },
   // Use case pages
   "vykup-bytu": {
     href: "/vykup-bytu",
@@ -170,7 +175,7 @@ const RELATED_MAP: Record<string, string[]> = {
   "vykup-nemovitosti-s-hypotekou": [
     "blog/nemovitost-v-exekuci-pruvodce",
     "vykup-pri-exekuci",
-    "blog/jak-probiha-rychly-vykup",
+    "konec-fixace-hypoteky",
     "zpetny-najem",
   ],
   "vykup-nemovitosti-s-vecnym-bremenem": [
@@ -190,6 +195,12 @@ const RELATED_MAP: Record<string, string[]> = {
     "vykup-nemovitosti-s-hypotekou",
     "blog/jak-rychle-prodat-nemovitost",
     "vykup-bytu",
+  ],
+  "konec-fixace-hypoteky": [
+    "vykup-pri-exekuci",
+    "zpetny-najem",
+    "vykup-nemovitosti-s-hypotekou",
+    "blog/jak-rychle-prodat-nemovitost",
   ],
 };
 

@@ -75,7 +75,7 @@ function StatCard({ metric, index }: { metric: Metric; index: number }) {
       }}
     >
       <motion.article
-        className="relative overflow-hidden rounded-3xl border border-white/60 bg-white/80 p-8 backdrop-blur-sm md:p-10"
+        className="relative min-h-[140px] overflow-hidden rounded-3xl border border-white/60 bg-white/80 p-6 backdrop-blur-sm md:p-8 lg:p-10"
         style={{
           transformStyle: "preserve-3d",
           boxShadow: `0 ${8 + depth.z / 3}px ${32 + depth.z}px rgba(var(--theme-rgb-500), 0.08), 0 0 ${depth.z}px rgba(var(--theme-rgb-500), 0.04)`,
@@ -124,7 +124,7 @@ function StatCard({ metric, index }: { metric: Metric; index: number }) {
               })()}
           </span>
           <div>
-            <p className="text-4xl font-extrabold text-[var(--theme-700)] md:text-5xl">
+            <p className="text-3xl font-extrabold text-[var(--theme-700)] sm:text-4xl md:text-5xl">
               <SlotCounter value={metric.value} />
             </p>
             <p className="mt-2 text-sm text-slate-500">{metric.label}</p>
@@ -137,7 +137,7 @@ function StatCard({ metric, index }: { metric: Metric; index: number }) {
 
 export function FloatingStats({ metrics }: FloatingStatsProps) {
   return (
-    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="grid grid-cols-2 gap-6 sm:grid-cols-2 lg:grid-cols-4">
       {metrics.map((metric, idx) => (
         <StatCard key={metric.label} metric={metric} index={idx} />
       ))}

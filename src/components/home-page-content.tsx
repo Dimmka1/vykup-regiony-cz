@@ -648,8 +648,8 @@ export function HomePageContent({
                   className="shadow-layered relative aspect-[3/4] rounded-3xl"
                 >
                   <ParallaxImage
-                    src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80"
-                    alt={`Luxusní dům – expresní výkup nemovitostí ${region.locative}`}
+                    src="https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=800&q=80"
+                    alt={`Činžovní dům – první krok výkupu nemovitosti ${region.locative}`}
                     className="aspect-[3/4] rounded-3xl"
                   />
                 </ScrollReveal>
@@ -658,8 +658,8 @@ export function HomePageContent({
                   className="shadow-layered relative aspect-[3/4] rounded-3xl"
                 >
                   <ParallaxImage
-                    src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80"
-                    alt={`Moderní interiér – profesionální posouzení nemovitosti ${region.locative}`}
+                    src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&q=80"
+                    alt={`Rodinný dům – ocenění nemovitosti ${region.locative}`}
                     className="aspect-[3/4] rounded-3xl"
                   />
                 </ScrollReveal>
@@ -731,8 +731,8 @@ export function HomePageContent({
                   className="shadow-layered relative aspect-[3/4] rounded-3xl"
                 >
                   <ParallaxImage
-                    src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80"
-                    alt={`Elegantní interiér – bezpečný právní postup ${region.locative}`}
+                    src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80"
+                    alt={`Interiér bytu – podpis smlouvy o výkupu ${region.locative}`}
                     className="aspect-[3/4] rounded-3xl"
                   />
                 </ScrollReveal>
@@ -741,8 +741,8 @@ export function HomePageContent({
                   className="shadow-layered relative aspect-[3/4] rounded-3xl"
                 >
                   <ParallaxImage
-                    src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=800&q=80"
-                    alt={`Luxusní apartmán – dokončení výkupu ${region.locative}`}
+                    src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80"
+                    alt={`Městský dům – dokončení výkupu nemovitosti ${region.locative}`}
                     className="aspect-[3/4] rounded-3xl"
                   />
                 </ScrollReveal>
@@ -839,8 +839,8 @@ export function HomePageContent({
       {/* ===== VISUAL BREAK: PROPERTY EXTERIOR ===== */}
       <section className="relative h-[200px] sm:h-[250px] lg:h-[300px]">
         <Image
-          src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=80"
-          alt={`Moderní vila – nemovitosti k výkupu ${region.locative}`}
+          src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1400&q=80"
+          alt={`Rezidenční nemovitost ${region.locative} – profesionální výkup`}
           fill
           className="object-cover"
         />
@@ -887,8 +887,8 @@ export function HomePageContent({
           <div className="grid items-center gap-10 lg:grid-cols-2">
             <ScrollReveal className="shadow-layered relative aspect-[4/3] rounded-3xl">
               <ParallaxImage
-                src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=80"
-                alt={`Rezidenční nemovitosti v ${region.name} – profesionální výkup v celém kraji`}
+                src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=1400&q=80"
+                alt={`Moderní bydlení – transparentní výkup nemovitostí`}
                 className="aspect-[4/3] rounded-3xl"
               />
             </ScrollReveal>
@@ -1127,8 +1127,8 @@ export function HomePageContent({
       {/* ===== VISUAL BREAK: HAPPY FAMILY HOME ===== */}
       <section className="relative h-[200px] sm:h-[250px] lg:h-[300px]">
         <Image
-          src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&q=80"
-          alt={`Prémiový dům – nemovitosti k výkupu ${region.locative}`}
+          src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=1400&q=80"
+          alt={`Moderní bydlení – transparentní výkup nemovitostí ${region.locative}`}
           fill
           className="object-cover"
         />
@@ -1201,8 +1201,8 @@ export function HomePageContent({
       {/* Regional internal links for SEO */}
       <section className="section-md relative overflow-hidden">
         <Image
-          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80"
-          alt="Architektura České republiky"
+          src="https://images.unsplash.com/photo-1541123603104-512919d6a96c?w=1920&q=80"
+          alt="Panorama českého města – výkup nemovitostí v celé ČR"
           fill
           className="object-cover"
         />

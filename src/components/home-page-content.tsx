@@ -36,16 +36,8 @@ import {
   FileText,
   Zap,
   FileSignature,
+  FilePenLine,
   Banknote,
-  HandCoins,
-  Clock,
-  ShieldCheck,
-  Gavel,
-  FileWarning,
-  Landmark,
-  ScrollText,
-  Users,
-  Link2,
   CheckCircle,
   Quote,
   Phone,
@@ -102,35 +94,35 @@ function getProcessSteps(region: RegionConfig) {
     {
       title: "Vyplníte formulář",
       eta: "2 min",
-      Icon: FileText,
+      icon: "FileText",
       description: `Stačí základní údaje o nemovitosti ${region.locative}`,
     },
     {
       title: "Nabídka do 24h",
       eta: "24 h",
-      Icon: Zap,
+      icon: "Zap",
       description: `Připravíme nezávaznou cenovou nabídku pro ${region.name}`,
     },
     {
       title: "Podpis smlouvy",
       eta: "dle dohody",
-      Icon: FileSignature,
+      icon: "FilePenLine",
       description: `Vše vyřídíme za vás ${region.locative}, včetně právního servisu`,
     },
     {
       title: "Peníze na účtu",
       eta: "do 48h",
-      Icon: Banknote,
+      icon: "Banknote",
       description: `Výplata ihned po podpisu smlouvy za nemovitost ${region.locative}`,
     },
   ];
 }
 
 const TRUST_METRICS = [
-  { label: "Bez provize", value: "0 Kč", Icon: HandCoins },
-  { label: "Průměrná doba první nabídky", value: "24 h", Icon: Clock },
-  { label: "Právní servis zdarma", value: "V ceně", Icon: FileSignature },
-  { label: "Garance ceny ve smlouvě", value: "100 %", Icon: ShieldCheck },
+  { label: "Bez provize", value: "0 Kč", icon: "HandCoins" },
+  { label: "Průměrná doba první nabídky", value: "24 h", icon: "Clock" },
+  { label: "Právní servis zdarma", value: "V ceně", icon: "FileSignature" },
+  { label: "Garance ceny ve smlouvě", value: "100 %", icon: "ShieldCheck" },
 ] as const;
 
 const ABOUT_STATS = [
@@ -143,32 +135,32 @@ function getComplexSituations(region: RegionConfig) {
   return [
     {
       label: "Exekuce",
-      Icon: Gavel,
+      icon: "Gavel",
       description: `Vykoupíme nemovitost ${region.locative} i s exekucí a pomůžeme s oddlužením`,
     },
     {
       label: "Insolvence",
-      Icon: FileWarning,
+      icon: "FileWarning",
       description: `Řešení pro nemovitosti v insolvenčním řízení ${region.locative}`,
     },
     {
       label: "Hypotéka",
-      Icon: Landmark,
+      icon: "Landmark",
       description: `Převezmeme nemovitost ${region.locative} se zatížením hypotékou`,
     },
     {
       label: "Dědictví",
-      Icon: ScrollText,
+      icon: "ScrollText",
       description: `Rychlý výkup zděděných nemovitostí ${region.locative} bez komplikací`,
     },
     {
       label: "Spoluvlastnický podíl",
-      Icon: Users,
+      icon: "Users",
       description: `Odkoupíme i podíl na nemovitosti ${region.locative} bez souhlasu ostatních`,
     },
     {
       label: "Věcné břemeno",
-      Icon: Link2,
+      icon: "Link2",
       description: `Nemovitosti s věcným břemenem ${region.locative} nejsou problém`,
     },
   ];
@@ -693,7 +685,18 @@ export function HomePageContent({
                       <div className="card-premium card-accent flex gap-5 border border-slate-100">
                         <div className="flex flex-col items-center gap-2">
                           <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--theme-50)] text-[var(--theme-600)]">
-                            <step.Icon className="h-6 w-6" aria-hidden="true" />
+                            {(() => {
+                              const map: Record<string, any> = {
+                                FileText,
+                                Zap,
+                                FilePenLine,
+                                Banknote,
+                              };
+                              const I = map[step.icon];
+                              return I ? (
+                                <I className="h-6 w-6" aria-hidden="true" />
+                              ) : null;
+                            })()}
                           </span>
                           <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--theme-600)] text-sm font-bold text-white">
                             {index + 1}
@@ -725,7 +728,18 @@ export function HomePageContent({
                       <div className="card-premium card-accent flex gap-5 border border-slate-100">
                         <div className="flex flex-col items-center gap-2">
                           <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--theme-50)] text-[var(--theme-600)]">
-                            <step.Icon className="h-6 w-6" aria-hidden="true" />
+                            {(() => {
+                              const map: Record<string, any> = {
+                                FileText,
+                                Zap,
+                                FilePenLine,
+                                Banknote,
+                              };
+                              const I = map[step.icon];
+                              return I ? (
+                                <I className="h-6 w-6" aria-hidden="true" />
+                              ) : null;
+                            })()}
                           </span>
                           <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--theme-600)] text-sm font-bold text-white">
                             {index + 3}

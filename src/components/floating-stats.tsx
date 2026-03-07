@@ -3,12 +3,20 @@
 import { useRef, useState, useCallback } from "react";
 import { motion, useReducedMotion, useInView } from "@/components/motion";
 import { SlotCounter } from "@/components/slot-counter";
+import { HandCoins, Clock, FileSignature, ShieldCheck } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+
+const ICON_MAP: Record<string, LucideIcon> = {
+  HandCoins,
+  Clock,
+  FileSignature,
+  ShieldCheck,
+};
 
 interface Metric {
   label: string;
   value: string;
-  Icon: LucideIcon;
+  icon: string;
 }
 
 interface FloatingStatsProps {
@@ -104,10 +112,16 @@ function StatCard({ metric, index }: { metric: Metric; index: number }) {
 
         <div className="flex items-start gap-5">
           <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[var(--theme-50)] to-[var(--theme-100)]">
-            <metric.Icon
-              className="h-7 w-7 text-[var(--theme-600)]"
-              aria-hidden="true"
-            />
+            {ICON_MAP[metric.icon] &&
+              (() => {
+                const I = ICON_MAP[metric.icon];
+                return (
+                  <I
+                    className="h-7 w-7 text-[var(--theme-600)]"
+                    aria-hidden="true"
+                  />
+                );
+              })()}
           </span>
           <div>
             <p className="text-4xl font-extrabold text-[var(--theme-700)] md:text-5xl">

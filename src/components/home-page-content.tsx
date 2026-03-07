@@ -16,7 +16,6 @@ import { ParallaxImage } from "@/components/parallax-image";
 import { ParallaxSection } from "@/components/parallax-section";
 import { NearbyRegions } from "@/components/nearby-regions";
 import { ComparisonCalculator } from "@/components/comparison-calculator";
-import { LeadForm } from "@/components/lead-form";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { StaggerReveal, StaggerItem } from "@/components/stagger-reveal";
 import { HeroStagger } from "@/components/hero-stagger";
@@ -412,6 +411,12 @@ export function HomePageContent({
           aria-hidden="true"
         />
 
+        {/* Bottom fade into content */}
+        <div
+          className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-white"
+          aria-hidden="true"
+        />
+
         <div className="hero-blob" aria-hidden="true" />
         <div className="hero-blob-2" aria-hidden="true" />
         <div className="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-center px-6 py-24">
@@ -715,26 +720,24 @@ export function HomePageContent({
       </section>
 
       {/* ===== VISUAL BREAK: PROPERTY EXTERIOR ===== */}
-      <ParallaxSection offset={40}>
-        <section className="relative h-[200px] sm:h-[250px] lg:h-[300px]">
-          <Image
-            src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1400&q=80"
-            alt={`Rezidenční nemovitost ${region.locative} – profesionální výkup`}
-            fill
-            className="object-cover"
-          />
-          <div
-            className="absolute inset-0 bg-gradient-to-r from-slate-900/70 to-slate-900/50"
-            aria-hidden="true"
-          />
-          <div className="relative flex h-full items-center justify-center px-6">
-            <p className="text-center text-xl font-bold text-white sm:text-2xl lg:text-3xl">
-              Pomáháme majitelům nemovitostí {region.locative} i po celé České
-              republice
-            </p>
-          </div>
-        </section>
-      </ParallaxSection>
+      <section className="relative h-[250px] overflow-hidden bg-slate-900 sm:h-[300px] lg:h-[350px]">
+        <Image
+          src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1400&q=80"
+          alt={`Rezidenční nemovitost ${region.locative} – profesionální výkup`}
+          fill
+          className="object-cover"
+        />
+        <div
+          className="absolute inset-0 bg-gradient-to-r from-slate-900/70 to-slate-900/50"
+          aria-hidden="true"
+        />
+        <div className="relative flex h-full items-center justify-center px-6">
+          <p className="text-center text-xl font-bold text-white sm:text-2xl lg:text-3xl">
+            Pomáháme majitelům nemovitostí {region.locative} i po celé České
+            republice
+          </p>
+        </div>
+      </section>
 
       {/* ===== PROČ KLIENTI VOLÍ NÁS (USP) ===== */}
       <ParallaxSection offset={20}>
@@ -846,7 +849,7 @@ export function HomePageContent({
               </p>
             </div>
           </ScrollReveal>
-          <div className="grid gap-10 lg:grid-cols-2">
+          <div className="mx-auto max-w-2xl">
             <ScrollReveal delay={200}>
               <div className="flex flex-col justify-center">
                 <div className="mb-8 grid grid-cols-3 gap-4">
@@ -916,12 +919,6 @@ export function HomePageContent({
                     {region.legalDisclaimer}
                   </p>
                 </div>
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal>
-              <div className="rounded-3xl bg-white p-8 shadow-2xl md:p-12">
-                <LeadForm regionName={region.name} />
               </div>
             </ScrollReveal>
           </div>

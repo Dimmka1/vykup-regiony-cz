@@ -33,8 +33,8 @@ export function HeroImage({
   });
 
   // Parallax: image moves slower than scroll (zoomed in, shifts up)
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1.05, 1.2]);
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1.02, 1.1]);
   const opacity = useTransform(scrollYProgress, [0, 0.8, 1], [1, 0.6, 0.3]);
 
   return (
@@ -42,9 +42,9 @@ export function HeroImage({
       <motion.div
         className="absolute inset-0"
         style={reduced ? {} : { y, scale, opacity }}
-        initial={reduced ? false : { scale: 1.15 }}
-        animate={{ scale: 1.05 }}
-        transition={{ duration: 3.5, ease: [0.25, 0.1, 0.25, 1] }}
+        initial={reduced ? false : { scale: 1.08 }}
+        animate={{ scale: 1.02 }}
+        transition={{ duration: 4, ease: [0.25, 0.1, 0.25, 1] }}
       >
         <Image
           src={src}

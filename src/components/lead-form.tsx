@@ -128,6 +128,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [currentStep, setCurrentStep] = useState<FormStep>(0);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const mountTimeRef = useRef(Date.now());
   const formRef = useRef<HTMLFormElement>(null);
   const router = useRouter();
 
@@ -246,6 +247,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
           city: formData.city,
           consent_gdpr: formData.consent,
           email: formData.email,
+          fill_time_ms: Date.now() - mountTimeRef.current,
           website: formData.website,
         }),
       });

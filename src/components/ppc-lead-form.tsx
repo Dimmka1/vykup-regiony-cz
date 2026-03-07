@@ -45,6 +45,7 @@ export function PpcLeadForm({
   const [formData, setFormData] = useState<PpcFormData>(INITIAL_FORM);
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const mountTimeRef = useRef(Date.now());
   const formRef = useRef<HTMLFormElement>(null);
   const router = useRouter();
 
@@ -82,6 +83,7 @@ export function PpcLeadForm({
             utm_source: utmSource,
             utm_medium: utmMedium,
             utm_campaign: utmCampaign,
+            fill_time_ms: Date.now() - mountTimeRef.current,
             source: "ppc",
           }),
         });

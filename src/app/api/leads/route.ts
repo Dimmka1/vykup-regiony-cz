@@ -2,6 +2,8 @@ import { appendFileSync } from "node:fs";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { calculateLeadScore } from "@/lib/lead-scoring";
+import { calculateFraudScore, type FraudScore } from "@/lib/fraud-scoring";
+import { checkDuplicate, registerLead } from "@/lib/lead-dedup";
 
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX = 10;
@@ -13,10 +15,18 @@ const leadSchema = z.object({
   phone: z.string().regex(/^(\+?420|00420)?\s?\d{3}\s?\d{3}\s?\d{3}$/),
   property_type: z.string().min(2),
   region: z.string().min(2),
-  situation_type: z.string().min(2),
+  situation_type: z.string().min(2).default("standard"),
   consent_gdpr: z.literal(true),
   email: z.string().email().optional().or(z.literal("")),
   website: z.string().optional(),
+  address: z.string().optional(),
+  postal_code: z.string().optional(),
+  city: z.string().optional(),
+  fill_time_ms: z.number().optional(),
+  utm_source: z.string().optional(),
+  utm_medium: z.string().optional(),
+  utm_campaign: z.string().optional(),
+  source: z.string().optional(),
 });
 
 const callbackSchema = z.object({
@@ -47,7 +57,12 @@ interface LeadNotificationPayload {
   lead_id: string;
   timestamp: string;
   ip: string;
-  data: Omit<LeadData, "website" | "consent_gdpr">;
+  data: Omit<LeadData, "website" | "consent_gdpr" | "fill_time_ms">;
+}
+
+interface TelegramOptions {
+  prefix?: string;
+  fraudScore?: FraudScore;
 }
 
 async function sendWebhookNotification(
@@ -131,6 +146,7 @@ async function sendEmailNotification(
 
 async function sendTelegramNotification(
   payload: LeadNotificationPayload,
+  options?: TelegramOptions,
 ): Promise<void> {
   const botToken = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
@@ -148,8 +164,15 @@ async function sendTelegramNotification(
     region: data.region,
     situation_type: data.situation_type,
   });
+
+  const prefix = options?.prefix ? `${options.prefix} ` : "";
+  const fraudLine =
+    options?.fraudScore && options.fraudScore.score > 0
+      ? `\n🎯 <b>Fraud score:</b> ${options.fraudScore.score}/100 ${options.fraudScore.isFraud ? "🔴" : "✅"} [${options.fraudScore.reasons.join(", ")}]`
+      : "";
+
   const text = [
-    `${scoring.emoji} <b>${scoring.tier.toUpperCase()} lead (${scoring.score})</b>: ${data.property_type} ${data.region}${data.situation_type !== "standard" ? ", " + data.situation_type : ""}`,
+    `${prefix}${scoring.emoji} <b>${scoring.tier.toUpperCase()} lead (${scoring.score})</b>: ${data.property_type} ${data.region}${data.situation_type !== "standard" ? ", " + data.situation_type : ""}`,
     "",
     `👤 <b>Jméno:</b> ${data.name}`,
     `📞 <b>Telefon:</b> ${data.phone}`,
@@ -157,7 +180,7 @@ async function sendTelegramNotification(
     `📍 <b>Region:</b> ${data.region}`,
     `📋 <b>Situace:</b> ${data.situation_type}`,
     `🕐 <b>Čas:</b> ${payload.timestamp}`,
-    `🆔 <b>ID:</b> ${payload.lead_id}`,
+    `🆔 <b>ID:</b> ${payload.lead_id}${fraudLine}`,
   ].join("\n");
 
   const res = await fetch(
@@ -265,6 +288,7 @@ async function sendAutoReplyEmail(
     });
   }
 }
+
 async function sendCallbackTelegramNotification(
   payload: CallbackNotificationPayload,
 ): Promise<void> {
@@ -472,6 +496,7 @@ export async function POST(request: Request): Promise<NextResponse> {
       );
     }
 
+    // ── Main lead flow ────────────────────────────────────────────
     const result = leadSchema.safeParse(payload);
     if (!result.success) {
       return NextResponse.json(
@@ -480,8 +505,61 @@ export async function POST(request: Request): Promise<NextResponse> {
       );
     }
 
-    const leadId = `lead_${Date.now().toString(36)}`;
     const validatedData = result.data;
+
+    // ── Fraud scoring ─────────────────────────────────────────────
+    const fraudResult = calculateFraudScore({
+      name: validatedData.name,
+      email: validatedData.email,
+      phone: validatedData.phone,
+      postalCode: validatedData.postal_code,
+      fillTimeMs: validatedData.fill_time_ms,
+    });
+
+    // ── Deduplication check ───────────────────────────────────────
+    const dedupResult = checkDuplicate(
+      validatedData.phone,
+      validatedData.email,
+    );
+
+    if (dedupResult.isDuplicate) {
+      const existingLeadId = dedupResult.existingLeadId!;
+
+      const notificationPayload: LeadNotificationPayload = {
+        lead_id: existingLeadId,
+        timestamp: new Date().toISOString(),
+        ip: clientIp,
+        data: {
+          name: validatedData.name,
+          phone: validatedData.phone,
+          property_type: validatedData.property_type,
+          region: validatedData.region,
+          situation_type: validatedData.situation_type,
+        },
+      };
+
+      // Only send Telegram with [UPDATE] prefix, no other notifications
+      await sendTelegramNotification(notificationPayload, {
+        prefix: "[UPDATE]",
+        fraudScore: fraudResult,
+      });
+
+      saveLeadToFile(notificationPayload);
+
+      return NextResponse.json(
+        {
+          ok: true,
+          lead_id: existingLeadId,
+          message: "Lead updated (duplicate)",
+          fraud_score: fraudResult.score,
+        },
+        { status: 200 },
+      );
+    }
+
+    // ── New lead ──────────────────────────────────────────────────
+    const leadId = `lead_${Date.now().toString(36)}`;
+    registerLead(leadId, validatedData.phone, validatedData.email);
 
     const notificationPayload: LeadNotificationPayload = {
       lead_id: leadId,
@@ -496,10 +574,31 @@ export async function POST(request: Request): Promise<NextResponse> {
       },
     };
 
+    if (fraudResult.isFraud) {
+      // Fraud lead: only Telegram with 🔴, skip SMS (webhook) and email drip (auto-reply)
+      await sendTelegramNotification(notificationPayload, {
+        fraudScore: fraudResult,
+      });
+      saveLeadToFile(notificationPayload);
+
+      return NextResponse.json(
+        {
+          ok: true,
+          lead_id: leadId,
+          message: "Lead accepted",
+          fraud_score: fraudResult.score,
+        },
+        { status: 200 },
+      );
+    }
+
+    // ── Normal lead: all notifications ────────────────────────────
     const notifyResults = await Promise.allSettled([
       sendWebhookNotification(notificationPayload),
       sendEmailNotification(notificationPayload),
-      sendTelegramNotification(notificationPayload),
+      sendTelegramNotification(notificationPayload, {
+        fraudScore: fraudResult,
+      }),
       ...(validatedData.email && validatedData.email.trim()
         ? [
             sendAutoReplyEmail({
@@ -532,6 +631,7 @@ export async function POST(request: Request): Promise<NextResponse> {
         message: "Lead accepted",
         score: leadScore.score,
         tier: leadScore.tier,
+        fraud_score: fraudResult.score,
       },
       { status: 200 },
     );

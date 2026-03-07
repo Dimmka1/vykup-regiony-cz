@@ -110,7 +110,7 @@ function StatCard({ metric, index }: { metric: Metric; index: number }) {
           aria-hidden="true"
         />
 
-        <div className="flex items-start gap-5 min-w-0">
+        <div className="flex min-w-0 items-start gap-5">
           <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[var(--theme-50)] to-[var(--theme-100)]">
             {ICON_MAP[metric.icon] &&
               (() => {

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DynamicPhone } from "@/components/dynamic-phone";
 
 export const metadata: Metadata = {
   alternates: {
@@ -228,12 +229,7 @@ export default function CookiesPage() {
               info@vykoupim-nemovitost.cz
             </a>{" "}
             nebo na telefonu{" "}
-            <a
-              href="tel:+420776424145"
-              className="text-[var(--theme-600)] underline hover:text-[var(--theme-700)]"
-            >
-              +420 776 424 145
-            </a>
+            <DynamicPhone className="text-[var(--theme-600)] underline hover:text-[var(--theme-700)]" />
             .
           </p>
         </Section>

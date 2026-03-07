@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Menu, Phone, X } from "lucide-react";
+import { DynamicPhone } from "@/components/dynamic-phone";
 
 /** Region keys that have a dark hero - header stays transparent */
 const REGION_KEYS = new Set([
@@ -109,16 +110,20 @@ export function SiteHeader({ phone = "+420 776 424 145" }: SiteHeaderProps) {
           >
             Blog
           </Link>
-          <a
-            href={`tel:${phone}`}
-            className={`inline-flex min-h-[48px] items-center gap-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 ${
-              showSolid ? "text-slate-600" : "text-white/80"
-            }`}
-            aria-label={`Zavolat na ${phone}`}
-          >
-            <Phone className="h-4 w-4" />
-            <span className="hidden md:inline">{phone}</span>
-          </a>
+          <DynamicPhone fallback={phone}>
+            {({ phone: displayPhone, href }) => (
+              <a
+                href={href}
+                className={`inline-flex min-h-[48px] items-center gap-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 ${
+                  showSolid ? "text-slate-600" : "text-white/80"
+                }`}
+                aria-label={`Zavolat na ${displayPhone}`}
+              >
+                <Phone className="h-4 w-4" />
+                <span className="hidden md:inline">{displayPhone}</span>
+              </a>
+            )}
+          </DynamicPhone>
           <a
             href="#kontakt"
             className="cta-glow btn-ripple shadow-[var(--theme-600)]/20 hidden min-h-[48px] items-center rounded-full bg-gradient-to-r from-[var(--theme-600)] to-[var(--theme-700)] px-6 py-2.5 text-sm font-semibold text-white shadow-lg transition hover:from-[var(--theme-500)] hover:to-[var(--theme-600)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 md:inline-flex"
@@ -184,13 +189,17 @@ export function SiteHeader({ phone = "+420 776 424 145" }: SiteHeaderProps) {
             >
               Blog
             </Link>
-            <a
-              href={`tel:${phone}`}
-              className="inline-flex min-h-[48px] items-center gap-1.5 text-sm font-medium text-slate-600"
-            >
-              <Phone className="h-4 w-4" />
-              {phone}
-            </a>
+            <DynamicPhone fallback={phone}>
+              {({ phone: displayPhone, href }) => (
+                <a
+                  href={href}
+                  className="inline-flex min-h-[48px] items-center gap-1.5 text-sm font-medium text-slate-600"
+                >
+                  <Phone className="h-4 w-4" />
+                  {displayPhone}
+                </a>
+              )}
+            </DynamicPhone>
             <a
               href="#kontakt"
               className="cta-glow btn-ripple inline-flex min-h-[48px] items-center justify-center rounded-full bg-gradient-to-r from-[var(--theme-600)] to-[var(--theme-700)] px-6 py-3 text-sm font-semibold text-white transition hover:from-[var(--theme-500)] hover:to-[var(--theme-600)]"

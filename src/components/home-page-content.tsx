@@ -11,6 +11,7 @@ import { PropertyEstimator } from "@/components/property-estimator";
 import { ScrollTracker } from "@/components/scroll-tracker";
 import { FloatingDesktopCta } from "@/components/floating-desktop-cta";
 import { FaqAccordion } from "@/components/faq-accordion";
+import { ParallaxImage } from "@/components/parallax-image";
 import { NearbyRegions } from "@/components/nearby-regions";
 import { ComparisonCalculator } from "@/components/comparison-calculator";
 import { LeadForm } from "@/components/lead-form";
@@ -515,7 +516,7 @@ export function HomePageContent({
 
       {/* ===== TRH V REGIONU ===== */}
       {region.marketAnalysis && (
-        <section className="section-md bg-white">
+        <section className="section-md bg-luxury-mesh relative overflow-hidden">
           <div className="container-wide">
             <div className="grid gap-10 lg:grid-cols-[1fr_2fr]">
               <ScrollReveal>
@@ -540,7 +541,7 @@ export function HomePageContent({
 
       {/* ===== JAK PROBÍHÁ VÝKUP ===== */}
       {region.localProcess && (
-        <section className="section-md bg-slate-50">
+        <section className="section-md bg-luxury-warm">
           <div className="container-wide">
             <div className="grid gap-10 lg:grid-cols-[1fr_2fr]">
               <ScrollReveal>
@@ -565,7 +566,7 @@ export function HomePageContent({
 
       {/* ===== KDE VYKUPUJEME ===== */}
       {region.neighborhoodGuide && (
-        <section className="section-md bg-white">
+        <section className="section-md bg-luxury-mesh relative overflow-hidden">
           <div className="container-wide">
             <div className="grid gap-10 lg:grid-cols-[1fr_2fr]">
               <ScrollReveal>
@@ -588,15 +589,22 @@ export function HomePageContent({
         </section>
       )}
 
-      <div className="divider-gradient" />
+      <div className="section-divider">
+        <div className="divider-ornament" />
+      </div>
       {/* ===== TRUST METRICS ===== */}
-      <section className="section-md">
-        <div className="container-wide">
+      <section className="bg-luxury-mesh section-lg relative overflow-hidden">
+        <div className="orb orb-theme-1 -right-40 -top-40" aria-hidden="true" />
+        <div
+          className="orb orb-theme-2 -bottom-20 left-10"
+          aria-hidden="true"
+        />
+        <div className="container-wide relative">
           <StaggerReveal className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {TRUST_METRICS.map((metric, idx) => (
               <StaggerItem key={metric.label}>
-                <article className="card-premium flex items-start gap-5 border-l-4 border-[var(--theme-500)]">
-                  <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[var(--theme-50)]">
+                <article className="flex items-start gap-5 rounded-3xl border border-white/60 bg-white/80 p-8 shadow-[0_8px_32px_rgba(0,0,0,0.08)] backdrop-blur-sm transition hover:-translate-y-1 hover:shadow-[0_12px_48px_rgba(0,0,0,0.12)] md:p-10">
+                  <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[var(--theme-50)] to-[var(--theme-100)]">
                     <metric.Icon
                       className="h-7 w-7 text-[var(--theme-600)]"
                       aria-hidden="true"
@@ -617,9 +625,11 @@ export function HomePageContent({
         </div>
       </section>
 
-      <div className="divider-gradient" />
+      <div className="section-divider">
+        <div className="divider-ornament" />
+      </div>
       {/* ===== JAK TO FUNGUJE (PROCESS STEPS) ===== */}
-      <section className="section-md">
+      <section className="section-md bg-luxury-warm">
         <div className="container-wide">
           <ScrollReveal>
             <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
@@ -635,24 +645,22 @@ export function HomePageContent({
               <div className="grid grid-cols-2 gap-4">
                 <ScrollReveal
                   delay={0}
-                  className="img-zoom-hover shadow-layered relative aspect-[3/4] overflow-hidden rounded-3xl"
+                  className="shadow-layered relative aspect-[3/4] rounded-3xl"
                 >
-                  <Image
-                    src="/images/process-consultation.webp"
-                    alt={`Činžovní dům v secesním stylu ${region.locative} – expresní výkup nemovitostí`}
-                    fill
-                    className="object-cover"
+                  <ParallaxImage
+                    src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80"
+                    alt={`Luxusní dům – expresní výkup nemovitostí ${region.locative}`}
+                    className="aspect-[3/4] rounded-3xl"
                   />
                 </ScrollReveal>
                 <ScrollReveal
                   delay={100}
-                  className="img-zoom-hover shadow-layered relative aspect-[3/4] overflow-hidden rounded-3xl"
+                  className="shadow-layered relative aspect-[3/4] rounded-3xl"
                 >
-                  <Image
-                    src="/images/process-valuation.webp"
-                    alt={`Rodinný dům k ocenění – profesionální posouzení nemovitosti ${region.locative}`}
-                    fill
-                    className="object-cover"
+                  <ParallaxImage
+                    src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80"
+                    alt={`Moderní interiér – profesionální posouzení nemovitosti ${region.locative}`}
+                    className="aspect-[3/4] rounded-3xl"
                   />
                 </ScrollReveal>
               </div>
@@ -720,24 +728,22 @@ export function HomePageContent({
               <div className="order-1 grid grid-cols-2 gap-4 lg:order-2">
                 <ScrollReveal
                   delay={0}
-                  className="img-zoom-hover shadow-layered relative aspect-[3/4] overflow-hidden rounded-3xl"
+                  className="shadow-layered relative aspect-[3/4] rounded-3xl"
                 >
-                  <Image
-                    src="/images/process-contract.webp"
-                    alt={`Kupní smlouva na nemovitost – bezpečný právní postup ${region.locative}`}
-                    fill
-                    className="object-cover"
+                  <ParallaxImage
+                    src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80"
+                    alt={`Elegantní interiér – bezpečný právní postup ${region.locative}`}
+                    className="aspect-[3/4] rounded-3xl"
                   />
                 </ScrollReveal>
                 <ScrollReveal
                   delay={100}
-                  className="img-zoom-hover shadow-layered relative aspect-[3/4] overflow-hidden rounded-3xl"
+                  className="shadow-layered relative aspect-[3/4] rounded-3xl"
                 >
-                  <Image
-                    src="/images/process-keys.webp"
-                    alt={`Předání klíčů novým majitelům – dokončení výkupu ${region.locative}`}
-                    fill
-                    className="object-cover"
+                  <ParallaxImage
+                    src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=800&q=80"
+                    alt={`Luxusní apartmán – dokončení výkupu ${region.locative}`}
+                    className="aspect-[3/4] rounded-3xl"
                   />
                 </ScrollReveal>
               </div>
@@ -764,15 +770,22 @@ export function HomePageContent({
         </div>
       </section>
 
-      <div className="divider-gradient" />
+      <div className="section-divider">
+        <div className="divider-ornament" />
+      </div>
       {/* ===== ŘEŠÍME I SLOŽITÉ SITUACE ===== */}
-      <section className="bg-gradient-to-b from-white to-slate-50 py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="bg-luxury-dark relative overflow-hidden py-20 md:py-28">
+        <div className="orb orb-theme-1 -left-40 -top-40" aria-hidden="true" />
+        <div
+          className="orb orb-theme-2 -bottom-20 right-10"
+          aria-hidden="true"
+        />
+        <div className="relative mx-auto max-w-7xl px-6">
           <ScrollReveal>
-            <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
+            <h2 className="text-2xl font-bold text-white sm:text-3xl">
               Řešíme i složité situace
             </h2>
-            <p className="mt-2 text-slate-600">
+            <p className="mt-2 text-slate-300">
               Nemovitost s problémem? Žádný strach - máme řešení pro každou
               situaci.
             </p>
@@ -780,17 +793,23 @@ export function HomePageContent({
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {getComplexSituations(region).map((situation, idx) => (
               <ScrollReveal key={situation.label} delay={idx * 80}>
-                <div className="card-premium card-accent flex gap-5 border border-slate-100">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--theme-50)] text-[var(--theme-600)]">
-                    <situation.Icon className="h-5 w-5" aria-hidden="true" />
-                  </span>
-                  <div>
-                    <h3 className="font-semibold text-slate-900">
-                      {situation.label}
-                    </h3>
-                    <p className="mt-1 text-sm leading-relaxed text-slate-500">
-                      {situation.description}
-                    </p>
+                <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/10 to-white/5 p-8 backdrop-blur-md transition hover:-translate-y-1 hover:border-white/20">
+                  <div className="absolute left-0 right-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--theme-400)] to-transparent" />
+                  <div className="flex gap-5">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10">
+                      <situation.Icon
+                        className="h-5 w-5 text-[var(--theme-300)]"
+                        aria-hidden="true"
+                      />
+                    </span>
+                    <div>
+                      <h3 className="font-semibold text-white">
+                        {situation.label}
+                      </h3>
+                      <p className="mt-1 text-sm leading-relaxed text-slate-300">
+                        {situation.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </ScrollReveal>
@@ -800,14 +819,14 @@ export function HomePageContent({
             <div className="mt-6 text-center">
               <Link
                 href="/vykup-pri-exekuci"
-                className="mr-4 inline-flex items-center gap-1 text-sm font-medium text-[var(--theme-700)] transition hover:text-[var(--theme-600)]"
+                className="mr-4 inline-flex items-center gap-1 text-sm font-medium text-[var(--theme-300)] transition hover:text-[var(--theme-200)]"
                 aria-label="Více informací o výkupu nemovitostí při exekuci"
               >
                 Výkup při exekuci →
               </Link>
               <Link
                 href="/vykup-pri-dedictvi"
-                className="inline-flex items-center gap-1 text-sm font-medium text-[var(--theme-700)] transition hover:text-[var(--theme-600)]"
+                className="inline-flex items-center gap-1 text-sm font-medium text-[var(--theme-300)] transition hover:text-[var(--theme-200)]"
                 aria-label="Více informací o výkupu nemovitostí při dědictví"
               >
                 Výkup při dědictví →
@@ -820,8 +839,8 @@ export function HomePageContent({
       {/* ===== VISUAL BREAK: PROPERTY EXTERIOR ===== */}
       <section className="relative h-[200px] sm:h-[250px] lg:h-[300px]">
         <Image
-          src="/images/property-exterior.jpg"
-          alt={`Rezidenční čtvrť v České republice – nemovitosti k výkupu ${region.locative}`}
+          src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=80"
+          alt={`Moderní vila – nemovitosti k výkupu ${region.locative}`}
           fill
           className="object-cover"
         />
@@ -862,15 +881,15 @@ export function HomePageContent({
       </section>
 
       {/* ===== O NÁS ===== */}
-      <section className="section-lg">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="section-lg bg-luxury-mesh relative overflow-hidden">
+        <div className="orb orb-theme-2 -left-40 top-20" aria-hidden="true" />
+        <div className="relative mx-auto max-w-7xl px-6">
           <div className="grid items-center gap-10 lg:grid-cols-2">
-            <ScrollReveal className="img-zoom-hover shadow-layered relative aspect-[4/3] overflow-hidden rounded-3xl">
-              <Image
-                src="/images/property-exterior.jpg"
+            <ScrollReveal className="shadow-layered relative aspect-[4/3] rounded-3xl">
+              <ParallaxImage
+                src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1200&q=80"
                 alt={`Rezidenční nemovitosti v ${region.name} – profesionální výkup v celém kraji`}
-                fill
-                className="object-cover"
+                className="aspect-[4/3] rounded-3xl"
               />
             </ScrollReveal>
             <ScrollReveal delay={200}>
@@ -948,6 +967,30 @@ export function HomePageContent({
           <div className="grid gap-10 lg:grid-cols-2">
             <ScrollReveal delay={200}>
               <div className="flex flex-col justify-center">
+                <div className="mb-8 grid grid-cols-3 gap-4">
+                  <div className="text-center">
+                    <p className="text-3xl font-extrabold text-[var(--theme-400)] md:text-4xl">
+                      500+
+                    </p>
+                    <p className="mt-1 text-xs text-slate-400">
+                      spokojených klientů
+                    </p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-3xl font-extrabold text-[var(--theme-400)] md:text-4xl">
+                      14
+                    </p>
+                    <p className="mt-1 text-xs text-slate-400">krajů ČR</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-3xl font-extrabold text-[var(--theme-400)] md:text-4xl">
+                      48h
+                    </p>
+                    <p className="mt-1 text-xs text-slate-400">
+                      peníze na účtu
+                    </p>
+                  </div>
+                </div>
                 <h3 className="text-xl font-semibold text-white">
                   Co se stane po odeslání
                 </h3>
@@ -962,15 +1005,14 @@ export function HomePageContent({
                   ))}
                 </ul>
 
-                <div className="img-zoom-hover relative mt-8 aspect-[16/9] overflow-hidden rounded-3xl">
-                  <Image
-                    src="/images/texture-brick.webp"
-                    alt={`Historická cihlová zeď – tradice a spolehlivost výkupu nemovitostí ${region.locative}`}
-                    fill
-                    className="object-cover"
-                  />
+                <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-3xl bg-gradient-to-br from-[var(--theme-800)] via-[var(--theme-700)] to-[var(--theme-900)]">
                   <div
-                    className="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-slate-900/40"
+                    className="absolute inset-0 opacity-10"
+                    style={{
+                      backgroundImage:
+                        "radial-gradient(circle at 20% 50%, white 1px, transparent 1px)",
+                      backgroundSize: "30px 30px",
+                    }}
                     aria-hidden="true"
                   />
                   <div className="relative flex h-full items-center justify-center px-6">
@@ -996,7 +1038,9 @@ export function HomePageContent({
             </ScrollReveal>
 
             <ScrollReveal>
-              <LeadForm regionName={region.name} />
+              <div className="rounded-3xl bg-white p-8 shadow-2xl md:p-12">
+                <LeadForm regionName={region.name} />
+              </div>
               {/* Trust badges below form */}
               <div className="mt-6 flex flex-wrap items-center justify-center gap-6">
                 <div className="flex items-center gap-2 text-sm text-slate-400">
@@ -1028,40 +1072,47 @@ export function HomePageContent({
       <PropertyEstimator regionKey={region.key} />
 
       {/* ===== TESTIMONIALS ===== */}
-      <section className="section-md relative">
-        <Image
-          src="/images/testimonial-bg.jpg"
-          alt={`Střechy českého města při západu slunce – výkup nemovitostí ${region.locative}`}
-          fill
-          className="object-cover"
+      <section className="section-md bg-luxury-dark relative overflow-hidden">
+        <div className="orb orb-theme-1 -right-40 top-20" aria-hidden="true" />
+        <div
+          className="orb orb-theme-2 -bottom-20 left-20"
+          aria-hidden="true"
         />
-        <div className="absolute inset-0 bg-white/90" aria-hidden="true" />
         <div className="relative mx-auto max-w-7xl px-6">
           <ScrollReveal>
-            <h2 className="mb-8 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+            <h2 className="mb-8 text-center text-2xl font-bold text-white sm:text-3xl">
               Co říkají naši klienti {region.locative}
             </h2>
           </ScrollReveal>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {(region.testimonials ?? []).map((testimonial, idx) => (
               <ScrollReveal key={idx} delay={idx * 100}>
-                <div className="card-premium">
+                <div className="rounded-3xl border border-white/10 bg-white/10 p-8 backdrop-blur-md transition hover:-translate-y-1 hover:bg-white/15">
+                  <div className="mb-3 flex gap-0.5">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className="h-4 w-4 fill-yellow-400 text-yellow-400"
+                        aria-hidden="true"
+                      />
+                    ))}
+                  </div>
                   <Quote
                     className="mb-3 h-6 w-6 text-[var(--theme-300)]"
                     aria-hidden="true"
                   />
-                  <p className="text-sm leading-relaxed text-slate-600">
+                  <p className="text-sm leading-relaxed text-slate-300">
                     &ldquo;{testimonial.text}&rdquo;
                   </p>
                   <div className="mt-4 flex items-center gap-2">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--theme-100)] text-xs font-bold text-[var(--theme-700)]">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--theme-600)] text-xs font-bold text-white">
                       {testimonial.name.charAt(0)}
                     </div>
                     <div>
-                      <p className="text-sm font-semibold text-slate-900">
+                      <p className="text-sm font-semibold text-white">
                         {testimonial.name}
                       </p>
-                      <p className="text-xs text-slate-500">
+                      <p className="text-xs text-slate-400">
                         {testimonial.location}
                       </p>
                     </div>
@@ -1076,8 +1127,8 @@ export function HomePageContent({
       {/* ===== VISUAL BREAK: HAPPY FAMILY HOME ===== */}
       <section className="relative h-[200px] sm:h-[250px] lg:h-[300px]">
         <Image
-          src="/images/happy-family-home.jpg"
-          alt={`Moderní rodinný dům se zahradou – nemovitosti k výkupu ${region.locative}`}
+          src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&q=80"
+          alt={`Prémiový dům – nemovitosti k výkupu ${region.locative}`}
           fill
           className="object-cover"
         />
@@ -1148,9 +1199,19 @@ export function HomePageContent({
       </section>
 
       {/* Regional internal links for SEO */}
-      <section className="section-md bg-slate-50">
-        <div className="mx-auto max-w-5xl px-6">
-          <h2 className="mb-8 text-center text-2xl font-bold">
+      <section className="section-md relative overflow-hidden">
+        <Image
+          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80"
+          alt="Architektura České republiky"
+          fill
+          className="object-cover"
+        />
+        <div
+          className="absolute inset-0 bg-slate-900/80 backdrop-blur-sm"
+          aria-hidden="true"
+        />
+        <div className="relative mx-auto max-w-5xl px-6">
+          <h2 className="mb-8 text-center text-2xl font-bold text-white">
             Působíme v celé České republice
           </h2>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
@@ -1158,7 +1219,7 @@ export function HomePageContent({
               <a
                 key={r.key}
                 href={getRegionSubdomainUrl(r.key)}
-                className="rounded-lg px-3 py-2 text-sm text-slate-600 transition-colors hover:bg-white hover:text-[var(--theme-700)] hover:shadow-sm"
+                className="rounded-lg border border-white/10 bg-white/10 px-3 py-2 text-sm text-white/80 backdrop-blur-sm transition-colors hover:bg-white/20 hover:text-white"
               >
                 Výkup {r.name}
               </a>

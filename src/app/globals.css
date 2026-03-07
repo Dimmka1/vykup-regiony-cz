@@ -7,6 +7,7 @@
   --theme-50: #f0fdfa;
   --theme-100: #ccfbf1;
   --theme-200: #99f6e4;
+  --theme-300: #5eead4;
   --theme-400: #2dd4bf;
   --theme-500: #14b8a6;
   --theme-600: #0d9488;
@@ -14,6 +15,17 @@
   --theme-800: #115e59;
   --theme-900: #134e4a;
   --theme-rgb: 13, 148, 136;
+  /* RGB variants for rgba() usage */
+  --theme-rgb-50: 240, 253, 250;
+  --theme-rgb-100: 204, 251, 241;
+  --theme-rgb-200: 153, 246, 228;
+  --theme-rgb-300: 94, 234, 212;
+  --theme-rgb-400: 45, 212, 191;
+  --theme-rgb-500: 20, 184, 166;
+  --theme-rgb-600: 13, 148, 136;
+  --theme-rgb-700: 15, 118, 110;
+  --theme-rgb-800: 17, 94, 89;
+  --theme-rgb-900: 19, 78, 74;
 }
 
 /* ===== PREMIUM TYPOGRAPHY ===== */
@@ -449,5 +461,168 @@ textarea:focus {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* ===== LUXURY MESH GRADIENT BACKGROUNDS (VR-208) ===== */
+.bg-luxury-mesh {
+  background:
+    radial-gradient(
+      ellipse at 20% 50%,
+      rgba(var(--theme-rgb-100), 0.4) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 80% 20%,
+      rgba(var(--theme-rgb-50), 0.6) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 50% 80%,
+      rgba(var(--theme-rgb-200), 0.3) 0%,
+      transparent 50%
+    ),
+    linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.bg-luxury-dark {
+  background:
+    radial-gradient(
+      ellipse at 30% 0%,
+      rgba(var(--theme-rgb-900), 0.5) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse at 70% 100%,
+      rgba(var(--theme-rgb-800), 0.3) 0%,
+      transparent 60%
+    ),
+    linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+}
+
+.bg-luxury-warm {
+  background: linear-gradient(135deg, #faf5ff 0%, #f0f9ff 50%, #f8fafc 100%);
+}
+
+/* ===== FLOATING ORBS (VR-208) ===== */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  pointer-events: none;
+}
+.orb-theme-1 {
+  width: 600px;
+  height: 600px;
+  background: var(--theme-400);
+  animation: float-orb 20s ease-in-out infinite;
+}
+.orb-theme-2 {
+  width: 400px;
+  height: 400px;
+  background: var(--theme-300);
+  animation: float-orb 25s ease-in-out infinite reverse;
+}
+@keyframes float-orb {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+}
+
+/* ===== ANIMATED GRADIENT BORDER (VR-208) ===== */
+.gradient-border {
+  position: relative;
+}
+.gradient-border::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    var(--theme-400),
+    var(--theme-600),
+    var(--theme-400)
+  );
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+@keyframes gradient-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* ===== GOLD ACCENTS (VR-208) ===== */
+.text-gold {
+  color: #b8860b;
+}
+.bg-gold-subtle {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+}
+.border-gold {
+  border-color: #d4a574;
+}
+
+/* ===== SECTION DIVIDER (VR-208) ===== */
+.section-divider {
+  position: relative;
+  height: 120px;
+  overflow: hidden;
+}
+.section-divider::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--theme-400),
+    transparent
+  );
+}
+.section-divider .divider-ornament {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--theme-500);
+  box-shadow: 0 0 20px var(--theme-400);
+}
+
+/* ===== REDUCED MOTION: DISABLE NEW ANIMATIONS (VR-208) ===== */
+@media (prefers-reduced-motion: reduce) {
+  .orb,
+  .orb-theme-1,
+  .orb-theme-2 {
+    animation: none;
+  }
+  .gradient-border::after {
+    animation: none;
   }
 }

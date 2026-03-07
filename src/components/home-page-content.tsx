@@ -753,7 +753,7 @@ export function HomePageContent({
       <section
         className="relative flex h-[350px] items-center justify-center overflow-hidden sm:h-[400px] lg:h-[450px]"
         style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1400&q=80')`,
+          backgroundImage: `url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1400&q=80')`,
           backgroundAttachment: "fixed",
           backgroundPosition: "center",
           backgroundSize: "cover",
@@ -804,7 +804,7 @@ export function HomePageContent({
           <div className="grid items-center gap-10 lg:grid-cols-2">
             <ScrollReveal className="shadow-layered relative aspect-[4/3] rounded-3xl">
               <ParallaxImage
-                src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=1400&q=80"
+                src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1400&q=80"
                 alt={`Moderní bydlení – transparentní výkup nemovitostí`}
                 className="aspect-[4/3] rounded-3xl"
               />

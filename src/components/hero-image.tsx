@@ -1,6 +1,13 @@
 "use client";
 
+import { useRef } from "react";
 import Image from "next/image";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useReducedMotion,
+} from "@/components/motion";
 
 interface HeroImageProps {
   src: string;
@@ -17,19 +24,50 @@ export function HeroImage({
   className,
   priority,
 }: HeroImageProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const reduced = useReducedMotion();
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  });
+
+  // Parallax: image moves slower than scroll (zoomed in, shifts up)
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1.15, 1.3]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8, 1], [1, 0.6, 0.3]);
+
   return (
-    <Image
-      src={src}
-      alt={alt}
-      fill
-      priority={priority}
-      className={className}
-      onError={(e) => {
-        const target = e.currentTarget as HTMLImageElement;
-        if (!target.src.includes(fallbackSrc)) {
-          target.src = fallbackSrc;
-        }
-      }}
-    />
+    <div ref={containerRef} className="absolute inset-0 overflow-hidden">
+      <motion.div
+        className="absolute inset-0"
+        style={reduced ? {} : { y, scale, opacity }}
+      >
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          priority={priority}
+          className={className}
+          sizes="100vw"
+          quality={85}
+          onError={(e) => {
+            const target = e.currentTarget as HTMLImageElement;
+            if (!target.src.includes(fallbackSrc)) {
+              target.src = fallbackSrc;
+            }
+          }}
+        />
+      </motion.div>
+      {/* Cinematic vignette overlay for depth */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, transparent 40%, rgba(15,23,42,0.4) 100%)",
+        }}
+        aria-hidden="true"
+      />
+    </div>
   );
 }

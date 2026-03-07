@@ -652,138 +652,6 @@ export function HomePageContent({
             <BuildingTimeline steps={getProcessSteps(region)} />
           </div>
 
-          {/* Keep the original images in a gallery below */}
-          <div className="mt-12 space-y-12">
-            <div className="grid items-center gap-8 lg:grid-cols-2">
-              <div className="grid grid-cols-2 gap-4">
-                <ScrollReveal
-                  delay={0}
-                  className="shadow-layered relative aspect-[3/4] rounded-3xl"
-                >
-                  <ParallaxImage
-                    src="https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=800&q=80"
-                    alt={`Činžovní dům – první krok výkupu nemovitosti ${region.locative}`}
-                    className="aspect-[3/4] rounded-3xl"
-                  />
-                </ScrollReveal>
-                <ScrollReveal
-                  delay={100}
-                  className="shadow-layered relative aspect-[3/4] rounded-3xl"
-                >
-                  <ParallaxImage
-                    src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&q=80"
-                    alt={`Rodinný dům – ocenění nemovitosti ${region.locative}`}
-                    className="aspect-[3/4] rounded-3xl"
-                  />
-                </ScrollReveal>
-              </div>
-              <div className="space-y-6">
-                {getProcessSteps(region)
-                  .slice(0, 2)
-                  .map((step, index) => (
-                    <ScrollReveal key={step.title} delay={index * 200}>
-                      <div className="card-premium card-accent flex gap-5 border border-slate-100">
-                        <div className="flex flex-col items-center gap-2">
-                          <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--theme-50)] text-[var(--theme-600)]">
-                            {(() => {
-                              const map: Record<string, any> = {
-                                FileText,
-                                Zap,
-                                FilePenLine,
-                                Banknote,
-                              };
-                              const I = map[step.icon];
-                              return I ? (
-                                <I className="h-6 w-6" aria-hidden="true" />
-                              ) : null;
-                            })()}
-                          </span>
-                          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--theme-600)] text-sm font-bold text-white">
-                            {index + 1}
-                          </span>
-                        </div>
-                        <div>
-                          <h3 className="text-base font-semibold text-slate-900">
-                            {step.title}
-                          </h3>
-                          <p className="mt-1 text-sm leading-relaxed text-slate-600">
-                            {step.description}
-                          </p>
-                          <p className="mt-2 text-xs font-medium text-[var(--theme-600)]">
-                            {step.eta}
-                          </p>
-                        </div>
-                      </div>
-                    </ScrollReveal>
-                  ))}
-              </div>
-            </div>
-
-            <div className="grid items-center gap-8 lg:grid-cols-2">
-              <div className="order-2 space-y-6 lg:order-1">
-                {getProcessSteps(region)
-                  .slice(2, 4)
-                  .map((step, index) => (
-                    <ScrollReveal key={step.title} delay={index * 200}>
-                      <div className="card-premium card-accent flex gap-5 border border-slate-100">
-                        <div className="flex flex-col items-center gap-2">
-                          <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--theme-50)] text-[var(--theme-600)]">
-                            {(() => {
-                              const map: Record<string, any> = {
-                                FileText,
-                                Zap,
-                                FilePenLine,
-                                Banknote,
-                              };
-                              const I = map[step.icon];
-                              return I ? (
-                                <I className="h-6 w-6" aria-hidden="true" />
-                              ) : null;
-                            })()}
-                          </span>
-                          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--theme-600)] text-sm font-bold text-white">
-                            {index + 3}
-                          </span>
-                        </div>
-                        <div>
-                          <h3 className="text-base font-semibold text-slate-900">
-                            {step.title}
-                          </h3>
-                          <p className="mt-1 text-sm leading-relaxed text-slate-600">
-                            {step.description}
-                          </p>
-                          <p className="mt-2 text-xs font-medium text-[var(--theme-600)]">
-                            {step.eta}
-                          </p>
-                        </div>
-                      </div>
-                    </ScrollReveal>
-                  ))}
-              </div>
-              <div className="order-1 grid grid-cols-2 gap-4 lg:order-2">
-                <ScrollReveal
-                  delay={0}
-                  className="shadow-layered relative aspect-[3/4] rounded-3xl"
-                >
-                  <ParallaxImage
-                    src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80"
-                    alt={`Interiér bytu – podpis smlouvy o výkupu ${region.locative}`}
-                    className="aspect-[3/4] rounded-3xl"
-                  />
-                </ScrollReveal>
-                <ScrollReveal
-                  delay={100}
-                  className="shadow-layered relative aspect-[3/4] rounded-3xl"
-                >
-                  <ParallaxImage
-                    src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80"
-                    alt={`Městský dům – dokončení výkupu nemovitosti ${region.locative}`}
-                    className="aspect-[3/4] rounded-3xl"
-                  />
-                </ScrollReveal>
-              </div>
-            </div>
-          </div>
           <ScrollReveal>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link
@@ -1059,24 +927,24 @@ export function HomePageContent({
                 <LeadForm regionName={region.name} />
               </div>
               {/* Trust badges below form */}
-              <div className="mt-6 flex flex-wrap items-center justify-center gap-6">
-                <div className="flex items-center gap-2 text-sm text-slate-400">
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+                <div className="flex items-center gap-2 rounded-full bg-slate-50 px-3 py-1.5 text-sm font-medium text-slate-500">
                   <Lock
-                    className="h-4 w-4 text-[var(--theme-500)]"
+                    className="h-5 w-5 text-[var(--theme-500)]"
                     aria-hidden="true"
                   />
                   <span>256-bit SSL</span>
                 </div>
-                <div className="flex items-center gap-2 text-sm text-slate-400">
+                <div className="flex items-center gap-2 rounded-full bg-slate-50 px-3 py-1.5 text-sm font-medium text-slate-500">
                   <Shield
-                    className="h-4 w-4 text-[var(--theme-500)]"
+                    className="h-5 w-5 text-[var(--theme-500)]"
                     aria-hidden="true"
                   />
                   <span>GDPR</span>
                 </div>
-                <div className="flex items-center gap-2 text-sm text-slate-400">
+                <div className="flex items-center gap-2 rounded-full bg-slate-50 px-3 py-1.5 text-sm font-medium text-slate-500">
                   <Scale
-                    className="h-4 w-4 text-[var(--theme-500)]"
+                    className="h-5 w-5 text-[var(--theme-500)]"
                     aria-hidden="true"
                   />
                   <span>Advokátní úschova</span>

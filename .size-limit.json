@@ -1,0 +1,8 @@
+[
+  {
+    "name": "Total Static JS",
+    "path": ".next/static/**/*.js",
+    "limit": "350 kB",
+    "gzip": true
+  }
+]

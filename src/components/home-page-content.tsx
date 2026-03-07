@@ -413,13 +413,13 @@ export function HomePageContent({
 
         {/* Bottom fade into content */}
         <div
-          className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-white"
+          className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent via-slate-900/50 to-slate-900/95"
           aria-hidden="true"
         />
 
         <div className="hero-blob" aria-hidden="true" />
         <div className="hero-blob-2" aria-hidden="true" />
-        <div className="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-center px-6 py-24">
+        <div className="relative mx-auto flex min-h-[100svh] max-w-[1400px] flex-col justify-center px-6 py-24">
           <HeroStagger delay={1}>
             <div className="mb-4 flex flex-wrap items-center gap-3">
               <p className="glass inline-flex rounded-full border border-white/20 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-white backdrop-blur-md">
@@ -505,13 +505,22 @@ export function HomePageContent({
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[var(--theme-500)] to-transparent" />
       </section>
 
+      {/* Hero → Content transition */}
+      <div className="relative -mt-1 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-50 py-16">
+        <div className="mx-auto max-w-4xl px-6 text-center">
+          <p className="text-sm font-medium uppercase tracking-widest text-slate-400">
+            Rychlý a férový výkup nemovitostí
+          </p>
+        </div>
+      </div>
+
       <SocialProofBar />
 
       {/* ===== MARKET INFO ===== */}
       {region.marketInfo && (
         <ScrollReveal>
           <section className="bg-gradient-to-b from-slate-50 to-white py-10">
-            <div className="mx-auto max-w-7xl px-6">
+            <div className="mx-auto max-w-[1400px] px-6">
               <p className="text-center text-sm leading-relaxed text-slate-600 md:text-base">
                 {region.marketInfo}
               </p>
@@ -605,17 +614,40 @@ export function HomePageContent({
           className="orb orb-theme-2 -bottom-20 left-10"
           aria-hidden="true"
         />
-        <div className="container-wide relative">
-          <div className="mb-10 grid items-center gap-8 lg:grid-cols-[2fr_1fr]">
+        <div className="relative mx-auto max-w-[1400px] px-6">
+          <ScrollReveal>
+            <div className="mb-10 text-center">
+              <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
+                Proč nám důvěřují stovky klientů
+              </h2>
+              <p className="mt-3 text-lg text-slate-600">
+                Čísla mluví za nás — transparentní a férový výkup bez skrytých
+                poplatků
+              </p>
+            </div>
+          </ScrollReveal>
+          <div className="grid items-center gap-10 lg:grid-cols-[3fr_2fr]">
             <FloatingStats metrics={TRUST_METRICS} />
             <ScrollReveal delay={200}>
-              <div className="relative aspect-[3/4] overflow-hidden rounded-3xl shadow-lg">
-                <Image
-                  src="/images/section-trust.png"
-                  alt="Důvěryhodný výkup nemovitostí – spokojení klienti"
-                  fill
-                  className="object-cover"
-                />
+              <div className="space-y-6">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-lg">
+                  <Image
+                    src="/images/section-trust.png"
+                    alt="Důvěryhodný výkup nemovitostí – spokojení klienti"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="rounded-2xl border border-slate-200 bg-white/80 p-6 backdrop-blur-sm">
+                  <p className="text-sm font-medium text-slate-700">
+                    {
+                      "„Celý proces trval 5 dní. Peníze na účtu, žádné skryté poplatky. Doporučuji každému.“"
+                    }
+                  </p>
+                  <p className="mt-2 text-xs text-slate-500">
+                    — Spokojený klient z Prahy
+                  </p>
+                </div>
               </div>
             </ScrollReveal>
           </div>
@@ -685,7 +717,7 @@ export function HomePageContent({
           className="orb orb-theme-2 -bottom-20 right-10"
           aria-hidden="true"
         />
-        <div className="relative mx-auto max-w-7xl px-6">
+        <div className="relative mx-auto max-w-[1400px] px-6">
           <ScrollReveal>
             <h2 className="text-2xl font-bold text-white sm:text-3xl">
               Řešíme i složité situace
@@ -720,7 +752,15 @@ export function HomePageContent({
       </section>
 
       {/* ===== VISUAL BREAK: PROPERTY EXTERIOR ===== */}
-      <section className="relative h-[250px] overflow-hidden bg-slate-900 sm:h-[300px] lg:h-[350px]">
+      <section className="relative h-[250px] overflow-hidden sm:h-[300px] lg:h-[350px]">
+        <div
+          className="absolute inset-x-0 top-0 z-10 h-16 bg-gradient-to-b from-white to-transparent"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-x-0 bottom-0 z-10 h-16 bg-gradient-to-t from-white to-transparent"
+          aria-hidden="true"
+        />
         <Image
           src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1400&q=80"
           alt={`Rezidenční nemovitost ${region.locative} – profesionální výkup`}
@@ -742,7 +782,7 @@ export function HomePageContent({
       {/* ===== PROČ KLIENTI VOLÍ NÁS (USP) ===== */}
       <ParallaxSection offset={20}>
         <section className="section-md bg-gradient-to-br from-[var(--theme-700)] via-[var(--theme-800)] to-[var(--theme-900)] text-white">
-          <div className="mx-auto max-w-7xl px-6">
+          <div className="mx-auto max-w-[1400px] px-6">
             <ScrollReveal>
               <h2 className="text-2xl font-bold text-white sm:text-3xl">
                 Proč klienti volí nás
@@ -768,7 +808,7 @@ export function HomePageContent({
       {/* ===== O NÁS ===== */}
       <section className="section-lg bg-luxury-mesh relative overflow-hidden">
         <div className="orb orb-theme-2 -left-40 top-20" aria-hidden="true" />
-        <div className="relative mx-auto max-w-7xl px-6">
+        <div className="relative mx-auto max-w-[1400px] px-6">
           <div className="grid items-center gap-10 lg:grid-cols-2">
             <ScrollReveal className="shadow-layered relative aspect-[4/3] rounded-3xl">
               <ParallaxImage
@@ -937,7 +977,7 @@ export function HomePageContent({
             className="orb orb-theme-2 -bottom-20 left-20"
             aria-hidden="true"
           />
-          <div className="relative mx-auto max-w-7xl px-6">
+          <div className="relative mx-auto max-w-[1400px] px-6">
             <ScrollReveal>
               <h2 className="mb-8 text-center text-2xl font-bold text-white sm:text-3xl">
                 Co říkají naši klienti {region.locative}

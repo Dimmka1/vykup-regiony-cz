@@ -582,37 +582,56 @@ textarea:focus {
   border-color: #d4a574;
 }
 
-/* ===== SECTION DIVIDER (VR-208) ===== */
+/* ===== SECTION DIVIDER (VR-225) ===== */
 .section-divider {
   position: relative;
-  height: 120px;
+  height: 80px;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .section-divider::before {
   content: "";
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 200px;
+  left: 10%;
+  right: 10%;
   height: 1px;
   background: linear-gradient(
     90deg,
     transparent,
+    var(--theme-200),
     var(--theme-400),
+    var(--theme-200),
     transparent
   );
 }
 .section-divider .divider-ornament {
+  position: relative;
+  z-index: 1;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.section-divider .divider-ornament::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--theme-400);
+  border-radius: 2px;
+  transform: rotate(45deg);
+  background: white;
+}
+.section-divider .divider-ornament::after {
+  content: "";
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
+  width: 6px;
+  height: 6px;
   background: var(--theme-500);
-  box-shadow: 0 0 20px var(--theme-400);
+  border-radius: 50%;
 }
 
 /* ===== REDUCED MOTION: DISABLE NEW ANIMATIONS (VR-208) ===== */

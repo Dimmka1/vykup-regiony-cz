@@ -17,6 +17,11 @@ const leadSchema = z.object({
   consent_gdpr: z.literal(true),
   email: z.string().email().optional().or(z.literal("")),
   website: z.string().optional(),
+  utm_source: z.string().optional(),
+  utm_medium: z.string().optional(),
+  utm_campaign: z.string().optional(),
+  utm_content: z.string().optional(),
+  gclid: z.string().optional(),
 });
 
 const callbackSchema = z.object({
@@ -493,6 +498,11 @@ export async function POST(request: Request): Promise<NextResponse> {
         property_type: validatedData.property_type,
         region: validatedData.region,
         situation_type: validatedData.situation_type,
+        utm_source: validatedData.utm_source ?? "",
+        utm_medium: validatedData.utm_medium ?? "",
+        utm_campaign: validatedData.utm_campaign ?? "",
+        utm_content: validatedData.utm_content ?? "",
+        gclid: validatedData.gclid ?? "",
       },
     };
 

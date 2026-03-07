@@ -15,19 +15,55 @@ const STEP_EVENTS: readonly { event: AnalyticsEventName; stepName: string }[] =
     { event: "form_step_3_contact", stepName: "contact" },
   ] as const;
 
-function getUtmSource(): string {
+interface UtmParams {
+  utm_source: string;
+  utm_medium: string;
+  utm_campaign: string;
+  utm_content: string;
+  gclid: string;
+}
+
+const UTM_KEYS: (keyof UtmParams)[] = [
+  "utm_source",
+  "utm_medium",
+  "utm_campaign",
+  "utm_content",
+  "gclid",
+];
+
+function getUtmParams(): UtmParams {
+  const result: UtmParams = {
+    utm_source: "",
+    utm_medium: "",
+    utm_campaign: "",
+    utm_content: "",
+    gclid: "",
+  };
   try {
     const params = new URLSearchParams(window.location.search);
-    const fromUrl = params.get("utm_source");
-    if (fromUrl) return fromUrl;
+    for (const key of UTM_KEYS) {
+      const fromUrl = params.get(key);
+      if (fromUrl) {
+        result[key] = fromUrl;
+      }
+    }
   } catch {
     /* SSR guard */
   }
   try {
-    return sessionStorage.getItem("utm_source") ?? "";
+    for (const key of UTM_KEYS) {
+      if (!result[key]) {
+        result[key] = sessionStorage.getItem(key) ?? "";
+      }
+    }
   } catch {
-    return "";
+    /* noop */
   }
+  return result;
+}
+
+function getUtmSource(): string {
+  return getUtmParams().utm_source;
 }
 
 function pushFormStepEvent(step: number, region: string): void {
@@ -247,6 +283,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
           consent_gdpr: formData.consent,
           email: formData.email,
           website: formData.website,
+          ...getUtmParams(),
         }),
       });
 

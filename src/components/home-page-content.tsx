@@ -19,6 +19,12 @@ import { ScrollReveal } from "@/components/scroll-reveal";
 import { StaggerReveal, StaggerItem } from "@/components/stagger-reveal";
 import { HeroStagger } from "@/components/hero-stagger";
 import { AnimatedNumber } from "@/components/animated-number";
+import { CzechMap } from "@/components/czech-map";
+import { BuildingTimeline } from "@/components/building-timeline";
+import { FloatingStats } from "@/components/floating-stats";
+import { DoorCards } from "@/components/door-cards";
+import { QuoteBubbles } from "@/components/quote-bubbles";
+import { SlotCounter } from "@/components/slot-counter";
 import {
   getRegionSubdomainUrl,
   isProductionHost,
@@ -396,8 +402,9 @@ export function HomePageContent({
       <ScrollTracker regionName={region.name} />
       <FloatingDesktopCta />
 
-      {/* ===== HERO ===== */}
-      <section className="relative min-h-[80vh] overflow-hidden lg:min-h-[90vh]">
+      {/* ===== HERO — CINEMATIC PARALLAX ===== */}
+      <section className="scan-line relative min-h-[80vh] overflow-hidden lg:min-h-[90vh]">
+        {/* Layer 1: Background image */}
         <Image
           src={
             region.key === "praha"
@@ -409,10 +416,37 @@ export function HomePageContent({
           priority
           className="object-cover"
         />
+        {/* Layer 2: Animated gradient overlay */}
         <div
           className="absolute inset-0 bg-gradient-to-b from-slate-900/95 via-slate-900/70 to-slate-900/90"
           aria-hidden="true"
         />
+        {/* Layer 3: Floating geometric shapes */}
+        <div
+          className="pointer-events-none absolute inset-0 overflow-hidden"
+          aria-hidden="true"
+        >
+          <div
+            className="float-shape border-[var(--theme-400)]/20 bg-[var(--theme-500)]/5 absolute left-[10%] top-[20%] h-16 w-16 rounded-xl border backdrop-blur-sm"
+            style={{ animationDelay: "0s", animationDuration: "18s" }}
+          />
+          <div
+            className="float-shape border-[var(--theme-300)]/15 bg-[var(--theme-400)]/5 absolute right-[15%] top-[30%] h-12 w-12 rotate-45 border backdrop-blur-sm"
+            style={{ animationDelay: "3s", animationDuration: "22s" }}
+          />
+          <div
+            className="float-shape border-[var(--theme-400)]/10 bg-[var(--theme-500)]/3 absolute bottom-[25%] left-[20%] h-20 w-20 rounded-full border backdrop-blur-sm"
+            style={{ animationDelay: "6s", animationDuration: "20s" }}
+          />
+          <div
+            className="float-shape absolute bottom-[35%] right-[25%] h-10 w-10 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm"
+            style={{ animationDelay: "9s", animationDuration: "16s" }}
+          />
+          <div
+            className="float-shape border-[var(--theme-300)]/10 bg-[var(--theme-400)]/5 absolute left-[50%] top-[15%] h-8 w-8 rotate-12 border"
+            style={{ animationDelay: "2s", animationDuration: "25s" }}
+          />
+        </div>
         <div className="hero-blob" aria-hidden="true" />
         <div className="hero-blob-2" aria-hidden="true" />
         <div className="relative mx-auto flex min-h-[80vh] max-w-7xl flex-col justify-center px-6 py-24 lg:min-h-[90vh]">
@@ -460,11 +494,13 @@ export function HomePageContent({
 
           <HeroStagger delay={4}>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <CtaLink
-                href="#kontakt"
-                label={region.heroCta}
-                regionName={region.name}
-              />
+              <span className="liquid-border rounded-xl">
+                <CtaLink
+                  href="#kontakt"
+                  label={region.heroCta}
+                  regionName={region.name}
+                />
+              </span>
               <a
                 href={`tel:${region.phone}`}
                 aria-label={`Zavolat na číslo ${region.phone}`}
@@ -592,55 +628,40 @@ export function HomePageContent({
       <div className="section-divider">
         <div className="divider-ornament" />
       </div>
-      {/* ===== TRUST METRICS ===== */}
-      <section className="bg-luxury-mesh section-lg relative overflow-hidden">
+      {/* ===== TRUST METRICS — 3D FLOATING CARDS ===== */}
+      <section className="bg-luxury-mesh noise-overlay section-lg relative overflow-hidden">
         <div className="orb orb-theme-1 -right-40 -top-40" aria-hidden="true" />
         <div
           className="orb orb-theme-2 -bottom-20 left-10"
           aria-hidden="true"
         />
         <div className="container-wide relative">
-          <StaggerReveal className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {TRUST_METRICS.map((metric, idx) => (
-              <StaggerItem key={metric.label}>
-                <article className="flex items-start gap-5 rounded-3xl border border-white/60 bg-white/80 p-8 shadow-[0_8px_32px_rgba(0,0,0,0.08)] backdrop-blur-sm transition hover:-translate-y-1 hover:shadow-[0_12px_48px_rgba(0,0,0,0.12)] md:p-10">
-                  <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[var(--theme-50)] to-[var(--theme-100)]">
-                    <metric.Icon
-                      className="h-7 w-7 text-[var(--theme-600)]"
-                      aria-hidden="true"
-                    />
-                  </span>
-                  <div>
-                    <p className="text-4xl font-extrabold text-[var(--theme-700)] md:text-5xl">
-                      {metric.value}
-                    </p>
-                    <p className="mt-2 text-sm text-slate-500">
-                      {metric.label}
-                    </p>
-                  </div>
-                </article>
-              </StaggerItem>
-            ))}
-          </StaggerReveal>
+          <FloatingStats metrics={TRUST_METRICS} />
         </div>
       </section>
 
       <div className="section-divider">
         <div className="divider-ornament" />
       </div>
-      {/* ===== JAK TO FUNGUJE (PROCESS STEPS) ===== */}
-      <section className="section-md bg-luxury-warm">
+      {/* ===== JAK TO FUNGUJE — BUILDING TIMELINE ===== */}
+      <section className="section-md bg-luxury-warm noise-overlay">
         <div className="container-wide">
           <ScrollReveal>
             <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
               Jak to funguje
             </h2>
             <p className="mt-2 text-slate-600">
-              Od prvního kontaktu k penězům na účtu - jednoduše a rychle.
+              Od prvního kontaktu k penězům na účtu — sledujte, jak vaše
+              budoucnost roste.
             </p>
           </ScrollReveal>
 
-          <div className="mt-10 space-y-12">
+          <div className="mt-10">
+            <BuildingTimeline steps={getProcessSteps(region)} />
+          </div>
+
+          {/* Keep the original images in a gallery below */}
+          <div className="mt-12 space-y-12">
             <div className="grid items-center gap-8 lg:grid-cols-2">
               <div className="grid grid-cols-2 gap-4">
                 <ScrollReveal
@@ -790,30 +811,8 @@ export function HomePageContent({
               situaci.
             </p>
           </ScrollReveal>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {getComplexSituations(region).map((situation, idx) => (
-              <ScrollReveal key={situation.label} delay={idx * 80}>
-                <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/10 to-white/5 p-8 backdrop-blur-md transition hover:-translate-y-1 hover:border-white/20">
-                  <div className="absolute left-0 right-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--theme-400)] to-transparent" />
-                  <div className="flex gap-5">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10">
-                      <situation.Icon
-                        className="h-5 w-5 text-[var(--theme-300)]"
-                        aria-hidden="true"
-                      />
-                    </span>
-                    <div>
-                      <h3 className="font-semibold text-white">
-                        {situation.label}
-                      </h3>
-                      <p className="mt-1 text-sm leading-relaxed text-slate-300">
-                        {situation.description}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </ScrollReveal>
-            ))}
+          <div className="mt-8">
+            <DoorCards situations={getComplexSituations(region)} />
           </div>
           <ScrollReveal>
             <div className="mt-6 text-center">
@@ -970,7 +969,7 @@ export function HomePageContent({
                 <div className="mb-8 grid grid-cols-3 gap-4">
                   <div className="text-center">
                     <p className="text-3xl font-extrabold text-[var(--theme-400)] md:text-4xl">
-                      500+
+                      <SlotCounter value="500+" />
                     </p>
                     <p className="mt-1 text-xs text-slate-400">
                       spokojených klientů
@@ -978,13 +977,13 @@ export function HomePageContent({
                   </div>
                   <div className="text-center">
                     <p className="text-3xl font-extrabold text-[var(--theme-400)] md:text-4xl">
-                      14
+                      <SlotCounter value="14" />
                     </p>
                     <p className="mt-1 text-xs text-slate-400">krajů ČR</p>
                   </div>
                   <div className="text-center">
                     <p className="text-3xl font-extrabold text-[var(--theme-400)] md:text-4xl">
-                      48h
+                      <SlotCounter value="48h" />
                     </p>
                     <p className="mt-1 text-xs text-slate-400">
                       peníze na účtu
@@ -1084,43 +1083,7 @@ export function HomePageContent({
               Co říkají naši klienti {region.locative}
             </h2>
           </ScrollReveal>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {(region.testimonials ?? []).map((testimonial, idx) => (
-              <ScrollReveal key={idx} delay={idx * 100}>
-                <div className="rounded-3xl border border-white/10 bg-white/10 p-8 backdrop-blur-md transition hover:-translate-y-1 hover:bg-white/15">
-                  <div className="mb-3 flex gap-0.5">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="h-4 w-4 fill-yellow-400 text-yellow-400"
-                        aria-hidden="true"
-                      />
-                    ))}
-                  </div>
-                  <Quote
-                    className="mb-3 h-6 w-6 text-[var(--theme-300)]"
-                    aria-hidden="true"
-                  />
-                  <p className="text-sm leading-relaxed text-slate-300">
-                    &ldquo;{testimonial.text}&rdquo;
-                  </p>
-                  <div className="mt-4 flex items-center gap-2">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--theme-600)] text-xs font-bold text-white">
-                      {testimonial.name.charAt(0)}
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-white">
-                        {testimonial.name}
-                      </p>
-                      <p className="text-xs text-slate-400">
-                        {testimonial.location}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
+          <QuoteBubbles testimonials={region.testimonials ?? []} />
         </div>
       </section>
 
@@ -1198,28 +1161,32 @@ export function HomePageContent({
         </div>
       </section>
 
-      {/* Regional internal links for SEO */}
-      <section className="section-md relative overflow-hidden">
-        <Image
-          src="https://images.unsplash.com/photo-1541123603104-512919d6a96c?w=1920&q=80"
-          alt="Panorama českého města – výkup nemovitostí v celé ČR"
-          fill
-          className="object-cover"
-        />
+      {/* ===== PŮSOBÍME V CELÉ ČR — INTERACTIVE MAP ===== */}
+      <section className="section-md relative overflow-hidden bg-slate-900">
+        <div className="orb orb-theme-1 -left-40 top-10" aria-hidden="true" />
         <div
-          className="absolute inset-0 bg-slate-900/80 backdrop-blur-sm"
+          className="orb orb-theme-2 -bottom-20 -right-20"
           aria-hidden="true"
         />
         <div className="relative mx-auto max-w-5xl px-6">
-          <h2 className="mb-8 text-center text-2xl font-bold text-white">
-            Působíme v celé České republice
-          </h2>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
+          <ScrollReveal>
+            <h2 className="mb-4 text-center text-2xl font-bold text-white sm:text-3xl">
+              Působíme v celé České republice
+            </h2>
+            <p className="mb-10 text-center text-slate-400">
+              Klikněte na kraj pro více informací
+            </p>
+          </ScrollReveal>
+          <ScrollReveal delay={200}>
+            <CzechMap currentRegion={region.key} />
+          </ScrollReveal>
+          {/* Fallback region links for SEO */}
+          <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
             {listRegions().map((r) => (
               <a
                 key={r.key}
                 href={getRegionSubdomainUrl(r.key)}
-                className="rounded-lg border border-white/10 bg-white/10 px-3 py-2 text-sm text-white/80 backdrop-blur-sm transition-colors hover:bg-white/20 hover:text-white"
+                className="rounded-lg border border-white/10 bg-white/10 px-3 py-2 text-center text-sm text-white/80 backdrop-blur-sm transition-colors hover:bg-white/20 hover:text-white"
               >
                 Výkup {r.name}
               </a>

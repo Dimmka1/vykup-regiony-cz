@@ -407,13 +407,13 @@ export function HomePageContent({
         />
         {/* Layer 2: Animated gradient overlay */}
         <div
-          className="absolute inset-0 bg-gradient-to-b from-slate-900/95 via-slate-900/70 to-slate-900/90"
+          className="absolute inset-0 bg-gradient-to-b from-slate-900/95 via-slate-900/70 to-slate-900/95"
           aria-hidden="true"
         />
 
-        {/* Bottom fade into content */}
+        {/* Bottom fade into content — strong multi-stop gradient */}
         <div
-          className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-white"
+          className="pointer-events-none absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-b from-transparent via-white/70 to-white"
           aria-hidden="true"
         />
 

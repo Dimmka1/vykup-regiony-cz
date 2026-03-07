@@ -1,13 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useReducedMotion,
-  useInView,
-} from "@/components/motion";
+import { motion, useReducedMotion, useInView } from "@/components/motion";
 import { FileText, Zap, FilePenLine, Banknote } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
@@ -29,6 +23,26 @@ interface BuildingTimelineProps {
   steps: Step[];
 }
 
+/** Theme-based gradient colors for each floor */
+const FLOOR_GRADIENTS = [
+  "from-[var(--theme-800)] to-[var(--theme-900)]",
+  "from-[var(--theme-700)] to-[var(--theme-800)]",
+  "from-[var(--theme-600)] to-[var(--theme-700)]",
+  "from-[var(--theme-500)] to-[var(--theme-600)]",
+];
+
+function ArchedWindow({ delay }: { delay: number }) {
+  return (
+    <div className="flex flex-col items-center">
+      <div
+        className="h-2 w-4 rounded-t-full bg-[var(--theme-300)] opacity-40 sm:h-3 sm:w-5"
+        style={{ animationDelay: `${delay}ms` }}
+      />
+      <div className="h-3 w-4 bg-[var(--theme-300)] opacity-30 sm:h-4 sm:w-5" />
+    </div>
+  );
+}
+
 function Floor({
   step,
   index,
@@ -44,6 +58,7 @@ function Floor({
 
   const floorNumber = index + 1;
   const isTop = index === total - 1;
+  const gradient = FLOOR_GRADIENTS[index % FLOOR_GRADIENTS.length];
 
   return (
     <motion.div
@@ -66,15 +81,45 @@ function Floor({
     >
       {/* Building column */}
       <div className="relative flex w-20 flex-col items-center sm:w-28">
+        {/* Roof on top floor */}
+        {isTop && (
+          <motion.div
+            className="relative w-full"
+            initial={reduced ? { scaleY: 1 } : { scaleY: 0, originY: "bottom" }}
+            animate={
+              inView ? { scaleY: 1 } : reduced ? { scaleY: 1 } : undefined
+            }
+            transition={{
+              type: "spring",
+              stiffness: 80,
+              damping: 15,
+              delay: index * 0.2 - 0.05,
+            }}
+          >
+            <svg viewBox="0 0 112 32" className="w-full" aria-hidden="true">
+              <polygon
+                points="56,2 108,30 4,30"
+                fill="var(--theme-700)"
+                stroke="var(--theme-500)"
+                strokeWidth="1.5"
+              />
+              <polygon
+                points="56,2 80,16 56,30 32,16"
+                fill="var(--theme-600)"
+                opacity="0.5"
+              />
+            </svg>
+          </motion.div>
+        )}
+
         {/* Floor block */}
         <motion.div
-          className={`relative flex h-full w-full items-center justify-center border-x-2 border-t-2 border-[var(--theme-500)] ${
+          className={`border-[var(--theme-500)]/60 relative flex h-full w-full items-center justify-center border-x-2 border-t-2 bg-gradient-to-br ${gradient} ${
             index === 0 ? "rounded-b-lg border-b-2" : ""
-          } ${isTop ? "rounded-t-lg" : ""}`}
+          }`}
           style={{
-            background: `linear-gradient(135deg, rgba(var(--theme-rgb-${
-              900 - index * 100 > 500 ? 900 - index * 100 : 500
-            }), 0.15), rgba(var(--theme-rgb-800), 0.08))`,
+            boxShadow:
+              "inset 0 2px 8px rgba(0,0,0,0.2), 0 2px 4px rgba(0,0,0,0.15)",
           }}
           initial={reduced ? { scaleY: 1 } : { scaleY: 0, originY: "bottom" }}
           animate={inView ? { scaleY: 1 } : reduced ? { scaleY: 1 } : undefined}
@@ -85,20 +130,23 @@ function Floor({
             delay: index * 0.2,
           }}
         >
-          {/* Window-like decorative elements */}
-          <div className="flex gap-2 p-3">
-            <div className="h-3 w-3 rounded-sm bg-[var(--theme-400)] opacity-30 sm:h-4 sm:w-4" />
-            <div className="h-3 w-3 rounded-sm bg-[var(--theme-400)] opacity-20 sm:h-4 sm:w-4" />
+          {/* Arched windows - 3 per floor */}
+          <div className="flex gap-1.5 p-3 sm:gap-2">
+            <ArchedWindow delay={index * 200} />
+            <ArchedWindow delay={index * 200 + 100} />
+            <ArchedWindow delay={index * 200 + 200} />
           </div>
-          <span className="absolute left-2 top-1 text-xs font-bold text-[var(--theme-400)] opacity-60 sm:text-sm">
-            {floorNumber}
+          <span className="absolute left-1.5 top-1 text-[10px] font-bold text-[var(--theme-300)] opacity-50 sm:left-2 sm:text-xs">
+            {floorNumber}P
           </span>
+          {/* Depth shadow on right side */}
+          <div className="absolute bottom-0 right-0 top-0 w-1 bg-black/10" />
         </motion.div>
 
-        {/* Key icon at top */}
+        {/* Golden key icon at top */}
         {isTop && inView && (
           <motion.div
-            className="absolute -top-10 flex h-8 w-8 items-center justify-center"
+            className="absolute -top-16 z-10 flex h-10 w-10 items-center justify-center sm:h-12 sm:w-12"
             initial={
               reduced ? { rotate: 0, scale: 1 } : { rotate: -90, scale: 0 }
             }
@@ -110,29 +158,56 @@ function Floor({
               delay: total * 0.2 + 0.3,
             }}
           >
-            <svg
+            <motion.svg
               viewBox="0 0 24 24"
-              className="h-7 w-7 text-yellow-400 drop-shadow-[0_0_8px_rgba(250,204,21,0.5)]"
+              className="h-9 w-9 text-yellow-400 sm:h-11 sm:w-11"
               fill="currentColor"
+              animate={
+                reduced
+                  ? undefined
+                  : {
+                      filter: [
+                        "drop-shadow(0 0 6px rgba(250,204,21,0.4))",
+                        "drop-shadow(0 0 14px rgba(250,204,21,0.7))",
+                        "drop-shadow(0 0 6px rgba(250,204,21,0.4))",
+                      ],
+                    }
+              }
+              transition={
+                reduced
+                  ? undefined
+                  : { duration: 2, repeat: Infinity, ease: "easeInOut" }
+              }
             >
               <path d="M12.65 10A5.99 5.99 0 0 0 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6a5.99 5.99 0 0 0 5.65-4H17v4h4v-4h2v-4H12.65zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" />
-            </svg>
+            </motion.svg>
           </motion.div>
         )}
 
         {/* Foundation at bottom */}
         {index === 0 && (
-          <div className="flex h-4 w-full items-center justify-center">
-            <div className="h-full w-full rounded-b bg-gradient-to-r from-[var(--theme-700)] via-[var(--theme-600)] to-[var(--theme-700)]">
-              <div className="flex h-full items-center justify-center gap-0.5">
-                {[...Array(8)].map((_, i) => (
+          <div className="w-full">
+            <div className="flex h-6 w-full items-end overflow-hidden rounded-b-lg bg-gradient-to-b from-stone-600 to-stone-700">
+              <div className="flex h-full w-full flex-wrap items-center justify-center gap-px p-0.5">
+                {[...Array(16)].map((_, i) => (
                   <div
                     key={i}
-                    className="h-2 w-2 rounded-sm bg-[var(--theme-500)] opacity-40 sm:w-3"
+                    className="h-2 w-2.5 rounded-[1px] sm:w-3"
+                    style={{
+                      background:
+                        i % 3 === 0
+                          ? "var(--theme-600)"
+                          : i % 2 === 0
+                            ? "rgb(120,113,108)"
+                            : "rgb(87,83,78)",
+                      opacity: 0.7,
+                    }}
                   />
                 ))}
               </div>
             </div>
+            {/* Ground line */}
+            <div className="h-1 w-full bg-gradient-to-r from-transparent via-stone-500 to-transparent opacity-50" />
           </div>
         )}
       </div>
@@ -140,7 +215,7 @@ function Floor({
       {/* Step content */}
       <div className="flex flex-1 flex-col justify-center py-4 sm:py-6">
         <div className="flex items-center gap-3">
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--theme-50)] text-[var(--theme-600)] sm:h-12 sm:w-12">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[var(--theme-50)] text-[var(--theme-600)] shadow-md sm:h-12 sm:w-12">
             {(() => {
               const I = ICON_MAP[step.icon];
               return I ? (

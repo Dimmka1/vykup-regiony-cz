@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { trackEvent } from "@/lib/analytics";
 import type { AnalyticsEventName } from "@/lib/analytics";
+import { savePendingLead, registerBackgroundSync } from "@/lib/offline-leads";
 
 /* ── GTM form-step tracking (VR-129) ─────────────────────────── */
 
@@ -128,6 +129,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [currentStep, setCurrentStep] = useState<FormStep>(0);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const [offlineMessage, setOfflineMessage] = useState<string | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const router = useRouter();
 
@@ -231,23 +233,25 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
     setStatus("submitting");
     setErrorMessage("");
 
+    const leadPayload = {
+      name: formData.name,
+      phone: formData.phone,
+      property_type: formData.propertyType,
+      region: regionName,
+      situation_type: formData.situationType,
+      address: formData.address,
+      postal_code: formData.postalCode,
+      city: formData.city,
+      consent_gdpr: formData.consent,
+      email: formData.email,
+      website: formData.website,
+    };
+
     try {
       const response = await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: formData.name,
-          phone: formData.phone,
-          property_type: formData.propertyType,
-          region: regionName,
-          situation_type: formData.situationType,
-          address: formData.address,
-          postal_code: formData.postalCode,
-          city: formData.city,
-          consent_gdpr: formData.consent,
-          email: formData.email,
-          website: formData.website,
-        }),
+        body: JSON.stringify(leadPayload),
       });
 
       if (!response.ok) {
@@ -274,6 +278,28 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
       setCurrentStep(0);
       setFormData(INITIAL_FORM);
     } catch (_error) {
+      // Offline fallback: save to IndexedDB and register sync
+      if (!navigator.onLine) {
+        try {
+          await savePendingLead(leadPayload);
+          await registerBackgroundSync();
+          trackEvent("lead_form_submit_offline", {
+            form_name: "lead_form",
+            region: regionName,
+          });
+          setStatus("success");
+          setErrorMessage("");
+          setCurrentStep(0);
+          setFormData(INITIAL_FORM);
+          // Dispatch event so OfflineSyncStatus can update
+          window.dispatchEvent(new CustomEvent("offline-lead-saved"));
+          // Show offline success instead of redirecting
+          setOfflineMessage("Odešleme jakmile budete online");
+          return;
+        } catch {
+          // IndexedDB also failed, show generic error
+        }
+      }
       trackEvent("lead_form_submit_error", {
         form_name: "lead_form",
         region: regionName,
@@ -657,6 +683,11 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
         </button>
       </div>
 
+      {offlineMessage ? (
+        <p className="text-sm font-semibold text-amber-700" role="status">
+          ⏳ {offlineMessage}
+        </p>
+      ) : null}
       {errorMessage ? (
         <p className="text-sm text-red-600" role="alert">
           {errorMessage}

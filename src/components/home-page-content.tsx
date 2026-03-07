@@ -505,8 +505,6 @@ export function HomePageContent({
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[var(--theme-500)] to-transparent" />
       </section>
 
-
-
       <SocialProofBar />
 
       {/* ===== MARKET INFO ===== */}
@@ -597,19 +595,25 @@ export function HomePageContent({
         </section>
       )}
 
-            {/* ===== TRUST METRICS — 3D FLOATING CARDS ===== */}
+      {/* ===== TRUST METRICS — 3D FLOATING CARDS ===== */}
       <section className="bg-luxury-mesh noise-overlay section-lg relative overflow-hidden">
         <div className="orb orb-theme-1 -right-40 -top-40" aria-hidden="true" />
-        <div className="orb orb-theme-2 -bottom-20 left-10" aria-hidden="true" />
+        <div
+          className="orb orb-theme-2 -bottom-20 left-10"
+          aria-hidden="true"
+        />
         <div className="relative mx-auto max-w-[1400px] px-6">
           <ScrollReveal>
             <div className="mb-12 text-center">
-              <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-[var(--theme-600)]">Výsledky mluví za nás</p>
+              <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-[var(--theme-600)]">
+                Výsledky mluví za nás
+              </p>
               <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl lg:text-4xl">
                 Proč nám důvěřují stovky klientů
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-600">
-                Transparentní a férový výkup bez skrytých poplatků — od prvního kontaktu po peníze na účtu
+                Transparentní a férový výkup bez skrytých poplatků — od prvního
+                kontaktu po peníze na účtu
               </p>
             </div>
           </ScrollReveal>
@@ -618,21 +622,36 @@ export function HomePageContent({
             <div className="mt-12 grid gap-6 sm:grid-cols-3">
               <div className="rounded-2xl border border-[var(--theme-100)] bg-white/60 p-6 text-center backdrop-blur-sm">
                 <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--theme-50)]">
-                  <Star className="h-6 w-6 text-[var(--theme-600)]" aria-hidden="true" />
+                  <Star
+                    className="h-6 w-6 text-[var(--theme-600)]"
+                    aria-hidden="true"
+                  />
                 </div>
-                <p className="text-sm font-medium text-slate-700">Férová cena stanovená na základě aktuálního trhu</p>
+                <p className="text-sm font-medium text-slate-700">
+                  Férová cena stanovená na základě aktuálního trhu
+                </p>
               </div>
               <div className="rounded-2xl border border-[var(--theme-100)] bg-white/60 p-6 text-center backdrop-blur-sm">
                 <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--theme-50)]">
-                  <FileSignature className="h-6 w-6 text-[var(--theme-600)]" aria-hidden="true" />
+                  <FileSignature
+                    className="h-6 w-6 text-[var(--theme-600)]"
+                    aria-hidden="true"
+                  />
                 </div>
-                <p className="text-sm font-medium text-slate-700">Advokátní úschova kupní ceny pro vaši bezpečnost</p>
+                <p className="text-sm font-medium text-slate-700">
+                  Advokátní úschova kupní ceny pro vaši bezpečnost
+                </p>
               </div>
               <div className="rounded-2xl border border-[var(--theme-100)] bg-white/60 p-6 text-center backdrop-blur-sm">
                 <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--theme-50)]">
-                  <Banknote className="h-6 w-6 text-[var(--theme-600)]" aria-hidden="true" />
+                  <Banknote
+                    className="h-6 w-6 text-[var(--theme-600)]"
+                    aria-hidden="true"
+                  />
                 </div>
-                <p className="text-sm font-medium text-slate-700">Záloha vyplacena ihned při podpisu smlouvy</p>
+                <p className="text-sm font-medium text-slate-700">
+                  Záloha vyplacena ihned při podpisu smlouvy
+                </p>
               </div>
             </div>
           </ScrollReveal>
@@ -730,8 +749,11 @@ export function HomePageContent({
         </div>
       </section>
 
-            {/* ===== VISUAL BREAK: PROPERTY EXTERIOR ===== */}
-      <ParallaxSection offset={40} className="relative h-[300px] overflow-hidden sm:h-[350px] lg:h-[400px]">
+      {/* ===== VISUAL BREAK: PROPERTY EXTERIOR ===== */}
+      <ParallaxSection
+        offset={40}
+        className="relative h-[300px] overflow-hidden sm:h-[350px] lg:h-[400px]"
+      >
         <Image
           src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1400&q=80"
           alt={`Rezidenční nemovitost ${region.locative} – profesionální výkup`}

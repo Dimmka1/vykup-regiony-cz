@@ -78,13 +78,6 @@ export function middleware(request: NextRequest): NextResponse | undefined {
   const { pathname, searchParams } = request.nextUrl;
   const isProd = isProductionDomain(host);
 
-  // 0a. www → non-www 301 redirect (canonical)
-  if (isProd && host.toLowerCase().startsWith("www.")) {
-    const url = request.nextUrl.clone();
-    url.host = url.host.replace(/^www\./i, "");
-    return NextResponse.redirect(url, 301);
-  }
-
   // 0. PPC landing — stripped layout (no header/footer)
   if (pathname === "/ppc") {
     const response = NextResponse.next();

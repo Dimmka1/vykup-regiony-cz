@@ -77,3 +77,61 @@ Response:
 - `400` `{ ok: false, code: "VALIDATION_ERROR" }`
 - `429` `{ ok: false, code: "RATE_LIMITED" }`
 - `500` `{ ok: false, code: "DELIVERY_ERROR" }`
+
+## Price Data & Freshness (VR-209)
+
+### PRICE_RESEARCH.json
+
+Regional property prices (CZK/m²) used by ~500 programmatic pages. Located in the project root.
+
+Key fields:
+
+- `regions` — per-region prices for `byt_m2`, `dum_m2`, `pozemek_m2`
+- `lastUpdated` — ISO 8601 timestamp of the last price update
+- `date` — original data collection date
+- `sources` — list of data sources
+
+### Updating Prices
+
+```bash
+# 1. Edit PRICE_RESEARCH.json — update prices in the `regions` object
+# 2. Run the update script to stamp the current date:
+npm run update-prices
+
+# 3. Commit and deploy
+git add PRICE_RESEARCH.json
+git commit -m "fix: update price data [month year]"
+git push
+```
+
+The script (`scripts/update-prices.js`):
+
+- Reads PRICE_RESEARCH.json
+- Sets `lastUpdated` to current ISO timestamp
+- Prints a reminder about data sources
+
+### What Uses `lastUpdated`
+
+1. **Price freshness badge** — "Ceny aktualizovány: [datum]" shown on every programmatic page below the price estimator
+2. **JSON-LD `dateModified`** — `WebPage` schema on programmatic pages uses `lastUpdated`
+3. **Sitemap `lastmod`** — all content pages reflect the price update date
+
+### Recommended Update Cadence
+
+- Quarterly (at minimum) — align with ČSÚ quarterly reports
+- After significant market changes
+
+### Data Sources
+
+- [RealityMIX](https://realitymix.cz/statistika-nemovitosti/) — apartment prices by region
+- [ČSÚ](https://csu.gov.cz) — official quarterly statistics
+- [Sreality](https://sreality.cz) — market listing prices
+
+### Future Automation Plans
+
+The `update-prices` script is designed as an MVP entry point. Future improvements:
+
+- Automated scraping of RealityMIX/Sreality price indices
+- ČSÚ API integration for quarterly data
+- GitHub Actions cron job for scheduled updates
+- Price change alerts via Slack/email

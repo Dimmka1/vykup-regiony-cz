@@ -1,4 +1,5 @@
 import { safeJsonLd } from "@/lib/jsonld";
+import { getPriceLastUpdated } from "@/lib/price-data";
 import { SocialProofBar } from "@/components/social-proof-bar";
 import { getThemeStyle } from "@/lib/theme-colors";
 import type { ReactElement } from "react";
@@ -8,6 +9,7 @@ import dynamic from "next/dynamic";
 import { CtaLink } from "@/components/cta-link";
 import { CallbackForm } from "@/components/callback-form";
 import { PropertyEstimator } from "@/components/property-estimator";
+import { PriceFreshnessBadge } from "@/components/price-freshness-badge";
 import { ScrollTracker } from "@/components/scroll-tracker";
 import { FloatingDesktopCta } from "@/components/floating-desktop-cta";
 import { FaqAccordion } from "@/components/faq-accordion";
@@ -371,6 +373,19 @@ export function buildSchema(
         dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
         opens: "08:00",
         closes: "18:00",
+      },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      name: region.seoTitle || region.title,
+      url: canonicalUrl,
+      dateModified: getPriceLastUpdated(),
+      description: region.seoDescription,
+      isPartOf: {
+        "@type": "WebSite",
+        name: "Vykoupím Nemovitost",
+        url: "https://vykoupim-nemovitost.cz",
       },
     },
   ];
@@ -1070,6 +1085,7 @@ export function HomePageContent({
         </div>
       </section>
       <PropertyEstimator regionKey={region.key} />
+      <PriceFreshnessBadge />
 
       {/* ===== TESTIMONIALS ===== */}
       <section className="section-md bg-luxury-dark relative overflow-hidden">

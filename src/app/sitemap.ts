@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { headers } from "next/headers";
 import { BLOG_POSTS } from "@/app/blog/data";
+import { getPriceLastUpdated } from "@/lib/price-data";
 
 const ROOT_DOMAIN = "vykoupim-nemovitost.cz";
 
@@ -37,6 +38,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     .replace(/^www\./, "")
     .split(":")[0];
 
+  const priceLastUpdated = new Date(getPriceLastUpdated());
   const now = new Date();
   const isRootOrDev = host === ROOT_DOMAIN || !host.endsWith(`.${ROOT_DOMAIN}`);
 
@@ -47,7 +49,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     return [
       {
         url: baseUrl,
-        lastModified: now,
+        lastModified: priceLastUpdated,
         changeFrequency: "monthly",
         priority: 1,
       },
@@ -57,7 +59,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Root domain sitemap: all content pages + blog posts
   const entries: MetadataRoute.Sitemap = CONTENT_PATHS.map((entry) => ({
     url: `${baseUrl}${entry.path}`,
-    lastModified: now,
+    lastModified: priceLastUpdated,
     changeFrequency: "monthly" as const,
     priority: entry.priority,
   }));

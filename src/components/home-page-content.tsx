@@ -47,9 +47,6 @@ import {
   MapPin,
   Building,
   Star,
-  Shield,
-  Lock,
-  Scale,
 } from "lucide-react";
 
 export const COMPANY_NAME = "Vykoupím Nemovitost";
@@ -397,7 +394,7 @@ export function HomePageContent({
       <FloatingDesktopCta />
 
       {/* ===== HERO — CINEMATIC PARALLAX ===== */}
-      <section className="scan-line relative min-h-[80vh] overflow-hidden lg:min-h-[90vh]">
+      <section className="scan-line relative min-h-[100svh] overflow-hidden">
         {/* Layer 1: Background image */}
         <HeroImage
           src={
@@ -417,7 +414,7 @@ export function HomePageContent({
 
         <div className="hero-blob" aria-hidden="true" />
         <div className="hero-blob-2" aria-hidden="true" />
-        <div className="relative mx-auto flex min-h-[80vh] max-w-7xl flex-col justify-center px-6 py-24 lg:min-h-[90vh]">
+        <div className="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-center px-6 py-24">
           <HeroStagger delay={1}>
             <div className="mb-4 flex flex-wrap items-center gap-3">
               <p className="glass inline-flex rounded-full border border-white/20 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-white backdrop-blur-md">
@@ -925,30 +922,6 @@ export function HomePageContent({
             <ScrollReveal>
               <div className="rounded-3xl bg-white p-8 shadow-2xl md:p-12">
                 <LeadForm regionName={region.name} />
-              </div>
-              {/* Trust badges below form */}
-              <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-                <div className="flex items-center gap-2 rounded-full bg-slate-50 px-3 py-1.5 text-sm font-medium text-slate-500">
-                  <Lock
-                    className="h-5 w-5 text-[var(--theme-500)]"
-                    aria-hidden="true"
-                  />
-                  <span>256-bit SSL</span>
-                </div>
-                <div className="flex items-center gap-2 rounded-full bg-slate-50 px-3 py-1.5 text-sm font-medium text-slate-500">
-                  <Shield
-                    className="h-5 w-5 text-[var(--theme-500)]"
-                    aria-hidden="true"
-                  />
-                  <span>GDPR</span>
-                </div>
-                <div className="flex items-center gap-2 rounded-full bg-slate-50 px-3 py-1.5 text-sm font-medium text-slate-500">
-                  <Scale
-                    className="h-5 w-5 text-[var(--theme-500)]"
-                    aria-hidden="true"
-                  />
-                  <span>Advokátní úschova</span>
-                </div>
               </div>
             </ScrollReveal>
           </div>

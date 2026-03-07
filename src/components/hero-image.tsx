@@ -34,8 +34,8 @@ export function HeroImage({
 
   // Parallax: image moves slower than scroll (zoomed in, shifts up)
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1.02, 1.1]);
-  const opacity = useTransform(scrollYProgress, [0, 0.8, 1], [1, 0.6, 0.3]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1.0, 1.08]);
+  const opacity = useTransform(scrollYProgress, [0, 0.7, 1], [1, 0.8, 0.4]);
 
   return (
     <div ref={containerRef} className="absolute inset-0 overflow-hidden">

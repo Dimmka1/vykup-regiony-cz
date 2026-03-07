@@ -750,27 +750,26 @@ export function HomePageContent({
       </section>
 
       {/* ===== VISUAL BREAK: PROPERTY EXTERIOR ===== */}
-      <ParallaxSection
-        offset={40}
-        className="relative h-[300px] overflow-hidden sm:h-[350px] lg:h-[400px]"
+      <section
+        className="relative flex h-[350px] items-center justify-center overflow-hidden sm:h-[400px] lg:h-[450px]"
+        style={{
+          backgroundImage: `url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1400&q=80')`,
+          backgroundAttachment: "fixed",
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+        }}
       >
-        <Image
-          src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1400&q=80"
-          alt={`Rezidenční nemovitost ${region.locative} – profesionální výkup`}
-          fill
-          className="object-cover"
-        />
         <div
           className="absolute inset-0 bg-gradient-to-r from-slate-900/80 to-slate-900/50"
           aria-hidden="true"
         />
-        <div className="relative flex h-full items-center justify-center px-6">
+        <div className="relative px-6">
           <p className="text-center text-xl font-bold text-white drop-shadow-lg sm:text-2xl lg:text-3xl">
             Pomáháme majitelům nemovitostí {region.locative} i po celé České
             republice
           </p>
         </div>
-      </ParallaxSection>
+      </section>
 
       {/* ===== PROČ KLIENTI VOLÍ NÁS (USP) ===== */}
       <ParallaxSection offset={20}>
@@ -882,7 +881,8 @@ export function HomePageContent({
               </p>
             </div>
           </ScrollReveal>
-          <div className="mx-auto max-w-2xl">
+          <div className="grid gap-12 lg:grid-cols-2">
+            {/* Left: benefits */}
             <ScrollReveal delay={200}>
               <div className="flex flex-col justify-center">
                 <div className="mb-8 grid grid-cols-3 gap-4">
@@ -922,24 +922,6 @@ export function HomePageContent({
                     </li>
                   ))}
                 </ul>
-
-                <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-3xl bg-gradient-to-br from-[var(--theme-800)] via-[var(--theme-700)] to-[var(--theme-900)]">
-                  <div
-                    className="absolute inset-0 opacity-10"
-                    style={{
-                      backgroundImage:
-                        "radial-gradient(circle at 20% 50%, white 1px, transparent 1px)",
-                      backgroundSize: "30px 30px",
-                    }}
-                    aria-hidden="true"
-                  />
-                  <div className="relative flex h-full items-center justify-center px-6">
-                    <p className="text-center text-lg font-bold text-white">
-                      Férové jednání je náš standard
-                    </p>
-                  </div>
-                </div>
-
                 <div className="mt-8">
                   <h3 className="text-lg font-semibold text-white">
                     Nezávazná konzultace zdarma
@@ -954,9 +936,12 @@ export function HomePageContent({
                 </div>
               </div>
             </ScrollReveal>
-            <div className="mt-10">
-              <LeadForm regionName={region.name} />
-            </div>
+            {/* Right: form */}
+            <ScrollReveal delay={400}>
+              <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm">
+                <LeadForm regionName={region.name} />
+              </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>

@@ -13,7 +13,7 @@ export function FloatingDesktopCta() {
       ? new IntersectionObserver(
           ([entry]) => {
             formInView = entry.isIntersecting;
-            setVisible(window.scrollY > 500 && !formInView);
+            setVisible(window.scrollY > 300 && !formInView);
           },
           { threshold: 0.1 },
         )
@@ -22,7 +22,7 @@ export function FloatingDesktopCta() {
     if (kontakt && observer) observer.observe(kontakt);
 
     const onScroll = () => {
-      setVisible(window.scrollY > 500 && !formInView);
+      setVisible(window.scrollY > 300 && !formInView);
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -43,10 +43,10 @@ export function FloatingDesktopCta() {
           .getElementById("kontakt")
           ?.scrollIntoView({ behavior: "smooth" });
       }}
-      className="cta-glow btn-ripple fixed bottom-6 right-6 z-40 hidden rounded-full bg-gradient-to-r from-[var(--theme-600)] to-[var(--theme-700)] px-6 py-3 font-semibold text-white shadow-lg transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 md:block"
+      className="cta-glow btn-ripple fixed bottom-6 right-6 z-40 hidden rounded-full bg-gradient-to-r from-[var(--theme-600)] to-[var(--theme-700)] px-6 py-3 font-semibold text-white shadow-lg transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 lg:block"
       aria-label="Přejít na formulář kontaktu a získat nezávaznou nabídku"
     >
-      Nezávazná nabídka →
+      Nezávazná poptávka →
     </a>
   );
 }

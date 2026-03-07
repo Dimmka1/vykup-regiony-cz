@@ -674,7 +674,7 @@ export function HomePageContent({
               </div>
               <div className="relative aspect-[16/10] overflow-hidden rounded-3xl shadow-lg">
                 <Image
-                  src="/images/section-process.png"
+                  src="/images/section-process.jpg"
                   alt="Proces výkupu nemovitosti – profesionální jednání"
                   fill
                   className="object-cover"
@@ -750,15 +750,16 @@ export function HomePageContent({
       </section>
 
       {/* ===== VISUAL BREAK: PROPERTY EXTERIOR ===== */}
-      <section
-        className="relative flex h-[350px] items-center justify-center overflow-hidden sm:h-[400px] lg:h-[450px]"
-        style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1400&q=80')`,
-          backgroundAttachment: "fixed",
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-        }}
-      >
+      <section className="relative flex h-[350px] items-center justify-center overflow-hidden sm:h-[400px] lg:h-[450px]">
+        <Image
+          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1400&q=80"
+          alt={`Rezidenční nemovitost ${region.locative} – profesionální výkup`}
+          fill
+          loading="lazy"
+          className="object-cover"
+          sizes="100vw"
+          quality={75}
+        />
         <div
           className="absolute inset-0 bg-gradient-to-r from-slate-900/80 to-slate-900/50"
           aria-hidden="true"

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DynamicPhone } from "@/components/dynamic-phone";
 
 export const metadata: Metadata = {
   alternates: {
@@ -50,12 +51,7 @@ export default function OchranaOsobnichUdajuPage() {
             </a>
             <br />
             Telefon:{" "}
-            <a
-              href="tel:+420776424145"
-              className="text-brand-700 underline hover:text-brand-500"
-            >
-              +420 776 424 145
-            </a>
+            <DynamicPhone className="text-brand-700 underline hover:text-brand-500" />
           </p>
         </Section>
 

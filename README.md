@@ -77,3 +77,78 @@ Response:
 - `400` `{ ok: false, code: "VALIDATION_ERROR" }`
 - `429` `{ ok: false, code: "RATE_LIMITED" }`
 - `500` `{ ok: false, code: "DELIVERY_ERROR" }`
+
+---
+
+## Call Tracking Setup
+
+### Dynamic Number Insertion (DNI)
+
+The site uses a `DynamicPhone` component that shows different phone numbers based on traffic source (UTM parameters). This enables call attribution for PPC campaigns.
+
+### Environment Variables
+
+| Variable                                 | Required | Description                                                                                                   |
+| ---------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_DEFAULT_PHONE`              | No       | Default phone number displayed on the site. Defaults to `+420 776 424 145`                                    |
+| `NEXT_PUBLIC_CALL_TRACKING_PHONE_GOOGLE` | No       | Phone number shown to visitors from Google Ads (`utm_source=google`). If not set, falls back to default phone |
+
+### How It Works
+
+1. Visitor arrives with `?utm_source=google` → sees the Google tracking number
+2. Visitor arrives organically (no UTM) → sees the default number
+3. Call tracking provider receives the call on the tracking number → sends webhook to `/api/webhooks/calls`
+
+### Call Webhook Endpoint
+
+**POST** `/api/webhooks/calls`
+
+Receives call events from external call tracking providers.
+
+**Request body:**
+
+```json
+{
+  "call_id": "abc-123",
+  "phone_from": "+420777123456",
+  "phone_to": "+420776424145",
+  "duration": 125,
+  "timestamp": "2026-03-07T15:30:00Z",
+  "utm_source": "google",
+  "status": "answered"
+}
+```
+
+**Required fields:** `call_id`, `phone_from`, `phone_to`, `duration`, `timestamp`
+
+**Optional fields:** `utm_source`, `recording_url`, `status` (answered/missed/voicemail)
+
+**Response:** `{ "ok": true, "call_id": "abc-123" }`
+
+**Features:**
+
+- Logs call data to Google Sheets (requires `GOOGLE_SHEETS_CALLS_WEBHOOK_URL`)
+- Sends Telegram notification (uses existing `TELEGRAM_BOT_TOKEN` / `TELEGRAM_CHAT_ID`)
+
+### Google Sheets Integration
+
+1. Create a new Google Sheet with a "Calls" tab
+2. Go to Extensions → Apps Script
+3. Create a `doPost(e)` function that parses the JSON body and appends a row
+4. Deploy as Web App (execute as you, accessible to anyone)
+5. Set `GOOGLE_SHEETS_CALLS_WEBHOOK_URL` to the Web App URL
+
+### Recommended Call Tracking Providers
+
+| Provider                                                   | Region    | Notes                                                         |
+| ---------------------------------------------------------- | --------- | ------------------------------------------------------------- |
+| [Zavolat.cz](https://zavolat.cz)                           | 🇨🇿 Czech  | Czech local provider, CZ numbers, competitive pricing         |
+| [CallTrackingMetrics](https://www.calltrackingmetrics.com) | 🌍 Global | Enterprise-grade, supports CZ numbers, Google Ads integration |
+| [Ringostat](https://ringostat.com)                         | 🇪🇺 EU     | EU-based, GDPR-friendly, good CZ support                      |
+
+**Integration steps:**
+
+1. Get a tracking number from the provider
+2. Set `NEXT_PUBLIC_CALL_TRACKING_PHONE_GOOGLE` to the tracking number
+3. Configure the provider to send call webhooks to `https://your-domain.cz/api/webhooks/calls`
+4. Set `GOOGLE_SHEETS_CALLS_WEBHOOK_URL` for Sheets logging

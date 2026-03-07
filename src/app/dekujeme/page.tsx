@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { CheckCircle, Phone, Shield, Clock } from "lucide-react";
 import Link from "next/link";
 import { trackEvent } from "@/lib/analytics";
+import { DynamicPhone } from "@/components/dynamic-phone";
 
 export default function DekujemePage(): ReactElement {
   useEffect(() => {
@@ -71,12 +72,7 @@ export default function DekujemePage(): ReactElement {
           </div>
           <p className="mt-1 text-amber-700">
             Zavolejte nám na{" "}
-            <a
-              href="tel:+420776424145"
-              className="font-bold underline hover:no-underline"
-            >
-              +420 776 424 145
-            </a>
+            <DynamicPhone className="font-bold underline hover:no-underline" />
           </p>
         </div>
 

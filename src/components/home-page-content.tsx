@@ -26,6 +26,7 @@ import { FloatingStats } from "@/components/floating-stats";
 import { DoorCards } from "@/components/door-cards";
 import { LeadForm } from "@/components/lead-form";
 import { SlotCounter } from "@/components/slot-counter";
+import { DynamicPhone } from "@/components/dynamic-phone";
 import {
   getRegionSubdomainUrl,
   isProductionHost,
@@ -471,14 +472,18 @@ export function HomePageContent({
                   regionName={region.name}
                 />
               </span>
-              <a
-                href={`tel:${region.phone}`}
-                aria-label={`Zavolat na číslo ${region.phone}`}
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/5 px-8 py-4 text-lg font-semibold text-white backdrop-blur-sm transition hover:border-white/50 hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
-              >
-                <Phone className="h-5 w-5" aria-hidden="true" />
-                Zavolat: {region.phone}
-              </a>
+              <DynamicPhone fallback={region.phone}>
+                {({ phone, href }) => (
+                  <a
+                    href={href}
+                    aria-label={`Zavolat na číslo ${phone}`}
+                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/5 px-8 py-4 text-lg font-semibold text-white backdrop-blur-sm transition hover:border-white/50 hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+                  >
+                    <Phone className="h-5 w-5" aria-hidden="true" />
+                    Zavolat: {phone}
+                  </a>
+                )}
+              </DynamicPhone>
             </div>
             <div className="mt-4">
               <CallbackForm regionName={region.name} />
@@ -1053,13 +1058,17 @@ export function HomePageContent({
           >
             Odeslat poptávku - zdarma
           </a>
-          <a
-            href={`tel:${region.phone}`}
-            className="btn-ripple inline-flex min-h-11 flex-1 items-center justify-center rounded-xl border border-slate-300 px-4 py-3 text-sm font-semibold text-slate-800 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
-            aria-label={`Zavolat na číslo ${region.phone}`}
-          >
-            Zavolat
-          </a>
+          <DynamicPhone fallback={region.phone}>
+            {({ phone, href }) => (
+              <a
+                href={href}
+                className="btn-ripple inline-flex min-h-11 flex-1 items-center justify-center rounded-xl border border-slate-300 px-4 py-3 text-sm font-semibold text-slate-800 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
+                aria-label={`Zavolat na číslo ${phone}`}
+              >
+                Zavolat
+              </a>
+            )}
+          </DynamicPhone>
         </div>
       </nav>
 

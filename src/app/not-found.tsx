@@ -4,9 +4,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { trackEvent } from "@/lib/analytics";
-
-const PHONE = "+420 776 424 145";
-const PHONE_HREF = "tel:+420776424145";
+import { DynamicPhone } from "@/components/dynamic-phone";
 
 const POPULAR_REGIONS = [
   { label: "Praha", href: "/praha" },
@@ -50,12 +48,16 @@ export default function NotFound() {
             🏠 Zpět na hlavní stránku
           </Link>
 
-          <a
-            href={PHONE_HREF}
-            className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-[var(--theme-600)] px-6 py-3 text-base font-semibold text-[var(--theme-600)] shadow-sm transition-colors hover:bg-[var(--theme-50)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
-          >
-            📞 Zavolejte nám: {PHONE}
-          </a>
+          <DynamicPhone>
+            {({ phone, href }) => (
+              <a
+                href={href}
+                className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-[var(--theme-600)] px-6 py-3 text-base font-semibold text-[var(--theme-600)] shadow-sm transition-colors hover:bg-[var(--theme-50)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
+              >
+                📞 Zavolejte nám: {phone}
+              </a>
+            )}
+          </DynamicPhone>
         </div>
 
         {/* All regions link */}
@@ -89,12 +91,7 @@ export default function NotFound() {
         {/* Phone CTA bottom */}
         <p className="mt-10 text-sm text-slate-500">
           Potřebujete poradit? Zavolejte nám na{" "}
-          <a
-            href={PHONE_HREF}
-            className="font-medium text-[var(--theme-600)] transition-colors hover:text-[var(--theme-700)]"
-          >
-            {PHONE}
-          </a>{" "}
+          <DynamicPhone className="font-medium text-[var(--theme-600)] transition-colors hover:text-[var(--theme-700)]" />{" "}
           — konzultace zdarma.
         </p>
       </div>

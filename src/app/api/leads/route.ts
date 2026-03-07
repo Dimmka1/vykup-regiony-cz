@@ -17,6 +17,7 @@ const leadSchema = z.object({
   consent_gdpr: z.literal(true),
   email: z.string().email().optional().or(z.literal("")),
   website: z.string().optional(),
+  is_test: z.boolean().optional(),
 });
 
 const callbackSchema = z.object({
@@ -47,7 +48,7 @@ interface LeadNotificationPayload {
   lead_id: string;
   timestamp: string;
   ip: string;
-  data: Omit<LeadData, "website" | "consent_gdpr">;
+  data: Omit<LeadData, "website" | "consent_gdpr" | "is_test">;
 }
 
 async function sendWebhookNotification(
@@ -483,12 +484,17 @@ export async function POST(request: Request): Promise<NextResponse> {
     const leadId = `lead_${Date.now().toString(36)}`;
     const validatedData = result.data;
 
+    const isTest = validatedData.is_test === true;
+    const displayName = isTest
+      ? `[TEST] ${validatedData.name}`
+      : validatedData.name;
+
     const notificationPayload: LeadNotificationPayload = {
       lead_id: leadId,
       timestamp: new Date().toISOString(),
       ip: clientIp,
       data: {
-        name: validatedData.name,
+        name: displayName,
         phone: validatedData.phone,
         property_type: validatedData.property_type,
         region: validatedData.region,
@@ -496,21 +502,28 @@ export async function POST(request: Request): Promise<NextResponse> {
       },
     };
 
-    const notifyResults = await Promise.allSettled([
+    // For test leads: send webhook + telegram (with [TEST] prefix) for verification,
+    // but skip auto-reply email, SMS, and email drip sequences.
+    const notifications: Promise<void>[] = [
       sendWebhookNotification(notificationPayload),
-      sendEmailNotification(notificationPayload),
       sendTelegramNotification(notificationPayload),
-      ...(validatedData.email && validatedData.email.trim()
-        ? [
-            sendAutoReplyEmail({
-              ...notificationPayload,
-              email: validatedData.email.trim(),
-            }),
-          ]
-        : []),
-    ]);
+    ];
 
-    const notifyNames = ["webhook", "email", "telegram", "auto-reply"];
+    if (!isTest) {
+      notifications.push(sendEmailNotification(notificationPayload));
+      if (validatedData.email && validatedData.email.trim()) {
+        notifications.push(
+          sendAutoReplyEmail({
+            ...notificationPayload,
+            email: validatedData.email.trim(),
+          }),
+        );
+      }
+    }
+
+    const notifyResults = await Promise.allSettled(notifications);
+
+    const notifyNames = ["webhook", "telegram", "email", "auto-reply"];
     notifyResults.forEach((r, i) => {
       if (r.status === "rejected") {
         console.error(`[lead-notify] ${notifyNames[i]} failed:`, r.reason);
@@ -532,6 +545,7 @@ export async function POST(request: Request): Promise<NextResponse> {
         message: "Lead accepted",
         score: leadScore.score,
         tier: leadScore.tier,
+        is_test: isTest,
       },
       { status: 200 },
     );

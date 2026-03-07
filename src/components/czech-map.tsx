@@ -1,86 +1,70 @@
 "use client";
 
-import { useState, useRef, useCallback, useMemo, useEffect } from "react";
+import { useState, useRef, useCallback } from "react";
 import { motion, useReducedMotion, AnimatePresence } from "@/components/motion";
+import { REGION_SVG_PATHS } from "@/data/czech-map-paths";
 
-const REGION_PATHS: Record<string, string> = {
-  praha:
-    "M 245,175 C 248,170 255,168 260,170 265,173 262,180 255,182 248,180 Z",
-  "stredocesky-kraj": "M 220,155 L 280,155 290,185 270,200 230,200 210,185 Z",
-  "jihocesky-kraj": "M 200,200 L 280,200 290,250 250,270 190,250 Z",
-  "plzensky-kraj": "M 140,160 L 200,160 210,200 190,240 140,230 120,190 Z",
-  "karlovarsky-kraj": "M 100,120 L 150,115 160,155 140,170 100,160 Z",
-  "ustecky-kraj": "M 150,100 L 220,95 230,130 220,155 150,155 140,130 Z",
-  "liberecky-kraj": "M 230,90 L 290,85 300,120 280,140 240,135 Z",
-  "kralovehradecky-kraj": "M 280,95 L 350,100 360,145 310,155 280,140 Z",
-  "pardubicky-kraj": "M 290,145 L 370,145 380,185 330,195 280,185 Z",
-  vysocina: "M 250,195 L 330,195 340,240 290,255 240,240 Z",
-  "jihomoravsky-kraj": "M 300,235 L 390,230 400,280 350,295 290,280 Z",
-  "olomoucky-kraj": "M 340,150 L 400,155 410,200 380,215 340,200 Z",
-  "moravskoslezsky-kraj": "M 380,110 L 430,120 435,170 400,180 370,160 Z",
-  "zlinsky-kraj": "M 370,200 L 420,195 430,240 390,255 360,240 Z",
+/** Map CZ ISO codes to internal region keys */
+const CZ_TO_KEY: Record<string, string> = {
+  CZ10: "praha",
+  CZ20: "stredocesky-kraj",
+  CZ31: "jihocesky-kraj",
+  CZ32: "plzensky-kraj",
+  CZ41: "karlovarsky-kraj",
+  CZ42: "ustecky-kraj",
+  CZ51: "liberecky-kraj",
+  CZ52: "kralovehradecky-kraj",
+  CZ53: "pardubicky-kraj",
+  CZ63: "vysocina",
+  CZ64: "jihomoravsky-kraj",
+  CZ71: "olomoucky-kraj",
+  CZ72: "zlinsky-kraj",
+  CZ80: "moravskoslezsky-kraj",
 };
 
 const REGION_LABELS: Record<string, string> = {
   praha: "Praha",
-  "stredocesky-kraj": "Středočeský",
-  "jihocesky-kraj": "Jihočeský",
-  "plzensky-kraj": "Plzeňský",
-  "karlovarsky-kraj": "Karlovarský",
-  "ustecky-kraj": "Ústecký",
-  "liberecky-kraj": "Liberecký",
-  "kralovehradecky-kraj": "Královéhradecký",
-  "pardubicky-kraj": "Pardubický",
+  "stredocesky-kraj": "Středočeský kraj",
+  "jihocesky-kraj": "Jihočeský kraj",
+  "plzensky-kraj": "Plzeňský kraj",
+  "karlovarsky-kraj": "Karlovarský kraj",
+  "ustecky-kraj": "Ústecký kraj",
+  "liberecky-kraj": "Liberecký kraj",
+  "kralovehradecky-kraj": "Královéhradecký kraj",
+  "pardubicky-kraj": "Pardubický kraj",
   vysocina: "Vysočina",
-  "jihomoravsky-kraj": "Jihomoravský",
-  "olomoucky-kraj": "Olomoucký",
-  "moravskoslezsky-kraj": "Moravskoslezský",
-  "zlinsky-kraj": "Zlínský",
+  "jihomoravsky-kraj": "Jihomoravský kraj",
+  "olomoucky-kraj": "Olomoucký kraj",
+  "zlinsky-kraj": "Zlínský kraj",
+  "moravskoslezsky-kraj": "Moravskoslezský kraj",
 };
 
-/** Centers of each region for network dots */
-const REGION_CENTERS: Record<string, [number, number]> = {
-  praha: [255, 175],
-  "stredocesky-kraj": [250, 178],
-  "jihocesky-kraj": [245, 235],
-  "plzensky-kraj": [165, 195],
-  "karlovarsky-kraj": [125, 140],
-  "ustecky-kraj": [185, 125],
-  "liberecky-kraj": [265, 110],
-  "kralovehradecky-kraj": [320, 125],
-  "pardubicky-kraj": [330, 168],
-  vysocina: [290, 222],
-  "jihomoravsky-kraj": [345, 260],
-  "olomoucky-kraj": [375, 180],
-  "moravskoslezsky-kraj": [405, 145],
-  "zlinsky-kraj": [395, 220],
+/** Label center points extracted from SVG label_points group */
+const LABEL_CENTERS: Record<string, [number, number]> = {
+  CZ42: [274.9, 145.1],
+  CZ31: [363.6, 434.1],
+  CZ64: [661.7, 432.8],
+  CZ41: [138.5, 208.8],
+  CZ52: [551.2, 160.2],
+  CZ51: [455.7, 92.5],
+  CZ80: [845.4, 294.8],
+  CZ71: [727, 323.5],
+  CZ53: [629.3, 283.6],
+  CZ32: [207.4, 332.8],
+  CZ10: [367.4, 231.8],
+  CZ20: [438.4, 245.4],
+  CZ63: [520.3, 358.9],
+  CZ72: [803.3, 420.6],
 };
 
-/** Network connections between neighboring regions */
-const CONNECTIONS: [string, string][] = [
-  ["praha", "stredocesky-kraj"],
-  ["stredocesky-kraj", "plzensky-kraj"],
-  ["stredocesky-kraj", "ustecky-kraj"],
-  ["stredocesky-kraj", "liberecky-kraj"],
-  ["stredocesky-kraj", "pardubicky-kraj"],
-  ["stredocesky-kraj", "vysocina"],
-  ["stredocesky-kraj", "jihocesky-kraj"],
-  ["plzensky-kraj", "karlovarsky-kraj"],
-  ["plzensky-kraj", "jihocesky-kraj"],
-  ["ustecky-kraj", "liberecky-kraj"],
-  ["ustecky-kraj", "karlovarsky-kraj"],
-  ["liberecky-kraj", "kralovehradecky-kraj"],
-  ["kralovehradecky-kraj", "pardubicky-kraj"],
-  ["pardubicky-kraj", "vysocina"],
-  ["pardubicky-kraj", "olomoucky-kraj"],
-  ["vysocina", "jihocesky-kraj"],
-  ["vysocina", "jihomoravsky-kraj"],
-  ["jihomoravsky-kraj", "olomoucky-kraj"],
-  ["jihomoravsky-kraj", "zlinsky-kraj"],
-  ["olomoucky-kraj", "moravskoslezsky-kraj"],
-  ["olomoucky-kraj", "zlinsky-kraj"],
-  ["moravskoslezsky-kraj", "zlinsky-kraj"],
-];
+/** Build region data combining paths, keys, labels, and centers */
+const REGIONS = Object.entries(REGION_SVG_PATHS).map(([czId, d]) => ({
+  czId,
+  key: CZ_TO_KEY[czId] ?? czId,
+  d,
+  label: REGION_LABELS[CZ_TO_KEY[czId] ?? ""] ?? czId,
+  center: LABEL_CENTERS[czId] ?? [500, 285],
+}));
 
 interface CzechMapProps {
   currentRegion: string;
@@ -96,23 +80,17 @@ export function CzechMap({ currentRegion }: CzechMapProps) {
   const svgRef = useRef<SVGSVGElement>(null);
   const reduced = useReducedMotion();
 
-  const handleMouseEnter = useCallback(
-    (key: string, e: React.MouseEvent<SVGPathElement>) => {
-      setHovered(key);
-      const svg = svgRef.current;
-      if (!svg) return;
-      const pt = svg.createSVGPoint();
-      pt.x = e.clientX;
-      pt.y = e.clientY;
-      const svgPt = pt.matrixTransform(svg.getScreenCTM()?.inverse());
+  const handleMouseEnter = useCallback((key: string, czId: string) => {
+    setHovered(key);
+    const center = LABEL_CENTERS[czId];
+    if (center) {
       setTooltip({
-        x: svgPt.x,
-        y: svgPt.y - 15,
+        x: center[0],
+        y: center[1] - 25,
         label: REGION_LABELS[key] ?? key,
       });
-    },
-    [],
-  );
+    }
+  }, []);
 
   const handleMouseLeave = useCallback(() => {
     setHovered(null);
@@ -120,57 +98,52 @@ export function CzechMap({ currentRegion }: CzechMapProps) {
   }, []);
 
   const handleClick = useCallback((key: string) => {
-    const el = document.getElementById("kontakt");
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
+    // Navigate to the region's subdomain
+    const SUBDOMAIN_MAP: Record<string, string> = {
+      praha: "praha",
+      "stredocesky-kraj": "stredocesky",
+      "jihocesky-kraj": "jihocesky",
+      "plzensky-kraj": "plzensky",
+      "karlovarsky-kraj": "karlovarsky",
+      "ustecky-kraj": "ustecky",
+      "liberecky-kraj": "liberecky",
+      "kralovehradecky-kraj": "kralovehradecky",
+      "pardubicky-kraj": "pardubicky",
+      vysocina: "vysocina",
+      "jihomoravsky-kraj": "jihomoravsky",
+      "olomoucky-kraj": "olomoucky",
+      "zlinsky-kraj": "zlinsky",
+      "moravskoslezsky-kraj": "moravskoslezsky",
+    };
+    const sub = SUBDOMAIN_MAP[key] ?? key;
+    window.location.href = `https://${sub}.vykoupim-nemovitost.cz`;
   }, []);
 
-  /* Traveling dot animation: we cycle through connections */
-  const [activeLine, setActiveLine] = useState(0);
-  useEffect(() => {
-    if (reduced) return;
-    const interval = setInterval(() => {
-      setActiveLine((prev) => (prev + 1) % CONNECTIONS.length);
-    }, 1800);
-    return () => clearInterval(interval);
-  }, [reduced]);
-
-  const networkLines = useMemo(
-    () =>
-      CONNECTIONS.map(([a, b], i) => {
-        const [x1, y1] = REGION_CENTERS[a];
-        const [x2, y2] = REGION_CENTERS[b];
-        return { x1, y1, x2, y2, active: i === activeLine, key: `${a}-${b}` };
-      }),
-    [activeLine],
-  );
-
   return (
-    <div className="relative mx-auto w-full max-w-3xl">
+    <div className="relative mx-auto w-full max-w-4xl">
       <svg
         ref={svgRef}
-        viewBox="70 60 400 260"
+        viewBox="0 0 1000 570"
         className="h-auto w-full"
         role="img"
         aria-label="Interaktivní mapa krajů České republiky"
       >
         <defs>
           <filter id="map-glow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="4" result="blur" />
+            <feGaussianBlur stdDeviation="6" result="blur" />
             <feMerge>
               <feMergeNode in="blur" />
               <feMergeNode in="SourceGraphic" />
             </feMerge>
           </filter>
           <filter
-            id="map-glow-strong"
+            id="map-glow-active"
             x="-50%"
             y="-50%"
             width="200%"
             height="200%"
           >
-            <feGaussianBlur stdDeviation="8" result="blur" />
+            <feGaussianBlur stdDeviation="10" result="blur" />
             <feMerge>
               <feMergeNode in="blur" />
               <feMergeNode in="blur" />
@@ -179,120 +152,91 @@ export function CzechMap({ currentRegion }: CzechMapProps) {
           </filter>
         </defs>
 
-        {/* Network connections */}
-        {networkLines.map((line) => (
-          <g key={line.key}>
-            <line
-              x1={line.x1}
-              y1={line.y1}
-              x2={line.x2}
-              y2={line.y2}
-              stroke="var(--theme-500)"
-              strokeOpacity={0.12}
-              strokeWidth={0.8}
-            />
-            {line.active && !reduced && (
-              <circle r="2.5" fill="var(--theme-400)" opacity={0.8}>
-                <animateMotion
-                  dur="1.6s"
-                  repeatCount="1"
-                  path={`M${line.x1},${line.y1} L${line.x2},${line.y2}`}
-                />
-                <animate
-                  attributeName="opacity"
-                  values="0;0.9;0.9;0"
-                  dur="1.6s"
-                  repeatCount="1"
-                />
-              </circle>
-            )}
-          </g>
-        ))}
-
-        {/* Network dots at centers */}
-        {Object.entries(REGION_CENTERS).map(([key, [cx, cy]]) => (
-          <circle
-            key={`dot-${key}`}
-            cx={cx}
-            cy={cy}
-            r={key === currentRegion ? 3.5 : 2}
-            fill={
-              key === currentRegion ? "var(--theme-400)" : "var(--theme-500)"
-            }
-            opacity={key === currentRegion ? 0.9 : 0.3}
-          >
-            {key === currentRegion && !reduced && (
-              <animate
-                attributeName="r"
-                values="3;5;3"
-                dur="2s"
-                repeatCount="indefinite"
-              />
-            )}
-          </circle>
-        ))}
-
         {/* Region paths */}
-        {Object.entries(REGION_PATHS).map(([key, d]) => {
-          const isCurrent = key === currentRegion;
-          const isHovered = key === hovered;
+        {REGIONS.map((region) => {
+          const isCurrent = region.key === currentRegion;
+          const isHovered = region.key === hovered;
+
           return (
             <motion.path
-              key={key}
-              d={d}
+              key={region.czId}
+              d={region.d}
               fill={
                 isCurrent
                   ? "var(--theme-500)"
                   : isHovered
                     ? "var(--theme-400)"
-                    : "var(--theme-700)"
+                    : "var(--theme-600)"
               }
-              fillOpacity={isCurrent ? 0.6 : isHovered ? 0.5 : 0.15}
+              fillOpacity={isCurrent ? 0.7 : isHovered ? 0.5 : 0.3}
               stroke={
                 isCurrent || isHovered ? "var(--theme-400)" : "var(--theme-500)"
               }
-              strokeWidth={isCurrent || isHovered ? 2 : 0.8}
-              strokeOpacity={isCurrent || isHovered ? 0.9 : 0.3}
+              strokeWidth={isCurrent ? 2.5 : isHovered ? 2 : 1}
+              strokeOpacity={isCurrent || isHovered ? 0.9 : 0.4}
               filter={
-                isHovered
-                  ? "url(#map-glow)"
-                  : isCurrent
-                    ? "url(#map-glow-strong)"
+                isCurrent
+                  ? "url(#map-glow-active)"
+                  : isHovered
+                    ? "url(#map-glow)"
                     : undefined
               }
-              className="cursor-pointer"
-              whileHover={reduced ? undefined : { scale: 1.03 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              onMouseEnter={(e) =>
-                handleMouseEnter(
-                  key,
-                  e as unknown as React.MouseEvent<SVGPathElement>,
-                )
+              className="cursor-pointer transition-colors"
+              style={
+                isCurrent && !reduced
+                  ? {
+                      transformOrigin: `${region.center[0]}px ${region.center[1]}px`,
+                    }
+                  : undefined
               }
+              animate={
+                isCurrent && !reduced ? { scale: [1, 1.015, 1] } : undefined
+              }
+              transition={
+                isCurrent && !reduced
+                  ? { duration: 2.5, repeat: Infinity, ease: "easeInOut" }
+                  : { duration: 0.2 }
+              }
+              onMouseEnter={() => handleMouseEnter(region.key, region.czId)}
               onMouseLeave={handleMouseLeave}
-              onClick={() => handleClick(key)}
+              onClick={() => handleClick(region.key)}
               role="button"
-              aria-label={`${REGION_LABELS[key]} – Vykupujeme zde`}
+              aria-label={`${region.label} – Vykupujeme zde`}
               tabIndex={0}
               onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") handleClick(key);
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  handleClick(region.key);
+                }
               }}
+            />
+          );
+        })}
+
+        {/* Region name labels */}
+        {REGIONS.map((region) => {
+          const isCurrent = region.key === currentRegion;
+          return (
+            <text
+              key={`label-${region.czId}`}
+              x={region.center[0]}
+              y={region.center[1]}
+              textAnchor="middle"
+              dominantBaseline="central"
+              fill={isCurrent ? "white" : "rgba(255,255,255,0.7)"}
+              fontSize={region.czId === "CZ10" ? "9" : "11"}
+              fontWeight={isCurrent ? "bold" : "600"}
+              className="pointer-events-none select-none"
+              style={{ textShadow: "0 1px 3px rgba(0,0,0,0.8)" }}
             >
-              {isCurrent && !reduced && (
-                <animate
-                  attributeName="fill-opacity"
-                  values="0.5;0.7;0.5"
-                  dur="2.5s"
-                  repeatCount="indefinite"
-                />
-              )}
-            </motion.path>
+              {region.label.replace(" kraj", "")}
+            </text>
           );
         })}
 
         {/* Tooltip */}
         <AnimatePresence>
-          {tooltip && (
+          {tooltip && hovered !== currentRegion && (
             <motion.g
               initial={{ opacity: 0, y: 5 }}
               animate={{ opacity: 1, y: 0 }}
@@ -300,34 +244,34 @@ export function CzechMap({ currentRegion }: CzechMapProps) {
               transition={{ duration: 0.15 }}
             >
               <rect
-                x={tooltip.x - 55}
-                y={tooltip.y - 28}
-                width={110}
-                height={30}
-                rx={6}
-                fill="rgba(15,23,42,0.9)"
+                x={tooltip.x - 70}
+                y={tooltip.y - 30}
+                width={140}
+                height={36}
+                rx={8}
+                fill="rgba(15,23,42,0.92)"
                 stroke="var(--theme-500)"
                 strokeWidth={1}
-                strokeOpacity={0.5}
+                strokeOpacity={0.6}
               />
               <text
                 x={tooltip.x}
-                y={tooltip.y - 17}
+                y={tooltip.y - 18}
                 textAnchor="middle"
                 fill="white"
-                fontSize="8"
+                fontSize="11"
                 fontWeight="bold"
               >
                 {tooltip.label}
               </text>
               <text
                 x={tooltip.x}
-                y={tooltip.y - 6}
+                y={tooltip.y - 4}
                 textAnchor="middle"
                 fill="var(--theme-400)"
-                fontSize="6"
+                fontSize="9"
               >
-                Vykupujeme zde
+                Klikněte pro detail
               </text>
             </motion.g>
           )}

@@ -100,7 +100,8 @@ export function SlotCounter({ value, className = "" }: SlotCounterProps) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: digits.length * 0.12 + 0.3 }}
-              className="ml-0.5"
+              className="ml-0.5 inline-flex items-end self-end"
+              style={{ lineHeight: "1.15em", height: "1.15em" }}
             >
               {suffix}
             </motion.span>

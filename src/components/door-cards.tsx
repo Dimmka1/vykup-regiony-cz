@@ -149,10 +149,20 @@ function DoorCard({
             </h3>
             <p className="mt-2 text-xs text-slate-400">Klikněte pro detail</p>
 
-            {/* Door handle */}
-            <div className="absolute right-4 top-1/2 -translate-y-1/2">
-              <div className="h-8 w-2 rounded-full bg-gradient-to-b from-yellow-300 to-yellow-600 shadow-lg" />
-              <div className="mx-auto mt-0.5 h-1.5 w-3 rounded-full bg-yellow-500/60" />
+            {/* Door knob */}
+            <div className="absolute right-4 top-1/2 flex -translate-y-1/2 flex-col items-center">
+              {/* Plate behind knob */}
+              <div className="h-10 w-5 rounded-full bg-gradient-to-b from-amber-400/40 to-amber-600/40" />
+              {/* Knob */}
+              <div
+                className="absolute top-1 h-5 w-5 rounded-full bg-gradient-to-br from-amber-300 to-amber-500"
+                style={{
+                  boxShadow:
+                    "0 2px 6px rgba(180,130,20,0.5), inset 0 1px 2px rgba(255,255,255,0.4)",
+                }}
+              />
+              {/* Keyhole */}
+              <div className="absolute bottom-1 h-1.5 w-1 rounded-full bg-amber-900/60" />
             </div>
           </div>
         </motion.div>

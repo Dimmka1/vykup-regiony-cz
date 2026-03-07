@@ -8,12 +8,20 @@ import {
   useReducedMotion,
   useInView,
 } from "@/components/motion";
+import { FileText, Zap, FilePenLine, Banknote } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+
+const ICON_MAP: Record<string, LucideIcon> = {
+  FileText,
+  Zap,
+  FilePenLine,
+  Banknote,
+};
 
 interface Step {
   title: string;
   eta: string;
-  Icon: LucideIcon;
+  icon: string;
   description: string;
 }
 
@@ -133,7 +141,12 @@ function Floor({
       <div className="flex flex-1 flex-col justify-center py-4 sm:py-6">
         <div className="flex items-center gap-3">
           <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--theme-50)] text-[var(--theme-600)] sm:h-12 sm:w-12">
-            <step.Icon className="h-5 w-5 sm:h-6 sm:w-6" aria-hidden="true" />
+            {(() => {
+              const I = ICON_MAP[step.icon];
+              return I ? (
+                <I className="h-5 w-5 sm:h-6 sm:w-6" aria-hidden="true" />
+              ) : null;
+            })()}
           </span>
           <div>
             <h3 className="text-base font-bold text-slate-900 sm:text-lg">

@@ -50,7 +50,7 @@ export function HeroImage({
           priority={priority}
           className={className}
           sizes="100vw"
-          quality={85}
+          quality={75}
           onError={(e) => {
             const target = e.currentTarget as HTMLImageElement;
             if (!target.src.includes(fallbackSrc)) {

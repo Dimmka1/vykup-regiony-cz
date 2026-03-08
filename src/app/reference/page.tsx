@@ -1,8 +1,15 @@
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { AllRegionsSectionClient } from "@/components/all-regions-section-client";
+import { GoogleReviews } from "@/components/google-reviews";
+import { fetchGoogleReviews } from "@/lib/google-reviews";
+import { safeJsonLd } from "@/lib/jsonld";
 
-export default function ReferencePage() {
+const COMPANY_NAME = "Vykoupím Nemovitost";
+
+export default async function ReferencePage() {
+  const reviewsData = await fetchGoogleReviews();
+
   return (
     <>
       <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-[var(--theme-900)] pb-16 pt-28 text-white">
@@ -25,13 +32,17 @@ export default function ReferencePage() {
             Reference
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-slate-300">
-            Tuto stránku právě připravujeme. Brzy zde najdete reference od
-            našich spokojených klientů.
+            Podívejte se, co o nás říkají naši klienti na Google.
           </p>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-16 text-center">
+      {/* ===== GOOGLE REVIEWS ===== */}
+      <section className="mx-auto max-w-7xl px-6 py-16">
+        <GoogleReviews />
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pb-16 text-center">
         <h2 className="mb-4 text-2xl font-bold text-slate-900 sm:text-3xl">
           Chcete nezávaznou nabídku?
         </h2>
@@ -48,6 +59,27 @@ export default function ReferencePage() {
       </section>
 
       <AllRegionsSectionClient />
+
+      {reviewsData.totalReviews > 0 && reviewsData.rating > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: safeJsonLd({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              name: COMPANY_NAME,
+              url: "https://vykoupim-nemovitost.cz/reference",
+              aggregateRating: {
+                "@type": "AggregateRating",
+                ratingValue: reviewsData.rating.toString(),
+                bestRating: "5",
+                worstRating: "1",
+                ratingCount: reviewsData.totalReviews.toString(),
+              },
+            }),
+          }}
+        />
+      )}
     </>
   );
 }

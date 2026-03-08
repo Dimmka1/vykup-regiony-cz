@@ -7,6 +7,8 @@ import {
   getRegionSubdomainUrl,
 } from "@/lib/config";
 import { getRequestHost, getRegionKeyOverride } from "@/lib/request-host";
+import { fetchGoogleReviews } from "@/lib/google-reviews";
+import { safeJsonLd } from "@/lib/jsonld";
 
 import {
   HomePageContent,
@@ -69,12 +71,35 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function HomePage(): Promise<ReactElement> {
   const { region, host } = await resolveRegion();
   const canonicalUrl = buildCanonicalUrl(host, region.key);
+  const reviewsData = await fetchGoogleReviews();
 
   return (
-    <HomePageContent
-      region={region}
-      canonicalUrl={canonicalUrl}
-      currentHost={host}
-    />
+    <>
+      <HomePageContent
+        region={region}
+        canonicalUrl={canonicalUrl}
+        currentHost={host}
+      />
+      {reviewsData.totalReviews > 0 && reviewsData.rating > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: safeJsonLd({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              name: COMPANY_NAME,
+              url: canonicalUrl,
+              aggregateRating: {
+                "@type": "AggregateRating",
+                ratingValue: reviewsData.rating.toString(),
+                bestRating: "5",
+                worstRating: "1",
+                ratingCount: reviewsData.totalReviews.toString(),
+              },
+            }),
+          }}
+        />
+      )}
+    </>
   );
 }

@@ -5,6 +5,7 @@ import type { ReactElement } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { GoogleReviews } from "@/components/google-reviews";
 import { CtaLink } from "@/components/cta-link";
 import { CallbackForm } from "@/components/callback-form";
 import { PropertyEstimator } from "@/components/property-estimator";
@@ -658,6 +659,24 @@ export function HomePageContent({
         </div>
       </section>
 
+      {/* ===== GOOGLE REVIEWS ===== */}
+      <section className="section-md bg-gradient-to-b from-slate-50 to-white">
+        <div className="container-wide">
+          <ScrollReveal>
+            <div className="mb-8 text-center">
+              <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-[var(--theme-600)]">
+                Hodnocení klientů
+              </p>
+              <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl lg:text-4xl">
+                Co o nás říkají na Google
+              </h2>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal delay={200}>
+            <GoogleReviews />
+          </ScrollReveal>
+        </div>
+      </section>
       {/* ===== JAK TO FUNGUJE — BUILDING TIMELINE ===== */}
       <section className="section-md bg-luxury-warm noise-overlay">
         <div className="container-wide">

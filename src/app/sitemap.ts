@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { headers } from "next/headers";
 import { BLOG_POSTS } from "@/app/blog/data";
+import { AUTHORS } from "@/lib/authors";
 
 const ROOT_DOMAIN = "vykoupim-nemovitost.cz";
 
@@ -69,6 +70,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.7,
+    });
+  }
+
+  // Author page entries
+  for (const author of AUTHORS) {
+    entries.push({
+      url: `${baseUrl}/o-nas/${author.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.6,
     });
   }
 

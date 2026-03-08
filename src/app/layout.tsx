@@ -14,6 +14,7 @@ import { SiteHeader } from "@/components/site-header";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { SiteFooter } from "@/components/site-footer";
 import { SwRegister } from "@/components/sw-register";
+import { PushPrompt } from "@/components/push-prompt";
 import { WebVitalsReporter } from "@/components/web-vitals-reporter";
 import {
   getDefaultRegion,
@@ -100,6 +101,7 @@ export default async function RootLayout({
         <ExitIntentPopup />
         <TrackingPixels />
         <SwRegister />
+        <PushPrompt />
         <CookieConsent />
       </body>
     </html>

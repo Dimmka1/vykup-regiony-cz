@@ -1,8 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { motion } from "@/components/motion";
-import { staggerContainer, staggerChild } from "@/lib/animations";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 interface StaggerRevealProps {
   children: ReactNode;
@@ -13,16 +12,17 @@ export function StaggerReveal({
   children,
   className = "",
 }: StaggerRevealProps) {
+  const [ref, isVisible] = useScrollReveal<HTMLDivElement>({
+    threshold: 0.1,
+  });
+
   return (
-    <motion.div
-      variants={staggerContainer}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-80px" }}
-      className={className}
+    <div
+      ref={ref}
+      className={`stagger-reveal ${isVisible ? "stagger-reveal--visible" : ""} ${className}`}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
 
@@ -33,9 +33,5 @@ export function StaggerItem({
   children: ReactNode;
   className?: string;
 }) {
-  return (
-    <motion.div variants={staggerChild} className={className}>
-      {children}
-    </motion.div>
-  );
+  return <div className={className}>{children}</div>;
 }

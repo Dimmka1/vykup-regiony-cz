@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useCallback, useRef } from "react";
-import { motion, useReducedMotion, useInView } from "@/components/motion";
+import { useState, useCallback } from "react";
+import { useInView } from "@/hooks/use-in-view";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import {
   Gavel,
   FileWarning,
@@ -39,24 +40,22 @@ function DoorCard({
   index: number;
 }) {
   const [isOpen, setIsOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const { ref, isInView: inView } = useInView<HTMLDivElement>({
+    once: true,
+    margin: "-60px",
+  });
   const reduced = useReducedMotion();
 
   const toggle = useCallback(() => setIsOpen((prev) => !prev), []);
 
   return (
-    <motion.div
+    <div
       ref={ref}
-      initial={reduced ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-      animate={
-        inView
-          ? { opacity: 1, y: 0 }
-          : reduced
-            ? { opacity: 1, y: 0 }
-            : undefined
-      }
-      transition={{ delay: index * 0.08, duration: 0.5 }}
+      style={{
+        opacity: inView || reduced ? 1 : 0,
+        transform: inView || reduced ? "translateY(0)" : "translateY(30px)",
+        transition: `opacity 0.5s ease ${index * 80}ms, transform 0.5s ease ${index * 80}ms`,
+      }}
     >
       <div
         className="group relative h-56 cursor-pointer sm:h-64"
@@ -76,13 +75,12 @@ function DoorCard({
         }}
       >
         {/* Light spill behind door */}
-        <motion.div
-          className="absolute inset-0 rounded-3xl"
+        <div
+          className="door-card-glow absolute inset-0 rounded-3xl"
+          data-open={isOpen ? "true" : "false"}
           style={{
             background: `radial-gradient(ellipse at left center, rgba(var(--theme-rgb-400), 0.3), transparent 70%)`,
           }}
-          animate={{ opacity: isOpen ? 1 : 0 }}
-          transition={{ duration: 0.3 }}
           aria-hidden="true"
         />
 
@@ -113,23 +111,9 @@ function DoorCard({
         </div>
 
         {/* The door */}
-        <motion.div
-          className="absolute inset-0 overflow-hidden rounded-3xl border border-white/20 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-md"
-          style={{
-            transformOrigin: "left center",
-            transformStyle: "preserve-3d",
-            backfaceVisibility: "hidden",
-          }}
-          animate={
-            reduced
-              ? { opacity: isOpen ? 0 : 1 }
-              : { rotateY: isOpen ? -85 : 0 }
-          }
-          transition={
-            reduced
-              ? { duration: 0.2 }
-              : { type: "spring", stiffness: 100, damping: 18 }
-          }
+        <div
+          className="door-card-door absolute inset-0 overflow-hidden rounded-3xl border border-white/20 bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-md"
+          data-open={isOpen ? "true" : "false"}
         >
           <div className="absolute left-0 right-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--theme-400)] to-transparent" />
           <div className="flex h-full flex-col items-center justify-center p-6">
@@ -148,12 +132,8 @@ function DoorCard({
               {situation.label}
             </h3>
             <p className="mt-2 text-xs text-slate-400">Klikněte pro detail</p>
-
-            {/* Door knob */}
             <div className="absolute right-4 top-1/2 flex -translate-y-1/2 flex-col items-center">
-              {/* Plate behind knob */}
               <div className="h-10 w-5 rounded-full bg-gradient-to-b from-amber-400/40 to-amber-600/40" />
-              {/* Knob */}
               <div
                 className="absolute top-1 h-5 w-5 rounded-full bg-gradient-to-br from-amber-300 to-amber-500"
                 style={{
@@ -161,13 +141,12 @@ function DoorCard({
                     "0 2px 6px rgba(180,130,20,0.5), inset 0 1px 2px rgba(255,255,255,0.4)",
                 }}
               />
-              {/* Keyhole */}
               <div className="absolute bottom-1 h-1.5 w-1 rounded-full bg-amber-900/60" />
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
 

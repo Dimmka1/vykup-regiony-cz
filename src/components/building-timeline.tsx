@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useReducedMotion, useInView } from "@/components/motion";
+import { useInView } from "@/hooks/use-in-view";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { FileText, Zap, FilePenLine, Banknote } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
@@ -23,7 +24,6 @@ interface BuildingTimelineProps {
   steps: Step[];
 }
 
-/** Theme-based gradient colors for each floor */
 const FLOOR_GRADIENTS = [
   "from-[var(--theme-800)] to-[var(--theme-900)]",
   "from-[var(--theme-700)] to-[var(--theme-800)]",
@@ -52,48 +52,36 @@ function Floor({
   index: number;
   total: number;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const { ref, isInView: inView } = useInView<HTMLDivElement>({
+    once: true,
+    margin: "-60px",
+  });
   const reduced = useReducedMotion();
 
   const floorNumber = index + 1;
   const isTop = index === total - 1;
   const gradient = FLOOR_GRADIENTS[index % FLOOR_GRADIENTS.length];
+  const delayMs = index * 150;
 
   return (
-    <motion.div
+    <div
       ref={ref}
       className="relative flex items-stretch gap-4 sm:gap-8"
-      initial={reduced ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
-      animate={
-        inView
-          ? { opacity: 1, x: 0 }
-          : reduced
-            ? { opacity: 1, x: 0 }
-            : undefined
-      }
-      transition={{
-        type: "spring",
-        stiffness: 100,
-        damping: 18,
-        delay: index * 0.15,
+      style={{
+        opacity: inView || reduced ? 1 : 0,
+        transform: inView || reduced ? "translateX(0)" : "translateX(-30px)",
+        transition: `opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) ${delayMs}ms, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) ${delayMs}ms`,
       }}
     >
       {/* Building column */}
       <div className="relative flex w-20 flex-col items-center sm:w-28">
-        {/* Roof on top floor */}
         {isTop && (
-          <motion.div
+          <div
             className="relative w-full"
-            initial={reduced ? { scaleY: 1 } : { scaleY: 0, originY: "bottom" }}
-            animate={
-              inView ? { scaleY: 1 } : reduced ? { scaleY: 1 } : undefined
-            }
-            transition={{
-              type: "spring",
-              stiffness: 80,
-              damping: 15,
-              delay: index * 0.2 - 0.05,
+            style={{
+              transform: inView || reduced ? "scaleY(1)" : "scaleY(0)",
+              transformOrigin: "bottom",
+              transition: `transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) ${index * 200 - 50}ms`,
             }}
           >
             <svg viewBox="0 0 112 32" className="w-full" aria-hidden="true">
@@ -109,28 +97,21 @@ function Floor({
                 opacity="0.5"
               />
             </svg>
-          </motion.div>
+          </div>
         )}
 
-        {/* Floor block */}
-        <motion.div
+        <div
           className={`border-[var(--theme-500)]/60 relative flex h-full w-full items-center justify-center border-x-2 border-t-2 bg-gradient-to-br ${gradient} ${
             index === 0 ? "rounded-b-lg border-b-2" : ""
           }`}
           style={{
             boxShadow:
               "inset 0 2px 8px rgba(0,0,0,0.2), 0 2px 4px rgba(0,0,0,0.15)",
-          }}
-          initial={reduced ? { scaleY: 1 } : { scaleY: 0, originY: "bottom" }}
-          animate={inView ? { scaleY: 1 } : reduced ? { scaleY: 1 } : undefined}
-          transition={{
-            type: "spring",
-            stiffness: 80,
-            damping: 15,
-            delay: index * 0.2,
+            transform: inView || reduced ? "scaleY(1)" : "scaleY(0)",
+            transformOrigin: "bottom",
+            transition: `transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) ${index * 200}ms`,
           }}
         >
-          {/* Arched windows - 3 per floor */}
           <div className="flex gap-1.5 p-3 sm:gap-2">
             <ArchedWindow delay={index * 200} />
             <ArchedWindow delay={index * 200 + 100} />
@@ -139,52 +120,32 @@ function Floor({
           <span className="absolute left-1.5 top-1 text-[10px] font-bold text-[var(--theme-300)] opacity-50 sm:left-2 sm:text-xs">
             {floorNumber}P
           </span>
-          {/* Depth shadow on right side */}
           <div className="absolute bottom-0 right-0 top-0 w-1 bg-black/10" />
-        </motion.div>
+        </div>
 
-        {/* Golden key icon at top */}
         {isTop && inView && (
-          <motion.div
+          <div
             className="absolute -top-16 z-10 flex h-10 w-10 items-center justify-center sm:h-12 sm:w-12"
-            initial={
-              reduced ? { rotate: 0, scale: 1 } : { rotate: -90, scale: 0 }
-            }
-            animate={{ rotate: 0, scale: 1 }}
-            transition={{
-              type: "spring",
-              stiffness: 200,
-              damping: 12,
-              delay: total * 0.2 + 0.3,
+            style={{
+              opacity: 0,
+              animation: `scale-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) ${total * 200 + 300}ms forwards`,
             }}
           >
-            <motion.svg
+            <svg
               viewBox="0 0 24 24"
               className="h-9 w-9 text-yellow-400 sm:h-11 sm:w-11"
               fill="currentColor"
-              animate={
+              style={
                 reduced
                   ? undefined
-                  : {
-                      filter: [
-                        "drop-shadow(0 0 6px rgba(250,204,21,0.4))",
-                        "drop-shadow(0 0 14px rgba(250,204,21,0.7))",
-                        "drop-shadow(0 0 6px rgba(250,204,21,0.4))",
-                      ],
-                    }
-              }
-              transition={
-                reduced
-                  ? undefined
-                  : { duration: 2, repeat: Infinity, ease: "easeInOut" }
+                  : { animation: "glow-pulse 2s ease-in-out infinite" }
               }
             >
               <path d="M12.65 10A5.99 5.99 0 0 0 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6a5.99 5.99 0 0 0 5.65-4H17v4h4v-4h2v-4H12.65zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" />
-            </motion.svg>
-          </motion.div>
+            </svg>
+          </div>
         )}
 
-        {/* Foundation at bottom */}
         {index === 0 && (
           <div className="w-full">
             <div className="flex h-6 w-full items-end overflow-hidden rounded-b-lg bg-gradient-to-b from-stone-600 to-stone-700">
@@ -206,7 +167,6 @@ function Floor({
                 ))}
               </div>
             </div>
-            {/* Ground line */}
             <div className="h-1 w-full bg-gradient-to-r from-transparent via-stone-500 to-transparent opacity-50" />
           </div>
         )}
@@ -236,7 +196,7 @@ function Floor({
           {step.description}
         </p>
       </div>
-    </motion.div>
+    </div>
   );
 }
 

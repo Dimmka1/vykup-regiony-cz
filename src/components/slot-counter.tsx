@@ -1,14 +1,14 @@
 "use client";
 
-import { useEffect, useRef, useState, useMemo } from "react";
-import { motion, useReducedMotion, useInView } from "@/components/motion";
+import { useEffect, useState, useMemo } from "react";
+import { useInView } from "@/hooks/use-in-view";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 interface SlotCounterProps {
   value: string;
   className?: string;
 }
 
-/** Parse a value like "500+", "98%", "24h", "14", "0 Kč" into digits and suffix. */
 function parseValue(val: string): { digits: string[]; suffix: string } {
   const match = val.match(/^([\d\s]+)(.*)/);
   if (!match) return { digits: [], suffix: val };
@@ -23,7 +23,7 @@ function SlotDigit({
 }: {
   digit: string;
   delay: number;
-  reduced: boolean | null;
+  reduced: boolean;
 }) {
   const target = parseInt(digit, 10);
   const [animate, setAnimate] = useState(false);
@@ -46,16 +46,15 @@ function SlotDigit({
       className="relative inline-block overflow-hidden"
       style={{ width: "0.65em", height: "1.15em" }}
     >
-      <motion.span
+      <span
         className="absolute left-0 top-0 flex flex-col items-center"
-        initial={reduced ? { y: `-${target * 1.15}em` } : { y: "0em" }}
-        animate={animate ? { y: `-${target * 1.15}em` } : undefined}
-        transition={{
-          type: "spring",
-          stiffness: 80,
-          damping: 14,
-          mass: 1,
-          delay: reduced ? 0 : delay / 1000,
+        style={{
+          transform: animate
+            ? `translateY(-${target * 1.15}em)`
+            : "translateY(0em)",
+          transition: reduced
+            ? "none"
+            : `transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) ${delay}ms`,
         }}
       >
         {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
@@ -68,14 +67,16 @@ function SlotDigit({
             {n}
           </span>
         ))}
-      </motion.span>
+      </span>
     </span>
   );
 }
 
 export function SlotCounter({ value, className = "" }: SlotCounterProps) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const { ref, isInView } = useInView<HTMLSpanElement>({
+    once: true,
+    margin: "-60px",
+  });
   const reduced = useReducedMotion();
   const { digits, suffix } = useMemo(() => parseValue(value), [value]);
 
@@ -85,7 +86,7 @@ export function SlotCounter({ value, className = "" }: SlotCounterProps) {
       className={`inline-flex items-baseline font-extrabold tabular-nums ${className}`}
       aria-label={value}
     >
-      {inView ? (
+      {isInView ? (
         <>
           {digits.map((d, i) => (
             <SlotDigit
@@ -96,15 +97,17 @@ export function SlotCounter({ value, className = "" }: SlotCounterProps) {
             />
           ))}
           {suffix && (
-            <motion.span
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: digits.length * 0.12 + 0.3 }}
+            <span
               className="ml-0.5 inline-flex items-end self-end"
-              style={{ lineHeight: "1.15em", height: "1.15em" }}
+              style={{
+                lineHeight: "1.15em",
+                height: "1.15em",
+                opacity: 0,
+                animation: `fade-in 0.3s ease ${digits.length * 0.12 + 0.3}s forwards`,
+              }}
             >
               {suffix}
-            </motion.span>
+            </span>
           )}
         </>
       ) : (

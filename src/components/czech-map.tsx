@@ -1,10 +1,9 @@
 "use client";
 
 import { useState, useRef, useCallback } from "react";
-import { motion, useReducedMotion, AnimatePresence } from "@/components/motion";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { REGION_SVG_PATHS } from "@/data/czech-map-paths";
 
-/** Map CZ ISO codes to internal region keys */
 const CZ_TO_KEY: Record<string, string> = {
   CZ10: "praha",
   CZ20: "stredocesky-kraj",
@@ -39,7 +38,6 @@ const REGION_LABELS: Record<string, string> = {
   "moravskoslezsky-kraj": "Moravskoslezský kraj",
 };
 
-/** Label center points extracted from SVG label_points group */
 const LABEL_CENTERS: Record<string, [number, number]> = {
   CZ42: [274.9, 145.1],
   CZ31: [363.6, 434.1],
@@ -57,7 +55,6 @@ const LABEL_CENTERS: Record<string, [number, number]> = {
   CZ72: [803.3, 420.6],
 };
 
-/** Build region data combining paths, keys, labels, and centers */
 const REGIONS = Object.entries(REGION_SVG_PATHS).map(([czId, d]) => ({
   czId,
   key: CZ_TO_KEY[czId] ?? czId,
@@ -98,7 +95,6 @@ export function CzechMap({ currentRegion }: CzechMapProps) {
   }, []);
 
   const handleClick = useCallback((key: string) => {
-    // Navigate to the region's subdomain
     const SUBDOMAIN_MAP: Record<string, string> = {
       praha: "praha",
       "stredocesky-kraj": "stredocesky",
@@ -152,13 +148,12 @@ export function CzechMap({ currentRegion }: CzechMapProps) {
           </filter>
         </defs>
 
-        {/* Region paths */}
         {REGIONS.map((region) => {
           const isCurrent = region.key === currentRegion;
           const isHovered = region.key === hovered;
 
           return (
-            <motion.path
+            <path
               key={region.czId}
               d={region.d}
               fill={
@@ -181,21 +176,14 @@ export function CzechMap({ currentRegion }: CzechMapProps) {
                     ? "url(#map-glow)"
                     : undefined
               }
-              className="cursor-pointer transition-colors"
+              className="cursor-pointer transition-all duration-200"
               style={
                 isCurrent && !reduced
                   ? {
                       transformOrigin: `${region.center[0]}px ${region.center[1]}px`,
+                      animation: "pulse-scale 2.5s ease-in-out infinite",
                     }
                   : undefined
-              }
-              animate={
-                isCurrent && !reduced ? { scale: [1, 1.015, 1] } : undefined
-              }
-              transition={
-                isCurrent && !reduced
-                  ? { duration: 2.5, repeat: Infinity, ease: "easeInOut" }
-                  : { duration: 0.2 }
               }
               onMouseEnter={() => handleMouseEnter(region.key, region.czId)}
               onMouseLeave={handleMouseLeave}
@@ -213,7 +201,6 @@ export function CzechMap({ currentRegion }: CzechMapProps) {
           );
         })}
 
-        {/* Region name labels */}
         {REGIONS.map((region) => {
           const isCurrent = region.key === currentRegion;
           return (
@@ -234,48 +221,40 @@ export function CzechMap({ currentRegion }: CzechMapProps) {
           );
         })}
 
-        {/* Tooltip */}
-        <AnimatePresence>
-          {tooltip && hovered !== currentRegion && (
-            <motion.g
-              initial={{ opacity: 0, y: 5 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.15 }}
+        {tooltip && hovered !== currentRegion && (
+          <g className="tooltip-fade-enter">
+            <rect
+              x={tooltip.x - 70}
+              y={tooltip.y - 30}
+              width={140}
+              height={36}
+              rx={8}
+              fill="rgba(15,23,42,0.92)"
+              stroke="var(--theme-500)"
+              strokeWidth={1}
+              strokeOpacity={0.6}
+            />
+            <text
+              x={tooltip.x}
+              y={tooltip.y - 18}
+              textAnchor="middle"
+              fill="white"
+              fontSize="11"
+              fontWeight="bold"
             >
-              <rect
-                x={tooltip.x - 70}
-                y={tooltip.y - 30}
-                width={140}
-                height={36}
-                rx={8}
-                fill="rgba(15,23,42,0.92)"
-                stroke="var(--theme-500)"
-                strokeWidth={1}
-                strokeOpacity={0.6}
-              />
-              <text
-                x={tooltip.x}
-                y={tooltip.y - 18}
-                textAnchor="middle"
-                fill="white"
-                fontSize="11"
-                fontWeight="bold"
-              >
-                {tooltip.label}
-              </text>
-              <text
-                x={tooltip.x}
-                y={tooltip.y - 4}
-                textAnchor="middle"
-                fill="var(--theme-400)"
-                fontSize="9"
-              >
-                Klikněte pro detail
-              </text>
-            </motion.g>
-          )}
-        </AnimatePresence>
+              {tooltip.label}
+            </text>
+            <text
+              x={tooltip.x}
+              y={tooltip.y - 4}
+              textAnchor="middle"
+              fill="var(--theme-400)"
+              fontSize="9"
+            >
+              Klikněte pro detail
+            </text>
+          </g>
+        )}
       </svg>
     </div>
   );

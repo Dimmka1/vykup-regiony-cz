@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "@/components/motion";
 import { ChevronDown } from "lucide-react";
 import type { ReactElement } from "react";
 
@@ -47,23 +46,18 @@ export function FaqAccordion({ items }: FaqAccordionProps): ReactElement {
                 aria-hidden="true"
               />
             </button>
-            <AnimatePresence>
-              {isOpen && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                  className="overflow-hidden"
-                >
-                  <div className="border-t border-slate-100 px-6 pb-6 pt-4 md:px-8 md:pb-8">
-                    <p className="text-base leading-relaxed text-slate-600">
-                      {item.answer}
-                    </p>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            <div
+              className="accordion-content"
+              data-open={isOpen ? "true" : "false"}
+            >
+              <div>
+                <div className="border-t border-slate-100 px-6 pb-6 pt-4 md:px-8 md:pb-8">
+                  <p className="text-base leading-relaxed text-slate-600">
+                    {item.answer}
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         );
       })}

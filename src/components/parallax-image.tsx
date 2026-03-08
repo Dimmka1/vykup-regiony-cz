@@ -1,12 +1,8 @@
 "use client";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useReducedMotion,
-} from "@/components/motion";
+
 import Image from "next/image";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 export function ParallaxImage({
   src,
@@ -18,21 +14,40 @@ export function ParallaxImage({
   className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const prefersReduced = useReducedMotion();
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+  const innerRef = useRef<HTMLDivElement>(null);
+  const reduced = useReducedMotion();
+
+  useEffect(() => {
+    if (reduced) return;
+    const container = ref.current;
+    const inner = innerRef.current;
+    if (!container || !inner) return;
+
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const rect = container.getBoundingClientRect();
+        const vh = window.innerHeight;
+        const progress = (vh - rect.top) / (vh + rect.height);
+        const clamped = Math.min(Math.max(progress, 0), 1);
+        const y = -10 + clamped * 20;
+        inner.style.transform = `translateY(${y}%)`;
+        ticking = false;
+      });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [reduced]);
 
   return (
     <div ref={ref} className={`overflow-hidden ${className}`}>
-      <motion.div
-        style={{ y: prefersReduced ? 0 : y }}
-        className="relative h-[120%] w-full"
-      >
+      <div ref={innerRef} className="relative h-[120%] w-full">
         <Image src={src} alt={alt} fill className="object-cover" />
-      </motion.div>
+      </div>
     </div>
   );
 }

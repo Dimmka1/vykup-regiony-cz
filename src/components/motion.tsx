@@ -1,13 +1,2 @@
-"use client";
-export {
-  motion,
-  AnimatePresence,
-  useScroll,
-  useTransform,
-  useMotionValueEvent,
-  useReducedMotion,
-  useInView,
-  useSpring,
-  useMotionValue,
-  useAnimation,
-} from "framer-motion";
+// @deprecated framer-motion removed. Use CSS animations + IntersectionObserver hooks.
+export {};

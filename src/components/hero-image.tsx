@@ -1,13 +1,8 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import Image from "next/image";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useReducedMotion,
-} from "@/components/motion";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 interface HeroImageProps {
   src: string;
@@ -25,24 +20,41 @@ export function HeroImage({
   priority,
 }: HeroImageProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"],
-  });
+  useEffect(() => {
+    if (reduced) return;
+    const container = containerRef.current;
+    const inner = innerRef.current;
+    if (!container || !inner) return;
 
-  // Parallax: image moves slower than scroll (zoomed in, shifts up)
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1.0, 1.08]);
-  const opacity = useTransform(scrollYProgress, [0, 0.7, 1], [1, 0.8, 0.4]);
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const rect = container.getBoundingClientRect();
+        const progress = Math.min(
+          Math.max(-rect.top / (rect.height || 1), 0),
+          1,
+        );
+        const y = progress * 15;
+        const scale = 1 + progress * 0.08;
+        const opacity = 1 - progress * 0.6;
+        inner.style.transform = `translateY(${y}%) scale(${scale})`;
+        inner.style.opacity = String(Math.max(opacity, 0.4));
+        ticking = false;
+      });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [reduced]);
 
   return (
     <div ref={containerRef} className="absolute inset-0 overflow-hidden">
-      <motion.div
-        className="absolute inset-0"
-        style={reduced ? {} : { y, scale, opacity }}
-      >
+      <div ref={innerRef} className="absolute inset-0">
         <Image
           src={src}
           alt={alt}
@@ -58,8 +70,7 @@ export function HeroImage({
             }
           }}
         />
-      </motion.div>
-      {/* Cinematic vignette overlay for depth */}
+      </div>
       <div
         className="pointer-events-none absolute inset-0"
         style={{

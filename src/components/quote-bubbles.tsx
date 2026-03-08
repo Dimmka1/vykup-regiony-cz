@@ -1,7 +1,8 @@
 "use client";
 
-import { useRef, useState, useCallback } from "react";
-import { motion, useReducedMotion, useInView } from "@/components/motion";
+import { useState, useCallback } from "react";
+import { useInView } from "@/hooks/use-in-view";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { Star } from "lucide-react";
 
 interface Testimonial {
@@ -34,54 +35,42 @@ function Bubble({
   hoveredIdx: number | null;
   onHover: (idx: number | null) => void;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-40px" });
+  const { ref, isInView: inView } = useInView<HTMLDivElement>({
+    once: true,
+    margin: "-40px",
+  });
   const reduced = useReducedMotion();
   const config = FLOAT_CONFIGS[index % FLOAT_CONFIGS.length];
 
   const isHovered = hoveredIdx === index;
   const isOtherHovered = hoveredIdx !== null && hoveredIdx !== index;
 
+  const scale = isHovered ? 1.05 : isOtherHovered ? 0.97 : config.scale;
+
   return (
-    <motion.div
+    <div
       ref={ref}
       className="relative"
-      initial={
-        reduced ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8, y: 30 }
-      }
-      animate={
-        inView
-          ? {
-              opacity: 1,
-              scale: isHovered ? 1.05 : isOtherHovered ? 0.97 : config.scale,
-              y: reduced ? 0 : undefined,
-            }
-          : reduced
-            ? { opacity: 1 }
-            : undefined
-      }
-      transition={{
-        type: "spring",
-        stiffness: 100,
-        damping: 15,
-        delay: config.delay,
+      style={{
+        opacity: inView || reduced ? 1 : 0,
+        transform:
+          inView || reduced ? `scale(${scale})` : "scale(0.8) translateY(30px)",
+        transition: `opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) ${config.delay}s, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)`,
       }}
       onMouseEnter={() => onHover(index)}
       onMouseLeave={() => onHover(null)}
     >
-      {/* Floating animation wrapper */}
-      <motion.div
-        animate={reduced ? undefined : { y: [0, -config.y, 0] }}
-        transition={{
-          y: {
-            duration: config.duration,
-            repeat: Infinity,
-            ease: "easeInOut",
-          },
-        }}
+      <div
+        style={
+          reduced
+            ? undefined
+            : {
+                animation: `float-y ${config.duration}s ease-in-out infinite`,
+                ["--float-y" as string]: `-${config.y}px`,
+              }
+        }
       >
         <div className="relative overflow-hidden rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-md transition-colors hover:bg-white/15 sm:p-8">
-          {/* Glass shine effect */}
           <div
             className="absolute inset-0 opacity-10"
             style={{
@@ -90,8 +79,6 @@ function Bubble({
             }}
             aria-hidden="true"
           />
-
-          {/* Stars with golden glow */}
           <div className="mb-4 flex gap-1">
             {[...Array(5)].map((_, i) => (
               <Star
@@ -104,8 +91,6 @@ function Bubble({
               />
             ))}
           </div>
-
-          {/* Quote text with bubble tail styling */}
           <p className="relative text-sm leading-relaxed text-slate-200">
             <span className="text-2xl leading-none text-[var(--theme-300)]">
               &ldquo;
@@ -115,8 +100,6 @@ function Bubble({
               &rdquo;
             </span>
           </p>
-
-          {/* Author */}
           <div className="mt-4 flex items-center gap-3">
             <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[var(--theme-500)] to-[var(--theme-700)] text-xs font-bold text-white shadow-lg">
               {testimonial.name.charAt(0)}
@@ -128,44 +111,31 @@ function Bubble({
               <p className="text-xs text-slate-400">{testimonial.location}</p>
             </div>
           </div>
-
-          {/* Bubble tail */}
           <div
             className="absolute -bottom-2 left-8 h-4 w-4 rotate-45 border-b border-r border-white/15 bg-white/10 backdrop-blur-md"
             aria-hidden="true"
           />
         </div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }
 
-/** Sparkle particles in background */
 function Sparkles() {
-  const reduced = useReducedMotion();
-  if (reduced) return null;
-
   return (
     <div
       className="pointer-events-none absolute inset-0 overflow-hidden"
       aria-hidden="true"
     >
       {[...Array(20)].map((_, i) => (
-        <motion.div
+        <div
           key={i}
           className="absolute h-1 w-1 rounded-full bg-white"
           style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-          }}
-          animate={{
-            opacity: [0, 0.6, 0],
-            scale: [0.5, 1.2, 0.5],
-          }}
-          transition={{
-            duration: 3 + Math.random() * 3,
-            repeat: Infinity,
-            delay: Math.random() * 4,
+            left: `${(i * 37) % 100}%`,
+            top: `${(i * 53) % 100}%`,
+            animation: `sparkle ${3 + (i % 3)}s ease-in-out infinite`,
+            animationDelay: `${(i * 0.2) % 4}s`,
           }}
         />
       ))}
@@ -176,12 +146,13 @@ function Sparkles() {
 export function QuoteBubbles({ testimonials }: QuoteBubblesProps) {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
   const onHover = useCallback((idx: number | null) => setHoveredIdx(idx), []);
+  const reduced = useReducedMotion();
 
   if (!testimonials || testimonials.length === 0) return null;
 
   return (
     <div className="relative">
-      <Sparkles />
+      {!reduced && <Sparkles />}
       <div className="relative grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {testimonials.map((testimonial, idx) => (
           <Bubble

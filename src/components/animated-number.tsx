@@ -1,6 +1,7 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import { useInView, useReducedMotion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { useInView } from "@/hooks/use-in-view";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 export function AnimatedNumber({
   value,
@@ -11,13 +12,15 @@ export function AnimatedNumber({
   suffix?: string;
   duration?: number;
 }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const { ref, isInView } = useInView<HTMLSpanElement>({
+    once: true,
+    margin: "-80px",
+  });
   const reduced = useReducedMotion();
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
-    if (!inView) return;
+    if (!isInView) return;
     if (reduced) {
       setCurrent(value);
       return;
@@ -32,7 +35,7 @@ export function AnimatedNumber({
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [inView, reduced, value, duration]);
+  }, [isInView, reduced, value, duration]);
 
   return (
     <span ref={ref}>

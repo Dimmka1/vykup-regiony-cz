@@ -791,3 +791,211 @@ textarea:focus {
     transform-style: flat;
   }
 }
+
+/* ===== CSS Animations (replaces framer-motion) ===== */
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-up-lg {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-left {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scale-in-subtle {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(var(--float-y, -8px));
+  }
+}
+
+@keyframes pulse-scale {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.015);
+  }
+}
+
+@keyframes sparkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 6px rgba(250, 204, 21, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 14px rgba(250, 204, 21, 0.7));
+  }
+}
+
+@keyframes slot-roll {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(var(--slot-target));
+  }
+}
+
+/* Accordion expand/collapse */
+.accordion-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition:
+    grid-template-rows 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.3s ease;
+  opacity: 0;
+}
+.accordion-content[data-open="true"] {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+.accordion-content > div {
+  overflow: hidden;
+}
+
+/* Tooltip fade */
+.tooltip-fade-enter {
+  animation: fade-in 0.15s ease forwards;
+}
+
+/* Stagger children via CSS custom properties */
+.stagger-reveal > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.stagger-reveal--visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+.stagger-reveal--visible > *:nth-child(1) {
+  transition-delay: 0ms;
+}
+.stagger-reveal--visible > *:nth-child(2) {
+  transition-delay: 100ms;
+}
+.stagger-reveal--visible > *:nth-child(3) {
+  transition-delay: 200ms;
+}
+.stagger-reveal--visible > *:nth-child(4) {
+  transition-delay: 300ms;
+}
+.stagger-reveal--visible > *:nth-child(5) {
+  transition-delay: 400ms;
+}
+.stagger-reveal--visible > *:nth-child(6) {
+  transition-delay: 500ms;
+}
+.stagger-reveal--visible > *:nth-child(n + 7) {
+  transition-delay: 600ms;
+}
+
+/* Door card flip */
+.door-card-door {
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+.door-card-door[data-open="true"] {
+  transform: rotateY(-85deg);
+}
+
+/* Light spill behind door */
+.door-card-glow {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.door-card-glow[data-open="true"] {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stagger-reveal > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .door-card-door[data-open="true"] {
+    transform: none;
+    opacity: 0;
+  }
+  .accordion-content {
+    transition: none;
+  }
+}

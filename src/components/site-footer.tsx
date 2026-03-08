@@ -109,6 +109,9 @@ export function SiteFooter() {
               <Link href="/blog" className={linkClass}>
                 Blog
               </Link>
+              <Link href="/statistiky-trhu" className={linkClass}>
+                Statistiky trhu
+              </Link>
             </nav>
           </div>
 

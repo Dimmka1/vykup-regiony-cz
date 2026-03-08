@@ -132,6 +132,12 @@ export default function BlogPage(): React.ReactElement {
             >
               Časté dotazy
             </Link>
+            <Link
+              href="/statistiky-trhu"
+              className="inline-flex items-center rounded-xl bg-white px-6 py-3 text-sm font-semibold text-slate-700 shadow-sm ring-1 ring-slate-200 hover:bg-slate-50"
+            >
+              Statistiky trhu
+            </Link>
           </div>
         </div>
       </section>

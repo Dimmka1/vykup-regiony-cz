@@ -76,6 +76,18 @@ export default async function KrajePage() {
               </a>
             ))}
           </div>
+
+          <div className="mt-10 rounded-xl border border-slate-200 bg-white p-6 text-center">
+            <p className="text-slate-600">
+              Zajímá vás, kolik stojí nemovitosti ve vašem kraji?
+            </p>
+            <a
+              href="/statistiky-trhu"
+              className="mt-3 inline-flex items-center rounded-xl bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500"
+            >
+              Zobrazit statistiky cen podle krajů →
+            </a>
+          </div>
         </div>
       </section>
     </>

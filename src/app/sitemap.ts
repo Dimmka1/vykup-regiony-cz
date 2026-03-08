@@ -24,6 +24,8 @@ const CONTENT_PATHS = [
   { path: "/kraje", priority: 0.7 },
   { path: "/ochrana-osobnich-udaju", priority: 0.3 },
   { path: "/cookies", priority: 0.3 },
+  { path: "/pro-partnery", priority: 0.5 },
+  { path: "/embed/kalkulacka", priority: 0.3 },
 ] as const;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

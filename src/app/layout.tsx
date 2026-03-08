@@ -14,6 +14,7 @@ import { SiteHeader } from "@/components/site-header";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { SiteFooter } from "@/components/site-footer";
 import { SwRegister } from "@/components/sw-register";
+import { PushPrompt } from "@/components/push-prompt";
 import { WebVitalsReporter } from "@/components/web-vitals-reporter";
 import {
   getDefaultRegion,
@@ -74,7 +75,7 @@ export default async function RootLayout({
         className={`${inter.className} flex min-h-screen flex-col`}
         style={themeStyle}
       >
-        <ScrollProgress />
+        {!isStrippedLayout && <ScrollProgress />}
         {process.env.NODE_ENV === "production" && (
           <noscript>
             <iframe
@@ -91,16 +92,17 @@ export default async function RootLayout({
         >
           Přeskočit na obsah
         </a>
-        <SiteHeader phone={region.phone} />
+        {!isStrippedLayout && <SiteHeader phone={region.phone} />}
         <WebVitalsReporter />
         <main id="hlavni-obsah" className="flex-1">
           {children}
         </main>
         {!isStrippedLayout && <SiteFooter />}
-        <ExitIntentPopup />
+        {!isStrippedLayout && <ExitIntentPopup />}
         <TrackingPixels />
         <SwRegister />
-        <CookieConsent />
+        <PushPrompt />
+        {!isStrippedLayout && <CookieConsent />}
       </body>
     </html>
   );

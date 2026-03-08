@@ -15,6 +15,7 @@ import { FaqAccordion } from "@/components/faq-accordion";
 import { ParallaxImage } from "@/components/parallax-image";
 import { ParallaxSection } from "@/components/parallax-section";
 import { NearbyRegions } from "@/components/nearby-regions";
+import { PopularRegions } from "@/components/popular-regions";
 import { ComparisonCalculator } from "@/components/comparison-calculator";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { StaggerReveal, StaggerItem } from "@/components/stagger-reveal";
@@ -506,6 +507,9 @@ export function HomePageContent({
       </section>
 
       <SocialProofBar />
+
+      {/* ===== POPULÁRNÍ LOKALITY ===== */}
+      <PopularRegions currentHost={currentHost} />
 
       {/* ===== MARKET INFO ===== */}
       {region.marketInfo && (

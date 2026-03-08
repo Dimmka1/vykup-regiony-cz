@@ -5,6 +5,38 @@ import { listRegions, getRegionSubdomainUrl } from "@/lib/config";
 const linkClass =
   "text-sm text-slate-400 hover:text-white transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900";
 
+const HUB_LINKS = [
+  { href: "/kraje", label: "Kde působíme" },
+  { href: "/jak-to-funguje", label: "Jak to funguje" },
+  { href: "/blog", label: "Blog" },
+  { href: "/reference", label: "Reference" },
+  { href: "/pruvodce-vykupem", label: "Průvodce výkupem" },
+  { href: "/garance-vykupu", label: "Garance výkupu" },
+  { href: "/caste-dotazy", label: "Časté dotazy" },
+  { href: "/proc-my", label: "Proč prodat nám" },
+  { href: "/mapa-stranek", label: "Mapa stránek" },
+] as const;
+
+function HubLinks() {
+  return (
+    <div className="mt-12">
+      <p className="mb-4 text-sm font-semibold text-slate-300">Rychlé odkazy</p>
+      <ul className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
+        {HUB_LINKS.map((link) => (
+          <li key={link.href}>
+            <Link
+              href={link.href}
+              className="text-slate-400 transition hover:text-white"
+            >
+              {link.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 function RegionCrossLinks() {
   const regions = listRegions();
   return (
@@ -146,6 +178,7 @@ export function SiteFooter() {
           </div>
         </div>
 
+        <HubLinks />
         <RegionCrossLinks />
 
         {/* Bottom bar with separator */}

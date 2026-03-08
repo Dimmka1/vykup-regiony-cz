@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky",
+    "audit:crawl-depth": "npx tsx scripts/audit-crawl-depth.ts",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "vitest run",

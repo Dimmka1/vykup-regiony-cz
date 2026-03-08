@@ -75,6 +75,31 @@ export default async function KrajePage() {
                 </span>
               </a>
             ))}
+
+            {/* Top hyperlocal cities for crawl depth optimization */}
+            <div className="mt-16">
+              <h2 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+                Populární městské části a okresy
+              </h2>
+              <p className="mt-3 max-w-2xl text-base text-slate-600">
+                Vykupujeme nemovitosti i v konkrétních městských částech a
+                okresech po celé ČR.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {regions.flatMap((region) =>
+                  region.supportedCities.slice(0, 4).map((city) => (
+                    <a
+                      key={`${region.key}-${city}`}
+                      href={getRegionUrl(region.key, host)}
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 shadow-sm transition-all hover:border-[var(--theme-200)] hover:text-[var(--theme-700)] hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]"
+                    >
+                      <MapPin className="h-3.5 w-3.5 text-slate-400" />
+                      {city}
+                    </a>
+                  )),
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </section>

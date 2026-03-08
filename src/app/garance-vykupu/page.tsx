@@ -118,6 +118,22 @@ export default function GaranceVykupuPage() {
         </div>
       </section>
 
+      {/* Vzor smlouvy link */}
+      <section className="py-12">
+        <div className="mx-auto max-w-3xl px-6 text-center">
+          <p className="text-slate-600">
+            Chcete vědět, co přesně bude ve smlouvě?{" "}
+            <Link
+              href="/vzor-smlouvy"
+              className="font-semibold text-[var(--theme-700)] underline underline-offset-2 transition hover:text-[var(--theme-600)]"
+            >
+              Prohlédněte si vzor kupní smlouvy
+            </Link>{" "}
+            s vysvětlením každého článku.
+          </p>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="bg-slate-50 py-16">
         <div className="mx-auto max-w-3xl px-6 text-center">

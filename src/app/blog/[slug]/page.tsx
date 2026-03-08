@@ -191,6 +191,17 @@ const ARTICLES: Record<string, ArticleContent> = {
           připraví veškerou smluvní dokumentaci. Vy se nemusíte o nic starat.
         </p>
         <p>
+          Chcete vu011Bdu011Bt, co bude ve smlouvu011B? Podu00EDvejte se na
+          nu00E1u0161{" "}
+          <Link
+            href="/vzor-smlouvy"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            vzor kupnu00ED smlouvy
+          </Link>{" "}
+          s vysvu011Btlenu00EDm kau017Edu00E9ho u010Dlu00E1nku.
+        </p>
+        <p>
           Celý proces od prvního kontaktu po vyplacení peněz trvá obvykle 7 až
           14 dní. Podrobný popis jednotlivých kroků najdete v článku{" "}
           <Link

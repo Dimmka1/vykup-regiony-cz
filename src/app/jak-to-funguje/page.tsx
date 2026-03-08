@@ -149,6 +149,22 @@ export default function JakToFungujePage() {
       </section>
 
       {/* CTA */}
+      {/* Vzor smlouvy link */}
+      <section className="py-12">
+        <div className="mx-auto max-w-3xl px-6 text-center">
+          <p className="text-slate-600">
+            Zajímá vás, jak vypadá smlouva o výkupu nemovitosti?{" "}
+            <Link
+              href="/vzor-smlouvy"
+              className="font-semibold text-[var(--theme-700)] underline underline-offset-2 transition hover:text-[var(--theme-600)]"
+            >
+              Podívejte se na vzor smlouvy
+            </Link>{" "}
+            a zjistěte, na co si dát pozor.
+          </p>
+        </div>
+      </section>
+
       <section className="bg-slate-50 py-16">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <h2 className="text-3xl font-bold text-slate-900">Chcete začít?</h2>

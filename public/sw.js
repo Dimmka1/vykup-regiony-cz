@@ -37,3 +37,101 @@ self.addEventListener("fetch", (event) => {
       )
   );
 });
+
+// --- Web Push ---
+
+self.addEventListener("push", (event) => {
+  const defaultData = {
+    title: "Výkup nemovitostí",
+    body: "Máme pro vás nový tip!",
+    icon: "/icon-192.png",
+    badge: "/icon-192.png",
+    url: "/",
+  };
+
+  let data = defaultData;
+  try {
+    if (event.data) {
+      data = { ...defaultData, ...event.data.json() };
+    }
+  } catch {
+    // fallback to default
+  }
+
+  event.waitUntil(
+    self.registration.showNotification(data.title, {
+      body: data.body,
+      icon: data.icon,
+      badge: data.badge,
+      data: { url: data.url },
+    }),
+  );
+});
+
+self.addEventListener("notificationclick", (event) => {
+  event.notification.close();
+
+  const url = event.notification.data?.url || "/";
+
+  event.waitUntil(
+    self.clients
+      .matchAll({ type: "window", includeUncontrolled: true })
+      .then((clients) => {
+        for (const client of clients) {
+          if (client.url.includes(url) && "focus" in client) {
+            return client.focus();
+          }
+        }
+        return self.clients.openWindow(url);
+      }),
+  );
+});
+
+// --- Web Push ---
+
+self.addEventListener("push", (event) => {
+  const defaultData = {
+    title: "Výkup nemovitostí",
+    body: "Máme pro vás nový tip!",
+    icon: "/icon-192.png",
+    badge: "/icon-192.png",
+    url: "/",
+  };
+
+  let data = defaultData;
+  try {
+    if (event.data) {
+      data = { ...defaultData, ...event.data.json() };
+    }
+  } catch {
+    // fallback to default
+  }
+
+  event.waitUntil(
+    self.registration.showNotification(data.title, {
+      body: data.body,
+      icon: data.icon,
+      badge: data.badge,
+      data: { url: data.url },
+    }),
+  );
+});
+
+self.addEventListener("notificationclick", (event) => {
+  event.notification.close();
+
+  const url = event.notification.data?.url || "/";
+
+  event.waitUntil(
+    self.clients
+      .matchAll({ type: "window", includeUncontrolled: true })
+      .then((clients) => {
+        for (const client of clients) {
+          if (client.url.includes(url) && "focus" in client) {
+            return client.focus();
+          }
+        }
+        return self.clients.openWindow(url);
+      }),
+  );
+});

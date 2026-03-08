@@ -12,14 +12,15 @@
     "format:check": "prettier --check .",
     "test": "vitest run",
     "ci": "npm run lint && npm run format:check && tsc --noEmit && npm run build",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "push:send": "npx tsx scripts/send-push.ts"
   },
   "dependencies": {
-    "framer-motion": "^12.35.0",
     "lucide-react": "^0.575.0",
     "next": "^15.5.12",
     "react": "19.0.0",
     "react-dom": "19.0.0",
+    "web-push": "^3.6.7",
     "web-vitals": "^5.1.0",
     "yaml": "^2.7.1",
     "zod": "^3.24.1"
@@ -30,6 +31,7 @@
     "@types/node": "^22.10.5",
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
+    "@types/web-push": "^3.6.4",
     "@vitest/coverage-v8": "^4.0.18",
     "autoprefixer": "^10.4.20",
     "eslint": "^9.39.3",

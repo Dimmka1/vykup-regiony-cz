@@ -129,6 +129,12 @@ jobs:
           vercel alias set ${{ steps.deploy.outputs.url }} vykup-regiony-cz-dev.vercel.app --token=${{ secrets.VERCEL_TOKEN }}
           echo "✅ Aliased to: https://vykup-regiony-cz-dev.vercel.app"
 
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Ping Seznam.cz
+        run: npx tsx scripts/ping-seznam.ts
+
   deploy-production:
     name: Deploy production (manual only)
     runs-on: ubuntu-latest
@@ -166,3 +172,6 @@ jobs:
         run: |
           vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
           echo "✅ Deployed to https://vykoupim-nemovitost.cz"
+
+      - name: Ping Seznam.cz
+        run: npx tsx scripts/ping-seznam.ts

@@ -14,11 +14,17 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
     .split(":")[0];
 
   return {
-    rules: {
-      userAgent: "*",
-      allow: "/",
-      disallow: "/api/",
-    },
+    rules: [
+      {
+        userAgent: "*",
+        allow: "/",
+        disallow: "/api/",
+      },
+      {
+        userAgent: "SeznamBot",
+        allow: "/",
+      },
+    ],
     sitemap: [
       `https://${normalizedHost}/sitemap.xml`,
       `https://${normalizedHost}/image-sitemap.xml`,

@@ -9,6 +9,7 @@ const CONTENT_PATHS = [
   { path: "/caste-dotazy", priority: 0.8 },
   { path: "/blog", priority: 0.8 },
   { path: "/vykup-pri-exekuci", priority: 0.8 },
+  { path: "/ppc/exekuce", priority: 0.5 },
   { path: "/vykup-pri-dedictvi", priority: 0.8 },
   { path: "/vykup-pri-rozvodu", priority: 0.8 },
   { path: "/vykup-spoluvlastnickeho-podilu", priority: 0.8 },
@@ -22,6 +23,8 @@ const CONTENT_PATHS = [
   { path: "/jak-to-funguje", priority: 0.7 },
   { path: "/proc-my", priority: 0.8 },
   { path: "/kraje", priority: 0.7 },
+  { path: "/vzor-smlouvy", priority: 0.8 },
+  { path: "/garance-vykupu", priority: 0.8 },
   { path: "/ochrana-osobnich-udaju", priority: 0.3 },
   { path: "/cookies", priority: 0.3 },
 ] as const;

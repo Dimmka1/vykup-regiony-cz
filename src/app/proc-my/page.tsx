@@ -220,6 +220,7 @@ export default function ProcMyPage() {
               { href: "/garance-vykupu", label: "Garance výkupu" },
               { href: "/reference", label: "Reference" },
               { href: "/caste-dotazy", label: "Časté dotazy" },
+              { href: "/zkusenosti-s-vykupem", label: "Zkušenosti s výkupem" },
             ].map((link) => (
               <Link
                 key={link.href}

@@ -22,6 +22,7 @@ const CONTENT_PATHS = [
   { path: "/jak-to-funguje", priority: 0.7 },
   { path: "/proc-my", priority: 0.8 },
   { path: "/kraje", priority: 0.7 },
+  { path: "/zkusenosti-s-vykupem", priority: 0.8 },
   { path: "/ochrana-osobnich-udaju", priority: 0.3 },
   { path: "/cookies", priority: 0.3 },
 ] as const;

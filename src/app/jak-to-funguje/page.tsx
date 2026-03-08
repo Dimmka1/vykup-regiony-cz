@@ -170,6 +170,12 @@ export default function JakToFungujePage() {
             >
               ← Zpět na hlavní stránku
             </Link>
+            <Link
+              href="/zkusenosti-s-vykupem"
+              className="inline-flex min-h-11 items-center text-sm font-medium text-[var(--theme-700)] transition hover:text-[var(--theme-600)]"
+            >
+              Zkušenosti s výkupem →
+            </Link>
           </div>
         </div>
       </section>

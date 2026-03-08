@@ -101,7 +101,7 @@ export function TrackingPixels(): React.ReactElement | null {
       {SKLIK_ID && (
         <Script
           id="sklik-retargeting"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
               var seznam_retargeting_id = ${SKLIK_ID};

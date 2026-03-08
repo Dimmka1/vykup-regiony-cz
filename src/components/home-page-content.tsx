@@ -678,6 +678,7 @@ export function HomePageContent({
                   alt="Proces výkupu nemovitosti – profesionální jednání"
                   fill
                   className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
             </div>

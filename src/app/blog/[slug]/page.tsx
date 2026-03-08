@@ -7,6 +7,8 @@ import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 import { BLOG_POSTS } from "../data";
 import { AllRegionsSection } from "@/components/all-regions-section";
+import { AuthorByline } from "@/components/author-byline";
+import { DEFAULT_AUTHOR } from "@/lib/authors";
 import { getRequestHost } from "@/lib/request-host";
 
 interface ArticleContent {
@@ -1568,8 +1570,9 @@ export default async function BlogArticlePage({
     headline: article.title,
     datePublished: article.date,
     author: {
-      "@type": "Organization",
-      name: "Vykoupím Nemovitost",
+      "@type": "Person",
+      name: DEFAULT_AUTHOR.name,
+      url: `https://vykoupim-nemovitost.cz/o-nas/${DEFAULT_AUTHOR.slug}`,
     },
     publisher: {
       "@type": "Organization",
@@ -1609,6 +1612,12 @@ export default async function BlogArticlePage({
             <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
               {article.title}
             </h1>
+            <div className="mt-4">
+              <AuthorByline
+                name={DEFAULT_AUTHOR.name}
+                slug={DEFAULT_AUTHOR.slug}
+              />
+            </div>
           </header>
 
           <div className="prose-article mt-10 rounded-2xl bg-white p-8 shadow-sm">

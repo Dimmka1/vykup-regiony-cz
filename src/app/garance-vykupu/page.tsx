@@ -142,6 +142,12 @@ export default function GaranceVykupuPage() {
             >
               ← Zpět na hlavní stránku
             </Link>
+            <Link
+              href="/srovnani-vykupnich-firem"
+              className="inline-flex min-h-11 items-center text-sm font-medium text-[var(--theme-700)] transition hover:text-[var(--theme-600)]"
+            >
+              Srovnání výkupních firem →
+            </Link>
           </div>
         </div>
       </section>

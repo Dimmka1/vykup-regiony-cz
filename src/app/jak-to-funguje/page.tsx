@@ -171,6 +171,12 @@ export default function JakToFungujePage() {
               ← Zpět na hlavní stránku
             </Link>
           </div>
+          <Link
+            href="/srovnani-vykupnich-firem"
+            className="inline-flex min-h-11 items-center text-sm font-medium text-[var(--theme-700)] transition hover:text-[var(--theme-600)]"
+          >
+            Srovnání výkupních firem →
+          </Link>
         </div>
       </section>
     </>

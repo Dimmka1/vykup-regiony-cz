@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import dynamic from "next/dynamic";
 import { CookieConsent } from "@/components/cookie-consent";
-import { TrackingPixels } from "@/components/tracking-pixels";
+import { PartytownHead } from "@/components/partytown-head";
 
 const ExitIntentPopup = dynamic(
   () =>
@@ -69,7 +69,9 @@ export default async function RootLayout({
 
   return (
     <html lang="cs" className={inter.variable}>
-      <head></head>
+      <head>
+        <PartytownHead />
+      </head>
       <body
         className={`${inter.className} flex min-h-screen flex-col`}
         style={themeStyle}
@@ -98,7 +100,6 @@ export default async function RootLayout({
         </main>
         {!isStrippedLayout && <SiteFooter />}
         <ExitIntentPopup />
-        <TrackingPixels />
         <SwRegister />
         <CookieConsent />
       </body>

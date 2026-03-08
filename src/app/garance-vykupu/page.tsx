@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { RelatedTopics } from "@/components/related-topics";
 
 export const metadata: Metadata = {
   title: "Garance výkupu nemovitosti | vykoupim-nemovitost.cz",
@@ -143,6 +144,11 @@ export default function GaranceVykupuPage() {
               ← Zpět na hlavní stránku
             </Link>
           </div>
+        </div>
+      </section>
+      <section className="bg-slate-50 py-12">
+        <div className="mx-auto max-w-3xl px-4">
+          <RelatedTopics slug="garance-vykupu" />
         </div>
       </section>
     </>

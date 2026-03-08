@@ -78,7 +78,16 @@ export function middleware(request: NextRequest): NextResponse | undefined {
   const { pathname, searchParams } = request.nextUrl;
   const isProd = isProductionDomain(host);
 
-  // 0. PPC landing — stripped layout (no header/footer)
+  // 0a. Embed pages — stripped layout + iframe-friendly headers
+  if (pathname.startsWith("/embed/")) {
+    const response = NextResponse.next();
+    response.headers.set("x-layout-stripped", "1");
+    response.headers.delete("x-frame-options");
+    response.headers.set("content-security-policy", "frame-ancestors *");
+    return response;
+  }
+
+  // 0b. PPC landing — stripped layout (no header/footer)
   if (pathname === "/ppc") {
     const response = NextResponse.next();
     response.headers.set("x-layout-stripped", "1");

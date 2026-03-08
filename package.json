@@ -8,11 +8,13 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky",
+    "audit:crawl-depth": "npx tsx scripts/audit-crawl-depth.ts",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "vitest run",
     "ci": "npm run lint && npm run format:check && tsc --noEmit && npm run build",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "submit:gsc": "npx tsx scripts/submit-gsc.ts"
   },
   "dependencies": {
     "framer-motion": "^12.35.0",
@@ -34,12 +36,14 @@
     "autoprefixer": "^10.4.20",
     "eslint": "^9.39.3",
     "eslint-config-next": "^15.1.6",
+    "googleapis": "^171.4.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
     "postcss": "^8.4.49",
     "prettier": "^3.8.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "tailwindcss": "^3.4.17",
+    "tsx": "^4.21.0",
     "typescript": "^5.7.2",
     "vitest": "^4.0.18"
   },

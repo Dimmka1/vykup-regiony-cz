@@ -14,6 +14,7 @@ import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 import { AllRegionsSection } from "@/components/all-regions-section";
 import { getRequestHost } from "@/lib/request-host";
+import { RelatedTopics } from "@/components/related-topics";
 
 export const metadata: Metadata = {
   alternates: {
@@ -310,6 +311,12 @@ export default async function VykupNemovitostiSHypotekou(): Promise<React.ReactE
               </Link>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="bg-slate-50 py-12">
+        <div className="mx-auto max-w-3xl px-4">
+          <RelatedTopics slug="vykup-nemovitosti-s-hypotekou" />
         </div>
       </section>
 

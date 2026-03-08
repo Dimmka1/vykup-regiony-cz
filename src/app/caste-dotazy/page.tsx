@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { safeJsonLd } from "@/lib/jsonld";
+import { RelatedTopics } from "@/components/related-topics";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://vykoupim-nemovitost.cz/caste-dotazy" },
@@ -165,6 +166,11 @@ export default function CasteDotazyPage(): React.ReactElement {
               Ochrana osobních údajů
             </Link>
           </div>
+        </div>
+      </section>
+      <section className="bg-slate-50 py-12">
+        <div className="mx-auto max-w-3xl px-4">
+          <RelatedTopics slug="caste-dotazy" />
         </div>
       </section>
     </>

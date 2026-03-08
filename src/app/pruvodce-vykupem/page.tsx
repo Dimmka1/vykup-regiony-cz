@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { LeadMagnetForm } from "@/components/lead-magnet-form";
+import { RelatedTopics } from "@/components/related-topics";
 
 export const metadata: Metadata = {
   alternates: {
@@ -75,6 +76,11 @@ export default function PruvodceVykupemPage(): React.ReactElement {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+      <section className="bg-slate-50 py-12">
+        <div className="mx-auto max-w-3xl px-4">
+          <RelatedTopics slug="pruvodce-vykupem" />
         </div>
       </section>
     </>

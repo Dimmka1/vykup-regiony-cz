@@ -194,13 +194,16 @@ export function buildCanonicalUrl(
   const normalized = normalizeHost(host);
   const isProd = isProductionHost(host);
 
-  if (isProd && regionKey) {
-    return getRegionSubdomainUrl(regionKey);
-  }
-
   if (isProd) {
-    // Root domain without region key → Praha
-    return "https://praha.vykoupim-nemovitost.cz";
+    // If host is a subdomain, canonical is the subdomain itself
+    if (
+      normalized.includes(".vykoupim-nemovitost.cz") &&
+      normalized !== "vykoupim-nemovitost.cz"
+    ) {
+      return `https://${normalized}`;
+    }
+    // Root domain → canonical stays on root domain
+    return "https://vykoupim-nemovitost.cz";
   }
 
   // Dev/preview: use current host

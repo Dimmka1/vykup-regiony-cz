@@ -45,7 +45,7 @@ const REGION_SUBDOMAINS: Record<string, string> = {
 const PRODUCTION_DOMAIN = "vykoupim-nemovitost.cz";
 
 /** Valid subdomains on production */
-const VALID_SUBDOMAINS = new Set([...Object.values(REGION_SUBDOMAINS), "www"]);
+const VALID_SUBDOMAINS = new Set([...Object.values(REGION_SUBDOMAINS)]);
 
 function normalizeHost(host: string): string {
   return host
@@ -77,6 +77,14 @@ export function middleware(request: NextRequest): NextResponse | undefined {
   const host = request.headers.get("host") ?? "";
   const { pathname, searchParams } = request.nextUrl;
   const isProd = isProductionDomain(host);
+
+  // 0.5 WWW → non-www redirect (canonical domain)
+  if (host.toLowerCase().startsWith("www.")) {
+    const url = request.nextUrl.clone();
+    url.host = host.replace(/^www\./i, "");
+    url.protocol = "https";
+    return NextResponse.redirect(url, 301);
+  }
 
   // 0. PPC landing — stripped layout (no header/footer)
   if (pathname === "/ppc") {

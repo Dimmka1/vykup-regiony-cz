@@ -10,7 +10,7 @@ interface BreadcrumbsProps {
   items: BreadcrumbItem[];
 }
 
-const SITE_URL = "https://www.vykupnemovitosticz.cz";
+const SITE_URL = "https://vykoupim-nemovitost.cz";
 
 export function Breadcrumbs({ items }: BreadcrumbsProps): React.ReactElement {
   const fullItems: BreadcrumbItem[] = [{ label: "Domů", href: "/" }, ...items];

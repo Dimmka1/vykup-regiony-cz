@@ -26,6 +26,7 @@ import { FloatingStats } from "@/components/floating-stats";
 import { DoorCards } from "@/components/door-cards";
 import { LeadForm } from "@/components/lead-form";
 import { SlotCounter } from "@/components/slot-counter";
+import { HomepageTestimonials } from "@/components/homepage-testimonials";
 import {
   getRegionSubdomainUrl,
   isProductionHost,
@@ -771,6 +772,9 @@ export function HomePageContent({
           </p>
         </div>
       </section>
+
+      {/* ===== REFERENCE KLIENTŮ ===== */}
+      <HomepageTestimonials />
 
       {/* ===== PROČ KLIENTI VOLÍ NÁS (USP) ===== */}
       <ParallaxSection offset={20}>

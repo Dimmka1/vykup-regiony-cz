@@ -5,9 +5,18 @@ const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX = 5;
 const requestCounter = new Map<string, { count: number; start: number }>();
 
-const emailSchema = z.object({
+const baseEmailSchema = z.object({
   email: z.string().email(),
+  type: z.string().optional(),
+  phone: z.string().optional(),
 });
+
+const PHONE_REGEX = /^(\+?420|00420)?\s?\d{3}\s?\d{3}\s?\d{3}$/;
+
+const PDF_MAP: Record<string, string> = {
+  "pruvodce-vykupem": "/docs/pruvodce-vykupem.pdf",
+  "vzor-smlouvy": "/docs/vzor-kupni-smlouvy.pdf",
+};
 
 function getClientIp(request: Request): string {
   const forwarded = request.headers.get("x-forwarded-for");
@@ -31,7 +40,11 @@ function isRateLimited(clientIp: string): boolean {
   return false;
 }
 
-async function sendTelegramNotification(email: string): Promise<void> {
+async function sendTelegramNotification(
+  email: string,
+  leadType: string,
+  phone?: string,
+): Promise<void> {
   const botToken = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
 
@@ -42,12 +55,14 @@ async function sendTelegramNotification(email: string): Promise<void> {
     return;
   }
 
-  const text = [
-    "📚 <b>Lead magnet download!</b>",
+  const lines = [
+    `📚 <b>Lead magnet download!</b>`,
     "",
     `📧 <b>Email:</b> ${email}`,
+    ...(phone ? [`📞 <b>Telefon:</b> ${phone}`] : []),
+    `📋 <b>Typ:</b> ${leadType}`,
     `🕐 <b>Čas:</b> ${new Date().toISOString()}`,
-  ].join("\n");
+  ];
 
   const res = await fetch(
     `https://api.telegram.org/bot${botToken}/sendMessage`,
@@ -56,7 +71,7 @@ async function sendTelegramNotification(email: string): Promise<void> {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         chat_id: chatId,
-        text,
+        text: lines.join("\n"),
         parse_mode: "HTML",
       }),
     },
@@ -71,7 +86,11 @@ async function sendTelegramNotification(email: string): Promise<void> {
   }
 }
 
-async function sendToWebhook(email: string): Promise<void> {
+async function sendToWebhook(
+  email: string,
+  leadType: string,
+  phone?: string,
+): Promise<void> {
   const webhookUrl = process.env.LEAD_MAGNET_WEBHOOK_URL;
 
   if (!webhookUrl) {
@@ -86,8 +105,9 @@ async function sendToWebhook(email: string): Promise<void> {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       email,
+      ...(phone ? { phone } : {}),
       type: "lead-magnet",
-      source: "pruvodce-vykupem",
+      source: leadType,
       timestamp: new Date().toISOString(),
     }),
   });
@@ -113,7 +133,7 @@ export async function POST(request: Request): Promise<NextResponse> {
     }
 
     const payload: unknown = await request.json();
-    const result = emailSchema.safeParse(payload);
+    const result = baseEmailSchema.safeParse(payload);
 
     if (!result.success) {
       return NextResponse.json(
@@ -122,16 +142,28 @@ export async function POST(request: Request): Promise<NextResponse> {
       );
     }
 
-    const { email } = result.data;
+    const { email, type: leadType, phone } = result.data;
+    const resolvedType = leadType ?? "pruvodce-vykupem";
+
+    if (resolvedType === "vzor-smlouvy") {
+      if (!phone || !PHONE_REGEX.test(phone.replace(/\s/g, ""))) {
+        return NextResponse.json(
+          { ok: false, code: "VALIDATION_ERROR" },
+          { status: 400 },
+        );
+      }
+    }
 
     await Promise.allSettled([
-      sendTelegramNotification(email),
-      sendToWebhook(email),
+      sendTelegramNotification(email, resolvedType, phone),
+      sendToWebhook(email, resolvedType, phone),
     ]);
+
+    const pdfUrl = PDF_MAP[resolvedType] ?? PDF_MAP["pruvodce-vykupem"];
 
     return NextResponse.json({
       ok: true,
-      pdfUrl: "/docs/pruvodce-vykupem.pdf",
+      pdfUrl,
     });
   } catch {
     return NextResponse.json(

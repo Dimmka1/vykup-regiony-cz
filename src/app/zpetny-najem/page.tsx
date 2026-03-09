@@ -83,6 +83,7 @@ export default async function ZpetnyNajemPage(): Promise<React.ReactElement> {
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
+    datePublished: "2025-01-15",
     headline: "Zpětný nájem nemovitosti — prodejte a zůstaňte bydlet",
     description:
       "Prodejte nemovitost a zůstaňte v ní bydlet díky zpětnému nájmu. Získejte peníze ihned a bydlete dál bez starostí.",

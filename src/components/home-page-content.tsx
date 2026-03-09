@@ -232,6 +232,17 @@ export function buildSchema(
   return [
     {
       "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: "Výkupím Nemovitost",
+      url: "https://vykoupim-nemovitost.cz",
+      potentialAction: {
+        "@type": "SearchAction",
+        target: "https://vykoupim-nemovitost.cz/?q={search_term_string}",
+        "query-input": "required name=search_term_string",
+      },
+    },
+    {
+      "@context": "https://schema.org",
       "@type": "Organization",
       name: COMPANY_NAME,
       url: "https://vykoupim-nemovitost.cz",

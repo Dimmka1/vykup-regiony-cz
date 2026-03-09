@@ -93,6 +93,7 @@ const CASE_STUDIES = [
 const articleJsonLd = {
   "@context": "https://schema.org",
   "@type": "Article",
+  datePublished: "2025-01-15",
   headline: "Proč prodat nemovitost nám | Výkup vs realitka vs dražba",
   description:
     "Srovnání výkupu nemovitosti přes nás, realitní kancelář a dražbu. Rychlost, záloha, provize, právní servis.",

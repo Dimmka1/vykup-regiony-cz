@@ -22,6 +22,7 @@ import {
 } from "@/lib/config";
 import { getRequestHost, getRegionKeyOverride } from "@/lib/request-host";
 import { getThemeStyle } from "@/lib/theme-colors";
+import { safeJsonLd } from "@/lib/jsonld";
 import { headers } from "next/headers";
 
 const inter = Inter({
@@ -69,7 +70,33 @@ export default async function RootLayout({
 
   return (
     <html lang="cs" className={inter.variable}>
-      <head></head>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: safeJsonLd({
+              "@context": "https://schema.org",
+              "@type": "SiteNavigationElement",
+              name: [
+                "Jak to funguje",
+                "Kraje",
+                "Časté dotazy",
+                "Reference",
+                "Blog",
+                "Kontakt",
+              ],
+              url: [
+                "https://vykoupim-nemovitost.cz/jak-to-funguje",
+                "https://vykoupim-nemovitost.cz/kraje",
+                "https://vykoupim-nemovitost.cz/caste-dotazy",
+                "https://vykoupim-nemovitost.cz/reference",
+                "https://vykoupim-nemovitost.cz/blog",
+                "https://vykoupim-nemovitost.cz/#kontakt",
+              ],
+            }),
+          }}
+        />
+      </head>
       <body
         className={`${inter.className} flex min-h-screen flex-col`}
         style={themeStyle}

@@ -1,20 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import dynamic from "next/dynamic";
-import { CookieConsent } from "@/components/cookie-consent";
-import { TrackingPixels } from "@/components/tracking-pixels";
-
-const ExitIntentPopup = dynamic(
-  () =>
-    import("@/components/exit-intent-popup").then((mod) => mod.ExitIntentPopup),
-  { ssr: true },
-);
 import { SiteHeader } from "@/components/site-header";
-import { ScrollProgress } from "@/components/scroll-progress";
 import { SiteFooter } from "@/components/site-footer";
-import { SwRegister } from "@/components/sw-register";
-import { WebVitalsReporter } from "@/components/web-vitals-reporter";
+import { ClientShell } from "@/components/client-shell";
 import {
   getDefaultRegion,
   getRegionByHost,
@@ -74,7 +63,6 @@ export default async function RootLayout({
         className={`${inter.className} flex min-h-screen flex-col`}
         style={themeStyle}
       >
-        <ScrollProgress />
         {process.env.NODE_ENV === "production" && (
           <noscript>
             <iframe
@@ -92,15 +80,11 @@ export default async function RootLayout({
           Přeskočit na obsah
         </a>
         <SiteHeader phone={region.phone} />
-        <WebVitalsReporter />
         <main id="hlavni-obsah" className="flex-1">
           {children}
         </main>
         {!isStrippedLayout && <SiteFooter />}
-        <ExitIntentPopup />
-        <TrackingPixels />
-        <SwRegister />
-        <CookieConsent />
+        <ClientShell />
       </body>
     </html>
   );

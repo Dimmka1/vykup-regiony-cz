@@ -16,6 +16,8 @@ const leadSchema = z.object({
   situation_type: z.string().min(2),
   consent_gdpr: z.literal(true),
   email: z.string().email().optional().or(z.literal("")),
+  source: z.string().optional(),
+  message: z.string().optional(),
   website: z.string().optional(),
 });
 
@@ -48,6 +50,7 @@ interface LeadNotificationPayload {
   timestamp: string;
   ip: string;
   data: Omit<LeadData, "website" | "consent_gdpr">;
+  source?: string;
 }
 
 async function sendWebhookNotification(
@@ -157,6 +160,7 @@ async function sendTelegramNotification(
     `📍 <b>Region:</b> ${data.region}`,
     `📋 <b>Situace:</b> ${data.situation_type}`,
     `🕐 <b>Čas:</b> ${payload.timestamp}`,
+    ...(payload.source ? [`🏷️ <b>Source:</b> ${payload.source}`] : []),
     `🆔 <b>ID:</b> ${payload.lead_id}`,
   ].join("\n");
 
@@ -487,6 +491,7 @@ export async function POST(request: Request): Promise<NextResponse> {
       lead_id: leadId,
       timestamp: new Date().toISOString(),
       ip: clientIp,
+      source: validatedData.source,
       data: {
         name: validatedData.name,
         phone: validatedData.phone,

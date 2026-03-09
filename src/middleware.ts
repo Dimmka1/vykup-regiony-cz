@@ -79,7 +79,7 @@ export function middleware(request: NextRequest): NextResponse | undefined {
   const isProd = isProductionDomain(host);
 
   // 0. PPC landing — stripped layout (no header/footer)
-  if (pathname === "/ppc") {
+  if (pathname === "/ppc" || pathname === "/en") {
     const response = NextResponse.next();
     response.headers.set("x-layout-stripped", "1");
     return response;

@@ -12,6 +12,7 @@ import {
 import { safeJsonLd } from "@/lib/jsonld";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { LeadForm } from "@/components/lead-form";
+import { ContentFreshnessBadge } from "@/components/content-freshness-badge";
 
 export const metadata: Metadata = {
   title: "Proč prodat nemovitost nám | Výkup vs realitka vs dražba",
@@ -93,6 +94,7 @@ const CASE_STUDIES = [
 const articleJsonLd = {
   "@context": "https://schema.org",
   "@type": "Article",
+  dateModified: "2026-03-09",
   headline: "Proč prodat nemovitost nám | Výkup vs realitka vs dražba",
   description:
     "Srovnání výkupu nemovitosti přes nás, realitní kancelář a dražbu. Rychlost, záloha, provize, právní servis.",
@@ -130,6 +132,9 @@ export default function ProcMyPage() {
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
             Proč výkup nemovitosti u&nbsp;nás?
           </h1>
+          <div className="mt-3">
+            <ContentFreshnessBadge date="2026-03-09" />
+          </div>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-600">
             Srovnejte si přímý výkup s&nbsp;realitní kanceláří a&nbsp;dražbou.
             Rozhodněte se na základě faktů — ne slibů.

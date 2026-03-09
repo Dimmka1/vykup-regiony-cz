@@ -7,6 +7,7 @@ import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 import { AllRegionsSection } from "@/components/all-regions-section";
 import { getRequestHost } from "@/lib/request-host";
+import { ContentFreshnessBadge } from "@/components/content-freshness-badge";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://vykoupim-nemovitost.cz/zpetny-najem" },
@@ -83,6 +84,7 @@ export default async function ZpetnyNajemPage(): Promise<React.ReactElement> {
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
+    dateModified: "2026-03-09",
     headline: "Zpětný nájem nemovitosti — prodejte a zůstaňte bydlet",
     description:
       "Prodejte nemovitost a zůstaňte v ní bydlet díky zpětnému nájmu. Získejte peníze ihned a bydlete dál bez starostí.",
@@ -165,6 +167,9 @@ export default async function ZpetnyNajemPage(): Promise<React.ReactElement> {
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
             Prodejte nemovitost a zůstaňte bydlet — zpětný nájem
           </h1>
+          <div className="mt-3">
+            <ContentFreshnessBadge date="2026-03-09" />
+          </div>
           <p className="mt-4 text-lg text-slate-600">
             Zpětný nájem (sale and leaseback) je moderní způsob, jak získat
             peníze z nemovitosti, aniž byste se museli stěhovat. Prodáte nám

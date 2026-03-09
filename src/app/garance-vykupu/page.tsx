@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { ContentFreshnessBadge } from "@/components/content-freshness-badge";
 
 export const metadata: Metadata = {
   title: "Garance výkupu nemovitosti | vykoupim-nemovitost.cz",
@@ -53,6 +54,7 @@ const GUARANTEES = [
 const JSON_LD_WEBPAGE = {
   "@context": "https://schema.org",
   "@type": "WebPage",
+  dateModified: "2026-03-09",
   name: "Garance výkupu nemovitosti",
   description:
     "5 garancí výkupu nemovitosti — garantovaná cena, platba do 48 hodin, právní servis zdarma, bez provize a plná diskrétnost.",
@@ -78,6 +80,9 @@ export default function GaranceVykupuPage() {
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
             Naše garance výkupu
           </h1>
+          <div className="mt-3">
+            <ContentFreshnessBadge date="2026-03-09" />
+          </div>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-[var(--theme-100)]">
             Prodej nemovitosti je velké rozhodnutí. Proto vám dáváme 5 písemných
             garancí, které vás chrání po celou dobu spolupráce.

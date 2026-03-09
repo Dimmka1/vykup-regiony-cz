@@ -16,6 +16,7 @@ import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 import { AllRegionsSection } from "@/components/all-regions-section";
 import { getRequestHost } from "@/lib/request-host";
+import { ContentFreshnessBadge } from "@/components/content-freshness-badge";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://vykoupim-nemovitost.cz/vykup-pozemku" },
@@ -119,6 +120,7 @@ export default async function VykupPozemkuPage(): Promise<React.ReactElement> {
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    dateModified: "2026-03-09",
     mainEntity: FAQ_ITEMS.map((item) => ({
       "@type": "Question",
       name: item.question,
@@ -159,6 +161,9 @@ export default async function VykupPozemkuPage(): Promise<React.ReactElement> {
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
             Výkup pozemků a parcel - rychle, férově a bez provize
           </h1>
+          <div className="mt-3">
+            <ContentFreshnessBadge date="2026-03-09" />
+          </div>
           <p className="mt-4 text-lg text-slate-600">
             Chcete prodat pozemek rychle a bez zbytečných komplikací? Vykoupíme
             váš pozemek za férovou cenu a peníze vyplatíme do 7 dnů. Žádné

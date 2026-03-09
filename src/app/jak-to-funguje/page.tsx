@@ -9,6 +9,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
+import { ContentFreshnessBadge } from "@/components/content-freshness-badge";
 
 export const metadata: Metadata = {
   title: "Jak funguje výkup nemovitosti | Vykoupíme Nemovitost",
@@ -81,6 +82,7 @@ const HOWTO_STEPS = [
 const JSON_LD_HOWTO = {
   "@context": "https://schema.org",
   "@type": "HowTo",
+  dateModified: "2026-03-09",
   name: "Jak prodat nemovitost rychle – výkup v 4 krocích",
   description:
     "Prodejte nemovitost rychle a bez provize. Celý proces od vyplnění formuláře po vyplacení celé částky zvládneme do 7 dnů.",
@@ -114,6 +116,9 @@ export default function JakToFungujePage() {
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
             Jak funguje výkup nemovitosti
           </h1>
+          <div className="mt-3">
+            <ContentFreshnessBadge date="2026-03-09" />
+          </div>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-[var(--theme-100)]">
             Od prvního kontaktu k penězům na účtu - transparentně, rychle a bez
             starostí. Celý proces zvládneme za vás.

@@ -8,6 +8,7 @@ import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 import { AllRegionsSection } from "@/components/all-regions-section";
 import { getRequestHost } from "@/lib/request-host";
+import { ContentFreshnessBadge } from "@/components/content-freshness-badge";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://vykoupim-nemovitost.cz/vykup-pri-exekuci" },
@@ -80,6 +81,7 @@ export default async function VykupPriExekuciPage(): Promise<React.ReactElement>
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    dateModified: "2026-03-09",
     mainEntity: FAQ_ITEMS.map((item) => ({
       "@type": "Question",
       name: item.question,
@@ -107,6 +109,9 @@ export default async function VykupPriExekuciPage(): Promise<React.ReactElement>
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
             Výkup nemovitosti při exekuci
           </h1>
+          <div className="mt-3">
+            <ContentFreshnessBadge date="2026-03-09" />
+          </div>
           <p className="mt-4 text-lg text-slate-600">
             Exekuce na nemovitost je stresující situace, ale existuje cesta ven.
             Pomůžeme vám nemovitost rychle prodat, uhradit dluhy a začít znovu -

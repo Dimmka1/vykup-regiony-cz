@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { safeJsonLd } from "@/lib/jsonld";
+import { ContentFreshnessBadge } from "@/components/content-freshness-badge";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://vykoupim-nemovitost.cz/caste-dotazy" },
@@ -81,6 +82,7 @@ export default function CasteDotazyPage(): React.ReactElement {
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    dateModified: "2026-03-09",
     mainEntity: FAQ_ITEMS.map((item) => ({
       "@type": "Question",
       name: item.question,
@@ -103,6 +105,9 @@ export default function CasteDotazyPage(): React.ReactElement {
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
             Časté dotazy k výkupu nemovitostí
           </h1>
+          <div className="mt-3">
+            <ContentFreshnessBadge date="2026-03-09" />
+          </div>
           <p className="mt-4 text-lg text-slate-600">
             Připravili jsme odpovědi na nejčastější otázky, které nám naši
             klienti pokládají. Pokud nenajdete odpověď na svou otázku,{" "}

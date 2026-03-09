@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { LeadMagnetForm } from "@/components/lead-magnet-form";
+import { ContentFreshnessBadge } from "@/components/content-freshness-badge";
 
 export const metadata: Metadata = {
   alternates: {
@@ -28,6 +29,9 @@ export default function PruvodceVykupemPage(): React.ReactElement {
           <h1 className="mb-4 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
             Stáhněte si zdarma: Průvodce rychlým výkupem nemovitosti
           </h1>
+          <div className="mt-3">
+            <ContentFreshnessBadge date="2026-03-09" />
+          </div>
           <p className="mb-8 text-lg text-slate-600 sm:text-xl">
             Vše, co potřebujete vědět o prodeji nemovitosti — od prvního
             kontaktu po předání peněz. Bez registrace, bez závazků.

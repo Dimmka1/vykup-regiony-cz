@@ -1578,6 +1578,7 @@ export default async function BlogArticlePage({
     "@type": "Article",
     headline: article.title,
     datePublished: article.date,
+    dateModified: "2026-03-09",
     author: {
       "@type": "Organization",
       name: "Vykoupím Nemovitost",

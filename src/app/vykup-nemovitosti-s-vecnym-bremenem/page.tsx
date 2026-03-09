@@ -14,6 +14,7 @@ import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 import { AllRegionsSection } from "@/components/all-regions-section";
 import { getRequestHost } from "@/lib/request-host";
+import { ContentFreshnessBadge } from "@/components/content-freshness-badge";
 
 export const metadata: Metadata = {
   alternates: {
@@ -91,6 +92,7 @@ export default async function VykupNemovitostiSVecnymBremenem(): Promise<React.R
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    dateModified: "2026-03-09",
     mainEntity: FAQ_ITEMS.map((item) => ({
       "@type": "Question",
       name: item.question,
@@ -139,6 +141,9 @@ export default async function VykupNemovitostiSVecnymBremenem(): Promise<React.R
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
             Výkup nemovitosti s věcným břemenem
           </h1>
+          <div className="mt-3">
+            <ContentFreshnessBadge date="2026-03-09" />
+          </div>
           <p className="mt-4 text-lg text-slate-600">
             Vlastníte nemovitost zatíženou věcným břemenem a nevíte, jak ji
             prodat? Věcné břemeno - ať už jde o právo doživotního bydlení,

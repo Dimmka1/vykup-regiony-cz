@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Menu, Phone, X } from "lucide-react";
+import { GoogleReviewsBadge } from "@/components/google-reviews-badge";
 
 /** Region keys that have a dark hero - header stays transparent */
 const REGION_KEYS = new Set([
@@ -67,6 +68,11 @@ export function SiteHeader({ phone = "+420 776 424 145" }: SiteHeaderProps) {
           >
             Výkup Nemovitostí
           </Link>
+          <div className="hidden md:block">
+            <GoogleReviewsBadge
+              variant={showSolid ? "header" : "header-dark"}
+            />
+          </div>
           <Link
             href="/jak-to-funguje"
             className={`hidden min-h-[48px] items-center text-sm font-medium transition-colors hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 md:inline-flex ${
@@ -149,6 +155,9 @@ export function SiteHeader({ phone = "+420 776 424 145" }: SiteHeaderProps) {
       {mobileOpen && (
         <div className="border-b border-slate-200 bg-white px-6 py-4 md:hidden">
           <div className="flex flex-col gap-3">
+            <div className="pb-2">
+              <GoogleReviewsBadge variant="header" />
+            </div>
             <Link
               href="/jak-to-funguje"
               className="min-h-[48px] text-sm font-medium text-slate-700 hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"

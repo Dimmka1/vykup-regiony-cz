@@ -4,6 +4,7 @@ import type { ReactElement } from "react";
 import { useCallback, useState } from "react";
 import { Phone } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
+import { useFieldTracking } from "@/hooks/use-field-tracking";
 
 type CallbackStatus = "idle" | "open" | "submitting" | "success" | "error";
 
@@ -21,6 +22,7 @@ export function CallbackForm({ regionName }: CallbackFormProps): ReactElement {
   const [status, setStatus] = useState<CallbackStatus>("idle");
   const [phone, setPhone] = useState("");
   const [error, setError] = useState("");
+  const { getFieldProps, trackError } = useFieldTracking("callback_form");
 
   const isPhoneValid = CZ_PHONE_REGEX.test(phone.trim());
 
@@ -35,6 +37,7 @@ export function CallbackForm({ regionName }: CallbackFormProps): ReactElement {
 
       if (!isPhoneValid) {
         setError("Zadejte telefon ve formátu +420 xxx xxx xxx");
+        trackError("callback-phone");
         return;
       }
 
@@ -65,7 +68,7 @@ export function CallbackForm({ regionName }: CallbackFormProps): ReactElement {
         setError("Odeslání se nepodařilo. Zkuste to prosím znovu.");
       }
     },
-    [phone, isPhoneValid, regionName],
+    [phone, isPhoneValid, regionName, trackError],
   );
 
   if (status === "success") {
@@ -109,6 +112,7 @@ export function CallbackForm({ regionName }: CallbackFormProps): ReactElement {
           inputMode="tel"
           autoComplete="tel"
           placeholder="+420 xxx xxx xxx"
+          {...getFieldProps("callback-phone")}
           value={phone}
           onChange={(e) => {
             setPhone(normalizePhone(e.target.value));

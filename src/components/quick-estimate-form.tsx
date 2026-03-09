@@ -4,6 +4,7 @@ import { useState, useCallback, type ReactElement } from "react";
 import { MapPin, Phone, ArrowRight, CheckCircle, Loader2 } from "lucide-react";
 import { resolveRegionByPsc, type PscLookupResult } from "@/lib/psc-regions";
 import { trackEvent } from "@/lib/analytics";
+import { useFieldTracking } from "@/hooks/use-field-tracking";
 
 /** Average byt price per m² by region — used for quick range estimate */
 const REGION_AVG_PRICES: Record<string, number> = {
@@ -62,6 +63,7 @@ export function QuickEstimateForm({
   const [phone, setPhone] = useState("");
   const [phoneError, setPhoneError] = useState("");
   const [submitStatus, setSubmitStatus] = useState<SubmitStatus>("idle");
+  const { getFieldProps } = useFieldTracking("quick_estimate_form");
 
   const handlePscSubmit = useCallback(
     (e: React.FormEvent) => {
@@ -159,6 +161,7 @@ export function QuickEstimateForm({
               inputMode="tel"
               autoComplete="tel"
               placeholder="+420 xxx xxx xxx"
+              {...getFieldProps("qe-phone")}
               value={phone}
               onChange={(e) => {
                 setPhone(e.target.value.replace(/[^\d+\s]/g, "").slice(0, 20));
@@ -214,6 +217,7 @@ export function QuickEstimateForm({
             type="text"
             inputMode="numeric"
             placeholder="Zadejte PSČ (např. 150 00)"
+            {...getFieldProps("qe-psc")}
             value={psc}
             onChange={(e) => {
               setPsc(e.target.value.replace(/[^\d\s]/g, "").slice(0, 6));

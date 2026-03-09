@@ -4,6 +4,7 @@ import type { ReactElement } from "react";
 import { useRouter } from "next/navigation";
 import { useCallback, useMemo, useRef, useState } from "react";
 import { trackEvent } from "@/lib/analytics";
+import { useFieldTracking } from "@/hooks/use-field-tracking";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
@@ -47,6 +48,7 @@ export function PpcLeadForm({
   const [errorMessage, setErrorMessage] = useState<string>("");
   const formRef = useRef<HTMLFormElement>(null);
   const router = useRouter();
+  const { getFieldProps, trackError } = useFieldTracking("ppc_lead_form");
 
   const isPhoneValid = useMemo(
     () => CZ_PHONE_REGEX.test(formData.phone.trim()),
@@ -62,6 +64,8 @@ export function PpcLeadForm({
         setErrorMessage(
           "Vyplňte prosím jméno, telefon a souhlas se zpracováním údajů.",
         );
+        if (!isNameValid) trackError("ppc-name");
+        if (!isPhoneValid) trackError("ppc-phone");
         return;
       }
 
@@ -121,6 +125,7 @@ export function PpcLeadForm({
       utmMedium,
       utmCampaign,
       router,
+      trackError,
     ],
   );
 
@@ -151,6 +156,7 @@ export function PpcLeadForm({
         <select
           id="ppc-property-type"
           className="mt-1 min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]"
+          {...getFieldProps("ppc-property-type")}
           value={formData.propertyType}
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, propertyType: e.target.value }))
@@ -171,6 +177,7 @@ export function PpcLeadForm({
           id="ppc-name"
           className="mt-1 min-h-11 w-full rounded border border-slate-300 px-3 py-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]"
           autoComplete="name"
+          {...getFieldProps("ppc-name")}
           value={formData.name}
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, name: e.target.value }))
@@ -189,6 +196,7 @@ export function PpcLeadForm({
           placeholder="+420 777 123 456"
           inputMode="tel"
           autoComplete="tel"
+          {...getFieldProps("ppc-phone")}
           value={formData.phone}
           onChange={(e) =>
             setFormData((prev) => ({

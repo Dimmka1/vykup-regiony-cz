@@ -4,6 +4,7 @@ import type { ReactElement } from "react";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { trackEvent } from "@/lib/analytics";
+import { useFieldTracking } from "@/hooks/use-field-tracking";
 import type { AnalyticsEventName } from "@/lib/analytics";
 
 /* ── GTM form-step tracking (VR-129) ─────────────────────────── */
@@ -130,6 +131,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const formRef = useRef<HTMLFormElement>(null);
   const router = useRouter();
+  const { getFieldProps, trackError } = useFieldTracking("lead_form");
 
   // VR-129: Track step 1 on mount
   useEffect(() => {
@@ -159,20 +161,37 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
 
   const validateStep1 = useCallback((): Record<string, string> => {
     const errors: Record<string, string> = {};
-    if (!isAddressValid) errors["address"] = "Zadejte ulici";
-    if (!isCityValid) errors["city"] = "Zadejte město";
-    if (!isPostalCodeValid) errors["postal-code"] = "PSČ ve formátu 123 45";
+    if (!isAddressValid) {
+      errors["address"] = "Zadejte ulici";
+      trackError("address", 2);
+    }
+    if (!isCityValid) {
+      errors["city"] = "Zadejte město";
+      trackError("city", 2);
+    }
+    if (!isPostalCodeValid) {
+      errors["postal-code"] = "PSČ ve formátu 123 45";
+      trackError("postal-code", 2);
+    }
     return errors;
-  }, [isAddressValid, isCityValid, isPostalCodeValid]);
+  }, [isAddressValid, isCityValid, isPostalCodeValid, trackError]);
 
   const validateStep2 = useCallback((): Record<string, string> => {
     const errors: Record<string, string> = {};
-    if (!isNameValid) errors["lead-name"] = "Zadejte jméno";
-    if (!isPhoneValid)
+    if (!isNameValid) {
+      errors["lead-name"] = "Zadejte jméno";
+      trackError("lead-name", 3);
+    }
+    if (!isPhoneValid) {
       errors["lead-phone"] = "Zadejte telefon ve formátu +420 777 123 456";
-    if (!formData.consent) errors["consent"] = "Potřebujeme váš souhlas";
+      trackError("lead-phone", 3);
+    }
+    if (!formData.consent) {
+      errors["consent"] = "Potřebujeme váš souhlas";
+      trackError("consent", 3);
+    }
     return errors;
-  }, [isNameValid, isPhoneValid, formData.consent]);
+  }, [isNameValid, isPhoneValid, formData.consent, trackError]);
 
   const handleNextStep = (): void => {
     if (currentStep === 0) {
@@ -349,6 +368,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
           <select
             id="property-type"
             className="input-focus-glow min-h-[52px] w-full rounded-xl border border-slate-300 px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]"
+            {...getFieldProps("property-type", 1)}
             value={formData.propertyType}
             onChange={(event) =>
               setFormData((prev) => ({
@@ -369,6 +389,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
           <select
             id="situation-type"
             className="input-focus-glow min-h-[52px] w-full rounded-xl border border-slate-300 px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]"
+            {...getFieldProps("situation-type", 1)}
             value={formData.situationType}
             onChange={(event) =>
               setFormData((prev) => ({
@@ -397,6 +418,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
               className={`input-focus-glow mt-1 min-h-[52px] w-full rounded-xl border ${inputBorderClass("address", fieldErrors)} px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]`}
               placeholder="Např. Revoluční 12"
               autoComplete="street-address"
+              {...getFieldProps("address", 2)}
               enterKeyHint="next"
               value={formData.address}
               onChange={(event) => {
@@ -431,6 +453,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
                 className={`input-focus-glow mt-1 min-h-[52px] w-full rounded-xl border ${inputBorderClass("city", fieldErrors)} px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]`}
                 placeholder="Např. Brno"
                 autoComplete="address-level2"
+                {...getFieldProps("city", 2)}
                 enterKeyHint="next"
                 value={formData.city}
                 onChange={(event) => {
@@ -464,6 +487,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
                 className={`input-focus-glow mt-1 min-h-[52px] w-full rounded-xl border ${inputBorderClass("postal-code", fieldErrors)} px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]`}
                 placeholder="123 45"
                 inputMode="numeric"
+                {...getFieldProps("postal-code", 2)}
                 autoComplete="postal-code"
                 enterKeyHint="next"
                 maxLength={6}
@@ -513,6 +537,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
               className={`input-focus-glow mt-1 min-h-[52px] w-full rounded-xl border ${inputBorderClass("lead-name", fieldErrors)} px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]`}
               value={formData.name}
               autoComplete="name"
+              {...getFieldProps("lead-name", 3)}
               enterKeyHint="next"
               onChange={(event) => {
                 setFormData((prev) => ({ ...prev, name: event.target.value }));
@@ -543,6 +568,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
               placeholder="+420 777 123 456"
               inputMode="tel"
               autoComplete="tel"
+              {...getFieldProps("lead-phone", 3)}
               enterKeyHint="send"
               value={formData.phone}
               onChange={(event) => {
@@ -577,6 +603,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
               className="input-focus-glow mt-1 min-h-[52px] w-full rounded-xl border border-slate-300 px-3 py-3 text-base transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]"
               placeholder="jan@example.cz"
               autoComplete="email"
+              {...getFieldProps("lead-email", 3)}
               enterKeyHint="next"
               value={formData.email}
               onChange={(event) =>

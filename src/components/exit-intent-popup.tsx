@@ -4,6 +4,7 @@ import type { ReactElement } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { X } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
+import { useFieldTracking } from "@/hooks/use-field-tracking";
 
 const LS_KEY_SHOWN = "exit_popup_shown";
 const LS_KEY_FORM_SUBMITTED = "form_submitted";
@@ -67,6 +68,7 @@ export function ExitIntentPopup(): ReactElement | null {
     "idle" | "submitting" | "success" | "error"
   >("idle");
   const triggeredRef = useRef(false);
+  const { getFieldProps } = useFieldTracking("exit_intent_form");
 
   const show = useCallback(() => {
     if (triggeredRef.current || wasAlreadyShown() || wasFormSubmitted()) return;
@@ -178,6 +180,7 @@ export function ExitIntentPopup(): ReactElement | null {
                   inputMode="tel"
                   autoComplete="tel"
                   placeholder="+420 777 123 456"
+                  {...getFieldProps("exit-phone")}
                   className="min-h-12 w-full rounded-lg border border-slate-300 px-4 py-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]"
                   value={phone}
                   onChange={(e) => setPhone(normalizePhone(e.target.value))}

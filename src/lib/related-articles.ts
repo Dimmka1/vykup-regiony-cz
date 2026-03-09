@@ -84,6 +84,11 @@ const ALL_PAGES: Record<string, RelatedArticle> = {
     title: "Výkup spoluvlastnického podílu",
     description: "Odkoupíme váš podíl na nemovitosti rychle a férově.",
   },
+  "vykup-pred-drazbou": {
+    href: "/vykup-pred-drazbou",
+    title: "Výkup před dražbou",
+    description: "Prodejte nemovitost před nucenou dražbou za férovou cenu.",
+  },
   "zpetny-najem": {
     href: "/zpetny-najem",
     title: "Zpětný nájem",
@@ -184,6 +189,12 @@ const RELATED_MAP: Record<string, string[]> = {
     "vykup-pri-dedictvi",
     "blog/jak-rychle-prodat-nemovitost",
     "vykup-bytu",
+  ],
+  "vykup-pred-drazbou": [
+    "vykup-pri-exekuci",
+    "zpetny-najem",
+    "blog/nemovitost-v-exekuci-pruvodce",
+    "vykup-nemovitosti-s-hypotekou",
   ],
   "zpetny-najem": [
     "vykup-pri-exekuci",

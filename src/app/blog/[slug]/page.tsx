@@ -1606,6 +1606,13 @@ export default async function BlogArticlePage({
                 year: "numeric",
               })}
             </time>
+            <span className="mx-2 text-slate-300">·</span>
+            <Link
+              href="/o-nas"
+              className="text-sm text-slate-500 transition-colors hover:text-emerald-600"
+            >
+              Vykoupím Nemovitost
+            </Link>
             <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
               {article.title}
             </h1>

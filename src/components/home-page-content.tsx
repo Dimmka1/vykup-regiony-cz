@@ -1,5 +1,6 @@
 import { safeJsonLd } from "@/lib/jsonld";
 import { SocialProofBar } from "@/components/social-proof-bar";
+import { MortgageMotivator } from "@/components/mortgage-motivator";
 import { getThemeStyle } from "@/lib/theme-colors";
 import type { ReactElement } from "react";
 import Image from "next/image";
@@ -506,6 +507,9 @@ export function HomePageContent({
       </section>
 
       <SocialProofBar />
+
+      {/* ===== MORTGAGE MOTIVATOR ===== */}
+      <MortgageMotivator />
 
       {/* ===== MARKET INFO ===== */}
       {region.marketInfo && (

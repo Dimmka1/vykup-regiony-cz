@@ -89,6 +89,12 @@ const ALL_PAGES: Record<string, RelatedArticle> = {
     title: "Zpětný nájem",
     description: "Prodejte nemovitost a zůstaňte bydlet díky zpětnému nájmu.",
   },
+  "oddluzeni-nemovitosti": {
+    href: "/oddluzeni-nemovitosti",
+    title: "Oddlužení nemovitosti",
+    description:
+      "Rychlé oddlužení nemovitosti výkupem — férová cena, peníze do 48 hodin.",
+  },
 };
 
 /** Mapping: page key → array of related page keys */
@@ -190,6 +196,12 @@ const RELATED_MAP: Record<string, string[]> = {
     "vykup-nemovitosti-s-hypotekou",
     "blog/jak-rychle-prodat-nemovitost",
     "vykup-bytu",
+  ],
+  "oddluzeni-nemovitosti": [
+    "vykup-pri-exekuci",
+    "vykup-nemovitosti-s-hypotekou",
+    "zpetny-najem",
+    "blog/nemovitost-v-exekuci-pruvodce",
   ],
 };
 

@@ -15,6 +15,7 @@ const CONTENT_PATHS = [
   { path: "/vykup-nemovitosti-s-hypotekou", priority: 0.8 },
   { path: "/vykup-nemovitosti-s-vecnym-bremenem", priority: 0.8 },
   { path: "/zpetny-najem", priority: 0.8 },
+  { path: "/oddluzeni-nemovitosti", priority: 0.8 },
   { path: "/vykup-bytu", priority: 0.8 },
   { path: "/vykup-domu", priority: 0.8 },
   { path: "/vykup-pozemku", priority: 0.8 },

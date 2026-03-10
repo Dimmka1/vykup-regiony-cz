@@ -8,6 +8,7 @@ import dynamic from "next/dynamic";
 import { CtaLink } from "@/components/cta-link";
 import { CallbackForm } from "@/components/callback-form";
 import { PropertyEstimator } from "@/components/property-estimator";
+import { ValuationCalculator } from "@/components/valuation-calculator";
 import { ScrollTracker } from "@/components/scroll-tracker";
 import { HeroImage } from "@/components/hero-image";
 import { FloatingDesktopCta } from "@/components/floating-desktop-cta";
@@ -947,6 +948,7 @@ export function HomePageContent({
         </div>
       </section>
       <PropertyEstimator regionKey={region.key} />
+      <ValuationCalculator regionKey={region.key} />
 
       {/* ===== NEARBY REGIONS ===== */}
       <NearbyRegions regionKey={region.key} currentHost={currentHost} />

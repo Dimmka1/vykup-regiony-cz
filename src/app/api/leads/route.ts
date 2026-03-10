@@ -34,6 +34,20 @@ const quickEstimateSchema = z.object({
   psc: z.string().optional(),
 });
 
+const valuationReportSchema = z.object({
+  type: z.literal("valuation-report"),
+  email: z.string().email(),
+  phone: z.string().regex(/^(\+?420|00420)?\s?\d{3}\s?\d{3}\s?\d{3}$/),
+  region: z.string().min(1),
+  property_type: z.string().min(1),
+  valuation_data: z.object({
+    marketEstimate: z.number(),
+    vykupMin: z.number(),
+    vykupMax: z.number(),
+    min: z.number(),
+    max: z.number(),
+  }),
+});
 type LeadData = z.infer<typeof leadSchema>;
 
 interface CallbackNotificationPayload {
@@ -370,6 +384,59 @@ export async function POST(request: Request): Promise<NextResponse> {
     ) {
       return NextResponse.json(
         { ok: true, lead_id: "honeypot-discarded" },
+        { status: 200 },
+      );
+    }
+
+    const isValuationReport =
+      typeof (payload as Record<string, unknown>).type === "string" &&
+      (payload as Record<string, unknown>).type === "valuation-report";
+
+    if (isValuationReport) {
+      const vrResult = valuationReportSchema.safeParse(payload);
+      if (!vrResult.success) {
+        return NextResponse.json(
+          { ok: false, code: "VALIDATION_ERROR" },
+          { status: 400 },
+        );
+      }
+
+      const leadId = `vr_${Date.now().toString(36)}`;
+      const vrData = vrResult.data;
+
+      const vrPayload: CallbackNotificationPayload = {
+        lead_id: leadId,
+        timestamp: new Date().toISOString(),
+        ip: clientIp,
+        data: {
+          type: "callback",
+          phone: vrData.phone,
+          source: "valuation-report",
+          region: vrData.region,
+        },
+      };
+
+      const vrResults = await Promise.allSettled([
+        sendCallbackTelegramNotification(vrPayload),
+      ]);
+
+      vrResults.forEach((r, i) => {
+        if (r.status === "rejected") {
+          console.error(
+            `[lead-notify] Valuation report notification ${i} failed:`,
+            r.reason,
+          );
+        }
+      });
+
+      saveLeadToFile(vrPayload);
+
+      return NextResponse.json(
+        {
+          ok: true,
+          lead_id: leadId,
+          message: "Valuation report lead accepted",
+        },
         { status: 200 },
       );
     }

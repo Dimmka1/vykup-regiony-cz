@@ -9,6 +9,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
+import { CallbackSchedulerLazy } from "@/components/callback-scheduler-lazy";
 
 export const metadata: Metadata = {
   title: "Jak funguje výkup nemovitosti | Vykoupíme Nemovitost",
@@ -170,6 +171,9 @@ export default function JakToFungujePage() {
             >
               ← Zpět na hlavní stránku
             </Link>
+          </div>
+          <div className="mt-6 flex justify-center">
+            <CallbackSchedulerLazy />
           </div>
         </div>
       </section>

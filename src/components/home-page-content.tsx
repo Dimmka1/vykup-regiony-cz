@@ -7,6 +7,7 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import { CtaLink } from "@/components/cta-link";
 import { CallbackForm } from "@/components/callback-form";
+import { CallbackSchedulerLazy } from "@/components/callback-scheduler-lazy";
 import { PropertyEstimator } from "@/components/property-estimator";
 import { ScrollTracker } from "@/components/scroll-tracker";
 import { HeroImage } from "@/components/hero-image";
@@ -482,6 +483,9 @@ export function HomePageContent({
             </div>
             <div className="mt-4">
               <CallbackForm regionName={region.name} />
+            </div>
+            <div className="mt-3">
+              <CallbackSchedulerLazy />
             </div>
             <p className="mt-3 text-sm text-slate-300">
               Zálohu vyplácíme při podpisu smlouvy. Celý proces trvá 3–7 dní.

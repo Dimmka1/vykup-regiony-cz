@@ -17,6 +17,16 @@ const leadSchema = z.object({
   consent_gdpr: z.literal(true),
   email: z.string().email().optional().or(z.literal("")),
   website: z.string().optional(),
+  photo_count: z.number().int().min(0).max(5).optional(),
+  photo_thumbnails: z
+    .array(
+      z.object({
+        fileName: z.string(),
+        thumbnail: z.string(),
+      }),
+    )
+    .max(5)
+    .optional(),
 });
 
 const callbackSchema = z.object({
@@ -43,11 +53,21 @@ interface CallbackNotificationPayload {
   data: { type: "callback"; phone: string; source: string; region: string };
 }
 
+interface PhotoThumbnail {
+  fileName: string;
+  thumbnail: string;
+}
+
 interface LeadNotificationPayload {
   lead_id: string;
   timestamp: string;
   ip: string;
-  data: Omit<LeadData, "website" | "consent_gdpr">;
+  data: Omit<
+    LeadData,
+    "website" | "consent_gdpr" | "photo_count" | "photo_thumbnails"
+  >;
+  photo_count: number;
+  photo_thumbnails: PhotoThumbnail[];
 }
 
 async function sendWebhookNotification(
@@ -158,6 +178,9 @@ async function sendTelegramNotification(
     `📋 <b>Situace:</b> ${data.situation_type}`,
     `🕐 <b>Čas:</b> ${payload.timestamp}`,
     `🆔 <b>ID:</b> ${payload.lead_id}`,
+    ...(payload.photo_count > 0
+      ? [`📷 <b>Fotky:</b> ${payload.photo_count}`]
+      : []),
   ].join("\n");
 
   const res = await fetch(
@@ -494,6 +517,8 @@ export async function POST(request: Request): Promise<NextResponse> {
         region: validatedData.region,
         situation_type: validatedData.situation_type,
       },
+      photo_count: validatedData.photo_count ?? 0,
+      photo_thumbnails: validatedData.photo_thumbnails ?? [],
     };
 
     const notifyResults = await Promise.allSettled([

@@ -14,6 +14,7 @@ export type AnalyticsEventName =
   | "form_step_1_type"
   | "form_step_2_address"
   | "form_step_3_contact"
+  | "form_step_4_photos"
   | "form_step_submit"
   | "phone_click"
   | "lead_magnet_download"

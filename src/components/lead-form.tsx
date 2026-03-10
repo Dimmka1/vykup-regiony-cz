@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { trackEvent } from "@/lib/analytics";
 import type { AnalyticsEventName } from "@/lib/analytics";
+import { PhotoUpload } from "@/components/photo-upload";
+import type { PhotoItem } from "@/components/photo-upload";
 
 /* ── GTM form-step tracking (VR-129) ─────────────────────────── */
 
@@ -42,7 +44,7 @@ function pushFormStepEvent(step: number, region: string): void {
 }
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
-type FormStep = 0 | 1 | 2;
+type FormStep = 0 | 1 | 2 | 3;
 
 interface LeadFormProps {
   regionName: string;
@@ -75,6 +77,11 @@ const STEPS: readonly StepMeta[] = [
     description: "Lokalita pomůže se správným oceněním",
   },
   { key: 2, title: "Kontakt", description: "Kam vám máme poslat nabídku" },
+  {
+    key: 3,
+    title: "Fotky",
+    description: "Nahrajte fotky nemovitosti (nepovinné)",
+  },
 ] as const;
 
 const INITIAL_FORM: FormDataState = {
@@ -124,6 +131,7 @@ function inputBorderClass(
 
 export function LeadForm({ regionName }: LeadFormProps): ReactElement {
   const [formData, setFormData] = useState<FormDataState>(INITIAL_FORM);
+  const [photos, setPhotos] = useState<PhotoItem[]>([]);
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [currentStep, setCurrentStep] = useState<FormStep>(0);
@@ -198,6 +206,21 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
       setCurrentStep(2);
       pushFormStepEvent(2, regionName);
       setErrorMessage("");
+      return;
+    }
+
+    if (currentStep === 2) {
+      const errors = validateStep2();
+      if (Object.keys(errors).length > 0) {
+        setFieldErrors(errors);
+        setErrorMessage("Zkontrolujte prosím kontakt a souhlas GDPR.");
+        scrollToFirstError(errors);
+        return;
+      }
+
+      setFieldErrors({});
+      setCurrentStep(3);
+      setErrorMessage("");
     }
   };
 
@@ -214,12 +237,15 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
   ): Promise<void> => {
     event.preventDefault();
 
-    const errors = validateStep2();
-    if (Object.keys(errors).length > 0) {
-      setFieldErrors(errors);
-      setErrorMessage("Zkontrolujte prosím kontakt, adresu a souhlas GDPR.");
-      scrollToFirstError(errors);
-      return;
+    // If submitting from step 2 (skip photos) or step 3, validate contact
+    if (currentStep === 2) {
+      const errors = validateStep2();
+      if (Object.keys(errors).length > 0) {
+        setFieldErrors(errors);
+        setErrorMessage("Zkontrolujte prosím kontakt a souhlas GDPR.");
+        scrollToFirstError(errors);
+        return;
+      }
     }
 
     if (!isFormValid) {
@@ -232,6 +258,13 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
     setErrorMessage("");
 
     try {
+      const photoCount = photos.length;
+      // Build photo thumbnails for payload (small base64 strings)
+      const photoThumbnails = photos.map((p) => ({
+        fileName: p.fileName,
+        thumbnail: p.thumbnailBase64,
+      }));
+
       const response = await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -247,6 +280,8 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
           consent_gdpr: formData.consent,
           email: formData.email,
           website: formData.website,
+          photo_count: photoCount,
+          ...(photoCount > 0 ? { photo_thumbnails: photoThumbnails } : {}),
         }),
       });
 
@@ -256,10 +291,11 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
 
       // VR-129: Track form submission
       trackEvent("form_submit", {
-        step: 4,
+        step: 5,
         stepName: "submit",
         region: regionName,
         utm_source: getUtmSource(),
+        photo_count: photoCount,
       });
       trackEvent("lead_form_submit_success", {
         form_name: "lead_form",
@@ -273,6 +309,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
       router.push("/dekujeme");
       setCurrentStep(0);
       setFormData(INITIAL_FORM);
+      setPhotos([]);
     } catch (_error) {
       trackEvent("lead_form_submit_error", {
         form_name: "lead_form",
@@ -316,7 +353,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
         <p className="text-sm text-slate-600">
           {STEPS[currentStep].description}
         </p>
-        <ol className="grid grid-cols-3 gap-2" aria-label="Průběh formuláře">
+        <ol className="grid grid-cols-4 gap-2" aria-label="Průběh formuláře">
           {STEPS.map((step, index) => {
             const isActive = step.key === currentStep;
             const isCompleted = index < currentStep;
@@ -325,7 +362,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
               <li
                 key={step.title}
                 aria-current={isActive ? "step" : undefined}
-                className={`rounded-xl px-3 py-2.5 text-center text-xs font-semibold ${
+                className={`rounded-xl px-2 py-2.5 text-center text-xs font-semibold ${
                   isActive
                     ? "bg-[var(--theme-100)] text-[var(--theme-800)]"
                     : isCompleted
@@ -628,6 +665,10 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
         </fieldset>
       ) : null}
 
+      {currentStep === 3 ? (
+        <PhotoUpload photos={photos} onPhotosChange={setPhotos} />
+      ) : null}
+
       <div className="sticky bottom-3 z-10 -mx-2 flex flex-col-reverse gap-3 rounded-xl bg-white/95 px-2 py-2 backdrop-blur sm:static sm:mx-0 sm:flex-col sm:bg-transparent sm:px-0 sm:py-0">
         {currentStep < 2 ? (
           <button
@@ -637,14 +678,37 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
           >
             Pokračovat
           </button>
-        ) : (
+        ) : currentStep === 2 ? (
           <button
-            type="submit"
-            disabled={status === "submitting"}
-            className="cta-glow btn-ripple gradient-premium inline-flex min-h-[52px] items-center justify-center rounded-xl px-6 py-3 text-base font-semibold text-white transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 disabled:opacity-70"
+            type="button"
+            onClick={handleNextStep}
+            className="cta-glow btn-ripple inline-flex min-h-[52px] items-center justify-center rounded-xl bg-[var(--theme-600)] px-5 py-3 text-base font-semibold text-white transition hover:bg-[var(--theme-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
           >
-            {status === "submitting" ? "Odesílám..." : "Odeslat poptávku"}
+            Pokračovat
           </button>
+        ) : (
+          <div className="flex flex-col gap-2">
+            <button
+              type="submit"
+              disabled={status === "submitting"}
+              className="cta-glow btn-ripple gradient-premium inline-flex min-h-[52px] items-center justify-center rounded-xl px-6 py-3 text-base font-semibold text-white transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 disabled:opacity-70"
+            >
+              {status === "submitting"
+                ? "Odesílám..."
+                : photos.length > 0
+                  ? `Odeslat s ${photos.length} ${photos.length === 1 ? "fotkou" : "fotkami"}`
+                  : "Odeslat poptávku"}
+            </button>
+            {photos.length === 0 ? (
+              <button
+                type="submit"
+                disabled={status === "submitting"}
+                className="inline-flex min-h-[44px] items-center justify-center rounded-xl border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 disabled:opacity-70"
+              >
+                Přeskočit · Odeslat bez fotek
+              </button>
+            ) : null}
+          </div>
         )}
 
         <button

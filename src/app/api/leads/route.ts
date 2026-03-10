@@ -2,6 +2,7 @@ import { appendFileSync } from "node:fs";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { calculateLeadScore } from "@/lib/lead-scoring";
+import { generateLeadToken } from "@/lib/lead-status";
 
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX = 10;
@@ -45,6 +46,7 @@ interface CallbackNotificationPayload {
 
 interface LeadNotificationPayload {
   lead_id: string;
+  token: string;
   timestamp: string;
   ip: string;
   data: Omit<LeadData, "website" | "consent_gdpr">;
@@ -66,7 +68,7 @@ async function sendWebhookNotification(
   const res = await fetch(webhookUrl, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
+    body: JSON.stringify({ ...payload, token: payload.token }),
   });
 
   if (!res.ok) {
@@ -158,6 +160,7 @@ async function sendTelegramNotification(
     `📋 <b>Situace:</b> ${data.situation_type}`,
     `🕐 <b>Čas:</b> ${payload.timestamp}`,
     `🆔 <b>ID:</b> ${payload.lead_id}`,
+    `🔗 <b>Stav:</b> https://vykoupim-nemovitost.cz/stav-poptavky?token=${payload.token}`,
   ].join("\n");
 
   const res = await fetch(
@@ -229,6 +232,8 @@ async function sendAutoReplyEmail(
     </tr>
   </table>
   <p style="font-size:18px;color:#1a56db;font-weight:bold">📞 Zavoláme vám do 30 minut!</p>
+  <p style="margin-top:16px">📊 Stav vaší poptávky můžete sledovat zde:<br>
+  <a href="https://vykoupim-nemovitost.cz/stav-poptavky?token=${payload.token}" style="color:#1a56db;font-weight:bold">Sledovat stav poptávky</a></p>
   <p>Pokud máte mezitím jakékoli dotazy, neváhejte nás kontaktovat na telefonu <strong>+420 725 877 076</strong>.</p>
   <hr style="border:none;border-top:1px solid #e2e8f0;margin:30px 0">
   <p style="font-size:12px;color:#94a3b8">Tento e-mail byl odeslán automaticky z webu vykoupím-nemovitost.cz</p>
@@ -481,10 +486,12 @@ export async function POST(request: Request): Promise<NextResponse> {
     }
 
     const leadId = `lead_${Date.now().toString(36)}`;
+    const leadToken = generateLeadToken();
     const validatedData = result.data;
 
     const notificationPayload: LeadNotificationPayload = {
       lead_id: leadId,
+      token: leadToken,
       timestamp: new Date().toISOString(),
       ip: clientIp,
       data: {
@@ -529,6 +536,7 @@ export async function POST(request: Request): Promise<NextResponse> {
       {
         ok: true,
         lead_id: leadId,
+        token: leadToken,
         message: "Lead accepted",
         score: leadScore.score,
         tier: leadScore.tier,

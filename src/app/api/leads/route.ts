@@ -17,6 +17,7 @@ const leadSchema = z.object({
   consent_gdpr: z.literal(true),
   email: z.string().email().optional().or(z.literal("")),
   website: z.string().optional(),
+  tag: z.string().optional(),
 });
 
 const callbackSchema = z.object({
@@ -156,6 +157,7 @@ async function sendTelegramNotification(
     `🏘️ <b>Typ:</b> ${data.property_type}`,
     `📍 <b>Region:</b> ${data.region}`,
     `📋 <b>Situace:</b> ${data.situation_type}`,
+    ...(data.tag ? [`🏷️ <b>Tag:</b> ${data.tag}`] : []),
     `🕐 <b>Čas:</b> ${payload.timestamp}`,
     `🆔 <b>ID:</b> ${payload.lead_id}`,
   ].join("\n");
@@ -493,6 +495,7 @@ export async function POST(request: Request): Promise<NextResponse> {
         property_type: validatedData.property_type,
         region: validatedData.region,
         situation_type: validatedData.situation_type,
+        ...(validatedData.tag ? { tag: validatedData.tag } : {}),
       },
     };
 

@@ -69,7 +69,23 @@ export default async function RootLayout({
 
   return (
     <html lang="cs" className={inter.variable}>
-      <head></head>
+      <head>
+        <link
+          rel="alternate"
+          hrefLang="cs"
+          href="https://vykoupim-nemovitost.cz/"
+        />
+        <link
+          rel="alternate"
+          hrefLang="uk"
+          href="https://vykoupim-nemovitost.cz/uk"
+        />
+        <link
+          rel="alternate"
+          hrefLang="x-default"
+          href="https://vykoupim-nemovitost.cz/"
+        />
+      </head>
       <body
         className={`${inter.className} flex min-h-screen flex-col`}
         style={themeStyle}

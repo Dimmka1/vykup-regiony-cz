@@ -127,6 +127,18 @@ export function SiteFooter() {
             </nav>
           </div>
 
+          {/* Jazyky */}
+          <div>
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
+              Jazyky
+            </h3>
+            <nav aria-label="Jazyky" className="flex flex-col gap-3">
+              <Link href="/uk" className={linkClass}>
+                🇺🇦 Українська
+              </Link>
+            </nav>
+          </div>
+
           {/* Kontakt */}
           <div>
             <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">

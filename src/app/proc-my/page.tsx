@@ -1,3 +1,4 @@
+import { isCapitalEnabled, formatCapitalLabel } from "@/lib/capital";
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
@@ -182,6 +183,49 @@ export default function ProcMyPage() {
                 })}
               </tbody>
             </table>
+          </div>
+        </section>
+
+        {/* Vlastní kapitál — why we pay instantly */}
+        <section className="mx-auto max-w-5xl px-6 pb-16">
+          <div className="rounded-2xl border border-emerald-100 bg-emerald-50/50 p-8">
+            <h2 className="mb-4 text-xl font-bold text-slate-900">
+              Proč vyplácíme okamžitě?
+            </h2>
+            <p className="leading-relaxed text-slate-700">
+              Disponujeme vlastním kapitálem — proto vyplácíme okamžitě, bez
+              čekání na banku.{" "}
+              {isCapitalEnabled() && (
+                <>
+                  Aktuálně disponujeme kapitálem ve výši{" "}
+                  <strong className="text-emerald-700">
+                    {formatCapitalLabel()}
+                  </strong>
+                  , díky kterému dokážeme celý proces výkupu financovat sami —
+                  rychle, transparentně a bez zbytečných průtahů.
+                </>
+              )}
+              {!isCapitalEnabled() && (
+                <>
+                  Díky tomu dokážeme celý proces výkupu financovat sami —
+                  rychle, transparentně a bez zbytečných průtahů.
+                </>
+              )}
+            </p>
+            <ul className="mt-4 space-y-2 text-sm text-slate-600">
+              <li className="flex items-start gap-2">
+                <span className="mt-0.5 text-emerald-600">✓</span>
+                Žádné čekání na schválení úvěru
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-0.5 text-emerald-600">✓</span>
+                Záloha vyplacena při podpisu smlouvy
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-0.5 text-emerald-600">✓</span>
+                Doplatek do 48 hodin po zápisu do katastru
+              </li>
+            </ul>
           </div>
         </section>
 

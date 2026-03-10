@@ -1,3 +1,5 @@
+import { CapitalBadge } from "@/components/capital-badge";
+import { isCapitalEnabled, formatCapitalLabel } from "@/lib/capital";
 import { safeJsonLd } from "@/lib/jsonld";
 import { SocialProofBar } from "@/components/social-proof-bar";
 import { getThemeStyle } from "@/lib/theme-colors";
@@ -460,6 +462,7 @@ export function HomePageContent({
                 {badge}
               </li>
             ))}
+            <CapitalBadge variant="hero" />
           </HeroStagger>
 
           <HeroStagger delay={4}>
@@ -837,6 +840,7 @@ export function HomePageContent({
                     </div>
                   ))}
                 </div>
+                <CapitalBadge variant="section" className="mt-6" />
                 <div className="mt-6">
                   <Link
                     href="/proc-my"

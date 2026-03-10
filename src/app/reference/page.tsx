@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { AllRegionsSectionClient } from "@/components/all-regions-section-client";
+import { VideoTestimonialsSection } from "@/components/video-testimonials-section";
 
 export default function ReferencePage() {
   return (
@@ -25,11 +26,14 @@ export default function ReferencePage() {
             Reference
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-slate-300">
-            Tuto stránku právě připravujeme. Brzy zde najdete reference od
-            našich spokojených klientů.
+            Podívejte se na zkušenosti našich spokojených klientů s rychlým
+            výkupem nemovitostí.
           </p>
         </div>
       </section>
+
+      {/* AC-1: Video testimonials section with 3+ videos */}
+      <VideoTestimonialsSection />
 
       <section className="mx-auto max-w-7xl px-6 py-16 text-center">
         <h2 className="mb-4 text-2xl font-bold text-slate-900 sm:text-3xl">

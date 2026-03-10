@@ -1,5 +1,6 @@
 import { safeJsonLd } from "@/lib/jsonld";
 import { SocialProofBar } from "@/components/social-proof-bar";
+import { FeaturedVideoSection } from "@/components/featured-video-section";
 import { getThemeStyle } from "@/lib/theme-colors";
 import type { ReactElement } from "react";
 import Image from "next/image";
@@ -853,6 +854,9 @@ export function HomePageContent({
       </section>
 
       {/* ===== PROPERTY ESTIMATOR ===== */}
+
+      {/* ===== FEATURED VIDEO TESTIMONIAL (AC-2) ===== */}
+      <FeaturedVideoSection />
 
       {/* ===== COMPARISON CALCULATOR ===== */}
       <ComparisonCalculator />

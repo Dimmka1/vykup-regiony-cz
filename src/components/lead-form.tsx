@@ -360,6 +360,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
             <option value="byt">Byt</option>
             <option value="dum">Dům</option>
             <option value="podil">Podíl</option>
+            <option value="komercni">Komerční nemovitost</option>
             <option value="jine">Jiné</option>
           </select>
 

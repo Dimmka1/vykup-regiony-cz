@@ -18,6 +18,7 @@ const CONTENT_PATHS = [
   { path: "/vykup-bytu", priority: 0.8 },
   { path: "/vykup-domu", priority: 0.8 },
   { path: "/vykup-pozemku", priority: 0.8 },
+  { path: "/vykup-komercnich-nemovitosti", priority: 0.8 },
   { path: "/reference", priority: 0.6 },
   { path: "/jak-to-funguje", priority: 0.7 },
   { path: "/proc-my", priority: 0.8 },

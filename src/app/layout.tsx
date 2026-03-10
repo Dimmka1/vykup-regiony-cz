@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import dynamic from "next/dynamic";
 import { CookieConsent } from "@/components/cookie-consent";
+import { UseCaseTracker } from "@/components/use-case-tracker";
 import { TrackingPixels } from "@/components/tracking-pixels";
 
 const ExitIntentPopup = dynamic(
@@ -100,6 +101,7 @@ export default async function RootLayout({
         <ExitIntentPopup />
         <TrackingPixels />
         <SwRegister />
+        <UseCaseTracker />
         <CookieConsent />
       </body>
     </html>

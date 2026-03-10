@@ -27,6 +27,11 @@ import { DoorCards } from "@/components/door-cards";
 import { LeadForm } from "@/components/lead-form";
 import { SlotCounter } from "@/components/slot-counter";
 import {
+  PersonalizedHeroHeadline,
+  PersonalizedHeroDescription,
+  PersonalizedTestimonialCard,
+} from "@/components/personalized-hero";
+import {
   getRegionSubdomainUrl,
   isProductionHost,
   listRegions,
@@ -435,12 +440,15 @@ export function HomePageContent({
             as="h1"
             className="text-display max-w-4xl text-5xl font-extrabold leading-[1.05] text-white sm:text-6xl md:text-7xl lg:text-8xl"
           >
-            {region.h1}
+            <PersonalizedHeroHeadline defaultH1={region.h1} />
           </HeroStagger>
           <HeroStagger delay={3}>
             <p className="mt-4 hidden max-w-2xl text-base leading-relaxed text-slate-200 md:block md:text-lg">
-              {region.description}
+              <PersonalizedHeroDescription
+                defaultDescription={region.description}
+              />
             </p>
+            <PersonalizedTestimonialCard />
           </HeroStagger>
 
           <HeroStagger

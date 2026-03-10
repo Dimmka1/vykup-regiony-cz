@@ -8,6 +8,14 @@ export interface BlogPost {
 
 export const BLOG_POSTS: readonly BlogPost[] = [
   {
+    slug: "sazby-cnb-2026",
+    title: "Sazby ČNB 2026 a dopad na prodej nemovitostí",
+    excerpt:
+      "Aktuální 2T repo sazba ČNB, vliv na hypotéky a proč je výkup nemovitosti výhodnější při vysokých úrokových sazbách. Kompletní přehled pro rok 2026.",
+    date: "2026-03-10",
+    readingTime: "8 min",
+  },
+  {
     slug: "jake-dokumenty-potrebuji",
     title: "Jaké dokumenty potřebuji k výkupu nemovitosti?",
     excerpt:

@@ -8,6 +8,14 @@ export interface BlogPost {
 
 export const BLOG_POSTS: readonly BlogPost[] = [
   {
+    slug: "jak-vybrat-vykupni-firmu",
+    title: "Jak vybrat seriózní výkupní firmu: 10 bodů kontrolního seznamu",
+    excerpt:
+      "Kompletní kontrolní seznam 10 kritérií, jak poznat seriózní výkupní firmu. Varovné signály, na co si dát pozor, a FAQ pro bezpečný prodej.",
+    date: "2026-03-11",
+    readingTime: "8 min",
+  },
+  {
     slug: "jake-dokumenty-potrebuji",
     title: "Jaké dokumenty potřebuji k výkupu nemovitosti?",
     excerpt:

@@ -130,6 +130,12 @@ const RELATED_MAP: Record<string, string[]> = {
     "blog/jak-probiha-rychly-vykup",
     "vykup-nemovitosti-s-hypotekou",
   ],
+  "blog/jak-vybrat-vykupni-firmu": [
+    "blog/vykup-nemovitosti-vs-realitni-kancelar",
+    "blog/vykup-krok-za-krokem",
+    "blog/kolik-stoji-vykup",
+    "blog/5-duvodu-proc-prodat",
+  ],
   // Use case pages
   "vykup-bytu": [
     "blog/jak-rychle-prodat-nemovitost",

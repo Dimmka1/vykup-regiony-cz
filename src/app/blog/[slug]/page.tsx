@@ -1440,6 +1440,377 @@ const ARTICLES: Record<string, ArticleContent> = {
       </>
     ),
   },
+  "jak-vybrat-vykupni-firmu": {
+    title: "Jak vybrat seriózní výkupní firmu: 10 bodů kontrolního seznamu",
+    date: "2026-03-11",
+    body: (
+      <>
+        <p>
+          Rozhodli jste se prodat nemovitost přes výkupní firmu? Skvělá volba —
+          rychlý výkup je nejefektivnější způsob, jak získat peníze za svůj byt,
+          dům nebo pozemek během několika dnů. Jenže na českém trhu působí
+          desítky firem a ne všechny hrají fér. Jak mezi nimi rozpoznat tu
+          seriózní? V tomto článku najdete kompletní kontrolní seznam deseti
+          kritérií, podle kterých spolehlivě odlišíte důvěryhodnou výkupní firmu
+          od pochybné. Přečtěte si je, než podepíšete cokoliv.
+        </p>
+
+        <h2>Proč záleží na výběru správné firmy</h2>
+        <p>
+          Prodej nemovitosti je jedním z největších finančních rozhodnutí v
+          životě. U výkupu předáváte svůj majetek přímo firmě — bez
+          zprostředkovatele, bez aukce, bez soutěže více kupců. To přináší
+          obrovské výhody (rychlost, jistota, nulové náklady), ale také vyšší
+          nároky na důvěryhodnost protistrany. Špatná volba může znamenat
+          podhodnocenou cenu, nevýhodné smluvní podmínky nebo v extrémním
+          případě i právní komplikace. Naopak spolehlivá firma vám celý proces
+          usnadní a zajistí bezpečnou transakci od A do Z.
+        </p>
+        <p>
+          Než se pustíme do kontrolního seznamu, podívejte se, jak celý proces
+          výkupu vlastně probíhá — od prvního kontaktu po vyplacení peněz.
+          Detailní popis najdete na stránce{" "}
+          <Link
+            href="/jak-to-funguje"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Jak to funguje
+          </Link>
+          .
+        </p>
+
+        <h2>10 bodů kontrolního seznamu: jak poznat seriózní výkupní firmu</h2>
+
+        <h3>1. Ověřitelné IČO a transparentní identita</h3>
+        <p>
+          Každá seriózní firma má platné IČO zapsané v obchodním rejstříku.
+          Ověřte si ho na portálu justice.cz — zjistíte sídlo firmy, datum
+          vzniku, jednatele a základní kapitál. Dávejte pozor na firmy založené
+          teprve před několika měsíci nebo s virtuálním sídlem bez reálné
+          kanceláře. Důvěryhodná firma se za svou identitou neschovává a na
+          svých stránkách uvádí kontaktní údaje, jména jednatelů i fotografii
+          týmu.
+        </p>
+
+        <h3>2. Skutečné reference a recenze klientů</h3>
+        <p>
+          Reference jsou nejsilnější důkaz serióznosti. Hledejte recenze na
+          Google, Firmy.cz a Heurece. Ideální je, pokud firma zveřejňuje
+          jmenovité reference klientů — jméno, město a stručný popis spolupráce.
+          Podívejte se na naše{" "}
+          <Link
+            href="/reference"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            reference
+          </Link>{" "}
+          a přesvědčte se sami. Pozor na firmy bez jakýchkoliv recenzí nebo s
+          podezřele uniformními hodnoceními — ty mohou být falešné.
+        </p>
+
+        <h3>3. Bezplatná a nezávazná nabídka</h3>
+        <p>
+          Seriózní firma nikdy nevyžaduje platbu předem. Cenová nabídka musí být
+          zdarma a zcela nezávazná. Pokud po vás někdo chce &bdquo;poplatek za
+          ocenění&rdquo;, &bdquo;rezervační poplatek&rdquo; nebo jakoukoliv
+          jinou platbu před podpisem kupní smlouvy, je to varovný signál.
+          Důvěryhodná firma si nic neúčtuje — veškeré náklady na ocenění, právní
+          služby a převod hradí ze svých prostředků.
+        </p>
+
+        <h3>4. Transparentní způsob ocenění nemovitosti</h3>
+        <p>
+          Ptejte se, jak firma stanovuje cenu. Seriózní firma vám vysvětlí
+          metodiku ocenění: srovnání s podobnými nemovitostmi v lokalitě,
+          zohlednění technického stavu, právních břemen a aktuální tržní
+          situace. Nabídka by měla být v rozmezí 80 až 90 procent tržní hodnoty
+          — výrazně nižší nabídka může znamenat podhodnocení, výrazně vyšší
+          pravděpodobně skrývá háček v podmínkách smlouvy. Podrobný přehled
+          nákladů najdete v článku{" "}
+          <Link
+            href="/blog/kolik-stoji-vykup"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Kolik stojí výkup nemovitosti
+          </Link>
+          .
+        </p>
+
+        <h3>5. Advokátní úschova kupní ceny</h3>
+        <p>
+          Tento bod je naprosto zásadní. Seriózní firma vždy využívá advokátní
+          úschovu — peníze jsou uloženy u nezávislého advokáta a uvolněny až po
+          zápisu nového vlastníka do katastru nemovitostí. Tím je zajištěna
+          maximální bezpečnost transakce pro obě strany. Pokud firma navrhuje
+          přímou platbu bez úschovy nebo platbu &bdquo;na ruku&rdquo;,
+          odmítněte. Naše{" "}
+          <Link
+            href="/garance-vykupu"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            garance výkupu
+          </Link>{" "}
+          zahrnuje advokátní úschovu u každé transakce.
+        </p>
+
+        <h3>6. Profesionální kupní smlouva</h3>
+        <p>
+          Smlouvu by měl připravovat zkušený advokát, nikoliv šablona stažená z
+          internetu. Seriózní firma vám předloží smlouvu s dostatečným
+          předstihem, abyste si ji mohli prostudovat a nechat zkontrolovat
+          vlastním právníkem. Smlouva musí obsahovat přesnou identifikaci
+          nemovitosti, kupní cenu, podmínky a termíny úhrady, podmínky předání
+          nemovitosti a ujednání o odpovědnosti za vady. Nikdy nepodepisujte
+          smlouvu, které plně nerozumíte.
+        </p>
+
+        <h3>7. Dostatek času na rozhodnutí — žádný nátlak</h3>
+        <p>
+          Důvěryhodná firma vám poskytne dostatek času na rozmyšlenou. Doporučí
+          konzultaci s rodinou nebo právníkem. Netlačí na okamžitý podpis. Pokud
+          cítíte jakýkoliv nátlak — &bdquo;musíte se rozhodnout dnes&rdquo;,
+          &bdquo;nabídka platí jen do zítřka&rdquo; — je to jasný varovný
+          signál. Seriózní firma ví, že kvalitní nabídka se prodá sama. Přečtěte
+          si, proč jsme jiní než ostatní na stránce{" "}
+          <Link
+            href="/proc-my"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Proč my
+          </Link>
+          .
+        </p>
+
+        <h3>8. Zkušenosti s komplikovanými případy</h3>
+        <p>
+          Seriózní firma se neomezuje jen na bezproblémové nemovitosti. Dokáže
+          řešit výkup při exekuci, nemovitosti s věcným břemenem, nesplacenou
+          hypotékou, spoluvlastnické podíly nebo nemovitosti po dědictví. Ptejte
+          se na konkrétní zkušenosti s vaším typem situace. Specializace na
+          komplikované případy je známkou profesionality a důvěryhodnosti.
+        </p>
+
+        <h3>9. Vlastní právní tým</h3>
+        <p>
+          Firma s vlastním právním zázemím dokáže celý proces zvládnout
+          plynuleji a bezpečněji. Právníci specializující se na nemovitostní
+          právo zajistí, že smlouva chrání vaše zájmy, a pohlídají dodržení
+          všech zákonných postupů. Firma, která &bdquo;právníka nemá&rdquo; nebo
+          vás odkazuje na to, abyste si ho zajistili sami, pravděpodobně nemá
+          dostatečné zázemí pro bezpečnou transakci. Celý postup krok za krokem
+          popisujeme v článku{" "}
+          <Link
+            href="/blog/vykup-krok-za-krokem"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Výkup nemovitosti krok za krokem
+          </Link>
+          .
+        </p>
+
+        <h3>10. Jasné podmínky a termíny</h3>
+        <p>
+          Před podpisem musíte znát přesnou kupní cenu, termín vyplacení peněz,
+          datum předání nemovitosti, podmínky úschovy a jakékoliv další závazky
+          obou stran. Seriózní firma vše komunikuje písemně a srozumitelně.
+          Žádné &bdquo;domluvíme se potom&rdquo;, žádné vágní přísliby. Vše musí
+          být černé na bílém.
+        </p>
+
+        <h2>Varovné signály: na co si dát pozor</h2>
+        <p>
+          Kromě pozitivních kritérií existují i jasné červené vlajky, které by
+          vás měly varovat. Pokud narazíte na některý z těchto signálů, raději
+          od spolupráce ustupte:
+        </p>
+        <p>
+          <strong>Příliš vysoké nabídky</strong> — Pokud firma nabízí 95 nebo
+          100 procent tržní hodnoty, pravděpodobně je háček ve smlouvě. Žádná
+          firma nemůže dlouhodobě fungovat bez marže. Extrémně vysoká nabídka je
+          návnada, která se pak &bdquo;upraví&rdquo; po podpisu rezervační
+          smlouvy nebo po prohlídce.
+        </p>
+        <p>
+          <strong>Žádné IČO nebo virtuální firma</strong> — Firma bez ověřitelné
+          identity v obchodním rejstříku je nepřijatelné riziko. Stejně tak
+          firma, která komunikuje pouze přes mobilní telefon bez stálé
+          kanceláře.
+        </p>
+        <p>
+          <strong>Nátlak na rychlý podpis</strong> — Fráze jako &bdquo;musíte se
+          rozhodnout hned&rdquo;, &bdquo;jiný klient čeká&rdquo; nebo
+          &bdquo;nabídka platí jen dnes&rdquo; jsou manipulativní techniky.
+          Seriózní firma vám vždy dá čas.
+        </p>
+        <p>
+          <strong>Poplatky předem</strong> — Jakýkoliv požadavek na platbu před
+          podpisem kupní smlouvy je podvod. Žádný &bdquo;poplatek za
+          ocenění&rdquo;, &bdquo;kauce&rdquo; ani &bdquo;administrativní
+          poplatek&rdquo; neexistuje u důvěryhodných firem.
+        </p>
+        <p>
+          <strong>Odmítání advokátní úschovy</strong> — Pokud firma trvá na
+          přímé platbě nebo &bdquo;hotovostním vypořádání&rdquo;, hrozí vám
+          ztráta peněz i nemovitosti.
+        </p>
+        <p>
+          <strong>Neochota ukázat smlouvu předem</strong> — Firma, která vám
+          nedá smlouvu k prostudování s dostatečným předstihem, skrývá nevýhodné
+          podmínky.
+        </p>
+        <p>
+          <strong>Žádné reference nebo jen anonymní recenze</strong> — Firma bez
+          prokazatelné historie a bez jmenovitých referencí je riziko.
+          Nedůvěřujte recenzím typu &bdquo;pan Novák z Prahy&rdquo; bez dalších
+          ověřitelných detailů.
+        </p>
+
+        <h2>Jak postupovat krok za krokem</h2>
+        <p>
+          Teď už víte, podle čeho seriózní firmu poznat. Zde je doporučený
+          postup, jak výběr provést:
+        </p>
+        <p>
+          <strong>Krok 1: Udělejte si průzkum.</strong> Vyhledejte 3 až 5
+          výkupních firem ve vašem regionu. Projděte si jejich webové stránky,
+          recenze na Google a záznamy v obchodním rejstříku.
+        </p>
+        <p>
+          <strong>Krok 2: Získejte více nabídek.</strong> Oslovte minimálně dvě
+          až tři firmy a nechte si připravit nezávazné nabídky. Porovnejte nejen
+          cenu, ale i podmínky, komunikaci a profesionalitu.
+        </p>
+        <p>
+          <strong>Krok 3: Ptejte se na detaily.</strong> Nezůstávejte u ceny.
+          Ptejte se na způsob platby, advokátní úschovu, termíny, kdo hradí
+          náklady a jaký je právní servis. Seriózní firma odpoví na všechny
+          otázky ochotně a srozumitelně.
+        </p>
+        <p>
+          <strong>Krok 4: Zkontrolujte smlouvu.</strong> Než cokoliv podepíšete,
+          nechte si smlouvu zkontrolovat nezávislým právníkem. Investice
+          několika tisíc korun do právní kontroly se vám může vrátit v desítkách
+          tisíc. Zjistěte, jaké dokumenty k prodeji potřebujete, v článku{" "}
+          <Link
+            href="/blog/jake-dokumenty-potrebuji"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Jaké dokumenty potřebuji k výkupu nemovitosti
+          </Link>
+          .
+        </p>
+        <p>
+          <strong>Krok 5: Důvěřujte svému instinktu.</strong> Pokud se cokoliv
+          &bdquo;nezdá&rdquo; — příliš agresivní obchodník, vyhýbavé odpovědi,
+          spěch — raději odejděte. Na trhu je dostatek seriózních firem.
+        </p>
+
+        <h2>Nejčastější dotazy (FAQ)</h2>
+
+        <h3>Jak zjistím, že výkupní firma je důvěryhodná?</h3>
+        <p>
+          Ověřte si IČO firmy v obchodním rejstříku na justice.cz. Projděte
+          recenze na Google a Firmy.cz. Zkontrolujte, zda firma používá
+          advokátní úschovu a zda nabízí smlouvu připravenou advokátem. Seriózní
+          firma nikdy nepožaduje platbu předem a dá vám dostatek času na
+          rozhodnutí.
+        </p>
+
+        <h3>Je bezpečné prodat nemovitost přes výkupní firmu?</h3>
+        <p>
+          Ano, pokud zvolíte seriózní firmu. Klíčem je advokátní úschova kupní
+          ceny, profesionální smlouva a transparentní podmínky. Při dodržení
+          kontrolního seznamu výše je výkup stejně bezpečný jako jakýkoliv jiný
+          způsob prodeje nemovitosti — a navíc rychlejší. Více o bezpečnosti
+          celého procesu najdete na stránce{" "}
+          <Link
+            href="/garance-vykupu"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Garance výkupu
+          </Link>
+          .
+        </p>
+
+        <h3>Proč výkupní firma nabízí méně než je tržní cena?</h3>
+        <p>
+          Výkupní firma kupuje nemovitosti za 80 až 90 procent tržní hodnoty.
+          Rozdíl pokrývá náklady firmy — právní služby, daň z nabytí, případnou
+          rekonstrukci a marži. Na druhou stranu vy jako prodávající neplatíte
+          žádnou provizi (3 až 5 procent u realitky), ušetříte měsíce čekání a
+          máte garantovanou cenu. Když tyto faktory zohledníte, čistý výnos se
+          přibližuje klasickému prodeji.
+        </p>
+
+        <h3>Jak dlouho trvá výkup nemovitosti?</h3>
+        <p>
+          U seriózní firmy celý proces od prvního kontaktu po vyplacení peněz
+          trvá obvykle 7 až 14 dní. Nabídku obdržíte do 24 hodin, prohlídka
+          proběhne do 3 až 5 dnů a po podpisu smlouvy jsou peníze vyplaceny přes
+          advokátní úschovu. Podrobný časový harmonogram najdete v článku{" "}
+          <Link
+            href="/blog/vykup-krok-za-krokem"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Výkup nemovitosti krok za krokem
+          </Link>
+          .
+        </p>
+
+        <h3>Mohu prodat nemovitost v exekuci přes výkupní firmu?</h3>
+        <p>
+          Ano. Seriózní výkupní firma se na tyto případy specializuje. Se
+          souhlasem exekutora je dobrovolný prodej možný a přináší výrazně lepší
+          výsledek než nucená dražba. Firma zajistí jednání s exekutorem a
+          přímou úhradu dluhů z kupní ceny. Více se dozvíte v článku{" "}
+          <Link
+            href="/blog/nemovitost-v-exekuci-pruvodce"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Nemovitost v exekuci — kompletní průvodce
+          </Link>
+          .
+        </p>
+
+        <h2>Ověřte si nás</h2>
+        <p>
+          Věříme v transparentnost a chceme, abyste se rozhodli informovaně.
+          Projděte si naše{" "}
+          <Link
+            href="/reference"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            reference od skutečných klientů
+          </Link>
+          , přečtěte si{" "}
+          <Link
+            href="/garance-vykupu"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            naše garance
+          </Link>{" "}
+          a zjistěte,{" "}
+          <Link
+            href="/proc-my"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            proč nám klienti důvěřují
+          </Link>
+          . Nabídku na vaši nemovitost vám připravíme do 24 hodin — zdarma, bez
+          závazků a bez jakýchkoliv poplatků. Celý proces od prvního kontaktu po
+          peníze na účtu zvládneme za 7 až 14 dní s plnou právní garancí a
+          advokátní úschovou.
+        </p>
+        <p>
+          Ověřte si nás — nabídku dostanete do 24 hodin, bez závazků.{" "}
+          <Link href="/" className="text-emerald-600 hover:text-emerald-500">
+            Vyplňte formulář
+          </Link>{" "}
+          nebo nám zavolejte. Jsme tu pro vás.
+        </p>
+      </>
+    ),
+  },
   "vykup-v-exekuci": {
     title: "Výkup nemovitosti v exekuci - co potřebujete vědět",
     date: "2026-02-05",
@@ -1577,6 +1948,84 @@ export default async function BlogArticlePage({
     },
   };
 
+  const faqJsonLd =
+    slug === "jak-vybrat-vykupni-firmu"
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: [
+            {
+              "@type": "Question",
+              name: "Jak zjistím, že výkupní firma je důvěryhodná?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Ověřte si IČO firmy v obchodním rejstříku na justice.cz. Projděte recenze na Google a Firmy.cz. Zkontrolujte, zda firma používá advokátní úschovu a zda nabízí smlouvu připravenou advokátem. Seriózní firma nikdy nepožaduje platbu předem a dá vám dostatek času na rozhodnutí.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Je bezpečné prodat nemovitost přes výkupní firmu?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Ano, pokud zvolíte seriózní firmu. Klíčem je advokátní úschova kupní ceny, profesionální smlouva a transparentní podmínky. Při dodržení kontrolního seznamu je výkup stejně bezpečný jako jakýkoliv jiný způsob prodeje nemovitosti — a navíc rychlejší.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Proč výkupní firma nabízí méně než je tržní cena?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Výkupní firma kupuje nemovitosti za 80 až 90 procent tržní hodnoty. Rozdíl pokrývá náklady firmy — právní služby, daň z nabytí, případnou rekonstrukci a marži. Vy jako prodávající neplatíte žádnou provizi, ušetříte měsíce čekání a máte garantovanou cenu.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Jak dlouho trvá výkup nemovitosti?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "U seriózní firmy celý proces od prvního kontaktu po vyplacení peněz trvá obvykle 7 až 14 dní. Nabídku obdržíte do 24 hodin, prohlídka proběhne do 3 až 5 dnů a po podpisu smlouvy jsou peníze vyplaceny přes advokátní úschovu.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Mohu prodat nemovitost v exekuci přes výkupní firmu?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Ano. Seriózní výkupní firma se na tyto případy specializuje. Se souhlasem exekutora je dobrovolný prodej možný a přináší výrazně lepší výsledek než nucená dražba.",
+              },
+            },
+          ],
+        }
+      : null;
+
+  const breadcrumbJsonLd =
+    slug === "jak-vybrat-vykupni-firmu"
+      ? {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Domů",
+              item: "https://vykoupim-nemovitost.cz/",
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "Blog",
+              item: "https://vykoupim-nemovitost.cz/blog",
+            },
+            {
+              "@type": "ListItem",
+              position: 3,
+              name: "Jak vybrat seriózní výkupní firmu",
+              item: "https://vykoupim-nemovitost.cz/blog/jak-vybrat-vykupni-firmu",
+            },
+          ],
+        }
+      : null;
+
   const otherPosts = BLOG_POSTS.filter((p) => p.slug !== slug);
   const relatedArticles = getRelatedArticles(`blog/${slug}`);
 
@@ -1586,6 +2035,18 @@ export default async function BlogArticlePage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonLd(articleJsonLd) }}
       />
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: safeJsonLd(faqJsonLd) }}
+        />
+      )}
+      {breadcrumbJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbJsonLd) }}
+        />
+      )}
 
       <article className="bg-gradient-to-b from-slate-50 to-white py-16">
         <div className="mx-auto max-w-3xl px-4">

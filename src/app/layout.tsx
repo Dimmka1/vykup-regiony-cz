@@ -11,6 +11,7 @@ const ExitIntentPopup = dynamic(
   { ssr: true },
 );
 import { SiteHeader } from "@/components/site-header";
+import { PromoBar } from "@/components/promo-bar";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { SiteFooter } from "@/components/site-footer";
 import { SwRegister } from "@/components/sw-register";
@@ -91,6 +92,7 @@ export default async function RootLayout({
         >
           Přeskočit na obsah
         </a>
+        <PromoBar />
         <SiteHeader phone={region.phone} />
         <WebVitalsReporter />
         <main id="hlavni-obsah" className="flex-1">

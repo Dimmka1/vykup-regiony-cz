@@ -1,5 +1,7 @@
 import { safeJsonLd } from "@/lib/jsonld";
 import { SocialProofBar } from "@/components/social-proof-bar";
+import { TrustCounterSection } from "@/components/trust-counter-section";
+import { getTrustCounters } from "@/lib/trust-counters";
 import { getThemeStyle } from "@/lib/theme-colors";
 import type { ReactElement } from "react";
 import Image from "next/image";
@@ -506,6 +508,7 @@ export function HomePageContent({
       </section>
 
       <SocialProofBar />
+      <TrustCounterSection items={getTrustCounters()} />
 
       {/* ===== MARKET INFO ===== */}
       {region.marketInfo && (

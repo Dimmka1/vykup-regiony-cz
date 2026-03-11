@@ -8,6 +8,14 @@ export interface BlogPost {
 
 export const BLOG_POSTS: readonly BlogPost[] = [
   {
+    slug: "vykup-nemovitosti-2026",
+    title: "Výkup nemovitostí 2026: Kompletní přehled trhu, cen a podmínek",
+    excerpt:
+      "Jak vypadá trh s výkupem nemovitostí v roce 2026? Aktuální ceny, úrokové sazby ČNB, trendy a kdy se výkup vyplatí. Kompletní přehled pro majitele nemovitostí v ČR.",
+    date: "2026-03-10",
+    readingTime: "10 min",
+  },
+  {
     slug: "jake-dokumenty-potrebuji",
     title: "Jaké dokumenty potřebuji k výkupu nemovitosti?",
     excerpt:

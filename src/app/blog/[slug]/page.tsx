@@ -16,6 +16,354 @@ interface ArticleContent {
 }
 
 const ARTICLES: Record<string, ArticleContent> = {
+  "vykup-nemovitosti-2026": {
+    title: "Výkup nemovitostí 2026: Kompletní přehled trhu, cen a podmínek",
+    date: "2026-03-10",
+    body: (
+      <>
+        <p>
+          Rok 2026 přináší na český realitní trh řadu změn, které přímo
+          ovlivňují podmínky výkupu nemovitostí. Ať už zvažujete prodej bytu,
+          domu nebo pozemku, je důležité znát aktuální situaci — od vývoje cen
+          přes úrokové sazby až po legislativní novinky. V tomto článku vám
+          přinášíme kompletní přehled trhu s výkupem nemovitostí v roce 2026,
+          abyste se mohli rozhodnout informovaně a získat za svou nemovitost co
+          nejvíce.
+        </p>
+
+        <h2>Stav českého realitního trhu v roce 2026</h2>
+        <p>
+          Český realitní trh v roce 2026 pokračuje v postupné stabilizaci po
+          turbulentním období let 2022–2024, kdy kombinace vysoké inflace,
+          razantního růstu úrokových sazeb a ekonomické nejistoty způsobila
+          výrazný pokles transakcí. Podle dat Českého statistického úřadu (ČSÚ)
+          vzrostly ceny nemovitostí v České republice v roce 2025 meziročně o
+          přibližně 5–7 %, přičemž v prvním čtvrtletí 2026 tempo růstu mírně
+          zpomalilo na 3–5 % meziročně. Průměrná cena bytu v ČR se pohybuje
+          kolem 75 000–85 000 Kč za metr čtvereční, přičemž v Praze přesahuje
+          120 000 Kč/m² a v Brně dosahuje přibližně 90 000 Kč/m².
+        </p>
+        <p>
+          Trh s nemovitostmi v roce 2026 je charakterizován návratem kupujících,
+          kteří byli v předchozích letech odrazeni vysokými hypotečními sazbami.
+          Objem hypotečních úvěrů roste — v lednu 2026 bylo sjednáno hypoték za
+          více než 25 miliard Kč, což je téměř dvojnásobek oproti lednu 2024.
+          Tento trend nahrává jak klasickému prodeji, tak výkupu nemovitostí,
+          protože vyšší aktivita na trhu znamená stabilnější ceny a
+          předvídatelnější podmínky.
+        </p>
+
+        <h2>Úrokové sazby ČNB a jejich vliv na výkup v roce 2026</h2>
+        <p>
+          Česká národní banka (ČNB) v průběhu roku 2025 postupně snižovala
+          základní úrokovou sazbu (repo sazbu) ze 4,75 % na 3,75 %. Začátkem
+          roku 2026 se repo sazba stabilizovala na úrovni 3,50–3,75 %. To se
+          přímo promítá do hypotečních sazeb, které se v březnu 2026 pohybují
+          kolem 4,0–4,5 % pro fixace na 3–5 let. Oproti roku 2023, kdy hypoteční
+          sazby dosahovaly 6–7 %, je to výrazné zlepšení.
+        </p>
+        <p>
+          Pro trh s výkupem nemovitostí to znamená dvě věci. Za prvé, více
+          kupujících si může dovolit hypotéku, což zvyšuje poptávku a
+          stabilizuje tržní ceny — a tím i výkupní ceny. Za druhé, nižší sazby
+          snižují náklady na financování pro výkupní firmy, které tak mohou
+          nabízet vyšší procento z tržní hodnoty. V roce 2026 se výkupní ceny
+          typicky pohybují na úrovni 80–90 % tržní hodnoty nemovitosti, oproti
+          75–85 % v období vysokých sazeb v roce 2023.
+        </p>
+
+        <h2>Jak se změnily podmínky výkupu v roce 2026 oproti roku 2025</h2>
+        <p>
+          Rok 2026 přináší několik pozitivních změn pro prodávající. Především
+          vzrostla konkurence mezi výkupními firmami, což tlačí nabídkové ceny
+          nahoru. Zatímco v roce 2025 byla průměrná výkupní cena na úrovni 78–87
+          % tržní hodnoty, v roce 2026 se pohybuje kolem 80–90 %. Zejména u
+          atraktivních nemovitostí ve větších městech (Praha, Brno, Ostrava,
+          Plzeň) dosahují nabídky i 90–92 % tržní hodnoty.
+        </p>
+        <p>
+          Další změnou je zkrácení celého procesu. Díky digitalizaci katastru
+          nemovitostí a elektronickému podání se doba zápisu zkrátila v
+          některých případech na 10–15 pracovních dnů oproti dřívějším 20–30
+          dnům. Celý výkup od prvního kontaktu po vyplacení peněz tak zvládneme
+          v roce 2026 za pouhých 7–14 dní. Podrobný popis procesu najdete na
+          stránce{" "}
+          <Link
+            href="/jak-to-funguje"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Jak to funguje
+          </Link>
+          .
+        </p>
+        <p>
+          Z legislativního hlediska přinesla novela energetického zákona
+          přísnější požadavky na energetický průkaz budovy (PENB). Od ledna 2026
+          musí prodávající předložit aktuální PENB s platností maximálně 10 let.
+          Pokud nemáte aktuální průkaz, nemusíte se obávat — u výkupu vám s jeho
+          zajištěním pomůžeme a náklady hradíme za vás.
+        </p>
+
+        <h2>Aktuální ceny nemovitostí v České republice v roce 2026</h2>
+        <p>
+          Pro lepší orientaci uvádíme přehled průměrných cen nemovitostí v
+          klíčových regionech České republiky v prvním čtvrtletí 2026. Praha:
+          byty 120 000–140 000 Kč/m², rodinné domy 80 000–100 000 Kč/m². Brno:
+          byty 85 000–100 000 Kč/m², rodinné domy 55 000–70 000 Kč/m². Ostrava:
+          byty 40 000–55 000 Kč/m², rodinné domy 30 000–45 000 Kč/m². Plzeň:
+          byty 60 000–75 000 Kč/m², rodinné domy 45 000–60 000 Kč/m². Olomouc:
+          byty 55 000–70 000 Kč/m², rodinné domy 40 000–55 000 Kč/m². České
+          Budějovice: byty 55 000–65 000 Kč/m², rodinné domy 40 000–50 000
+          Kč/m².
+        </p>
+        <p>
+          Tyto ceny jsou orientační a liší se podle lokality, stavu nemovitosti
+          a dalších faktorů. Pro přesné ocenění konkrétní nemovitosti vám
+          doporučujeme kontaktovat nás pro nezávaznou nabídku. Pokud vás
+          zajímají ceny ve vašem konkrétním kraji, podívejte se na naši stránku{" "}
+          <Link
+            href="/kraje"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Výkup nemovitostí podle krajů
+          </Link>
+          , kde najdete podrobné informace pro každý region.
+        </p>
+
+        <h2>Trendy na trhu výkupu nemovitostí v roce 2026</h2>
+        <p>
+          V roce 2026 pozorujeme několik výrazných trendů. Prvním je rostoucí
+          zájem o výkup starších nemovitostí k rekonstrukci. S rostoucími cenami
+          nových bytů (průměrně o 15–20 % dražší než starší byty) hledají
+          investoři příležitosti ve starším fondu. To znamená vyšší výkupní ceny
+          i pro nemovitosti ve špatném stavu.
+        </p>
+        <p>
+          Druhým trendem je nárůst výkupů v regionech mimo Prahu. Zatímco v
+          předchozích letech dominovala výkupu Praha a Brno, v roce 2026 výrazně
+          roste poptávka ve Středočeském, Jihomoravském a Moravskoslezském
+          kraji. Důvodem je stěhování za prací z velkých měst do okolních
+          oblastí (tzv. suburbanizace) a rozvoj vzdálené práce.
+        </p>
+        <p>
+          Třetím trendem je profesionalizace trhu. Výkupní firmy v roce 2026
+          nabízejí komplexnější služby — od právního poradenství přes pomoc s
+          přestěhováním až po{" "}
+          <Link
+            href="/zpetny-najem"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            zpětný nájem
+          </Link>
+          , kdy můžete nemovitost po prodeji dál užívat jako nájemník. Tato
+          možnost je ideální pro lidi, kteří potřebují uvolnit kapitál, ale
+          nechtějí se stěhovat.
+        </p>
+
+        <h2>Kdy se výkup nemovitosti v roce 2026 vyplatí</h2>
+        <p>
+          Výkup nemovitosti je v roce 2026 ideálním řešením v řadě životních
+          situací. Pojďme se podívat na ty nejčastější:
+        </p>
+        <p>
+          <strong>Exekuce a dluhy.</strong> Pokud na vaší nemovitosti vázne
+          exekuce, dobrovolný prodej přes výkupní firmu vám přinese výrazně
+          vyšší výnos než nucená dražba. V roce 2026 se nemovitosti v nucené
+          dražbě prodávají v průměru za 55–70 % tržní hodnoty, zatímco při
+          výkupu získáte 80–90 %. U bytu za 3 miliony korun to znamená rozdíl
+          300 000 až 900 000 Kč. Více se dozvíte na stránce{" "}
+          <Link
+            href="/vykup-pri-exekuci"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Výkup při exekuci
+          </Link>
+          .
+        </p>
+        <p>
+          <strong>Dědictví a spoluvlastnictví.</strong> Zděděná nemovitost, na
+          které se nedokáží dědicové shodnout, je častým důvodem pro výkup.
+          Rychlý prodej umožní spravedlivé rozdělení dědictví bez zdlouhavých
+          sporů. V roce 2026 řešíme přibližně 25 % všech výkupů právě v
+          souvislosti s dědictvím. Podrobnosti najdete na stránce{" "}
+          <Link
+            href="/vykup-pri-dedictvi"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Výkup při dědictví
+          </Link>
+          .
+        </p>
+        <p>
+          <strong>Rozvod a vypořádání SJM.</strong> Rozvod je emocionálně i
+          finančně náročná situace. Rychlý výkup nemovitosti umožní oběma
+          stranám získat svůj podíl a začít novou životní etapu. Proces je
+          diskrétní a rychlý — celou transakci zvládneme za 2–3 týdny. Více
+          informací na stránce{" "}
+          <Link
+            href="/vykup-pri-rozvodu"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Výkup při rozvodu
+          </Link>
+          .
+        </p>
+        <p>
+          <strong>Potřeba rychlé hotovosti.</strong> Ať už jde o investiční
+          příležitost, zdravotní výdaje nebo jiný naléhavý důvod, výkup
+          nemovitosti v roce 2026 je nejrychlejší způsob, jak získat velkou
+          finanční částku. Od vyplnění formuláře po peníze na účtu stačí 7–14
+          dní.
+        </p>
+        <p>
+          <strong>Nemovitost ve špatném stavu.</strong> Starší dům vyžadující
+          kompletní rekonstrukci, byt s azbestem nebo nemovitost s ekologickou
+          zátěží — to vše jsou případy, kdy klasický prodej přes realitku může
+          trvat měsíce nebo i roky. Výkupní firma kupuje v jakémkoliv stavu a
+          řeší veškeré komplikace za vás.
+        </p>
+
+        <h2>Srovnání způsobů prodeje nemovitosti v roce 2026</h2>
+        <p>
+          Pro lepší orientaci porovnáváme tři hlavní způsoby prodeje nemovitosti
+          v aktuálních podmínkách roku 2026. Přímý výkup: doba prodeje 7–14 dní,
+          dosažená cena 80–90 % tržní hodnoty, náklady pro prodávajícího 0 Kč,
+          jistota prodeje vysoká. Realitní kancelář: doba prodeje 3–6 měsíců,
+          dosažená cena 95–100 % tržní hodnoty, náklady provize 3–5 % plus další
+          výdaje, jistota prodeje střední (závisí na trhu). Nucená dražba: doba
+          prodeje 6–12 měsíců, dosažená cena 55–70 % tržní hodnoty, náklady
+          exekuce 20–25 % z výtěžku, jistota prodeje nízká.
+        </p>
+        <p>
+          Více o srovnání výkupu s dalšími způsoby prodeje se dozvíte v článku{" "}
+          <Link
+            href="/blog/vykup-vs-drazba"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Výkup nemovitosti vs. dražba
+          </Link>{" "}
+          a{" "}
+          <Link
+            href="/blog/vykup-nemovitosti-vs-realitni-kancelar"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Výkup vs. realitní kancelář
+          </Link>
+          .
+        </p>
+
+        <h2>Jak probíhá výkup nemovitosti v roce 2026 — krok za krokem</h2>
+        <p>
+          Celý proces výkupu v roce 2026 je maximálně zjednodušen. V prvním
+          kroku vyplníte krátký online formulář nebo nám zavoláte — zabere to
+          jen 2 minuty. Do 24 hodin obdržíte předběžnou cenovou nabídku
+          založenou na aktuálních tržních datech. Poté provedeme bezplatnou
+          prohlídku nemovitosti a předložíme finální nabídku. Naši právníci
+          připraví kupní smlouvu (vše hradíme za vás) a po podpisu u notáře jsou
+          peníze uloženy do bezpečné advokátní úschovy. Po zápisu do katastru
+          obdržíte celou částku na svůj účet. Podrobný popis jednotlivých kroků
+          najdete v článku{" "}
+          <Link
+            href="/blog/vykup-krok-za-krokem"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Výkup nemovitosti krok za krokem
+          </Link>
+          .
+        </p>
+
+        <h2>Daňové aspekty prodeje nemovitosti v roce 2026</h2>
+        <p>
+          Při prodeji nemovitosti v roce 2026 je důležité znát aktuální daňová
+          pravidla. Příjem z prodeje nemovitosti je osvobozen od daně z příjmů,
+          pokud v ní máte bydliště alespoň 2 roky nebo ji vlastníte alespoň 5
+          let (u nemovitostí nabytých od roku 2021 platí lhůta 10 let). Pokud
+          podmínky nesplňujete, příjem podléhá dani z příjmů 15 %. Od roku 2026
+          platí, že příjmy z prodeje nemovitosti přesahující 5 milionů Kč
+          podléhají zvýšené sazbě 23 %. Doporučujeme konzultovat konkrétní
+          situaci s daňovým poradcem.
+        </p>
+
+        <h2>Prognóza trhu na zbytek roku 2026</h2>
+        <p>
+          Analytici očekávají, že ceny nemovitostí v České republice budou v
+          roce 2026 nadále mírně růst, a to tempem 3–5 % meziročně. ČNB by mohla
+          dále snížit základní úrokovou sazbu na 3,25–3,50 %, což by znamenalo
+          ještě dostupnější hypotéky a vyšší poptávku. Pro prodávající to
+          znamená stabilní nebo mírně rostoucí výkupní ceny.
+        </p>
+        <p>
+          Pokud zvažujete prodej nemovitosti, rok 2026 nabízí příznivé podmínky.
+          Ceny jsou stabilní, poptávka roste a výkupní firmy nabízejí
+          konkurenceschopné nabídky. Odkládání prodeje nemá z hlediska výkupní
+          ceny zásadní přínos — naopak, u nemovitostí vyžadujících údržbu může
+          odkládání vést ke snížení hodnoty.
+        </p>
+
+        <h2>Často kladené dotazy o výkupu nemovitostí v roce 2026</h2>
+        <p>
+          <strong>Kolik dostanu za svou nemovitost v roce 2026?</strong> Výkupní
+          cena závisí na lokalitě, stavu a typu nemovitosti. V roce 2026 se
+          nabídky pohybují na úrovni 80–90 % aktuální tržní hodnoty. U
+          atraktivních nemovitostí ve velkých městech mohou dosáhnout i 90–92 %.
+          Pro přesnou nabídku stačí vyplnit formulář na našich stránkách —
+          cenovou nabídku obdržíte do 24 hodin zdarma a nezávazně.
+        </p>
+        <p>
+          <strong>Jak dlouho trvá výkup nemovitosti v roce 2026?</strong> Celý
+          proces od prvního kontaktu po vyplacení peněz trvá typicky 7–14 dní.
+          Díky elektronizaci katastru se doba zápisu v některých případech
+          zkrátila, což urychluje celou transakci.
+        </p>
+        <p>
+          <strong>Mohu prodat nemovitost v exekuci v roce 2026?</strong> Ano,
+          dobrovolný prodej nemovitosti v exekuci je možný se souhlasem
+          exekutora. Specializujeme se na tyto případy a s celým procesem vám
+          pomůžeme — od jednání s exekutorem po úhradu dluhů z kupní ceny.
+        </p>
+        <p>
+          <strong>Jaké dokumenty potřebuji k výkupu v roce 2026?</strong>{" "}
+          Základem je občanský průkaz a ideálně list vlastnictví. Ostatní
+          dokumenty (PENB, nabývací titul atd.) můžeme zajistit za vás.
+          Kompletní přehled potřebných dokumentů najdete v článku{" "}
+          <Link
+            href="/blog/jake-dokumenty-potrebuji"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Jaké dokumenty potřebuji k výkupu nemovitosti
+          </Link>
+          .
+        </p>
+        <p>
+          <strong>Musím platit daň z prodeje nemovitosti v roce 2026?</strong>{" "}
+          Pokud v nemovitosti bydlíte alespoň 2 roky nebo ji vlastníte alespoň 5
+          let (resp. 10 let u nemovitostí nabytých od 2021), příjem z prodeje je
+          osvobozen od daně. V ostatních případech podléhá dani z příjmů 15 %
+          (resp. 23 % u příjmů nad 5 milionů Kč).
+        </p>
+
+        <h2>Závěr: Rok 2026 je dobrý čas pro výkup nemovitosti</h2>
+        <p>
+          Trh s nemovitostmi v České republice v roce 2026 nabízí stabilní ceny,
+          příznivé úrokové sazby a rostoucí konkurenci mezi výkupními firmami —
+          to vše hraje ve prospěch prodávajících. Ať už potřebujete prodat kvůli
+          exekuci, rozvodu, dědictví nebo z jakéhokoliv jiného důvodu, výkup
+          nemovitosti v roce 2026 je rychlé, bezpečné a férové řešení.
+        </p>
+        <p>
+          Neváhejte nás kontaktovat pro bezplatnou a nezávaznou cenovou nabídku.
+          Stačí vyplnit krátký formulář na{" "}
+          <Link href="/" className="text-emerald-600 hover:text-emerald-500">
+            hlavní stránce
+          </Link>{" "}
+          a do 24 hodin se vám ozveme. Pomáháme klientům po celé České republice
+          — od Prahy přes Brno až po menší města a vesnice. Váš rychlý a
+          bezpečný prodej nemovitosti v roce 2026 může začít ještě dnes.
+        </p>
+      </>
+    ),
+  },
+
   "jake-dokumenty-potrebuji": {
     title: "Jaké dokumenty potřebuji k výkupu nemovitosti?",
     date: "2026-03-02",
@@ -1577,6 +1925,56 @@ export default async function BlogArticlePage({
     },
   };
 
+  const faqJsonLd =
+    slug === "vykup-nemovitosti-2026"
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: [
+            {
+              "@type": "Question",
+              name: "Kolik dostanu za svou nemovitost v roce 2026?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Výkupní cena závisí na lokalitě, stavu a typu nemovitosti. V roce 2026 se nabídky pohybují na úrovni 80–90 % aktuální tržní hodnoty. U atraktivních nemovitostí ve velkých městech mohou dosáhnout i 90–92 %.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Jak dlouho trvá výkup nemovitosti v roce 2026?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Celý proces od prvního kontaktu po vyplacení peněz trvá typicky 7–14 dní. Díky elektronizaci katastru se doba zápisu v některých případech zkrátila.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Mohu prodat nemovitost v exekuci v roce 2026?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Ano, dobrovolný prodej nemovitosti v exekuci je možný se souhlasem exekutora. Specializované výkupní firmy zajistí jednání s exekutorem i úhradu dluhů z kupní ceny.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Jaké dokumenty potřebuji k výkupu v roce 2026?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Základem je občanský průkaz a ideálně list vlastnictví. Ostatní dokumenty (PENB, nabývací titul atd.) může výkupní firma zajistit za vás.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Musím platit daň z prodeje nemovitosti v roce 2026?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Pokud v nemovitosti bydlíte alespoň 2 roky nebo ji vlastníte alespoň 5 let (resp. 10 let u nemovitostí nabytých od 2021), příjem z prodeje je osvobozen od daně. V ostatních případech podléhá dani z příjmů 15 % (resp. 23 % u příjmů nad 5 milionů Kč).",
+              },
+            },
+          ],
+        }
+      : null;
+
   const otherPosts = BLOG_POSTS.filter((p) => p.slug !== slug);
   const relatedArticles = getRelatedArticles(`blog/${slug}`);
 
@@ -1586,6 +1984,12 @@ export default async function BlogArticlePage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonLd(articleJsonLd) }}
       />
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: safeJsonLd(faqJsonLd) }}
+        />
+      )}
 
       <article className="bg-gradient-to-b from-slate-50 to-white py-16">
         <div className="mx-auto max-w-3xl px-4">

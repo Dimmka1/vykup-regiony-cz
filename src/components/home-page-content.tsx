@@ -25,6 +25,7 @@ import { BuildingTimeline } from "@/components/building-timeline";
 import { FloatingStats } from "@/components/floating-stats";
 import { DoorCards } from "@/components/door-cards";
 import { LeadForm } from "@/components/lead-form";
+import { FormSocialProof } from "@/components/form-social-proof";
 import { SlotCounter } from "@/components/slot-counter";
 import {
   getRegionSubdomainUrl,
@@ -940,6 +941,7 @@ export function HomePageContent({
             {/* Right: form */}
             <ScrollReveal delay={400}>
               <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm">
+                <FormSocialProof />
                 <LeadForm regionName={region.name} />
               </div>
             </ScrollReveal>

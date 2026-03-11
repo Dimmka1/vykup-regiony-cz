@@ -12,6 +12,7 @@ import {
 import { safeJsonLd } from "@/lib/jsonld";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { LeadForm } from "@/components/lead-form";
+import { FormSocialProof } from "@/components/form-social-proof";
 
 export const metadata: Metadata = {
   title: "Proč prodat nemovitost nám | Výkup vs realitka vs dražba",
@@ -243,6 +244,7 @@ export default function ProcMyPage() {
               Vyplňte formulář a do 24 hodin vám zašleme nabídku na výkup vaší
               nemovitosti.
             </p>
+            <FormSocialProof />
             <LeadForm regionName="Česká republika" />
           </div>
         </section>

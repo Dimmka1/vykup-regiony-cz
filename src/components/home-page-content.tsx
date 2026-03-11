@@ -744,6 +744,13 @@ export function HomePageContent({
               >
                 Výkup při dědictví →
               </Link>
+              <Link
+                href="/vykup-s-najmem"
+                className="ml-4 inline-flex items-center gap-1 text-sm font-medium text-[var(--theme-300)] transition hover:text-[var(--theme-200)]"
+                aria-label="Více informací o zpětném výkupu s nájmem"
+              >
+                Zpětný výkup s nájmem →
+              </Link>
             </div>
           </ScrollReveal>
         </div>

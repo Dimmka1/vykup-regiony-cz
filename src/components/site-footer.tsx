@@ -64,6 +64,9 @@ export function SiteFooter() {
               >
                 Výkup s věcným břemenem
               </Link>
+              <Link href="/vykup-s-najmem" className={linkClass}>
+                Zpětný výkup s nájmem
+              </Link>
             </nav>
           </div>
 

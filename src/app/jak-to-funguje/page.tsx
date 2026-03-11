@@ -11,7 +11,7 @@ import {
 import { safeJsonLd } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
-  title: "Jak funguje výkup nemovitosti | Vykoupíme Nemovitost",
+  title: "Jak funguje výkup nemovitostí → 3 kroky k penězům",
   description:
     "Celý proces výkupu nemovitosti v 5 jednoduchých krocích - od prvního kontaktu po platbu na účet do 48 hodin. Bez provize, bez starostí.",
   alternates: { canonical: "https://vykoupim-nemovitost.cz/jak-to-funguje" },

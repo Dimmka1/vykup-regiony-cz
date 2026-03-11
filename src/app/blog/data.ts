@@ -33,7 +33,7 @@ export const BLOG_POSTS: readonly BlogPost[] = [
   },
   {
     slug: "kolik-stoji-vykup",
-    title: "Kolik stojí výkup nemovitosti? Kompletní přehled nákladů",
+    title: "Kolik stojí výkup nemovitosti 2026? Ceny + náklady",
     excerpt:
       "Zjistěte, kolik ve skutečnosti zaplatíte při výkupu nemovitosti. Srovnání s realitní kanceláří a dražbou.",
     date: "2026-03-02",
@@ -41,7 +41,7 @@ export const BLOG_POSTS: readonly BlogPost[] = [
   },
   {
     slug: "jak-rychle-prodat-nemovitost",
-    title: "Jak rychle prodat nemovitost v roce 2026",
+    title: "Jak rychle prodat nemovitost 2026 → 5 ověřených tipů",
     excerpt:
       "Kompletní průvodce rychlým prodejem nemovitosti v roce 2026 - od přípravy až po předání klíčů. Praktické tipy, které vám ušetří čas i peníze.",
     date: "2026-03-01",
@@ -49,7 +49,7 @@ export const BLOG_POSTS: readonly BlogPost[] = [
   },
   {
     slug: "vykup-nemovitosti-vs-realitni-kancelar",
-    title: "Výkup nemovitosti vs realitní kancelář - co se vyplatí",
+    title: "Výkup nemovitosti vs realitní kancelář → Srovnání",
     excerpt:
       "Srovnání dvou nejčastějších způsobů prodeje nemovitosti. Kdy zvolit výkup a kdy realitní kancelář? Objektivní analýza výhod a nevýhod.",
     date: "2026-02-25",

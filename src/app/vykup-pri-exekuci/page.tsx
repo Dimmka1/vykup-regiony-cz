@@ -11,7 +11,7 @@ import { getRequestHost } from "@/lib/request-host";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://vykoupim-nemovitost.cz/vykup-pri-exekuci" },
-  title: "Výkup nemovitosti při exekuci - rychlé řešení bez starostí",
+  title: "Výkup nemovitosti v exekuci → Řešení do 48 hodin",
   description:
     "Prodejte nemovitost zatíženou exekucí rychle a diskrétně. Vyřešíme dluhy, uhradíme exekuci z kupní ceny a vyplatíme vás do 7 dnů. Bez provize.",
 };

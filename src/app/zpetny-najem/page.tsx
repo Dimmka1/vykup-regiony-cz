@@ -10,8 +10,7 @@ import { getRequestHost } from "@/lib/request-host";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://vykoupim-nemovitost.cz/zpetny-najem" },
-  title:
-    "Zpětný nájem nemovitosti — prodejte a zůstaňte bydlet | vykoupim-nemovitost.cz",
+  title: "Výkup s nájmem zpět ✓ Bydlete dál ve svém",
   description:
     "Prodejte nemovitost a zůstaňte v ní bydlet díky zpětnému nájmu. Získejte peníze ihned a bydlete dál bez starostí. Férové podmínky, rychlé vyřízení.",
 };

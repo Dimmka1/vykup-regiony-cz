@@ -19,6 +19,7 @@ import { ComparisonCalculator } from "@/components/comparison-calculator";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { StaggerReveal, StaggerItem } from "@/components/stagger-reveal";
 import { HeroStagger } from "@/components/hero-stagger";
+import { HeroMicroForm } from "@/components/hero-micro-form";
 import { AnimatedNumber } from "@/components/animated-number";
 import { CzechMap } from "@/components/czech-map";
 import { BuildingTimeline } from "@/components/building-timeline";
@@ -463,14 +464,11 @@ export function HomePageContent({
           </HeroStagger>
 
           <HeroStagger delay={4}>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <span className="liquid-border rounded-xl">
-                <CtaLink
-                  href="#kontakt"
-                  label={region.heroCta}
-                  regionName={region.name}
-                />
-              </span>
+            {/* VR-288: Hero Micro-Form (PSČ inline field) */}
+            <div className="mt-8">
+              <HeroMicroForm regionName={region.name} />
+            </div>
+            <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a
                 href={`tel:${region.phone}`}
                 aria-label={`Zavolat na číslo ${region.phone}`}

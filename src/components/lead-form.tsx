@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactElement } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { trackEvent } from "@/lib/analytics";
 import type { AnalyticsEventName } from "@/lib/analytics";
@@ -130,6 +130,37 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const formRef = useRef<HTMLFormElement>(null);
   const router = useRouter();
+  const searchParams = useSearchParams();
+
+  // VR-288: Pre-fill PSČ from hero micro-form (URL param or custom event)
+  useEffect(() => {
+    const pscParam = searchParams.get("psc");
+    if (pscParam && /^\d{5}$/.test(pscParam)) {
+      const formatted = `${pscParam.slice(0, 3)} ${pscParam.slice(3)}`;
+      setFormData((prev) => ({ ...prev, postalCode: formatted }));
+      // Skip to step 2 (address) so PSČ is visible
+      if (currentStep === 0) {
+        setCurrentStep(1);
+        pushFormStepEvent(1, regionName);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
+
+  useEffect(() => {
+    function handleHeroPsc(e: Event): void {
+      const detail = (e as CustomEvent<{ psc: string }>).detail;
+      if (detail?.psc) {
+        setFormData((prev) => ({ ...prev, postalCode: detail.psc }));
+        if (currentStep === 0) {
+          setCurrentStep(1);
+          pushFormStepEvent(1, regionName);
+        }
+      }
+    }
+    window.addEventListener("hero-psc-submit", handleHeroPsc);
+    return () => window.removeEventListener("hero-psc-submit", handleHeroPsc);
+  }, [currentStep, regionName]);
 
   // VR-129: Track step 1 on mount
   useEffect(() => {

@@ -16,6 +16,815 @@ interface ArticleContent {
 }
 
 const ARTICLES: Record<string, ArticleContent> = {
+  "pruvodce-prodejem-nemovitosti": {
+    title:
+      "Průvodce prodejem nemovitosti v roce 2026: Kompletní návod od A do Z",
+    date: "2026-03-11",
+    body: (
+      <>
+        {/* ===== TABLE OF CONTENTS ===== */}
+        <nav className="mb-10 rounded-xl border border-slate-200 bg-slate-50 p-6">
+          <p className="mb-3 text-lg font-bold text-slate-900">
+            Obsah průvodce
+          </p>
+          <ol className="list-decimal space-y-1 pl-5 text-emerald-700">
+            <li>
+              <a
+                href="#kdy-prodat"
+                className="underline hover:text-emerald-500"
+              >
+                Kdy prodat nemovitost — market timing 2026
+              </a>
+            </li>
+            <li>
+              <a
+                href="#zpusoby-prodeje"
+                className="underline hover:text-emerald-500"
+              >
+                Způsoby prodeje: realitka, sám, výkup
+              </a>
+            </li>
+            <li>
+              <a href="#priprava" className="underline hover:text-emerald-500">
+                Příprava nemovitosti k prodeji
+              </a>
+            </li>
+            <li>
+              <a href="#ocenovani" className="underline hover:text-emerald-500">
+                Oceňování nemovitosti
+              </a>
+            </li>
+            <li>
+              <a
+                href="#pravni-stranka"
+                className="underline hover:text-emerald-500"
+              >
+                Právní stránka prodeje
+              </a>
+            </li>
+            <li>
+              <a
+                href="#specificke-situace"
+                className="underline hover:text-emerald-500"
+              >
+                Prodej ve specifických situacích
+              </a>
+            </li>
+            <li>
+              <a
+                href="#jak-vybrat-kupce"
+                className="underline hover:text-emerald-500"
+              >
+                Jak vybrat kupce nebo výkupní firmu
+              </a>
+            </li>
+            <li>
+              <a href="#faq" className="underline hover:text-emerald-500">
+                Často kladené otázky (FAQ)
+              </a>
+            </li>
+          </ol>
+        </nav>
+
+        <p>
+          Prodej nemovitosti patří mezi nejdůležitější finanční rozhodnutí v
+          životě. Ať už prodáváte byt, dům nebo pozemek, jde o transakci v řádu
+          milionů korun, kde každý špatný krok může stát statisíce. Tento
+          kompletní průvodce prodejem nemovitosti v roce 2026 vám pomůže projít
+          celým procesem od prvního rozhodnutí až po převod peněz na účet.
+          Pokrýváme vše — od ideálního načasování přes přípravu, oceňování a
+          právní náležitosti až po specifické situace jako exekuce, dědictví
+          nebo rozvod.
+        </p>
+        <p>
+          Na českém realitním trhu se v roce 2026 pohybuje přes 100 000
+          transakcí ročně. Přesto mnoho prodávajících dělá zbytečné chyby, které
+          je stojí čas i peníze. Cílem tohoto průvodce je, abyste vy mezi ně
+          nepatřili. Pojďme na to.
+        </p>
+
+        {/* ===== SECTION 1 ===== */}
+        <h2 id="kdy-prodat">1. Kdy prodat nemovitost — market timing 2026</h2>
+        <p>
+          Načasování prodeje může ovlivnit konečnou cenu o 5–15 %. V roce 2026
+          se český realitní trh nachází ve fázi stabilizace po turbulentním
+          období 2022–2024, kdy ceny nejprve prudce rostly a následně
+          korigovaly. Úrokové sazby hypoték se ustálily kolem 4–4,5 %, což je
+          příznivější než vrchol v roce 2023, kdy atakovaly 7 %. To znamená, že
+          poptávka po nemovitostech opět roste — kupující mají lepší přístup k
+          financování.
+        </p>
+        <p>
+          Sezónnost hraje roli: tradičně nejsilnější měsíce pro prodej jsou
+          březen až červen a září až říjen. V létě a v období vánočních svátků
+          aktivita klesá. Pokud nemáte na spěch, zkuste zasáhnout jarní nebo
+          podzimní sezónu. Pokud ale potřebujete prodat rychle, sezónnost vás
+          nemusí trápit — přímý výkup nemovitosti funguje celoročně a nezávisí
+          na počtu aktivních kupujících na trhu.
+        </p>
+        <p>
+          Z makroekonomického hlediska je rok 2026 pro prodej příznivý. Česká
+          národní banka postupně snižuje sazby, což tlačí hypoteční úroky dolů a
+          zvyšuje kupní sílu. Inflace se vrátila pod 3 %, ekonomika roste tempem
+          kolem 2,5 % ročně. Pro prodávající to znamená: kupujících je dostatek
+          a ceny nemovitostí mírně rostou. Odkládání prodeje nemá smysl, pokud
+          nemáte konkrétní důvod čekat.
+        </p>
+        <p>
+          Regionální rozdíly jsou výrazné. Praha a Brno zůstávají nejdražšími
+          trhy s cenami bytů kolem 100 000–130 000 Kč za metr čtvereční. Střední
+          Čechy, Plzeň a Jihomoravský kraj zaznamenávají stabilní poptávku.
+          Naopak v Ústeckém, Karlovarském a Moravskoslezském kraji jsou ceny
+          nižší a doba prodeje delší — zde se přímý výkup vyplatí obzvlášť,
+          protože najít solventního kupce na volném trhu může trvat i rok.
+        </p>
+        <p>
+          Důležitý faktor je i osobní situace. Pokud řešíte rozvod, dědictví,
+          finanční problémy nebo se stěhujete, čekání na &bdquo;ideální
+          moment&ldquo; nemá smysl. V těchto případech je rychlost klíčová — a
+          tu vám nabídne pouze přímý výkup.
+        </p>
+
+        {/* ===== CTA 1 ===== */}
+        <div className="my-8 rounded-2xl bg-emerald-50 p-6 text-center">
+          <p className="text-lg font-bold text-slate-900">
+            Chcete vědět, kolik za vaši nemovitost získáte?
+          </p>
+          <p className="mt-1 text-slate-600">
+            Nezávazná nabídka do 24 hodin — zdarma a bez závazků.
+          </p>
+          <Link
+            href="/"
+            className="mt-3 inline-flex items-center rounded-xl bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500"
+          >
+            Získat nabídku zdarma
+          </Link>
+        </div>
+
+        {/* ===== SECTION 2 ===== */}
+        <h2 id="zpusoby-prodeje">
+          2. Způsoby prodeje: realitka, sám, výkup — porovnání
+        </h2>
+        <p>
+          Při prodeji nemovitosti máte v zásadě tři cesty. Každá má své výhody,
+          nevýhody a je vhodná pro jiný typ situace. Pojďme si je podrobně
+          porovnat.
+        </p>
+
+        <h3>Prodej přes realitní kancelář</h3>
+        <p>
+          Klasická a nejčastější cesta. Makléř se postará o ocenění,
+          profesionální fotografie, inzerci na realitních portálech (Sreality,
+          Bezrealitky, Reality.cz), organizaci prohlídek a vyjednávání s
+          kupujícími. Za tyto služby si účtuje provizi, která se v ČR pohybuje
+          od 3 do 5 % z kupní ceny. U bytu za 4 miliony korun to znamená 120 000
+          až 200 000 Kč. Průměrná doba prodeje je 3–6 měsíců, u méně
+          atraktivních nemovitostí i déle. Podrobné srovnání najdete v článku{" "}
+          <Link
+            href="/blog/vykup-nemovitosti-vs-realitni-kancelar"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            výkup vs realitní kancelář
+          </Link>
+          .
+        </p>
+
+        <h3>Prodej na vlastní pěst (bez realitky)</h3>
+        <p>
+          Ušetříte na provizi, ale musíte zvládnout vše sami: stanovení ceny,
+          fotografie, inzerci, komunikaci se zájemci, prohlídky, vyjednávání a
+          právní zajištění. Vyžaduje to čas, zkušenosti a odolnost vůči stresu.
+          Riziko: bez zkušeností můžete cenu nastavit špatně, vybrat
+          nespolehlivého kupce nebo podcenit právní stránku. Tato cesta se hodí
+          pro lidi se zkušenostmi v realitách nebo pro ty, kdo mají čas a
+          energii.
+        </p>
+
+        <h3>Přímý výkup nemovitosti</h3>
+        <p>
+          Nejrychlejší varianta. Specializovaná firma odkoupí nemovitost přímo,
+          bez zprostředkovatele. Celý proces trvá 7–14 dní. Neplatíte žádnou
+          provizi ani poplatky — veškeré náklady hradí výkupní firma. Cena bývá
+          80–90 % tržní hodnoty, ale po odečtení provize realitky a dalších
+          nákladů je čistý výnos srovnatelný. Ideální pro urgentní prodej,
+          nemovitosti ve špatném stavu nebo s právními komplikacemi. Více o tom,
+          jak celý proces funguje, najdete na stránce{" "}
+          <Link
+            href="/jak-to-funguje"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Jak to funguje
+          </Link>
+          . Kompletní přehled nákladů pak v článku{" "}
+          <Link
+            href="/blog/kolik-stoji-vykup"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Kolik stojí výkup nemovitosti
+          </Link>
+          .
+        </p>
+
+        <h3>Přehledné srovnání</h3>
+        <p>
+          Doba prodeje: realitka 3–6 měsíců, vlastní prodej 2–6 měsíců, výkup
+          7–14 dní. Provize/poplatky: realitka 3–5 %, vlastní prodej 0 % (ale
+          náklady na inzerci a právníka), výkup 0 %. Cena: realitka až 100 %
+          tržní, vlastní prodej 90–100 %, výkup 80–90 %. Stres: realitka
+          střední, vlastní prodej vysoký, výkup minimální. Jistota prodeje:
+          realitka střední, vlastní prodej nízká, výkup vysoká.
+        </p>
+
+        <h3>Který způsob zvolit?</h3>
+        <p>
+          Odpověď závisí na vaší situaci. Pokud máte atraktivní nemovitost v
+          dobré lokalitě, nemáte na spěch a jste ochotni investovat čas do
+          prohlídek a vyjednávání, realitní kancelář může dosáhnout nejvyšší
+          ceny. Pokud máte zkušenosti s realitním trhem a chcete ušetřit na
+          provizi, zvládnete prodej sami. A pokud potřebujete rychlost, jistotu
+          nebo řešíte komplikovanou situaci, přímý výkup je nejefektivnější
+          cesta. Mnozí prodávající kombinují více přístupů — osloví výkupní
+          firmu pro okamžitou nabídku a současně zkusí prodej přes realitku.
+          Pokud se nemovitost neprodá za 2–3 měsíce, využijí výkup jako
+          záchrannou síť.
+        </p>
+
+        {/* ===== SECTION 3 ===== */}
+        <h2 id="priprava">3. Příprava nemovitosti k prodeji</h2>
+        <p>
+          Dobře připravená nemovitost se prodá rychleji a za vyšší cenu.
+          Investice do přípravy se vám vrátí několikanásobně.
+        </p>
+
+        <h3>Dokumenty, které budete potřebovat</h3>
+        <p>
+          Základem je list vlastnictví (LV) z katastru nemovitostí — prokazuje
+          vlastnictví a ukazuje případná břemena. Dále nabývací titul (kupní
+          smlouva, darovací smlouva, dědické usnesení), platný občanský průkaz,
+          energetický průkaz budovy (PENB — povinný od roku 2013), a u bytů
+          potvrzení o bezdlužnosti vůči SVJ. Podrobný přehled všech dokumentů
+          najdete v článku{" "}
+          <Link
+            href="/blog/jake-dokumenty-potrebuji"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Jaké dokumenty potřebuji k výkupu nemovitosti
+          </Link>
+          .
+        </p>
+
+        <h3>Home staging — aranžování interiéru</h3>
+        <p>
+          Profesionální home staging může zvýšit prodejní cenu o 5–10 % a
+          zkrátit dobu prodeje až o 30 %. Základní pravidla: odstraňte osobní
+          předměty (rodinné fotky, náboženské symboly), vymalujte stěny
+          neutrálními barvami, zajistěte čistotu a pořádek, minimalizujte
+          nábytek pro pocit prostornosti a přidejte drobné dekorace (čerstvé
+          květiny, voňavé svíčky). U dražších nemovitostí (nad 5 mil. Kč) se
+          vyplatí investovat do profesionálního stagingu za 15 000–40 000 Kč. U
+          levnějších stačí základní úklid a drobné úpravy.
+        </p>
+
+        <h3>Drobné opravy a údržba</h3>
+        <p>
+          Před prodejem je vhodné opravit zjevné vady, které snižují dojem z
+          nemovitosti: kapající kohoutek, prasklou dlaždici, nefunkční zásuvku,
+          oloupané barvy kolem oken. Investice 5 000–20 000 Kč do drobných oprav
+          se může vrátit v desítkách tisíc na prodejní ceně. Kupující totiž
+          podvědomě snižují nabídku o násobek skutečných nákladů na opravu —
+          viditelná závada za 2 000 Kč může stát 20 000 Kč na ceně. U větších
+          rekonstrukcí (nová koupelna, kuchyně) je kalkulace komplikovanější.
+          Zpravidla se nevyplatí investovat do velké rekonstrukce čistě kvůli
+          prodeji — návratnost bývá pod 50 %. Pokud nemovitost potřebuje zásadní
+          opravu, zvažte raději přímý výkup, kde kupujeme v jakémkoliv stavu.
+        </p>
+
+        <h3>Profesionální fotografie a virtuální prohlídky</h3>
+        <p>
+          V roce 2026 začíná 95 % kupujících hledání nemovitosti online.
+          Kvalitní fotografie jsou naprostý základ — investice 5 000–15 000 Kč
+          do profesionálního fotografa se vyplatí vždy. Standardem se stávají i
+          3D virtuální prohlídky (Matterport) a video prezentace, které
+          přitahují více zájemců a šetří čas oběma stranám — kupující si
+          nemovitost &bdquo;projdou&ldquo; z pohodlí domova a na fyzickou
+          prohlídku přijdou jen vážní zájemci.
+        </p>
+
+        {/* ===== CTA 2 ===== */}
+        <div className="my-8 rounded-2xl bg-emerald-50 p-6 text-center">
+          <p className="text-lg font-bold text-slate-900">
+            Nechcete řešit přípravu nemovitosti?
+          </p>
+          <p className="mt-1 text-slate-600">
+            Při výkupu kupujeme v jakémkoliv stavu — bez oprav, bez stagingu,
+            bez stresu.
+          </p>
+          <Link
+            href="/"
+            className="mt-3 inline-flex items-center rounded-xl bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500"
+          >
+            Získat nabídku zdarma
+          </Link>
+        </div>
+
+        {/* ===== SECTION 4 ===== */}
+        <h2 id="ocenovani">4. Oceňování nemovitosti</h2>
+        <p>
+          Správné ocenění je klíčové. Příliš vysoká cena odradí kupce a
+          nemovitost &bdquo;zatuchne&ldquo; na portálech. Příliš nízká cena
+          znamená zbytečnou finanční ztrátu. Existuje několik způsobů, jak
+          zjistit reálnou hodnotu nemovitosti.
+        </p>
+
+        <h3>Porovnávací metoda (srovnání s trhem)</h3>
+        <p>
+          Nejjednodudsší a nejčastější přístup. Podívejte se na ceny obdobných
+          nemovitostí ve stejné lokalitě na portálech Sreality, Bezrealitky nebo
+          Reality.cz. Porovnávejte nemovitosti podobné velikosti, stavu a
+          dispozice. Pozor: inzerované ceny jsou &bdquo;asking price&ldquo; —
+          skutečná prodejní cena bývá o 5–10 % nižší. Pro přesnější data můžete
+          využít cenovou mapu na portálu ČÚZK nebo databázi skutečně
+          realizovaných prodejů.
+        </p>
+
+        <h3>Znalecký posudek</h3>
+        <p>
+          Oficiální ocenění soudním znalcem stojí 3 000–8 000 Kč a je potřeba
+          zejména u dědického řízení, rozvodu nebo při prodeji nemovitosti v
+          exekuci. Znalecký posudek zohledňuje technický stav, lokalitu, právní
+          stav a aktuální tržní podmínky. Pro běžný prodej není povinný, ale
+          může posloužit jako silný argument při vyjednávání s kupcem.
+        </p>
+
+        <h3>Online kalkulačky a odhady</h3>
+        <p>
+          Řada portálů nabízí online odhad hodnoty nemovitosti zdarma. Tyto
+          nástroje využívají databáze realizovaných prodejů a algoritmy
+          strojového učení. Jsou dobré jako orientační výchozí bod, ale ne jako
+          definitivní ocenění — nepočítají se stavem interiéru, výhledem z oken
+          nebo plánovanou výstavbou v okolí. Pro přesnější odhad doporučujeme
+          kombinovat online kalkulačku se znaleckým posudkem nebo nabídkou od
+          výkupní firmy.
+        </p>
+
+        <h3>Nabídka od výkupní firmy jako benchmark</h3>
+        <p>
+          Praktický tip: i pokud plánujete prodej přes realitku, nechte si
+          zdarma zpracovat nabídku od výkupní firmy. Získáte tak nezávislý
+          referenční bod pro porovnání. Nabídka výkupní firmy reflektuje reálnou
+          tržní situaci — firma musí být schopná nemovitost dále prodat se
+          ziskem, takže její ocenění je konzervativní, ale realistické. Pokud je
+          nabídka výkupní firmy výrazně nižší než vaše očekávání, možná je vaše
+          cena nadsazená. Pokud je naopak blízko, máte potvrzení, že oceňujete
+          správně.
+        </p>
+
+        {/* ===== SECTION 5 ===== */}
+        <h2 id="pravni-stranka">5. Právní stránka prodeje nemovitosti</h2>
+        <p>
+          Právní aspekty prodeje nemovitosti v České republice jsou komplexní a
+          jejich podcenění může vést k vážným problémům. Pojďme si projít
+          klíčové body.
+        </p>
+
+        <h3>Kupní smlouva</h3>
+        <p>
+          Kupní smlouva na nemovitost musí mít písemnou formu a podpisy musí být
+          úředně ověřeny (notářem, na matrice nebo Czech POINTu). Smlouva musí
+          obsahovat: přesnou identifikaci smluvních stran, identifikaci
+          nemovitosti (parcelní číslo, číslo jednotky, katastrální území), kupní
+          cenu a způsob její úhrady, podmínky předání nemovitosti a prohlášení o
+          stavu nemovitosti a případných vadách. Důrazně doporučujeme nechat
+          smlouvu připravit nebo alespoň zkontrolovat zkušeným advokátem. Chyba
+          v kupní smlouvě může znamenat zamítnutí vkladu katastrem nebo právní
+          spory.
+        </p>
+
+        <h3>Advokátní úschova</h3>
+        <p>
+          Advokátní úschova je nejbezpečnější způsob, jak zajistit platbu při
+          prodeji nemovitosti. Funguje tak, že kupující složí kupní cenu na účet
+          advokátní úschovy. Advokát uvolní peníze prodávajícímu až po splnění
+          dohodnutých podmínek — typicky po zápisu nového vlastníka do katastru
+          nemovitostí. Tím jsou chráněny obě strany: prodávající ví, že peníze
+          existují, kupující ví, že je zaplatí až po převodu vlastnictví.
+          Alternativou je notářská nebo bankovní úschova, princip je obdobný.
+          Při výkupu nemovitosti hradí náklady na úschovu výkupní firma — pro
+          vás je to zdarma.
+        </p>
+
+        <h3>Katastr nemovitostí — vklad vlastnického práva</h3>
+        <p>
+          Po podpisu kupní smlouvy je třeba podat návrh na vklad vlastnického
+          práva do katastru nemovitostí. Katastrální poplatek činí 2 000 Kč.
+          Katastrální úřad rozhodne o vkladu obvykle do 20 pracovních dnů. Po
+          provedení vkladu se kupující stává novým vlastníkem nemovitosti a
+          advokát uvolní peníze z úschovy.
+        </p>
+
+        <h3>Daně při prodeji nemovitosti</h3>
+        <p>
+          Od roku 2021 platí: příjem z prodeje nemovitosti je osvobozen od daně
+          z příjmů, pokud jste v ní bydleli alespoň 2 roky, nebo pokud ji
+          vlastníte alespoň 10 let (u nemovitostí nabytých před rokem 2021 stačí
+          5 let). Pokud tyto podmínky nesplňujete, příjem podléhá dani z příjmů
+          fyzických osob (15 %, u příjmů nad 36× průměrnou mzdu 23 %). Základem
+          daně je rozdíl mezi prodejní cenou a cenou, za kterou jste nemovitost
+          pořídili. Vždy doporučujeme konzultovat daňové dopady s daňovým
+          poradcem, zejména u dražších nemovitostí.
+        </p>
+
+        <h3>Předkupní právo a další omezení</h3>
+        <p>
+          Před prodejem ověřte, zda na nemovitosti nevázne zákonné nebo smluvní
+          předkupní právo. Zákonné předkupní právo mají například spoluvlastníci
+          nemovitosti — pokud prodáváte svůj spoluvlastnický podíl, musíte jej
+          nejprve nabídnout ostatním spoluvlastníkům. Smluvní předkupní právo
+          může být zapsáno v katastru nemovitostí. Další omezení mohou zahrnovat
+          nájemní smlouvy (nájemce má právo v nemovitosti bydlet i po změně
+          vlastníka), věcná břemena nebo zástavní práva. Vše by měl zkontrolovat
+          advokát před zahájením prodeje.
+        </p>
+        <p>
+          Pokud prodáváte byt v družstevním vlastnictví, situace je odlišná —
+          neprodáváte nemovitost, ale převádíte členský podíl v družstvu.
+          Pravidla převodu se řídí stanovami družstva a mohou vyžadovat souhlas
+          členské schůze. U družstevních bytů se nevkládá do katastru
+          nemovitostí, protože vlastníkem je družstvo.
+        </p>
+
+        {/* ===== CTA 3 ===== */}
+        <div className="my-8 rounded-2xl bg-emerald-50 p-6 text-center">
+          <p className="text-lg font-bold text-slate-900">
+            Právní servis zdarma při výkupu
+          </p>
+          <p className="mt-1 text-slate-600">
+            Naši advokáti připraví smlouvu, zajistí úschovu a zápis do katastru.
+            Vy neplatíte nic.
+          </p>
+          <Link
+            href="/garance-vykupu"
+            className="mt-3 inline-flex items-center rounded-xl bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500"
+          >
+            Zjistit více o garancích
+          </Link>
+        </div>
+
+        {/* ===== SECTION 6 ===== */}
+        <h2 id="specificke-situace">6. Prodej ve specifických situacích</h2>
+        <p>
+          Někdy okolnosti vyžadují prodej nemovitosti za nestandardních
+          podmínek. Podívejme se na nejčastější specifické situace a jak je
+          řešit.
+        </p>
+
+        <h3>Prodej nemovitosti v exekuci</h3>
+        <p>
+          Exekuce na nemovitost je jedna z nejstresovějších životních situací.
+          Po zápisu exekučního příkazu do katastru nemůžete s nemovitostí volně
+          nakládat. Máte ale možnost dobrovolného prodeje se souhlasem exekutora
+          — a to je téměř vždy lepší varianta než nucená dražba. Při dobrovolném
+          prodeji získáte 80–90 % tržní hodnoty, zatímco v nucené dražbě často
+          jen 50–65 %. Výkupní firma jedná přímo s exekutorem a z kupní ceny
+          uhradí vaše dluhy. Podrobnosti najdete na stránce{" "}
+          <Link
+            href="/vykup-pri-exekuci"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Výkup nemovitosti při exekuci
+          </Link>
+          .
+        </p>
+
+        <h3>Prodej zděděné nemovitosti</h3>
+        <p>
+          Dědictví nemovitosti s sebou nese specifické výzvy: více dědiců, kteří
+          se nemusí shodnout na způsobu naložení s majetkem, potřeba vypořádat
+          dědické podíly, případné dluhy zůstavitele vázané na nemovitost. Pokud
+          se dědici nedokážou dohodnout, může výkup představovat nejrychlejší a
+          nejférovější řešení — peníze se rozdělí podle dědických podílů. Více
+          informací najdete na stránce{" "}
+          <Link
+            href="/vykup-pri-dedictvi"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Výkup nemovitosti při dědictví
+          </Link>
+          .
+        </p>
+
+        <h3>Prodej nemovitosti při rozvodu</h3>
+        <p>
+          Při rozvodu je třeba vypořádat společné jmění manželů (SJM), jehož
+          součástí je typicky i rodinná nemovitost. Manželé se mohou dohodnout
+          na prodeji a rozdělení výtěžku, nebo může jeden z nich vyplatit
+          druhého. Pokud dohoda není možná, rozhoduje soud — a to trvá měsíce až
+          roky. Rychlý výkup umožňuje situaci vyřešit během týdnů, peníze se
+          spravedlivě rozdělí a oba bývalí manželé mohou jít dál. Podrobnosti na
+          stránce{" "}
+          <Link
+            href="/vykup-pri-rozvodu"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Výkup nemovitosti při rozvodu
+          </Link>
+          .
+        </p>
+
+        <h3>Prodej nemovitosti s hypotékou</h3>
+        <p>
+          Pokud na nemovitosti vázne hypotéka, musíte ji při prodeji splatit. V
+          praxi to funguje tak, že z kupní ceny se nejprve uhradí zůstatek
+          hypotéky bance a teprve poté se zbytek vyplatí vám. Výkupní firma
+          tento proces koordinuje — komunikuje s bankou, zajistí výmaz
+          zástavního práva a celou transakci ošetří právně. Nemusíte se o nic
+          starat. Pokud nesplácíte hypotéku a banka hrozí zesplatnění, je rychlý
+          prodej často jedinou cestou, jak zabránit exekuci a minimalizovat
+          finanční ztrátu.
+        </p>
+
+        <h3>Prodej nemovitosti s nájemníky</h3>
+        <p>
+          Pokud v nemovitosti bydlí nájemníci, prodej je možný, ale složitější.
+          Nájemní smlouva zůstává v platnosti i po změně vlastníka — nový
+          majitel vstupuje do pozice pronajímatele. To může odradit kupce, kteří
+          chtějí nemovitost osobně užívat. Prodejní cena bytu s nájemníkem bývá
+          o 10–20 % nižší než u volného bytu. Výkupní firmy ale nemovitosti s
+          nájemníky kupují bez problémů — je to pro ně běžná investiční
+          příležitost.
+        </p>
+
+        <h3>Prodej nemovitosti ze zahraničí</h3>
+        <p>
+          Pokud žijete v zahraničí a chcete prodat nemovitost v ČR, potřebujete
+          buď přijet osobně k podpisu smlouvy, nebo udělit úředně ověřenou plnou
+          moc (s apostilou nebo superlegalizací podle země). Výkupní firma
+          dokáže celý proces koordinovat na dálku, včetně přípravy plné moci a
+          komunikace s notářem. Peníze vám převedeme na jakýkoliv účet — i
+          zahraniční.
+        </p>
+
+        {/* ===== SECTION 7 ===== */}
+        <h2 id="jak-vybrat-kupce">7. Jak vybrat kupce nebo výkupní firmu</h2>
+        <p>
+          Výběr správného kupce nebo výkupní firmy je klíčový pro bezpečnou a
+          výhodnou transakci. Zde jsou kritéria, na která se zaměřit.
+        </p>
+
+        <h3>Na co si dát pozor u výkupní firmy</h3>
+        <p>
+          Seriózní výkupní firma: nabízí bezplatnou a nezávaznou konzultaci bez
+          jakéhokoliv závazku, transparentně vysvětlí způsob ocenění a neúčtuje
+          žádné poplatky předem, používá advokátní úschovu pro bezpečnost
+          platby, poskytuje dostatek času na rozhodnutí — netlačí na okamžitý
+          podpis, má prokazatelnou historii a pozitivní reference na internetu,
+          má vlastní právní tým nebo spolupracuje s renomovanými advokáty.
+        </p>
+        <p>
+          Naopak, varujte se firem, které: požadují jakékoliv platby předem,
+          tlačí na okamžitý podpis bez času na rozmyšlenou, nabízí výrazně nižší
+          cenu než konkurence (pod 70 % tržní hodnoty), nemají webové stránky,
+          IČO nebo transparentní kontaktní údaje, odmítají advokátní úschovu.
+          Kompletní kritéria pro hodnocení najdete v článku{" "}
+          <Link
+            href="/blog/jak-vybrat-vykupni-firmu"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Jak vybrat výkupní firmu
+          </Link>
+          .
+        </p>
+
+        <h3>Jak porovnat nabídky</h3>
+        <p>
+          Doporučujeme oslovit minimálně 2–3 výkupní firmy a porovnat jejich
+          nabídky. Srovnávejte nejen cenu, ale i podmínky: rychlost vyplacení,
+          kdo hradí právní služby, zda je k dispozici záloha při podpisu. U nás
+          nabízíme garanci výkupu s jasnými podmínkami — více na stránce{" "}
+          <Link
+            href="/garance-vykupu"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Garance výkupu
+          </Link>
+          .
+        </p>
+
+        {/* ===== CTA 4 ===== */}
+        <div className="my-8 rounded-2xl bg-emerald-50 p-6 text-center">
+          <p className="text-lg font-bold text-slate-900">
+            Porovnejte naši nabídku
+          </p>
+          <p className="mt-1 text-slate-600">
+            Nabídku připravíme do 24 hodin. Transparentně, férově, bez závazků.
+          </p>
+          <Link
+            href="/"
+            className="mt-3 inline-flex items-center rounded-xl bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500"
+          >
+            Získat nabídku zdarma
+          </Link>
+        </div>
+
+        {/* ===== SECTION 8 — FAQ ===== */}
+        <h2 id="faq">8. Často kladené otázky (FAQ)</h2>
+
+        <h3>Jak dlouho trvá prodej nemovitosti?</h3>
+        <p>
+          Záleží na zvoleném způsobu prodeje. Přes realitní kancelář průměrně
+          3–6 měsíců, na vlastní pěst 2–6 měsíců, přes výkupní firmu 7–14 dní.
+          Více o rychlém prodeji se dozvíte v článku{" "}
+          <Link
+            href="/blog/jak-rychle-prodat-nemovitost"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Jak rychle prodat nemovitost v roce 2026
+          </Link>
+          .
+        </p>
+
+        <h3>Kolik stojí prodej nemovitosti?</h3>
+        <p>
+          Při prodeji přes realitku zaplatíte provizi 3–5 % plus náklady na
+          přípravu (fotky, staging, PENB). Při výkupu neplatíte nic — veškeré
+          náklady hradí výkupní firma. Podrobný přehled v článku{" "}
+          <Link
+            href="/blog/kolik-stoji-vykup"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Kolik stojí výkup nemovitosti
+          </Link>
+          .
+        </p>
+
+        <h3>Musím platit daň z prodeje nemovitosti?</h3>
+        <p>
+          Ne, pokud jste v nemovitosti bydleli alespoň 2 roky nebo ji vlastnili
+          alespoň 10 let (5 let u nemovitostí nabytých před 2021). Jinak platíte
+          daň z příjmů 15 % z rozdílu mezi nákupní a prodejní cenou.
+        </p>
+
+        <h3>Mohu prodat nemovitost v exekuci?</h3>
+        <p>
+          Ano, dobrovolný prodej nemovitosti v exekuci je možný se souhlasem
+          exekutora. Je to téměř vždy výhodnější než nucená dražba. Podrobnosti
+          na stránce{" "}
+          <Link
+            href="/vykup-pri-exekuci"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Výkup při exekuci
+          </Link>
+          .
+        </p>
+
+        <h3>Co je advokátní úschova a je bezpečná?</h3>
+        <p>
+          Advokátní úschova je mechanismus, kdy peníze leží na zvláštním účtu
+          advokáta a jsou uvolněny až po splnění dohodnutých podmínek (typicky
+          zápis do katastru). Je to nejbezpečnější způsob platby při prodeji
+          nemovitosti. Advokáti jsou ze zákona pojištěni a podléhají dohledu
+          České advokátní komory.
+        </p>
+
+        <h3>Jaké dokumenty potřebuji k prodeji?</h3>
+        <p>
+          Základem je list vlastnictví, občanský průkaz, nabývací titul a
+          energetický průkaz (PENB). Podle situace mohou být potřeba další
+          dokumenty — souhlas manžela/manželky, potvrzení o bezdlužnosti vůči
+          SVJ, plná moc a podobně. Kompletní přehled najdete v článku{" "}
+          <Link
+            href="/blog/jake-dokumenty-potrebuji"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Jaké dokumenty potřebuji
+          </Link>
+          .
+        </p>
+
+        <h3>Jak se určí cena nemovitosti při výkupu?</h3>
+        <p>
+          Cena vychází z aktuální tržní hodnoty v dané lokalitě, stavu
+          nemovitosti a případných právních komplikací. Výkupní firma provede
+          vlastní ocenění na základě porovnávací metody, prohlídky nemovitosti a
+          znalosti trhu. Nabídka se obvykle pohybuje na úrovni 80–90 % tržní
+          hodnoty.
+        </p>
+
+        <h3>Co když se dědici nedokážou dohodnout na prodeji?</h3>
+        <p>
+          Pokud dědici spoluvlastní nemovitost a nedokážou se dohodnout, může
+          kterýkoliv z nich požádat soud o zrušení a vypořádání
+          spoluvlastnictví. Soudní řízení ale trvá měsíce až roky. Rychlejší
+          řešení je prodej spoluvlastnického podílu výkupní firmě — podrobnosti
+          na stránce{" "}
+          <Link
+            href="/vykup-spoluvlastnickeho-podilu"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Výkup spoluvlastnického podílu
+          </Link>
+          . Další informace o prodeji při dědictví najdete na stránce{" "}
+          <Link
+            href="/vykup-pri-dedictvi"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Výkup při dědictví
+          </Link>
+          .
+        </p>
+
+        <h3>Je možné po prodeji v nemovitosti dál bydlet?</h3>
+        <p>
+          Ano, nabízíme možnost zpětného nájmu. To znamená, že nemovitost
+          prodáte, získáte peníze, ale můžete v ní dál bydlet jako nájemce. Je
+          to ideální řešení pro ty, kdo potřebují rychle uvolnit kapitál, ale
+          nechtějí se stěhovat. Více na stránce{" "}
+          <Link
+            href="/zpetny-najem"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Zpětný nájem
+          </Link>
+          .
+        </p>
+
+        <h3>Jak rychle dostanu peníze po podpisu smlouvy?</h3>
+        <p>
+          Po podpisu kupní smlouvy a podání návrhu na vklad do katastru trvá
+          zápis obvykle 20 pracovních dnů. Po zápisu advokát uvolní peníze z
+          úschovy — na vašem účtu je budete mít do 3–5 pracovních dnů. Celkem
+          tedy přibližně 4–5 týdnů od podpisu. Při výkupu navíc nabízíme možnost
+          zálohy při podpisu (10–30 % kupní ceny), takže část peněz můžete mít
+          hned.
+        </p>
+
+        <h3>Musím nemovitost před prodejem opravovat?</h3>
+        <p>
+          Pokud prodáváte přes realitku, drobné opravy a home staging mohou
+          zvýšit cenu a urychlit prodej. Při výkupu nemovitosti to ale nemusíte
+          řešit vůbec — kupujeme v jakémkoliv stavu, včetně nemovitostí
+          vyžadujících kompletní rekonstrukci.
+        </p>
+
+        <h3>Co když mám na nemovitosti věcné břemeno?</h3>
+        <p>
+          Věcné břemeno (například právo doživotního bydlení) komplikuje
+          klasický prodej, protože většinu kupujících odradí. Výkupní firma ale
+          dokáže nemovitost s věcným břemenem odkoupit — cena bude nižší, ale
+          transakce proběhne. Více informací na stránce{" "}
+          <Link
+            href="/vykup-nemovitosti-s-vecnym-bremenem"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Výkup nemovitosti s věcným břemenem
+          </Link>
+          .
+        </p>
+
+        {/* ===== ZÁVĚR ===== */}
+        <h2>Závěr: prodejte chytře</h2>
+        <p>
+          Prodej nemovitosti v roce 2026 nabízí řadu možností a správná volba
+          závisí na vaší konkrétní situaci. Pokud máte čas a atraktivní
+          nemovitost v dobré lokalitě, zkuste maximalizovat cenu přes realitku
+          nebo vlastním prodejem. Pokud potřebujete rychlost, jistotu nebo
+          řešíte komplikovanou situaci (exekuce, dědictví, rozvod, hypotéka),
+          přímý výkup je nejefektivnější cesta.
+        </p>
+        <p>
+          Ať už zvolíte jakýkoliv způsob, klíčové je: nepodceňujte přípravu,
+          správně oceňte nemovitost, zajistěte právní bezpečnost transakce a
+          spolupracujte s profesionály. Vyvarujte se nejčastějších chyb —
+          nadsazené ceny, špatných fotografií, chybějících dokumentů a podcenění
+          právní stránky. Každá z těchto chyb vás může stát statisíce korun nebo
+          měsíce zbytečného čekání.
+        </p>
+        <p>
+          Pokud si nejste jistí, jaký způsob prodeje je pro vás nejlepší,
+          neváhejte nás kontaktovat — konzultace je zcela zdarma a nezávazná.
+          Pomůžeme vám zanalyzovat vaši situaci a navrhnout nejefektivnější
+          postup. Máme zkušenosti se všemi typy nemovitostí a situací — od
+          standardních bytů přes domy vyžadující rekonstrukci až po nemovitosti
+          zatížené exekucí nebo věcným břemenem. Pomůžeme vám najít nejlepší
+          řešení.
+        </p>
+
+        <div className="my-8 rounded-2xl bg-emerald-50 p-6 text-center">
+          <p className="text-lg font-bold text-slate-900">Připraveni prodat?</p>
+          <p className="mt-1 text-slate-600">
+            Nezávazná nabídka do 24 hodin. Celý proces od A do Z na nás.
+          </p>
+          <Link
+            href="/"
+            className="mt-3 inline-flex items-center rounded-xl bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500"
+          >
+            Získat nabídku zdarma
+          </Link>
+        </div>
+      </>
+    ),
+  },
   "jake-dokumenty-potrebuji": {
     title: "Jaké dokumenty potřebuji k výkupu nemovitosti?",
     date: "2026-03-02",
@@ -1586,6 +2395,197 @@ export default async function BlogArticlePage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonLd(articleJsonLd) }}
       />
+
+      {slug === "pruvodce-prodejem-nemovitosti" && (
+        <>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: safeJsonLd({
+                "@context": "https://schema.org",
+                "@type": "HowTo",
+                name: "Jak prodat nemovitost v roce 2026",
+                description:
+                  "Kompletní návod na prodej nemovitosti v České republice — od přípravy po převod peněz.",
+                step: [
+                  {
+                    "@type": "HowToStep",
+                    position: 1,
+                    name: "Rozhodněte o načasování prodeje",
+                    text: "Zvažte aktuální situaci na trhu, sezónnost a své osobní okolnosti. Rok 2026 je pro prodej příznivý díky stabilním cenám a klesajícím úrokovým sazbám.",
+                  },
+                  {
+                    "@type": "HowToStep",
+                    position: 2,
+                    name: "Vyberte způsob prodeje",
+                    text: "Porovnejte prodej přes realitní kancelář, vlastní prodej a přímý výkup. Každá varianta má jiné výhody z hlediska ceny, rychlosti a pohodlí.",
+                  },
+                  {
+                    "@type": "HowToStep",
+                    position: 3,
+                    name: "Připravte nemovitost a dokumenty",
+                    text: "Zajistěte list vlastnictví, energetický průkaz, nabývací titul. Zvažte home staging a profesionální fotografie pro vyšší prodejní cenu.",
+                  },
+                  {
+                    "@type": "HowToStep",
+                    position: 4,
+                    name: "Nechte nemovitost ocenit",
+                    text: "Využijte porovnávací metodu, online kalkulačky nebo znalecký posudek pro stanovení správné ceny.",
+                  },
+                  {
+                    "@type": "HowToStep",
+                    position: 5,
+                    name: "Zajistěte právní stránku prodeje",
+                    text: "Připravte kupní smlouvu s advokátem, zajistěte advokátní úschovu a podejte návrh na vklad do katastru nemovitostí.",
+                  },
+                  {
+                    "@type": "HowToStep",
+                    position: 6,
+                    name: "Podepište smlouvu a převezměte peníze",
+                    text: "Po podpisu smlouvy u notáře a zápisu do katastru (cca 20 dnů) obdržíte peníze z advokátní úschovy na svůj účet.",
+                  },
+                ],
+              }),
+            }}
+          />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: safeJsonLd({
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                mainEntity: [
+                  {
+                    "@type": "Question",
+                    name: "Jak dlouho trvá prodej nemovitosti?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "Přes realitní kancelář průměrně 3–6 měsíců, na vlastní pěst 2–6 měsíců, přes výkupní firmu 7–14 dní.",
+                    },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Kolik stojí prodej nemovitosti?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "Při prodeji přes realitku provize 3–5 % plus náklady na přípravu. Při výkupu neplatíte nic — veškeré náklady hradí výkupní firma.",
+                    },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Musím platit daň z prodeje nemovitosti?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "Ne, pokud jste v nemovitosti bydleli alespoň 2 roky nebo ji vlastnili alespoň 10 let. Jinak platíte daň z příjmů 15 % z rozdílu mezi nákupní a prodejní cenou.",
+                    },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Mohu prodat nemovitost v exekuci?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "Ano, dobrovolný prodej nemovitosti v exekuci je možný se souhlasem exekutora a je téměř vždy výhodnější než nucená dražba.",
+                    },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Co je advokátní úschova a je bezpečná?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "Advokátní úschova je mechanismus, kdy peníze leží na zvláštním účtu advokáta a jsou uvolněny až po splnění podmínek. Je to nejbezpečnější způsob platby při prodeji nemovitosti.",
+                    },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Jaké dokumenty potřebuji k prodeji?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "List vlastnictví, občanský průkaz, nabývací titul a energetický průkaz (PENB). Podle situace mohou být potřeba další dokumenty.",
+                    },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Jak se určí cena nemovitosti při výkupu?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "Cena vychází z aktuální tržní hodnoty, stavu nemovitosti a případných právních komplikací. Nabídka se obvykle pohybuje na úrovni 80–90 % tržní hodnoty.",
+                    },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Co když se dědici nedokážou dohodnout na prodeji?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "Kterýkoliv z dědiců může požádat soud o zrušení spoluvlastnictví, nebo prodat svůj podíl výkupní firmě. Výkup umožňuje rychlé a spravedlivé řešení.",
+                    },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Je možné po prodeji v nemovitosti dál bydlet?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "Ano, nabízíme možnost zpětného nájmu — nemovitost prodáte, získáte peníze, ale můžete v ní dál bydlet jako nájemce.",
+                    },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Jak rychle dostanu peníze po podpisu smlouvy?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "Po zápisu do katastru (cca 20 pracovních dnů) advokát uvolní peníze z úschovy. Na účtu je budete mít do 3–5 pracovních dnů. Při výkupu nabízíme i zálohu při podpisu.",
+                    },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Musím nemovitost před prodejem opravovat?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "Při výkupu ne — kupujeme v jakémkoliv stavu. Při prodeji přes realitku drobné opravy a home staging mohou zvýšit cenu.",
+                    },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Co když mám na nemovitosti věcné břemeno?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "Výkupní firma dokáže nemovitost s věcným břemenem odkoupit. Cena bude nižší, ale transakce proběhne bez komplikací.",
+                    },
+                  },
+                ],
+              }),
+            }}
+          />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: safeJsonLd({
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                  {
+                    "@type": "ListItem",
+                    position: 1,
+                    name: "Domů",
+                    item: "https://vykoupim-nemovitost.cz/",
+                  },
+                  {
+                    "@type": "ListItem",
+                    position: 2,
+                    name: "Blog",
+                    item: "https://vykoupim-nemovitost.cz/blog",
+                  },
+                  {
+                    "@type": "ListItem",
+                    position: 3,
+                    name: "Průvodce prodejem nemovitosti 2026",
+                    item: "https://vykoupim-nemovitost.cz/blog/pruvodce-prodejem-nemovitosti",
+                  },
+                ],
+              }),
+            }}
+          />
+        </>
+      )}
 
       <article className="bg-gradient-to-b from-slate-50 to-white py-16">
         <div className="mx-auto max-w-3xl px-4">

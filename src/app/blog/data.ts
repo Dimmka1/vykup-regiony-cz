@@ -8,6 +8,15 @@ export interface BlogPost {
 
 export const BLOG_POSTS: readonly BlogPost[] = [
   {
+    slug: "pruvodce-prodejem-nemovitosti",
+    title:
+      "Průvodce prodejem nemovitosti v roce 2026: Kompletní návod od A do Z",
+    excerpt:
+      "Mega-guide prodeje nemovitosti v Česku. Kdy prodat, způsoby prodeje, příprava, oceňování, právní stránka, specifické situace, výběr kupce a FAQ — vše na jednom místě.",
+    date: "2026-03-11",
+    readingTime: "18 min",
+  },
+  {
     slug: "jake-dokumenty-potrebuji",
     title: "Jaké dokumenty potřebuji k výkupu nemovitosti?",
     excerpt:

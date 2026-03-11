@@ -47,6 +47,29 @@ const PRODUCTION_DOMAIN = "vykoupim-nemovitost.cz";
 /** Valid subdomains on production */
 const VALID_SUBDOMAINS = new Set([...Object.values(REGION_SUBDOMAINS), "www"]);
 
+/** Known crawler User-Agent patterns */
+const CRAWLER_UA_PATTERNS = [
+  "googlebot",
+  "bingbot",
+  "yandexbot",
+  "baiduspider",
+  "duckduckbot",
+  "slurp",
+  "facebookexternalhit",
+  "twitterbot",
+  "linkedinbot",
+  "applebot",
+  "semrushbot",
+  "ahrefsbot",
+  "mj12bot",
+] as const;
+
+function isCrawler(userAgent: string | null): boolean {
+  if (!userAgent) return false;
+  const ua = userAgent.toLowerCase();
+  return CRAWLER_UA_PATTERNS.some((pattern) => ua.includes(pattern));
+}
+
 function normalizeHost(host: string): string {
   return host
     .toLowerCase()
@@ -83,6 +106,20 @@ export function middleware(request: NextRequest): NextResponse | undefined {
     const response = NextResponse.next();
     response.headers.set("x-layout-stripped", "1");
     return response;
+  }
+
+  // 0b. Crawlers on root domain → never redirect to a regional subdomain
+  // This ensures Googlebot always sees the national (geo-neutral) homepage
+  const ua = request.headers.get("user-agent");
+  if (isProd && isCrawler(ua)) {
+    const normalized = normalizeHost(host);
+    if (
+      normalized === PRODUCTION_DOMAIN ||
+      normalized === `www.${PRODUCTION_DOMAIN}`
+    ) {
+      // Let crawlers through to root domain without any region redirect
+      return undefined;
+    }
   }
 
   // 1. Handle ?region=X query param

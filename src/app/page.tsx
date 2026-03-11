@@ -4,6 +4,8 @@ import {
   getRegionByHost,
   getRegionByKey,
   isProductionHost,
+  isRootDomain,
+  getNationalConfig,
   getRegionSubdomainUrl,
 } from "@/lib/config";
 import { getRequestHost, getRegionKeyOverride } from "@/lib/request-host";
@@ -21,11 +23,20 @@ async function resolveRegion() {
 
   // If middleware set a region key override (dev/preview path-based routing), use it
   if (regionKeyOverride) {
-    return { region: getRegionByKey(regionKeyOverride), host };
+    return {
+      region: getRegionByKey(regionKeyOverride),
+      host,
+      isNational: false,
+    };
+  }
+
+  // Root domain without subdomain → national (geo-neutral) copy
+  if (isRootDomain(host)) {
+    return { region: getNationalConfig(), host, isNational: true };
   }
 
   // Otherwise resolve by host (production subdomains + dev host-based)
-  return { region: getRegionByHost(host), host };
+  return { region: getRegionByHost(host), host, isNational: false };
 }
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -67,14 +78,17 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function HomePage(): Promise<ReactElement> {
-  const { region, host } = await resolveRegion();
-  const canonicalUrl = buildCanonicalUrl(host, region.key);
+  const { region, host, isNational } = await resolveRegion();
+  const canonicalUrl = isNational
+    ? "https://vykoupim-nemovitost.cz"
+    : buildCanonicalUrl(host, region.key);
 
   return (
     <HomePageContent
       region={region}
       canonicalUrl={canonicalUrl}
       currentHost={host}
+      isNational={isNational}
     />
   );
 }

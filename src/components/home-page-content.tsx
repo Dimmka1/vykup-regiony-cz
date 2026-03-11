@@ -15,6 +15,7 @@ import { FaqAccordion } from "@/components/faq-accordion";
 import { ParallaxImage } from "@/components/parallax-image";
 import { ParallaxSection } from "@/components/parallax-section";
 import { NearbyRegions } from "@/components/nearby-regions";
+import { RegionGrid } from "@/components/region-grid";
 import { ComparisonCalculator } from "@/components/comparison-calculator";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { StaggerReveal, StaggerItem } from "@/components/stagger-reveal";
@@ -194,13 +195,18 @@ export function buildCanonicalUrl(
   const normalized = normalizeHost(host);
   const isProd = isProductionHost(host);
 
+  // National (geo-neutral) config → root domain canonical
+  if (regionKey === "national") {
+    return "https://vykoupim-nemovitost.cz";
+  }
+
   if (isProd && regionKey) {
     return getRegionSubdomainUrl(regionKey);
   }
 
   if (isProd) {
-    // Root domain without region key → Praha
-    return "https://praha.vykoupim-nemovitost.cz";
+    // Root domain without region key → national homepage
+    return "https://vykoupim-nemovitost.cz";
   }
 
   // Dev/preview: use current host
@@ -376,12 +382,14 @@ interface HomePageContentProps {
   region: RegionConfig;
   canonicalUrl: string;
   currentHost: string | null;
+  isNational?: boolean;
 }
 
 export function HomePageContent({
   region,
   canonicalUrl,
   currentHost,
+  isNational = false,
 }: HomePageContentProps): ReactElement {
   const schema = buildSchema(region, canonicalUrl);
 
@@ -506,6 +514,9 @@ export function HomePageContent({
       </section>
 
       <SocialProofBar />
+
+      {/* ===== REGION GRID (national homepage only) ===== */}
+      {isNational && <RegionGrid currentHost={currentHost} />}
 
       {/* ===== MARKET INFO ===== */}
       {region.marketInfo && (

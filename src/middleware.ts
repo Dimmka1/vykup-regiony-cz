@@ -42,9 +42,114 @@ const REGION_SUBDOMAINS: Record<string, string> = {
   "zlinsky-kraj": "zlinsky",
 };
 
+/**
+ * City-name → regional subdomain mapping.
+ * When a user visits e.g. brno.vykoupim-nemovitost.cz, they are
+ * 301-redirected to jihomoravsky.vykoupim-nemovitost.cz (preserving path).
+ */
+const CITY_TO_REGION_SUBDOMAIN: Record<string, string> = {
+  // Jihomoravský kraj
+  brno: "jihomoravsky",
+  znojmo: "jihomoravsky",
+  breclav: "jihomoravsky",
+  hodonin: "jihomoravsky",
+  vyskov: "jihomoravsky",
+  blansko: "jihomoravsky",
+
+  // Moravskoslezský kraj
+  ostrava: "moravskoslezsky",
+  karvina: "moravskoslezsky",
+  "frydek-mistek": "moravskoslezsky",
+  opava: "moravskoslezsky",
+  havirov: "moravskoslezsky",
+  "novy-jicin": "moravskoslezsky",
+
+  // Plzeňský kraj
+  plzen: "plzensky",
+  klatovy: "plzensky",
+  domazlice: "plzensky",
+  rokycany: "plzensky",
+  tachov: "plzensky",
+
+  // Liberecký kraj
+  liberec: "liberecky",
+  "jablonec-nad-nisou": "liberecky",
+  "ceska-lipa": "liberecky",
+  turnov: "liberecky",
+  semily: "liberecky",
+
+  // Olomoucký kraj
+  olomouc: "olomoucky",
+  prerov: "olomoucky",
+  prostejov: "olomoucky",
+  sumperk: "olomoucky",
+  jesenik: "olomoucky",
+
+  // Jihočeský kraj
+  "ceske-budejovice": "jihocesky",
+  tabor: "jihocesky",
+  pisek: "jihocesky",
+  "jindrichuv-hradec": "jihocesky",
+  "cesky-krumlov": "jihocesky",
+  strakonice: "jihocesky",
+
+  // Královéhradecký kraj
+  "hradec-kralove": "kralovehradecky",
+  trutnov: "kralovehradecky",
+  nachod: "kralovehradecky",
+  jicin: "kralovehradecky",
+  "rychnov-nad-kneznou": "kralovehradecky",
+
+  // Ústecký kraj
+  "usti-nad-labem": "ustecky",
+  most: "ustecky",
+  chomutov: "ustecky",
+  teplice: "ustecky",
+  decin: "ustecky",
+  litomerice: "ustecky",
+
+  // Pardubický kraj
+  pardubice: "pardubicky",
+  chrudim: "pardubicky",
+  svitavy: "pardubicky",
+  "usti-nad-orlici": "pardubicky",
+  litomysl: "pardubicky",
+
+  // Zlínský kraj
+  zlin: "zlinsky",
+  "uherske-hradiste": "zlinsky",
+  kromeriz: "zlinsky",
+  vsetin: "zlinsky",
+  "roznov-pod-radhostem": "zlinsky",
+  "valasske-mezirici": "zlinsky",
+
+  // Kraj Vysočina
+  jihlava: "vysocina",
+  trebic: "vysocina",
+  "zdar-nad-sazavou": "vysocina",
+  "havlickuv-brod": "vysocina",
+  pelhrimov: "vysocina",
+
+  // Karlovarský kraj
+  "karlovy-vary": "karlovarsky",
+  cheb: "karlovarsky",
+  sokolov: "karlovarsky",
+  "marianske-lazne": "karlovarsky",
+  ostrov: "karlovarsky",
+  as: "karlovarsky",
+
+  // Středočeský kraj
+  kladno: "stredocesky",
+  "mlada-boleslav": "stredocesky",
+  kolin: "stredocesky",
+  pribram: "stredocesky",
+  beroun: "stredocesky",
+  benesov: "stredocesky",
+};
+
 const PRODUCTION_DOMAIN = "vykoupim-nemovitost.cz";
 
-/** Valid subdomains on production */
+/** Valid subdomains on production (known regions + www) */
 const VALID_SUBDOMAINS = new Set([...Object.values(REGION_SUBDOMAINS), "www"]);
 
 /**
@@ -166,11 +271,24 @@ export function middleware(request: NextRequest): NextResponse | undefined {
     }
   }
 
-  // 3. Invalid subdomain on production → redirect to root
+  // 3. City-name subdomain → 301 redirect to regional subdomain
+  //    e.g. brno.vykoupim-nemovitost.cz → jihomoravsky.vykoupim-nemovitost.cz
+  //    e.g. brno.vykoupim-nemovitost.cz → jihomoravsky.vykoupim-nemovitost.cz
   if (isProd) {
     const subdomain = getSubdomain(host);
-    if (subdomain && !VALID_SUBDOMAINS.has(subdomain)) {
-      return NextResponse.redirect(`https://${PRODUCTION_DOMAIN}/`, 301);
+    if (subdomain) {
+      const regionSubdomain = CITY_TO_REGION_SUBDOMAIN[subdomain];
+      if (regionSubdomain) {
+        // Preserve original path + query string
+        const url = request.nextUrl.clone();
+        const target = `https://${regionSubdomain}.${PRODUCTION_DOMAIN}${url.pathname}${url.search}`;
+        return NextResponse.redirect(target, 301);
+      }
+
+      // 4. Unknown subdomain on production → redirect to root
+      if (!VALID_SUBDOMAINS.has(subdomain)) {
+        return NextResponse.redirect(`https://${PRODUCTION_DOMAIN}/`, 301);
+      }
     }
   }
 

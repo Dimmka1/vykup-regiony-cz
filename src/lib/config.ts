@@ -125,6 +125,57 @@ export const REGION_KEYS: Set<string> = new Set(
 );
 
 /**
+ * Check if the given host is the bare root domain (no subdomain).
+ * Returns true for "vykoupim-nemovitost.cz" and "www.vykoupim-nemovitost.cz".
+ */
+export function isRootDomain(host: string | null): boolean {
+  if (!host) return false;
+  const normalized = host
+    .toLowerCase()
+    .replace(/^www\./, "")
+    .split(":")[0];
+  return normalized === PRODUCTION_DOMAIN;
+}
+
+/**
+ * National (geo-neutral) region config used when no specific region is detected.
+ * Googlebot and users without geo cookie see this on the root domain.
+ */
+export function getNationalConfig(): RegionConfig {
+  const defaultRegion = getDefaultRegion();
+  return {
+    ...defaultRegion,
+    key: "national",
+    name: "Česká republika",
+    locative: "v celé ČR",
+    title: "Výkup nemovitostí v celé ČR | Rychlá nabídka do 24 hodin",
+    description:
+      "Vykupujeme nemovitosti po celé České republice — byty, domy, pozemky i podíly. Nabídka do 24 hodin, peníze na účtu do 48 hodin. Bez provize, právní servis zdarma.",
+    h1: "Vykoupíme vaši nemovitost po celé ČR",
+    heroCta: "Získat nezávaznou nabídku do 24 h",
+    primaryCity: "Česká republika",
+    seoTitle:
+      "Výkup nemovitostí v celé ČR | Nabídka do 24 hodin | Vykoupím Nemovitost",
+    seoDescription:
+      "Rychlý výkup nemovitostí po celé České republice. Byty, domy, pozemky i podíly. Nabídka do 24 hodin, peníze do 48 h. Bez provize a skrytých poplatků.",
+    keywords: [
+      "výkup nemovitostí",
+      "výkup nemovitostí ČR",
+      "rychlý prodej nemovitosti",
+      "výkup bytu",
+      "výkup domu",
+      "výkup pozemku",
+    ],
+    marketInfo:
+      "Působíme ve všech 14 krajích České republiky. Od Prahy po Moravskoslezský kraj — vždy s místní znalostí trhu a férovým přístupem.",
+    marketAnalysis: undefined,
+    localProcess: undefined,
+    neighborhoodGuide: undefined,
+    regionFaq: undefined,
+    additionalFaq: undefined,
+  };
+}
+/**
  * Check if a hostname is a production domain (vykoupim-nemovitost.cz or subdomain).
  */
 export function isProductionHost(host: string | null): boolean {

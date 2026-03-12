@@ -47,6 +47,31 @@ const PRODUCTION_DOMAIN = "vykoupim-nemovitost.cz";
 /** Valid subdomains on production */
 const VALID_SUBDOMAINS = new Set([...Object.values(REGION_SUBDOMAINS), "www"]);
 
+/**
+ * Paths that should stay on regional subdomains (not redirected to root).
+ * Everything else gets 301'd to the root domain for SEO canonicalization.
+ */
+const SUBDOMAIN_ALLOWED_EXACT = new Set([
+  "/",
+  "/sitemap.xml",
+  "/image-sitemap.xml",
+  "/robots.txt",
+  "/manifest.webmanifest",
+  "/icon.svg",
+  "/favicon.ico",
+  "/apple-touch-icon.png",
+  "/ppc",
+]);
+
+const SUBDOMAIN_ALLOWED_PREFIXES = ["/api/", "/opengraph-image"];
+
+function isSubdomainAllowedPath(pathname: string): boolean {
+  if (SUBDOMAIN_ALLOWED_EXACT.has(pathname)) return true;
+  return SUBDOMAIN_ALLOWED_PREFIXES.some((prefix) =>
+    pathname.startsWith(prefix),
+  );
+}
+
 function normalizeHost(host: string): string {
   return host
     .toLowerCase()
@@ -125,6 +150,20 @@ export function middleware(request: NextRequest): NextResponse | undefined {
     const response = NextResponse.rewrite(url);
     response.headers.set("x-region-key", pathSegment);
     return response;
+  }
+
+  // 2.5. SEO: 301 redirect content pages from regional subdomains to root domain.
+  // Fixes "duplicate without user-selected canonical" in Google Search Console.
+  // Only whitelisted paths (homepage, sitemaps, API, assets) stay on subdomain.
+  if (isProd) {
+    const subdomain = getSubdomain(host);
+    if (subdomain && VALID_SUBDOMAINS.has(subdomain) && subdomain !== "www") {
+      if (!isSubdomainAllowedPath(pathname)) {
+        const destination = new URL(`https://${PRODUCTION_DOMAIN}${pathname}`);
+        destination.search = request.nextUrl.search;
+        return NextResponse.redirect(destination.toString(), 301);
+      }
+    }
   }
 
   // 3. Invalid subdomain on production → redirect to root

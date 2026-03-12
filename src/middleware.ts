@@ -203,10 +203,26 @@ function getSubdomain(host: string): string | null {
   return null;
 }
 
+/**
+ * SEO 301 redirects for legacy/alternative URLs → canonical paths.
+ * Keeps old bookmarks and external links working.
+ */
+const SEO_REDIRECTS: Record<string, string> = {
+  "/kde-pusobime": "/kraje",
+};
+
 export function middleware(request: NextRequest): NextResponse | undefined {
   const host = request.headers.get("host") ?? "";
   const { pathname, searchParams } = request.nextUrl;
   const isProd = isProductionDomain(host);
+
+  // 0a. SEO redirects for legacy/alternative paths
+  const redirectTarget = SEO_REDIRECTS[pathname.toLowerCase()];
+  if (redirectTarget) {
+    const url = request.nextUrl.clone();
+    url.pathname = redirectTarget;
+    return NextResponse.redirect(url, 301);
+  }
 
   // 0. PPC landing — stripped layout (no header/footer)
   if (pathname === "/ppc") {

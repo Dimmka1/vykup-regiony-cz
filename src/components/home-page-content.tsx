@@ -184,7 +184,7 @@ export function normalizeHost(host: string | null): string {
 /**
  * Build canonical URL for a page.
  * Production: always use the subdomain URL (e.g., https://praha.vykoupim-nemovitost.cz/)
- * Root domain vykoupim-nemovitost.cz → canonical to https://praha.vykoupim-nemovitost.cz/
+ * Root domain vykoupim-nemovitost.cz → self-referencing canonical
  * Dev/preview: use current host with optional path.
  */
 export function buildCanonicalUrl(
@@ -194,13 +194,18 @@ export function buildCanonicalUrl(
   const normalized = normalizeHost(host);
   const isProd = isProductionHost(host);
 
+  // National (geo-neutral) config → root domain canonical
+  if (regionKey === "national") {
+    return "https://vykoupim-nemovitost.cz";
+  }
+
   if (isProd && regionKey) {
     return getRegionSubdomainUrl(regionKey);
   }
 
   if (isProd) {
-    // Root domain without region key → Praha
-    return "https://praha.vykoupim-nemovitost.cz";
+    // Root domain without region key → national homepage
+    return "https://vykoupim-nemovitost.cz";
   }
 
   // Dev/preview: use current host

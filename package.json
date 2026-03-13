@@ -13,7 +13,8 @@
     "test": "vitest run",
     "ci": "npm run lint && npm run format:check && tsc --noEmit && npm run build",
     "test:e2e": "playwright test",
-    "validate:jsonld": "node scripts/validate-jsonld.js"
+    "validate:jsonld": "node scripts/validate-jsonld.js",
+    "indexnow": "tsx scripts/indexnow-submit.ts"
   },
   "dependencies": {
     "framer-motion": "^12.35.0",

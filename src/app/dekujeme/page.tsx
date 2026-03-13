@@ -11,6 +11,27 @@ export default function DekujemePage(): ReactElement {
     trackEvent("form_submission_success", {
       page: "dekujeme",
     });
+
+    // GA4 conversion event — fires via dataLayer for GTM
+    // and directly via gtag for standalone GA4
+    if (typeof window !== "undefined") {
+      // dataLayer push (picked up by GTM)
+      window.dataLayer?.push({
+        event: "generate_lead" as never,
+        page: "dekujeme",
+      });
+
+      // Direct gtag call if available (standalone GA4 without GTM)
+      const w = window as unknown as {
+        gtag?: (...args: unknown[]) => void;
+      };
+      if (typeof w.gtag === "function") {
+        w.gtag("event", "generate_lead", {
+          event_category: "lead",
+          event_label: "form_submission",
+        });
+      }
+    }
   }, []);
 
   return (
@@ -24,17 +45,16 @@ export default function DekujemePage(): ReactElement {
         </div>
 
         <h1 className="mb-3 text-3xl font-bold text-slate-900">
-          Děkujeme za vaši poptávku!
+          Děkujeme za poptávku!
         </h1>
 
         <p className="mb-8 text-lg text-slate-600">
-          Ozveme se vám <strong>do 24 hodin</strong> s nezávaznou nabídkou na
-          výkup vaší nemovitosti.
+          Vaši poptávku jsme přijali. Podívejte se, co bude dál:
         </p>
 
         <div className="mb-8 rounded-xl border border-slate-200 bg-white p-6 text-left shadow-sm">
           <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-slate-500">
-            Co bude následovat
+            Co bude dál
           </h2>
           <ol className="space-y-4">
             <li className="flex items-start gap-3">
@@ -42,7 +62,8 @@ export default function DekujemePage(): ReactElement {
                 1
               </span>
               <span className="text-slate-700">
-                Náš specialista posoudí vaši nemovitost a připraví nabídku.
+                <strong>Zavoláme vám</strong> — ozveme se do 30 minut v pracovní
+                době.
               </span>
             </li>
             <li className="flex items-start gap-3">
@@ -50,7 +71,8 @@ export default function DekujemePage(): ReactElement {
                 2
               </span>
               <span className="text-slate-700">
-                Zavoláme vám s konkrétní cenovou nabídkou - nezávazně.
+                <strong>Prohlédneme nemovitost</strong> — domluvíme si termín
+                prohlídky, abychom mohli připravit přesnou nabídku.
               </span>
             </li>
             <li className="flex items-start gap-3">
@@ -58,7 +80,8 @@ export default function DekujemePage(): ReactElement {
                 3
               </span>
               <span className="text-slate-700">
-                Pokud souhlasíte, vyřídíme vše za vás - rychle a bez starostí.
+                <strong>Nabídka do 24 hodin</strong> — nezávaznou cenovou
+                nabídku obdržíte nejpozději do 24 hodin od prohlídky.
               </span>
             </li>
           </ol>

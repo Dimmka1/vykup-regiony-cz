@@ -2,9 +2,13 @@ import { appendFileSync } from "node:fs";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { calculateLeadScore } from "@/lib/lead-scoring";
+import { sendSms } from "@/lib/gosms";
 
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX = 10;
+
+const LEAD_CONFIRMATION_SMS =
+  "Děkujeme za poptávku výkupu nemovitosti. Ozveme se do 30 minut. — Vykoupím Nemovitost +420 776 424 145";
 
 const requestCounter = new Map<string, { count: number; start: number }>();
 
@@ -48,6 +52,13 @@ interface LeadNotificationPayload {
   timestamp: string;
   ip: string;
   data: Omit<LeadData, "website" | "consent_gdpr">;
+}
+
+async function sendLeadConfirmationSms(phone: string): Promise<void> {
+  const result = await sendSms(phone, LEAD_CONFIRMATION_SMS);
+  if (!result.ok) {
+    console.error("[lead-notify] SMS confirmation failed:", result.error);
+  }
 }
 
 async function sendWebhookNotification(
@@ -404,6 +415,7 @@ export async function POST(request: Request): Promise<NextResponse> {
 
       const cbResults = await Promise.allSettled([
         sendCallbackTelegramNotification(cbPayload),
+        sendLeadConfirmationSms(cbData.phone),
       ]);
 
       cbResults.forEach((r, i) => {
@@ -453,6 +465,7 @@ export async function POST(request: Request): Promise<NextResponse> {
 
       const qeResults = await Promise.allSettled([
         sendCallbackTelegramNotification(qePayload),
+        sendLeadConfirmationSms(qeData.phone),
       ]);
 
       qeResults.forEach((r, i) => {
@@ -500,6 +513,7 @@ export async function POST(request: Request): Promise<NextResponse> {
       sendWebhookNotification(notificationPayload),
       sendEmailNotification(notificationPayload),
       sendTelegramNotification(notificationPayload),
+      sendLeadConfirmationSms(validatedData.phone),
       ...(validatedData.email && validatedData.email.trim()
         ? [
             sendAutoReplyEmail({
@@ -510,7 +524,7 @@ export async function POST(request: Request): Promise<NextResponse> {
         : []),
     ]);
 
-    const notifyNames = ["webhook", "email", "telegram", "auto-reply"];
+    const notifyNames = ["webhook", "email", "telegram", "sms", "auto-reply"];
     notifyResults.forEach((r, i) => {
       if (r.status === "rejected") {
         console.error(`[lead-notify] ${notifyNames[i]} failed:`, r.reason);

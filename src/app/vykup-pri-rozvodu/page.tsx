@@ -13,14 +13,26 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 import { AllRegionsSection } from "@/components/all-regions-section";
+import { GeoRelatedPages } from "@/components/geo-related-pages";
 import { getRequestHost } from "@/lib/request-host";
+import { buildGeoCanonicalUrl } from "@/lib/geo-canonical";
 
-export const metadata: Metadata = {
-  alternates: { canonical: "https://vykoupim-nemovitost.cz/vykup-pri-rozvodu" },
-  title: "Výkup nemovitosti při rozvodu - rychlé vypořádání majetku",
-  description:
-    "Řešíte rozvod a potřebujete rychle prodat společnou nemovitost? Vykoupíme váš byt nebo dům za férovou cenu. Diskrétně a bez provize.",
-};
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}): Promise<Metadata> {
+  const params = await searchParams;
+  const canonicalUrl = buildGeoCanonicalUrl("/vykup-pri-rozvodu", params);
+
+  return {
+    alternates: { canonical: canonicalUrl },
+    openGraph: { url: canonicalUrl },
+    title: "Výkup nemovitosti při rozvodu - rychlé vypořádání majetku",
+    description:
+      "Řešíte rozvod a potřebujete rychle prodat společnou nemovitost? Vykoupíme váš byt nebo dům za férovou cenu. Diskrétně a bez provize.",
+  };
+}
 
 interface FaqItem {
   question: string;
@@ -82,8 +94,14 @@ const STEPS: readonly Step[] = [
   },
 ] as const;
 
-export default async function VykupPriRozvoduPage(): Promise<React.ReactElement> {
+export default async function VykupPriRozvoduPage({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}): Promise<React.ReactElement> {
   const host = await getRequestHost();
+  const params = await searchParams;
+  const krajParam = typeof params.kraj === "string" ? params.kraj : null;
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -243,6 +261,10 @@ export default async function VykupPriRozvoduPage(): Promise<React.ReactElement>
         </div>
       </section>
 
+      <GeoRelatedPages
+        currentSlug="vykup-pri-rozvodu"
+        currentKraj={krajParam}
+      />
       <AllRegionsSection currentHost={host} />
     </>
   );

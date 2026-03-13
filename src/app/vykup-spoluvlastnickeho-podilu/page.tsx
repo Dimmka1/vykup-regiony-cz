@@ -13,17 +13,30 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 import { AllRegionsSection } from "@/components/all-regions-section";
+import { GeoRelatedPages } from "@/components/geo-related-pages";
 import { getRequestHost } from "@/lib/request-host";
+import { buildGeoCanonicalUrl } from "@/lib/geo-canonical";
 
-export const metadata: Metadata = {
-  alternates: {
-    canonical: "https://vykoupim-nemovitost.cz/vykup-spoluvlastnickeho-podilu",
-  },
-  title:
-    "Výkup spoluvlastnického podílu na nemovitosti - férová cena bez soudů",
-  description:
-    "Vykoupíme váš spoluvlastnický podíl na nemovitosti rychle a bez soudních sporů. Férová cena, právní servis zdarma, výplata do 7 dnů. Bez provize.",
-};
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}): Promise<Metadata> {
+  const params = await searchParams;
+  const canonicalUrl = buildGeoCanonicalUrl(
+    "/vykup-spoluvlastnickeho-podilu",
+    params,
+  );
+
+  return {
+    alternates: { canonical: canonicalUrl },
+    openGraph: { url: canonicalUrl },
+    title:
+      "Výkup spoluvlastnického podílu na nemovitosti - férová cena bez soudů",
+    description:
+      "Vykoupíme váš spoluvlastnický podíl na nemovitosti rychle a bez soudních sporů. Férová cena, právní servis zdarma, výplata do 7 dnů. Bez provize.",
+  };
+}
 
 interface FaqItem {
   question: string;
@@ -85,8 +98,14 @@ const STEPS: readonly Step[] = [
   },
 ] as const;
 
-export default async function VykupSpoluvlastnickehoPodilu(): Promise<React.ReactElement> {
+export default async function VykupSpoluvlastnickehoPodilu({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}): Promise<React.ReactElement> {
   const host = await getRequestHost();
+  const params = await searchParams;
+  const krajParam = typeof params.kraj === "string" ? params.kraj : null;
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -321,6 +340,10 @@ export default async function VykupSpoluvlastnickehoPodilu(): Promise<React.Reac
         </div>
       </section>
 
+      <GeoRelatedPages
+        currentSlug="vykup-spoluvlastnickeho-podilu"
+        currentKraj={krajParam}
+      />
       <AllRegionsSection currentHost={host} />
     </>
   );

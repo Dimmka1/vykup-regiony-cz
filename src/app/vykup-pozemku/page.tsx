@@ -15,14 +15,26 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 import { AllRegionsSection } from "@/components/all-regions-section";
+import { GeoRelatedPages } from "@/components/geo-related-pages";
 import { getRequestHost } from "@/lib/request-host";
+import { buildGeoCanonicalUrl } from "@/lib/geo-canonical";
 
-export const metadata: Metadata = {
-  alternates: { canonical: "https://vykoupim-nemovitost.cz/vykup-pozemku" },
-  title: "Výkup pozemků - rychlý prodej pozemku za hotové",
-  description:
-    "Vykoupíme váš pozemek rychle a bez provize. Stavební, zemědělské i lesní pozemky. Férová cena, vyplacení do 7 dnů. Celá ČR.",
-};
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}): Promise<Metadata> {
+  const params = await searchParams;
+  const canonicalUrl = buildGeoCanonicalUrl("/vykup-pozemku", params);
+
+  return {
+    alternates: { canonical: canonicalUrl },
+    openGraph: { url: canonicalUrl },
+    title: "Výkup pozemků - rychlý prodej pozemku za hotové",
+    description:
+      "Vykoupíme váš pozemek rychle a bez provize. Stavební, zemědělské i lesní pozemky. Férová cena, vyplacení do 7 dnů. Celá ČR.",
+  };
+}
 
 interface FaqItem {
   question: string;
@@ -114,8 +126,14 @@ const STEPS: readonly {
   },
 ] as const;
 
-export default async function VykupPozemkuPage(): Promise<React.ReactElement> {
+export default async function VykupPozemkuPage({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}): Promise<React.ReactElement> {
   const host = await getRequestHost();
+  const params = await searchParams;
+  const krajParam = typeof params.kraj === "string" ? params.kraj : null;
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -130,7 +148,8 @@ export default async function VykupPozemkuPage(): Promise<React.ReactElement> {
     "@context": "https://schema.org",
     "@type": "WebPage",
     name: "Výkup pozemků - rychlý prodej pozemku za hotové",
-    description: metadata.description,
+    description:
+      "Vykoupíme váš pozemek rychle a bez provize. Stavební, zemědělské i lesní pozemky. Férová cena, vyplacení do 7 dnů. Celá ČR.",
     url: "https://vykoupim-nemovitost.cz/vykup-pozemku",
     isPartOf: { "@type": "WebSite", url: "https://vykoupim-nemovitost.cz" },
   };
@@ -334,6 +353,7 @@ export default async function VykupPozemkuPage(): Promise<React.ReactElement> {
         </div>
       </section>
 
+      <GeoRelatedPages currentSlug="vykup-pozemku" currentKraj={krajParam} />
       <AllRegionsSection currentHost={host} />
     </>
   );

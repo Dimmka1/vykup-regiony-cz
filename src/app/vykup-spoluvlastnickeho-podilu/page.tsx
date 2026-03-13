@@ -13,6 +13,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 import { AllRegionsSection } from "@/components/all-regions-section";
+import { GeoRelatedPages } from "@/components/geo-related-pages";
 import { getRequestHost } from "@/lib/request-host";
 
 export const metadata: Metadata = {
@@ -85,8 +86,14 @@ const STEPS: readonly Step[] = [
   },
 ] as const;
 
-export default async function VykupSpoluvlastnickehoPodilu(): Promise<React.ReactElement> {
+export default async function VykupSpoluvlastnickehoPodilu({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}): Promise<React.ReactElement> {
   const host = await getRequestHost();
+  const params = await searchParams;
+  const krajParam = typeof params.kraj === "string" ? params.kraj : null;
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -321,6 +328,10 @@ export default async function VykupSpoluvlastnickehoPodilu(): Promise<React.Reac
         </div>
       </section>
 
+      <GeoRelatedPages
+        currentSlug="vykup-spoluvlastnickeho-podilu"
+        currentKraj={krajParam}
+      />
       <AllRegionsSection currentHost={host} />
     </>
   );

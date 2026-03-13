@@ -16,13 +16,24 @@ import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 import { AllRegionsSection } from "@/components/all-regions-section";
 import { getRequestHost } from "@/lib/request-host";
+import { buildGeoCanonicalUrl } from "@/lib/geo-canonical";
 
-export const metadata: Metadata = {
-  alternates: { canonical: "https://vykoupim-nemovitost.cz/vykup-domu" },
-  title: "Výkup domů - rychlý prodej rodinného domu za hotové",
-  description:
-    "Vykoupíme váš rodinný dům rychle a bez provize. Staré domy, domy k rekonstrukci i se zástavou. Férová cena, vyplacení do 7 dnů. Celá ČR.",
-};
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}): Promise<Metadata> {
+  const params = await searchParams;
+  const canonicalUrl = buildGeoCanonicalUrl("/vykup-domu", params);
+
+  return {
+    alternates: { canonical: canonicalUrl },
+    openGraph: { url: canonicalUrl },
+    title: "Výkup domů - rychlý prodej rodinného domu za hotové",
+    description:
+      "Vykoupíme váš rodinný dům rychle a bez provize. Staré domy, domy k rekonstrukci i se zástavou. Férová cena, vyplacení do 7 dnů. Celá ČR.",
+  };
+}
 
 interface FaqItem {
   question: string;
@@ -130,7 +141,8 @@ export default async function VykupDomuPage(): Promise<React.ReactElement> {
     "@context": "https://schema.org",
     "@type": "WebPage",
     name: "Výkup domů - rychlý prodej rodinného domu za hotové",
-    description: metadata.description,
+    description:
+      "Vykoupíme váš rodinný dům rychle a bez provize. Staré domy, domy k rekonstrukci i se zástavou. Férová cena, vyplacení do 7 dnů. Celá ČR.",
     url: "https://vykoupim-nemovitost.cz/vykup-domu",
     isPartOf: { "@type": "WebSite", url: "https://vykoupim-nemovitost.cz" },
   };

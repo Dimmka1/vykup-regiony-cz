@@ -14,15 +14,27 @@ import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 import { AllRegionsSection } from "@/components/all-regions-section";
 import { getRequestHost } from "@/lib/request-host";
+import { buildGeoCanonicalUrl } from "@/lib/geo-canonical";
 
-export const metadata: Metadata = {
-  alternates: {
-    canonical: "https://vykoupim-nemovitost.cz/vykup-nemovitosti-s-hypotekou",
-  },
-  title: "Výkup nemovitosti s hypotékou - rychlé řešení zatížené nemovitosti",
-  description:
-    "Vykoupíme nemovitost zatíženou hypotékou nebo zástavním právem. Vyřešíme komunikaci s bankou, splatíme úvěr z kupní ceny. Výplata do 7 dnů, bez provize.",
-};
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}): Promise<Metadata> {
+  const params = await searchParams;
+  const canonicalUrl = buildGeoCanonicalUrl(
+    "/vykup-nemovitosti-s-hypotekou",
+    params,
+  );
+
+  return {
+    alternates: { canonical: canonicalUrl },
+    openGraph: { url: canonicalUrl },
+    title: "Výkup nemovitosti s hypotékou - rychlé řešení zatížené nemovitosti",
+    description:
+      "Vykoupíme nemovitost zatíženou hypotékou nebo zástavním právem. Vyřešíme komunikaci s bankou, splatíme úvěr z kupní ceny. Výplata do 7 dnů, bez provize.",
+  };
+}
 
 interface FaqItem {
   question: string;

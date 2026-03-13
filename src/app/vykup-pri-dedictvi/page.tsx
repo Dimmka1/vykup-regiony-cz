@@ -14,15 +14,24 @@ import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 import { AllRegionsSection } from "@/components/all-regions-section";
 import { getRequestHost } from "@/lib/request-host";
+import { buildGeoCanonicalUrl } from "@/lib/geo-canonical";
 
-export const metadata: Metadata = {
-  alternates: {
-    canonical: "https://vykoupim-nemovitost.cz/vykup-pri-dedictvi",
-  },
-  title: "Výkup nemovitosti při dědictví - rychlý prodej zděděné nemovitosti",
-  description:
-    "Zdědili jste nemovitost a chcete ji rychle prodat? Vykoupíme zděděný byt nebo dům za férovou cenu. Vyřešíme i spoluvlastnictví a dědické spory.",
-};
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}): Promise<Metadata> {
+  const params = await searchParams;
+  const canonicalUrl = buildGeoCanonicalUrl("/vykup-pri-dedictvi", params);
+
+  return {
+    alternates: { canonical: canonicalUrl },
+    openGraph: { url: canonicalUrl },
+    title: "Výkup nemovitosti při dědictví - rychlý prodej zděděné nemovitosti",
+    description:
+      "Zdědili jste nemovitost a chcete ji rychle prodat? Vykoupíme zděděný byt nebo dům za férovou cenu. Vyřešíme i spoluvlastnictví a dědické spory.",
+  };
+}
 
 interface FaqItem {
   question: string;

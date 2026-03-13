@@ -14,16 +14,27 @@ import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 import { AllRegionsSection } from "@/components/all-regions-section";
 import { getRequestHost } from "@/lib/request-host";
+import { buildGeoCanonicalUrl } from "@/lib/geo-canonical";
 
-export const metadata: Metadata = {
-  alternates: {
-    canonical:
-      "https://vykoupim-nemovitost.cz/vykup-nemovitosti-s-vecnym-bremenem",
-  },
-  title: "Výkup nemovitosti s věcným břemenem - rychle a bez komplikací",
-  description:
-    "Vykoupíme nemovitost zatíženou věcným břemenem - služebností, právem užívání i zástavou. Férová cena, právní servis zdarma, výplata do 7 dnů.",
-};
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}): Promise<Metadata> {
+  const params = await searchParams;
+  const canonicalUrl = buildGeoCanonicalUrl(
+    "/vykup-nemovitosti-s-vecnym-bremenem",
+    params,
+  );
+
+  return {
+    alternates: { canonical: canonicalUrl },
+    openGraph: { url: canonicalUrl },
+    title: "Výkup nemovitosti s věcným břemenem - rychle a bez komplikací",
+    description:
+      "Vykoupíme nemovitost zatíženou věcným břemenem - služebností, právem užívání i zástavou. Férová cena, právní servis zdarma, výplata do 7 dnů.",
+  };
+}
 
 interface FaqItem {
   question: string;

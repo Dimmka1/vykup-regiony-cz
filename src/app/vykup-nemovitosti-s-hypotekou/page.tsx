@@ -13,6 +13,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 import { AllRegionsSection } from "@/components/all-regions-section";
+import { GeoRelatedPages } from "@/components/geo-related-pages";
 import { getRequestHost } from "@/lib/request-host";
 import { buildGeoCanonicalUrl } from "@/lib/geo-canonical";
 
@@ -97,8 +98,14 @@ const STEPS: readonly Step[] = [
   },
 ] as const;
 
-export default async function VykupNemovitostiSHypotekou(): Promise<React.ReactElement> {
+export default async function VykupNemovitostiSHypotekou({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}): Promise<React.ReactElement> {
   const host = await getRequestHost();
+  const params = await searchParams;
+  const krajParam = typeof params.kraj === "string" ? params.kraj : null;
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -333,6 +340,10 @@ export default async function VykupNemovitostiSHypotekou(): Promise<React.ReactE
         </div>
       </section>
 
+      <GeoRelatedPages
+        currentSlug="vykup-nemovitosti-s-hypotekou"
+        currentKraj={krajParam}
+      />
       <AllRegionsSection currentHost={host} />
     </>
   );

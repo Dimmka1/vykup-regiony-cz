@@ -211,6 +211,36 @@ const SEO_REDIRECTS: Record<string, string> = {
   "/kde-pusobime": "/kraje",
 };
 
+/**
+ * Content page paths eligible for CDN caching (VR-312).
+ * API routes, admin pages, and internal paths are excluded.
+ */
+const CONTENT_PAGE_PREFIXES = [
+  "/blog",
+  "/vykup-pri-",
+  "/vykup-bytu",
+  "/vykup-domu",
+  "/vykup-pozemku",
+  "/vykup-nemovitosti-",
+  "/vykup-spoluvlastnickeho-podilu",
+  "/zpetny-najem",
+  "/reference",
+  "/jak-to-funguje",
+  "/kraje",
+  "/pruvodce-vykupem",
+  "/garance-vykupu",
+  "/caste-dotazy",
+  "/o-nas",
+  "/proc-my",
+  "/ochrana-osobnich-udaju",
+  "/cookies",
+] as const;
+
+function isContentPage(pathname: string): boolean {
+  if (pathname === "/") return true;
+  return CONTENT_PAGE_PREFIXES.some((prefix) => pathname.startsWith(prefix));
+}
+
 export function middleware(request: NextRequest): NextResponse | undefined {
   const host = request.headers.get("host") ?? "";
   const { pathname, searchParams } = request.nextUrl;
@@ -228,6 +258,18 @@ export function middleware(request: NextRequest): NextResponse | undefined {
   if (pathname === "/ppc") {
     const response = NextResponse.next();
     response.headers.set("x-layout-stripped", "1");
+    response.headers.set(
+      "Vercel-CDN-Cache-Control",
+      "public, s-maxage=3600, stale-while-revalidate=86400",
+    );
+    response.headers.set(
+      "CDN-Cache-Control",
+      "public, s-maxage=3600, stale-while-revalidate=86400",
+    );
+    response.headers.set(
+      "Cache-Control",
+      "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400",
+    );
     return response;
   }
 
@@ -306,6 +348,32 @@ export function middleware(request: NextRequest): NextResponse | undefined {
         return NextResponse.redirect(`https://${PRODUCTION_DOMAIN}/`, 301);
       }
     }
+  }
+
+  // 5. CDN caching for content pages (VR-312).
+  //    layout.tsx uses headers() → all pages are dynamic SSR → Vercel sets
+  //    "private, no-cache, no-store". Override via Vercel-CDN-Cache-Control
+  //    to enable edge caching for content pages while keeping browser
+  //    cache-control untouched for dynamic rendering correctness.
+  if (isContentPage(pathname)) {
+    const response = NextResponse.next();
+    // s-maxage=3600: CDN caches for 1 hour
+    // stale-while-revalidate=86400: serve stale for 24h while revalidating
+    response.headers.set(
+      "Vercel-CDN-Cache-Control",
+      "public, s-maxage=3600, stale-while-revalidate=86400",
+    );
+    // CDN-Cache-Control for non-Vercel CDN compatibility
+    response.headers.set(
+      "CDN-Cache-Control",
+      "public, s-maxage=3600, stale-while-revalidate=86400",
+    );
+    // Override browser Cache-Control: remove private/no-store for content pages
+    response.headers.set(
+      "Cache-Control",
+      "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400",
+    );
+    return response;
   }
 
   return undefined;

@@ -88,7 +88,7 @@ export function getRegionalFaq(
 }
 
 const HERO_BADGES = [
-  `Záloha až ${process.env.NEXT_PUBLIC_ZALOH_VARIANT || "500 000"} Kč ihned`,
+  `Záloha až ${process.env.NEXT_PUBLIC_MAX_ZALOHA || "500 000"} Kč ihned`,
   "Peníze na účtu do 48 hodin",
   "Bez provize a skrytých poplatků",
 ] as const;

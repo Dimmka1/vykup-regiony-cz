@@ -52,8 +52,9 @@ function PpcPageContent(): ReactElement {
             <span className="text-[var(--theme-600)]">rychle a férově</span>
           </h1>
           <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-600">
-            Získejte nezávaznou nabídku do 24 hodin. Žádné provize, žádné skryté
-            poplatky. Vše vyřídíme za vás.
+            Záloha až {process.env.NEXT_PUBLIC_MAX_ZALOHA || "500 000"} Kč
+            ihned. Získejte nezávaznou nabídku do 24 hodin. Žádné provize, žádné
+            skryté poplatky.
           </p>
         </section>
 

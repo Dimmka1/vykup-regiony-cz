@@ -516,15 +516,8 @@ export default function VykupPriPrivatizaciPage(): React.ReactElement {
             </div>
           </div>
           <p className="mt-6 text-slate-600">
-            Přečtěte si{" "}
-            <Link
-              href="/reference"
-              className="font-medium text-emerald-600 underline hover:text-emerald-500"
-            >
-              reference našich klientů
-            </Link>
-            , kteří úspěšně prodali svou nemovitost prostřednictvím našeho
-            výkupu.
+            Stovky klientů úspěšně prodali svou nemovitost prostřednictvím
+            našeho výkupu.
           </p>
         </div>
       </section>

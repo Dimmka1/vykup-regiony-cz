@@ -25,7 +25,6 @@ export interface RegionConfig {
   marketInfo?: string;
   themeColor?: string;
   regionFaq?: FaqItem[];
-  testimonials?: { name: string; text: string; location: string }[];
   marketAnalysis?: string;
   localProcess?: string;
   neighborhoodGuide?: string;

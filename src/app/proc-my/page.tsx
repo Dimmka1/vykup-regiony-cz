@@ -218,7 +218,6 @@ export default function ProcMyPage() {
             {[
               { href: "/jak-to-funguje", label: "Jak to funguje" },
               { href: "/garance-vykupu", label: "Garance výkupu" },
-              { href: "/reference", label: "Reference" },
               { href: "/caste-dotazy", label: "Časté dotazy" },
             ].map((link) => (
               <Link

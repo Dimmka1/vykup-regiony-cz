@@ -6,6 +6,7 @@ regions:
     seoDescription: "Rychlý výkup nemovitostí v Praze: Vinohrady, Karlín, Smíchov i okraje města. Nabídka do 24 hodin, právní servis zdarma a férové podmínky bez provize."
     name: Praha
     locative: v Praze
+    accusative: Prahu
     title: Výkup nemovitostí v Praze | Rychlá nabídka
     description:
       V Praze zajišťujeme expresní výkup bytů, činžovních jednotek i podílů se zaměřením na komplikované městské případy. Nejčastěji řešíme lokality Praha 4, Praha 5, Praha 9 a širší centrum, kde
@@ -16,6 +17,7 @@ regions:
     phone: +420 776 424 145
     email: info@vykoupim-nemovitost.cz
     primaryCity: Praha
+    primaryCityLocative: v Praze
     supportedCities:
       - Praha 1
       - Praha 2
@@ -111,6 +113,7 @@ regions:
     seoDescription: Vykupujeme byty i domy ve Středočeském kraji — od Kladna po Říčany a Mladou Boleslav. Nabídka do 24 hodin, rychlé vyplacení a kompletní právní servis.
     name: Středočeský kraj
     locative: ve Středočeském kraji
+    accusative: Středočeský kraj
     title: Výkup nemovitostí ve Středočeském kraji | Rychlá nabídka
     description:
       Ve Středočeském kraji vykupujeme rodinné domy, byty i rekreační objekty v satelitních obcích kolem Prahy. Silně pracujeme v pásech kolem D1 a D5, kde se ceny mezi obcemi výrazně liší podle
@@ -121,6 +124,7 @@ regions:
     phone: +420 776 424 145
     email: info@vykoupim-nemovitost.cz
     primaryCity: Kladno
+    primaryCityLocative: v Kladně
     supportedCities:
       - Mladá Boleslav
       - Kolín
@@ -210,6 +214,7 @@ regions:
     seoDescription: Rychlý výkup bytů, domů i chalup v Jihočeském kraji. České Budějovice, Tábor, Písek i rekreační lokality u Lipna a Šumavy.
     name: Jihočeský kraj
     locative: v Jihočeském kraji
+    accusative: Jihočeský kraj
     title: Výkup nemovitostí v Jihočeském kraji
     description:
       V Jihočeském kraji vykupujeme byty ve městech i chalupy v turistických oblastech. Dobře známe trh v Českých Budějovicích, Táboře a okolí Lipna, kde se výrazně liší poptávka mezi celoročním
@@ -219,6 +224,7 @@ regions:
     phone: +420 776 424 145
     email: info@vykoupim-nemovitost.cz
     primaryCity: České Budějovice
+    primaryCityLocative: v Českých Budějovicích
     supportedCities:
       - Tábor
       - Písek
@@ -306,6 +312,7 @@ regions:
     seoDescription: Férový a rychlý výkup nemovitostí v Plzeňském kraji. Nabídka do 24 hodin pro byty v Plzni i rodinné domy v Klatovech a Domažlicích.
     name: Plzeňský kraj
     locative: v Plzeňském kraji
+    accusative: Plzeňský kraj
     title: Výkup nemovitostí v Plzeňském kraji
     description:
       V Plzeňském kraji vykupujeme městské byty i venkovské domy se složitým technickým stavem. Silné pokrytí máme v Plzni, Rokycanech a na Domažlicku, kde často řešíme převody po dědictví nebo
@@ -315,6 +322,7 @@ regions:
     phone: +420 776 424 145
     email: info@vykoupim-nemovitost.cz
     primaryCity: Plzeň
+    primaryCityLocative: v Plzni
     supportedCities:
       - Klatovy
       - Domažlice
@@ -404,6 +412,7 @@ regions:
     seoDescription: Vykupujeme byty, domy i apartmány v Karlovarském kraji. Karlovy Vary, Mariánské Lázně, Cheb i Sokolov — rychlá nabídka a bezpečný převod.
     name: Karlovarský kraj
     locative: v Karlovarském kraji
+    accusative: Karlovarský kraj
     title: Výkup nemovitostí v Karlovarském kraji
     description:
       Karlovarský kraj obsluhujeme se zaměřením na byty, lázeňské apartmány i domy v příhraničí. Pracujeme v Karlových Varech, Chebu i Sokolově, kde se často řeší převody nemovitostí vlastněných
@@ -413,6 +422,7 @@ regions:
     phone: +420 776 424 145
     email: info@vykoupim-nemovitost.cz
     primaryCity: Karlovy Vary
+    primaryCityLocative: v Karlových Varech
     supportedCities:
       - Cheb
       - Sokolov
@@ -500,6 +510,7 @@ regions:
     seoDescription: Rychlý výkup nemovitostí v Ústeckém kraji včetně zadlužených případů. Ústí nad Labem, Most, Chomutov, Teplice i Děčín.
     name: Ústecký kraj
     locative: v Ústeckém kraji
+    accusative: Ústecký kraj
     title: Výkup nemovitostí v Ústeckém kraji
     description:
       V Ústeckém kraji pomáháme s výkupem zadlužených i standardních nemovitostí, často v časové tísni. Nejčastěji řešíme byty v Ústí nad Labem, Mostě a Chomutově, kde je klíčové rychle uzavřít
@@ -509,6 +520,7 @@ regions:
     phone: +420 776 424 145
     email: info@vykoupim-nemovitost.cz
     primaryCity: Ústí nad Labem
+    primaryCityLocative: v Ústí nad Labem
     supportedCities:
       - Děčín
       - Most
@@ -597,6 +609,7 @@ regions:
     seoDescription: Rychlý výkup bytů, domů i horských apartmánů v Libereckém kraji. Liberec, Jablonec nad Nisou, Česká Lípa a turistické lokality.
     name: Liberecký kraj
     locative: v Libereckém kraji
+    accusative: Liberecký kraj
     title: Výkup nemovitostí v Libereckém kraji
     description:
       V Libereckém kraji vykupujeme byty, horské apartmány i domy v podhorských oblastech. Trh v Liberci a Jablonci je jiný než v rekreačních lokalitách Jizerských hor, proto oceňujeme každou nemovitost
@@ -606,6 +619,7 @@ regions:
     phone: +420 776 424 145
     email: info@vykoupim-nemovitost.cz
     primaryCity: Liberec
+    primaryCityLocative: v Liberci
     supportedCities:
       - Jablonec nad Nisou
       - Česká Lípa
@@ -695,6 +709,7 @@ regions:
     seoDescription: "Férový výkup nemovitostí v Královéhradeckém kraji: Hradec Králové, Trutnov, Náchod i Podkrkonoší. Nabídka do 24 hodin."
     name: Královéhradecký kraj
     locative: v Královéhradeckém kraji
+    accusative: Královéhradecký kraj
     title: Výkup nemovitostí v Královéhradeckém kraji
     description:
       Královéhradecký kraj pokrýváme od městských bytů po rodinné domy v podkrkonoší. Silnou poptávku v Hradci Králové doplňují specifické rekreační lokality v Krkonoších, kde je důležité správně
@@ -704,6 +719,7 @@ regions:
     phone: +420 776 424 145
     email: info@vykoupim-nemovitost.cz
     primaryCity: Hradec Králové
+    primaryCityLocative: v Hradci Králové
     supportedCities:
       - Trutnov
       - Náchod
@@ -792,6 +808,7 @@ regions:
     seoDescription: Rychlý výkup bytu i domu v Pardubickém kraji. Pardubice, Chrudim, Svitavy, Ústí nad Orlicí a okolí. Bez provize, nabídka do 24 hodin.
     name: Pardubický kraj
     locative: v Pardubickém kraji
+    accusative: Pardubický kraj
     title: Výkup nemovitostí v Pardubickém kraji
     description:
       V Pardubickém kraji pomáháme klientům, kteří chtějí prodat bez provize a dlouhého čekání na kupce. Aktivně vykupujeme nemovitosti v Pardubicích, Chrudimi i Ústí nad Orlicí, kde se často řeší
@@ -802,6 +819,7 @@ regions:
     phone: +420 776 424 145
     email: info@vykoupim-nemovitost.cz
     primaryCity: Pardubice
+    primaryCityLocative: v Pardubicích
     supportedCities:
       - Chrudim
       - Svitavy
@@ -890,6 +908,7 @@ regions:
     seoDescription: Rychlý výkup nemovitostí na Vysočině. Jihlava, Třebíč, Havlíčkův Brod i Žďár nad Sázavou — férová cena a bezpečný právní servis.
     name: Kraj Vysočina
     locative: na Vysočině
+    accusative: Vysočinu
     title: Výkup nemovitostí na Vysočině
     description:
       Na Vysočině vykupujeme městské byty i venkovské usedlosti, kde běžné realitní prodeje trvají dlouho. Pravidelně řešíme Jihlavu, Třebíč i Žďár nad Sázavou, ale dojíždíme i do menších obcí
@@ -899,6 +918,7 @@ regions:
     phone: +420 776 424 145
     email: info@vykoupim-nemovitost.cz
     primaryCity: Jihlava
+    primaryCityLocative: v Jihlavě
     supportedCities:
       - Třebíč
       - Žďár nad Sázavou
@@ -988,6 +1008,7 @@ regions:
     seoDescription: Rychlý výkup nemovitostí v Jihomoravském kraji. Brno a okolí, Znojmo, Břeclav i Hodonín. Nabídka do 24 hodin bez provize.
     name: Jihomoravský kraj
     locative: v Jihomoravském kraji
+    accusative: Jihomoravský kraj
     title: Výkup nemovitostí v Jihomoravském kraji
     description:
       Jihomoravský kraj pokrýváme se silným zázemím v Brně i okolních okresech. Vedle městských bytů v Brně řešíme také rodinné domy a vinařské usedlosti na Znojemsku, Břeclavsku a Hodonínsku.
@@ -997,6 +1018,7 @@ regions:
     phone: +420 776 424 145
     email: info@vykoupim-nemovitost.cz
     primaryCity: Brno
+    primaryCityLocative: v Brně
     supportedCities:
       - Znojmo
       - Břeclav
@@ -1084,6 +1106,7 @@ regions:
     seoDescription: Férový výkup nemovitostí v Olomouckém kraji. Olomouc, Přerov, Prostějov, Šumperk i Jeseník — rychlá nabídka a právní servis zdarma.
     name: Olomoucký kraj
     locative: v Olomouckém kraji
+    accusative: Olomoucký kraj
     title: Výkup nemovitostí v Olomouckém kraji
     description:
       V Olomouckém kraji vykupujeme byty, domy i podíly s důrazem na rychlé nacenění a právní jistotu. Trh v univerzitní Olomouci se liší od menších měst jako Přerov nebo Šumperk, proto pracujeme
@@ -1093,6 +1116,7 @@ regions:
     phone: +420 776 424 145
     email: info@vykoupim-nemovitost.cz
     primaryCity: Olomouc
+    primaryCityLocative: v Olomouci
     supportedCities:
       - Přerov
       - Prostějov
@@ -1179,6 +1203,7 @@ regions:
     seoDescription: Rychlý výkup bytů a domů v Moravskoslezském kraji. Ostrava, Karviná, Frýdek-Místek i Opava. Pomáháme i u zadlužených nemovitostí.
     name: Moravskoslezský kraj
     locative: v Moravskoslezském kraji
+    accusative: Moravskoslezský kraj
     title: Výkup nemovitostí v Moravskoslezském kraji
     description:
       V Moravskoslezském kraji řešíme rychlý výkup nemovitostí zejména pro klienty v časové tísni. Nejčastěji pracujeme v Ostravě, Opavě a Frýdku-Místku, ale pokrýváme i lokality s nižší cenovou
@@ -1188,6 +1213,7 @@ regions:
     phone: +420 776 424 145
     email: info@vykoupim-nemovitost.cz
     primaryCity: Ostrava
+    primaryCityLocative: v Ostravě
     supportedCities:
       - Karviná
       - Frýdek-Místek
@@ -1277,6 +1303,7 @@ regions:
     seoDescription: Výkup bytů a domů ve Zlínském kraji bez provize. Zlín, Kroměříž, Uherské Hradiště i Valašsko. Nabídka do 24 hodin.
     name: Zlínský kraj
     locative: ve Zlínském kraji
+    accusative: Zlínský kraj
     title: Výkup nemovitostí ve Zlínském kraji
     description:
       Ve Zlínském kraji poskytujeme výkup bytů, domů i podílů s důrazem na transparentnost a rychlou dostupnost týmu. Silně působíme ve Zlíně, Uherském Hradišti a Kroměříži, kde se liší skladba
@@ -1287,6 +1314,7 @@ regions:
     phone: +420 776 424 145
     email: info@vykoupim-nemovitost.cz
     primaryCity: Zlín
+    primaryCityLocative: ve Zlíně
     supportedCities:
       - Uherské Hradiště
       - Kroměříž

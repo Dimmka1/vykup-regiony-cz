@@ -7,6 +7,7 @@ export interface RegionConfig {
   key: string;
   name: string;
   locative: string;
+  accusative: string;
   title: string;
   description: string;
   h1: string;
@@ -14,6 +15,7 @@ export interface RegionConfig {
   phone: string;
   email: string;
   primaryCity: string;
+  primaryCityLocative: string;
   supportedCities: string[];
   uspPoints: string[];
   faq: FaqItem[];

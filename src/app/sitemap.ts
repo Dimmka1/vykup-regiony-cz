@@ -31,6 +31,8 @@ const CONTENT_PATHS = [
   { path: "/garance-vykupu", priority: 0.7 },
   { path: "/pruvodce-vykupem", priority: 0.7 },
   { path: "/o-nas", priority: 0.7 },
+  { path: "/vykup-cinzovnich-domu", priority: 0.8 },
+  { path: "/vykup-pri-privatizaci", priority: 0.8 },
   { path: "/ochrana-osobnich-udaju", priority: 0.3 },
   { path: "/cookies", priority: 0.3 },
 ] as const;

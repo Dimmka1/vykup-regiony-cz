@@ -28,7 +28,7 @@ const GUARANTEES = [
   {
     Icon: Clock,
     title: "Garance splatnosti do 48 hodin",
-    description: `Peníze obdržíte na svůj účet do 48 hodin od podpisu smlouvy. Zálohu až ${process.env.NEXT_PUBLIC_ZALOH_VARIANT || "500 000"} Kč vyplácíme ihned.`,
+    description: `Peníze obdržíte na svůj účet do 48 hodin od podpisu smlouvy. Zálohu až ${process.env.NEXT_PUBLIC_MAX_ZALOHA || "500 000"} Kč vyplácíme ihned.`,
   },
   {
     Icon: Scale,

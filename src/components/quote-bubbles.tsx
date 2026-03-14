@@ -2,12 +2,13 @@
 
 import { useRef, useState, useCallback } from "react";
 import { motion, useReducedMotion, useInView } from "@/components/motion";
-import { Star } from "lucide-react";
+import { Star, ShieldCheck } from "lucide-react";
 
 interface Testimonial {
   name: string;
   text: string;
   location: string;
+  date?: string;
 }
 
 interface QuoteBubblesProps {
@@ -91,18 +92,24 @@ function Bubble({
             aria-hidden="true"
           />
 
-          {/* Stars with golden glow */}
-          <div className="mb-4 flex gap-1">
-            {[...Array(5)].map((_, i) => (
-              <Star
-                key={i}
-                className="h-4 w-4 fill-yellow-400 text-yellow-400"
-                style={{
-                  filter: "drop-shadow(0 0 4px rgba(250,204,21,0.5))",
-                }}
-                aria-hidden="true"
-              />
-            ))}
+          {/* Stars + badge row */}
+          <div className="mb-4 flex items-center justify-between gap-2">
+            <div className="flex gap-1">
+              {[...Array(5)].map((_, i) => (
+                <Star
+                  key={i}
+                  className="h-4 w-4 fill-yellow-400 text-yellow-400"
+                  style={{
+                    filter: "drop-shadow(0 0 4px rgba(250,204,21,0.5))",
+                  }}
+                  aria-hidden="true"
+                />
+              ))}
+            </div>
+            <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/20 px-2 py-0.5 text-[10px] font-semibold text-emerald-300">
+              <ShieldCheck className="h-3 w-3" aria-hidden="true" />
+              Ověřený zákazník
+            </span>
           </div>
 
           {/* Quote text with bubble tail styling */}
@@ -125,7 +132,10 @@ function Bubble({
               <p className="text-sm font-semibold text-white">
                 {testimonial.name}
               </p>
-              <p className="text-xs text-slate-400">{testimonial.location}</p>
+              <p className="text-xs text-slate-400">
+                {testimonial.location}
+                {testimonial.date ? `, ${testimonial.date}` : ""}
+              </p>
             </div>
           </div>
 

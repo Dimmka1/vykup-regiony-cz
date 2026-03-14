@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://vykoupim-nemovitost.cz/proc-my" },
 };
 
-const ZALOH_VARIANT = process.env.NEXT_PUBLIC_ZALOH_VARIANT || "500 000";
+const ZALOH_VARIANT = process.env.NEXT_PUBLIC_MAX_ZALOHA || "500 000";
 
 interface ComparisonRow {
   criterion: string;

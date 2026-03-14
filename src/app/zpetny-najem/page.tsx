@@ -4,6 +4,7 @@ import { Home, FileSignature, HandCoins, KeyRound } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { RelatedArticles } from "@/components/related-articles";
+import { RentCalculator } from "@/components/rent-calculator";
 import { getRelatedArticles } from "@/lib/related-articles";
 import { AllRegionsSection } from "@/components/all-regions-section";
 import { GeoRelatedPages } from "@/components/geo-related-pages";
@@ -53,6 +54,11 @@ const FAQ_ITEMS: readonly FaqItem[] = [
     question: "Pro koho je zpětný nájem vhodný?",
     answer:
       "Zpětný nájem je ideální pro seniory, kteří potřebují uvolnit finance z nemovitosti, pro lidi řešící dluhy či exekuce, nebo pro kohokoli, kdo potřebuje rychle peníze, ale nechce se stěhovat.",
+  },
+  {
+    question: "Mohu si nemovitost odkoupit zpět?",
+    answer:
+      "Ano, nabízíme možnost zpětného odkupu nemovitosti. Nemusíte dokládat příjmy — stačí dodržet sjednané podmínky a termín odkupu stanovený ve smlouvě. Konkrétní podmínky zpětného odkupu (cenu a lhůtu) nastavíme individuálně při podpisu smlouvy.",
   },
 ] as const;
 
@@ -248,6 +254,20 @@ export default async function ZpetnyNajemPage({
                 </p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white py-16">
+        <div className="mx-auto max-w-3xl px-4">
+          <h2 className="text-2xl font-bold text-slate-900">
+            Kolik budete platit v nájmu?
+          </h2>
+          <p className="mt-2 text-slate-600">
+            Orientační výpočet měsíčního nájmu podle ceny vaší nemovitosti.
+          </p>
+          <div className="mt-8">
+            <RentCalculator />
           </div>
         </div>
       </section>

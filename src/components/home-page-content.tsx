@@ -48,6 +48,12 @@ import {
   Star,
   RefreshCw,
 } from "lucide-react";
+import { ShieldCheck } from "lucide-react";
+import { QuoteBubbles } from "@/components/quote-bubbles";
+import {
+  testimonials as allTestimonials,
+  averageRating as globalAvgRating,
+} from "@/data/testimonials";
 
 export const COMPANY_NAME = "Vykoupím Nemovitost";
 
@@ -83,7 +89,7 @@ export function getRegionalFaq(
 }
 
 const HERO_BADGES = [
-  `Záloha až ${process.env.NEXT_PUBLIC_ZALOH_VARIANT || "500 000"} Kč ihned`,
+  `Záloha až ${process.env.NEXT_PUBLIC_MAX_ZALOHA || "500 000"} Kč ihned`,
   "Peníze na účtu do 48 hodin",
   "Bez provize a skrytých poplatků",
 ] as const;
@@ -892,6 +898,48 @@ export function HomePageContent({
               </div>
             </ScrollReveal>
           </div>
+        </div>
+      </section>
+
+      {/* ===== REFERENCE — TESTIMONIALS ===== */}
+      <section className="bg-luxury-dark relative overflow-hidden py-20 md:py-28">
+        <div className="orb orb-theme-1 -right-40 top-10" aria-hidden="true" />
+        <div
+          className="orb orb-theme-2 -bottom-20 left-10"
+          aria-hidden="true"
+        />
+        <div className="relative mx-auto max-w-[1400px] px-6">
+          <ScrollReveal>
+            <div className="mb-12 text-center">
+              <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-[var(--theme-400)]">
+                Reference
+              </p>
+              <h2 className="text-2xl font-bold text-white sm:text-3xl lg:text-4xl">
+                Co říkají naši klienti
+              </h2>
+              <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-400">
+                Přečtěte si skutečné příběhy klientů z celé České republiky
+              </p>
+            </div>
+          </ScrollReveal>
+          <QuoteBubbles
+            testimonials={allTestimonials.slice(0, 6).map((t) => ({
+              name: t.name,
+              text: t.quote,
+              location: t.city,
+              date: t.date,
+            }))}
+          />
+          <ScrollReveal>
+            <div className="mt-10 text-center">
+              <a
+                href="/reference"
+                className="inline-flex items-center gap-1 text-sm font-medium text-[var(--theme-300)] transition hover:text-[var(--theme-200)]"
+              >
+                Všechny reference →
+              </a>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 

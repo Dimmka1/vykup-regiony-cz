@@ -49,7 +49,7 @@ const STEPS = [
   {
     number: 5,
     title: "Platba na účet do 48 hodin",
-    description: `Po podpisu smlouvy obdržíte peníze na váš účet do 48 hodin. Zálohu až ${process.env.NEXT_PUBLIC_ZALOH_VARIANT || "500 000"} Kč můžete dostat ihned při podpisu.`,
+    description: `Po podpisu smlouvy obdržíte peníze na váš účet do 48 hodin. Zálohu až ${process.env.NEXT_PUBLIC_MAX_ZALOHA || "500 000"} Kč můžete dostat ihned při podpisu.`,
     Icon: Banknote,
   },
 ] as const;

@@ -89,6 +89,18 @@ const ALL_PAGES: Record<string, RelatedArticle> = {
     title: "Zpětný nájem",
     description: "Prodejte nemovitost a zůstaňte bydlet díky zpětnému nájmu.",
   },
+  "vykup-cinzovnich-domu": {
+    href: "/vykup-cinzovnich-domu",
+    title: "Výkup činžovních domů",
+    description:
+      "Rychlý výkup bytového domu bez provize a bez starostí s nájemníky.",
+  },
+  "vykup-pri-privatizaci": {
+    href: "/vykup-pri-privatizaci",
+    title: "Výkup při privatizaci",
+    description:
+      "Prodej privatizovaného bytu rychle a bez právních komplikací.",
+  },
 };
 
 /** Mapping: page key → array of related page keys */
@@ -190,6 +202,18 @@ const RELATED_MAP: Record<string, string[]> = {
     "vykup-nemovitosti-s-hypotekou",
     "blog/jak-rychle-prodat-nemovitost",
     "vykup-bytu",
+  ],
+  "vykup-cinzovnich-domu": [
+    "vykup-domu",
+    "vykup-spoluvlastnickeho-podilu",
+    "blog/jak-probiha-rychly-vykup",
+    "vykup-pri-dedictvi",
+  ],
+  "vykup-pri-privatizaci": [
+    "vykup-bytu",
+    "blog/jak-rychle-prodat-nemovitost",
+    "vykup-spoluvlastnickeho-podilu",
+    "vykup-pri-dedictvi",
   ],
 };
 

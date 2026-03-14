@@ -64,6 +64,12 @@ export function SiteFooter() {
               >
                 Výkup s věcným břemenem
               </Link>
+              <Link href="/vykup-cinzovnich-domu" className={linkClass}>
+                Výkup činžovních domů
+              </Link>
+              <Link href="/vykup-pri-privatizaci" className={linkClass}>
+                Výkup při privatizaci
+              </Link>
             </nav>
           </div>
 

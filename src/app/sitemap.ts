@@ -5,6 +5,20 @@ import { listRegions, getRegionSubdomainUrl } from "@/lib/config";
 
 const ROOT_DOMAIN = "vykoupim-nemovitost.cz";
 
+/**
+ * Build-time constant for lastmod of static/deploy-dependent pages.
+ * Set BUILD_DATE env var in CI/CD (e.g. Vercel) for accurate deploy dates.
+ * Falls back to a fixed date representing the last known content update.
+ */
+const BUILD_DATE = process.env.BUILD_DATE || "2026-03-14";
+
+/**
+ * Date of the last price data update (from PRICE_RESEARCH.json).
+ * Used for geo-parameterized pages (?kraj=, ?mesto=) whose content
+ * depends on regional pricing data.
+ */
+const PRICE_DATA_DATE = "2026-03-01";
+
 /** Use-case pages that support ?kraj= and ?mesto= geo parameterization */
 const USE_CASE_PATHS = [
   "/vykup-pri-exekuci",
@@ -55,7 +69,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     .replace(/^www\./, "")
     .split(":")[0];
 
-  const now = new Date();
+  const buildDate = new Date(BUILD_DATE);
+  const priceDate = new Date(PRICE_DATA_DATE);
   const isRootOrDev = host === ROOT_DOMAIN || !host.endsWith(`.${ROOT_DOMAIN}`);
   const baseUrl = `https://${host}`;
   const regions = listRegions();
@@ -65,7 +80,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const entries: MetadataRoute.Sitemap = [
       {
         url: baseUrl,
-        lastModified: now,
+        lastModified: buildDate,
         changeFrequency: "monthly",
         priority: 1,
       },
@@ -78,7 +93,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       for (const city of region.supportedCities) {
         entries.push({
           url: `${baseUrl}?mesto=${slugify(city)}`,
-          lastModified: now,
+          lastModified: priceDate,
           changeFrequency: "monthly",
           priority: 0.7,
         });
@@ -96,17 +111,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   for (const entry of CONTENT_PATHS) {
     entries.push({
       url: `${rootUrl}${entry.path}`,
-      lastModified: now,
+      lastModified: buildDate,
       changeFrequency: "monthly",
       priority: entry.priority,
     });
   }
 
-  // 2. Blog post entries
+  // 2. Blog post entries — use publication date as lastmod
   for (const post of BLOG_POSTS) {
     entries.push({
       url: `${rootUrl}/blog/${post.slug}`,
-      lastModified: now,
+      lastModified: new Date(post.date),
       changeFrequency: "monthly",
       priority: 0.7,
     });
@@ -117,7 +132,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     for (const useCasePath of USE_CASE_PATHS) {
       entries.push({
         url: `${rootUrl}${useCasePath}?kraj=${region.key}`,
-        lastModified: now,
+        lastModified: priceDate,
         changeFrequency: "monthly",
         priority: 0.7,
       });
@@ -131,7 +146,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       for (const useCasePath of USE_CASE_PATHS) {
         entries.push({
           url: `${rootUrl}${useCasePath}?mesto=${citySlug}`,
-          lastModified: now,
+          lastModified: priceDate,
           changeFrequency: "monthly",
           priority: 0.6,
         });
@@ -144,7 +159,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const subdomainUrl = getRegionSubdomainUrl(region.key);
     entries.push({
       url: subdomainUrl,
-      lastModified: now,
+      lastModified: buildDate,
       changeFrequency: "monthly",
       priority: 0.9,
     });
@@ -156,7 +171,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     for (const city of region.supportedCities) {
       entries.push({
         url: `${subdomainUrl}?mesto=${slugify(city)}`,
-        lastModified: now,
+        lastModified: priceDate,
         changeFrequency: "monthly",
         priority: 0.6,
       });

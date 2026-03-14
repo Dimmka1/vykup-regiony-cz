@@ -46,6 +46,7 @@ import {
   MapPin,
   Building,
   Star,
+  RefreshCw,
 } from "lucide-react";
 import { ShieldCheck } from "lucide-react";
 import { QuoteBubbles } from "@/components/quote-bubbles";
@@ -518,6 +519,31 @@ export function HomePageContent({
 
       <SocialProofBar />
 
+      {/* ===== ZPĚTNÝ ODKUP BADGE ===== */}
+      <ScrollReveal>
+        <section className="bg-gradient-to-r from-emerald-50 to-teal-50 py-5">
+          <div className="mx-auto max-w-[1400px] px-6">
+            <Link
+              href="/zpetny-najem"
+              className="mx-auto flex max-w-2xl items-center justify-center gap-3 rounded-2xl border border-emerald-200 bg-white/80 px-6 py-4 shadow-sm transition hover:border-emerald-300 hover:shadow-md"
+            >
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-emerald-100">
+                <RefreshCw
+                  className="h-5 w-5 text-emerald-600"
+                  aria-hidden="true"
+                />
+              </span>
+              <span className="text-sm font-semibold text-slate-800 sm:text-base">
+                Možnost zpětného odkupu nemovitosti
+              </span>
+              <span className="ml-auto text-xs font-medium text-emerald-600">
+                Zjistit více →
+              </span>
+            </Link>
+          </div>
+        </section>
+      </ScrollReveal>
+
       {/* ===== MARKET INFO ===== */}
       {region.marketInfo && (
         <ScrollReveal>
@@ -805,6 +831,18 @@ export function HomePageContent({
                 </ScrollReveal>
               ))}
             </ul>
+            <ScrollReveal delay={400}>
+              <div className="mt-8 text-center">
+                <Link
+                  href="/zpetny-najem"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-white/90 transition hover:text-white"
+                  aria-label="Zjistěte více o zpětném nájmu a možnosti odkupu nemovitosti"
+                >
+                  <RefreshCw className="h-4 w-4" aria-hidden="true" />
+                  Zpětný nájem — prodejte a zůstaňte bydlet →
+                </Link>
+              </div>
+            </ScrollReveal>
           </div>
         </section>
       </ParallaxSection>

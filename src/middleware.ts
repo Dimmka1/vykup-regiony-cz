@@ -217,12 +217,7 @@ const SEO_REDIRECTS: Record<string, string> = {
  */
 const CONTENT_PAGE_PREFIXES = [
   "/blog",
-  "/vykup-pri-",
-  "/vykup-bytu",
-  "/vykup-domu",
-  "/vykup-pozemku",
-  "/vykup-nemovitosti-",
-  "/vykup-spoluvlastnickeho-podilu",
+  "/vykup-",
   "/zpetny-najem",
   "/reference",
   "/jak-to-funguje",

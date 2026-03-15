@@ -13,6 +13,7 @@ const regionSchema = z.object({
   key: z.string().min(2),
   name: z.string().min(2),
   locative: z.string().min(2),
+  accusative: z.string().min(2),
   title: z.string().min(10),
   description: z.string().min(20),
   h1: z.string().min(10),
@@ -20,6 +21,7 @@ const regionSchema = z.object({
   phone: z.string().min(8),
   email: z.string().email(),
   primaryCity: z.string().min(2),
+  primaryCityLocative: z.string().min(2),
   supportedCities: z.array(z.string().min(2)).min(1),
   uspPoints: z.array(z.string().min(5)).min(3),
   faq: z.array(faqSchema).min(2),
@@ -148,12 +150,14 @@ export function getNationalConfig(): RegionConfig {
     key: "national",
     name: "Česká republika",
     locative: "v celé ČR",
+    accusative: "Českou republiku",
     title: "Výkup nemovitostí v celé ČR | Rychlá nabídka do 24 hodin",
     description:
       "Vykupujeme nemovitosti po celé České republice — byty, domy, pozemky i podíly. Nabídka do 24 hodin, peníze na účtu do 48 hodin. Bez provize, právní servis zdarma.",
     h1: "Vykoupíme vaši nemovitost po celé ČR",
     heroCta: "Získat nezávaznou nabídku do 24 h",
     primaryCity: "Česká republika",
+    primaryCityLocative: "v celé ČR",
     seoTitle:
       "Výkup nemovitostí v celé ČR | Nabídka do 24 hodin | Vykoupím Nemovitost",
     seoDescription:

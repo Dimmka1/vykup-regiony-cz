@@ -86,15 +86,15 @@ const COMPARISON: ComparisonRow[] = [
 const CASE_STUDIES = [
   {
     title: "Exekuce v Praze — byt prodán za 5 dní",
-    text: "Pan Karel z Prahy 4 čelil exekuci a potřeboval rychle prodat byt 2+kk. Realitní kancelář odhadla prodej na 4–6 měsíců. My jsme byt vykoupili do 5 dnů, zálohu vyplatili při podpisu a pan Karel stihl uhradit dluh dříve, než exekutor zabavil majetek.",
+    text: "Pan Karel z Prahy 4 měl na bytě 2+kk exekuci. Realitka mu řekla 4–6 měsíců, to bylo pozdě. Ozvali jsme se mu druhý den, do pěti dnů podepsal smlouvu a zálohou stihl zaplatit dluh dřív, než exekutor zaklepal.",
   },
   {
     title: "Dědictví v Brně — vyřešeno bez hádek",
-    text: "Tři sourozenci zdědili rodinný dům v Brně-Židenicích. Jeden chtěl prodat, druhý bydlet, třetí nevěděl. Nabídli jsme férovou cenu, kterou přijali všichni tři. Právní servis i převod katastru jsme zajistili zdarma — bez realitky, bez provize.",
+    text: "Tři sourozenci zdědili rodinný dům v Brně-Židenicích a nemohli se dohodnout. Nabídli jsme částku, kterou přijali všichni tři. Smlouvu, katastr i rozdělení peněz jsme zařídili my — sourozenci se nemuseli o nic hádat.",
   },
   {
     title: "Rozvod v Ostravě — diskrétně a rychle",
-    text: "Paní Eva se rozváděla a potřebovala rychle vypořádat společný byt v Ostravě-Porubě. Nechtěla veřejnou inzerci ani prohlídky s cizími lidmi. Vše jsme vyřešili diskrétně do 7 dnů — peníze dostala na účet a mohla začít novou kapitolu.",
+    text: "Paní Eva se rozváděla a potřebovala vypořádat společný byt v Ostravě-Porubě. Nechtěla fotky bytu na internetu ani prohlídky s cizími lidmi. Domluvili jsme se na ceně po telefonu, smlouvu podepsala za týden a peníze měla na účtu.",
   },
 ];
 

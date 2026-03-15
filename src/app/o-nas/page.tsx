@@ -73,7 +73,7 @@ const VALUES = [
   {
     title: "Férovost",
     description:
-      "Nabízíme reálné ceny odpovídající aktuálnímu trhu. Žádné skryté poplatky, žádné dodatečné srážky.",
+      "Cenu určujeme podle aktuálních dat z realitního trhu a stavu nemovitosti. Co řekneme, to platí — žádné srážky na poslední chvíli.",
     Icon: Scale,
   },
   {
@@ -91,7 +91,7 @@ const VALUES = [
   {
     title: "Profesionalita",
     description:
-      "Každý případ řešíme individuálně s týmem odborníků na nemovitosti, právo a finance.",
+      "Za každým prodejem stojí konkrétní člověk, kterému můžete zavolat. Právník, odhadce, makléř — všechno řešíme my, ne vy.",
     Icon: Award,
   },
 ] as const;

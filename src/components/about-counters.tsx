@@ -3,8 +3,9 @@
 import { Building2, Clock, MapPin, ThumbsUp } from "lucide-react";
 import { AnimatedCounter } from "./animated-counter";
 
-const DEALS_COUNT = process.env.NEXT_PUBLIC_DEALS_COUNT || "200";
-const YEARS_EXPERIENCE = process.env.NEXT_PUBLIC_YEARS_EXPERIENCE || "5";
+const DEALS_COUNT = process.env.NEXT_PUBLIC_DEALS_COUNT || "50";
+const YEARS_EXPERIENCE = process.env.NEXT_PUBLIC_YEARS_EXPERIENCE || "10";
+const CLIENT_COUNT = process.env.NEXT_PUBLIC_CLIENT_COUNT || "50";
 
 const COUNTERS = [
   {
@@ -14,7 +15,7 @@ const COUNTERS = [
   },
   {
     value: `${YEARS_EXPERIENCE}+`,
-    label: "let zkušeností na trhu",
+    label: "let zkušeností týmu v oboru nemovitostí",
     Icon: Clock,
   },
   {
@@ -23,7 +24,7 @@ const COUNTERS = [
     Icon: MapPin,
   },
   {
-    value: "98 %",
+    value: `${CLIENT_COUNT}+`,
     label: "spokojených klientů",
     Icon: ThumbsUp,
   },

@@ -56,6 +56,8 @@ import {
 } from "lucide-react";
 import { ShieldCheck } from "lucide-react";
 
+const HOME_CLIENT_COUNT = process.env.NEXT_PUBLIC_CLIENT_COUNT || "50";
+
 export const COMPANY_NAME = "Vykoupím Nemovitost";
 
 export function getRegionalFaq(
@@ -515,7 +517,7 @@ export function HomePageContent({
                   </svg>
                 ))}
               </div>
-              <span>Důvěřuje nám 500+ klientů v celé ČR</span>
+              <span>Férový výkup nemovitostí v celé ČR</span>
             </div>
           </HeroStagger>
         </div>
@@ -651,7 +653,7 @@ export function HomePageContent({
                 Výsledky mluví za nás
               </p>
               <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl lg:text-4xl">
-                Proč nám důvěřují stovky klientů
+                Proč nám klienti důvěřují
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-600">
                 Transparentní a férový výkup bez skrytých poplatků — od prvního
@@ -957,7 +959,7 @@ export function HomePageContent({
                 <div className="mb-8 grid grid-cols-3 gap-4">
                   <div className="text-center">
                     <p className="text-3xl font-extrabold text-[var(--theme-400)] md:text-4xl">
-                      <SlotCounter value="500+" />
+                      <SlotCounter value={`${HOME_CLIENT_COUNT}+`} />
                     </p>
                     <p className="mt-1 text-xs text-slate-400">
                       spokojených klientů

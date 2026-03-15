@@ -9,6 +9,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
+import { MAX_ZALOHA, PRICE_PERCENT } from "@/lib/pricing";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 
 export const metadata: Metadata = {
@@ -21,14 +22,13 @@ export const metadata: Metadata = {
 const GUARANTEES = [
   {
     Icon: BadgeCheck,
-    title: "Garance ceny",
-    description:
-      "Výkupní cena je závazně zafixována ve smlouvě. Žádné dodatečné srážky, žádné změny na poslední chvíli.",
+    title: "Garance férové výkupní ceny",
+    description: `Nabízíme až ${PRICE_PERCENT} % tržní hodnoty vaší nemovitosti. Výkupní cena je závazně zafixována ve smlouvě — žádné dodatečné srážky ani změny na poslední chvíli.`,
   },
   {
     Icon: Clock,
     title: "Garance splatnosti do 48 hodin",
-    description: `Peníze obdržíte na svůj účet do 48 hodin od podpisu smlouvy. Zálohu až ${process.env.NEXT_PUBLIC_MAX_ZALOHA || "500 000"} Kč vyplácíme ihned.`,
+    description: `Peníze obdržíte na svůj účet do 48 hodin od podpisu smlouvy. Zálohu až ${MAX_ZALOHA} Kč vyplácíme ihned.`,
   },
   {
     Icon: Scale,

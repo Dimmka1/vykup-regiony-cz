@@ -94,14 +94,6 @@ export function SiteHeader({ phone = "+420 776 424 145" }: SiteHeaderProps) {
             Časté dotazy
           </Link>
           <Link
-            href="/reference"
-            className={`hidden min-h-[48px] items-center text-sm font-medium transition-colors hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 md:inline-flex ${
-              showSolid ? "text-slate-700" : "text-white/80"
-            }`}
-          >
-            Reference
-          </Link>
-          <Link
             href="/blog"
             className={`hidden min-h-[48px] items-center text-sm font-medium transition-colors hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 md:inline-flex ${
               showSolid ? "text-slate-700" : "text-white/80"
@@ -170,13 +162,7 @@ export function SiteHeader({ phone = "+420 776 424 145" }: SiteHeaderProps) {
             >
               Časté dotazy
             </Link>
-            <Link
-              href="/reference"
-              className="min-h-[48px] text-sm font-medium text-slate-700 hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
-              onClick={() => setMobileOpen(false)}
-            >
-              Reference
-            </Link>
+
             <Link
               href="/blog"
               className="min-h-[48px] text-sm font-medium text-slate-700 hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"

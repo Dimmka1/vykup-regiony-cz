@@ -224,7 +224,6 @@ const CONTENT_PAGE_PREFIXES = [
   "/vykup-nemovitosti-",
   "/vykup-spoluvlastnickeho-podilu",
   "/zpetny-najem",
-  "/reference",
   "/jak-to-funguje",
   "/kraje",
   "/pruvodce-vykupem",

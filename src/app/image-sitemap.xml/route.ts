@@ -106,11 +106,7 @@ const CONTENT_PAGES = [
     title: "Časté dotazy k výkupu nemovitostí",
     caption: "Odpovědi na nejčastější otázky o rychlém výkupu nemovitostí v ČR",
   },
-  {
-    path: "/reference",
-    title: "Reference — výkup nemovitostí",
-    caption: "Zkušenosti klientů s rychlým výkupem nemovitostí po celé ČR",
-  },
+
   {
     path: "/kraje",
     title: "Výkup nemovitostí podle krajů",

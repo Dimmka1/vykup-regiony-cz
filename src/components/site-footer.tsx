@@ -94,9 +94,7 @@ export function SiteFooter() {
               <Link href="/kraje" className={linkClass}>
                 Kde působíme
               </Link>
-              <Link href="/reference" className={linkClass}>
-                Reference
-              </Link>
+
               <Link href="/caste-dotazy" className={linkClass}>
                 Časté dotazy
               </Link>

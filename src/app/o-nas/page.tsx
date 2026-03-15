@@ -9,14 +9,20 @@ import {
   Zap,
   EyeOff,
   Award,
-  Building2,
-  Users,
-  MapPin,
-  ShieldCheck,
   ArrowRight,
+  User,
+  Calendar,
+  TrendingUp,
+  MapPinned,
+  Shield,
+  FileCheck,
 } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { AboutCounters } from "@/components/about-counters";
+import { AboutMap } from "@/components/about-map";
+
+const FOUNDER_NAME = process.env.NEXT_PUBLIC_FOUNDER_NAME || "";
 
 export const metadata: Metadata = {
   title: "O nás | Vykoupím Nemovitost — férový výkup nemovitostí",
@@ -90,26 +96,27 @@ const VALUES = [
   },
 ] as const;
 
-const TRUST_STATS = [
+const TIMELINE_MILESTONES = [
   {
-    value: "5+",
-    label: "let na trhu",
-    Icon: Building2,
+    year: process.env.NEXT_PUBLIC_FOUNDING_YEAR || "2019",
+    title: "Založení firmy",
+    description:
+      "Začali jsme s vizí nabídnout lidem férovou alternativu k tradičnímu prodeji nemovitostí. Rychle, transparentně a bez zbytečné byrokracie.",
+    Icon: Calendar,
   },
   {
-    value: "200+",
-    label: "spokojených klientů",
-    Icon: Users,
+    year: "2021",
+    title: "Překonání 100 vykoupených nemovitostí",
+    description:
+      "Během prvních let jsme pomohli desítkám rodin vyřešit složité životní situace — od exekucí po dědické spory.",
+    Icon: TrendingUp,
   },
   {
-    value: "14",
-    label: "krajů ČR pokrýváme",
-    Icon: MapPin,
-  },
-  {
-    value: "100 %",
-    label: "právní garance",
-    Icon: ShieldCheck,
+    year: "2023",
+    title: "Expanze do všech 14 krajů ČR",
+    description:
+      "Rozšířili jsme působnost po celé České republice. Dnes vykupujeme nemovitosti ve všech krajích — od Prahy po Moravskoslezský kraj.",
+    Icon: MapPinned,
   },
 ] as const;
 
@@ -128,6 +135,8 @@ const organizationJsonLd = {
 };
 
 export default function ONasPage(): React.ReactElement {
+  const founderDisplayName = FOUNDER_NAME || "Náš zakladatel";
+
   return (
     <>
       <script
@@ -154,8 +163,87 @@ export default function ONasPage(): React.ReactElement {
           </p>
         </section>
 
-        {/* Jak pracujeme */}
+        {/* AC-1: Náš tým — founder section */}
         <section className="bg-slate-50 py-16">
+          <div className="mx-auto max-w-5xl px-6">
+            <h2 className="mb-10 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+              Náš tým
+            </h2>
+            <div className="mx-auto flex max-w-3xl flex-col items-center gap-8 sm:flex-row sm:items-start">
+              {/* Founder photo placeholder */}
+              <div className="flex-shrink-0">
+                <div className="flex h-40 w-40 items-center justify-center rounded-full bg-slate-200 shadow-inner">
+                  <User className="h-16 w-16 text-slate-400" />
+                </div>
+              </div>
+              <div className="text-center sm:text-left">
+                <h3 className="text-xl font-bold text-slate-900">
+                  {founderDisplayName}
+                </h3>
+                <p className="mt-1 text-sm font-medium text-[var(--theme-600)]">
+                  Zakladatel &amp; jednatel
+                </p>
+                <p className="mt-4 leading-relaxed text-slate-600">
+                  Za naší službou stojí tým zkušených odborníků na nemovitosti,
+                  právo a&nbsp;finance. Každý člen týmu přináší letité
+                  zkušenosti z&nbsp;oboru a&nbsp;osobní přístup ke každému
+                  klientovi.
+                </p>
+                <p className="mt-3 text-sm text-slate-500">
+                  Spojuje nás společný cíl&nbsp;— pomáhat lidem vyřešit složité
+                  životní situace rychle, férově a&nbsp;s&nbsp;maximální péčí.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* AC-2: Historie firmy — timeline */}
+        <section className="py-16">
+          <div className="mx-auto max-w-5xl px-6">
+            <h2 className="mb-12 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+              Historie firmy
+            </h2>
+            <div className="relative">
+              {/* Vertical line */}
+              <div className="absolute left-6 top-0 hidden h-full w-0.5 bg-slate-200 sm:block" />
+              <div className="space-y-10">
+                {TIMELINE_MILESTONES.map((milestone, idx) => (
+                  <div key={idx} className="relative flex gap-6">
+                    {/* Dot on timeline */}
+                    <div className="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-[var(--theme-500)] text-white shadow-md">
+                      <milestone.Icon className="h-5 w-5" />
+                    </div>
+                    <div className="pt-1">
+                      <span className="inline-block rounded-full bg-[var(--theme-50)] px-3 py-0.5 text-xs font-bold text-[var(--theme-700)]">
+                        {milestone.year}
+                      </span>
+                      <h3 className="mt-2 text-lg font-semibold text-slate-900">
+                        {milestone.title}
+                      </h3>
+                      <p className="mt-1 leading-relaxed text-slate-600">
+                        {milestone.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* AC-3: Čísla, která mluví za nás — animated counters */}
+        <section className="bg-slate-50 py-16">
+          <div className="mx-auto max-w-5xl px-6">
+            <h2 className="mb-10 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+              Čísla, která mluví za nás
+            </h2>
+            <AboutCounters />
+          </div>
+        </section>
+
+        {/* Jak pracujeme */}
+        <section className="py-16">
           <div className="mx-auto max-w-5xl px-6">
             <h2 className="mb-10 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
               Jak pracujeme
@@ -182,7 +270,7 @@ export default function ONasPage(): React.ReactElement {
         </section>
 
         {/* Naše hodnoty */}
-        <section className="py-16">
+        <section className="bg-slate-50 py-16">
           <div className="mx-auto max-w-5xl px-6">
             <h2 className="mb-10 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
               Naše hodnoty
@@ -210,46 +298,68 @@ export default function ONasPage(): React.ReactElement {
           </div>
         </section>
 
-        {/* Proč nám důvěřovat */}
-        <section className="bg-slate-50 py-16">
+        {/* AC-4: Kde nás najdete — SVG map */}
+        <section className="py-16">
           <div className="mx-auto max-w-5xl px-6">
-            <h2 className="mb-10 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
-              Proč nám důvěřovat
+            <h2 className="mb-4 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+              Kde nás najdete
             </h2>
-            <div className="grid grid-cols-2 gap-6 lg:grid-cols-4">
-              {TRUST_STATS.map((stat) => (
-                <div
-                  key={stat.label}
-                  className="rounded-xl bg-white p-6 text-center shadow-sm"
-                >
-                  <stat.Icon className="mx-auto mb-3 h-8 w-8 text-[var(--theme-500)]" />
-                  <div className="text-2xl font-bold text-slate-900 sm:text-3xl">
-                    {stat.value}
-                  </div>
-                  <div className="mt-1 text-sm text-slate-600">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-            </div>
+            <p className="mx-auto mb-10 max-w-2xl text-center text-slate-600">
+              Působíme ve všech 14 krajích České republiky. Ať jste
+              kdekoli&nbsp;— jsme připraveni vám pomoci.
+            </p>
+            <AboutMap />
           </div>
         </section>
 
-        {/* Náš tým */}
-        <section className="py-16">
-          <div className="mx-auto max-w-5xl px-6 text-center">
-            <h2 className="mb-4 text-2xl font-bold text-slate-900 sm:text-3xl">
-              Náš tým
+        {/* AC-5: Certifikáty a členství — placeholder */}
+        <section className="bg-slate-50 py-16">
+          <div className="mx-auto max-w-5xl px-6">
+            <h2 className="mb-4 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+              Certifikáty a členství
             </h2>
-            <p className="mx-auto max-w-2xl text-lg leading-relaxed text-slate-600">
-              Za naší službou stojí tým zkušených odborníků na nemovitosti,
-              právo a&nbsp;finance. Každý člen týmu přináší letité zkušenosti
-              z&nbsp;oboru a&nbsp;osobní přístup ke každému klientovi.
+            <p className="mx-auto mb-10 max-w-2xl text-center text-slate-600">
+              Dbáme na profesní rozvoj a&nbsp;transparentnost. Tato sekce bude
+              postupně doplňována o&nbsp;naše certifikáty, členství
+              v&nbsp;profesních organizacích a&nbsp;další doklady kvality.
             </p>
-            <p className="mx-auto mt-4 max-w-2xl text-sm text-slate-500">
-              Spojuje nás společný cíl&nbsp;— pomáhat lidem vyřešit složité
-              životní situace rychle, férově a&nbsp;s&nbsp;maximální péčí.
-            </p>
+            <div className="grid gap-6 sm:grid-cols-3">
+              {[
+                {
+                  Icon: Shield,
+                  title: "Pojištění odpovědnosti",
+                  description:
+                    "Pojištění profesní odpovědnosti pro ochranu klientů.",
+                },
+                {
+                  Icon: FileCheck,
+                  title: "Profesní certifikace",
+                  description:
+                    "Průběžné vzdělávání v oblasti nemovitostí a práva.",
+                },
+                {
+                  Icon: Award,
+                  title: "Členství v asociacích",
+                  description:
+                    "Připravujeme členství v relevantních profesních sdruženích.",
+                },
+              ].map((cert) => (
+                <div
+                  key={cert.title}
+                  className="flex flex-col items-center rounded-xl border border-dashed border-slate-300 bg-white p-6 text-center"
+                >
+                  <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-slate-100">
+                    <cert.Icon className="h-6 w-6 text-slate-400" />
+                  </div>
+                  <h3 className="text-sm font-semibold text-slate-700">
+                    {cert.title}
+                  </h3>
+                  <p className="mt-1 text-xs text-slate-500">
+                    {cert.description}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 

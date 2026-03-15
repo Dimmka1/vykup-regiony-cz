@@ -775,6 +775,20 @@ export function HomePageContent({
               >
                 Výkup při dědictví →
               </Link>
+              <Link
+                href="/vykup-cinzovnich-domu"
+                className="mr-4 inline-flex items-center gap-1 text-sm font-medium text-[var(--theme-300)] transition hover:text-[var(--theme-200)]"
+                aria-label="Více informací o výkupu činžovních domů"
+              >
+                Výkup činžovních domů →
+              </Link>
+              <Link
+                href="/vykup-pri-privatizaci"
+                className="inline-flex items-center gap-1 text-sm font-medium text-[var(--theme-300)] transition hover:text-[var(--theme-200)]"
+                aria-label="Více informací o výkupu při privatizaci"
+              >
+                Výkup při privatizaci →
+              </Link>
             </div>
           </ScrollReveal>
         </div>

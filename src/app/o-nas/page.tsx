@@ -12,7 +12,6 @@ import {
   ArrowRight,
   User,
   Calendar,
-  TrendingUp,
   MapPinned,
   Shield,
   FileCheck,
@@ -98,24 +97,17 @@ const VALUES = [
 
 const TIMELINE_MILESTONES = [
   {
-    year: process.env.NEXT_PUBLIC_FOUNDING_YEAR || "2019",
-    title: "Založení firmy",
+    year: process.env.NEXT_PUBLIC_FOUNDING_YEAR || "2025",
+    title: "Založení společnosti",
     description:
-      "Začali jsme s vizí nabídnout lidem férovou alternativu k tradičnímu prodeji nemovitostí. Rychle, transparentně a bez zbytečné byrokracie.",
+      "Náš tým zkušených odborníků z oboru nemovitostí založil Vykoupím Nemovitost s jasnou vizí — nabídnout férovou a rychlou alternativu k tradičnímu prodeji.",
     Icon: Calendar,
   },
   {
-    year: "2021",
-    title: "Překonání 100 vykoupených nemovitostí",
+    year: "2025",
+    title: "Pokrytí všech 14 krajů ČR",
     description:
-      "Během prvních let jsme pomohli desítkám rodin vyřešit složité životní situace — od exekucí po dědické spory.",
-    Icon: TrendingUp,
-  },
-  {
-    year: "2023",
-    title: "Expanze do všech 14 krajů ČR",
-    description:
-      "Rozšířili jsme působnost po celé České republice. Dnes vykupujeme nemovitosti ve všech krajích — od Prahy po Moravskoslezský kraj.",
+      "Od prvního dne působíme po celé České republice. Díky zkušenostem týmu v oboru dokážeme pomoct s výkupem nemovitostí v každém kraji.",
     Icon: MapPinned,
   },
 ] as const;

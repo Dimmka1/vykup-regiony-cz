@@ -1,3 +1,10 @@
+import {
+  getHeroPriceBadge,
+  MAX_ZALOHA,
+  PRICE_PERCENT,
+  type PricingVariant,
+  DEFAULT_PRICING_VARIANT,
+} from "@/lib/pricing";
 import { safeJsonLd } from "@/lib/jsonld";
 import { SocialProofBar } from "@/components/social-proof-bar";
 import { getThemeStyle } from "@/lib/theme-colors";
@@ -82,11 +89,15 @@ export function getRegionalFaq(
   ];
 }
 
-const HERO_BADGES = [
-  `Záloha až ${process.env.NEXT_PUBLIC_MAX_ZALOHA || "500 000"} Kč ihned`,
-  "Peníze na účtu do 48 hodin",
-  "Bez provize a skrytých poplatků",
-] as const;
+function getHeroBadges(
+  variant: PricingVariant = DEFAULT_PRICING_VARIANT,
+): string[] {
+  return [
+    getHeroPriceBadge(variant),
+    "Peníze na účtu do 48 hodin",
+    "Bez provize a skrytých poplatků",
+  ];
+}
 
 function getProcessSteps(region: RegionConfig) {
   return [
@@ -454,7 +465,7 @@ export function HomePageContent({
             as="ul"
             className="mt-6 flex flex-wrap gap-2 text-sm text-white"
           >
-            {HERO_BADGES.map((badge) => (
+            {getHeroBadges().map((badge) => (
               <li
                 key={badge}
                 className="glass inline-flex items-center gap-2 rounded-xl border border-white/20 px-4 py-2.5 text-sm backdrop-blur-md"

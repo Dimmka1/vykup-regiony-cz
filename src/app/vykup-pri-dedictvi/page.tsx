@@ -132,9 +132,9 @@ export default async function VykupPriDedictviPage({
             Výkup nemovitosti při dědictví
           </h1>
           <p className="mt-4 text-lg text-slate-600">
-            Zdědili jste nemovitost a nevíte, co s ní? Ať už jde o byt, dům nebo
-            pozemek - pomůžeme vám s rychlým a bezstarostným prodejem za férovou
-            cenu.
+            Zdědili jste byt nebo dům a nevíte, co dál? Možná v něm nikdo
+            nebydlí, možná se dědici neshodnou. Pomůžeme vám nemovitost rychle
+            prodat — bez rekonstrukcí a bez měsíců čekání.
           </p>
           <p className="mt-4 text-slate-600">
             Dědické řízení bývá náročné nejen emočně, ale i právně. Často se

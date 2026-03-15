@@ -126,9 +126,10 @@ export default async function VykupPriExekuciPage({
             Výkup nemovitosti při exekuci
           </h1>
           <p className="mt-4 text-lg text-slate-600">
-            Exekuce na nemovitost je stresující situace, ale existuje cesta ven.
-            Pomůžeme vám nemovitost rychle prodat, uhradit dluhy a začít znovu -
-            bez zbytečných průtahů a bez provize.
+            Víme, že exekuce je těžká situace. Každý den je plný stresu a
+            nejistoty. Ale dá se to vyřešit — pomůžeme vám nemovitost prodat,
+            uhradit dluhy a zbavit se toho tlaku. Bez provize, bez zbytečného
+            čekání.
           </p>
           <p className="mt-4 text-slate-600">
             Mnoho majitelů neví, že nemovitost zatíženou exekucí lze legálně

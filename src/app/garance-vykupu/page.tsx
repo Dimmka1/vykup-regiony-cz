@@ -22,8 +22,9 @@ export const metadata: Metadata = {
 const GUARANTEES = [
   {
     Icon: BadgeCheck,
-    title: "Garance férové výkupní ceny",
-    description: `Nabízíme až ${PRICE_PERCENT} % tržní hodnoty vaší nemovitosti. Výkupní cena je závazně zafixována ve smlouvě — žádné dodatečné srážky ani změny na poslední chvíli.`,
+    title: "Garance ceny",
+    description:
+      "Částka, na které se dohodneme, je ve smlouvě. Nikdo ji nemůže snížit — ani po prohlídce, ani při podpisu.",
   },
   {
     Icon: Clock,
@@ -34,7 +35,7 @@ const GUARANTEES = [
     Icon: Scale,
     title: "Garance právního servisu",
     description:
-      "Kompletní právní servis zajistíme zdarma — smlouvy, katastr, vše řešíme za vás. Nemusíte shánět vlastního advokáta.",
+      "Smlouvu, katastrální převod i advokáta zajistíme my — neplatíte za to nic navíc. A pokud si chcete nechat smlouvu zkontrolovat vlastním právníkem, klidně.",
   },
   {
     Icon: Ban,

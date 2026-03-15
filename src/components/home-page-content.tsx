@@ -63,11 +63,11 @@ export function getRegionalFaq(
   return [
     {
       question: `Jak dlouho trvá celý proces výkupu nemovitosti ${region.locative}?`,
-      answer: `Celý proces výkupu nemovitosti ${region.locative} trvá obvykle 7–14 dní od prvního kontaktu. V urgentních případech v ${region.primaryCity} a okolí dokážeme vše vyřídit i do 48 hodin.`,
+      answer: `Celý proces výkupu nemovitosti ${region.locative} trvá obvykle 7–14 dní od prvního kontaktu. V urgentních případech ${region.locative} dokážeme vše vyřídit i do 48 hodin.`,
     },
     {
       question: `Kolik peněz za nemovitost ${region.locative} dostanu?`,
-      answer: `Nabízíme férovou tržní cenu stanovenou na základě aktuálních dat z realitního trhu ${region.locative} a individuálního posouzení stavu nemovitosti. Cenovou nabídku pro ${region.name} dostanete zdarma a nezávazně do 24 hodin.`,
+      answer: `Nabízíme férovou tržní cenu stanovenou na základě aktuálních dat z realitního trhu ${region.locative} a individuálního posouzení stavu nemovitosti. Cenovou nabídku ${region.locative} dostanete zdarma a nezávazně do 24 hodin.`,
     },
     {
       question: `Je výkup nemovitosti ${region.locative} bezpečný?`,
@@ -79,11 +79,11 @@ export function getRegionalFaq(
     },
     {
       question: `Vykupujete ${region.locative} i nemovitosti s hypotékou nebo exekucí?`,
-      answer: `Ano, ${region.locative} běžně řešíme nemovitosti zatížené hypotékou, exekucí, věcným břemenem nebo zástavním právem. Pomůžeme vám s vypořádáním všech závazků v rámci výkupu v ${region.primaryCity} a okolí.`,
+      answer: `Ano, ${region.locative} běžně řešíme nemovitosti zatížené hypotékou, exekucí, věcným břemenem nebo zástavním právem. Pomůžeme vám s vypořádáním všech závazků v rámci výkupu ${region.locative}.`,
     },
     {
       question: `Jak probíhá ocenění nemovitosti ${region.locative}?`,
-      answer: `Po vyplnění formuláře náš odborník provede analýzu na základě lokality ${region.locative}, stavu a aktuálních tržních cen v ${region.primaryCity}. U složitějších případů nabídneme osobní prohlídku. Ocenění je vždy zdarma a nezávazné.`,
+      answer: `Po vyplnění formuláře náš odborník provede analýzu na základě lokality ${region.locative}, stavu a aktuálních tržních cen ${region.locative}. U složitějších případů nabídneme osobní prohlídku. Ocenění je vždy zdarma a nezávazné.`,
     },
   ];
 }
@@ -106,7 +106,7 @@ function getProcessSteps(region: RegionConfig) {
       title: "Nabídka do 24h",
       eta: "24 h",
       icon: "Zap",
-      description: `Připravíme nezávaznou cenovou nabídku pro ${region.name}`,
+      description: `Připravíme nezávaznou cenovou nabídku ${region.locative}`,
     },
     {
       title: "Podpis smlouvy",
@@ -413,7 +413,7 @@ export function HomePageContent({
               ? "/images/hero-prague.jpg"
               : `/images/hero-${region.key}.jpg`
           }
-          alt={`Panorama města ${region.primaryCity} – výkup nemovitostí ${region.locative}`}
+          alt={`Výkup nemovitostí ${region.locative} – panorama`}
           priority
           className="object-cover"
         />
@@ -568,7 +568,7 @@ export function HomePageContent({
                     <TrendingUp className="h-6 w-6" aria-hidden="true" />
                   </span>
                   <h2 className="mt-4 text-2xl font-bold text-slate-900 sm:text-3xl">
-                    Trh v regionu {region.name}
+                    Realitní trh {region.locative}
                   </h2>
                 </div>
               </ScrollReveal>
@@ -867,9 +867,8 @@ export function HomePageContent({
                 <p className="mt-4 leading-relaxed text-slate-700">
                   Specializujeme se na rychlý a férový výkup nemovitostí{" "}
                   {region.locative}. Nabízíme transparentní proces, férovou cenu
-                  a kompletní právní servis zdarma. V {region.primaryCity} a
-                  okolí jsme pro vás k dispozici osobně, po celém {region.name}{" "}
-                  zajistíme kompletní servis na dálku.
+                  a kompletní právní servis zdarma — osobně i na dálku{" "}
+                  {region.locative}.
                 </p>
                 <div className="mt-8 grid gap-4 sm:grid-cols-3">
                   {ABOUT_STATS.map((stat) => (
@@ -1019,7 +1018,7 @@ export function HomePageContent({
                     Nezávazná konzultace zdarma
                   </h3>
                   <p className="mt-2 text-sm text-slate-400">
-                    Primárně {region.primaryCity} a okolí, dále:{" "}
+                    Působíme {region.locative}, včetně:{" "}
                     {region.supportedCities.join(", ")}.
                   </p>
                   <p className="mt-4 text-xs text-slate-500">

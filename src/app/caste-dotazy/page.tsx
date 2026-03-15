@@ -18,12 +18,12 @@ const FAQ_ITEMS: readonly FaqItem[] = [
   {
     question: "Jak probíhá výkup nemovitosti?",
     answer:
-      "Celý proces je jednoduchý. Vyplníte nezávazný formulář na našich stránkách, do 24 hodin vám představíme cenovou nabídku. Pokud souhlasíte, připravíme kupní smlouvu a peníze obdržíte ihned po podpisu u notáře.",
+      "Vyplníte formulář na stránkách — stačí adresa a typ nemovitosti. Do 24 hodin vám zavoláme s cenovou nabídkou. Pokud vám sedne, domluvíme prohlídku, připravíme kupní smlouvu a peníze vám pošleme do 48 hodin od podpisu.",
   },
   {
     question: "Kolik za mou nemovitost dostanu?",
     answer:
-      "Nabízíme obvykle 80–90 % tržní hodnoty nemovitosti. Cena závisí na lokalitě, stavu a typu nemovitosti. Na rozdíl od klasického prodeje neplatíte žádné provize ani poplatky - vše hradíme za vás.",
+      "Nabízíme 80–90 % odhadní ceny. Přesná částka závisí na lokalitě, stavu a typu nemovitosti — u bytů v Praze je to jinak než u domu na vesnici. Provize ani poplatky neplatíte, takže co řekneme, to dostanete na účet.",
   },
   {
     question: "Jak dlouho celý proces trvá?",
@@ -58,7 +58,7 @@ const FAQ_ITEMS: readonly FaqItem[] = [
   {
     question: "Jak je zajištěna bezpečnost transakce?",
     answer:
-      "Celý převod probíhá přes advokátní úschovu nebo notářský zápis. Peníze jsou uloženy na úschovním účtu a vyplaceny až po zápisu do katastru nemovitostí. Vaše prostředky jsou tak maximálně chráněny.",
+      "Převod běží přes advokátní úschovu — peníze leží na úschovním účtu, dokud katastr nezapíše nového vlastníka. Smlouvu připravuje advokát, který zastupuje vaše zájmy. Vy nám žádné peníze nepředáváte, je to naopak.",
   },
   {
     question: "Co když mám na nemovitosti hypotéku?",
@@ -73,7 +73,7 @@ const FAQ_ITEMS: readonly FaqItem[] = [
   {
     question: "Kdy dostanu peníze?",
     answer:
-      "Peníze obdržíte ihned po podpisu kupní smlouvy a splnění podmínek úschovy, obvykle do 3–5 pracovních dnů od podpisu. V urgentních případech můžeme vyplatit zálohu ještě před zápisem do katastru.",
+      "Zálohu až 500 000 Kč vyplácíme přímo při podpisu smlouvy. Zbytek kupní ceny obdržíte do 3–5 pracovních dnů po zápisu do katastru. Když hoří (exekuce, dražba), zálohu pošleme ještě ten den.",
   },
 ] as const;
 

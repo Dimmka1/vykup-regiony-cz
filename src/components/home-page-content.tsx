@@ -783,7 +783,7 @@ export function HomePageContent({
       {/* ===== VISUAL BREAK: PROPERTY EXTERIOR ===== */}
       <section className="relative flex h-[350px] items-center justify-center overflow-hidden sm:h-[400px] lg:h-[450px]">
         <Image
-          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1400&q=80"
+          src="/images/property-exterior.jpg"
           alt={`Rezidenční nemovitost ${region.locative} – profesionální výkup`}
           fill
           loading="lazy"
@@ -848,7 +848,7 @@ export function HomePageContent({
           <div className="grid items-center gap-10 lg:grid-cols-2">
             <ScrollReveal className="shadow-layered relative aspect-[4/3] rounded-3xl">
               <ParallaxImage
-                src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1400&q=80"
+                src="/images/modern-living.jpg"
                 alt={`Moderní bydlení – transparentní výkup nemovitostí`}
                 className="aspect-[4/3] rounded-3xl"
               />

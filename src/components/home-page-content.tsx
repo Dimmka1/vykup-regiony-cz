@@ -1,3 +1,10 @@
+import {
+  getHeroPriceBadge,
+  MAX_ZALOHA,
+  PRICE_PERCENT,
+  type PricingVariant,
+  DEFAULT_PRICING_VARIANT,
+} from "@/lib/pricing";
 import { safeJsonLd } from "@/lib/jsonld";
 import { SocialProofBar } from "@/components/social-proof-bar";
 import { getThemeStyle } from "@/lib/theme-colors";
@@ -40,7 +47,6 @@ import {
   FilePenLine,
   Banknote,
   CheckCircle,
-  Quote,
   Phone,
   TrendingUp,
   MapPin,
@@ -49,11 +55,6 @@ import {
   RefreshCw,
 } from "lucide-react";
 import { ShieldCheck } from "lucide-react";
-import { QuoteBubbles } from "@/components/quote-bubbles";
-import {
-  testimonials as allTestimonials,
-  averageRating as globalAvgRating,
-} from "@/data/testimonials";
 
 export const COMPANY_NAME = "Vykoupím Nemovitost";
 
@@ -63,11 +64,11 @@ export function getRegionalFaq(
   return [
     {
       question: `Jak dlouho trvá celý proces výkupu nemovitosti ${region.locative}?`,
-      answer: `Celý proces výkupu nemovitosti ${region.locative} trvá obvykle 7–14 dní od prvního kontaktu. V urgentních případech v ${region.primaryCity} a okolí dokážeme vše vyřídit i do 48 hodin.`,
+      answer: `Celý proces výkupu nemovitosti ${region.locative} trvá obvykle 7–14 dní od prvního kontaktu. V urgentních případech ${region.locative} dokážeme vše vyřídit i do 48 hodin.`,
     },
     {
       question: `Kolik peněz za nemovitost ${region.locative} dostanu?`,
-      answer: `Nabízíme férovou tržní cenu stanovenou na základě aktuálních dat z realitního trhu ${region.locative} a individuálního posouzení stavu nemovitosti. Cenovou nabídku pro ${region.name} dostanete zdarma a nezávazně do 24 hodin.`,
+      answer: `Nabízíme férovou tržní cenu stanovenou na základě aktuálních dat z realitního trhu ${region.locative} a individuálního posouzení stavu nemovitosti. Cenovou nabídku ${region.locative} dostanete zdarma a nezávazně do 24 hodin.`,
     },
     {
       question: `Je výkup nemovitosti ${region.locative} bezpečný?`,
@@ -79,20 +80,24 @@ export function getRegionalFaq(
     },
     {
       question: `Vykupujete ${region.locative} i nemovitosti s hypotékou nebo exekucí?`,
-      answer: `Ano, ${region.locative} běžně řešíme nemovitosti zatížené hypotékou, exekucí, věcným břemenem nebo zástavním právem. Pomůžeme vám s vypořádáním všech závazků v rámci výkupu v ${region.primaryCity} a okolí.`,
+      answer: `Ano, ${region.locative} běžně řešíme nemovitosti zatížené hypotékou, exekucí, věcným břemenem nebo zástavním právem. Pomůžeme vám s vypořádáním všech závazků v rámci výkupu ${region.locative}.`,
     },
     {
       question: `Jak probíhá ocenění nemovitosti ${region.locative}?`,
-      answer: `Po vyplnění formuláře náš odborník provede analýzu na základě lokality ${region.locative}, stavu a aktuálních tržních cen v ${region.primaryCity}. U složitějších případů nabídneme osobní prohlídku. Ocenění je vždy zdarma a nezávazné.`,
+      answer: `Po vyplnění formuláře náš odborník provede analýzu na základě lokality ${region.locative}, stavu a aktuálních tržních cen ${region.locative}. U složitějších případů nabídneme osobní prohlídku. Ocenění je vždy zdarma a nezávazné.`,
     },
   ];
 }
 
-const HERO_BADGES = [
-  `Záloha až ${process.env.NEXT_PUBLIC_MAX_ZALOHA || "500 000"} Kč ihned`,
-  "Peníze na účtu do 48 hodin",
-  "Bez provize a skrytých poplatků",
-] as const;
+function getHeroBadges(
+  variant: PricingVariant = DEFAULT_PRICING_VARIANT,
+): string[] {
+  return [
+    getHeroPriceBadge(variant),
+    "Peníze na účtu do 48 hodin",
+    "Bez provize a skrytých poplatků",
+  ];
+}
 
 function getProcessSteps(region: RegionConfig) {
   return [
@@ -106,7 +111,7 @@ function getProcessSteps(region: RegionConfig) {
       title: "Nabídka do 24h",
       eta: "24 h",
       icon: "Zap",
-      description: `Připravíme nezávaznou cenovou nabídku pro ${region.name}`,
+      description: `Připravíme nezávaznou cenovou nabídku ${region.locative}`,
     },
     {
       title: "Podpis smlouvy",
@@ -413,7 +418,7 @@ export function HomePageContent({
               ? "/images/hero-prague.jpg"
               : `/images/hero-${region.key}.jpg`
           }
-          alt={`Panorama města ${region.primaryCity} – výkup nemovitostí ${region.locative}`}
+          alt={`Výkup nemovitostí ${region.locative} – panorama`}
           priority
           className="object-cover"
         />
@@ -460,7 +465,7 @@ export function HomePageContent({
             as="ul"
             className="mt-6 flex flex-wrap gap-2 text-sm text-white"
           >
-            {HERO_BADGES.map((badge) => (
+            {getHeroBadges().map((badge) => (
               <li
                 key={badge}
                 className="glass inline-flex items-center gap-2 rounded-xl border border-white/20 px-4 py-2.5 text-sm backdrop-blur-md"
@@ -568,7 +573,7 @@ export function HomePageContent({
                     <TrendingUp className="h-6 w-6" aria-hidden="true" />
                   </span>
                   <h2 className="mt-4 text-2xl font-bold text-slate-900 sm:text-3xl">
-                    Trh v regionu {region.name}
+                    Realitní trh {region.locative}
                   </h2>
                 </div>
               </ScrollReveal>
@@ -781,6 +786,20 @@ export function HomePageContent({
               >
                 Výkup při dědictví →
               </Link>
+              <Link
+                href="/vykup-cinzovnich-domu"
+                className="mr-4 inline-flex items-center gap-1 text-sm font-medium text-[var(--theme-300)] transition hover:text-[var(--theme-200)]"
+                aria-label="Více informací o výkupu činžovních domů"
+              >
+                Výkup činžovních domů →
+              </Link>
+              <Link
+                href="/vykup-pri-privatizaci"
+                className="inline-flex items-center gap-1 text-sm font-medium text-[var(--theme-300)] transition hover:text-[var(--theme-200)]"
+                aria-label="Více informací o výkupu při privatizaci"
+              >
+                Výkup při privatizaci →
+              </Link>
             </div>
           </ScrollReveal>
         </div>
@@ -789,7 +808,7 @@ export function HomePageContent({
       {/* ===== VISUAL BREAK: PROPERTY EXTERIOR ===== */}
       <section className="relative flex h-[350px] items-center justify-center overflow-hidden sm:h-[400px] lg:h-[450px]">
         <Image
-          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1400&q=80"
+          src="/images/property-exterior.jpg"
           alt={`Rezidenční nemovitost ${region.locative} – profesionální výkup`}
           fill
           loading="lazy"
@@ -854,7 +873,7 @@ export function HomePageContent({
           <div className="grid items-center gap-10 lg:grid-cols-2">
             <ScrollReveal className="shadow-layered relative aspect-[4/3] rounded-3xl">
               <ParallaxImage
-                src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1400&q=80"
+                src="/images/modern-living.jpg"
                 alt={`Moderní bydlení – transparentní výkup nemovitostí`}
                 className="aspect-[4/3] rounded-3xl"
               />
@@ -867,9 +886,8 @@ export function HomePageContent({
                 <p className="mt-4 leading-relaxed text-slate-700">
                   Specializujeme se na rychlý a férový výkup nemovitostí{" "}
                   {region.locative}. Nabízíme transparentní proces, férovou cenu
-                  a kompletní právní servis zdarma. V {region.primaryCity} a
-                  okolí jsme pro vás k dispozici osobně, po celém {region.name}{" "}
-                  zajistíme kompletní servis na dálku.
+                  a kompletní právní servis zdarma — osobně i na dálku{" "}
+                  {region.locative}.
                 </p>
                 <div className="mt-8 grid gap-4 sm:grid-cols-3">
                   {ABOUT_STATS.map((stat) => (
@@ -898,48 +916,6 @@ export function HomePageContent({
               </div>
             </ScrollReveal>
           </div>
-        </div>
-      </section>
-
-      {/* ===== REFERENCE — TESTIMONIALS ===== */}
-      <section className="bg-luxury-dark relative overflow-hidden py-20 md:py-28">
-        <div className="orb orb-theme-1 -right-40 top-10" aria-hidden="true" />
-        <div
-          className="orb orb-theme-2 -bottom-20 left-10"
-          aria-hidden="true"
-        />
-        <div className="relative mx-auto max-w-[1400px] px-6">
-          <ScrollReveal>
-            <div className="mb-12 text-center">
-              <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-[var(--theme-400)]">
-                Reference
-              </p>
-              <h2 className="text-2xl font-bold text-white sm:text-3xl lg:text-4xl">
-                Co říkají naši klienti
-              </h2>
-              <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-400">
-                Přečtěte si skutečné příběhy klientů z celé České republiky
-              </p>
-            </div>
-          </ScrollReveal>
-          <QuoteBubbles
-            testimonials={allTestimonials.slice(0, 6).map((t) => ({
-              name: t.name,
-              text: t.quote,
-              location: t.city,
-              date: t.date,
-            }))}
-          />
-          <ScrollReveal>
-            <div className="mt-10 text-center">
-              <a
-                href="/reference"
-                className="inline-flex items-center gap-1 text-sm font-medium text-[var(--theme-300)] transition hover:text-[var(--theme-200)]"
-              >
-                Všechny reference →
-              </a>
-            </div>
-          </ScrollReveal>
         </div>
       </section>
 
@@ -1019,7 +995,7 @@ export function HomePageContent({
                     Nezávazná konzultace zdarma
                   </h3>
                   <p className="mt-2 text-sm text-slate-400">
-                    Primárně {region.primaryCity} a okolí, dále:{" "}
+                    Působíme {region.locative}, včetně:{" "}
                     {region.supportedCities.join(", ")}.
                   </p>
                   <p className="mt-4 text-xs text-slate-500">

@@ -9,6 +9,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
+import { MAX_ZALOHA, PRICE_PERCENT } from "@/lib/pricing";
 
 export const metadata: Metadata = {
   title: "Jak funguje výkup nemovitosti | Vykoupíme Nemovitost",
@@ -49,7 +50,7 @@ const STEPS = [
   {
     number: 5,
     title: "Platba na účet do 48 hodin",
-    description: `Po podpisu smlouvy obdržíte peníze na váš účet do 48 hodin. Zálohu až ${process.env.NEXT_PUBLIC_MAX_ZALOHA || "500 000"} Kč můžete dostat ihned při podpisu.`,
+    description: `Po podpisu smlouvy obdržíte peníze na váš účet do 48 hodin. Nabízíme až ${PRICE_PERCENT} % tržní ceny — zálohu až ${MAX_ZALOHA} Kč můžete dostat ihned při podpisu.`,
     Icon: Banknote,
   },
 ] as const;

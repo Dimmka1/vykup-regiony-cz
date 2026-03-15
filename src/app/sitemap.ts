@@ -38,7 +38,6 @@ const CONTENT_PATHS = [
   { path: "/caste-dotazy", priority: 0.8 },
   { path: "/blog", priority: 0.8 },
   ...USE_CASE_PATHS.map((path) => ({ path, priority: 0.8 })),
-  { path: "/reference", priority: 0.6 },
   { path: "/jak-to-funguje", priority: 0.7 },
   { path: "/proc-my", priority: 0.8 },
   { path: "/kraje", priority: 0.7 },

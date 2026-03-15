@@ -10,17 +10,18 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
+import { MAX_ZALOHA, PRICE_PERCENT } from "@/lib/pricing";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { LeadForm } from "@/components/lead-form";
 
 export const metadata: Metadata = {
   title: "Proč prodat nemovitost nám | Výkup vs realitka vs dražba",
   description:
-    "Srovnání výkupu nemovitosti přes nás, realitní kancelář a dražbu. Rychlost, záloha, provize, právní servis — zjistěte, proč je přímý výkup nejlepší volba.",
+    "Srovnání výkupu nemovitosti přes nás, realitní kancelář a dražbu. Až 90 % tržní ceny, záloha ihned, bez provize — zjistěte, proč je přímý výkup nejlepší volba.",
   alternates: { canonical: "https://vykoupim-nemovitost.cz/proc-my" },
 };
 
-const ZALOH_VARIANT = process.env.NEXT_PUBLIC_MAX_ZALOHA || "500 000";
+const ZALOH_VARIANT = MAX_ZALOHA;
 
 interface ComparisonRow {
   criterion: string;
@@ -44,6 +45,13 @@ const COMPARISON: ComparisonRow[] = [
     us: `Až ${ZALOH_VARIANT} Kč ihned`,
     realitka: "Žádná záloha",
     drazba: "Žádná záloha",
+  },
+  {
+    criterion: "Výkupní cena",
+    icon: BadgeCheck,
+    us: `Až ${PRICE_PERCENT} % tržní hodnoty`,
+    realitka: "Tržní cena minus provize",
+    drazba: "Závisí na zájemcích",
   },
   {
     criterion: "Provize",
@@ -131,8 +139,9 @@ export default function ProcMyPage() {
             Proč výkup nemovitosti u&nbsp;nás?
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-600">
-            Srovnejte si přímý výkup s&nbsp;realitní kanceláří a&nbsp;dražbou.
-            Rozhodněte se na základě faktů — ne slibů.
+            Nabízíme až 90&nbsp;% tržní ceny. Srovnejte si přímý výkup
+            s&nbsp;realitní kanceláří a&nbsp;dražbou — rozhodněte se na základě
+            faktů.
           </p>
         </section>
 
@@ -218,7 +227,6 @@ export default function ProcMyPage() {
             {[
               { href: "/jak-to-funguje", label: "Jak to funguje" },
               { href: "/garance-vykupu", label: "Garance výkupu" },
-              { href: "/reference", label: "Reference" },
               { href: "/caste-dotazy", label: "Časté dotazy" },
             ].map((link) => (
               <Link

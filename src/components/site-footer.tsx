@@ -64,6 +64,12 @@ export function SiteFooter() {
               >
                 Výkup s věcným břemenem
               </Link>
+              <Link href="/vykup-cinzovnich-domu" className={linkClass}>
+                Výkup činžovních domů
+              </Link>
+              <Link href="/vykup-pri-privatizaci" className={linkClass}>
+                Výkup při privatizaci
+              </Link>
             </nav>
           </div>
 
@@ -94,9 +100,7 @@ export function SiteFooter() {
               <Link href="/kraje" className={linkClass}>
                 Kde působíme
               </Link>
-              <Link href="/reference" className={linkClass}>
-                Reference
-              </Link>
+
               <Link href="/caste-dotazy" className={linkClass}>
                 Časté dotazy
               </Link>

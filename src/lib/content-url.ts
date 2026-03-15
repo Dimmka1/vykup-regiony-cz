@@ -8,7 +8,6 @@ export const CONTENT_PATH_PREFIXES = [
   "/blog",
   "/caste-dotazy",
   "/jak-to-funguje",
-  "/reference",
   "/vykup-pri-exekuci",
   "/vykup-pri-dedictvi",
   "/vykup-pri-rozvodu",

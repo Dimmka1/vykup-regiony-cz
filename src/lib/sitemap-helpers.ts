@@ -17,7 +17,7 @@ export const BUILD_DATE = process.env.BUILD_DATE || "2026-03-14";
  * Used for geo-parameterized pages (?kraj=, ?mesto=) whose content
  * depends on regional pricing data.
  */
-export const PRICE_DATA_DATE = "2026-03-01";
+export const PRICE_DATA_DATE = "2026-03-16";
 
 /** Use-case pages that support ?kraj= and ?mesto= geo parameterization */
 export const USE_CASE_PATHS = [

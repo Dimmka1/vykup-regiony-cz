@@ -17,6 +17,12 @@ import { GeoRelatedPages } from "@/components/geo-related-pages";
 import { GeoRegionContent } from "@/components/geo-region-content";
 import { getRequestHost } from "@/lib/request-host";
 import { buildGeoCanonicalUrl } from "@/lib/geo-canonical";
+import {
+  resolveGeoRegion,
+  injectRegionIntoTitle,
+  injectRegionIntoDescription,
+  injectRegionIntoH1,
+} from "@/lib/geo-seo";
 
 export async function generateMetadata({
   searchParams,
@@ -28,13 +34,23 @@ export async function generateMetadata({
     "/vykup-nemovitosti-s-hypotekou",
     params,
   );
+  const region = resolveGeoRegion(params);
 
   return {
     alternates: { canonical: canonicalUrl },
     openGraph: { url: canonicalUrl },
-    title: "Výkup nemovitosti s hypotékou - rychlé řešení zatížené nemovitosti",
-    description:
-      "Vykoupíme nemovitost zatíženou hypotékou nebo zástavním právem. Vyřešíme komunikaci s bankou, splatíme úvěr z kupní ceny. Výplata do 7 dnů, bez provize.",
+    title: region
+      ? injectRegionIntoTitle(
+          "Výkup nemovitosti s hypotékou - rychlé řešení zatížené nemovitosti",
+          region.locative,
+        )
+      : "Výkup nemovitosti s hypotékou - rychlé řešení zatížené nemovitosti",
+    description: region
+      ? injectRegionIntoDescription(
+          "Vykoupíme nemovitost zatíženou hypotékou nebo zástavním právem. Vyřešíme komunikaci s bankou, splatíme úvěr z kupní ceny. Výplata do 7 dnů, bez provize.",
+          region.locative,
+        )
+      : "Vykoupíme nemovitost zatíženou hypotékou nebo zástavním právem. Vyřešíme komunikaci s bankou, splatíme úvěr z kupní ceny. Výplata do 7 dnů, bez provize.",
   };
 }
 
@@ -107,6 +123,7 @@ export default async function VykupNemovitostiSHypotekou({
   const host = await getRequestHost();
   const params = await searchParams;
   const krajParam = typeof params.kraj === "string" ? params.kraj : null;
+  const region = resolveGeoRegion(params);
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -156,7 +173,12 @@ export default async function VykupNemovitostiSHypotekou({
             />
           </div>
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Výkup nemovitosti s hypotékou
+            {region
+              ? injectRegionIntoH1(
+                  "Výkup nemovitosti s hypotékou",
+                  region.locative,
+                )
+              : "Výkup nemovitosti s hypotékou"}
           </h1>
           <p className="mt-4 text-lg text-slate-600">
             Splácíte hypotéku, kterou už nezvládáte? Potřebujete rychle prodat

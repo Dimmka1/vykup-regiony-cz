@@ -19,6 +19,12 @@ import { GeoRelatedPages } from "@/components/geo-related-pages";
 import { GeoRegionContent } from "@/components/geo-region-content";
 import { getRequestHost } from "@/lib/request-host";
 import { buildGeoCanonicalUrl } from "@/lib/geo-canonical";
+import {
+  resolveGeoRegion,
+  injectRegionIntoTitle,
+  injectRegionIntoDescription,
+  injectRegionIntoH1,
+} from "@/lib/geo-seo";
 
 export async function generateMetadata({
   searchParams,
@@ -27,13 +33,23 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const params = await searchParams;
   const canonicalUrl = buildGeoCanonicalUrl("/vykup-domu", params);
+  const region = resolveGeoRegion(params);
 
   return {
     alternates: { canonical: canonicalUrl },
     openGraph: { url: canonicalUrl },
-    title: "Výkup domů - rychlý prodej rodinného domu za hotové",
-    description:
-      "Vykoupíme váš rodinný dům rychle a bez provize. Staré domy, domy k rekonstrukci i se zástavou. Férová cena, vyplacení do 7 dnů. Celá ČR.",
+    title: region
+      ? injectRegionIntoTitle(
+          "Výkup domů - rychlý prodej rodinného domu za hotové",
+          region.locative,
+        )
+      : "Výkup domů - rychlý prodej rodinného domu za hotové",
+    description: region
+      ? injectRegionIntoDescription(
+          "Vykoupíme váš rodinný dům rychle a bez provize. Staré domy, domy k rekonstrukci i se zástavou. Férová cena, vyplacení do 7 dnů. Celá ČR.",
+          region.locative,
+        )
+      : "Vykoupíme váš rodinný dům rychle a bez provize. Staré domy, domy k rekonstrukci i se zástavou. Férová cena, vyplacení do 7 dnů. Celá ČR.",
   };
 }
 
@@ -135,6 +151,7 @@ export default async function VykupDomuPage({
   const host = await getRequestHost();
   const params = await searchParams;
   const krajParam = typeof params.kraj === "string" ? params.kraj : null;
+  const region = resolveGeoRegion(params);
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -149,8 +166,12 @@ export default async function VykupDomuPage({
     "@context": "https://schema.org",
     "@type": "WebPage",
     name: "Výkup domů - rychlý prodej rodinného domu za hotové",
-    description:
-      "Vykoupíme váš rodinný dům rychle a bez provize. Staré domy, domy k rekonstrukci i se zástavou. Férová cena, vyplacení do 7 dnů. Celá ČR.",
+    description: region
+      ? injectRegionIntoDescription(
+          "Vykoupíme váš rodinný dům rychle a bez provize. Staré domy, domy k rekonstrukci i se zástavou. Férová cena, vyplacení do 7 dnů. Celá ČR.",
+          region.locative,
+        )
+      : "Vykoupíme váš rodinný dům rychle a bez provize. Staré domy, domy k rekonstrukci i se zástavou. Férová cena, vyplacení do 7 dnů. Celá ČR.",
     url: "https://vykoupim-nemovitost.cz/vykup-domu",
     isPartOf: { "@type": "WebSite", url: "https://vykoupim-nemovitost.cz" },
   };
@@ -177,7 +198,12 @@ export default async function VykupDomuPage({
             />
           </div>
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Výkup rodinných domů - rychle, férově a bez provize
+            {region
+              ? injectRegionIntoH1(
+                  "Výkup rodinných domů - rychle, férově a bez provize",
+                  region.locative,
+                )
+              : "Výkup rodinných domů - rychle, férově a bez provize"}
           </h1>
           <p className="mt-4 text-lg text-slate-600">
             Chcete prodat rodinný dům rychle a bez komplikací? Vykoupíme váš dům

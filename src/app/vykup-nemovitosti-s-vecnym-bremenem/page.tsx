@@ -17,6 +17,12 @@ import { GeoRelatedPages } from "@/components/geo-related-pages";
 import { GeoRegionContent } from "@/components/geo-region-content";
 import { getRequestHost } from "@/lib/request-host";
 import { buildGeoCanonicalUrl } from "@/lib/geo-canonical";
+import {
+  resolveGeoRegion,
+  injectRegionIntoTitle,
+  injectRegionIntoDescription,
+  injectRegionIntoH1,
+} from "@/lib/geo-seo";
 
 export async function generateMetadata({
   searchParams,
@@ -28,13 +34,23 @@ export async function generateMetadata({
     "/vykup-nemovitosti-s-vecnym-bremenem",
     params,
   );
+  const region = resolveGeoRegion(params);
 
   return {
     alternates: { canonical: canonicalUrl },
     openGraph: { url: canonicalUrl },
-    title: "Výkup nemovitosti s věcným břemenem - rychle a bez komplikací",
-    description:
-      "Vykoupíme nemovitost zatíženou věcným břemenem - služebností, právem užívání i zástavou. Férová cena, právní servis zdarma, výplata do 7 dnů.",
+    title: region
+      ? injectRegionIntoTitle(
+          "Výkup nemovitosti s věcným břemenem - rychle a bez komplikací",
+          region.locative,
+        )
+      : "Výkup nemovitosti s věcným břemenem - rychle a bez komplikací",
+    description: region
+      ? injectRegionIntoDescription(
+          "Vykoupíme nemovitost zatíženou věcným břemenem - služebností, právem užívání i zástavou. Férová cena, právní servis zdarma, výplata do 7 dnů.",
+          region.locative,
+        )
+      : "Vykoupíme nemovitost zatíženou věcným břemenem - služebností, právem užívání i zástavou. Férová cena, právní servis zdarma, výplata do 7 dnů.",
   };
 }
 
@@ -107,6 +123,7 @@ export default async function VykupNemovitostiSVecnymBremenem({
   const host = await getRequestHost();
   const params = await searchParams;
   const krajParam = typeof params.kraj === "string" ? params.kraj : null;
+  const region = resolveGeoRegion(params);
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -156,7 +173,12 @@ export default async function VykupNemovitostiSVecnymBremenem({
             />
           </div>
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Výkup nemovitosti s věcným břemenem
+            {region
+              ? injectRegionIntoH1(
+                  "Výkup nemovitosti s věcným břemenem",
+                  region.locative,
+                )
+              : "Výkup nemovitosti s věcným břemenem"}
           </h1>
           <p className="mt-4 text-lg text-slate-600">
             Vlastníte nemovitost zatíženou věcným břemenem a nevíte, jak ji

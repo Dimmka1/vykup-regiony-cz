@@ -9,6 +9,7 @@ import { BLOG_POSTS } from "../data";
 import { AllRegionsSection } from "@/components/all-regions-section";
 import { BlogGeoLinks } from "@/components/blog-geo-links";
 import { getRequestHost } from "@/lib/request-host";
+import { TaxCalculator } from "@/components/tax-calculator";
 
 interface ArticleContent {
   title: string;
@@ -1518,6 +1519,352 @@ const ARTICLES: Record<string, ArticleContent> = {
       </>
     ),
   },
+  "dan-z-prodeje-nemovitosti-2026": {
+    title: "Daň z prodeje nemovitosti 2026 — kompletní průvodce",
+    date: "2026-03-16",
+    body: (
+      <>
+        <p>
+          Prodáváte nemovitost a zajímá vás, jakou daň budete muset zaplatit?
+          Daň z prodeje nemovitosti je téma, které trápí tisíce Čechů ročně — a
+          zbytečně. V tomto kompletním průvodci vám srozumitelně vysvětlíme vše,
+          co potřebujete vědět: kolik činí daň z prodeje nemovitosti v roce
+          2026, kdy jste od daně osvobozeni, jak se počítá základ daně a jak
+          správně podat daňové přiznání. Navíc vám ukážeme, jak může být výkup
+          nemovitosti daňově výhodnou alternativou.
+        </p>
+
+        <h2>Co je daň z prodeje nemovitosti</h2>
+        <p>
+          V České republice neexistuje samostatná &bdquo;daň z prodeje
+          nemovitosti&ldquo; jako taková. Příjem z prodeje nemovitosti podléhá
+          dani z příjmů fyzických osob podle zákona č. 586/1992 Sb. To znamená,
+          že zisk z prodeje nemovitosti se zdaňuje stejně jako ostatní příjmy —
+          sazbou 15 % z rozdílu mezi prodejní a pořizovací cenou. Pro příjmy
+          přesahující 36 násobek průměrné mzdy pak platí zvýšená sazba 23 %.
+        </p>
+        <p>
+          Důležité je pochopit, že se nezdaňuje celá prodejní cena, ale pouze
+          zisk — tedy rozdíl mezi cenou, za kterou nemovitost prodáváte, a
+          cenou, za kterou jste ji pořídili (včetně prokazatelných nákladů na
+          pořízení a technické zhodnocení). Pokud jste nemovitost zdědili nebo
+          dostali darem, jako pořizovací cena se použije cena zjištěná podle
+          zákona o oceňování majetku ke dni nabytí.
+        </p>
+
+        <h2>Sazba daně: 15 % ze zisku</h2>
+        <p>
+          Základní sazba daně z příjmů fyzických osob v roce 2026 činí 15 %.
+          Tato sazba se aplikuje na základ daně, tedy na rozdíl mezi příjmem z
+          prodeje a výdaji prokazatelně vynaloženými na dosažení příjmu. Do
+          výdajů můžete zahrnout: původní pořizovací cenu nemovitosti, náklady
+          na technické zhodnocení (rekonstrukce, přístavby, modernizace),
+          poplatky za právní služby spojené s pořízením, provizi realitní
+          kanceláře při původním nákupu, poplatky za katastr nemovitostí a
+          případné náklady na znalecký posudek.
+        </p>
+        <p>
+          Příklad: Koupili jste byt za 2 000 000 Kč, investovali 500 000 Kč do
+          rekonstrukce a nyní ho prodáváte za 4 000 000 Kč. Základ daně = 4 000
+          000 − 2 000 000 − 500 000 = 1 500 000 Kč. Daň = 1 500 000 × 0,15 = 225
+          000 Kč. Pokud by ale váš celkový roční příjem přesáhl zmíněný limit,
+          část zisku by podléhala solidární přirážce 23 %.
+        </p>
+
+        <TaxCalculator />
+
+        <h2>Kdy je prodej nemovitosti osvobozen od daně</h2>
+        <p>
+          Zákon stanoví několik případů, kdy je příjem z prodeje nemovitosti
+          zcela osvobozen od daně z příjmů. Toto jsou nejdůležitější podmínky
+          osvobození:
+        </p>
+        <p>
+          <strong>
+            1. Vlastnictví po dobu 10 let (nemovitosti nabyté od roku 2021)
+          </strong>{" "}
+          — Pokud jste nemovitost nabyli 1. ledna 2021 nebo později a vlastníte
+          ji déle než 10 let, příjem z prodeje je zcela osvobozen od daně. Tato
+          lhůta byla prodloužena konsolidačním balíčkem z původních 5 let.
+        </p>
+        <p>
+          <strong>
+            2. Vlastnictví po dobu 5 let (nemovitosti nabyté před rokem 2021)
+          </strong>{" "}
+          — Pro nemovitosti nabyté do 31. prosince 2020 stále platí původní
+          pětiletá lhůta. Pokud jste takovou nemovitost vlastnili alespoň 5 let,
+          prodej je osvobozen od daně.
+        </p>
+        <p>
+          <strong>3. Bydliště po dobu 2 let</strong> — Pokud jste v nemovitosti
+          měli bydliště (trvalý pobyt) bezprostředně alespoň 2 roky před
+          prodejem, prodej je osvobozen bez ohledu na dobu vlastnictví.
+          Alternativně je osvobozen i prodej nemovitosti, ve které jste bydleli
+          alespoň 2 roky a prostředky z prodeje použijete na uspokojení vlastní
+          bytové potřeby.
+        </p>
+        <p>
+          <strong>4. Uspokojení bytové potřeby</strong> — I pokud nesplňujete
+          podmínku délky vlastnictví, můžete být osvobozeni, pokud prostředky z
+          prodeje použijete na pořízení nového bydlení. Toto musíte oznámit
+          správci daně a prostředky použít do stanoveného limitu.
+        </p>
+
+        <h2>Kdo platí daň z prodeje nemovitosti</h2>
+        <p>
+          Daň z příjmu z prodeje nemovitosti platí vždy prodávající — tedy ten,
+          kdo nemovitost prodává a přijímá kupní cenu. Kupující žádnou daň
+          spojenou s příjmem z prodeje neplatí (kupující hradí pouze daň z
+          nabytí nemovitých věcí, která ale byla v ČR zrušena v roce 2020).
+        </p>
+        <p>
+          V případě prodeje nemovitosti ve společném jmění manželů (SJM) záleží
+          na tom, kdo příjem přiznává. Manželé se mohou dohodnout, který z nich
+          příjem zahrne do svého daňového přiznání. V případě spoluvlastnictví
+          se příjem rozdělí podle podílů jednotlivých spoluvlastníků a každý
+          přiznává svůj podíl samostatně.
+        </p>
+
+        <h2>Kdy se daň neplatí — přehled osvobození</h2>
+        <p>
+          Pojďme si shrnout všechny situace, kdy daň z prodeje nemovitosti
+          neplatíte: Vlastníte nemovitost déle než 10 let (nabytí od 2021) nebo
+          5 let (nabytí do 2020). V nemovitosti jste měli bydliště alespoň 2
+          roky před prodejem. Prostředky z prodeje použijete na vlastní bytovou
+          potřebu a oznámíte to finančnímu úřadu. Příjem z prodeje nepřesáhne
+          zákonem stanovený limit pro příležitostné příjmy (100 000 Kč ročně —
+          ale pozor, toto se týká pouze movitých věcí, u nemovitostí platí výše
+          uvedená pravidla). Prodáváte nemovitost nabytou dědictvím a do doby
+          vlastnictví se započítává doba vlastnictví zůstavitele.
+        </p>
+        <p>
+          Důležitá poznámka k dědictví: Pokud jste nemovitost zdědili, do doby
+          vlastnictví pro účely osvobození se započítává i doba, po kterou
+          nemovitost vlastnil zůstavitel. Pokud tedy otec vlastnil byt 8 let a
+          vy ho zdědíte, můžete ho prodat po 2 letech a přitom splnit
+          desetiletou podmínku (8 + 2 = 10 let). Více o výkupu zděděné
+          nemovitosti se dozvíte na stránce{" "}
+          <Link
+            href="/vykup-pri-dedictvi"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Výkup při dědictví
+          </Link>
+          .
+        </p>
+
+        <h2>Jak vypočítat daň z prodeje nemovitosti</h2>
+        <p>
+          Výpočet daně z prodeje nemovitosti je relativně přímočarý, ale
+          vyžaduje pečlivou evidenci nákladů. Postup je následující: Krok 1:
+          Zjistěte prodejní cenu (příjem z prodeje). Krok 2: Sečtěte veškeré
+          prokazatelné výdaje — pořizovací cena, náklady na rekonstrukci, právní
+          služby, provize, poplatky za katastr. Krok 3: Odečtěte výdaje od
+          příjmu — výsledkem je základ daně (zisk). Krok 4: Pokud je zisk kladný
+          a nesplňujete podmínky osvobození, vypočtěte 15 % ze zisku. Krok 5:
+          Zahrňte zisk do ročního daňového přiznání.
+        </p>
+        <p>
+          Příklad konkrétního výpočtu: Paní Nováková koupila byt v Praze v roce
+          2023 za 3 500 000 Kč. Investovala 300 000 Kč do nové kuchyňské linky a
+          koupelny. V roce 2026 byt prodává za 4 800 000 Kč. Základ daně = 4 800
+          000 − 3 500 000 − 300 000 = 1 000 000 Kč. Daň = 1 000 000 × 0,15 = 150
+          000 Kč. Paní Nováková musí tuto částku zahrnout do daňového přiznání
+          za rok 2026.
+        </p>
+
+        <h2>Daňové přiznání — kdy a jak ho podat</h2>
+        <p>
+          Pokud vám z prodeje nemovitosti vznikla daňová povinnost, musíte podat
+          přiznání k dani z příjmů fyzických osob. Lhůta pro podání je
+          standardně do 1. dubna následujícího roku (za rok 2026 tedy do 1.
+          dubna 2027). Pokud přiznání podáváte elektronicky, lhůta se prodlužuje
+          o jeden měsíc — do 1. května 2027. Pokud vám přiznání zpracovává
+          daňový poradce, lhůta je do 1. července 2027.
+        </p>
+        <p>
+          V daňovém přiznání vyplníte přílohu č. 2 — &bdquo;Příjmy z ostatních
+          zdrojů&ldquo; (§ 10 zákona o daních z příjmů). Zde uvedete příjem z
+          prodeje, prokazatelné výdaje a vypočtený základ daně. Nezapomeňte si
+          uschovat veškeré doklady — kupní smlouvy, faktury za rekonstrukci,
+          potvrzení o zaplacení provize a další dokumenty, které prokazují vaše
+          výdaje. Finanční úřad je může požadovat i několik let zpětně.
+        </p>
+        <p>
+          Pokud je váš prodej osvobozen od daně, ale příjem přesahuje 5 000 000
+          Kč, jste povinni tuto skutečnost oznámit správci daně. Nesplnění této
+          oznamovací povinnosti může být sankcionováno pokutou.
+        </p>
+
+        <h2>Jak snížit daň z prodeje nemovitosti legálně</h2>
+        <p>
+          Existuje několik legálních způsobů, jak minimalizovat daňovou
+          povinnost z prodeje nemovitosti: Prvním je důkladná evidence všech
+          nákladů spojených s pořízením a zhodnocením nemovitosti. Čím vyšší
+          prokazatelné výdaje, tím nižší základ daně. Druhým je načasování
+          prodeje — pokud se blížíte k pěti- nebo desetileté lhůtě pro
+          osvobození, může se vyplatit s prodejem počkat.
+        </p>
+        <p>
+          Třetím způsobem je využití osvobození pro bytovou potřebu — pokud
+          prostředky z prodeje použijete na pořízení nového bydlení, můžete být
+          osvobozeni i před uplynutím časového testu. Čtvrtým je konzultace s
+          daňovým poradcem, který může identifikovat další odpočitatelné položky
+          specifické pro vaši situaci.
+        </p>
+
+        <h2>Výkup nemovitosti jako daňově výhodná alternativa</h2>
+        <p>
+          Při prodeji nemovitosti přes výkupní firmu máte z daňového hlediska
+          několik výhod. Zaprvé, výkupní firma hradí veškeré náklady na právní
+          služby, odhad a převod — tyto náklady si můžete uplatnit jako výdaje
+          snižující základ daně. Zadruhé, rychlost transakce znamená, že můžete
+          lépe naplánovat načasování prodeje s ohledem na daňové dopady.
+        </p>
+        <p>
+          Navíc při výkupu nemovitosti můžete získat bezplatnou konzultaci
+          ohledně daňových dopadů prodeje. Naši odborníci vám pomohou
+          optimalizovat celý proces tak, abyste zaplatili jen to, co musíte.
+          Přímý výkup může být zvláště výhodný v situacích, kdy potřebujete
+          prodat rychle — například při{" "}
+          <Link
+            href="/vykup-pri-rozvodu"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            rozvodu
+          </Link>
+          ,{" "}
+          <Link
+            href="/vykup-pri-exekuci"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            exekuci
+          </Link>{" "}
+          nebo vypořádání{" "}
+          <Link
+            href="/vykup-pri-dedictvi"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            dědictví
+          </Link>
+          . Podrobné srovnání nákladů při různých způsobech prodeje najdete v
+          článku{" "}
+          <Link
+            href="/blog/kolik-stoji-vykup"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Kolik stojí výkup nemovitosti
+          </Link>
+          .
+        </p>
+
+        <h2>Odhad ceny nemovitosti a jeho role v dani</h2>
+        <p>
+          Správné ocenění nemovitosti je klíčové nejen pro stanovení prodejní
+          ceny, ale i pro daňové účely. Pokud prodáváte nemovitost příbuznému za
+          cenu výrazně nižší než tržní, finanční úřad může rozdíl doměřit.
+          Naopak pokud nemovitost prodáváte za tržní cenu, máte jistotu, že
+          daňový základ odpovídá realitě. Využijte náš bezplatný{" "}
+          <Link
+            href="/odhad-ceny-nemovitosti"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            odhad ceny nemovitosti
+          </Link>{" "}
+          a zjistěte aktuální hodnotu vaší nemovitosti.
+        </p>
+        <p>
+          Pokud vás zajímá, jak celý proces prodeje funguje od A do Z,
+          doporučujeme přečíst si náš podrobný článek{" "}
+          <Link
+            href="/blog/vykup-krok-za-krokem"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Výkup nemovitosti krok za krokem
+          </Link>{" "}
+          nebo se podívat na stránku{" "}
+          <Link
+            href="/jak-to-funguje"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Jak to funguje
+          </Link>
+          .
+        </p>
+
+        <h2>Často kladené dotazy</h2>
+        <p>
+          <strong>Kolik je daň z prodeje nemovitosti?</strong> Daň činí 15 % ze
+          zisku (rozdíl mezi prodejní a pořizovací cenou). Při vysokých příjmech
+          může sazba dosáhnout 23 %.
+        </p>
+        <p>
+          <strong>Kdy nemusím platit daň z prodeje nemovitosti?</strong> Pokud
+          vlastníte nemovitost déle než 10 let (5 let u nemovitostí nabytých
+          před 2021), nebo jste v ní bydleli alespoň 2 roky, nebo prostředky
+          použijete na vlastní bydlení.
+        </p>
+        <p>
+          <strong>Jak se počítá základ daně?</strong> Základ daně = prodejní
+          cena minus pořizovací cena minus prokazatelné náklady (rekonstrukce,
+          právní služby, provize atd.).
+        </p>
+        <p>
+          <strong>Kdy se podává daňové přiznání z prodeje nemovitosti?</strong>{" "}
+          Do 1. dubna následujícího roku (papírově), do 1. května elektronicky,
+          do 1. července přes daňového poradce.
+        </p>
+        <p>
+          <strong>Jak mohu snížit daň z prodeje nemovitosti?</strong> Důkladnou
+          evidencí nákladů, správným načasováním prodeje, využitím osvobození
+          pro bytovou potřebu a konzultací s daňovým poradcem.
+        </p>
+        <p>
+          <strong>Platí daň z prodeje i kupující?</strong> Ne, daň z příjmu z
+          prodeje platí výhradně prodávající. Kupující od roku 2020 neplatí ani
+          daň z nabytí nemovitých věcí, která byla zrušena.
+        </p>
+        <p>
+          <strong>Co když prodávám zděděnou nemovitost?</strong> Do doby
+          vlastnictví se započítává i doba vlastnictví zůstavitele. Pokud
+          celková doba přesáhne 10 (resp. 5) let, prodej je osvobozen.
+        </p>
+
+        <h2>Nechte si poradit — konzultace daňových dopadů výkupu zdarma</h2>
+        <p>
+          Řešíte prodej nemovitosti a chcete vědět, jaké budou daňové dopady?
+          Nabízíme bezplatnou a nezávaznou konzultaci, při které vám vysvětlíme
+          vše o daňových aspektech prodeje a pomůžeme najít optimální řešení. Ať
+          už zvažujete{" "}
+          <Link
+            href="/vykup-bytu"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            prodej bytu
+          </Link>
+          ,{" "}
+          <Link
+            href="/vykup-domu"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            domu
+          </Link>{" "}
+          nebo{" "}
+          <Link
+            href="/vykup-pozemku"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            pozemku
+          </Link>{" "}
+          — poradíme vám, jak postupovat daňově co nejvýhodněji.{" "}
+          <Link href="/" className="text-emerald-600 hover:text-emerald-500">
+            Vyplňte formulář
+          </Link>{" "}
+          a ozveme se vám do 24 hodin.
+        </p>
+      </>
+    ),
+  },
 };
 
 interface PageProps {
@@ -1579,6 +1926,72 @@ export default async function BlogArticlePage({
     },
   };
 
+  const faqJsonLd =
+    slug === "dan-z-prodeje-nemovitosti-2026"
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: [
+            {
+              "@type": "Question",
+              name: "Kolik je daň z prodeje nemovitosti v roce 2026?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Daň z prodeje nemovitosti činí 15 % ze zisku, tedy z rozdílu mezi prodejní a pořizovací cenou. Při vysokých příjmech může sazba dosáhnout 23 %.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Kdy nemusím platit daň z prodeje nemovitosti?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Prodej je osvobozen od daně, pokud vlastníte nemovitost déle než 10 let (5 let u nemovitostí nabytých před 2021), nebo jste v ní bydleli alespoň 2 roky, nebo prostředky použijete na vlastní bydlení.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Jak se počítá základ daně z prodeje nemovitosti?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Základ daně = prodejní cena minus pořizovací cena minus prokazatelné náklady (rekonstrukce, právní služby, provize, poplatky za katastr).",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Kdy se podává daňové přiznání z prodeje nemovitosti?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Daňové přiznání se podává do 1. dubna následujícího roku (papírově), do 1. května elektronicky, nebo do 1. července prostřednictvím daňového poradce.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Jak mohu snížit daň z prodeje nemovitosti?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Daň lze snížit důkladnou evidencí nákladů, správným načasováním prodeje, využitím osvobození pro bytovou potřebu a konzultací s daňovým poradcem.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Platí daň z prodeje nemovitosti i kupující?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Ne, daň z příjmu z prodeje platí výhradně prodávající. Kupující od roku 2020 neplatí ani daň z nabytí nemovitých věcí, která byla zrušena.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Co když prodávám zděděnou nemovitost?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Do doby vlastnictví se započítává i doba vlastnictví zůstavitele. Pokud celková doba přesáhne 10 (resp. 5) let, prodej je osvobozen od daně.",
+              },
+            },
+          ],
+        }
+      : null;
+
   const otherPosts = BLOG_POSTS.filter((p) => p.slug !== slug);
   const relatedArticles = getRelatedArticles(`blog/${slug}`);
 
@@ -1588,6 +2001,13 @@ export default async function BlogArticlePage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonLd(articleJsonLd) }}
       />
+
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: safeJsonLd(faqJsonLd) }}
+        />
+      )}
 
       <article className="bg-gradient-to-b from-slate-50 to-white py-16">
         <div className="mx-auto max-w-3xl px-4">

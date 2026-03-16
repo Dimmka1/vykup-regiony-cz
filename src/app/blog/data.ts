@@ -8,6 +8,14 @@ export interface BlogPost {
 
 export const BLOG_POSTS: readonly BlogPost[] = [
   {
+    slug: "dan-z-prodeje-nemovitosti-2026",
+    title: "Daň z prodeje nemovitosti 2026 — kompletní průvodce",
+    excerpt:
+      "Kompletní průvodce daní z prodeje nemovitosti v roce 2026. Sazba 15 %, osvobození po 5/10 letech, výpočet daně, formulář přiznání a tipy jak daň snížit.",
+    date: "2026-03-16",
+    readingTime: "10 min",
+  },
+  {
     slug: "jake-dokumenty-potrebuji",
     title: "Jaké dokumenty potřebuji k výkupu nemovitosti?",
     excerpt:

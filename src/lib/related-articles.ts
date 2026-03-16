@@ -55,6 +55,12 @@ const ALL_PAGES: Record<string, RelatedArticle> = {
     title: "Výkup nemovitosti vs. dražba",
     description: "Srovnání výkupu a dražby — čas, cena, jistota a náklady.",
   },
+  "blog/dan-z-prodeje-nemovitosti-2026": {
+    href: "/blog/dan-z-prodeje-nemovitosti-2026",
+    title: "Daň z prodeje nemovitosti 2026",
+    description:
+      "Kompletní průvodce daní z prodeje nemovitosti. Sazba 15 %, osvobození, výpočet a daňové přiznání.",
+  },
   "blog/kolik-stoji-vykup": {
     href: "/blog/kolik-stoji-vykup",
     title: "Kolik stojí výkup nemovitosti?",
@@ -179,6 +185,12 @@ const RELATED_MAP: Record<string, string[]> = {
     "blog/vykup-v-exekuci",
     "blog/kolik-stoji-vykup",
     "blog/vykup-nemovitosti-vs-realitni-kancelar",
+  ],
+  "blog/dan-z-prodeje-nemovitosti-2026": [
+    "blog/kolik-stoji-vykup",
+    "blog/vykup-krok-za-krokem",
+    "blog/vykup-vs-drazba",
+    "vykup-pri-dedictvi",
   ],
   "blog/kolik-stoji-vykup": [
     "blog/vykup-vs-drazba",

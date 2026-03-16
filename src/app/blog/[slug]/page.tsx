@@ -7,6 +7,7 @@ import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 import { BLOG_POSTS } from "../data";
 import { AllRegionsSection } from "@/components/all-regions-section";
+import { BlogGeoLinks } from "@/components/blog-geo-links";
 import { getRequestHost } from "@/lib/request-host";
 
 interface ArticleContent {
@@ -1629,6 +1630,8 @@ export default async function BlogArticlePage({
               Získat nabídku zdarma
             </Link>
           </div>
+
+          <BlogGeoLinks slug={slug} />
 
           <RelatedArticles articles={relatedArticles} />
 

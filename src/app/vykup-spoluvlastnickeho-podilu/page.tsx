@@ -23,6 +23,7 @@ import {
   injectRegionIntoDescription,
   injectRegionIntoH1,
 } from "@/lib/geo-seo";
+import { GeoServiceJsonLd } from "@/components/geo-service-jsonld";
 
 export async function generateMetadata({
   searchParams,
@@ -156,6 +157,11 @@ export default async function VykupSpoluvlastnickehoPodilu({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonLd(webPageJsonLd) }}
+      />
+
+      <GeoServiceJsonLd
+        useCaseSlug="vykup-spoluvlastnickeho-podilu"
+        searchParams={params}
       />
 
       <section className="bg-gradient-to-b from-slate-50 to-white py-16">

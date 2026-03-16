@@ -13,6 +13,7 @@ import { CallbackForm } from "@/components/callback-form";
 import { ScrollTracker } from "@/components/scroll-tracker";
 import { HeroImage } from "@/components/hero-image";
 import { FloatingDesktopCta } from "@/components/floating-desktop-cta";
+import { StickyMobileCTA } from "@/components/sticky-mobile-cta";
 import { HeroStagger } from "@/components/hero-stagger";
 import {
   getRegionByKey,
@@ -444,32 +445,8 @@ export function HomePageContent({
         allRegions={allRegions}
       />
 
-      {/* ===== STICKY MOBILE BAR ===== */}
-      <nav
-        aria-label="Rychlé akce – kontakt a telefon"
-        className="mobile-bar-glass fixed inset-x-0 bottom-0 z-20 border-t border-slate-200 px-4 py-3 supports-[padding:max(0px)]:pb-[max(0.75rem,env(safe-area-inset-bottom))] lg:hidden"
-      >
-        <p className="mb-2 text-center text-xs text-slate-500">
-          ✓ Bez provize &nbsp;·&nbsp; ✓ Nabídka do 24h &nbsp;·&nbsp; ✓ Právní
-          servis zdarma
-        </p>
-        <div className="mx-auto flex max-w-7xl gap-2">
-          <a
-            href="#kontakt"
-            className="cta-glow btn-ripple inline-flex min-h-11 flex-1 items-center justify-center rounded-xl bg-gradient-to-r from-[var(--theme-600)] to-[var(--theme-700)] px-4 py-3 text-sm font-semibold text-white transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
-            aria-label="Odeslat nezávaznou poptávku výkupu nemovitosti zdarma"
-          >
-            Odeslat poptávku - zdarma
-          </a>
-          <a
-            href={`tel:${region.phone}`}
-            className="btn-ripple inline-flex min-h-11 flex-1 items-center justify-center rounded-xl border border-slate-300 px-4 py-3 text-sm font-semibold text-slate-800 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
-            aria-label={`Zavolat na číslo ${region.phone}`}
-          >
-            Zavolat
-          </a>
-        </div>
-      </nav>
+      {/* ===== STICKY MOBILE CTA (VR-347) ===== */}
+      <StickyMobileCTA regionName={region.name} />
 
       <script
         type="application/ld+json"

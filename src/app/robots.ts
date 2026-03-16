@@ -21,6 +21,9 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
     },
     sitemap: [
       `https://${normalizedHost}/sitemap.xml`,
+      `https://${normalizedHost}/sitemap-core.xml`,
+      `https://${normalizedHost}/sitemap-geo.xml`,
+      `https://${normalizedHost}/sitemap-blog.xml`,
       `https://${normalizedHost}/image-sitemap.xml`,
     ],
   };

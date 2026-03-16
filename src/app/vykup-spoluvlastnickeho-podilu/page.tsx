@@ -17,6 +17,12 @@ import { GeoRelatedPages } from "@/components/geo-related-pages";
 import { GeoRegionContent } from "@/components/geo-region-content";
 import { getRequestHost } from "@/lib/request-host";
 import { buildGeoCanonicalUrl } from "@/lib/geo-canonical";
+import {
+  resolveGeoRegion,
+  injectRegionIntoTitle,
+  injectRegionIntoDescription,
+  injectRegionIntoH1,
+} from "@/lib/geo-seo";
 
 export async function generateMetadata({
   searchParams,
@@ -28,14 +34,23 @@ export async function generateMetadata({
     "/vykup-spoluvlastnickeho-podilu",
     params,
   );
+  const region = resolveGeoRegion(params);
 
   return {
     alternates: { canonical: canonicalUrl },
     openGraph: { url: canonicalUrl },
-    title:
-      "Výkup spoluvlastnického podílu na nemovitosti - férová cena bez soudů",
-    description:
-      "Vykoupíme váš spoluvlastnický podíl na nemovitosti rychle a bez soudních sporů. Férová cena, právní servis zdarma, výplata do 7 dnů. Bez provize.",
+    title: region
+      ? injectRegionIntoTitle(
+          "Výkup spoluvlastnického podílu na nemovitosti - férová cena bez soudů",
+          region.locative,
+        )
+      : "Výkup spoluvlastnického podílu na nemovitosti - férová cena bez soudů",
+    description: region
+      ? injectRegionIntoDescription(
+          "Vykoupíme váš spoluvlastnický podíl na nemovitosti rychle a bez soudních sporů. Férová cena, právní servis zdarma, výplata do 7 dnů. Bez provize.",
+          region.locative,
+        )
+      : "Vykoupíme váš spoluvlastnický podíl na nemovitosti rychle a bez soudních sporů. Férová cena, právní servis zdarma, výplata do 7 dnů. Bez provize.",
   };
 }
 
@@ -107,6 +122,7 @@ export default async function VykupSpoluvlastnickehoPodilu({
   const host = await getRequestHost();
   const params = await searchParams;
   const krajParam = typeof params.kraj === "string" ? params.kraj : null;
+  const region = resolveGeoRegion(params);
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -156,7 +172,12 @@ export default async function VykupSpoluvlastnickehoPodilu({
             />
           </div>
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Výkup spoluvlastnického podílu na nemovitosti
+            {region
+              ? injectRegionIntoH1(
+                  "Výkup spoluvlastnického podílu na nemovitosti",
+                  region.locative,
+                )
+              : "Výkup spoluvlastnického podílu na nemovitosti"}
           </h1>
           <p className="mt-4 text-lg text-slate-600">
             Spoluvlastnictví nemovitosti se může snadno proměnit v noční můru -

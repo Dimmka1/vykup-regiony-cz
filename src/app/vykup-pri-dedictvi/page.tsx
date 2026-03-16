@@ -17,6 +17,12 @@ import { GeoRelatedPages } from "@/components/geo-related-pages";
 import { GeoRegionContent } from "@/components/geo-region-content";
 import { getRequestHost } from "@/lib/request-host";
 import { buildGeoCanonicalUrl } from "@/lib/geo-canonical";
+import {
+  resolveGeoRegion,
+  injectRegionIntoTitle,
+  injectRegionIntoDescription,
+  injectRegionIntoH1,
+} from "@/lib/geo-seo";
 
 export async function generateMetadata({
   searchParams,
@@ -25,13 +31,23 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const params = await searchParams;
   const canonicalUrl = buildGeoCanonicalUrl("/vykup-pri-dedictvi", params);
+  const region = resolveGeoRegion(params);
 
   return {
     alternates: { canonical: canonicalUrl },
     openGraph: { url: canonicalUrl },
-    title: "Výkup nemovitosti při dědictví - rychlý prodej zděděné nemovitosti",
-    description:
-      "Zdědili jste nemovitost a chcete ji rychle prodat? Vykoupíme zděděný byt nebo dům za férovou cenu. Vyřešíme i spoluvlastnictví a dědické spory.",
+    title: region
+      ? injectRegionIntoTitle(
+          "Výkup nemovitosti při dědictví - rychlý prodej zděděné nemovitosti",
+          region.locative,
+        )
+      : "Výkup nemovitosti při dědictví - rychlý prodej zděděné nemovitosti",
+    description: region
+      ? injectRegionIntoDescription(
+          "Zdědili jste nemovitost a chcete ji rychle prodat? Vykoupíme zděděný byt nebo dům za férovou cenu. Vyřešíme i spoluvlastnictví a dědické spory.",
+          region.locative,
+        )
+      : "Zdědili jste nemovitost a chcete ji rychle prodat? Vykoupíme zděděný byt nebo dům za férovou cenu. Vyřešíme i spoluvlastnictví a dědické spory.",
   };
 }
 
@@ -102,6 +118,7 @@ export default async function VykupPriDedictviPage({
   const host = await getRequestHost();
   const params = await searchParams;
   const krajParam = typeof params.kraj === "string" ? params.kraj : null;
+  const region = resolveGeoRegion(params);
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -130,7 +147,12 @@ export default async function VykupPriDedictviPage({
             />
           </div>
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Výkup nemovitosti při dědictví
+            {region
+              ? injectRegionIntoH1(
+                  "Výkup nemovitosti při dědictví",
+                  region.locative,
+                )
+              : "Výkup nemovitosti při dědictví"}
           </h1>
           <p className="mt-4 text-lg text-slate-600">
             Zdědili jste byt nebo dům a nevíte, co dál? Možná v něm nikdo

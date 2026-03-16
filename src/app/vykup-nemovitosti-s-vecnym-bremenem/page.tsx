@@ -14,6 +14,7 @@ import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 import { AllRegionsSection } from "@/components/all-regions-section";
 import { GeoRelatedPages } from "@/components/geo-related-pages";
+import { GeoRegionContent } from "@/components/geo-region-content";
 import { getRequestHost } from "@/lib/request-host";
 import { buildGeoCanonicalUrl } from "@/lib/geo-canonical";
 
@@ -345,6 +346,10 @@ export default async function VykupNemovitostiSVecnymBremenem({
           />
         </div>
       </section>
+      <GeoRegionContent
+        useCaseSlug="vykup-nemovitosti-s-vecnym-bremenem"
+        regionKey={krajParam}
+      />
 
       <GeoRelatedPages
         currentSlug="vykup-nemovitosti-s-vecnym-bremenem"

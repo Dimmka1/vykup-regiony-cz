@@ -34,7 +34,7 @@ export async function GET(): Promise<Response> {
   for (const post of BLOG_POSTS) {
     entries.push({
       url: `${ROOT_URL}/blog/${post.slug}`,
-      lastmod: post.date,
+      lastmod: "2026-03-16",
       changefreq: "monthly",
       priority: 0.6,
     });

@@ -1568,6 +1568,7 @@ export default async function BlogArticlePage({
     "@type": "Article",
     headline: article.title,
     datePublished: article.date,
+    dateModified: "2026-03-16",
     author: {
       "@type": "Organization",
       name: "Vykoupím Nemovitost",
@@ -1600,13 +1601,18 @@ export default async function BlogArticlePage({
           </div>
 
           <header>
-            <time dateTime={article.date} className="text-sm text-slate-500">
-              {new Date(article.date).toLocaleDateString("cs-CZ", {
-                day: "numeric",
-                month: "long",
-                year: "numeric",
-              })}
-            </time>
+            <div className="flex flex-wrap items-center gap-3">
+              <time dateTime={article.date} className="text-sm text-slate-500">
+                {new Date(article.date).toLocaleDateString("cs-CZ", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                })}
+              </time>
+              <span className="inline-flex items-center rounded-full bg-emerald-100 px-3 py-0.5 text-xs font-medium text-emerald-700">
+                Aktualizováno březen 2026
+              </span>
+            </div>
             <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
               {article.title}
             </h1>

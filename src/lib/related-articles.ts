@@ -38,6 +38,29 @@ const ALL_PAGES: Record<string, RelatedArticle> = {
     title: "Výkup nemovitosti v exekuci",
     description: "Praktický průvodce prodejem nemovitosti zatížené exekucí.",
   },
+  "blog/jake-dokumenty-potrebuji": {
+    href: "/blog/jake-dokumenty-potrebuji",
+    title: "Jaké dokumenty potřebuji k výkupu nemovitosti?",
+    description:
+      "Kompletní přehled dokumentů potřebných k prodeji nemovitosti přes výkupní firmu.",
+  },
+  "blog/vykup-krok-za-krokem": {
+    href: "/blog/vykup-krok-za-krokem",
+    title: "Výkup nemovitosti krok za krokem",
+    description:
+      "Podrobný průvodce celým procesem výkupu od prvního kontaktu po vyplacení peněz.",
+  },
+  "blog/vykup-vs-drazba": {
+    href: "/blog/vykup-vs-drazba",
+    title: "Výkup nemovitosti vs. dražba",
+    description: "Srovnání výkupu a dražby — čas, cena, jistota a náklady.",
+  },
+  "blog/kolik-stoji-vykup": {
+    href: "/blog/kolik-stoji-vykup",
+    title: "Kolik stojí výkup nemovitosti?",
+    description:
+      "Kompletní přehled nákladů při výkupu nemovitosti. Srovnání s realitkou a dražbou.",
+  },
   // Use case pages
   "vykup-bytu": {
     href: "/vykup-bytu",
@@ -141,6 +164,26 @@ const RELATED_MAP: Record<string, string[]> = {
     "vykup-pri-exekuci",
     "blog/jak-probiha-rychly-vykup",
     "vykup-nemovitosti-s-hypotekou",
+  ],
+  "blog/jake-dokumenty-potrebuji": [
+    "blog/vykup-krok-za-krokem",
+    "blog/jak-probiha-rychly-vykup",
+    "blog/kolik-stoji-vykup",
+  ],
+  "blog/vykup-krok-za-krokem": [
+    "blog/jake-dokumenty-potrebuji",
+    "blog/kolik-stoji-vykup",
+    "blog/jak-probiha-rychly-vykup",
+  ],
+  "blog/vykup-vs-drazba": [
+    "blog/vykup-v-exekuci",
+    "blog/kolik-stoji-vykup",
+    "blog/vykup-nemovitosti-vs-realitni-kancelar",
+  ],
+  "blog/kolik-stoji-vykup": [
+    "blog/vykup-vs-drazba",
+    "blog/vykup-nemovitosti-vs-realitni-kancelar",
+    "blog/5-duvodu-proc-prodat",
   ],
   // Use case pages
   "vykup-bytu": [

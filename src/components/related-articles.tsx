@@ -17,7 +17,7 @@ export function RelatedArticles({
 
   return (
     <section className="mt-12">
-      <h2 className="text-xl font-bold text-slate-900">Související články</h2>
+      <h2 className="text-xl font-bold text-slate-900">Mohlo by vás zajímat</h2>
       <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {articles.map((article) => (
           <Link

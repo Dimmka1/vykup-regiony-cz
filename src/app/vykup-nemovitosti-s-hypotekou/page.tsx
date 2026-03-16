@@ -14,6 +14,7 @@ import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 import { AllRegionsSection } from "@/components/all-regions-section";
 import { GeoRelatedPages } from "@/components/geo-related-pages";
+import { GeoRegionContent } from "@/components/geo-region-content";
 import { getRequestHost } from "@/lib/request-host";
 import { buildGeoCanonicalUrl } from "@/lib/geo-canonical";
 
@@ -339,6 +340,10 @@ export default async function VykupNemovitostiSHypotekou({
           />
         </div>
       </section>
+      <GeoRegionContent
+        useCaseSlug="vykup-nemovitosti-s-hypotekou"
+        regionKey={krajParam}
+      />
 
       <GeoRelatedPages
         currentSlug="vykup-nemovitosti-s-hypotekou"

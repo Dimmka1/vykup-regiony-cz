@@ -40,6 +40,26 @@ const regionSchema = z.object({
       }),
     )
     .optional(),
+  marketAnalysis: z.string().optional(),
+  localProcess: z.string().optional(),
+  neighborhoodGuide: z.string().optional(),
+  additionalFaq: z
+    .array(
+      z.object({
+        question: z.string(),
+        answer: z.string(),
+      }),
+    )
+    .optional(),
+  testimonials: z
+    .array(
+      z.object({
+        name: z.string(),
+        text: z.string(),
+        location: z.string(),
+      }),
+    )
+    .optional(),
 });
 
 const dataSchema = z.object({

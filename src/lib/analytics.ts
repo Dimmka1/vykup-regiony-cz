@@ -21,7 +21,9 @@ export type AnalyticsEventName =
   | "form_submit"
   | "quick_estimate_psc"
   | "quick_estimate_phone_submit"
-  | "calculator_najem_used";
+  | "calculator_najem_used"
+  | "calculator_estimate"
+  | "calculator_lead";
 
 type Primitive = string | number | boolean;
 

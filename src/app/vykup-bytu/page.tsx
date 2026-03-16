@@ -16,6 +16,7 @@ import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 import { AllRegionsSection } from "@/components/all-regions-section";
 import { GeoRelatedPages } from "@/components/geo-related-pages";
+import { GeoRegionContent } from "@/components/geo-region-content";
 import { getRequestHost } from "@/lib/request-host";
 import { buildGeoCanonicalUrl } from "@/lib/geo-canonical";
 
@@ -353,6 +354,7 @@ export default async function VykupBytuPage({
           <RelatedArticles articles={getRelatedArticles("vykup-bytu")} />
         </div>
       </section>
+      <GeoRegionContent useCaseSlug="vykup-bytu" regionKey={krajParam} />
 
       <GeoRelatedPages currentSlug="vykup-bytu" currentKraj={krajParam} />
       <AllRegionsSection currentHost={host} />

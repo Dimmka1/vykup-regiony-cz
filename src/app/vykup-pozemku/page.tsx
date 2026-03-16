@@ -19,6 +19,13 @@ import { GeoRelatedPages } from "@/components/geo-related-pages";
 import { GeoRegionContent } from "@/components/geo-region-content";
 import { getRequestHost } from "@/lib/request-host";
 import { buildGeoCanonicalUrl } from "@/lib/geo-canonical";
+import {
+  resolveGeoRegion,
+  injectRegionIntoTitle,
+  injectRegionIntoDescription,
+  injectRegionIntoH1,
+} from "@/lib/geo-seo";
+import { GeoServiceJsonLd } from "@/components/geo-service-jsonld";
 
 export async function generateMetadata({
   searchParams,
@@ -27,13 +34,23 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const params = await searchParams;
   const canonicalUrl = buildGeoCanonicalUrl("/vykup-pozemku", params);
+  const region = resolveGeoRegion(params);
 
   return {
     alternates: { canonical: canonicalUrl },
     openGraph: { url: canonicalUrl },
-    title: "Výkup pozemků - rychlý prodej pozemku za hotové",
-    description:
-      "Vykoupíme váš pozemek rychle a bez provize. Stavební, zemědělské i lesní pozemky. Férová cena, vyplacení do 7 dnů. Celá ČR.",
+    title: region
+      ? injectRegionIntoTitle(
+          "Výkup pozemků - rychlý prodej pozemku za hotové",
+          region.locative,
+        )
+      : "Výkup pozemků - rychlý prodej pozemku za hotové",
+    description: region
+      ? injectRegionIntoDescription(
+          "Vykoupíme váš pozemek rychle a bez provize. Stavební, zemědělské i lesní pozemky. Férová cena, vyplacení do 7 dnů. Celá ČR.",
+          region.locative,
+        )
+      : "Vykoupíme váš pozemek rychle a bez provize. Stavební, zemědělské i lesní pozemky. Férová cena, vyplacení do 7 dnů. Celá ČR.",
   };
 }
 
@@ -135,6 +152,7 @@ export default async function VykupPozemkuPage({
   const host = await getRequestHost();
   const params = await searchParams;
   const krajParam = typeof params.kraj === "string" ? params.kraj : null;
+  const region = resolveGeoRegion(params);
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -149,8 +167,12 @@ export default async function VykupPozemkuPage({
     "@context": "https://schema.org",
     "@type": "WebPage",
     name: "Výkup pozemků - rychlý prodej pozemku za hotové",
-    description:
-      "Vykoupíme váš pozemek rychle a bez provize. Stavební, zemědělské i lesní pozemky. Férová cena, vyplacení do 7 dnů. Celá ČR.",
+    description: region
+      ? injectRegionIntoDescription(
+          "Vykoupíme váš pozemek rychle a bez provize. Stavební, zemědělské i lesní pozemky. Férová cena, vyplacení do 7 dnů. Celá ČR.",
+          region.locative,
+        )
+      : "Vykoupíme váš pozemek rychle a bez provize. Stavební, zemědělské i lesní pozemky. Férová cena, vyplacení do 7 dnů. Celá ČR.",
     url: "https://vykoupim-nemovitost.cz/vykup-pozemku",
     isPartOf: { "@type": "WebSite", url: "https://vykoupim-nemovitost.cz" },
   };
@@ -166,6 +188,8 @@ export default async function VykupPozemkuPage({
         dangerouslySetInnerHTML={{ __html: safeJsonLd(webPageJsonLd) }}
       />
 
+      <GeoServiceJsonLd useCaseSlug="vykup-pozemku" searchParams={params} />
+
       <section className="bg-gradient-to-b from-slate-50 to-white py-16">
         <div className="mx-auto max-w-3xl px-4">
           <div className="mb-6">
@@ -177,7 +201,12 @@ export default async function VykupPozemkuPage({
             />
           </div>
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Výkup pozemků a parcel - rychle, férově a bez provize
+            {region
+              ? injectRegionIntoH1(
+                  "Výkup pozemků a parcel - rychle, férově a bez provize",
+                  region.locative,
+                )
+              : "Výkup pozemků a parcel - rychle, férově a bez provize"}
           </h1>
           <p className="mt-4 text-lg text-slate-600">
             Chcete prodat pozemek rychle a bez zbytečných komplikací? Vykoupíme

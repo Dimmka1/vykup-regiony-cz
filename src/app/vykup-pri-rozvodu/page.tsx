@@ -17,6 +17,13 @@ import { GeoRelatedPages } from "@/components/geo-related-pages";
 import { GeoRegionContent } from "@/components/geo-region-content";
 import { getRequestHost } from "@/lib/request-host";
 import { buildGeoCanonicalUrl } from "@/lib/geo-canonical";
+import {
+  resolveGeoRegion,
+  injectRegionIntoTitle,
+  injectRegionIntoDescription,
+  injectRegionIntoH1,
+} from "@/lib/geo-seo";
+import { GeoServiceJsonLd } from "@/components/geo-service-jsonld";
 
 export async function generateMetadata({
   searchParams,
@@ -25,13 +32,23 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const params = await searchParams;
   const canonicalUrl = buildGeoCanonicalUrl("/vykup-pri-rozvodu", params);
+  const region = resolveGeoRegion(params);
 
   return {
     alternates: { canonical: canonicalUrl },
     openGraph: { url: canonicalUrl },
-    title: "Výkup nemovitosti při rozvodu - rychlé vypořádání majetku",
-    description:
-      "Řešíte rozvod a potřebujete rychle prodat společnou nemovitost? Vykoupíme váš byt nebo dům za férovou cenu. Diskrétně a bez provize.",
+    title: region
+      ? injectRegionIntoTitle(
+          "Výkup nemovitosti při rozvodu - rychlé vypořádání majetku",
+          region.locative,
+        )
+      : "Výkup nemovitosti při rozvodu - rychlé vypořádání majetku",
+    description: region
+      ? injectRegionIntoDescription(
+          "Řešíte rozvod a potřebujete rychle prodat společnou nemovitost? Vykoupíme váš byt nebo dům za férovou cenu. Diskrétně a bez provize.",
+          region.locative,
+        )
+      : "Řešíte rozvod a potřebujete rychle prodat společnou nemovitost? Vykoupíme váš byt nebo dům za férovou cenu. Diskrétně a bez provize.",
   };
 }
 
@@ -103,6 +120,7 @@ export default async function VykupPriRozvoduPage({
   const host = await getRequestHost();
   const params = await searchParams;
   const krajParam = typeof params.kraj === "string" ? params.kraj : null;
+  const region = resolveGeoRegion(params);
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -120,6 +138,8 @@ export default async function VykupPriRozvoduPage({
         dangerouslySetInnerHTML={{ __html: safeJsonLd(faqJsonLd) }}
       />
 
+      <GeoServiceJsonLd useCaseSlug="vykup-pri-rozvodu" searchParams={params} />
+
       <section className="bg-gradient-to-b from-slate-50 to-white py-16">
         <div className="mx-auto max-w-3xl px-4">
           <div className="mb-6">
@@ -131,7 +151,12 @@ export default async function VykupPriRozvoduPage({
             />
           </div>
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Výkup nemovitosti při rozvodu
+            {region
+              ? injectRegionIntoH1(
+                  "Výkup nemovitosti při rozvodu",
+                  region.locative,
+                )
+              : "Výkup nemovitosti při rozvodu"}
           </h1>
           <p className="mt-4 text-lg text-slate-600">
             Rozvod je náročné životní období a vypořádání společné nemovitosti

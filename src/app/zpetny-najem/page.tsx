@@ -10,6 +10,13 @@ import { AllRegionsSection } from "@/components/all-regions-section";
 import { GeoRelatedPages } from "@/components/geo-related-pages";
 import { getRequestHost } from "@/lib/request-host";
 import { buildGeoCanonicalUrl } from "@/lib/geo-canonical";
+import {
+  resolveGeoRegion,
+  injectRegionIntoTitle,
+  injectRegionIntoDescription,
+  injectRegionIntoH1,
+} from "@/lib/geo-seo";
+import { GeoServiceJsonLd } from "@/components/geo-service-jsonld";
 
 export async function generateMetadata({
   searchParams,
@@ -18,14 +25,23 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const params = await searchParams;
   const canonicalUrl = buildGeoCanonicalUrl("/zpetny-najem", params);
+  const region = resolveGeoRegion(params);
 
   return {
     alternates: { canonical: canonicalUrl },
     openGraph: { url: canonicalUrl },
-    title:
-      "Zpětný nájem nemovitosti — prodejte a zůstaňte bydlet | vykoupim-nemovitost.cz",
-    description:
-      "Prodejte nemovitost a zůstaňte v ní bydlet díky zpětnému nájmu. Získejte peníze ihned a bydlete dál bez starostí. Férové podmínky, rychlé vyřízení.",
+    title: region
+      ? injectRegionIntoTitle(
+          "Zpětný nájem nemovitosti — prodejte a zůstaňte bydlet | vykoupim-nemovitost.cz",
+          region.locative,
+        )
+      : "Zpětný nájem nemovitosti — prodejte a zůstaňte bydlet | vykoupim-nemovitost.cz",
+    description: region
+      ? injectRegionIntoDescription(
+          "Prodejte nemovitost a zůstaňte v ní bydlet díky zpětnému nájmu. Získejte peníze ihned a bydlete dál bez starostí. Férové podmínky, rychlé vyřízení.",
+          region.locative,
+        )
+      : "Prodejte nemovitost a zůstaňte v ní bydlet díky zpětnému nájmu. Získejte peníze ihned a bydlete dál bez starostí. Férové podmínky, rychlé vyřízení.",
   };
 }
 
@@ -103,6 +119,7 @@ export default async function ZpetnyNajemPage({
   const host = await getRequestHost();
   const params = await searchParams;
   const krajParam = typeof params.kraj === "string" ? params.kraj : null;
+  const region = resolveGeoRegion(params);
 
   const articleJsonLd = {
     "@context": "https://schema.org",
@@ -176,6 +193,8 @@ export default async function ZpetnyNajemPage({
         dangerouslySetInnerHTML={{ __html: safeJsonLd(faqJsonLd) }}
       />
 
+      <GeoServiceJsonLd useCaseSlug="zpetny-najem" searchParams={params} />
+
       <section className="bg-gradient-to-b from-slate-50 to-white py-16">
         <div className="mx-auto max-w-3xl px-4">
           <div className="mb-6">
@@ -187,7 +206,12 @@ export default async function ZpetnyNajemPage({
             />
           </div>
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Prodejte nemovitost a zůstaňte bydlet — zpětný nájem
+            {region
+              ? injectRegionIntoH1(
+                  "Prodejte nemovitost a zůstaňte bydlet — zpětný nájem",
+                  region.locative,
+                )
+              : "Prodejte nemovitost a zůstaňte bydlet — zpětný nájem"}
           </h1>
           <p className="mt-4 text-lg text-slate-600">
             Zpětný nájem (sale and leaseback) je moderní způsob, jak získat

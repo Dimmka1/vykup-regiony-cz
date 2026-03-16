@@ -74,6 +74,7 @@ export async function GET(): Promise<Response> {
     { path: "/o-nas", priority: 0.8 },
     { path: "/vykup-cinzovnich-domu", priority: 0.8 },
     { path: "/vykup-pri-privatizaci", priority: 0.8 },
+    { path: "/odhad-ceny-nemovitosti", priority: 0.8 },
   ] as const;
 
   for (const page of staticPages) {

@@ -23,7 +23,8 @@ export type AnalyticsEventName =
   | "quick_estimate_phone_submit"
   | "calculator_najem_used"
   | "calculator_estimate"
-  | "calculator_lead";
+  | "calculator_lead"
+  | "sticky_cta_click";
 
 type Primitive = string | number | boolean;
 

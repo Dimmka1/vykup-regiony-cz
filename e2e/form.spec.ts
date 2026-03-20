@@ -8,12 +8,9 @@ test.describe("Lead form", () => {
 
   test.beforeEach(async ({ page }) => {
     await page.goto("/");
-    // Dismiss exit-intent popup and overlays if present
+    // Prevent exit-intent popup from triggering when we scroll to the form
     await page.evaluate(() => {
-      document.querySelector("[role=dialog]")?.remove();
-      document
-        .querySelectorAll("[aria-modal=true]")
-        .forEach((el) => el.remove());
+      localStorage.setItem("exit_popup_shown", String(Date.now()));
     });
     // Scroll to the lazy-loaded lead form to trigger IntersectionObserver
     const form = page.locator(FORM_SELECTOR);

@@ -5,7 +5,6 @@ const KEY_PAGES = [
   "/ppc",
   "/jak-to-funguje",
   "/garance-vykupu",
-  "/reference",
   "/proc-my",
   "/kraje",
   "/dekujeme",

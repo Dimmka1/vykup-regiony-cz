@@ -3,6 +3,10 @@ import { expect, test } from "./fixtures";
 test.describe("Lead form", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/");
+    // Wait for the lazy-loaded lead form to appear in the DOM
+    await page
+      .locator('form[aria-label="Formulář poptávky výkupu nemovitosti"]')
+      .waitFor({ state: "attached", timeout: 15_000 });
     // Dismiss exit-intent popup if it appears
     await page.evaluate(() => {
       const dialog = document.querySelector("[role=dialog]");

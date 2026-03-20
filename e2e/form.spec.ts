@@ -46,24 +46,33 @@ test.describe("Lead form", () => {
     await page.locator("#lead-name").fill("E2E Test");
     await page.locator("#lead-phone").fill("+420 777 888 999");
 
-    await page.getByLabel(/souhlasím se zpracováním/i).check({ force: true });
+    // Check GDPR consent via evaluate to avoid Firefox controlled-input quirk
+    await page.locator(FORM_SELECTOR).evaluate((form) => {
+      const cb = form.querySelector(
+        'input[type="checkbox"]',
+      ) as HTMLInputElement;
+      if (cb && !cb.checked) {
+        cb.click();
+      }
+    });
+
     await page.getByRole("button", { name: /odeslat/i }).click();
 
     await expect(page).toHaveURL(/\/dekujeme/, { timeout: 10_000 });
   });
 
-  test("form validation: missing required fields shows errors", async ({
+  test("form validation: empty fields disable advance button on step 2", async ({
     page,
   }) => {
     // Step 1 → Step 2
     await page.getByRole("button", { name: "Pokračovat", exact: true }).click();
 
-    // Try advancing without filling required fields
-    await page.getByRole("button", { name: "Pokračovat", exact: true }).click();
+    // On step 2 with empty fields, button should be visually disabled
+    const btn = page.getByRole("button", { name: "Pokračovat", exact: true });
+    await expect(btn).toHaveClass(/pointer-events-none/);
+    await expect(btn).toHaveClass(/cursor-not-allowed/);
 
-    // Should show error or stay on step 2
-    const hasError = await page.locator(".text-red-500, [role=alert]").count();
-    const stillOnStep2 = await page.locator("#address").isVisible();
-    expect(hasError > 0 || stillOnStep2).toBeTruthy();
+    // Should still be on step 2 (address field visible)
+    await expect(page.locator("#address")).toBeVisible();
   });
 });

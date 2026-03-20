@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "../styles/base";
+@import "../styles/animations";
+@import "../styles/components";
+@import "../styles/utilities";
+@import "../styles/reduced-motion";

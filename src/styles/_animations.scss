@@ -1,0 +1,72 @@
+// =============================================
+// Keyframes & Animation Classes
+// =============================================
+
+// --- CTA pulse glow ---
+@keyframes ctaPulseGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(var(--theme-rgb), 0.22);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(var(--theme-rgb), 0);
+  }
+}
+
+// --- Floating orb ---
+@keyframes float-orb {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+}
+
+// --- Gradient shift ---
+@keyframes gradient-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+// --- Liquid flow ---
+@keyframes liquid-flow {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+// --- Scan line ---
+@keyframes scan-line {
+  0% {
+    top: -10%;
+  }
+  100% {
+    top: 110%;
+  }
+}
+
+// --- Testimonial fade-in ---
+@keyframes testimonialFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

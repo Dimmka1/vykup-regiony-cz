@@ -1,0 +1,181 @@
+// =============================================
+// Component Classes
+// =============================================
+
+@import "variables";
+@import "mixins";
+
+// --- Typography ---
+.text-display {
+  letter-spacing: -0.025em;
+  font-weight: 800;
+  line-height: 1.05;
+}
+
+// --- Gradient premium (buttons) ---
+.gradient-premium {
+  background: linear-gradient(
+    135deg,
+    var(--theme-600) 0%,
+    var(--theme-700) 50%,
+    var(--theme-800) 100%
+  );
+}
+
+// --- CTA button glow ---
+.cta-glow {
+  position: relative;
+  animation: ctaPulseGlow 3.2s ease-in-out infinite;
+  @include transition-premium($duration-fast);
+
+  &:hover {
+    transform: scale(1.02);
+    box-shadow:
+      0 0 20px rgba(var(--theme-rgb, 13, 148, 136), 0.3),
+      0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+}
+
+// --- Button ripple (CSS only) ---
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at center,
+      rgba(255, 255, 255, 0.3) 0%,
+      transparent 70%
+    );
+    opacity: 0;
+    transform: scale(0);
+    transition:
+      opacity $duration-normal ease,
+      transform $duration-normal ease;
+  }
+
+  &:active::after {
+    opacity: 1;
+    transform: scale(2.5);
+    transition: 0s;
+  }
+}
+
+// --- Input focus glow ---
+.input-focus-glow {
+  @include input-focus-glow;
+}
+
+// --- Glass morphism ---
+.glass {
+  @include glass;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+// --- Shadows ---
+.shadow-layered {
+  box-shadow: $shadow-layered;
+}
+
+.shadow-premium {
+  box-shadow: $shadow-premium;
+}
+
+.shadow-premium-lg {
+  box-shadow: $shadow-premium-lg;
+}
+
+// --- Scroll reveal ---
+.scroll-reveal {
+  @include reveal-base(20px, $duration-reveal);
+}
+
+// --- Hero staggered entrance ---
+.hero-stagger {
+  @include reveal-base(16px, $duration-slow);
+
+  @for $i from 1 through 4 {
+    &--delay-#{$i} {
+      transition-delay: #{$i * 100}ms;
+    }
+  }
+}
+
+// --- Blog prose ---
+.prose-article {
+  h2 {
+    @apply mb-3 mt-8 text-xl font-bold text-slate-900;
+  }
+
+  p {
+    @apply mb-4 leading-relaxed text-slate-700;
+  }
+
+  a {
+    @apply font-medium;
+    color: var(--theme-600, #0d9488);
+
+    &:hover {
+      color: var(--theme-500, #14b8a6);
+    }
+  }
+}
+
+// --- Scan line effect ---
+.scan-line::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.06),
+    transparent
+  );
+  animation: scan-line 6s linear infinite;
+  pointer-events: none;
+}
+
+// --- Liquid morphing border ---
+.liquid-border {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: linear-gradient(
+      90deg,
+      var(--theme-400),
+      var(--theme-600),
+      var(--theme-400),
+      var(--theme-500)
+    );
+    background-size: 300% 100%;
+    animation: liquid-flow 4s ease infinite;
+    z-index: -1;
+  }
+}
+
+// --- Noise texture overlay ---
+.noise-overlay {
+  position: relative;
+
+  &::before {
+    @include pseudo-overlay;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  }
+}
+
+// --- 3D perspective container ---
+.perspective-container {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}

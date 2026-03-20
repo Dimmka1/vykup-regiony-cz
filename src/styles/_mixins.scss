@@ -1,0 +1,65 @@
+// =============================================
+// Reusable Mixins
+// =============================================
+
+@import "variables";
+
+// --- Premium transition (transform + box-shadow) ---
+@mixin transition-premium($duration: $duration-normal) {
+  transition:
+    transform $duration $ease-premium,
+    box-shadow $duration $ease-premium;
+}
+
+// --- Hover lift effect ---
+@mixin hover-lift($shadow: $shadow-premium-lg, $y: -4px) {
+  @include transition-premium;
+
+  &:hover {
+    transform: translateY($y);
+    box-shadow: $shadow;
+  }
+}
+
+// --- Glass morphism ---
+@mixin glass($bg: rgba(255, 255, 255, 0.1), $blur: 12px) {
+  background: $bg;
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+}
+
+// --- Pseudo-layer (absolute overlay) ---
+@mixin pseudo-overlay($z: $z-noise) {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: $z;
+}
+
+// --- Reveal animation base ---
+@mixin reveal-base($y: 20px, $duration: $duration-reveal) {
+  opacity: 0;
+  transform: translateY($y);
+  transition:
+    opacity $duration $ease-premium,
+    transform $duration $ease-premium;
+  will-change: opacity, transform;
+
+  &--visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// --- Input focus glow ---
+@mixin input-focus-glow {
+  transition:
+    border-color $duration-fast ease,
+    box-shadow $duration-fast ease;
+
+  &:focus {
+    border-color: var(--theme-500);
+    box-shadow: 0 0 0 3px rgba(var(--theme-rgb, 13, 148, 136), 0.15);
+  }
+}

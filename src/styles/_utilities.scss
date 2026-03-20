@@ -1,0 +1,89 @@
+// =============================================
+// Layout & Utility Classes
+// =============================================
+
+@import "variables";
+
+// --- Section spacing ---
+@layer components {
+  .section-lg {
+    @apply py-24 md:py-32 lg:py-40;
+  }
+
+  .section-md {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  .container-narrow {
+    @apply mx-auto px-6 lg:px-8;
+    max-width: $container-narrow;
+  }
+
+  .container-wide {
+    @apply mx-auto px-6 lg:px-8;
+    max-width: $container-wide;
+  }
+}
+
+// --- Luxury mesh backgrounds ---
+.bg-luxury-mesh {
+  background:
+    radial-gradient(
+      ellipse at 20% 50%,
+      rgba(var(--theme-rgb-100), 0.4) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 80% 20%,
+      rgba(var(--theme-rgb-50), 0.6) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 50% 80%,
+      rgba(var(--theme-rgb-200), 0.3) 0%,
+      transparent 50%
+    ),
+    linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.bg-luxury-dark {
+  background:
+    radial-gradient(
+      ellipse at 30% 0%,
+      rgba(var(--theme-rgb-900), 0.5) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse at 70% 100%,
+      rgba(var(--theme-rgb-800), 0.3) 0%,
+      transparent 60%
+    ),
+    linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+}
+
+.bg-luxury-warm {
+  background: linear-gradient(135deg, #faf5ff 0%, #f0f9ff 50%, #f8fafc 100%);
+}
+
+// --- Floating orbs ---
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  pointer-events: none;
+
+  &-theme-1 {
+    width: 600px;
+    height: 600px;
+    background: var(--theme-400);
+    animation: float-orb 20s ease-in-out infinite;
+  }
+
+  &-theme-2 {
+    width: 400px;
+    height: 400px;
+    background: var(--theme-300);
+    animation: float-orb 25s ease-in-out infinite reverse;
+  }
+}

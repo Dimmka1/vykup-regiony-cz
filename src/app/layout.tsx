@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "./globals.scss";
 import dynamic from "next/dynamic";
 import { CookieConsent } from "@/components/cookie-consent";
 import { TrackingPixels } from "@/components/tracking-pixels";

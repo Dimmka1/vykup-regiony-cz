@@ -138,7 +138,6 @@ export default async function VykupPriExekuciPage({
           <div className="mb-6">
             <Breadcrumbs
               items={[
-                { label: "Služby", href: "/#sluzby" },
                 { label: "Výkup při exekuci", href: "/vykup-pri-exekuci" },
               ]}
             />

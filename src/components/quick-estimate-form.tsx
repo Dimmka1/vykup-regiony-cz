@@ -4,6 +4,8 @@ import { useState, useCallback, type ReactElement } from "react";
 import { MapPin, Phone, ArrowRight, CheckCircle, Loader2 } from "lucide-react";
 import { resolveRegionByPsc, type PscLookupResult } from "@/lib/psc-regions";
 import { trackEvent } from "@/lib/analytics";
+import { formatCzk } from "@/lib/format";
+import { CZ_PHONE_REGEX } from "@/lib/validation";
 
 /** Average byt price per m² by region — used for quick range estimate */
 const REGION_AVG_PRICES: Record<string, number> = {
@@ -26,14 +28,6 @@ const REGION_AVG_PRICES: Record<string, number> = {
 const VYKUPNI_DISCOUNT = 0.75;
 const TYPICAL_AREA = 65; // m² — typical flat
 
-function formatCzk(value: number): string {
-  return new Intl.NumberFormat("cs-CZ", {
-    style: "currency",
-    currency: "CZK",
-    maximumFractionDigits: 0,
-  }).format(value);
-}
-
 function getQuickEstimate(regionKey: string): { min: number; max: number } {
   const pricePerM2 = REGION_AVG_PRICES[regionKey] ?? 70_000;
   const base = pricePerM2 * TYPICAL_AREA * VYKUPNI_DISCOUNT;
@@ -45,8 +39,6 @@ function getQuickEstimate(regionKey: string): { min: number; max: number } {
 
 type FormStep = "psc" | "result" | "success";
 type SubmitStatus = "idle" | "submitting" | "error";
-
-const CZ_PHONE_REGEX = /^(\+?420|00420)?\s?\d{3}\s?\d{3}\s?\d{3}$/;
 
 interface QuickEstimateFormProps {
   regionName: string;

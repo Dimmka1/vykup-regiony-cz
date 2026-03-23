@@ -1,3 +1,4 @@
+import "server-only";
 import { appendFileSync } from "node:fs";
 import { NextResponse } from "next/server";
 import { z } from "zod";
@@ -549,7 +550,11 @@ export async function POST(request: Request): Promise<NextResponse> {
       },
       { status: 200 },
     );
-  } catch (_error) {
+  } catch (error: unknown) {
+    console.error(
+      "[POST /api/leads] Unhandled error:",
+      error instanceof Error ? error.message : String(error),
+    );
     return NextResponse.json(
       { ok: false, code: "DELIVERY_ERROR" },
       { status: 500 },

@@ -32,14 +32,21 @@ function setConsentCookie(consent: ConsentState) {
   document.cookie = `cookie_consent=${value};expires=${expires};path=/;SameSite=Lax`;
 }
 
+function getDataLayer(): unknown[] {
+  const w = window as unknown as { dataLayer?: unknown[] };
+  if (!w.dataLayer) {
+    w.dataLayer = [];
+  }
+  return w.dataLayer;
+}
+
 function loadGTM() {
   if (document.getElementById("gtm-script")) return;
   const script = document.createElement("script");
   script.id = "gtm-script";
   script.async = true;
   script.src = `https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`;
-  (window as any).dataLayer = (window as any).dataLayer || [];
-  (window as any).dataLayer.push({
+  getDataLayer().push({
     "gtm.start": new Date().getTime(),
     event: "gtm.js",
   });
@@ -51,25 +58,22 @@ function loadGA4() {
   if (!GA_ID) return;
   if (document.getElementById("ga4-script")) return;
 
-  // Load gtag.js for GA4
   const script = document.createElement("script");
   script.id = "ga4-script";
   script.async = true;
   script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
   document.head.appendChild(script);
 
-  // Initialize gtag with GA4 measurement ID
-  (window as any).dataLayer = (window as any).dataLayer || [];
-  function gtag(...args: any[]) {
-    (window as any).dataLayer.push(args);
+  const dl = getDataLayer();
+  function gtag(...args: unknown[]) {
+    dl.push(args);
   }
   gtag("js", new Date());
   gtag("config", GA_ID);
 }
 
 function pushConsentEvent(consent: ConsentState) {
-  (window as any).dataLayer = (window as any).dataLayer || [];
-  (window as any).dataLayer.push({
+  getDataLayer().push({
     event: "cookie_consent_update",
     cookie_consent: consent,
   });
@@ -116,7 +120,7 @@ export function CookieConsent() {
   if (!visible) return null;
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-[9999] p-4">
+    <div className="fixed inset-x-0 bottom-0 z-[9998] p-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
       <div className="mx-auto max-w-2xl rounded-2xl bg-white p-6 shadow-xl ring-1 ring-gray-200">
         <div className="space-y-4">
           <div>

@@ -195,10 +195,7 @@ export default async function VykupBytuPage({
         <div className="mx-auto max-w-3xl px-4">
           <div className="mb-6">
             <Breadcrumbs
-              items={[
-                { label: "Služby", href: "/#sluzby" },
-                { label: "Výkup bytů", href: "/vykup-bytu" },
-              ]}
+              items={[{ label: "Výkup bytů", href: "/vykup-bytu" }]}
             />
           </div>
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">

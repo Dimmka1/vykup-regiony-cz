@@ -169,7 +169,6 @@ export default async function VykupSpoluvlastnickehoPodilu({
           <div className="mb-6">
             <Breadcrumbs
               items={[
-                { label: "Služby", href: "/#sluzby" },
                 {
                   label: "Výkup spoluvlastnického podílu",
                   href: "/vykup-spoluvlastnickeho-podilu",

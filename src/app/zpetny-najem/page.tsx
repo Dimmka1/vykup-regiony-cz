@@ -199,10 +199,7 @@ export default async function ZpetnyNajemPage({
         <div className="mx-auto max-w-3xl px-4">
           <div className="mb-6">
             <Breadcrumbs
-              items={[
-                { label: "Služby", href: "/#sluzby" },
-                { label: "Zpětný nájem", href: "/zpetny-najem" },
-              ]}
+              items={[{ label: "Zpětný nájem", href: "/zpetny-najem" }]}
             />
           </div>
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">

@@ -147,7 +147,6 @@ export default async function VykupPriDedictviPage({
           <div className="mb-6">
             <Breadcrumbs
               items={[
-                { label: "Služby", href: "/#sluzby" },
                 { label: "Výkup při dědictví", href: "/vykup-pri-dedictvi" },
               ]}
             />

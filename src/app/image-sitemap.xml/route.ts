@@ -1,8 +1,13 @@
 import { listRegions, getRegionSubdomainUrl } from "@/lib/config";
+import {
+  ROOT_DOMAIN,
+  ROOT_URL,
+  slugify,
+  escapeXml,
+} from "@/lib/sitemap-helpers";
 import { BLOG_POSTS } from "@/app/blog/data";
 
-const ROOT_DOMAIN = "vykoupim-nemovitost.cz";
-const BASE_URL = `https://${ROOT_DOMAIN}`;
+const BASE_URL = ROOT_URL;
 
 /** Property types with Czech SEO titles/captions */
 const PROPERTY_TYPES = [
@@ -130,24 +135,6 @@ const CONTENT_PAGES = [
     caption: "Články a rady k prodeji a výkupu nemovitostí v České republice",
   },
 ] as const;
-
-function escapeXml(str: string): string {
-  return str
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&apos;");
-}
-
-function slugify(str: string): string {
-  return str
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
-}
 
 interface ImageEntry {
   loc: string;

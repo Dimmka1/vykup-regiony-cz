@@ -21,9 +21,7 @@ import {
   FileSignature,
   Banknote,
   CheckCircle,
-  TrendingUp,
   MapPin,
-  Building,
   Star,
   RefreshCw,
 } from "lucide-react";
@@ -97,22 +95,22 @@ export function BelowFoldSections({
     <>
       {/* ===== ZPĚTNÝ ODKUP BADGE ===== */}
       <ScrollReveal>
-        <section className="bg-gradient-to-r from-emerald-50 to-teal-50 py-5">
+        <section className="to-[var(--theme-100)]/50 bg-gradient-to-r from-[var(--theme-50)] py-5">
           <div className="mx-auto max-w-[1400px] px-6">
             <Link
               href="/zpetny-najem"
-              className="mx-auto flex max-w-2xl items-center justify-center gap-3 rounded-2xl border border-emerald-200 bg-white/80 px-6 py-4 shadow-sm transition hover:border-emerald-300 hover:shadow-md"
+              className="mx-auto flex max-w-2xl items-center justify-center gap-3 rounded-2xl border border-[var(--theme-200)] bg-white/80 px-6 py-4 shadow-sm transition hover:border-[var(--theme-300)] hover:shadow-md"
             >
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-emerald-100">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--theme-100)]">
                 <RefreshCw
-                  className="h-5 w-5 text-emerald-600"
+                  className="h-5 w-5 text-[var(--theme-600)]"
                   aria-hidden="true"
                 />
               </span>
               <span className="text-sm font-semibold text-slate-800 sm:text-base">
                 Možnost zpětného odkupu nemovitosti
               </span>
-              <span className="ml-auto text-xs font-medium text-emerald-600">
+              <span className="ml-auto text-xs font-medium text-[var(--theme-600)]">
                 Zjistit více →
               </span>
             </Link>
@@ -131,81 +129,6 @@ export function BelowFoldSections({
             </div>
           </section>
         </ScrollReveal>
-      )}
-
-      {/* ===== TRH V REGIONU ===== */}
-      {region.marketAnalysis && (
-        <section className="section-md bg-luxury-mesh relative overflow-hidden">
-          <div className="container-wide">
-            <div className="grid gap-10 lg:grid-cols-[1fr_2fr]">
-              <ScrollReveal>
-                <div className="lg:sticky lg:top-28">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--theme-50)] text-[var(--theme-600)]">
-                    <TrendingUp className="h-6 w-6" aria-hidden="true" />
-                  </span>
-                  <h2 className="mt-4 text-2xl font-bold text-slate-900 sm:text-3xl">
-                    Trh {region.locative}
-                  </h2>
-                </div>
-              </ScrollReveal>
-              <ScrollReveal delay={200}>
-                <div className="whitespace-pre-line text-lg leading-relaxed text-slate-600">
-                  {region.marketAnalysis}
-                </div>
-              </ScrollReveal>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* ===== JAK PROBÍHÁ VÝKUP ===== */}
-      {region.localProcess && (
-        <section className="section-md bg-luxury-warm">
-          <div className="container-wide">
-            <div className="grid gap-10 lg:grid-cols-[1fr_2fr]">
-              <ScrollReveal>
-                <div className="lg:sticky lg:top-28">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--theme-50)] text-[var(--theme-600)]">
-                    <Building className="h-6 w-6" aria-hidden="true" />
-                  </span>
-                  <h2 className="mt-4 text-2xl font-bold text-slate-900 sm:text-3xl">
-                    Jak probíhá výkup {region.locative}
-                  </h2>
-                </div>
-              </ScrollReveal>
-              <ScrollReveal delay={200}>
-                <div className="whitespace-pre-line text-lg leading-relaxed text-slate-600">
-                  {region.localProcess}
-                </div>
-              </ScrollReveal>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* ===== KDE VYKUPUJEME ===== */}
-      {region.neighborhoodGuide && (
-        <section className="section-md bg-luxury-mesh relative overflow-hidden">
-          <div className="container-wide">
-            <div className="grid gap-10 lg:grid-cols-[1fr_2fr]">
-              <ScrollReveal>
-                <div className="lg:sticky lg:top-28">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--theme-50)] text-[var(--theme-600)]">
-                    <MapPin className="h-6 w-6" aria-hidden="true" />
-                  </span>
-                  <h2 className="mt-4 text-2xl font-bold text-slate-900 sm:text-3xl">
-                    Kde vykupujeme {region.locative}
-                  </h2>
-                </div>
-              </ScrollReveal>
-              <ScrollReveal delay={200}>
-                <div className="whitespace-pre-line text-lg leading-relaxed text-slate-600">
-                  {region.neighborhoodGuide}
-                </div>
-              </ScrollReveal>
-            </div>
-          </div>
-        </section>
       )}
 
       {/* ===== TRUST METRICS — 3D FLOATING CARDS ===== */}
@@ -297,7 +220,7 @@ export function BelowFoldSections({
             </div>
           </ScrollReveal>
 
-          <div className="mt-10">
+          <div className="mt-10 pt-12">
             <BuildingTimeline steps={processSteps} />
           </div>
 
@@ -343,10 +266,10 @@ export function BelowFoldSections({
             <DoorCards situations={complexSituations} />
           </div>
           <ScrollReveal>
-            <div className="mt-6 text-center">
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
               <Link
                 href="/vykup-pri-exekuci"
-                className="mr-4 inline-flex items-center gap-1 text-sm font-medium text-[var(--theme-300)] transition hover:text-[var(--theme-200)]"
+                className="inline-flex items-center gap-1 text-sm font-medium text-[var(--theme-300)] transition hover:text-[var(--theme-200)]"
                 aria-label="Více informací o výkupu nemovitostí při exekuci"
               >
                 Výkup při exekuci →
@@ -360,7 +283,7 @@ export function BelowFoldSections({
               </Link>
               <Link
                 href="/vykup-cinzovnich-domu"
-                className="mr-4 inline-flex items-center gap-1 text-sm font-medium text-[var(--theme-300)] transition hover:text-[var(--theme-200)]"
+                className="inline-flex items-center gap-1 text-sm font-medium text-[var(--theme-300)] transition hover:text-[var(--theme-200)]"
                 aria-label="Více informací o výkupu činžovních domů"
               >
                 Výkup činžovních domů →
@@ -614,42 +537,13 @@ export function BelowFoldSections({
         </section>
       )}
 
-      {/* ===== REGION FAQ ===== */}
-      {((region.regionFaq && region.regionFaq.length > 0) ||
-        (region.additionalFaq && region.additionalFaq.length > 0)) && (
-        <section className="section-md bg-gradient-to-b from-slate-50 to-white">
-          <div className="container-narrow">
-            <ScrollReveal>
-              <div className="text-center">
-                <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
-                  Otázky k výkupu {region.locative}
-                </h2>
-                <p className="mt-3 text-lg text-slate-600">
-                  Odpovědi na nejčastější dotazy specifické pro váš region
-                </p>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal delay={200}>
-              <div className="mt-10">
-                <FaqAccordion
-                  items={[
-                    ...(region.regionFaq ?? []),
-                    ...(region.additionalFaq ?? []),
-                  ]}
-                />
-              </div>
-            </ScrollReveal>
-          </div>
-        </section>
-      )}
-
-      {/* ===== FAQ ===== */}
-      <section className="section-md">
+      {/* ===== FAQ (merged regional + general) ===== */}
+      <section className="section-md bg-gradient-to-b from-slate-50 to-white">
         <div className="container-narrow">
           <ScrollReveal>
             <div className="text-center">
               <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
-                Časté dotazy
+                Časté dotazy k výkupu {region.locative}
               </h2>
               <p className="mt-3 text-lg text-slate-600">
                 Vše, co potřebujete vědět o výkupu nemovitostí
@@ -658,7 +552,14 @@ export function BelowFoldSections({
           </ScrollReveal>
           <ScrollReveal delay={200}>
             <div className="mt-10">
-              <FaqAccordion items={[...regionalFaq, ...region.faq]} />
+              <FaqAccordion
+                items={[
+                  ...(region.regionFaq ?? []),
+                  ...(region.additionalFaq ?? []),
+                  ...regionalFaq,
+                  ...region.faq,
+                ]}
+              />
             </div>
           </ScrollReveal>
         </div>

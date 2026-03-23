@@ -170,7 +170,6 @@ export default async function VykupNemovitostiSHypotekou({
           <div className="mb-6">
             <Breadcrumbs
               items={[
-                { label: "Služby", href: "/#sluzby" },
                 {
                   label: "Výkup s hypotékou",
                   href: "/vykup-nemovitosti-s-hypotekou",

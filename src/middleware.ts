@@ -165,7 +165,6 @@ const SUBDOMAIN_ALLOWED_EXACT = new Set([
   "/icon.svg",
   "/favicon.ico",
   "/apple-touch-icon.png",
-  "/ppc",
 ]);
 
 const SUBDOMAIN_ALLOWED_PREFIXES = ["/api/", "/opengraph-image"];
@@ -246,25 +245,6 @@ export function middleware(request: NextRequest): NextResponse | undefined {
     const url = request.nextUrl.clone();
     url.pathname = redirectTarget;
     return NextResponse.redirect(url, 301);
-  }
-
-  // 0. PPC landing — stripped layout (no header/footer)
-  if (pathname === "/ppc") {
-    const response = NextResponse.next();
-    response.headers.set("x-layout-stripped", "1");
-    response.headers.set(
-      "Vercel-CDN-Cache-Control",
-      "public, s-maxage=3600, stale-while-revalidate=86400",
-    );
-    response.headers.set(
-      "CDN-Cache-Control",
-      "public, s-maxage=3600, stale-while-revalidate=86400",
-    );
-    response.headers.set(
-      "Cache-Control",
-      "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400",
-    );
-    return response;
   }
 
   // 1. Handle ?region=X query param

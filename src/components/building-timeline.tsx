@@ -241,10 +241,8 @@ function Floor({
 }
 
 export function BuildingTimeline({ steps }: BuildingTimelineProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-
   return (
-    <div ref={containerRef} className="mx-auto max-w-2xl">
+    <div className="mx-auto max-w-2xl">
       <div className="flex flex-col-reverse">
         {steps.map((step, i) => (
           <Floor key={step.title} step={step} index={i} total={steps.length} />

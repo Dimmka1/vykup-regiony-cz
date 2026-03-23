@@ -222,7 +222,6 @@ export default function VykupCinzovnichDomuPage(): React.ReactElement {
           <div className="mb-6">
             <Breadcrumbs
               items={[
-                { label: "Služby", href: "/#sluzby" },
                 {
                   label: "Výkup činžovních domů",
                   href: "/vykup-cinzovnich-domu",

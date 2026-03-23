@@ -62,7 +62,12 @@
 }
 
 .bg-luxury-warm {
-  background: linear-gradient(135deg, #faf5ff 0%, #f0f9ff 50%, #f8fafc 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(var(--theme-rgb-50), 0.5) 0%,
+    rgba(var(--theme-rgb-100), 0.3) 50%,
+    #f8fafc 100%
+  );
 }
 
 // --- Floating orbs ---

@@ -3,20 +3,13 @@
 import { useState, useCallback } from "react";
 import { Calculator } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
+import { formatCzk } from "@/lib/format";
 import type { ReactElement } from "react";
 
 const MIN_PRICE = 1_000_000;
 const MAX_PRICE = 20_000_000;
 const STEP = 500_000;
 const MONTHLY_RATE = 0.004;
-
-function formatCurrency(value: number): string {
-  return new Intl.NumberFormat("cs-CZ", {
-    style: "currency",
-    currency: "CZK",
-    maximumFractionDigits: 0,
-  }).format(value);
-}
 
 export function RentCalculator(): ReactElement {
   const [price, setPrice] = useState(5_000_000);
@@ -56,7 +49,7 @@ export function RentCalculator(): ReactElement {
         Cena nemovitosti
       </label>
       <output className="mt-1 block text-2xl font-extrabold text-slate-900">
-        {formatCurrency(price)}
+        {formatCzk(price)}
       </output>
 
       <input
@@ -71,17 +64,17 @@ export function RentCalculator(): ReactElement {
         aria-label="Nastavte cenu nemovitosti pro výpočet nájmu"
       />
       <div className="mt-1 flex justify-between text-xs text-slate-400">
-        <span>{formatCurrency(MIN_PRICE)}</span>
-        <span>{formatCurrency(MAX_PRICE)}</span>
+        <span>{formatCzk(MIN_PRICE)}</span>
+        <span>{formatCzk(MAX_PRICE)}</span>
       </div>
 
       <div className="mt-6 rounded-xl bg-emerald-50 p-5 text-center">
         <p className="text-sm text-slate-600">Orientační měsíční nájem</p>
         <p className="mt-1 text-3xl font-extrabold text-emerald-700">
-          {formatCurrency(monthlyRent)}
+          {formatCzk(monthlyRent)}
         </p>
         <p className="mt-1 text-xs text-slate-500">
-          Výpočet: {formatCurrency(price)} × 0,4 % měsíčně
+          Výpočet: {formatCzk(price)} × 0,4 % měsíčně
         </p>
       </div>
     </div>

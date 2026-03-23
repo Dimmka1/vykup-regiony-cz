@@ -3,14 +3,16 @@
  * Used by sitemap index + sub-sitemap route handlers.
  */
 
-export const ROOT_DOMAIN = "vykoupim-nemovitost.cz";
+import { PRODUCTION_DOMAIN } from "@/lib/config";
+
+export const ROOT_DOMAIN = PRODUCTION_DOMAIN;
 export const ROOT_URL = `https://${ROOT_DOMAIN}`;
 
 /**
  * Build-time constant for lastmod of static/deploy-dependent pages.
  * Set BUILD_DATE env var in CI/CD (e.g. Vercel) for accurate deploy dates.
  */
-export const BUILD_DATE = process.env.BUILD_DATE || "2026-03-14";
+export const BUILD_DATE = process.env.BUILD_DATE ?? "2026-03-14";
 
 /**
  * Date of the last price data update (from PRICE_RESEARCH.json).

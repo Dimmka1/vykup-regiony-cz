@@ -1,7 +1,6 @@
 import { safeJsonLd } from "@/lib/jsonld";
 import { resolveGeoRegion } from "@/lib/geo-seo";
 import { REGION_PRICES, formatPricePerM2 } from "@/lib/price-data";
-import type { RegionConfig } from "@/lib/types";
 
 /** Human-readable service names for each use-case slug */
 const SERVICE_NAMES: Record<string, string> = {

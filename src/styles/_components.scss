@@ -144,6 +144,7 @@
 // --- Liquid morphing border ---
 .liquid-border {
   position: relative;
+  isolation: isolate;
 
   &::before {
     content: "";

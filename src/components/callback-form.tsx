@@ -2,19 +2,14 @@
 
 import type { ReactElement } from "react";
 import { useCallback, useState } from "react";
-import { Phone } from "lucide-react";
+import { Phone, X } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
+import { CZ_PHONE_REGEX, normalizePhone } from "@/lib/validation";
 
 type CallbackStatus = "idle" | "open" | "submitting" | "success" | "error";
 
 interface CallbackFormProps {
   regionName: string;
-}
-
-const CZ_PHONE_REGEX = /^(\+?420|00420)?\s?\d{3}\s?\d{3}\s?\d{3}$/;
-
-function normalizePhone(raw: string): string {
-  return raw.replace(/[^\d+\s]/g, "").slice(0, 20);
 }
 
 export function CallbackForm({ regionName }: CallbackFormProps): ReactElement {
@@ -25,7 +20,11 @@ export function CallbackForm({ regionName }: CallbackFormProps): ReactElement {
   const isPhoneValid = CZ_PHONE_REGEX.test(phone.trim());
 
   const handleToggle = useCallback(() => {
-    setStatus((prev) => (prev === "idle" ? "open" : prev));
+    setStatus((prev) => {
+      if (prev === "idle") return "open";
+      if (prev === "open") return "idle";
+      return prev;
+    });
     trackEvent("callback_form_open", { region: regionName });
   }, [regionName]);
 
@@ -82,7 +81,7 @@ export function CallbackForm({ regionName }: CallbackFormProps): ReactElement {
       <button
         type="button"
         onClick={handleToggle}
-        className="btn-ripple inline-flex items-center gap-2 rounded-lg border-2 border-[var(--theme-600)] bg-white px-5 py-3 text-sm font-semibold text-[var(--theme-700)] transition hover:bg-[var(--theme-50)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2"
+        className="btn-ripple inline-flex items-center gap-2 rounded-lg border border-white/30 bg-white/10 px-5 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:border-white/50 hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
       >
         <Phone className="h-4 w-4" />
         Zavolejte mi zpět
@@ -93,9 +92,17 @@ export function CallbackForm({ regionName }: CallbackFormProps): ReactElement {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-3 rounded-xl bg-white p-4 shadow-md sm:flex-row sm:items-end sm:gap-2"
+      className="relative flex flex-col gap-3 rounded-xl bg-white p-4 shadow-md sm:flex-row sm:items-end sm:gap-2"
       aria-label="Formulář pro zpětné zavolání"
     >
+      <button
+        type="button"
+        onClick={() => setStatus("idle")}
+        className="absolute right-2 top-2 rounded-full p-1 text-slate-400 transition hover:bg-slate-100 hover:text-slate-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]"
+        aria-label="Zavřít formulář"
+      >
+        <X className="h-4 w-4" />
+      </button>
       <div className="flex-1">
         <label
           htmlFor="callback-phone"

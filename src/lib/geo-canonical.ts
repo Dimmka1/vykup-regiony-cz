@@ -6,7 +6,7 @@
  * instead of treating them all as duplicates of the base URL.
  */
 
-const PRODUCTION_DOMAIN = "vykoupim-nemovitost.cz";
+import { PRODUCTION_DOMAIN } from "@/lib/config";
 
 /** Allowed geo-related search params for canonical URLs */
 const GEO_PARAMS = ["kraj", "mesto"] as const;

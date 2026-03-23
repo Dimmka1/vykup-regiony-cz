@@ -22,7 +22,6 @@ import {
 } from "@/lib/config";
 import { getRequestHost, getRegionKeyOverride } from "@/lib/request-host";
 import { getThemeStyle } from "@/lib/theme-colors";
-import { headers } from "next/headers";
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
@@ -53,9 +52,6 @@ export const metadata: Metadata = {
 export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const headersList = await headers();
-  const isStrippedLayout = headersList.get("x-layout-stripped") === "1";
-
   const host = await getRequestHost();
   const regionKeyOverride = await getRegionKeyOverride();
   let region;
@@ -96,7 +92,7 @@ export default async function RootLayout({
         <main id="hlavni-obsah" className="flex-1">
           {children}
         </main>
-        {!isStrippedLayout && <SiteFooter />}
+        <SiteFooter phone={region.phone} />
         <ExitIntentPopup />
         <TrackingPixels />
         <SwRegister />

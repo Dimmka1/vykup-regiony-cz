@@ -1,7 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { z } from "zod";
 import { trackEvent } from "@/lib/analytics";
+
+const leadMagnetResponseSchema = z.object({
+  ok: z.boolean(),
+  pdfUrl: z.string().optional(),
+});
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
@@ -23,7 +29,7 @@ export function LeadMagnetForm(): React.ReactElement {
         body: JSON.stringify({ email }),
       });
 
-      const data = (await res.json()) as { ok: boolean; pdfUrl?: string };
+      const data = leadMagnetResponseSchema.parse(await res.json());
 
       if (!res.ok || !data.ok) {
         setStatus("error");
@@ -74,7 +80,7 @@ export function LeadMagnetForm(): React.ReactElement {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Váš e-mail"
-          className="w-full rounded-xl border border-slate-300 px-4 py-3 text-lg focus:border-[var(--theme-500)] focus:outline-none focus:ring-2 focus:ring-[var(--theme-500)]"
+          className="w-full rounded-xl border border-slate-300 px-4 py-3 text-lg focus-visible:border-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]"
           disabled={status === "submitting"}
         />
       </div>

@@ -27,25 +27,9 @@ $shadow-layered:
   0 4px 8px rgba(0, 0, 0, 0.04),
   0 12px 24px rgba(0, 0, 0, 0.06);
 
-$shadow-hover-lift:
-  0 10px 25px -5px rgba(0, 0, 0, 0.1),
-  0 8px 10px -6px rgba(0, 0, 0, 0.06);
-
 // --- Z-index scale ---
-$z-orb: 0;
 $z-noise: 0;
-$z-content: 1;
-$z-sticky: 10;
-
-// --- Spacing (section padding) ---
-$section-py-sm: 4rem; // py-16
-$section-py-md: 6rem; // py-24
-$section-py-lg: 8rem; // py-32
-$section-py-xl: 10rem; // py-40
 
 // --- Container max-widths ---
 $container-narrow: 56rem; // max-w-4xl
 $container-wide: 87.5rem; // 1400px
-
-// --- Border radius ---
-$radius-card: 1.5rem; // rounded-3xl

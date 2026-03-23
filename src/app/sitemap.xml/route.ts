@@ -9,7 +9,7 @@ import {
   XML_HEADERS,
   USE_CASE_PATHS,
 } from "@/lib/sitemap-helpers";
-import { listRegions, getRegionSubdomainUrl } from "@/lib/config";
+import { listRegions } from "@/lib/config";
 
 /**
  * GET /sitemap.xml

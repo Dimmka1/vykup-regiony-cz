@@ -170,7 +170,6 @@ export default async function VykupNemovitostiSVecnymBremenem({
           <div className="mb-6">
             <Breadcrumbs
               items={[
-                { label: "Služby", href: "/#sluzby" },
                 {
                   label: "Výkup s věcným břemenem",
                   href: "/vykup-nemovitosti-s-vecnym-bremenem",

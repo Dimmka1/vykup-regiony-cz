@@ -16,8 +16,8 @@ export default function DekujemePage(): ReactElement {
     // and directly via gtag for standalone GA4
     if (typeof window !== "undefined") {
       // dataLayer push (picked up by GTM)
-      window.dataLayer?.push({
-        event: "generate_lead" as never,
+      (window.dataLayer as unknown[] | undefined)?.push({
+        event: "generate_lead",
         page: "dekujeme",
       });
 

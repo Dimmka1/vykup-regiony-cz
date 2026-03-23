@@ -13,8 +13,6 @@ import {
   User,
   Calendar,
   MapPinned,
-  Shield,
-  FileCheck,
 } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
 import { Breadcrumbs } from "@/components/breadcrumbs";
@@ -301,57 +299,6 @@ export default function ONasPage(): React.ReactElement {
               kdekoli&nbsp;— jsme připraveni vám pomoci.
             </p>
             <AboutMap />
-          </div>
-        </section>
-
-        {/* AC-5: Certifikáty a členství — placeholder */}
-        <section className="bg-slate-50 py-16">
-          <div className="mx-auto max-w-5xl px-6">
-            <h2 className="mb-4 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
-              Certifikáty a členství
-            </h2>
-            <p className="mx-auto mb-10 max-w-2xl text-center text-slate-600">
-              Dbáme na profesní rozvoj a&nbsp;transparentnost. Tato sekce bude
-              postupně doplňována o&nbsp;naše certifikáty, členství
-              v&nbsp;profesních organizacích a&nbsp;další doklady kvality.
-            </p>
-            <div className="grid gap-6 sm:grid-cols-3">
-              {[
-                {
-                  Icon: Shield,
-                  title: "Pojištění odpovědnosti",
-                  description:
-                    "Pojištění profesní odpovědnosti pro ochranu klientů.",
-                },
-                {
-                  Icon: FileCheck,
-                  title: "Profesní certifikace",
-                  description:
-                    "Průběžné vzdělávání v oblasti nemovitostí a práva.",
-                },
-                {
-                  Icon: Award,
-                  title: "Členství v asociacích",
-                  description:
-                    "Připravujeme členství v relevantních profesních sdruženích.",
-                },
-              ].map((cert) => (
-                <div
-                  key={cert.title}
-                  className="flex flex-col items-center rounded-xl border border-dashed border-slate-300 bg-white p-6 text-center"
-                >
-                  <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-slate-100">
-                    <cert.Icon className="h-6 w-6 text-slate-400" />
-                  </div>
-                  <h3 className="text-sm font-semibold text-slate-700">
-                    {cert.title}
-                  </h3>
-                  <p className="mt-1 text-xs text-slate-500">
-                    {cert.description}
-                  </p>
-                </div>
-              ))}
-            </div>
           </div>
         </section>
 

@@ -11,18 +11,6 @@
     transition: none;
   }
 
-  // Hover transforms
-  .card-hover-lift:hover,
-  .hover-lift:hover,
-  .card-premium:hover {
-    transform: none;
-  }
-
-  // Image zoom
-  .img-zoom-hover:hover img {
-    transform: none;
-  }
-
   // CTA glow
   .cta-glow,
   .cta-glow:hover {
@@ -44,11 +32,6 @@
   .orb,
   .orb-theme-1,
   .orb-theme-2 {
-    animation: none;
-  }
-
-  // Animated borders
-  .gradient-border::after {
     animation: none;
   }
 

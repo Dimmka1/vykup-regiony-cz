@@ -4,24 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Menu, Phone, X } from "lucide-react";
-
-/** Region keys that have a dark hero - header stays transparent */
-const REGION_KEYS = new Set([
-  "praha",
-  "stredocesky-kraj",
-  "jihocesky-kraj",
-  "plzensky-kraj",
-  "karlovarsky-kraj",
-  "ustecky-kraj",
-  "liberecky-kraj",
-  "kralovehradecky-kraj",
-  "pardubicky-kraj",
-  "vysocina",
-  "jihomoravsky-kraj",
-  "olomoucky-kraj",
-  "moravskoslezsky-kraj",
-  "zlinsky-kraj",
-]);
+import { REGION_KEY_LIST } from "@/lib/region-keys";
 
 interface SiteHeaderProps {
   phone?: string;
@@ -34,7 +17,7 @@ export function SiteHeader({ phone = "+420 776 424 145" }: SiteHeaderProps) {
 
   // Determine if this page needs a solid (always visible) header
   const isSolid =
-    pathname !== "/" && !REGION_KEYS.has(pathname.replace(/^\//, ""));
+    pathname !== "/" && !REGION_KEY_LIST.has(pathname.replace(/^\//, ""));
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -69,7 +52,7 @@ export function SiteHeader({ phone = "+420 776 424 145" }: SiteHeaderProps) {
           </Link>
           <Link
             href="/jak-to-funguje"
-            className={`hidden min-h-[48px] items-center text-sm font-medium transition-colors hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 md:inline-flex ${
+            className={`hidden min-h-[48px] items-center text-sm font-medium transition-colors hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 lg:inline-flex ${
               showSolid ? "text-slate-700" : "text-white/80"
             }`}
           >
@@ -77,7 +60,7 @@ export function SiteHeader({ phone = "+420 776 424 145" }: SiteHeaderProps) {
           </Link>
           <Link
             href="/kraje"
-            className={`hidden min-h-[48px] items-center text-sm font-medium transition-colors hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 md:inline-flex ${
+            className={`hidden min-h-[48px] items-center text-sm font-medium transition-colors hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 lg:inline-flex ${
               showSolid ? "text-slate-700" : "text-white/80"
             }`}
           >
@@ -87,7 +70,7 @@ export function SiteHeader({ phone = "+420 776 424 145" }: SiteHeaderProps) {
         <div className="flex items-center gap-4">
           <Link
             href="/caste-dotazy"
-            className={`hidden min-h-[48px] items-center text-sm font-medium transition-colors hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 md:inline-flex ${
+            className={`hidden min-h-[48px] items-center text-sm font-medium transition-colors hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 lg:inline-flex ${
               showSolid ? "text-slate-700" : "text-white/80"
             }`}
           >
@@ -95,7 +78,7 @@ export function SiteHeader({ phone = "+420 776 424 145" }: SiteHeaderProps) {
           </Link>
           <Link
             href="/blog"
-            className={`hidden min-h-[48px] items-center text-sm font-medium transition-colors hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 md:inline-flex ${
+            className={`hidden min-h-[48px] items-center text-sm font-medium transition-colors hover:text-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 lg:inline-flex ${
               showSolid ? "text-slate-700" : "text-white/80"
             }`}
           >
@@ -109,17 +92,17 @@ export function SiteHeader({ phone = "+420 776 424 145" }: SiteHeaderProps) {
             aria-label={`Zavolat na ${phone}`}
           >
             <Phone className="h-4 w-4" />
-            <span className="hidden md:inline">{phone}</span>
+            <span className="hidden lg:inline">{phone}</span>
           </a>
           <a
             href="#kontakt"
-            className="cta-glow btn-ripple shadow-[var(--theme-600)]/20 hidden min-h-[48px] items-center rounded-full bg-gradient-to-r from-[var(--theme-600)] to-[var(--theme-700)] px-6 py-2.5 text-sm font-semibold text-white shadow-lg transition hover:from-[var(--theme-500)] hover:to-[var(--theme-600)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 md:inline-flex"
+            className="cta-glow btn-ripple shadow-[var(--theme-600)]/20 hidden min-h-[48px] items-center rounded-full bg-gradient-to-r from-[var(--theme-600)] to-[var(--theme-700)] px-6 py-2.5 text-sm font-semibold text-white shadow-lg transition hover:from-[var(--theme-500)] hover:to-[var(--theme-600)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 lg:inline-flex"
           >
             Nezávazná poptávka
           </a>
           <button
             type="button"
-            className="inline-flex min-h-[48px] items-center justify-center rounded-lg p-2 transition md:hidden"
+            className="inline-flex min-h-[48px] items-center justify-center rounded-lg p-2 transition lg:hidden"
             onClick={() => setMobileOpen((v) => !v)}
             aria-label={mobileOpen ? "Zavřít menu" : "Otevřít menu"}
             aria-expanded={mobileOpen}
@@ -139,7 +122,7 @@ export function SiteHeader({ phone = "+420 776 424 145" }: SiteHeaderProps) {
 
       {/* Mobile drawer */}
       {mobileOpen && (
-        <div className="border-b border-slate-200 bg-white px-6 py-4 md:hidden">
+        <div className="max-h-[calc(100vh-5rem)] overflow-y-auto border-b border-slate-200 bg-white px-6 py-4 lg:hidden">
           <div className="flex flex-col gap-3">
             <Link
               href="/jak-to-funguje"

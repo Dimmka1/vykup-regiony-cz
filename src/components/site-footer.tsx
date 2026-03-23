@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { MapPin, Phone, Mail } from "lucide-react";
+import { MapPin, Phone } from "lucide-react";
 import { listRegions, getRegionSubdomainUrl } from "@/lib/config";
 
 const linkClass =
-  "text-sm text-slate-400 hover:text-white transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900";
+  "text-sm text-slate-300 hover:text-white transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900";
 
 function RegionCrossLinks() {
   const regions = listRegions();
@@ -17,7 +17,7 @@ function RegionCrossLinks() {
           <li key={r.key}>
             <a
               href={getRegionSubdomainUrl(r.key)}
-              className="text-slate-400 transition hover:text-white"
+              className="text-slate-300 transition hover:text-white"
             >
               {r.name}
             </a>
@@ -28,7 +28,11 @@ function RegionCrossLinks() {
   );
 }
 
-export function SiteFooter() {
+interface SiteFooterProps {
+  phone?: string;
+}
+
+export function SiteFooter({ phone = "+420 776 424 145" }: SiteFooterProps) {
   return (
     <footer className="bg-gradient-to-b from-slate-900 to-slate-950 pb-[env(safe-area-inset-bottom)] text-white">
       <div className="h-px bg-gradient-to-r from-transparent via-[var(--theme-500)] to-transparent" />
@@ -137,14 +141,14 @@ export function SiteFooter() {
               Kontakt
             </h3>
             <div className="flex flex-col gap-3">
-              <span className="flex items-center gap-2 whitespace-nowrap text-sm text-slate-400">
+              <span className="flex items-center gap-2 whitespace-nowrap text-sm text-slate-300">
                 <MapPin className="h-4 w-4 shrink-0" /> Česká republika
               </span>
               <a
-                href="tel:+420776424145"
-                className="flex items-center gap-2 whitespace-nowrap text-sm text-slate-400 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+                href={`tel:${phone.replace(/\s/g, "")}`}
+                className="flex items-center gap-2 whitespace-nowrap text-sm text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
               >
-                <Phone className="h-4 w-4 shrink-0" /> +420 776 424 145
+                <Phone className="h-4 w-4 shrink-0" /> {phone}
               </a>
             </div>
           </div>

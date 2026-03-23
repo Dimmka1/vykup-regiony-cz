@@ -139,7 +139,7 @@ export function listRegions(): RegionConfig[] {
   return regionData.regions;
 }
 
-const PRODUCTION_DOMAIN = "vykoupim-nemovitost.cz";
+export const PRODUCTION_DOMAIN = "vykoupim-nemovitost.cz";
 
 /** All region keys as a Set for fast lookup */
 export const REGION_KEYS: Set<string> = new Set(

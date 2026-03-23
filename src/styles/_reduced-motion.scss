@@ -41,6 +41,12 @@
     animation: none;
   }
 
+  // Badge shimmer
+  .badge-shimmer::after {
+    animation: none;
+    display: none;
+  }
+
   // 3D perspective
   .perspective-container {
     perspective: none;

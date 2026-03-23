@@ -32,10 +32,10 @@ export function HeroImage({
     offset: ["start start", "end start"],
   });
 
-  // Parallax: image moves slower than scroll (zoomed in, shifts up)
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1.0, 1.08]);
-  const opacity = useTransform(scrollYProgress, [0, 0.7, 1], [1, 0.8, 0.4]);
+  // Enhanced parallax: deeper movement, zoom, and fade
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1.05, 1.15]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.6, 0.2]);
 
   return (
     <div ref={containerRef} className="absolute inset-0 overflow-hidden">
@@ -64,7 +64,7 @@ export function HeroImage({
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse at center, transparent 40%, rgba(15,23,42,0.4) 100%)",
+            "radial-gradient(ellipse at center, transparent 30%, rgba(2,6,23,0.5) 100%)",
         }}
         aria-hidden="true"
       />

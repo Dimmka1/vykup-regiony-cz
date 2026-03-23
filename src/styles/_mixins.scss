@@ -63,3 +63,26 @@
     box-shadow: 0 0 0 3px rgba(var(--theme-rgb, 13, 148, 136), 0.15);
   }
 }
+
+// --- Shimmer overlay ---
+@mixin shimmer-overlay {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.08),
+      transparent
+    );
+    animation: shimmer 3s ease-in-out infinite;
+    pointer-events: none;
+  }
+}

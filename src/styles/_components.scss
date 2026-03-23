@@ -5,11 +5,18 @@
 @import "variables";
 @import "mixins";
 
-// --- Typography ---
+// --- Display typography (bold headings) ---
 .text-display {
-  letter-spacing: -0.025em;
+  letter-spacing: -0.03em;
   font-weight: 800;
   line-height: 1.05;
+}
+
+// --- Section heading style ---
+.section-heading {
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  line-height: 1.15;
 }
 
 // --- Gradient premium (buttons) ---
@@ -72,7 +79,26 @@
 // --- Glass morphism ---
 .glass {
   @include glass;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+// --- Glass card (stronger, for light backgrounds) ---
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: $shadow-premium;
+  transition:
+    transform $duration-normal $ease-premium,
+    box-shadow $duration-normal $ease-premium,
+    border-color $duration-normal ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-elevated;
+    border-color: rgba(var(--theme-rgb-200), 0.5);
+  }
 }
 
 // --- Shadows ---
@@ -88,26 +114,36 @@
   box-shadow: $shadow-premium-lg;
 }
 
+.shadow-elevated {
+  box-shadow: $shadow-elevated;
+}
+
 // --- Scroll reveal ---
 .scroll-reveal {
-  @include reveal-base(20px, $duration-reveal);
+  @include reveal-base(24px, $duration-reveal);
 }
 
 // --- Hero staggered entrance ---
 .hero-stagger {
-  @include reveal-base(16px, $duration-slow);
+  @include reveal-base(20px, 0.8s);
 
   @for $i from 1 through 4 {
     &--delay-#{$i} {
-      transition-delay: #{$i * 100}ms;
+      transition-delay: #{$i * 150 + 200}ms;
     }
   }
+}
+
+// --- Badge shimmer ---
+.badge-shimmer {
+  @include shimmer-overlay;
 }
 
 // --- Blog prose ---
 .prose-article {
   h2 {
     @apply mb-3 mt-8 text-xl font-bold text-slate-900;
+    font-weight: 700;
   }
 
   p {
@@ -179,4 +215,24 @@
 .perspective-container {
   perspective: 1200px;
   transform-style: preserve-3d;
+}
+
+// --- Decorative line ---
+.deco-line {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--theme-500),
+    transparent
+  );
+}
+
+// --- Accent dot ---
+.accent-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--theme-500);
+  flex-shrink: 0;
 }

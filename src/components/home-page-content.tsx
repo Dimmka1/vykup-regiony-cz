@@ -92,11 +92,7 @@ export function HomePageContent({
         phone={region.phone}
         regionName={region.name}
         badges={getHeroBadges()}
-        imageSrc={
-          region.key === "praha"
-            ? "/images/hero-prague.jpg"
-            : `/images/hero-${region.key}.jpg`
-        }
+        imageSrc={region.heroImage}
         imageAlt={`Panorama ${region.primaryCityLocative} – výkup nemovitostí ${region.locative}`}
       />
 

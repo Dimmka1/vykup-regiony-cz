@@ -2,6 +2,7 @@ defaultRegion: praha
 regions:
   - key: praha
     themeColor: teal
+    heroImage: /images/hero-prague.jpg
     seoTitle: Výkup nemovitostí Praha | Rychlá nabídka pro byt i dům do 24 hodin
     seoDescription: "Rychlý výkup nemovitostí v Praze: Vinohrady, Karlín, Smíchov i okraje města. Nabídka do 24 hodin, právní servis zdarma a férové podmínky bez provize."
     name: Praha
@@ -109,6 +110,7 @@ regions:
           z rozdílu mezi prodejní a pořizovací cenou.
   - key: stredocesky-kraj
     themeColor: sky
+    heroImage: /images/hero-stredocesky-kraj.jpg
     seoTitle: Výkup nemovitostí Středočeský kraj | Kladno, Beroun, Mladá Boleslav
     seoDescription: Vykupujeme byty i domy ve Středočeském kraji — od Kladna po Říčany a Mladou Boleslav. Nabídka do 24 hodin, rychlé vyplacení a kompletní právní servis.
     name: Středočeský kraj
@@ -210,6 +212,7 @@ regions:
         answer: Ano, ve Středočeském kraji se setkáváme s rozestavěnými domy poměrně často. Nacenění provádíme na základě aktuálního stavu a lokality, nikoli plánované hodnoty.
   - key: jihocesky-kraj
     themeColor: emerald
+    heroImage: /images/hero-jihocesky-kraj.jpg
     seoTitle: Výkup nemovitostí Jihočeský kraj | České Budějovice, Tábor, Lipno
     seoDescription: Rychlý výkup bytů, domů i chalup v Jihočeském kraji. České Budějovice, Tábor, Písek i rekreační lokality u Lipna a Šumavy.
     name: Jihočeský kraj
@@ -308,6 +311,7 @@ regions:
         answer: Ano, v Jihočeském kraji se s tím setkáváme zejména v Českém Krumlově a Táboře. Památková ochrana sice může omezovat rekonstrukci, ale na samotný výkup nemá vliv.
   - key: plzensky-kraj
     themeColor: amber
+    heroImage: /images/hero-plzensky-kraj.jpg
     seoTitle: Výkup nemovitostí Plzeňský kraj | Plzeň, Klatovy, Domažlice
     seoDescription: Férový a rychlý výkup nemovitostí v Plzeňském kraji. Nabídka do 24 hodin pro byty v Plzni i rodinné domy v Klatovech a Domažlicích.
     name: Plzeňský kraj
@@ -408,6 +412,7 @@ regions:
         answer: Katastrální pracoviště Plzeň-město zpracovává vklady obvykle za 25–30 dnů. Peníze však dostanete dříve — vyplácíme z advokátní úschovy po podání návrhu na vklad.
   - key: karlovarsky-kraj
     themeColor: rose
+    heroImage: /images/hero-karlovarsky-kraj.jpg
     seoTitle: Výkup nemovitostí Karlovarský kraj | Karlovy Vary, Cheb, Sokolov
     seoDescription: Vykupujeme byty, domy i apartmány v Karlovarském kraji. Karlovy Vary, Mariánské Lázně, Cheb i Sokolov — rychlá nabídka a bezpečný převod.
     name: Karlovarský kraj
@@ -506,6 +511,7 @@ regions:
         answer: Ano, působíme v celém kraji včetně Chebska a Ašska. Nemovitosti u hranic oceňujeme s přihlédnutím k přeshraniční poptávce.
   - key: ustecky-kraj
     themeColor: indigo
+    heroImage: /images/hero-ustecky-kraj.jpg
     seoTitle: Výkup nemovitostí Ústecký kraj | Ústí nad Labem, Most, Děčín
     seoDescription: Rychlý výkup nemovitostí v Ústeckém kraji včetně zadlužených případů. Ústí nad Labem, Most, Chomutov, Teplice i Děčín.
     name: Ústecký kraj
@@ -605,6 +611,7 @@ regions:
         answer: Standardní výkup trvá 7–14 dnů. U nemovitostí v exekuci nebo insolvenci počítejte s 14–21 dny kvůli nutné součinnosti exekutora nebo insolvenčního správce.
   - key: liberecky-kraj
     themeColor: cyan
+    heroImage: /images/hero-liberecky-kraj.jpg
     seoTitle: Výkup nemovitostí Liberecký kraj | Liberec, Jablonec, Česká Lípa
     seoDescription: Rychlý výkup bytů, domů i horských apartmánů v Libereckém kraji. Liberec, Jablonec nad Nisou, Česká Lípa a turistické lokality.
     name: Liberecký kraj
@@ -705,6 +712,7 @@ regions:
         answer: Ano, Český ráj je atraktivní rekreační oblast a chalupy zde mají stabilní hodnotu. Ceníme si zejména objekty v okolí Turnova, Sedmihorek a Malé Skály.
   - key: kralovehradecky-kraj
     themeColor: violet
+    heroImage: /images/hero-kralovehradecky-kraj.jpg
     seoTitle: Výkup nemovitostí Královéhradecký kraj | Hradec Králové a okolí
     seoDescription: "Férový výkup nemovitostí v Královéhradeckém kraji: Hradec Králové, Trutnov, Náchod i Podkrkonoší. Nabídka do 24 hodin."
     name: Královéhradecký kraj
@@ -804,6 +812,7 @@ regions:
         answer: Od první prohlídky po vyplacení kupní ceny počítejte s 10–16 dny. U komplikovaných případů (dědictví, exekuce) může být lhůta delší.
   - key: pardubicky-kraj
     themeColor: lime
+    heroImage: /images/hero-pardubicky-kraj.jpg
     seoTitle: Výkup nemovitostí Pardubický kraj | Pardubice, Chrudim, Svitavy
     seoDescription: Rychlý výkup bytu i domu v Pardubickém kraji. Pardubice, Chrudim, Svitavy, Ústí nad Orlicí a okolí. Bez provize, nabídka do 24 hodin.
     name: Pardubický kraj
@@ -904,6 +913,7 @@ regions:
         answer: Ano, vykupujeme i nemovitosti vyžadující kompletní rekonstrukci. Cena odráží aktuální stav, nikoli hodnotu po opravě, ale pro vlastníky je to stále výhodnější než nechat dům chátrat.
   - key: vysocina
     themeColor: green
+    heroImage: /images/hero-vysocina.jpg
     seoTitle: Výkup nemovitostí Kraj Vysočina | Jihlava, Třebíč, Žďár nad Sázavou
     seoDescription: Rychlý výkup nemovitostí na Vysočině. Jihlava, Třebíč, Havlíčkův Brod i Žďár nad Sázavou — férová cena a bezpečný právní servis.
     name: Kraj Vysočina
@@ -1004,6 +1014,7 @@ regions:
         answer: Ano, chalupy na Vysočině vykupujeme rádi — je o ně stabilní poptávka od kupců z Prahy a Brna. Ceny chalup se pohybují od 1 do 3,5 milionu Kč dle stavu a atraktivity lokality.
   - key: jihomoravsky-kraj
     themeColor: blue
+    heroImage: /images/hero-jihomoravsky-kraj.jpg
     seoTitle: Výkup nemovitostí Jihomoravský kraj | Brno, Znojmo, Břeclav
     seoDescription: Rychlý výkup nemovitostí v Jihomoravském kraji. Brno a okolí, Znojmo, Břeclav i Hodonín. Nabídka do 24 hodin bez provize.
     name: Jihomoravský kraj
@@ -1102,6 +1113,7 @@ regions:
         answer: Ano, Hodonínsko i Břeclavsko pokrýváme plně. Nemovitosti u slovenských hranic oceňujeme dle místních podmínek — přeshraniční poptávka ze Slovenska může být bonusem.
   - key: olomoucky-kraj
     themeColor: orange
+    heroImage: /images/hero-olomoucky-kraj.jpg
     seoTitle: Výkup nemovitostí Olomoucký kraj | Olomouc, Přerov, Prostějov
     seoDescription: Férový výkup nemovitostí v Olomouckém kraji. Olomouc, Přerov, Prostějov, Šumperk i Jeseník — rychlá nabídka a právní servis zdarma.
     name: Olomoucký kraj
@@ -1199,6 +1211,7 @@ regions:
         answer: Ano, Jeseník má specifický trh díky Priessnitzovým lázním. Lázeňské a rekreační objekty oceňujeme individuálně s přihlédnutím k turistickému potenciálu oblasti.
   - key: moravskoslezsky-kraj
     themeColor: slate
+    heroImage: /images/hero-moravskoslezsky-kraj.jpg
     seoTitle: Výkup nemovitostí Moravskoslezský kraj | Ostrava, Opava, Frýdek-Místek
     seoDescription: Rychlý výkup bytů a domů v Moravskoslezském kraji. Ostrava, Karviná, Frýdek-Místek i Opava. Pomáháme i u zadlužených nemovitostí.
     name: Moravskoslezský kraj
@@ -1299,6 +1312,7 @@ regions:
         answer: Ano, brownfieldy a průmyslové objekty v Ostravě vykupujeme. Ostrava prochází transformací a bývalé průmyslové areály mají potenciál pro přestavbu — oceňujeme individuálně.
   - key: zlinsky-kraj
     themeColor: fuchsia
+    heroImage: /images/hero-zlinsky-kraj.jpg
     seoTitle: Výkup nemovitostí Zlínský kraj | Zlín, Uherské Hradiště, Vsetín
     seoDescription: Výkup bytů a domů ve Zlínském kraji bez provize. Zlín, Kroměříž, Uherské Hradiště i Valašsko. Nabídka do 24 hodin.
     name: Zlínský kraj

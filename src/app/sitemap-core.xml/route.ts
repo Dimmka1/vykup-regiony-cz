@@ -68,6 +68,7 @@ export async function GET(): Promise<Response> {
 
   // 5. Key static pages — priority 0.8
   const staticPages = [
+    { path: "/vykup-v-drazbe", priority: 0.9 },
     { path: "/jak-to-funguje", priority: 0.8 },
     { path: "/garance-vykupu", priority: 0.8 },
     { path: "/proc-my", priority: 0.8 },

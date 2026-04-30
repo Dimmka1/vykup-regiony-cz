@@ -1,0 +1,309 @@
+import { LeadMagnetCta } from "@/components/lead-magnet-cta";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { Shield, Clock, BadgeCheck, HandCoins } from "lucide-react";
+import { safeJsonLd } from "@/lib/jsonld";
+import { Breadcrumbs } from "@/components/breadcrumbs";
+import { RelatedArticles } from "@/components/related-articles";
+import { getRelatedArticles } from "@/lib/related-articles";
+import { AllRegionsSection } from "@/components/all-regions-section";
+import { getRequestHost } from "@/lib/request-host";
+
+export const metadata: Metadata = {
+  title: "Výkup nemovitosti v dražbě — zachráníme byt nebo dům před aukcí",
+  description:
+    "Vykupujeme nemovitosti zatížené exekuční nebo nucenou dražbou. Zaplatíme dluhy, zastavíme dražbu, vyplatíme zbývající částku majiteli. Bez provize.",
+  alternates: {
+    canonical: "https://vykoupim-nemovitost.cz/vykup-v-drazbe",
+  },
+  openGraph: {
+    url: "https://vykoupim-nemovitost.cz/vykup-v-drazbe",
+  },
+};
+
+interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+const FAQ_ITEMS: readonly FaqItem[] = [
+  {
+    question: "Vykupujete i nemovitosti v dobrovolné dražbě?",
+    answer:
+      "Ano, pokud chcete dražbu zrušit a prodat napřímo bez čekání na výsledek aukce. Dobrovolnou dražbu lze odvolat kdykoliv před jejím konáním — postaráme se o celý administrativní proces a nabídneme vám přímý výkup za férovější cenu.",
+  },
+  {
+    question: "Co s nájemníky v nemovitosti zatížené dražbou?",
+    answer:
+      "Nájemní smlouvy přejdou spolu s vlastnictvím na nového majitele — jejich platnost dražba ani výkup automaticky neruší. Máme zkušenosti s problematickými nájemními vztahy a v případě potřeby poskytneme právní podporu při řešení nájemní situace.",
+  },
+  {
+    question: "Kdy je výkup před dražbou výhodnější než dražba sama?",
+    answer:
+      "V dražbě se nemovitost zpravidla prodává za 60–70 % tržní ceny, přičemž z výtěžku jsou uhrazeny pohledávky a náklady dražby. Výkup před dražbou vám typicky přinese 70–85 % tržní hodnoty — navíc bez stresu z nejistého výsledku aukce.",
+  },
+  {
+    question: "Jak rychle dokážete zastavit nařízenou dražbu?",
+    answer:
+      "Typicky 5–10 dnů od podpisu kupní smlouvy a uhrazení pohledávky exekutorovi. Exekutor je po úhradě celé pohledávky povinen podat návrh na zastavení dražebního řízení. Čím dříve nás kontaktujete, tím více času máme na bezpečné vyřízení celého procesu.",
+  },
+] as const;
+
+interface Step {
+  icon: React.ComponentType<{ className?: string }>;
+  title: string;
+  description: string;
+}
+
+const STEPS: readonly Step[] = [
+  {
+    icon: HandCoins,
+    title: "Den 1 — Kontakt a prověření",
+    description:
+      "Zavolejte nám nebo vyplňte formulář. Okamžitě prověříme stav nemovitosti v katastru a ověříme výši pohledávky u exekutora.",
+  },
+  {
+    icon: Shield,
+    title: "Dny 2–3 — Cenová nabídka",
+    description:
+      "Připravíme cenovou nabídku zohledňující výši pohledávek vůči exekutorovi i částku, která zbyde pro vás po uhrazení dluhů.",
+  },
+  {
+    icon: BadgeCheck,
+    title: "Dny 4–5 — Zastavení dražby",
+    description:
+      "Uhradíme exekutorovi celou pohledávku. Exekutor je povinen podát návrh na zastavení dražebního řízení do 24 hodin od přijetí platby.",
+  },
+  {
+    icon: Clock,
+    title: "Dny 6–10 — Předání a výplata",
+    description:
+      "Provedeme vklad do katastru nemovitostí, předáme nemovitost a vyplatíme vám zbývající částku přímo na účet.",
+  },
+] as const;
+
+const serviceJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Výkup nemovitosti v dražbě",
+  provider: {
+    "@type": "Organization",
+    name: "Výkup nemovitostí",
+    url: "https://vykoupim-nemovitost.cz",
+  },
+  areaServed: "CZ",
+  description:
+    "Výkup nemovitostí zatížených exekuční nebo nucenou dražbou — zastavíme dražbu, uhradíme pohledávky, vyplatíme zbylou částku majiteli.",
+} as const;
+
+export default async function VykupVDrazbe(): Promise<React.ReactElement> {
+  const host = await getRequestHost();
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(serviceJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(faqJsonLd) }}
+      />
+
+      <section className="bg-gradient-to-b from-slate-50 to-white py-16">
+        <div className="mx-auto max-w-3xl px-4">
+          <div className="mb-6">
+            <Breadcrumbs
+              items={[{ label: "Výkup v dražbě", href: "/vykup-v-drazbe" }]}
+            />
+          </div>
+          <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+            Výkup nemovitosti v dražbě — zachráníme váš byt nebo dům před aukcí
+          </h1>
+          <p className="mt-4 text-lg text-slate-600">
+            Pokud má vaše nemovitost nařízenu exekuční nebo nucenou dražbu,
+            stále existuje cesta ven. Dokud dražba nezačne, můžete ji zastavit
+            prodejem — my uhradíme věřitelům celou pohledávku přímo z kupní ceny
+            a zbývající částku vyplatíme vám.
+          </p>
+          <p className="mt-4 text-slate-600">
+            Mnoho majitelů neví, že dražbu lze zastavit i v pokročilé fázi
+            přípravy. Stačí, aby kupující uhradil celou pohledávku exekutorovi
+            před zahájením dražebního jednání — exekutor je pak ze zákona
+            povinen podat návrh na zastavení dražby. Celý proces zvládneme
+            zpravidla do deseti dnů od prvního kontaktu.
+          </p>
+          <p className="mt-4 text-slate-600">
+            Na rozdíl od dražby, kde se nemovitost prodává za 60–70 % tržní ceny
+            a z výtěžku se hradí náklady aukce, vám výkup přinese vyšší čistý
+            výnos a jistotu — bez stresu z nejistého výsledku aukce a bez čekání
+            na rozvrhové usnesení soudu.
+          </p>
+          <p className="mt-4 text-slate-600">
+            Veškeré náklady na právní servis, ověření katastru i komunikaci s
+            exekutorským úřadem hradíme my. Vy neplatíte žádnou provizi ani
+            skryté poplatky.
+          </p>
+          <div className="mt-8">
+            <Link
+              href="/#kontakt"
+              className="inline-flex items-center rounded-xl bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500"
+            >
+              Získat nabídku zdarma
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-slate-100 bg-white py-8">
+        <div className="mx-auto flex max-w-3xl flex-wrap justify-center gap-6 px-4 text-sm text-slate-600">
+          <span className="flex items-center gap-2">
+            <Clock className="h-4 w-4 text-emerald-500" /> Zastavíme dražbu do
+            5–10 dnů
+          </span>
+          <span className="flex items-center gap-2">
+            <Shield className="h-4 w-4 text-emerald-500" /> Diskrétní jednání
+          </span>
+          <span className="flex items-center gap-2">
+            <BadgeCheck className="h-4 w-4 text-emerald-500" /> Bez provize a
+            poplatků
+          </span>
+        </div>
+      </section>
+
+      <section className="bg-white py-16">
+        <div className="mx-auto max-w-3xl px-4">
+          <h2 className="text-2xl font-bold text-slate-900">
+            Jak zastavit dražbu nemovitosti
+          </h2>
+          <p className="mt-4 text-slate-600">
+            Proces výkupu před dražbou je rychlý a přímočarý. Postupujeme podle
+            jasně daného harmonogramu, aby bylo vše vyřízeno ještě před termínem
+            dražebního jednání.
+          </p>
+          <ol className="mt-8 space-y-6">
+            {STEPS.map((step, index) => (
+              <li
+                key={index}
+                className="flex gap-5 rounded-2xl bg-slate-50 p-6 shadow-sm"
+              >
+                <div className="flex-shrink-0">
+                  <step.icon className="h-6 w-6 text-emerald-500" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-slate-900">{step.title}</h3>
+                  <p className="mt-2 text-sm text-slate-600">
+                    {step.description}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className="bg-slate-50 py-16">
+        <div className="mx-auto max-w-3xl px-4">
+          <h2 className="text-2xl font-bold text-slate-900">
+            Před dražbou vs. v průběhu dražby
+          </h2>
+          <p className="mt-4 text-slate-600">
+            Výkup je nejjednodušší a nejrychlejší tehdy, když oslovíte nás ještě
+            před termínem dražebního jednání. Jakmile exekutor obdrží plnou
+            úhradu pohledávky, podá návrh na zastavení dražby okamžitě — v tu
+            chvíli je celá věc vyřešena a vy dostanete zbylou částku na účet.
+          </p>
+          <p className="mt-4 text-slate-600">
+            V průběhu samotného dražebního jednání již standardně zastavit
+            dražbu nelze — zákon umožňuje zastavení exekuce pouze před zahájením
+            dražby, pokud nebyla pohledávka dosud uhrazena. Proto platí jedno
+            pravidlo: čím dříve nás kontaktujete, tím více možností máme.
+          </p>
+        </div>
+      </section>
+
+      <section className="bg-white py-16">
+        <div className="mx-auto max-w-3xl px-4">
+          <h2 className="text-2xl font-bold text-slate-900">
+            Co když dražba již proběhla?
+          </h2>
+          <p className="mt-4 text-slate-600">
+            Pokud bylo dražební jednání zahájeno, ale dosud neproběhl příklep
+            (soudní nebo exekutorský), existují procesní prostředky obrany —
+            například podání námitky nebo žaloby na zastavení řízení. Situace je
+            složitější a vyžaduje konzultaci s advokátem. Tuto konzultaci vám
+            zprostředkujeme zdarma, abyste věděli, jaké možnosti máte a jaký je
+            realistický výhled.
+          </p>
+        </div>
+      </section>
+
+      <section className="bg-slate-50 py-16">
+        <div className="mx-auto max-w-3xl px-4">
+          <h2 className="text-2xl font-bold text-slate-900">
+            Časté dotazy k výkupu v dražbě
+          </h2>
+          <div className="mt-8 space-y-4">
+            {FAQ_ITEMS.map((item, index) => (
+              <details
+                key={index}
+                className="group rounded-2xl bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
+              >
+                <summary className="flex cursor-pointer items-center justify-between text-lg font-semibold text-slate-900 marker:[content:''] [&::-webkit-details-marker]:hidden">
+                  <span>{item.question}</span>
+                  <span className="ml-4 flex-shrink-0 text-emerald-500 transition-transform group-open:rotate-45">
+                    ✚
+                  </span>
+                </summary>
+                <p className="mt-4 leading-relaxed text-slate-600">
+                  {item.answer}
+                </p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white py-16">
+        <div className="mx-auto max-w-3xl px-4 text-center">
+          <div className="rounded-2xl bg-emerald-50 p-8">
+            <h2 className="text-xl font-bold text-slate-900">
+              Zachraňte nemovitost před dražbou ještě dnes
+            </h2>
+            <p className="mt-2 text-slate-600">
+              Nezávazná konzultace zdarma. Čím dříve nás oslovíte, tím více
+              možností máme.
+            </p>
+            <div className="mt-6">
+              <Link
+                href="/#kontakt"
+                className="inline-flex items-center rounded-xl bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500"
+              >
+                Chci nezávaznou nabídku
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-slate-50 py-12">
+        <div className="mx-auto max-w-3xl px-4">
+          <RelatedArticles articles={getRelatedArticles("vykup-v-drazbe", 4)} />
+        </div>
+      </section>
+
+      <LeadMagnetCta />
+      <AllRegionsSection currentHost={host} />
+    </>
+  );
+}

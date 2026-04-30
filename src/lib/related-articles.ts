@@ -130,6 +130,11 @@ const ALL_PAGES: Record<string, RelatedArticle> = {
     description:
       "Prodej privatizovaného bytu rychle a bez právních komplikací.",
   },
+  "vykup-v-drazbe": {
+    href: "/vykup-v-drazbe",
+    title: "Výkup nemovitosti v dražbě",
+    description: "Zachráníme nemovitost před exekuční nebo nucenou dražbou.",
+  },
 };
 
 /** Mapping: page key → array of related page keys */
@@ -151,7 +156,7 @@ const RELATED_MAP: Record<string, string[]> = {
     "blog/vykup-v-exekuci",
     "vykup-pri-exekuci",
     "blog/jak-rychle-prodat-nemovitost",
-    "vykup-nemovitosti-s-hypotekou",
+    "vykup-v-drazbe",
   ],
   "blog/jak-probiha-rychly-vykup": [
     "blog/jak-rychle-prodat-nemovitost",
@@ -169,7 +174,7 @@ const RELATED_MAP: Record<string, string[]> = {
     "blog/nemovitost-v-exekuci-pruvodce",
     "vykup-pri-exekuci",
     "blog/jak-probiha-rychly-vykup",
-    "vykup-nemovitosti-s-hypotekou",
+    "vykup-v-drazbe",
   ],
   "blog/jake-dokumenty-potrebuji": [
     "blog/vykup-krok-za-krokem",
@@ -185,6 +190,7 @@ const RELATED_MAP: Record<string, string[]> = {
     "blog/vykup-v-exekuci",
     "blog/kolik-stoji-vykup",
     "blog/vykup-nemovitosti-vs-realitni-kancelar",
+    "vykup-v-drazbe",
   ],
   "blog/dan-z-prodeje-nemovitosti-2026": [
     "blog/kolik-stoji-vykup",
@@ -220,7 +226,7 @@ const RELATED_MAP: Record<string, string[]> = {
     "blog/nemovitost-v-exekuci-pruvodce",
     "blog/vykup-v-exekuci",
     "vykup-nemovitosti-s-hypotekou",
-    "zpetny-najem",
+    "vykup-v-drazbe",
   ],
   "vykup-pri-rozvodu": [
     "blog/jak-rychle-prodat-nemovitost",
@@ -269,6 +275,12 @@ const RELATED_MAP: Record<string, string[]> = {
     "blog/jak-rychle-prodat-nemovitost",
     "vykup-spoluvlastnickeho-podilu",
     "vykup-pri-dedictvi",
+  ],
+  "vykup-v-drazbe": [
+    "vykup-pri-exekuci",
+    "blog/vykup-vs-drazba",
+    "blog/nemovitost-v-exekuci-pruvodce",
+    "vykup-nemovitosti-s-hypotekou",
   ],
 };
 

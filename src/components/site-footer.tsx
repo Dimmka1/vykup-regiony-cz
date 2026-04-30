@@ -128,6 +128,9 @@ export function SiteFooter({ phone = "+420 776 424 145" }: SiteFooterProps) {
               >
                 Výkup s věcným břemenem
               </Link>
+              <Link href="/vykup-v-drazbe" className={linkClass}>
+                Výkup v dražbě
+              </Link>
               <Link href="/vykup-cinzovnich-domu" className={linkClass}>
                 Výkup činžovních domů
               </Link>

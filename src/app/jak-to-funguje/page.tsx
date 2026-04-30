@@ -122,6 +122,61 @@ export default function JakToFungujePage() {
         </div>
       </section>
 
+      {/* Postup výkupu krok za krokem — den po dni
+          (targets GSC queries: "postup výkupu", "postup výkupu nemovitosti",
+           "postup výkupu nemovitostí" — ~145 imp / 0 clicks today).  */}
+      <section className="bg-slate-50 py-16">
+        <div className="mx-auto max-w-4xl px-6">
+          <h2
+            id="postup-vykupu"
+            className="scroll-mt-24 text-3xl font-bold text-slate-900"
+          >
+            Postup výkupu nemovitosti krok za krokem
+          </h2>
+          <p className="mt-4 text-lg text-slate-700">
+            Celý <strong>postup výkupu nemovitostí</strong> trvá obvykle 7–14
+            dnů. Níže najdete každý krok přesně tak, jak probíhá u nás:
+          </p>
+          <ol className="mt-6 list-decimal space-y-3 pl-6 text-slate-700">
+            <li>
+              <strong>Den 1:</strong> Zavolejte nebo vyplňte krátký formulář —
+              zjistíme adresu, typ nemovitosti a stav.
+            </li>
+            <li>
+              <strong>Den 1–2:</strong> Vypracujeme nezávaznou cenovou nabídku z
+              dostupných dat (kataster, ceny v okolí, právní stav).
+            </li>
+            <li>
+              <strong>Den 3–4:</strong> Osobní prohlídka nemovitosti — zástupce
+              přijede zdarma kamkoli v ČR.
+            </li>
+            <li>
+              <strong>Den 5:</strong> Finální cenová nabídka + návrh kupní
+              smlouvy připravený advokátem.
+            </li>
+            <li>
+              <strong>Den 6–7:</strong> Podpis smlouvy v advokátní úschově —
+              peníze deponovány u advokáta.
+            </li>
+            <li>
+              <strong>Den 8–10:</strong> Návrh na vklad do katastru nemovitostí,
+              vypořádání případných exekucí či hypoték.
+            </li>
+            <li>
+              <strong>Den 11–14:</strong> Vyplacení kupní ceny, předání klíčů a
+              protokolární předání.
+            </li>
+          </ol>
+          <p className="mt-6 text-sm text-slate-500">
+            <em>
+              U komplikovaných případů (spoluvlastnické podíly, rozdělené
+              dědictví, několik exekucí současně) se doba prodlužuje na 21–30
+              dnů — vždy s pevně daným harmonogramem.
+            </em>
+          </p>
+        </div>
+      </section>
+
       {/* Steps */}
       <section className="py-16">
         <div className="mx-auto max-w-4xl px-6">

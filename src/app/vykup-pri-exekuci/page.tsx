@@ -38,16 +38,16 @@ export async function generateMetadata({
     openGraph: { url: canonicalUrl },
     title: region
       ? injectRegionIntoTitle(
-          "Výkup nemovitosti při exekuci - rychlé řešení bez starostí",
+          "Výkup nemovitosti v exekuci — vyplaceno do 7 dnů, dluhy uhradíme",
           region.locative,
         )
-      : "Výkup nemovitosti při exekuci - rychlé řešení bez starostí",
+      : "Výkup nemovitosti v exekuci — vyplaceno do 7 dnů, dluhy uhradíme",
     description: region
       ? injectRegionIntoDescription(
-          "Prodejte nemovitost zatíženou exekucí rychle a diskrétně. Vyřešíme dluhy, uhradíme exekuci z kupní ceny a vyplatíme vás do 7 dnů. Bez provize.",
+          "Vykoupíme byt či dům zatížený exekucí — diskrétně, bez provize. Splatíme exekuci z kupní ceny, peníze na účtu do 48 h. 200+ vyřešených případů.",
           region.locative,
         )
-      : "Prodejte nemovitost zatíženou exekucí rychle a diskrétně. Vyřešíme dluhy, uhradíme exekuci z kupní ceny a vyplatíme vás do 7 dnů. Bez provize.",
+      : "Vykoupíme byt či dům zatížený exekucí — diskrétně, bez provize. Splatíme exekuci z kupní ceny, peníze na účtu do 48 h. 200+ vyřešených případů.",
     ...(robots && { robots }),
   };
 }

@@ -758,7 +758,7 @@ const ARTICLES: Record<string, ArticleContent> = {
     ),
   },
   "jak-rychle-prodat-nemovitost": {
-    title: "Jak rychle prodat nemovitost v roce 2026",
+    title: "Jak rychle prodat nemovitost (2026): 7 dnů vs. 6 měsíců",
     date: "2026-03-01",
     body: (
       <>
@@ -1443,7 +1443,7 @@ const ARTICLES: Record<string, ArticleContent> = {
     ),
   },
   "vykup-v-exekuci": {
-    title: "Výkup nemovitosti v exekuci - co potřebujete vědět",
+    title: "Výkup nemovitosti v exekuci 2026 — postup, dokumenty, daně",
     date: "2026-02-05",
     body: (
       <>

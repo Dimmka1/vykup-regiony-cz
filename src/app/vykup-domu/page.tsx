@@ -45,16 +45,16 @@ export async function generateMetadata({
     openGraph: { url: canonicalUrl },
     title: region
       ? injectRegionIntoTitle(
-          "Výkup domů - rychlý prodej rodinného domu za hotové",
+          "Výkup rodinných domů — férová cena, vyplaceno do 7 dnů",
           region.locative,
         )
-      : "Výkup domů - rychlý prodej rodinného domu za hotové",
+      : "Výkup rodinných domů — férová cena, vyplaceno do 7 dnů",
     description: region
       ? injectRegionIntoDescription(
-          "Vykoupíme váš rodinný dům rychle a bez provize. Staré domy, domy k rekonstrukci i se zástavou. Férová cena, vyplacení do 7 dnů. Celá ČR.",
+          "Vykoupíme rodinný dům v jakémkoli stavu. Staré domy, k rekonstrukci, se zástavou — bez provize. Nabídka do 24 h, peníze do 7 dnů.",
           region.locative,
         )
-      : "Vykoupíme váš rodinný dům rychle a bez provize. Staré domy, domy k rekonstrukci i se zástavou. Férová cena, vyplacení do 7 dnů. Celá ČR.",
+      : "Vykoupíme rodinný dům v jakémkoli stavu. Staré domy, k rekonstrukci, se zástavou — bez provize. Nabídka do 24 h, peníze do 7 dnů.",
     ...(robots && { robots }),
   };
 }

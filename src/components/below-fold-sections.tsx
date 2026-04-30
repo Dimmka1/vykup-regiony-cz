@@ -57,13 +57,13 @@ const TRUST_METRICS = [
   { label: "Bez provize", value: "0 Kč", icon: "HandCoins" },
   { label: "Průměrná doba první nabídky", value: "24 h", icon: "Clock" },
   { label: "Právní servis zdarma", value: "V ceně", icon: "FileSignature" },
-  { label: "Garance ceny ve smlouvě", value: "100 %", icon: "ShieldCheck" },
+  { label: "Cena pevně ve smlouvě", value: "Bez srážek", icon: "ShieldCheck" },
 ] as const;
 
 const ABOUT_STATS = [
-  { value: "100%", label: "transparentnost" },
-  { value: "0 Kč", label: "provize" },
+  { value: "0 Kč", label: "provize a skrytých poplatků" },
   { value: "14", label: "krajů ČR" },
+  { value: "48 h", label: "obvyklá splatnost" },
 ] as const;
 
 const FORM_BENEFITS = [
@@ -221,6 +221,7 @@ export function BelowFoldSections({
                   src="/images/section-process.jpg"
                   alt="Proces výkupu nemovitosti – profesionální jednání"
                   fill
+                  sizes="(max-width: 1024px) 100vw, 700px"
                   className="object-cover transition-transform duration-700 hover:scale-105"
                   loading="lazy"
                 />

@@ -32,7 +32,6 @@ export interface RegionConfig {
   localProcess?: string;
   neighborhoodGuide?: string;
   additionalFaq?: FaqItem[];
-  testimonials?: { name: string; text: string; location: string }[];
 }
 
 export interface RegionDataFile {

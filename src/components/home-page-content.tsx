@@ -93,7 +93,7 @@ export function HomePageContent({
         regionName={region.name}
         badges={getHeroBadges()}
         imageSrc={region.heroImage}
-        imageAlt={`Panorama ${region.primaryCityLocative} – výkup nemovitostí ${region.locative}`}
+        imageAlt={`Panorama města ${region.primaryCity} – výkup nemovitostí ${region.locative}`}
       />
 
       {/* ===== BELOW-FOLD: Lazy loaded, no SSR ===== */}

@@ -48,40 +48,54 @@ export function LeadMagnetForm(): React.ReactElement {
 
   if (status === "success" && pdfUrl) {
     return (
-      <div className="rounded-2xl border border-green-200 bg-green-50 p-8 text-center">
-        <div className="mb-4 text-4xl">✅</div>
+      <div
+        role="status"
+        aria-live="polite"
+        className="rounded-2xl border border-green-200 bg-green-50 p-8 text-center"
+      >
+        <div className="mb-4 text-4xl" aria-hidden="true">
+          ✅
+        </div>
         <h3 className="mb-2 text-xl font-bold text-green-800">
-          Děkujeme! Váš průvodce je připraven.
+          Děkujeme! Průvodce máte připravený ke stažení.
         </h3>
         <p className="mb-6 text-green-700">
-          Klikněte na tlačítko níže pro stažení PDF průvodce.
+          Odkaz pro stažení jsme vám zaslali také na <strong>{email}</strong>.
         </p>
         <a
           href={pdfUrl}
           download
           className="inline-block rounded-xl bg-green-600 px-8 py-3 font-semibold text-white transition-colors hover:bg-green-700"
         >
-          📥 Stáhnout průvodce (PDF)
+          Stáhnout průvodce (PDF)
         </a>
       </div>
     );
   }
 
+  const errorId = status === "error" ? "lead-magnet-email-error" : undefined;
+
   return (
     <form onSubmit={handleSubmit} className="mx-auto max-w-md space-y-4">
       <div>
-        <label htmlFor="lead-magnet-email" className="sr-only">
+        <label
+          htmlFor="lead-magnet-email"
+          className="mb-1 block text-sm font-medium text-slate-700"
+        >
           Váš e-mail
         </label>
         <input
           id="lead-magnet-email"
           type="email"
           required
+          autoComplete="email"
+          inputMode="email"
           value={email}
+          aria-invalid={status === "error"}
+          aria-describedby={errorId}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Váš e-mail"
+          placeholder="jan@example.cz"
           className="w-full rounded-xl border border-slate-300 px-4 py-3 text-lg focus-visible:border-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]"
-          disabled={status === "submitting"}
         />
       </div>
       <button
@@ -92,8 +106,12 @@ export function LeadMagnetForm(): React.ReactElement {
         {status === "submitting" ? "Odesílám..." : "Stáhnout zdarma"}
       </button>
       {status === "error" && (
-        <p className="text-center text-sm text-red-600">
-          Něco se pokazilo. Zkuste to prosím znovu.
+        <p
+          id="lead-magnet-email-error"
+          role="alert"
+          className="text-center text-sm text-red-600"
+        >
+          Odeslání se nepodařilo. Zkontrolujte připojení a zkuste to znovu.
         </p>
       )}
       <p className="text-center text-xs text-slate-500">

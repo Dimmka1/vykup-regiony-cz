@@ -478,14 +478,14 @@ function vykupPriExekuci(regionKey: string): GeoUseCaseContent {
 
     priceContext: `I při exekuci nabízíme férovou cenu odpovídající aktuálnímu trhu ${m.locative}. Průměrná cena bytu ${m.locative} je ${formatPricePerM2(p.bytM2)}, domu ${formatPricePerM2(p.dumM2)}. Po splacení dluhu z kupní ceny vám vyplatíme zbytek. U bytu 2+kk (55 m²) ${m.locative} s tržní hodnotou ${estimateValue(p.bytM2, 55)} může zbývající částka po splacení exekuce činit stovky tisíc korun.`,
 
-    localContext: `Spolupracujeme s exekutorskými úřady ${m.locative} a známe místní postupy. V ${m.districts[0]} a okolí řešíme desítky případů ročně. Víme, jak jednat se soudními exekutory v regionu, jak zajistit souhlas s prodejem a jak maximalizovat čistý výnos pro klienta. Koordinujeme s ${m.cadastralOffice} i s příslušnými soudy.`,
+    localContext: `Spolupracujeme s exekutorskými úřady ${m.locative} a známe místní postupy. V ${m.districts[0]} a okolí pomáháme s prodejem nemovitostí mimo dražbu. Víme, jak jednat se soudními exekutory v regionu, jak zajistit souhlas s prodejem a jak maximalizovat čistý výnos pro klienta. Koordinujeme s ${m.cadastralOffice} i s příslušnými soudy.`,
 
     marketStats: `${m.locative.charAt(0).toUpperCase() + m.locative.slice(1)} evidujeme průměrně ${Math.round(m.yearlyDeals * 0.04).toLocaleString("cs-CZ")} exekučních případů s nemovitostmi ročně. Průměrná doba řešení exekučního prodeje standardní cestou přesahuje ${m.avgSellTimeDays + 60} dní. Naším výkupem celý proces zkrátíme na 14–30 dnů. Ceny nemovitostí ${m.locative} rostou o ${m.priceTrend} ročně, proto je rychlost prodeje klíčová.`,
 
     faq: [
       {
         question: `Jak probíhá výkup nemovitosti v exekuci ${m.locative}?`,
-        answer: `Nejprve prověříme výši dluhů a stav nemovitosti ${m.locative}. Poté vyjednáme s exekutorem souhlas s prodejem mimo dražbu. Z kupní ceny splatíme dluh a zbytek vyplatíme vám. ${m.locative.charAt(0).toUpperCase() + m.locative.slice(1)} máme s tímto procesem bohaté zkušenosti.`,
+        answer: `Nejprve prověříme výši dluhů a stav nemovitosti ${m.locative}. Poté vyjednáme s exekutorem souhlas s prodejem mimo dražbu. Z kupní ceny splatíme dluh a zbytek vyplatíme vám. ${m.locative.charAt(0).toUpperCase() + m.locative.slice(1)} postupujeme dle zákonných postupů a koordinujeme s místními úřady.`,
       },
       {
         question: `Kolik dostanu za nemovitost v exekuci ${m.locative}?`,
@@ -582,7 +582,7 @@ function vykupSHypotekou(regionKey: string): GeoUseCaseContent {
 
     priceContext: `Při výkupu nemovitosti s hypotékou ${m.locative} vycházíme z aktuálních tržních cen. Průměrná cena bytu je ${formatPricePerM2(p.bytM2)}, domu ${formatPricePerM2(p.dumM2)}. Pokud máte byt 2+kk (55 m²) ${m.locative} s tržní hodnotou ${estimateValue(p.bytM2, 55)} a zbývající hypotékou 1,5 mil. Kč, po výkupu a splacení hypotéky obdržíte přibližně ${estimateValue(p.bytM2 * 0.85, 55).replace("mil. Kč", "")} mil. minus 1,5 mil. = čistý výnos.`,
 
-    localContext: `${m.locative.charAt(0).toUpperCase() + m.locative.slice(1)} spolupracujeme s pobočkami všech velkých bank — Česká spořitelna, ČSOB, Komerční banka a dalšími. Koordinujeme výmaz zástavního práva přes ${m.cadastralOffice}. V ${m.districts[0]} a okolí řešíme desítky hypotečních případů ročně a známe postupy jednotlivých bank v regionu.`,
+    localContext: `${m.locative.charAt(0).toUpperCase() + m.locative.slice(1)} spolupracujeme s pobočkami všech velkých bank — Česká spořitelna, ČSOB, Komerční banka a dalšími. Koordinujeme výmaz zástavního práva přes ${m.cadastralOffice}. V ${m.districts[0]} a okolí pomáháme s výkupem nemovitostí zatížených hypotékou — známe postupy jednotlivých bank v regionu.`,
 
     marketStats: `Přibližně ${Math.round(m.yearlyDeals * 0.3).toLocaleString("cs-CZ")} nemovitostí ${m.locative} je zatíženo hypotékou. Standardní prodej nemovitosti s hypotékou trvá ${m.avgSellTimeDays + 15} dní — naším výkupem to zkrátíme na 21–35 dnů (závisí na rychlosti banky). Ceny ${m.locative} rostou o ${m.priceTrend} ročně, takže hodnota vaší nemovitosti pravděpodobně převyšuje zůstatek hypotéky.`,
 
@@ -636,7 +636,7 @@ function vykupPriPrivatizaci(regionKey: string): GeoUseCaseContent {
 
     localContext: `V ${m.districts[0]} a okolí vykupujeme privatizované byty z obecního i družstevního fondu. ${m.locative.charAt(0).toUpperCase() + m.locative.slice(1)} se privatizace týkala zejména panelových sídlišť. Spolupracujeme s ${m.cadastralOffice} a prověříme všechna omezení z původní privatizační smlouvy. Řešíme i případy, kdy privatizace proběhla s podmínkami (zákaz prodeje po určitou dobu).`,
 
-    marketStats: `${m.locative.charAt(0).toUpperCase() + m.locative.slice(1)} bylo privatizováno tisíce bytů, z nichž mnohé jsou nyní na prodej. Průměrná doba prodeje bytu ${m.locative} je ${m.avgSellTimeDays} dní — naším výkupem to zkrátíme na 7–14 dnů. Ceny bytů ${m.locative} meziročně rostou o ${m.priceTrend}, takže hodnota privatizovaného bytu se stále zvyšuje.`,
+    marketStats: `Privatizace obecních a družstevních bytů ${m.locative} probíhala především v 90. letech a 2000. letech a vytvořila významnou skupinu vlastníků, kteří dnes řeší prodej. Průměrná doba prodeje bytu ${m.locative} je ${m.avgSellTimeDays} dní — naším výkupem to zkrátíme na 7–14 dnů. Ceny bytů ${m.locative} meziročně rostou o ${m.priceTrend}, takže hodnota privatizovaného bytu se stále zvyšuje.`,
 
     faq: [
       {

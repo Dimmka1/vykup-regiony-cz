@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Script from "next/script";
 
@@ -18,12 +18,29 @@ declare global {
   }
 }
 
-/** Fires Meta Pixel Lead + Google Ads conversion on /dekujeme */
-function useConversionEvents(): void {
+function readConsent(): { analytics: boolean; marketing: boolean } {
+  try {
+    const match = document.cookie.match(/(?:^|;\s*)cookie_consent=([^;]*)/);
+    if (!match) return { analytics: false, marketing: false };
+    const parsed = JSON.parse(decodeURIComponent(match[1])) as {
+      analytics?: boolean;
+      marketing?: boolean;
+    };
+    return {
+      analytics: Boolean(parsed.analytics),
+      marketing: Boolean(parsed.marketing),
+    };
+  } catch {
+    return { analytics: false, marketing: false };
+  }
+}
+
+/** Fires Meta Pixel Lead + Google Ads conversion on /dekujeme (only if marketing consent given) */
+function useConversionEvents(marketingAllowed: boolean): void {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (pathname !== "/dekujeme") return;
+    if (pathname !== "/dekujeme" || !marketingAllowed) return;
 
     if (META_PIXEL_ID && window.fbq) {
       window.fbq("track", "Lead");
@@ -34,11 +51,23 @@ function useConversionEvents(): void {
         send_to: `${GOOGLE_ADS_ID}/${GOOGLE_ADS_CONVERSION_LABEL}`,
       });
     }
-  }, [pathname]);
+  }, [pathname, marketingAllowed]);
 }
 
 export function TrackingPixels(): React.ReactElement | null {
-  useConversionEvents();
+  const [marketingAllowed, setMarketingAllowed] = useState(false);
+
+  useEffect(() => {
+    setMarketingAllowed(readConsent().marketing);
+    const onConsent = () => setMarketingAllowed(readConsent().marketing);
+    window.addEventListener("cookie-consent-changed", onConsent);
+    return () =>
+      window.removeEventListener("cookie-consent-changed", onConsent);
+  }, []);
+
+  useConversionEvents(marketingAllowed);
+
+  if (!marketingAllowed) return null;
 
   return (
     <>

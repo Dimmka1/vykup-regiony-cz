@@ -515,8 +515,8 @@ export default function VykupPriPrivatizaciPage(): React.ReactElement {
             </div>
           </div>
           <p className="mt-6 text-slate-600">
-            Stovky klientů úspěšně prodali svou nemovitost prostřednictvím
-            našeho výkupu.
+            Specializujeme se na výkup privatizovaných bytů — postaráme se o
+            všechny právní formality i komunikaci s katastrem.
           </p>
         </div>
       </section>

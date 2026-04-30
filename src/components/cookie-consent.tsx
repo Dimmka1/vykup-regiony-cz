@@ -112,6 +112,7 @@ export function CookieConsent() {
         loadGTM();
         loadGA4();
       }
+      window.dispatchEvent(new CustomEvent("cookie-consent-changed"));
       setVisible(false);
     },
     [],

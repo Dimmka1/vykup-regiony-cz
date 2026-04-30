@@ -174,10 +174,10 @@ export default function ONasPage(): React.ReactElement {
                   Zakladatel &amp; jednatel
                 </p>
                 <p className="mt-4 leading-relaxed text-slate-600">
-                  Za naší službou stojí tým zkušených odborníků na nemovitosti,
-                  právo a&nbsp;finance. Každý člen týmu přináší letité
-                  zkušenosti z&nbsp;oboru a&nbsp;osobní přístup ke každému
-                  klientovi.
+                  Za naší službou stojí tým odborníků na nemovitosti, právo
+                  a&nbsp;finance se zkušenostmi z&nbsp;bankovního
+                  a&nbsp;realitního sektoru. Ke každému klientovi přistupujeme
+                  individuálně a&nbsp;s&nbsp;maximální péčí.
                 </p>
                 <p className="mt-3 text-sm text-slate-500">
                   Spojuje nás společný cíl&nbsp;— pomáhat lidem vyřešit složité

@@ -107,6 +107,7 @@ function DoorCard({
             href="#kontakt"
             className="inline-flex items-center gap-1 text-sm font-medium text-[var(--theme-400)] transition hover:text-[var(--theme-300)]"
             onClick={(e) => e.stopPropagation()}
+            aria-label={`Přejít na poptávku — ${situation.label}`}
           >
             Řešit situaci →
           </a>
@@ -144,9 +145,12 @@ function DoorCard({
                 ) : null;
               })()}
             </span>
-            <h3 className="mt-4 text-center text-lg font-bold text-white">
+            <p
+              className="mt-4 text-center text-lg font-bold text-white"
+              aria-hidden="true"
+            >
               {situation.label}
-            </h3>
+            </p>
             <p className="mt-2 text-xs text-slate-400">Klikněte pro detail</p>
 
             {/* Door knob */}

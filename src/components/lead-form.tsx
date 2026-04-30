@@ -64,6 +64,7 @@ interface FormDataState {
   postalCode: string;
   city: string;
   consent: boolean;
+  smsOptIn: boolean;
   website: string;
 }
 
@@ -93,6 +94,7 @@ const INITIAL_FORM: FormDataState = {
   postalCode: "",
   city: "",
   consent: false,
+  smsOptIn: false,
   website: "",
 };
 
@@ -102,6 +104,9 @@ function scrollToFirstError(errors: Record<string, string>): void {
   const el = document.getElementById(firstKey);
   if (el) {
     el.scrollIntoView({ behavior: "smooth", block: "center" });
+    if (el instanceof HTMLElement) {
+      requestAnimationFrame(() => el.focus());
+    }
   }
 }
 
@@ -249,6 +254,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
           postal_code: formData.postalCode,
           city: formData.city,
           consent_gdpr: formData.consent,
+          sms_opt_in: formData.smsOptIn,
           email: formData.email,
           website: formData.website,
         }),
@@ -405,6 +411,10 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
               placeholder="Např. Revoluční 12"
               autoComplete="street-address"
               enterKeyHint="next"
+              aria-invalid={Boolean(fieldErrors["address"])}
+              aria-describedby={
+                fieldErrors["address"] ? "address-error" : undefined
+              }
               value={formData.address}
               onChange={(event) => {
                 setFormData((prev) => ({
@@ -422,7 +432,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
               required
             />
             {fieldErrors["address"] ? (
-              <p className="mt-1 text-xs text-red-600">
+              <p id="address-error" className="mt-1 text-xs text-red-600">
                 {fieldErrors["address"]}
               </p>
             ) : null}
@@ -439,6 +449,10 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
                 placeholder="Např. Brno"
                 autoComplete="address-level2"
                 enterKeyHint="next"
+                aria-invalid={Boolean(fieldErrors["city"])}
+                aria-describedby={
+                  fieldErrors["city"] ? "city-error" : undefined
+                }
                 value={formData.city}
                 onChange={(event) => {
                   setFormData((prev) => ({
@@ -456,7 +470,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
                 required
               />
               {fieldErrors["city"] ? (
-                <p className="mt-1 text-xs text-red-600">
+                <p id="city-error" className="mt-1 text-xs text-red-600">
                   {fieldErrors["city"]}
                 </p>
               ) : null}
@@ -474,8 +488,14 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
                 autoComplete="postal-code"
                 enterKeyHint="next"
                 maxLength={6}
-                aria-invalid={!isPostalCodeValid}
-                aria-describedby="psc-hint"
+                aria-invalid={
+                  formData.postalCode.trim().length > 0 && !isPostalCodeValid
+                }
+                aria-describedby={
+                  fieldErrors["postal-code"]
+                    ? "postal-code-error psc-hint"
+                    : "psc-hint"
+                }
                 value={formData.postalCode}
                 onChange={(event) => {
                   setFormData((prev) => ({
@@ -499,7 +519,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
                 Formát: 123 45
               </p>
               {fieldErrors["postal-code"] ? (
-                <p className="mt-1 text-xs text-red-600">
+                <p id="postal-code-error" className="mt-1 text-xs text-red-600">
                   {fieldErrors["postal-code"]}
                 </p>
               ) : null}
@@ -521,6 +541,10 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
               value={formData.name}
               autoComplete="name"
               enterKeyHint="next"
+              aria-invalid={Boolean(fieldErrors["lead-name"])}
+              aria-describedby={
+                fieldErrors["lead-name"] ? "lead-name-error" : undefined
+              }
               onChange={(event) => {
                 setFormData((prev) => ({ ...prev, name: event.target.value }));
                 if (fieldErrors["lead-name"]) {
@@ -534,7 +558,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
               required
             />
             {fieldErrors["lead-name"] ? (
-              <p className="mt-1 text-xs text-red-600">
+              <p id="lead-name-error" className="mt-1 text-xs text-red-600">
                 {fieldErrors["lead-name"]}
               </p>
             ) : null}
@@ -551,6 +575,10 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
               inputMode="tel"
               autoComplete="tel"
               enterKeyHint="send"
+              aria-invalid={Boolean(fieldErrors["lead-phone"])}
+              aria-describedby={
+                fieldErrors["lead-phone"] ? "lead-phone-error" : undefined
+              }
               value={formData.phone}
               onChange={(event) => {
                 setFormData((prev) => ({
@@ -568,7 +596,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
               required
             />
             {fieldErrors["lead-phone"] ? (
-              <p className="mt-1 text-xs text-red-600">
+              <p id="lead-phone-error" className="mt-1 text-xs text-red-600">
                 {fieldErrors["lead-phone"]}
               </p>
             ) : null}
@@ -576,7 +604,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
 
           <div>
             <label htmlFor="lead-email" className="text-sm">
-              E-mail <span className="text-slate-400">(nepovinné)</span>
+              E-mail <span className="text-slate-500">(nepovinné)</span>
             </label>
             <input
               id="lead-email"
@@ -608,11 +636,17 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
             />
           </div>
 
-          <label className="flex items-start gap-2 text-sm">
+          <div className="flex items-start gap-2 text-sm">
             <input
+              id="lead-consent"
               className="mt-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]"
               type="checkbox"
               checked={formData.consent}
+              required
+              aria-invalid={Boolean(fieldErrors["consent"])}
+              aria-describedby={
+                fieldErrors["consent"] ? "lead-consent-error" : undefined
+              }
               onChange={(event) => {
                 setFormData((prev) => ({
                   ...prev,
@@ -627,11 +661,35 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
                 }
               }}
             />
-            Souhlasím se zpracováním osobních údajů pro účely zpětného kontaktu.
-          </label>
+            <label htmlFor="lead-consent" className="cursor-pointer">
+              Souhlasím se zpracováním osobních údajů pro účely zpětného
+              kontaktu.
+            </label>
+          </div>
           {fieldErrors["consent"] ? (
-            <p className="text-xs text-red-600">{fieldErrors["consent"]}</p>
+            <p id="lead-consent-error" className="text-xs text-red-600">
+              {fieldErrors["consent"]}
+            </p>
           ) : null}
+
+          <div className="flex items-start gap-2 text-sm">
+            <input
+              id="lead-sms-opt-in"
+              className="mt-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]"
+              type="checkbox"
+              checked={formData.smsOptIn}
+              onChange={(event) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  smsOptIn: event.target.checked,
+                }))
+              }
+            />
+            <label htmlFor="lead-sms-opt-in" className="cursor-pointer">
+              Souhlasím s potvrzením poptávky SMS zprávou{" "}
+              <span className="text-slate-500">(nepovinné)</span>
+            </label>
+          </div>
         </fieldset>
       ) : null}
 

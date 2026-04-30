@@ -2,6 +2,7 @@ import { LeadMagnetCta } from "@/components/lead-magnet-cta";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { safeJsonLd } from "@/lib/jsonld";
 import { BLOG_POSTS } from "./data";
 
 export const metadata: Metadata = {
@@ -34,7 +35,7 @@ function BlogJsonLd(): React.ReactElement {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
     />
   );
 }

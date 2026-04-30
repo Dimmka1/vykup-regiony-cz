@@ -10,7 +10,10 @@ import { AllRegionsSection } from "@/components/all-regions-section";
 import { GeoRelatedPages } from "@/components/geo-related-pages";
 import { GeoRegionContent } from "@/components/geo-region-content";
 import { getRequestHost } from "@/lib/request-host";
-import { buildGeoCanonicalUrl } from "@/lib/geo-canonical";
+import {
+  buildGeoCanonicalUrl,
+  buildGeoMetadataRobots,
+} from "@/lib/geo-canonical";
 import {
   resolveGeoRegion,
   injectRegionIntoTitle,
@@ -28,6 +31,8 @@ export async function generateMetadata({
   const canonicalUrl = buildGeoCanonicalUrl("/vykup-pri-exekuci", params);
   const region = resolveGeoRegion(params);
 
+  const robots = buildGeoMetadataRobots(params);
+
   return {
     alternates: { canonical: canonicalUrl },
     openGraph: { url: canonicalUrl },
@@ -43,6 +48,7 @@ export async function generateMetadata({
           region.locative,
         )
       : "Prodejte nemovitost zatíženou exekucí rychle a diskrétně. Vyřešíme dluhy, uhradíme exekuci z kupní ceny a vyplatíme vás do 7 dnů. Bez provize.",
+    ...(robots && { robots }),
   };
 }
 
@@ -138,7 +144,6 @@ export default async function VykupPriExekuciPage({
           <div className="mb-6">
             <Breadcrumbs
               items={[
-                { label: "Služby", href: "/#sluzby" },
                 { label: "Výkup při exekuci", href: "/vykup-pri-exekuci" },
               ]}
             />

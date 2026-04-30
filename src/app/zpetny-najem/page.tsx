@@ -9,7 +9,10 @@ import { getRelatedArticles } from "@/lib/related-articles";
 import { AllRegionsSection } from "@/components/all-regions-section";
 import { GeoRelatedPages } from "@/components/geo-related-pages";
 import { getRequestHost } from "@/lib/request-host";
-import { buildGeoCanonicalUrl } from "@/lib/geo-canonical";
+import {
+  buildGeoCanonicalUrl,
+  buildGeoMetadataRobots,
+} from "@/lib/geo-canonical";
 import {
   resolveGeoRegion,
   injectRegionIntoTitle,
@@ -26,6 +29,7 @@ export async function generateMetadata({
   const params = await searchParams;
   const canonicalUrl = buildGeoCanonicalUrl("/zpetny-najem", params);
   const region = resolveGeoRegion(params);
+  const robots = buildGeoMetadataRobots(params);
 
   return {
     alternates: { canonical: canonicalUrl },
@@ -42,6 +46,7 @@ export async function generateMetadata({
           region.locative,
         )
       : "Prodejte nemovitost a zůstaňte v ní bydlet díky zpětnému nájmu. Získejte peníze ihned a bydlete dál bez starostí. Férové podmínky, rychlé vyřízení.",
+    ...(robots && { robots }),
   };
 }
 
@@ -199,10 +204,7 @@ export default async function ZpetnyNajemPage({
         <div className="mx-auto max-w-3xl px-4">
           <div className="mb-6">
             <Breadcrumbs
-              items={[
-                { label: "Služby", href: "/#sluzby" },
-                { label: "Zpětný nájem", href: "/zpetny-najem" },
-              ]}
+              items={[{ label: "Zpětný nájem", href: "/zpetny-najem" }]}
             />
           </div>
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">

@@ -16,7 +16,10 @@ import { AllRegionsSection } from "@/components/all-regions-section";
 import { GeoRelatedPages } from "@/components/geo-related-pages";
 import { GeoRegionContent } from "@/components/geo-region-content";
 import { getRequestHost } from "@/lib/request-host";
-import { buildGeoCanonicalUrl } from "@/lib/geo-canonical";
+import {
+  buildGeoCanonicalUrl,
+  buildGeoMetadataRobots,
+} from "@/lib/geo-canonical";
 import {
   resolveGeoRegion,
   injectRegionIntoTitle,
@@ -33,6 +36,7 @@ export async function generateMetadata({
   const params = await searchParams;
   const canonicalUrl = buildGeoCanonicalUrl("/vykup-pri-dedictvi", params);
   const region = resolveGeoRegion(params);
+  const robots = buildGeoMetadataRobots(params);
 
   return {
     alternates: { canonical: canonicalUrl },
@@ -49,6 +53,7 @@ export async function generateMetadata({
           region.locative,
         )
       : "Zdědili jste nemovitost a chcete ji rychle prodat? Vykoupíme zděděný byt nebo dům za férovou cenu. Vyřešíme i spoluvlastnictví a dědické spory.",
+    ...(robots && { robots }),
   };
 }
 
@@ -147,7 +152,6 @@ export default async function VykupPriDedictviPage({
           <div className="mb-6">
             <Breadcrumbs
               items={[
-                { label: "Služby", href: "/#sluzby" },
                 { label: "Výkup při dědictví", href: "/vykup-pri-dedictvi" },
               ]}
             />

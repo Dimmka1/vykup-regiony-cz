@@ -9,6 +9,7 @@ import {
   ShieldCheck,
   TrendingUp,
 } from "lucide-react";
+import { formatCzk, parseInputValue } from "@/lib/format";
 
 interface ComparisonRow {
   label: string;
@@ -52,20 +53,6 @@ const COMPARISON_ROWS: ComparisonRow[] = [
 
 const REALITKA_COMMISSION_MIN = 0.03;
 const REALITKA_COMMISSION_MAX = 0.05;
-
-function formatCzk(value: number): string {
-  return new Intl.NumberFormat("cs-CZ", {
-    style: "currency",
-    currency: "CZK",
-    maximumFractionDigits: 0,
-  }).format(value);
-}
-
-function parseInputValue(raw: string): number {
-  const cleaned = raw.replace(/\s/g, "").replace(/,/g, ".");
-  const parsed = Number(cleaned);
-  return Number.isFinite(parsed) && parsed >= 0 ? parsed : 0;
-}
 
 export function ComparisonCalculator(): ReactElement {
   const [rawValue, setRawValue] = useState("");

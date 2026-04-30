@@ -2,6 +2,13 @@
 
 import { useEffect, useState, type ReactElement, type ReactNode } from "react";
 
+const DELAY_CLASSES = {
+  1: "hero-stagger--delay-1",
+  2: "hero-stagger--delay-2",
+  3: "hero-stagger--delay-3",
+  4: "hero-stagger--delay-4",
+} as const;
+
 interface HeroStaggerProps {
   children: ReactNode;
   delay: 1 | 2 | 3 | 4;
@@ -31,7 +38,7 @@ export function HeroStagger({
 
   return (
     <Tag
-      className={`hero-stagger hero-stagger--delay-${delay} ${visible ? "hero-stagger--visible" : ""} ${className}`}
+      className={`hero-stagger ${DELAY_CLASSES[delay]} ${visible ? "hero-stagger--visible" : ""} ${className}`}
     >
       {children}
     </Tag>

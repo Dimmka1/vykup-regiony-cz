@@ -7,13 +7,29 @@
  *   NEXT_PUBLIC_PRICING_VARIANT  – A/B variant: "zaloha" | "percent" | "combo", default "combo"
  */
 
-export const MAX_ZALOHA = process.env.NEXT_PUBLIC_MAX_ZALOHA || "500 000";
-export const PRICE_PERCENT = process.env.NEXT_PUBLIC_PRICE_PERCENT || "90";
+export const MAX_ZALOHA = process.env.NEXT_PUBLIC_MAX_ZALOHA ?? "500 000";
+export const PRICE_PERCENT = process.env.NEXT_PUBLIC_PRICE_PERCENT ?? "90";
 
 export type PricingVariant = "zaloha" | "percent" | "combo";
 
-export const DEFAULT_PRICING_VARIANT: PricingVariant =
-  (process.env.NEXT_PUBLIC_PRICING_VARIANT as PricingVariant) || "combo";
+const VALID_VARIANTS: readonly PricingVariant[] = [
+  "zaloha",
+  "percent",
+  "combo",
+];
+
+function isValidVariant(value: unknown): value is PricingVariant {
+  return (
+    typeof value === "string" &&
+    VALID_VARIANTS.includes(value as PricingVariant)
+  );
+}
+
+export const DEFAULT_PRICING_VARIANT: PricingVariant = isValidVariant(
+  process.env.NEXT_PUBLIC_PRICING_VARIANT,
+)
+  ? process.env.NEXT_PUBLIC_PRICING_VARIANT
+  : "combo";
 
 /** Cookie name for per-user A/B override */
 export const PRICING_COOKIE = "vn_pricing";
@@ -44,7 +60,6 @@ export function getHeroPriceBadge(variant: PricingVariant): string {
     case "percent":
       return `Výkupní cena až ${PRICE_PERCENT} % tržní hodnoty`;
     case "combo":
-    default:
       return `Až ${PRICE_PERCENT} % tržní ceny · záloha ${MAX_ZALOHA} Kč ihned`;
   }
 }
@@ -56,7 +71,6 @@ export function getZalohaLine(variant: PricingVariant): string {
     case "percent":
       return `Až ${PRICE_PERCENT} % tržní ceny`;
     case "combo":
-    default:
       return `Až ${PRICE_PERCENT} % tržní ceny · záloha ${MAX_ZALOHA} Kč`;
   }
 }

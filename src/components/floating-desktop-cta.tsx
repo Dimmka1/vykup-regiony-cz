@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { trackEvent } from "@/lib/analytics";
 
 export function FloatingDesktopCta() {
   const [visible, setVisible] = useState(false);
@@ -35,10 +36,10 @@ export function FloatingDesktopCta() {
   if (!visible) return null;
 
   return (
-    <a
-      href="#kontakt"
-      onClick={(e) => {
-        e.preventDefault();
+    <button
+      type="button"
+      onClick={() => {
+        trackEvent("floating_cta_click");
         document
           .getElementById("kontakt")
           ?.scrollIntoView({ behavior: "smooth" });
@@ -47,6 +48,6 @@ export function FloatingDesktopCta() {
       aria-label="Přejít na formulář kontaktu a získat nezávaznou nabídku"
     >
       Nezávazná poptávka →
-    </a>
+    </button>
   );
 }

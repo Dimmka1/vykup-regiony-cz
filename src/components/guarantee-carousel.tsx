@@ -134,19 +134,24 @@ export function GuaranteeCarousel() {
         </svg>
       </button>
 
-      <div className="mt-6 flex justify-center gap-2">
-        {guarantees.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => goTo(i)}
-            className={`h-2.5 w-2.5 rounded-full transition-colors duration-300 ${
-              i === current
-                ? "bg-[var(--theme-500)]"
-                : "bg-slate-300 hover:bg-slate-400"
-            }`}
-            aria-label={`Garance ${i + 1}`}
-          />
-        ))}
+      <div className="mt-6 flex flex-col items-center gap-3">
+        <div className="flex justify-center gap-2">
+          {guarantees.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => goTo(i)}
+              className={`h-2.5 w-2.5 rounded-full transition-colors duration-300 ${
+                i === current
+                  ? "bg-[var(--theme-500)]"
+                  : "bg-slate-300 hover:bg-slate-400"
+              }`}
+              aria-label={`Garance ${i + 1}`}
+            />
+          ))}
+        </div>
+        <p className="text-xs text-slate-400 md:hidden">
+          Přejeďte prstem pro další →
+        </p>
       </div>
     </div>
   );

@@ -201,7 +201,6 @@ export default function VykupPriPrivatizaciPage(): React.ReactElement {
           <div className="mb-6">
             <Breadcrumbs
               items={[
-                { label: "Služby", href: "/#sluzby" },
                 {
                   label: "Výkup při privatizaci",
                   href: "/vykup-pri-privatizaci",

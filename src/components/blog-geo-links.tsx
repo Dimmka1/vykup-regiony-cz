@@ -51,11 +51,6 @@ function buildGeoLinks(slug: string): GeoLink[] {
   const links: GeoLink[] = [];
   // For each use-case, pick top regions (limit to 5 total links)
   for (const useCasePath of useCases) {
-    const useCaseName = useCasePath
-      .replace("/", "")
-      .replace(/-/g, " ")
-      .replace(/^v/, "V");
-
     for (const region of TOP_REGIONS) {
       if (links.length >= 5) break;
       links.push({

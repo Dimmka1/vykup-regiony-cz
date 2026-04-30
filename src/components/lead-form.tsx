@@ -5,6 +5,12 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { trackEvent } from "@/lib/analytics";
 import type { AnalyticsEventName } from "@/lib/analytics";
+import {
+  CZ_PHONE_REGEX,
+  CZ_POSTAL_CODE_REGEX,
+  normalizePhone,
+  normalizePostalCode,
+} from "@/lib/validation";
 
 /* ── GTM form-step tracking (VR-129) ─────────────────────────── */
 
@@ -90,22 +96,6 @@ const INITIAL_FORM: FormDataState = {
   website: "",
 };
 
-const CZ_PHONE_REGEX = /^(\+420)?\s?\d{3}\s?\d{3}\s?\d{3}$/;
-const CZ_POSTAL_CODE_REGEX = /^\d{3}\s?\d{2}$/;
-
-function normalizePhone(rawPhone: string): string {
-  return rawPhone.replace(/[^\d+\s]/g, "").slice(0, 16);
-}
-
-function normalizePostalCode(rawPostalCode: string): string {
-  const digits = rawPostalCode.replace(/\D/g, "").slice(0, 5);
-  if (digits.length <= 3) {
-    return digits;
-  }
-
-  return `${digits.slice(0, 3)} ${digits.slice(3)}`;
-}
-
 function scrollToFirstError(errors: Record<string, string>): void {
   const firstKey = Object.keys(errors)[0];
   if (!firstKey) return;
@@ -174,12 +164,25 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
     return errors;
   }, [isNameValid, isPhoneValid, formData.consent]);
 
+  const focusFirstField = useCallback((step: FormStep): void => {
+    const fieldIds: Record<FormStep, string> = {
+      0: "property-type",
+      1: "address",
+      2: "lead-name",
+    };
+    requestAnimationFrame(() => {
+      const el = document.getElementById(fieldIds[step]);
+      el?.focus();
+    });
+  }, []);
+
   const handleNextStep = (): void => {
     if (currentStep === 0) {
       setCurrentStep(1);
       pushFormStepEvent(1, regionName);
       setErrorMessage("");
       setFieldErrors({});
+      focusFirstField(1);
       return;
     }
 
@@ -198,6 +201,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
       setCurrentStep(2);
       pushFormStepEvent(2, regionName);
       setErrorMessage("");
+      focusFirstField(2);
     }
   };
 
@@ -316,7 +320,10 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
         <p className="text-sm text-slate-600">
           {STEPS[currentStep].description}
         </p>
-        <ol className="grid grid-cols-3 gap-2" aria-label="Průběh formuláře">
+        <ol
+          className="grid grid-cols-3 gap-1.5 sm:gap-2"
+          aria-label="Průběh formuláře"
+        >
           {STEPS.map((step, index) => {
             const isActive = step.key === currentStep;
             const isCompleted = index < currentStep;
@@ -325,7 +332,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
               <li
                 key={step.title}
                 aria-current={isActive ? "step" : undefined}
-                className={`rounded-xl px-3 py-2.5 text-center text-xs font-semibold ${
+                className={`rounded-xl px-2 py-2 text-center text-[11px] font-semibold leading-tight sm:px-3 sm:py-2.5 sm:text-xs ${
                   isActive
                     ? "bg-[var(--theme-100)] text-[var(--theme-800)]"
                     : isCompleted
@@ -628,7 +635,7 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
         </fieldset>
       ) : null}
 
-      <div className="sticky bottom-3 z-10 -mx-2 flex flex-col-reverse gap-3 rounded-xl bg-white/95 px-2 py-2 backdrop-blur sm:static sm:mx-0 sm:flex-col sm:bg-transparent sm:px-0 sm:py-0">
+      <div className="sticky bottom-3 z-10 -mx-2 flex flex-col gap-3 rounded-xl bg-white/95 px-2 py-2 backdrop-blur sm:static sm:mx-0 sm:bg-transparent sm:px-0 sm:py-0">
         {currentStep < 2 ? (
           <button
             type="button"
@@ -647,24 +654,21 @@ export function LeadForm({ regionName }: LeadFormProps): ReactElement {
           </button>
         )}
 
-        <button
-          type="button"
-          onClick={handlePreviousStep}
-          disabled={currentStep === 0 || status === "submitting"}
-          className="inline-flex min-h-[52px] items-center justify-center rounded-xl border border-slate-300 px-6 py-3 text-base font-semibold text-slate-700 transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
-        >
-          Zpět
-        </button>
+        {currentStep > 0 && (
+          <button
+            type="button"
+            onClick={handlePreviousStep}
+            disabled={status === "submitting"}
+            className="inline-flex min-h-[52px] items-center justify-center rounded-xl border border-slate-300 px-6 py-3 text-base font-semibold text-slate-700 transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            Zpět
+          </button>
+        )}
       </div>
 
       {errorMessage ? (
         <p className="text-sm text-red-600" role="alert">
           {errorMessage}
-        </p>
-      ) : null}
-      {status === "success" ? (
-        <p className="text-sm text-[var(--theme-700)]" role="status">
-          Děkujeme, ozveme se vám co nejdříve.
         </p>
       ) : null}
     </form>

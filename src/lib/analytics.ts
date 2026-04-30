@@ -24,7 +24,9 @@ export type AnalyticsEventName =
   | "calculator_najem_used"
   | "calculator_estimate"
   | "calculator_lead"
-  | "sticky_cta_click";
+  | "sticky_cta_click"
+  | "floating_cta_click"
+  | "page_error";
 
 type Primitive = string | number | boolean;
 

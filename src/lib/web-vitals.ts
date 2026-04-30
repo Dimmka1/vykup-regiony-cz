@@ -30,7 +30,7 @@ function sendToDataLayer(metric: Metric): void {
     ),
   };
 
-  (dl as unknown as WebVitalPayload[]).push(payload);
+  (dl as unknown[]).push(payload);
 }
 
 export function registerWebVitals(): void {

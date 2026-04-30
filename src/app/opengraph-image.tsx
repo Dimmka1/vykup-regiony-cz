@@ -104,6 +104,8 @@ export default async function OgImage(): Promise<ImageResponse> {
           weight: 700,
         },
       ],
+      // Image endpoint — should not appear as a standalone search result.
+      headers: { "X-Robots-Tag": "noindex" },
     },
   );
 }

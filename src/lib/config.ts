@@ -18,6 +18,7 @@ const regionSchema = z.object({
   description: z.string().min(20),
   h1: z.string().min(10),
   heroCta: z.string().min(4),
+  heroImage: z.string().regex(/^\/images\/[a-z0-9-]+\.(jpg|png|webp)$/),
   phone: z.string().min(8),
   email: z.string().email(),
   primaryCity: z.string().min(2),
@@ -139,7 +140,7 @@ export function listRegions(): RegionConfig[] {
   return regionData.regions;
 }
 
-const PRODUCTION_DOMAIN = "vykoupim-nemovitost.cz";
+export const PRODUCTION_DOMAIN = "vykoupim-nemovitost.cz";
 
 /** All region keys as a Set for fast lookup */
 export const REGION_KEYS: Set<string> = new Set(
@@ -176,6 +177,7 @@ export function getNationalConfig(): RegionConfig {
       "Vykupujeme nemovitosti po celé České republice — byty, domy, pozemky i podíly. Nabídka do 24 hodin, peníze na účtu do 48 hodin. Bez provize, právní servis zdarma.",
     h1: "Vykoupíme vaši nemovitost po celé ČR",
     heroCta: "Získat nezávaznou nabídku do 24 h",
+    heroImage: "/images/hero-prague.jpg",
     primaryCity: "Česká republika",
     primaryCityLocative: "v celé ČR",
     seoTitle:

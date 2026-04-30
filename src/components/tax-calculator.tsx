@@ -2,20 +2,7 @@
 
 import { useState, type ReactElement } from "react";
 import { Calculator } from "lucide-react";
-
-function formatCzk(value: number): string {
-  return new Intl.NumberFormat("cs-CZ", {
-    style: "currency",
-    currency: "CZK",
-    maximumFractionDigits: 0,
-  }).format(value);
-}
-
-function parseInputValue(raw: string): number {
-  const cleaned = raw.replace(/\s/g, "").replace(/,/g, ".");
-  const parsed = Number(cleaned);
-  return Number.isFinite(parsed) && parsed >= 0 ? parsed : 0;
-}
+import { formatCzk, parseInputValue } from "@/lib/format";
 
 const TAX_RATE = 0.15;
 
@@ -68,7 +55,7 @@ export function TaxCalculator(): ReactElement {
               placeholder="např. 4 000 000"
               value={rawSellPrice}
               onChange={(e) => setRawSellPrice(e.target.value)}
-              className="block w-full rounded-xl border border-slate-300 px-4 py-3 pr-14 text-lg font-semibold text-slate-900 placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/30"
+              className="focus-visible:ring-[var(--theme-500)]/30 block w-full rounded-xl border border-slate-300 px-4 py-3 pr-14 text-lg font-semibold text-slate-900 placeholder:text-slate-400 focus-visible:border-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2"
             />
             <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-sm font-medium text-slate-400">
               Kč
@@ -91,7 +78,7 @@ export function TaxCalculator(): ReactElement {
               placeholder="např. 2 500 000"
               value={rawBuyPrice}
               onChange={(e) => setRawBuyPrice(e.target.value)}
-              className="block w-full rounded-xl border border-slate-300 px-4 py-3 pr-14 text-lg font-semibold text-slate-900 placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/30"
+              className="focus-visible:ring-[var(--theme-500)]/30 block w-full rounded-xl border border-slate-300 px-4 py-3 pr-14 text-lg font-semibold text-slate-900 placeholder:text-slate-400 focus-visible:border-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2"
             />
             <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-sm font-medium text-slate-400">
               Kč
@@ -113,7 +100,7 @@ export function TaxCalculator(): ReactElement {
             placeholder="např. 3"
             value={ownershipYears}
             onChange={(e) => setOwnershipYears(e.target.value)}
-            className="mt-1 block w-full rounded-xl border border-slate-300 px-4 py-3 text-lg font-semibold text-slate-900 placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/30"
+            className="focus-visible:ring-[var(--theme-500)]/30 mt-1 block w-full rounded-xl border border-slate-300 px-4 py-3 text-lg font-semibold text-slate-900 placeholder:text-slate-400 focus-visible:border-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2"
           />
         </div>
 
@@ -123,7 +110,7 @@ export function TaxCalculator(): ReactElement {
               type="checkbox"
               checked={acquiredBefore2021}
               onChange={(e) => setAcquiredBefore2021(e.target.checked)}
-              className="h-4 w-4 rounded border-slate-300 text-emerald-600 focus:ring-emerald-500"
+              className="h-4 w-4 rounded border-slate-300 text-[var(--theme-600)] focus-visible:ring-[var(--theme-500)]"
             />
             Nemovitost nabyta před rokem 2021
           </label>

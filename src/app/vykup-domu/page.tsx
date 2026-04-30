@@ -18,7 +18,10 @@ import { AllRegionsSection } from "@/components/all-regions-section";
 import { GeoRelatedPages } from "@/components/geo-related-pages";
 import { GeoRegionContent } from "@/components/geo-region-content";
 import { getRequestHost } from "@/lib/request-host";
-import { buildGeoCanonicalUrl } from "@/lib/geo-canonical";
+import {
+  buildGeoCanonicalUrl,
+  buildGeoMetadataRobots,
+} from "@/lib/geo-canonical";
 import {
   resolveGeoRegion,
   injectRegionIntoTitle,
@@ -35,6 +38,7 @@ export async function generateMetadata({
   const params = await searchParams;
   const canonicalUrl = buildGeoCanonicalUrl("/vykup-domu", params);
   const region = resolveGeoRegion(params);
+  const robots = buildGeoMetadataRobots(params);
 
   return {
     alternates: { canonical: canonicalUrl },
@@ -51,6 +55,7 @@ export async function generateMetadata({
           region.locative,
         )
       : "Vykoupíme váš rodinný dům rychle a bez provize. Staré domy, domy k rekonstrukci i se zástavou. Férová cena, vyplacení do 7 dnů. Celá ČR.",
+    ...(robots && { robots }),
   };
 }
 
@@ -194,10 +199,7 @@ export default async function VykupDomuPage({
         <div className="mx-auto max-w-3xl px-4">
           <div className="mb-6">
             <Breadcrumbs
-              items={[
-                { label: "Služby", href: "/#sluzby" },
-                { label: "Výkup domů", href: "/vykup-domu" },
-              ]}
+              items={[{ label: "Výkup domů", href: "/vykup-domu" }]}
             />
           </div>
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">

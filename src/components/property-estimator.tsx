@@ -9,6 +9,7 @@ import {
   ChevronLeft,
   Calculator,
 } from "lucide-react";
+import { formatCzk } from "@/lib/format";
 
 // --- Types ---
 
@@ -130,14 +131,6 @@ function calculatePrice(
   };
 }
 
-function formatCzk(value: number): string {
-  return new Intl.NumberFormat("cs-CZ", {
-    style: "currency",
-    currency: "CZK",
-    maximumFractionDigits: 0,
-  }).format(value);
-}
-
 // --- GTM helper ---
 
 function pushGtmEvent(
@@ -170,7 +163,7 @@ function StepIndicator({
         <div
           key={i}
           className={`h-2 rounded-full transition-all duration-300 ${
-            i <= current ? "bg-[var(--theme-50)]0 w-8" : "w-2 bg-slate-200"
+            i <= current ? "w-8 bg-[var(--theme-500)]" : "w-2 bg-slate-200"
           }`}
         />
       ))}

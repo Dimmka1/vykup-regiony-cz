@@ -16,7 +16,10 @@ import { AllRegionsSection } from "@/components/all-regions-section";
 import { GeoRelatedPages } from "@/components/geo-related-pages";
 import { GeoRegionContent } from "@/components/geo-region-content";
 import { getRequestHost } from "@/lib/request-host";
-import { buildGeoCanonicalUrl } from "@/lib/geo-canonical";
+import {
+  buildGeoCanonicalUrl,
+  buildGeoMetadataRobots,
+} from "@/lib/geo-canonical";
 import {
   resolveGeoRegion,
   injectRegionIntoTitle,
@@ -36,6 +39,7 @@ export async function generateMetadata({
     params,
   );
   const region = resolveGeoRegion(params);
+  const robots = buildGeoMetadataRobots(params);
 
   return {
     alternates: { canonical: canonicalUrl },
@@ -52,6 +56,7 @@ export async function generateMetadata({
           region.locative,
         )
       : "Vykoupíme nemovitost zatíženou hypotékou nebo zástavním právem. Vyřešíme komunikaci s bankou, splatíme úvěr z kupní ceny. Výplata do 7 dnů, bez provize.",
+    ...(robots && { robots }),
   };
 }
 
@@ -170,7 +175,6 @@ export default async function VykupNemovitostiSHypotekou({
           <div className="mb-6">
             <Breadcrumbs
               items={[
-                { label: "Služby", href: "/#sluzby" },
                 {
                   label: "Výkup s hypotékou",
                   href: "/vykup-nemovitosti-s-hypotekou",

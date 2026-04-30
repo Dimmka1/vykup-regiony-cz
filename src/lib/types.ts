@@ -12,6 +12,7 @@ export interface RegionConfig {
   description: string;
   h1: string;
   heroCta: string;
+  heroImage: string;
   phone: string;
   email: string;
   primaryCity: string;

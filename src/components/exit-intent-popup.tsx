@@ -4,10 +4,10 @@ import type { ReactElement } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { X } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
+import { CZ_PHONE_REGEX, normalizePhone } from "@/lib/validation";
 
 const LS_KEY_SHOWN = "exit_popup_shown";
 const LS_KEY_FORM_SUBMITTED = "form_submitted";
-const CZ_PHONE_REGEX = /^(\+?420|00420)?\s?\d{3}\s?\d{3}\s?\d{3}$/;
 const SCROLL_THRESHOLD = 0.6;
 function getRegionFromUrl(): string {
   if (typeof window === "undefined") return "cesko";
@@ -56,20 +56,24 @@ function markShown(): void {
   }
 }
 
-function normalizePhone(raw: string): string {
-  return raw.replace(/[^\d+\s]/g, "").slice(0, 16);
-}
-
 export function ExitIntentPopup(): ReactElement | null {
   const [visible, setVisible] = useState(false);
   const [phone, setPhone] = useState("");
+  const [phoneError, setPhoneError] = useState("");
   const [status, setStatus] = useState<
     "idle" | "submitting" | "success" | "error"
   >("idle");
   const triggeredRef = useRef(false);
+  const dialogRef = useRef<HTMLDivElement>(null);
 
   const show = useCallback(() => {
     if (triggeredRef.current || wasAlreadyShown() || wasFormSubmitted()) return;
+    // Don't show if cookie consent banner is still visible
+    try {
+      if (!document.cookie.includes("cookie_consent=")) return;
+    } catch {
+      /* noop */
+    }
     triggeredRef.current = true;
     markShown();
     setVisible(true);
@@ -100,12 +104,53 @@ export function ExitIntentPopup(): ReactElement | null {
     return () => window.removeEventListener("scroll", handler);
   }, [show]);
 
-  const handleClose = (): void => setVisible(false);
+  const handleClose = useCallback((): void => setVisible(false), []);
+
+  // Focus trap: keep focus within the dialog
+  useEffect(() => {
+    if (!visible) return;
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+
+    const focusableSelector =
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+    const focusFirst = () => {
+      const firstEl = dialog.querySelector<HTMLElement>(focusableSelector);
+      firstEl?.focus();
+    };
+    // Focus first element on open
+    focusFirst();
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        handleClose();
+        return;
+      }
+      if (e.key !== "Tab") return;
+      const focusable = dialog.querySelectorAll<HTMLElement>(focusableSelector);
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [visible, handleClose]);
 
   const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
-    if (!CZ_PHONE_REGEX.test(phone.trim())) return;
+    if (!CZ_PHONE_REGEX.test(phone.trim())) {
+      setPhoneError("Zadejte telefon ve formátu +420 777 123 456");
+      return;
+    }
 
+    setPhoneError("");
     setStatus("submitting");
     try {
       const res = await fetch("/api/leads", {
@@ -141,7 +186,10 @@ export function ExitIntentPopup(): ReactElement | null {
       aria-label="Nezávazná nabídka zdarma"
     >
       {/* Mobile: bottom sheet style; Desktop: centered card */}
-      <div className="relative w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl max-sm:fixed max-sm:inset-x-0 max-sm:bottom-0 max-sm:rounded-b-none sm:rounded-2xl">
+      <div
+        ref={dialogRef}
+        className="relative w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl max-sm:fixed max-sm:inset-x-0 max-sm:bottom-0 max-sm:rounded-b-none max-sm:pb-[max(1.5rem,env(safe-area-inset-bottom))] sm:rounded-2xl"
+      >
         <button
           type="button"
           onClick={handleClose}
@@ -180,9 +228,17 @@ export function ExitIntentPopup(): ReactElement | null {
                   placeholder="+420 777 123 456"
                   className="min-h-12 w-full rounded-lg border border-slate-300 px-4 py-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]"
                   value={phone}
-                  onChange={(e) => setPhone(normalizePhone(e.target.value))}
+                  onChange={(e) => {
+                    setPhone(normalizePhone(e.target.value));
+                    if (phoneError) setPhoneError("");
+                  }}
                   required
                 />
+                {phoneError && (
+                  <p className="mt-1 text-xs text-red-600" role="alert">
+                    {phoneError}
+                  </p>
+                )}
               </div>
 
               {status === "error" && (

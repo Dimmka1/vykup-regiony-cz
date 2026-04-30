@@ -16,7 +16,10 @@ import { AllRegionsSection } from "@/components/all-regions-section";
 import { GeoRelatedPages } from "@/components/geo-related-pages";
 import { GeoRegionContent } from "@/components/geo-region-content";
 import { getRequestHost } from "@/lib/request-host";
-import { buildGeoCanonicalUrl } from "@/lib/geo-canonical";
+import {
+  buildGeoCanonicalUrl,
+  buildGeoMetadataRobots,
+} from "@/lib/geo-canonical";
 import {
   resolveGeoRegion,
   injectRegionIntoTitle,
@@ -33,6 +36,7 @@ export async function generateMetadata({
   const params = await searchParams;
   const canonicalUrl = buildGeoCanonicalUrl("/vykup-pri-rozvodu", params);
   const region = resolveGeoRegion(params);
+  const robots = buildGeoMetadataRobots(params);
 
   return {
     alternates: { canonical: canonicalUrl },
@@ -49,6 +53,7 @@ export async function generateMetadata({
           region.locative,
         )
       : "Řešíte rozvod a potřebujete rychle prodat společnou nemovitost? Vykoupíme váš byt nebo dům za férovou cenu. Diskrétně a bez provize.",
+    ...(robots && { robots }),
   };
 }
 
@@ -145,7 +150,6 @@ export default async function VykupPriRozvoduPage({
           <div className="mb-6">
             <Breadcrumbs
               items={[
-                { label: "Služby", href: "/#sluzby" },
                 { label: "Výkup při rozvodu", href: "/vykup-pri-rozvodu" },
               ]}
             />

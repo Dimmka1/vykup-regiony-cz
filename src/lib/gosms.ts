@@ -9,26 +9,28 @@
  * API docs: https://doc.gosms.cz
  */
 
+import { z } from "zod";
+
 const GOSMS_BASE_URL = "https://app.gosms.cz";
 const OAUTH_PATH = "/oauth/v2/token";
 const SEND_PATH = "/api/v1/messages/";
 
-interface GoSmsTokenResponse {
-  access_token: string;
-  expires_in: number;
-  token_type: string;
-}
+const goSmsTokenSchema = z.object({
+  access_token: z.string(),
+  expires_in: z.number(),
+  token_type: z.string(),
+});
 
-interface GoSmsSendResponse {
-  link: string;
-}
+const goSmsSendSchema = z.object({
+  link: z.string(),
+});
 
-interface GoSmsErrorResponse {
-  error?: string;
-  error_description?: string;
-  title?: string;
-  detail?: string;
-}
+const goSmsErrorSchema = z.object({
+  error: z.string().optional(),
+  error_description: z.string().optional(),
+  title: z.string().optional(),
+  detail: z.string().optional(),
+});
 
 let cachedToken: { token: string; expiresAt: number } | null = null;
 
@@ -54,13 +56,14 @@ async function getAccessToken(
   });
 
   if (!res.ok) {
-    const body = (await res.json().catch(() => ({}))) as GoSmsErrorResponse;
+    const raw = await res.json().catch(() => ({}));
+    const body = goSmsErrorSchema.parse(raw);
     throw new Error(
       `[gosms] Auth failed (${res.status}): ${body.error_description ?? body.error ?? "unknown"}`,
     );
   }
 
-  const data = (await res.json()) as GoSmsTokenResponse;
+  const data = goSmsTokenSchema.parse(await res.json());
 
   cachedToken = {
     token: data.access_token,
@@ -73,7 +76,7 @@ async function getAccessToken(
 /**
  * Normalise a Czech phone number to +420XXXXXXXXX format.
  */
-function normalisePhone(phone: string): string {
+function normalizePhone(phone: string): string {
   const digits = phone.replace(/\s+/g, "").replace(/^00/, "+");
   if (digits.startsWith("+420")) return digits;
   if (/^\d{9}$/.test(digits)) return `+420${digits}`;
@@ -107,7 +110,7 @@ export async function sendSms(
 
   try {
     const token = await getAccessToken(clientId, clientSecret);
-    const recipient = normalisePhone(phone);
+    const recipient = normalizePhone(phone);
 
     const res = await fetch(`${GOSMS_BASE_URL}${SEND_PATH}`, {
       method: "POST",
@@ -123,7 +126,7 @@ export async function sendSms(
     });
 
     if (res.status === 201) {
-      const data = (await res.json()) as GoSmsSendResponse;
+      const data = goSmsSendSchema.parse(await res.json());
       console.log("[gosms] SMS sent to", recipient, "link:", data.link);
       return { ok: true, link: data.link };
     }
@@ -147,7 +150,7 @@ export async function sendSms(
       });
 
       if (retryRes.status === 201) {
-        const data = (await retryRes.json()) as GoSmsSendResponse;
+        const data = goSmsSendSchema.parse(await retryRes.json());
         console.log(
           "[gosms] SMS sent (retry) to",
           recipient,
@@ -157,15 +160,15 @@ export async function sendSms(
         return { ok: true, link: data.link };
       }
 
-      const body = (await retryRes
-        .json()
-        .catch(() => ({}))) as GoSmsErrorResponse;
+      const retryRaw = await retryRes.json().catch(() => ({}));
+      const body = goSmsErrorSchema.parse(retryRaw);
       const msg = body.detail ?? body.title ?? `HTTP ${retryRes.status}`;
       console.error("[gosms] SMS send failed after retry:", msg);
       return { ok: false, error: msg };
     }
 
-    const body = (await res.json().catch(() => ({}))) as GoSmsErrorResponse;
+    const errorRaw = await res.json().catch(() => ({}));
+    const body = goSmsErrorSchema.parse(errorRaw);
     const msg = body.detail ?? body.title ?? `HTTP ${res.status}`;
     console.error("[gosms] SMS send failed:", msg);
     return { ok: false, error: msg };

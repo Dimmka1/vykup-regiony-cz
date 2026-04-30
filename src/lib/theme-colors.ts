@@ -175,18 +175,6 @@ export const THEME_COLORS: Record<string, ThemeShades> = {
     800: "#1e293b",
     900: "#0f172a",
   },
-  fuchsia: {
-    50: "#fdf4ff",
-    100: "#fae8ff",
-    200: "#f5d0fe",
-    300: "#f0abfc",
-    400: "#e879f9",
-    500: "#d946ef",
-    600: "#c026d3",
-    700: "#a21caf",
-    800: "#86198f",
-    900: "#701a75",
-  },
 };
 
 export const DEFAULT_THEME_COLOR = "teal";

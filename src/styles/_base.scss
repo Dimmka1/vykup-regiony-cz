@@ -1,0 +1,86 @@
+// =============================================
+// Base / Reset Styles
+// =============================================
+
+@import "variables";
+
+:root {
+  color-scheme: light;
+  --theme-50: #f0fdfa;
+  --theme-100: #ccfbf1;
+  --theme-200: #99f6e4;
+  --theme-300: #5eead4;
+  --theme-400: #2dd4bf;
+  --theme-500: #14b8a6;
+  --theme-600: #0d9488;
+  --theme-700: #0f766e;
+  --theme-800: #115e59;
+  --theme-900: #134e4a;
+  --theme-rgb: 13, 148, 136;
+  --theme-rgb-50: 240, 253, 250;
+  --theme-rgb-100: 204, 251, 241;
+  --theme-rgb-200: 153, 246, 228;
+  --theme-rgb-300: 94, 234, 212;
+  --theme-rgb-400: 45, 212, 191;
+  --theme-rgb-500: 20, 184, 166;
+  --theme-rgb-600: 13, 148, 136;
+  --theme-rgb-700: 15, 118, 110;
+  --theme-rgb-800: 17, 94, 89;
+  --theme-rgb-900: 19, 78, 74;
+}
+
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+body {
+  @apply bg-white text-slate-900;
+  -webkit-tap-highlight-color: transparent;
+  text-size-adjust: 100%;
+  overflow-x: hidden;
+}
+
+// --- Form elements ---
+input,
+select,
+button,
+textarea {
+  font: inherit;
+  font-size: 16px;
+  touch-action: manipulation;
+  min-height: 48px;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  min-height: auto;
+  width: 20px;
+  height: 20px;
+}
+
+// --- Global focus-visible ring ---
+*:focus-visible {
+  outline: 2px solid var(--theme-600);
+  outline-offset: 2px;
+}
+
+// Elements with Tailwind focus-visible classes handle their own styles
+[class*="focus-visible:"]:focus-visible {
+  outline: none;
+}
+
+// --- Input transitions ---
+input:not([type="checkbox"]):not([type="radio"]),
+select,
+textarea {
+  transition:
+    border-color $duration-fast ease,
+    box-shadow $duration-fast ease;
+
+  &:focus {
+    border-color: var(--theme-500);
+    box-shadow: 0 0 0 3px rgba(var(--theme-rgb), 0.15);
+  }
+}

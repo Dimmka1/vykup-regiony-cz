@@ -1,5 +1,5 @@
 "use client";
-import { motion, useScroll } from "framer-motion";
+import { motion, useScroll } from "@/components/motion";
 
 export function ScrollProgress() {
   const { scrollYProgress } = useScroll();
@@ -9,7 +9,7 @@ export function ScrollProgress() {
       style={{
         scaleX: scrollYProgress,
         background:
-          "linear-gradient(90deg, var(--theme-500, #3b82f6), var(--theme-700, #1d4ed8))",
+          "linear-gradient(90deg, var(--theme-500, #0f766e), var(--theme-700, #115e59))",
       }}
     />
   );

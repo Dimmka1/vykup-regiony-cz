@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useCallback, useMemo, type ReactElement } from "react";
+import { formatCzk } from "@/lib/format";
+import { CZ_PHONE_REGEX } from "@/lib/validation";
 import {
   Home,
   Building2,
@@ -156,15 +158,6 @@ function calculatePrice(
   };
 }
 
-function formatCzk(value: number): string {
-  return new Intl.NumberFormat("cs-CZ", {
-    style: "currency",
-    currency: "CZK",
-    maximumFractionDigits: 0,
-  }).format(value);
-}
-
-const CZ_PHONE_REGEX = /^(\+420)?\s?\d{3}\s?\d{3}\s?\d{3}$/;
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 // --- Component ---

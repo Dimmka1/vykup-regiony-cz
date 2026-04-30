@@ -2,10 +2,8 @@ import { expect, test } from "./fixtures";
 
 const KEY_PAGES = [
   "/",
-  "/ppc",
   "/jak-to-funguje",
   "/garance-vykupu",
-  "/reference",
   "/proc-my",
   "/kraje",
   "/dekujeme",

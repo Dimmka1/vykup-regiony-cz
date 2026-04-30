@@ -14,3 +14,8 @@ const child = spawn(isWindows ? "next.cmd" : "next", ["build"], {
 });
 
 child.on("exit", (code) => process.exit(code ?? 0));
+
+child.on("error", (err) => {
+  process.stderr.write(`build.mjs: failed to spawn Next.js: ${err.message}\n`);
+  process.exit(1);
+});

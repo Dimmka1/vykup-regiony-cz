@@ -8,7 +8,11 @@ describe("BUILD_DATE", () => {
   });
 
   afterEach(() => {
-    process.env.BUILD_DATE = ORIGINAL_ENV;
+    if (ORIGINAL_ENV === undefined) {
+      delete process.env.BUILD_DATE;
+    } else {
+      process.env.BUILD_DATE = ORIGINAL_ENV;
+    }
   });
 
   it("uses process.env.BUILD_DATE when set", async () => {

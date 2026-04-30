@@ -194,9 +194,9 @@ export async function GET(): Promise<Response> {
       },
       {
         imageLoc: `${BASE_URL}/images/happy-family-home.jpg`,
-        title: "Spokojení klienti výkupu nemovitostí",
+        title: "Výkup nemovitostí po celé ČR",
         caption:
-          "Tisíce spokojených klientů po celé ČR — férový a rychlý výkup",
+          "Férový a rychlý výkup nemovitostí ve všech 14 krajích České republiky",
       },
     ],
   });

@@ -5,7 +5,12 @@ import { MapPin, Phone, ArrowRight, CheckCircle, Loader2 } from "lucide-react";
 import { resolveRegionByPsc, type PscLookupResult } from "@/lib/psc-regions";
 import { trackEvent } from "@/lib/analytics";
 import { formatCzk } from "@/lib/format";
-import { CZ_PHONE_REGEX } from "@/lib/validation";
+import {
+  CZ_PHONE_REGEX,
+  CZ_POSTAL_CODE_REGEX,
+  normalizePhone,
+  normalizePostalCode,
+} from "@/lib/validation";
 
 /** Average byt price per m² by region — used for quick range estimate */
 const REGION_AVG_PRICES: Record<string, number> = {
@@ -58,9 +63,13 @@ export function QuickEstimateForm({
   const handlePscSubmit = useCallback(
     (e: React.FormEvent) => {
       e.preventDefault();
+      if (!CZ_POSTAL_CODE_REGEX.test(psc.trim())) {
+        setPscError("Zadejte PSČ ve formátu 123 45");
+        return;
+      }
       const result = resolveRegionByPsc(psc);
       if (!result) {
-        setPscError("Zadejte platné PSČ (5 číslic)");
+        setPscError("PSČ se nepodařilo přiřadit k regionu");
         return;
       }
       setPscError("");
@@ -113,10 +122,14 @@ export function QuickEstimateForm({
 
   if (step === "success") {
     return (
-      <div className="flex items-center gap-3 rounded-2xl bg-white/10 px-5 py-4 backdrop-blur-sm">
+      <div
+        role="status"
+        aria-live="polite"
+        className="flex items-center gap-3 rounded-2xl bg-white/10 px-5 py-4 backdrop-blur-sm"
+      >
         <CheckCircle className="h-6 w-6 shrink-0 text-green-400" />
         <p className="text-sm font-semibold text-white">
-          Děkujeme! Zavoláme vám s přesnou nabídkou do 30 minut.
+          Děkujeme! Zavoláme vám zpět v pracovní době, obvykle do 30 minut.
         </p>
       </div>
     );
@@ -142,7 +155,10 @@ export function QuickEstimateForm({
           className="flex flex-col gap-2 sm:flex-row"
         >
           <div className="flex-1">
-            <label htmlFor="qe-phone" className="sr-only">
+            <label
+              htmlFor="qe-phone"
+              className="mb-1 block text-xs font-medium text-slate-300"
+            >
               Váš telefon
             </label>
             <input
@@ -152,16 +168,22 @@ export function QuickEstimateForm({
               autoComplete="tel"
               placeholder="+420 xxx xxx xxx"
               value={phone}
+              aria-invalid={Boolean(phoneError)}
+              aria-describedby={phoneError ? "qe-phone-error" : undefined}
               onChange={(e) => {
-                setPhone(e.target.value.replace(/[^\d+\s]/g, "").slice(0, 20));
+                setPhone(normalizePhone(e.target.value));
                 if (phoneError) setPhoneError("");
                 if (submitStatus === "error") setSubmitStatus("idle");
               }}
-              className="min-h-12 w-full rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-base text-white placeholder-slate-400 backdrop-blur-sm transition focus:border-[var(--theme-400)] focus:outline-none focus:ring-2 focus:ring-[var(--theme-500)]"
+              className="min-h-12 w-full rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-base text-white placeholder-slate-300 backdrop-blur-sm transition focus:border-[var(--theme-400)] focus:outline-none focus:ring-2 focus:ring-[var(--theme-500)]"
               required
             />
             {phoneError && (
-              <p className="mt-1 text-xs text-red-400" role="alert">
+              <p
+                id="qe-phone-error"
+                className="mt-1 text-xs text-red-300"
+                role="alert"
+              >
                 {phoneError}
               </p>
             )}
@@ -196,26 +218,38 @@ export function QuickEstimateForm({
         💰 Zjistěte orientační cenu za 30 sekund
       </p>
       <div className="flex flex-col gap-2 sm:flex-row">
-        <div className="relative flex-1">
-          <MapPin className="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
-          <label htmlFor="qe-psc" className="sr-only">
+        <div className="flex-1">
+          <label
+            htmlFor="qe-psc"
+            className="mb-1 block text-xs font-medium text-slate-300"
+          >
             PSČ vaší nemovitosti
           </label>
-          <input
-            id="qe-psc"
-            type="text"
-            inputMode="numeric"
-            placeholder="Zadejte PSČ (např. 150 00)"
-            value={psc}
-            onChange={(e) => {
-              setPsc(e.target.value.replace(/[^\d\s]/g, "").slice(0, 6));
-              if (pscError) setPscError("");
-            }}
-            className="min-h-12 w-full rounded-xl border border-white/20 bg-white/10 py-3 pl-10 pr-4 text-base text-white placeholder-slate-400 backdrop-blur-sm transition focus:border-[var(--theme-400)] focus:outline-none focus:ring-2 focus:ring-[var(--theme-500)]"
-            required
-          />
+          <div className="relative">
+            <MapPin className="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-300" />
+            <input
+              id="qe-psc"
+              type="text"
+              inputMode="numeric"
+              placeholder="např. 150 00"
+              maxLength={6}
+              value={psc}
+              aria-invalid={Boolean(pscError)}
+              aria-describedby={pscError ? "qe-psc-error" : undefined}
+              onChange={(e) => {
+                setPsc(normalizePostalCode(e.target.value));
+                if (pscError) setPscError("");
+              }}
+              className="min-h-12 w-full rounded-xl border border-white/20 bg-white/10 py-3 pl-10 pr-4 text-base text-white placeholder-slate-300 backdrop-blur-sm transition focus:border-[var(--theme-400)] focus:outline-none focus:ring-2 focus:ring-[var(--theme-500)]"
+              required
+            />
+          </div>
           {pscError && (
-            <p className="mt-1 text-xs text-red-400" role="alert">
+            <p
+              id="qe-psc-error"
+              className="mt-1 text-xs text-red-300"
+              role="alert"
+            >
               {pscError}
             </p>
           )}

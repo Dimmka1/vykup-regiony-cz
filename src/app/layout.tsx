@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.scss";
 import dynamic from "next/dynamic";
+import { cookies } from "next/headers";
 import { CookieConsent } from "@/components/cookie-consent";
 import { TrackingPixels } from "@/components/tracking-pixels";
 
@@ -22,6 +23,21 @@ import {
 } from "@/lib/config";
 import { getRequestHost, getRegionKeyOverride } from "@/lib/request-host";
 import { getThemeStyle } from "@/lib/theme-colors";
+
+async function hasTrackingConsent(): Promise<boolean> {
+  try {
+    const store = await cookies();
+    const raw = store.get("cookie_consent")?.value;
+    if (!raw) return false;
+    const parsed = JSON.parse(decodeURIComponent(raw)) as {
+      analytics?: boolean;
+      marketing?: boolean;
+    };
+    return Boolean(parsed.analytics || parsed.marketing);
+  } catch {
+    return false;
+  }
+}
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
@@ -62,6 +78,7 @@ export default async function RootLayout({
   }
   if (!region) region = getDefaultRegion();
   const themeStyle = getThemeStyle(region.themeColor);
+  const trackingAllowed = await hasTrackingConsent();
 
   return (
     <html lang="cs" className={inter.variable}>
@@ -71,7 +88,7 @@ export default async function RootLayout({
         style={themeStyle}
       >
         <ScrollProgress />
-        {process.env.NODE_ENV === "production" && (
+        {process.env.NODE_ENV === "production" && trackingAllowed && (
           <noscript>
             <iframe
               src="https://www.googletagmanager.com/ns.html?id=GTM-PSS7C6RD"

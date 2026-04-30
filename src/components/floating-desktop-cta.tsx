@@ -14,7 +14,7 @@ export function FloatingDesktopCta() {
       ? new IntersectionObserver(
           ([entry]) => {
             formInView = entry.isIntersecting;
-            setVisible(window.scrollY > 300 && !formInView);
+            setVisible(window.scrollY > 900 && !formInView);
           },
           { threshold: 0.1 },
         )
@@ -23,7 +23,7 @@ export function FloatingDesktopCta() {
     if (kontakt && observer) observer.observe(kontakt);
 
     const onScroll = () => {
-      setVisible(window.scrollY > 300 && !formInView);
+      setVisible(window.scrollY > 900 && !formInView);
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });

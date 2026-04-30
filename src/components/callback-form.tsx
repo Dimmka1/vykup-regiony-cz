@@ -69,9 +69,13 @@ export function CallbackForm({ regionName }: CallbackFormProps): ReactElement {
 
   if (status === "success") {
     return (
-      <div className="flex items-center gap-2 rounded-xl bg-[var(--theme-50)] px-4 py-3 text-sm font-medium text-[var(--theme-800)]">
+      <div
+        role="status"
+        aria-live="polite"
+        className="flex items-center gap-2 rounded-xl bg-[var(--theme-50)] px-4 py-3 text-sm font-medium text-[var(--theme-800)]"
+      >
         <Phone className="h-4 w-4 shrink-0" />
-        Děkujeme! Zavoláme vám zpět co nejdříve.
+        Děkujeme! Zavoláme vám zpět obvykle do 30 minut v pracovní době.
       </div>
     );
   }
@@ -98,8 +102,8 @@ export function CallbackForm({ regionName }: CallbackFormProps): ReactElement {
       <button
         type="button"
         onClick={() => setStatus("idle")}
-        className="absolute right-2 top-2 rounded-full p-1 text-slate-400 transition hover:bg-slate-100 hover:text-slate-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]"
-        aria-label="Zavřít formulář"
+        className="absolute right-2 top-2 inline-flex h-11 w-11 items-center justify-center rounded-full text-slate-400 transition hover:bg-slate-100 hover:text-slate-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)]"
+        aria-label="Zavřít formulář pro zpětné zavolání"
       >
         <X className="h-4 w-4" />
       </button>
@@ -117,17 +121,23 @@ export function CallbackForm({ regionName }: CallbackFormProps): ReactElement {
           autoComplete="tel"
           placeholder="+420 xxx xxx xxx"
           value={phone}
+          aria-invalid={Boolean(error)}
+          aria-describedby={error ? "callback-phone-error" : undefined}
           onChange={(e) => {
             setPhone(normalizePhone(e.target.value));
             if (error) setError("");
           }}
-          className={`input-focus-glow min-h-11 w-full rounded border px-3 py-2.5 text-base transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] ${
+          className={`input-focus-glow min-h-11 w-full rounded border bg-white px-3 py-2.5 text-base text-slate-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] ${
             error ? "border-red-500" : "border-slate-300"
           }`}
           required
         />
         {error ? (
-          <p className="mt-1 text-xs text-red-600" role="alert">
+          <p
+            id="callback-phone-error"
+            className="mt-1 text-xs text-red-600"
+            role="alert"
+          >
             {error}
           </p>
         ) : null}
@@ -135,11 +145,10 @@ export function CallbackForm({ regionName }: CallbackFormProps): ReactElement {
       <button
         type="submit"
         disabled={status === "submitting"}
-        aria-label="Odeslat žádost o zpětné zavolání"
         className="cta-glow btn-ripple inline-flex min-h-11 items-center justify-center gap-2 rounded bg-[var(--theme-600)] px-5 py-2.5 text-base font-semibold text-white transition hover:bg-[var(--theme-700)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 disabled:opacity-70"
       >
         <Phone className="h-4 w-4" />
-        {status === "submitting" ? "Odesílám..." : "Zavolejte mi"}
+        {status === "submitting" ? "Odesílám..." : "Odeslat"}
       </button>
     </form>
   );

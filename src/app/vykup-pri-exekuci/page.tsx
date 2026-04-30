@@ -200,7 +200,7 @@ export default async function VykupPriExekuciPage({
             <Clock className="h-4 w-4 text-emerald-500" /> Výplata do 7 dnů
           </span>
           <span className="flex items-center gap-2">
-            <Shield className="h-4 w-4 text-emerald-500" /> 100% diskrétní
+            <Shield className="h-4 w-4 text-emerald-500" /> Plně diskrétní
             jednání
           </span>
           <span className="flex items-center gap-2">

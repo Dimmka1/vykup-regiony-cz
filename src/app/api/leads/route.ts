@@ -1,5 +1,4 @@
 import "server-only";
-import { appendFileSync } from "node:fs";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { calculateLeadScore } from "@/lib/lead-scoring";
@@ -13,27 +12,30 @@ const LEAD_CONFIRMATION_SMS =
 
 const requestCounter = new Map<string, { count: number; start: number }>();
 
+const CZ_PHONE_PATTERN = /^(\+?420|00420)?\s?\d{3}\s?\d{3}\s?\d{3}$/;
+
 const leadSchema = z.object({
   name: z.string().min(2),
-  phone: z.string().regex(/^(\+?420|00420)?\s?\d{3}\s?\d{3}\s?\d{3}$/),
+  phone: z.string().regex(CZ_PHONE_PATTERN),
   property_type: z.string().min(2),
   region: z.string().min(2),
   situation_type: z.string().min(2),
   consent_gdpr: z.literal(true),
+  sms_opt_in: z.boolean().optional().default(false),
   email: z.string().email().optional().or(z.literal("")),
   website: z.string().optional(),
 });
 
 const callbackSchema = z.object({
   type: z.literal("callback"),
-  phone: z.string().regex(/^(\+?420|00420)?\s?\d{3}\s?\d{3}\s?\d{3}$/),
+  phone: z.string().regex(CZ_PHONE_PATTERN),
   source: z.string().min(1),
   region: z.string().min(2),
 });
 
 const quickEstimateSchema = z.object({
   type: z.literal("quick-estimate"),
-  phone: z.string().regex(/^(\+?420|00420)?\s?\d{3}\s?\d{3}\s?\d{3}$/),
+  phone: z.string().regex(CZ_PHONE_PATTERN),
   source: z.string().min(1),
   region: z.string().min(2),
   psc: z.string().optional(),
@@ -52,7 +54,7 @@ interface LeadNotificationPayload {
   lead_id: string;
   timestamp: string;
   ip: string;
-  data: Omit<LeadData, "website" | "consent_gdpr">;
+  data: Omit<LeadData, "website" | "consent_gdpr" | "sms_opt_in">;
 }
 
 async function sendLeadConfirmationSms(phone: string): Promise<void> {
@@ -324,19 +326,6 @@ async function sendCallbackTelegramNotification(
   }
 }
 
-function saveLeadToFile(
-  payload: LeadNotificationPayload | CallbackNotificationPayload,
-): void {
-  try {
-    appendFileSync("/tmp/leads-backup.json", JSON.stringify(payload) + "\n");
-  } catch (error: unknown) {
-    console.error("[lead-backup] File write failed:", {
-      lead_id: payload.lead_id,
-      error: error instanceof Error ? error.message : String(error),
-    });
-  }
-}
-
 function getClientIp(request: Request): string {
   const forwarded = request.headers.get("x-forwarded-for");
   if (forwarded) {
@@ -416,7 +405,6 @@ export async function POST(request: Request): Promise<NextResponse> {
 
       const cbResults = await Promise.allSettled([
         sendCallbackTelegramNotification(cbPayload),
-        sendLeadConfirmationSms(cbData.phone),
       ]);
 
       cbResults.forEach((r, i) => {
@@ -427,8 +415,6 @@ export async function POST(request: Request): Promise<NextResponse> {
           );
         }
       });
-
-      saveLeadToFile(cbPayload);
 
       return NextResponse.json(
         { ok: true, lead_id: leadId, message: "Callback lead accepted" },
@@ -466,7 +452,6 @@ export async function POST(request: Request): Promise<NextResponse> {
 
       const qeResults = await Promise.allSettled([
         sendCallbackTelegramNotification(qePayload),
-        sendLeadConfirmationSms(qeData.phone),
       ]);
 
       qeResults.forEach((r, i) => {
@@ -477,8 +462,6 @@ export async function POST(request: Request): Promise<NextResponse> {
           );
         }
       });
-
-      saveLeadToFile(qePayload);
 
       return NextResponse.json(
         { ok: true, lead_id: leadId, message: "Quick estimate lead accepted" },
@@ -514,7 +497,9 @@ export async function POST(request: Request): Promise<NextResponse> {
       sendWebhookNotification(notificationPayload),
       sendEmailNotification(notificationPayload),
       sendTelegramNotification(notificationPayload),
-      sendLeadConfirmationSms(validatedData.phone),
+      ...(validatedData.sms_opt_in
+        ? [sendLeadConfirmationSms(validatedData.phone)]
+        : []),
       ...(validatedData.email && validatedData.email.trim()
         ? [
             sendAutoReplyEmail({
@@ -531,8 +516,6 @@ export async function POST(request: Request): Promise<NextResponse> {
         console.error(`[lead-notify] ${notifyNames[i]} failed:`, r.reason);
       }
     });
-
-    saveLeadToFile(notificationPayload);
 
     const leadScore = calculateLeadScore({
       property_type: validatedData.property_type,

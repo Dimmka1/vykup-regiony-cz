@@ -31,7 +31,13 @@ export function ParallaxImage({
         style={{ y: prefersReduced ? 0 : y }}
         className="relative h-[120%] w-full"
       >
-        <Image src={src} alt={alt} fill className="object-cover" />
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes="(max-width: 1024px) 100vw, 600px"
+          className="object-cover"
+        />
       </motion.div>
     </div>
   );

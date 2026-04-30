@@ -477,8 +477,8 @@ export default function VykupCinzovnichDomuPage(): React.ReactElement {
             </div>
           </div>
           <p className="mt-6 text-slate-600">
-            Stovky klientů úspěšně prodali svou nemovitost prostřednictvím
-            našeho výkupu.
+            Pomáháme majitelům činžovních domů s výkupem rychle, diskrétně a bez
+            zbytečných komplikací.
           </p>
         </div>
       </section>

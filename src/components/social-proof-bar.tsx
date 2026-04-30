@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Shield, Clock, Scale, BadgeCheck } from "lucide-react";
+import { Shield, Clock, Scale, FileSignature } from "lucide-react";
 
 interface AnimatedCounterProps {
   target: number;
@@ -85,16 +85,16 @@ const PROOF_ITEMS = [
   },
   {
     icon: Scale,
-    value: 100,
-    suffix: "%",
-    label: "Garance ceny",
+    value: 0,
+    suffix: " Kč",
+    label: "Právní servis",
     highlight: false,
   },
   {
-    icon: BadgeCheck,
-    value: 50,
-    suffix: "+",
-    label: "Klientů",
+    icon: FileSignature,
+    value: 14,
+    suffix: "",
+    label: "krajů ČR",
     highlight: false,
   },
 ] as const;

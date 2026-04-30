@@ -1,21 +1,17 @@
 "use client";
 
-import { Building2, Clock, MapPin, ThumbsUp } from "lucide-react";
+import { HandCoins, Clock, MapPin, Scale } from "lucide-react";
 import { AnimatedCounter } from "./animated-counter";
-
-const DEALS_COUNT = process.env.NEXT_PUBLIC_DEALS_COUNT || "50";
-const YEARS_EXPERIENCE = process.env.NEXT_PUBLIC_YEARS_EXPERIENCE || "10";
-const CLIENT_COUNT = process.env.NEXT_PUBLIC_CLIENT_COUNT || "50";
 
 const COUNTERS = [
   {
-    value: `${DEALS_COUNT}+`,
-    label: "vykoupených nemovitostí",
-    Icon: Building2,
+    value: "0 Kč",
+    label: "provize a skrytých poplatků",
+    Icon: HandCoins,
   },
   {
-    value: `${YEARS_EXPERIENCE}+`,
-    label: "let zkušeností týmu v oboru nemovitostí",
+    value: "48 h",
+    label: "obvyklá doba splatnosti od podpisu",
     Icon: Clock,
   },
   {
@@ -24,9 +20,9 @@ const COUNTERS = [
     Icon: MapPin,
   },
   {
-    value: `${CLIENT_COUNT}+`,
-    label: "spokojených klientů",
-    Icon: ThumbsUp,
+    value: "Zdarma",
+    label: "právní servis a kompletní zastoupení",
+    Icon: Scale,
   },
 ] as const;
 

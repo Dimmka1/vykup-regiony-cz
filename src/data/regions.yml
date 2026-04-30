@@ -69,16 +69,6 @@ regions:
         answer: Cena výkupu bytu v Praze závisí na lokalitě, velikosti a stavu nemovitosti. Nabízíme obvykle 85–92 % tržní hodnoty s tím, že celý proces je výrazně rychlejší než klasický prodej.
       - question: Vykupujete nemovitosti v Praze 1 až 10?
         answer: Ano, vykupujeme nemovitosti ve všech městských částech Prahy včetně centra (Praha 1–3), rezidenčních čtvrtí (Praha 4–6) i okrajových částí (Praha 9, 10 a dále).
-    testimonials:
-      - name: Jana K.
-        text: Prodávali jsme byt na Praze 4 po rozvodu. Nabídku jsme dostali do 24 hodin a peníze na účtu za týden.
-        location: Praha 4
-      - name: Martin S.
-        text: Zdědil jsem garsonku na Žižkově s exekucí. Vyřešili to kompletně za mě, bez starostí.
-        location: Praha 3
-      - name: Eva M.
-        text: Potřebovala jsem rychle prodat byt na Smíchově kvůli stěhování do zahraničí. Celý proces trval 5 dní.
-        location: Praha 5
     marketAnalysis: |
       Pražský realitní trh patří dlouhodobě k nejdražším v celé střední Evropě. Průměrná cena za metr čtvereční se v roce 2025 pohybuje kolem 120 000 Kč, přičemž v prémiových lokalitách jako Praha 1, Praha 2 nebo Vinohrady ceny běžně přesahují 150 000 Kč/m². Naopak okrajové části jako Praha 9 – Čakovice nebo Praha-Libuš nabízejí byty od 85 000 Kč/m².
 
@@ -173,16 +163,6 @@ regions:
         answer: Ano, nemovitosti v satelitních obcích blízko Prahy mají ve Středočeském kraji vyšší hodnotu. Tuto prémii plně zohledňujeme v naší nabídce.
       - question: Vykupujete i starší rodinné domy ve Středočeském kraji?
         answer: Ano, ve Středočeském kraji běžně vykupujeme i starší rodinné domy vyžadující rekonstrukci - v Kladně, Berouně, Kolíně i menších obcích.
-    testimonials:
-      - name: Petr N.
-        text: Prodával jsem starší dům v Kladně po rodičích. Férová cena a rychlé jednání.
-        location: Kladno
-      - name: Lucie V.
-        text: Byt v Mladé Boleslavi jsme prodali za týden. Právní servis zdarma byl skvělý bonus.
-        location: Mladá Boleslav
-      - name: Tomáš H.
-        text: Potřeboval jsem prodat pozemek u Kolína. Ocenění přišlo do druhého dne.
-        location: Kolín
     marketAnalysis: |
       Středočeský kraj je z hlediska realitního trhu extrémně různorodý — ceny se liší podle vzdálenosti od Prahy. V bezprostředním okolí hlavního města (Říčany, Jesenice, Průhonice, Hostivice) se ceny bytů pohybují kolem 65 000–75 000 Kč/m², což odráží silnou poptávku od lidí pracujících v Praze. Naopak v odlehlejších oblastech jako Rakovnicko, Benešovsko nebo Příbramsko klesají ceny na 25 000–35 000 Kč/m².
 
@@ -274,16 +254,6 @@ regions:
         answer: V Českých Budějovicích se ceny bytů pohybují kolem 55 000 Kč/m². Naše výkupní ceny v Jihočeském kraji odrážejí aktuální tržní situaci v každé lokalitě.
       - question: Vykupujete chalupy na Šumavě v Jihočeském kraji?
         answer: Ano, v Jihočeském kraji zabýváme se výkupem chalup a rekreačních objektů na Šumavě i v Pošumaví, včetně nemovitostí s omezeným přístupem.
-    testimonials:
-      - name: Hana D.
-        text: Prodávala jsem chalupu u Českého Krumlova. Nabídka přišla hned a cena byla férová.
-        location: Český Krumlov
-      - name: Josef R.
-        text: Zděděný byt v Českých Budějovicích jsme prodali bez komplikací za 10 dní.
-        location: České Budějovice
-      - name: Marie P.
-        text: Měli jsme dům v Táboře s hypotékou. Vše vyřešili, včetně banky.
-        location: Tábor
     marketAnalysis: |
       Jihočeský kraj nabízí jedny z nejpříjemnějších podmínek pro bydlení v Česku, což se odráží i v realitním trhu. České Budějovice jako krajské město mají průměrnou cenu bytů kolem 55 000–65 000 Kč/m², zatímco menší města jako Tábor, Písek nebo Strakonice se pohybují v rozmezí 30 000–45 000 Kč/m². Nejlevnější lokality kraje — Prachaticko, Českokrumlovsko mimo turistické centrum — nabízí ceny od 20 000 Kč/m².
 
@@ -373,16 +343,6 @@ regions:
         answer: Výkup bytu v centru Plzně v Plzeňském kraji zvládáme standardně do 10 dnů. Díky silné poptávce v Plzni nabízíme velmi konkurenceschopné ceny.
       - question: Vykupujete i nemovitosti na Domažlicku v Plzeňském kraji?
         answer: Ano, v Plzeňském kraji pokrýváme i Domažlicko a Klatovsko, kde řešíme zejména starší rodinné domy a zemědělské usedlosti.
-    testimonials:
-      - name: Karel B.
-        text: Byt v Plzni na Borech jsme prodali rychle a bez starostí. Doporučuji.
-        location: Plzeň
-      - name: Alena F.
-        text: Prodávali jsme rodinný dům v Klatovech. Celý proces proběhl hladce.
-        location: Klatovy
-      - name: Jiří T.
-        text: Spoluvlastnický podíl na domě v Rokycanech vyřešili profesionálně.
-        location: Rokycany
     marketAnalysis: |
       Plzeňský kraj těží z blízkosti Německa a silné ekonomiky tažené automobilovým průmyslem a pivovarnictvím. Plzeň jako čtvrté největší město Česka má průměrné ceny bytů kolem 55 000–65 000 Kč/m², což ji řadí mezi dražší regionální města. V posledních letech ceny rostly tempem 5–8 % ročně díky nízké nezaměstnanosti a přílivu pracovníků do Škoda Transportation a dalších firem.
 
@@ -474,16 +434,6 @@ regions:
         answer: Ano, v Karlovarském kraji působíme i v Mariánských Lázních, kde zabýváme se výkupem lázeňských apartmánů i klasických bytů.
       - question: Jak probíhá výkup nemovitosti od zahraničního vlastníka v Karlovarském kraji?
         answer: V Karlovarském kraji běžně řešíme výkupy od zahraničních vlastníků. Zajistíme překlady dokumentů a koordinujeme celý proces i na dálku.
-    testimonials:
-      - name: Věra K.
-        text: Byt v Karlových Varech jsme prodali za výhodnou cenu. Rychlé a bezproblémové.
-        location: Karlovy Vary
-      - name: Pavel Z.
-        text: Chebský dům s věcným břemenem nebyl problém. Vyřešili to kompletně.
-        location: Cheb
-      - name: Dana L.
-        text: Prodej bytu v Sokolově proběhl hladce, peníze na účtu do týdne.
-        location: Sokolov
     marketAnalysis: |
       Karlovarský kraj je z hlediska cen nemovitostí jedním z nejdostupnějších regionů v Česku. Průměrná cena bytů v Karlových Varech se pohybuje kolem 30 000–40 000 Kč/m², v Chebu kolem 20 000–28 000 Kč/m² a v Sokolově nebo Ostrově pouhých 12 000–20 000 Kč/m². Kraj dlouhodobě zápasí s odlivem obyvatel a vyšší nezaměstnaností, což tlačí ceny dolů.
 
@@ -572,16 +522,6 @@ regions:
         answer: Ano, v Ústeckém kraji vykupujeme panelové byty v Mostě, Chomutově i Litvínově bez ohledu na nižší cenovou hladinu. Každou nemovitost posuzujeme individuálně.
       - question: Jak řešíte nemovitosti v sociálně vyloučených lokalitách Ústeckého kraje?
         answer: I v obtížnějších lokalitách Ústeckého kraje dokážeme nemovitost vykoupit. Posuzujeme stav, právní zatížení a připravíme férovou nabídku.
-    testimonials:
-      - name: Radek M.
-        text: Byt v Ústí nad Labem jsme prodali rychle i přes exekuci. Skvělý servis.
-        location: Ústí nad Labem
-      - name: Ivana J.
-        text: Zděděný dům v Děčíně prodán bez komplikací. Právníci vše zajistili.
-        location: Děčín
-      - name: Michal P.
-        text: Panelák v Mostě, prodej za 8 dní. Férová nabídka a profesionální přístup.
-        location: Most
     marketAnalysis: |
       Ústecký kraj patří k cenově nejdostupnějším regionům České republiky. Průměrné ceny bytů se pohybují od 15 000 do 25 000 Kč/m², přičemž mezi jednotlivými městy jsou značné rozdíly. Ústí nad Labem jako krajské město nabízí byty za 18 000–28 000 Kč/m², Teplice za 15 000–22 000 Kč/m², Děčín za 12 000–20 000 Kč/m². Na opačném konci spektra stojí Most a Chomutov s cenami 10 000–16 000 Kč/m², kde trh trpí vysokou nezaměstnaností a špatnou pověstí některých lokalit.
 
@@ -673,16 +613,6 @@ regions:
         answer: Výkupní ceny bytů v Liberci v Libereckém kraji se odvíjejí od aktuálního trhu, kde se ceny pohybují kolem 45 000 Kč/m². Nabízíme obvykle 85–90 % tržní hodnoty.
       - question: Vykupujete i nemovitosti v Jizerských horách?
         answer: Ano, v Libereckém kraji řešíme i rekreační nemovitosti v Jizerských horách - od horských chat po apartmány v lyžařských střediscích.
-    testimonials:
-      - name: Zdeněk K.
-        text: Byt v Liberci jsme prodali během týdne. Ocenění bylo přesné a férové.
-        location: Liberec
-      - name: Markéta S.
-        text: Chalupu v Jizerských horách koupili rychle a bez problémů.
-        location: Jablonec nad Nisou
-      - name: Ondřej V.
-        text: Dům v Turnově s hypotékou vyřešili kompletně. Velká úleva.
-        location: Turnov
     marketAnalysis: |
       Liberecký kraj je kompaktní region s dominantním postavením krajského města Liberce. Průměrné ceny bytů v Liberci dosahují 35 000–45 000 Kč/m², čímž se řadí do středního pásma českého trhu. Jablonec nad Nisou nabízí byty za 28 000–38 000 Kč/m², Turnov za 30 000–40 000 Kč/m² a Česká Lípa za 20 000–28 000 Kč/m².
 
@@ -773,16 +703,6 @@ regions:
         answer: Hradec Králové je v Královéhradeckém kraji nejžádanější lokalitou s rostoucími cenami. To se pozitivně odráží i na výkupních cenách, které nabízíme.
       - question: Vykupujete i chalupy v Podkrkonoší v Královéhradeckém kraji?
         answer: Ano, v Královéhradeckém kraji vykupujeme i rekreační chalupy v Podkrkonoší a okolí Náchoda, Jičína a dalších turistických oblastí.
-    testimonials:
-      - name: Lenka H.
-        text: Byt v Hradci Králové prodán za 6 dní. Profesionální jednání od začátku.
-        location: Hradec Králové
-      - name: Vladimír R.
-        text: Rodinný dům v Náchodě s dědickým řízením. Poradili a vyřešili.
-        location: Náchod
-      - name: Simona D.
-        text: Prodej bytu v Trutnově proběhl rychle. Nabídku jsme dostali do 24 hodin.
-        location: Trutnov
     marketAnalysis: |
       Královéhradecký kraj je regionem s výraznou dualitou — na jedné straně dynamické krajské město Hradec Králové s cenami bytů kolem 50 000–60 000 Kč/m², na druhé straně venkovské oblasti Rychnovska a Náchodska s cenami 18 000–28 000 Kč/m². Hradec Králové patří mezi nejlépe hodnocená města v Česku z hlediska kvality života, což se pozitivně odráží na cenách nemovitostí.
 
@@ -874,16 +794,6 @@ regions:
         answer: Ano, Pardubice díky rychlému spojení do Prahy zažívají růst cen. Tuto výhodu Pardubického kraje plně zohledňujeme při výkupu.
       - question: Vykupujete i byty v Ústí nad Orlicí a Svitavách?
         answer: Ano, v Pardubickém kraji pokrýváme i menší města jako Ústí nad Orlicí a Svitavy, kde nabízíme férové ceny odpovídající místnímu trhu.
-    testimonials:
-      - name: Jakub N.
-        text: Byt v Pardubicích prodán bez provize. Celý proces za 9 dní.
-        location: Pardubice
-      - name: Renata K.
-        text: Dům ve Svitavách s exekucí. Pomohli s oddlužením i prodejem.
-        location: Svitavy
-      - name: František M.
-        text: Pozemek u Chrudimi oceněn a prodán za týden. Férový přístup.
-        location: Chrudim
     marketAnalysis: |
       Pardubický kraj je často přehlíženým regionem, který však nabízí zajímavé investiční příležitosti. Pardubice jako krajské město mají průměrné ceny bytů kolem 48 000–58 000 Kč/m², což je o něco méně než sousední Hradec Králové. Město těží z výborného dopravního napojení — železniční uzel na hlavní trati Praha–Ostrava a blízkost dálnice D11.
 
@@ -975,16 +885,6 @@ regions:
         answer: Ano, na Vysočině pokrýváme i Žďár nad Sázavou, Nové Město na Moravě a okolní obce, kde řešíme zejména starší rodinné domy.
       - question: Jak se liší výkupní ceny na Vysočině oproti Brnu?
         answer: Ceny na Vysočině jsou výrazně nižší než v Brně - v Jihlavě kolem 35 000 Kč/m² oproti 90 000+ v Brně. Naše nabídky odrážejí reálnou místní hodnotu.
-    testimonials:
-      - name: Božena S.
-        text: Chalupu na Vysočině u Jihlavy jsme prodali rychle a za dobrou cenu.
-        location: Jihlava
-      - name: Miroslav T.
-        text: Byt v Havlíčkově Brodě prodán za 8 dní. Bez komplikací.
-        location: Havlíčkův Brod
-      - name: Petra L.
-        text: Zděděný dům v Třebíči vyřešili kompletně včetně právního servisu.
-        location: Třebíč
     marketAnalysis: |
       Kraj Vysočina je srdcem České republiky — jak geograficky, tak cenově. Průměrné ceny bytů se pohybují v rozmezí 25 000–40 000 Kč/m², což je pod celostátním průměrem, ale trh je stabilní a bez výrazných výkyvů. Jihlava jako krajské město nabízí byty za 32 000–42 000 Kč/m², Třebíč za 20 000–28 000 Kč/m², Žďár nad Sázavou za 25 000–33 000 Kč/m² a Havlíčkův Brod za 25 000–35 000 Kč/m².
 
@@ -1076,16 +976,6 @@ regions:
         answer: Průměrná cena bytu v Brně v Jihomoravském kraji přesahuje 90 000 Kč/m², což z něj dělá druhé nejdražší město v Česku. Naše výkupní ceny odpovídají tomuto silnému trhu.
       - question: Vykupujete vinařské usedlosti na jižní Moravě?
         answer: Ano, v Jihomoravském kraji zabýváme se i výkupem vinařských usedlostí a tradičních domů v oblasti Znojemska, Břeclavska a Hodonínska.
-    testimonials:
-      - name: Romana B.
-        text: Byt v Brně-Králově Poli prodán za týden. Skvělá komunikace a férová cena.
-        location: Brno
-      - name: David K.
-        text: Vinný sklep s pozemkem u Znojma. Ocenili a koupili bez problémů.
-        location: Znojmo
-      - name: Tereza H.
-        text: Dům v Blansku s hypotékou. Vyřešili vše včetně banky za 12 dní.
-        location: Blansko
     marketAnalysis: |
       Jihomoravský kraj je druhým nejdynamičtějším realitním trhem v České republice po Praze. Brno jako krajské město a druhá česká metropole má průměrné ceny bytů kolem 85 000–95 000 Kč/m², přičemž v prémiových lokalitách (Černá Pole, Masarykova čtvrť, Královo Pole) ceny přesahují 100 000 Kč/m². Brněnský trh je poháněn IT sektorem, univerzitami (MUNI, VUT, Mendelu) a rostoucí mezinárodní komunitou.
 
@@ -1174,16 +1064,6 @@ regions:
         answer: Ano, v Olomouckém kraji působíme i v Šumperku a Jeseníku, kde řešíme zejména starší rodinné domy a byty v panelových domech.
       - question: Jaká je doba výkupu nemovitosti v Olomouci?
         answer: Výkup nemovitosti v Olomouci v Olomouckém kraji standardně trvá 7–14 dnů. U jednoduchých případů bez právních komplikací i rychleji.
-    testimonials:
-      - name: Stanislav P.
-        text: Byt v Olomouci prodán rychle a bez starostí. Doporučuji všem.
-        location: Olomouc
-      - name: Kateřina V.
-        text: Rodinný dům v Šumperku s dědictvím. Profesionální a rychlé řešení.
-        location: Šumperk
-      - name: Marek D.
-        text: Prodej podílu na bytě v Prostějově proběhl hladce.
-        location: Prostějov
     marketAnalysis: |
       Olomoucký kraj nabízí vyváženou kombinaci univerzitního města s bohatou historií a cenově dostupného venkova. Olomouc jako krajské město má průměrné ceny bytů kolem 50 000–60 000 Kč/m², čímž se řadí mezi silnější regionální trhy. Město profituje z Univerzity Palackého (druhá nejstarší v ČR), kvalitní infrastruktury a kulturního zázemí.
 
@@ -1273,16 +1153,6 @@ regions:
         answer: Ano, v Moravskoslezském kraji vykupujeme nemovitosti i v hornických čtvrtích Ostravy a Karviné. Stav lokality není překážkou - každý případ posuzujeme individuálně.
       - question: Jaké ceny nemovitostí jsou v Ostravě?
         answer: V Ostravě v Moravskoslezském kraji se ceny bytů pohybují kolem 35 000 Kč/m², v Karviné a Havířově výrazně méně. Naše výkupní ceny odrážejí aktuální místní trh.
-    testimonials:
-      - name: Igor N.
-        text: Byt v Ostravě-Porubě prodán za 5 dní. Nejrychlejší řešení, jaké jsem zažil.
-        location: Ostrava
-      - name: Gabriela M.
-        text: Dům v Opavě s exekucí. Vyřešili oddlužení i prodej najednou.
-        location: Opava
-      - name: Lukáš K.
-        text: Panelákový byt ve Frýdku-Místku prodán férově a rychle.
-        location: Frýdek-Místek
     marketAnalysis: |
       Moravskoslezský kraj je třetím nejlidnatějším krajem Česka a prochází hlubokým strukturálním přerodem. Ostrava jako krajské město má průměrné ceny bytů kolem 30 000–40 000 Kč/m², což je vzhledem k velikosti města (třetí největší v ČR) překvapivě nízko. Hlavní příčinou je pokles těžkého průmyslu, odliv obyvatel a přebytek bytového fondu.
 
@@ -1374,16 +1244,6 @@ regions:
         answer: Ano, ve Zlínském kraji pokrýváme i Kroměříž a okolní obce. Řešíme byty, rodinné domy i starší nemovitosti vyžadující rekonstrukci.
       - question: Jak se liší ceny nemovitostí ve Zlíně a na Valašsku?
         answer: Ve Zlíně jsou ceny ve Zlínském kraji vyšší (kolem 40 000 Kč/m²), na Valašsku (Vsetín, Rožnov) jsou o 20–30 % nižší. Naše nabídky respektují tyto regionální rozdíly.
-    testimonials:
-      - name: Monika R.
-        text: Byt ve Zlíně prodán za 7 dní. Profesionální přístup od prvního telefonátu.
-        location: Zlín
-      - name: Vlastimil S.
-        text: Rodinný dům v Kroměříži se zahradou. Férová nabídka, rychlý prodej.
-        location: Kroměříž
-      - name: Andrea B.
-        text: Zděděný byt v Uherském Hradišti prodán bez komplikací.
-        location: Uherské Hradiště
     marketAnalysis: |
       Zlínský kraj je kompaktní region s příjemnou kvalitou života a stabilním realitním trhem. Zlín jako krajské město nabízí byty za 38 000–48 000 Kč/m², což reflektuje baťovskou tradici, dobrou infrastrukturu a nízkou nezaměstnanost. Zlín je unikátní svou funkcionalistickou architekturou — baťovské domky a cihlové bytovky tvoří specifický segment trhu.
 

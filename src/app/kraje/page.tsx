@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { MapPin } from "lucide-react";
 import { listRegions, getRegionUrl, getRegionSubdomainUrl } from "@/lib/config";
 import { getRequestHost } from "@/lib/request-host";
+import { withHreflang } from "@/lib/seo-hreflang";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { safeJsonLd } from "@/lib/jsonld";
 
@@ -11,9 +12,9 @@ export const metadata: Metadata = {
   title: "Výkup nemovitostí ve všech krajích ČR | vykoupim-nemovitost.cz",
   description:
     "Vykupujeme nemovitosti ve všech 14 krajích České republiky. Rychlý výkup bytů, domů a pozemků za hotové. Najděte svůj kraj a získejte nezávaznou nabídku.",
-  alternates: {
+  alternates: withHreflang({
     canonical: `${SITE_URL}/kraje`,
-  },
+  }),
 };
 
 export default async function KrajePage() {

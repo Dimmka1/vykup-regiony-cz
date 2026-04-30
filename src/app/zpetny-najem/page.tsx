@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Home, FileSignature, HandCoins, KeyRound } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
+import { withHreflang } from "@/lib/seo-hreflang";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { RelatedArticles } from "@/components/related-articles";
 import { RentCalculator } from "@/components/rent-calculator";
@@ -32,7 +33,7 @@ export async function generateMetadata({
   const robots = buildGeoMetadataRobots(params);
 
   return {
-    alternates: { canonical: canonicalUrl },
+    alternates: withHreflang({ canonical: canonicalUrl }),
     openGraph: { url: canonicalUrl },
     title: region
       ? injectRegionIntoTitle(

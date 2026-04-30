@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import { withHreflang } from "@/lib/seo-hreflang";
 
 export const metadata: Metadata = {
-  alternates: {
+  alternates: withHreflang({
     canonical: "https://vykoupim-nemovitost.cz/cookies",
-  },
+  }),
   title: "Cookies",
   description: "Informace o používání cookies na webu vykoupim-nemovitost.cz.",
 };

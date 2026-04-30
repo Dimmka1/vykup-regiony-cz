@@ -9,13 +9,16 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
+import { withHreflang } from "@/lib/seo-hreflang";
 import { MAX_ZALOHA, PRICE_PERCENT } from "@/lib/pricing";
 
 export const metadata: Metadata = {
   title: "Jak funguje výkup nemovitosti | Vykoupíme Nemovitost",
   description:
     "Celý proces výkupu nemovitosti v 5 jednoduchých krocích - od prvního kontaktu po platbu na účet do 48 hodin. Bez provize, bez starostí.",
-  alternates: { canonical: "https://vykoupim-nemovitost.cz/jak-to-funguje" },
+  alternates: withHreflang({
+    canonical: "https://vykoupim-nemovitost.cz/jak-to-funguje",
+  }),
 };
 
 const STEPS = [

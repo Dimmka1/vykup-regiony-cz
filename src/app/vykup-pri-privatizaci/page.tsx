@@ -11,6 +11,7 @@ import {
   CalendarCheck,
 } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
+import { withHreflang } from "@/lib/seo-hreflang";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
@@ -23,9 +24,9 @@ export const metadata: Metadata = {
     "Výkup při privatizaci bytu – prodej privatizovaného bytu rychle | Vykoupím Nemovitost",
   description:
     "Vykoupíme váš privatizovaný byt rychle a bez komplikací. Řešíme předkupní práva, družstevní podíly i právní záležitosti. Nabídka do 24 hodin.",
-  alternates: {
+  alternates: withHreflang({
     canonical: `${SITE_URL}/vykup-pri-privatizaci`,
-  },
+  }),
   openGraph: {
     url: `${SITE_URL}/vykup-pri-privatizaci`,
     title: "Výkup při privatizaci bytu – rychlý prodej bez komplikací",

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Shield, Clock, BadgeCheck, HandCoins } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
+import { withHreflang } from "@/lib/seo-hreflang";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
@@ -13,9 +14,9 @@ export const metadata: Metadata = {
   title: "Výkup nemovitosti v dražbě — zachráníme byt nebo dům před aukcí",
   description:
     "Vykupujeme nemovitosti zatížené exekuční nebo nucenou dražbou. Zaplatíme dluhy, zastavíme dražbu, vyplatíme zbývající částku majiteli. Bez provize.",
-  alternates: {
+  alternates: withHreflang({
     canonical: "https://vykoupim-nemovitost.cz/vykup-v-drazbe",
-  },
+  }),
   openGraph: {
     url: "https://vykoupim-nemovitost.cz/vykup-v-drazbe",
   },

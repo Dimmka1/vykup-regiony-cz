@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { safeJsonLd } from "@/lib/jsonld";
+import { withHreflang } from "@/lib/seo-hreflang";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
@@ -1893,7 +1894,9 @@ export async function generateMetadata({
       publishedTime: article.date,
       images: ["/blog/" + slug + "/opengraph-image"],
     },
-    alternates: { canonical: `https://vykoupim-nemovitost.cz/blog/${slug}` },
+    alternates: withHreflang({
+      canonical: `https://vykoupim-nemovitost.cz/blog/${slug}`,
+    }),
     twitter: {
       card: "summary_large_image",
       title: article.title,

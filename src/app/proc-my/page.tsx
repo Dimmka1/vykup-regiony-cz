@@ -10,6 +10,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
+import { withHreflang } from "@/lib/seo-hreflang";
 import { MAX_ZALOHA, PRICE_PERCENT } from "@/lib/pricing";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { LeadForm } from "@/components/lead-form";
@@ -18,7 +19,9 @@ export const metadata: Metadata = {
   title: "Proč prodat nemovitost nám | Výkup vs realitka vs dražba",
   description:
     "Srovnání výkupu nemovitosti přes nás, realitní kancelář a dražbu. Až 90 % tržní ceny, záloha ihned, bez provize — zjistěte, proč je přímý výkup nejlepší volba.",
-  alternates: { canonical: "https://vykoupim-nemovitost.cz/proc-my" },
+  alternates: withHreflang({
+    canonical: "https://vykoupim-nemovitost.cz/proc-my",
+  }),
 };
 
 const ZALOH_VARIANT = MAX_ZALOHA;

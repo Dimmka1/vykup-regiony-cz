@@ -100,6 +100,12 @@ const USE_CASE_PAGES = [
     title: "Výkup pozemků",
     caption: "Rychlý výkup stavebních i zemědělských pozemků v celé ČR",
   },
+  {
+    path: "/vykup-v-drazbe",
+    title: "Výkup nemovitosti v dražbě",
+    caption:
+      "Zachráníme byt nebo dům před exekuční nebo nucenou dražbou — zastavíme dražbu, uhradíme dluhy, vyplatíme majitele",
+  },
 ] as const;
 
 /** Other content pages on root domain */

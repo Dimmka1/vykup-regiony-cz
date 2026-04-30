@@ -69,6 +69,11 @@ export function renderOgImage(regionKey: string | null): ImageResponse {
           data: fontData,
         },
       ],
+      // Prevent Google from indexing the OG-image endpoint as a standalone
+      // page. The image is referenced via <image:loc> in the image sitemap
+      // and via <meta property="og:image">, but should never appear as a
+      // search result on its own.
+      headers: { "X-Robots-Tag": "noindex" },
     },
   );
 }

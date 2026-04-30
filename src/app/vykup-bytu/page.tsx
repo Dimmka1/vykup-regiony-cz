@@ -18,7 +18,10 @@ import { AllRegionsSection } from "@/components/all-regions-section";
 import { GeoRelatedPages } from "@/components/geo-related-pages";
 import { GeoRegionContent } from "@/components/geo-region-content";
 import { getRequestHost } from "@/lib/request-host";
-import { buildGeoCanonicalUrl } from "@/lib/geo-canonical";
+import {
+  buildGeoCanonicalUrl,
+  buildGeoMetadataRobots,
+} from "@/lib/geo-canonical";
 import {
   resolveGeoRegion,
   injectRegionIntoTitle,
@@ -36,6 +39,8 @@ export async function generateMetadata({
   const canonicalUrl = buildGeoCanonicalUrl("/vykup-bytu", params);
   const region = resolveGeoRegion(params);
 
+  const robots = buildGeoMetadataRobots(params);
+
   return {
     alternates: { canonical: canonicalUrl },
     openGraph: { url: canonicalUrl },
@@ -51,6 +56,7 @@ export async function generateMetadata({
           region.locative,
         )
       : "Vykoupíme váš byt rychle a bez provize. Osobní, družstevní i problémové byty. Férová cena 80–90 % tržní hodnoty, vyplacení do 7 dnů. Celá ČR.",
+    ...(robots && { robots }),
   };
 }
 

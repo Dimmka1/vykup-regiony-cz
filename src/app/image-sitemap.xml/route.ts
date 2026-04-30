@@ -1,38 +1,8 @@
 import { listRegions, getRegionSubdomainUrl } from "@/lib/config";
-import {
-  ROOT_DOMAIN,
-  ROOT_URL,
-  slugify,
-  escapeXml,
-} from "@/lib/sitemap-helpers";
+import { ROOT_URL, escapeXml } from "@/lib/sitemap-helpers";
 import { BLOG_POSTS } from "@/app/blog/data";
 
 const BASE_URL = ROOT_URL;
-
-/** Property types with Czech SEO titles/captions */
-const PROPERTY_TYPES = [
-  {
-    slug: "bytu",
-    singular: "bytu",
-    plural: "bytů",
-    title: "Výkup bytů",
-    image: "property-exterior.jpg",
-  },
-  {
-    slug: "domu",
-    singular: "domu",
-    plural: "domů",
-    title: "Výkup domů",
-    image: "happy-family-home.jpg",
-  },
-  {
-    slug: "pozemku",
-    singular: "pozemku",
-    plural: "pozemků",
-    title: "Výkup pozemků",
-    image: "property-exterior.jpg",
-  },
-] as const;
 
 /** Use-case pages on root domain with Czech titles/captions */
 const USE_CASE_PAGES = [
@@ -179,7 +149,7 @@ export async function GET(): Promise<Response> {
       loc: regionUrl,
       images: [
         {
-          imageLoc: `${BASE_URL}/images/hero-${region.key === "praha" ? "prague" : region.key}.jpg`,
+          imageLoc: `${BASE_URL}${region.heroImage}`,
           title: region.h1,
           caption: region.description.slice(0, 200),
         },
@@ -300,7 +270,7 @@ export async function GET(): Promise<Response> {
         loc: `${BASE_URL}${page.path}?kraj=${region.key}`,
         images: [
           {
-            imageLoc: `${BASE_URL}/images/hero-${region.key === "praha" ? "prague" : region.key}.jpg`,
+            imageLoc: `${BASE_URL}${region.heroImage}`,
             title: `${page.title} ${region.locative}`,
             caption: `${page.caption} ${region.locative}`,
           },
@@ -314,61 +284,11 @@ export async function GET(): Promise<Response> {
     }
   }
 
-  // ─── 7. Regional × city programmatic pages (14 × 6 = 84 entries) ───
-  for (const region of regions) {
-    const regionUrl = getRegionSubdomainUrl(region.key);
-
-    for (const city of region.supportedCities) {
-      const citySlug = slugify(city);
-      entries.push({
-        loc: `${regionUrl}?mesto=${citySlug}`,
-        images: [
-          {
-            imageLoc: `${BASE_URL}/images/hero-${region.key === "praha" ? "prague" : region.key}.jpg`,
-            title: `Výkup nemovitostí ${city}`,
-            caption: `Rychlý výkup nemovitostí ve městě ${city} — ${region.name}`,
-          },
-          {
-            imageLoc: `${BASE_URL}/images/property-exterior.jpg`,
-            title: `Nemovitost k výkupu ${city}`,
-            caption: `Vykupujeme byty, domy a pozemky v ${city} a okolí`,
-          },
-          {
-            imageLoc: `${BASE_URL}/images/happy-family-home.jpg`,
-            title: `Spokojení klienti ${city}`,
-            caption: `Úspěšný výkup nemovitosti v ${city}`,
-          },
-        ],
-      });
-    }
-  }
-
-  // ─── 8. City × property type pages (84 × 3 = 252 entries) ───
-  for (const region of regions) {
-    const regionUrl = getRegionSubdomainUrl(region.key);
-
-    for (const city of region.supportedCities) {
-      const citySlug = slugify(city);
-
-      for (const propType of PROPERTY_TYPES) {
-        entries.push({
-          loc: `${regionUrl}?mesto=${citySlug}&typ=${propType.slug}`,
-          images: [
-            {
-              imageLoc: `${BASE_URL}/images/${propType.image}`,
-              title: `${propType.title} ${city}`,
-              caption: `Rychlý výkup ${propType.plural} ve městě ${city} — férové podmínky`,
-            },
-            {
-              imageLoc: `${BASE_URL}/images/process-consultation.webp`,
-              title: `Konzultace výkupu ${propType.singular} ${city}`,
-              caption: `Bezplatná konzultace k výkupu ${propType.singular} v ${city}`,
-            },
-          ],
-        });
-      }
-    }
-  }
+  // Note: Sections 7 (subdomain ?mesto=) and 8 (subdomain ?mesto=&typ=)
+  // were removed. Those URLs canonicalize to the bare subdomain homepage
+  // because the homepage does not differentiate content by `mesto`/`typ` —
+  // listing them in the image sitemap created hundreds of duplicate entries
+  // that were never indexed (Alternate page with proper canonical tag).
 
   const xml = buildXml(entries);
 

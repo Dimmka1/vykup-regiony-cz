@@ -16,7 +16,10 @@ import { AllRegionsSection } from "@/components/all-regions-section";
 import { GeoRelatedPages } from "@/components/geo-related-pages";
 import { GeoRegionContent } from "@/components/geo-region-content";
 import { getRequestHost } from "@/lib/request-host";
-import { buildGeoCanonicalUrl } from "@/lib/geo-canonical";
+import {
+  buildGeoCanonicalUrl,
+  buildGeoMetadataRobots,
+} from "@/lib/geo-canonical";
 import {
   resolveGeoRegion,
   injectRegionIntoTitle,
@@ -36,6 +39,7 @@ export async function generateMetadata({
     params,
   );
   const region = resolveGeoRegion(params);
+  const robots = buildGeoMetadataRobots(params);
 
   return {
     alternates: { canonical: canonicalUrl },
@@ -52,6 +56,7 @@ export async function generateMetadata({
           region.locative,
         )
       : "Vykoupíme váš spoluvlastnický podíl na nemovitosti rychle a bez soudních sporů. Férová cena, právní servis zdarma, výplata do 7 dnů. Bez provize.",
+    ...(robots && { robots }),
   };
 }
 

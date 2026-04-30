@@ -3,10 +3,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { safeJsonLd } from "@/lib/jsonld";
+import { withHreflang } from "@/lib/seo-hreflang";
 import { BLOG_POSTS } from "./data";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "https://vykoupim-nemovitost.cz/blog" },
+  alternates: withHreflang({
+    canonical: "https://vykoupim-nemovitost.cz/blog",
+  }),
   title: "Blog | Výkup nemovitostí — rady a tipy",
   description:
     "Praktické rady a tipy pro prodej nemovitosti. Články o rychlém výkupu, exekucích, hypotékách a dalších tématech.",

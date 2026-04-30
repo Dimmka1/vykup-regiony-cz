@@ -9,6 +9,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
+import { withHreflang } from "@/lib/seo-hreflang";
 import { MAX_ZALOHA, PRICE_PERCENT } from "@/lib/pricing";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 
@@ -16,7 +17,9 @@ export const metadata: Metadata = {
   title: "Garance výkupu nemovitosti | vykoupim-nemovitost.cz",
   description:
     "5 garancí výkupu nemovitosti — garantovaná cena, platba do 48 hodin, právní servis zdarma, bez provize a plná diskrétnost. Vše máte černé na bílém.",
-  alternates: { canonical: "https://vykoupim-nemovitost.cz/garance-vykupu" },
+  alternates: withHreflang({
+    canonical: "https://vykoupim-nemovitost.cz/garance-vykupu",
+  }),
 };
 
 const GUARANTEES = [

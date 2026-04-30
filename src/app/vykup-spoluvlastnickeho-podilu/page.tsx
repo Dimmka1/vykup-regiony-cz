@@ -9,6 +9,7 @@ import {
   Scale,
 } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
+import { withHreflang } from "@/lib/seo-hreflang";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
@@ -42,7 +43,7 @@ export async function generateMetadata({
   const robots = buildGeoMetadataRobots(params);
 
   return {
-    alternates: { canonical: canonicalUrl },
+    alternates: withHreflang({ canonical: canonicalUrl }),
     openGraph: { url: canonicalUrl },
     title: region
       ? injectRegionIntoTitle(

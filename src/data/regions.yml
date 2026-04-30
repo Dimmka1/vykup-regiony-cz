@@ -1181,7 +1181,7 @@ regions:
       - question: Vykupujete i průmyslové nemovitosti v Ostravě?
         answer: Ano, brownfieldy a průmyslové objekty v Ostravě vykupujeme. Ostrava prochází transformací a bývalé průmyslové areály mají potenciál pro přestavbu — oceňujeme individuálně.
   - key: zlinsky-kraj
-    themeColor: fuchsia
+    themeColor: teal
     heroImage: /images/hero-zlinsky-kraj.jpg
     seoTitle: Výkup nemovitostí Zlínský kraj | Zlín, Uherské Hradiště, Vsetín
     seoDescription: Výkup bytů a domů ve Zlínském kraji bez provize. Zlín, Kroměříž, Uherské Hradiště i Valašsko. Nabídka do 24 hodin.

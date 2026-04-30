@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { safeJsonLd } from "@/lib/jsonld";
+import { withHreflang } from "@/lib/seo-hreflang";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "https://vykoupim-nemovitost.cz/caste-dotazy" },
+  alternates: withHreflang({
+    canonical: "https://vykoupim-nemovitost.cz/caste-dotazy",
+  }),
   title: "Časté dotazy k výkupu nemovitostí",
   description:
     "Odpovědi na nejčastější otázky o rychlém výkupu nemovitostí v České republice. Jak probíhá výkup, kolik dostanete, jak dlouho trvá celý proces.",

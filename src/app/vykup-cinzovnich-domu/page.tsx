@@ -11,6 +11,7 @@ import {
   TrendingUp,
 } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
+import { withHreflang } from "@/lib/seo-hreflang";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
@@ -23,9 +24,9 @@ export const metadata: Metadata = {
     "Výkup činžovních domů – rychlý prodej bytového domu bez provize | Vykoupím Nemovitost",
   description:
     "Vykoupíme váš činžovní dům rychle a za férovou cenu. Bez provize, bez starostí s nájemníky. Nabídka do 24 hodin, peníze do 7 dnů.",
-  alternates: {
+  alternates: withHreflang({
     canonical: `${SITE_URL}/vykup-cinzovnich-domu`,
-  },
+  }),
   openGraph: {
     url: `${SITE_URL}/vykup-cinzovnich-domu`,
     title: "Výkup činžovních domů – rychlý prodej bez provize",

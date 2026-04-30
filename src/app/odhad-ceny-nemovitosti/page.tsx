@@ -11,6 +11,7 @@ import {
   BarChart3,
 } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
+import { withHreflang } from "@/lib/seo-hreflang";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { FaqAccordion } from "@/components/faq-accordion";
 import { OdhadCalculator } from "@/components/odhad-calculator";
@@ -21,9 +22,9 @@ export const metadata: Metadata = {
   title: "Odhad ceny nemovitosti zdarma – online kalkulačka 2026",
   description:
     "Zjistěte odhad ceny nemovitosti zdarma pomocí online kalkulačky. Zadejte typ, plochu, kraj a stav – okamžitě získáte orientační tržní i výkupní cenu. Celá ČR.",
-  alternates: {
+  alternates: withHreflang({
     canonical: `${SITE_URL}/odhad-ceny-nemovitosti`,
-  },
+  }),
   openGraph: {
     title: "Odhad ceny nemovitosti zdarma – online kalkulačka",
     description:

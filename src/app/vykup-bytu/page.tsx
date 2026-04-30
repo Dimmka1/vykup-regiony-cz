@@ -11,6 +11,7 @@ import {
   Key,
 } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
+import { withHreflang } from "@/lib/seo-hreflang";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
@@ -42,20 +43,20 @@ export async function generateMetadata({
   const robots = buildGeoMetadataRobots(params);
 
   return {
-    alternates: { canonical: canonicalUrl },
+    alternates: withHreflang({ canonical: canonicalUrl }),
     openGraph: { url: canonicalUrl },
     title: region
       ? injectRegionIntoTitle(
-          "Výkup bytů - rychlý prodej bytu za hotové do 7 dnů",
+          "Výkup bytů za hotové — nabídka do 24 h, vyplaceno do 14 dnů",
           region.locative,
         )
-      : "Výkup bytů - rychlý prodej bytu za hotové do 7 dnů",
+      : "Výkup bytů za hotové — nabídka do 24 h, vyplaceno do 14 dnů",
     description: region
       ? injectRegionIntoDescription(
-          "Vykoupíme váš byt rychle a bez provize. Osobní, družstevní i problémové byty. Férová cena 80–90 % tržní hodnoty, vyplacení do 7 dnů. Celá ČR.",
+          "Rychlý odkup bytu po celé ČR — Praha, Brno, Ostrava i menší města. Bez provize, peníze na účtu do 14 dnů. Vykupujeme i byty s hypotékou nebo nájemníky.",
           region.locative,
         )
-      : "Vykoupíme váš byt rychle a bez provize. Osobní, družstevní i problémové byty. Férová cena 80–90 % tržní hodnoty, vyplacení do 7 dnů. Celá ČR.",
+      : "Rychlý odkup bytu po celé ČR — Praha, Brno, Ostrava i menší města. Bez provize, peníze na účtu do 14 dnů. Vykupujeme i byty s hypotékou nebo nájemníky.",
     ...(robots && { robots }),
   };
 }

@@ -8,16 +8,26 @@ import { PRODUCTION_DOMAIN } from "@/lib/config";
 export const ROOT_DOMAIN = PRODUCTION_DOMAIN;
 export const ROOT_URL = `https://${ROOT_DOMAIN}`;
 
+const ISO_DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+
+function todayIsoDate(): string {
+  return new Date().toISOString().slice(0, 10);
+}
+
 /**
- * Build-time constant for lastmod of static/deploy-dependent pages.
- * Set BUILD_DATE env var in CI/CD (e.g. Vercel) for accurate deploy dates.
+ * Build-time constant for `<lastmod>`.
+ * Read from `BUILD_DATE` env (set by CI/deploy); fall back to today's date
+ * when not provided or malformed. Never use a hardcoded literal — Google
+ * de-prioritises recrawl when sitemap lastmod values become stale.
  */
-export const BUILD_DATE = process.env.BUILD_DATE ?? "2026-03-14";
+export const BUILD_DATE: string =
+  process.env.BUILD_DATE && ISO_DATE_RE.test(process.env.BUILD_DATE)
+    ? process.env.BUILD_DATE
+    : todayIsoDate();
 
 /**
  * Date of the last price data update (from PRICE_RESEARCH.json).
- * Used for geo-parameterized pages (?kraj=, ?mesto=) whose content
- * depends on regional pricing data.
+ * Used for geo-parameterized pages whose content depends on regional pricing.
  */
 export const PRICE_DATA_DATE = "2026-03-16";
 

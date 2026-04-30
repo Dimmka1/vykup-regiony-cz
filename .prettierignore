@@ -8,3 +8,5 @@ public
 pnpm-lock.yaml
 package-lock.json
 *.lock
+.claude/
+docs/superpowers/

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Shield, Clock, BadgeCheck, HandCoins } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
+import { withHreflang } from "@/lib/seo-hreflang";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
@@ -34,20 +35,20 @@ export async function generateMetadata({
   const robots = buildGeoMetadataRobots(params);
 
   return {
-    alternates: { canonical: canonicalUrl },
+    alternates: withHreflang({ canonical: canonicalUrl }),
     openGraph: { url: canonicalUrl },
     title: region
       ? injectRegionIntoTitle(
-          "Výkup nemovitosti při exekuci - rychlé řešení bez starostí",
+          "Výkup nemovitosti v exekuci — vyplaceno do 7 dnů, dluhy uhradíme",
           region.locative,
         )
-      : "Výkup nemovitosti při exekuci - rychlé řešení bez starostí",
+      : "Výkup nemovitosti v exekuci — vyplaceno do 7 dnů, dluhy uhradíme",
     description: region
       ? injectRegionIntoDescription(
-          "Prodejte nemovitost zatíženou exekucí rychle a diskrétně. Vyřešíme dluhy, uhradíme exekuci z kupní ceny a vyplatíme vás do 7 dnů. Bez provize.",
+          "Vykoupíme byt či dům zatížený exekucí — diskrétně, bez provize. Splatíme exekuci z kupní ceny, peníze na účtu do 48 h. 200+ vyřešených případů.",
           region.locative,
         )
-      : "Prodejte nemovitost zatíženou exekucí rychle a diskrétně. Vyřešíme dluhy, uhradíme exekuci z kupní ceny a vyplatíme vás do 7 dnů. Bez provize.",
+      : "Vykoupíme byt či dům zatížený exekucí — diskrétně, bez provize. Splatíme exekuci z kupní ceny, peníze na účtu do 48 h. 200+ vyřešených případů.",
     ...(robots && { robots }),
   };
 }

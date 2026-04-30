@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import { withHreflang } from "@/lib/seo-hreflang";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { LeadMagnetForm } from "@/components/lead-magnet-form";
 
 export const metadata: Metadata = {
-  alternates: {
+  alternates: withHreflang({
     canonical: "https://vykoupim-nemovitost.cz/pruvodce-vykupem",
-  },
+  }),
   title: "Průvodce rychlým výkupem nemovitosti — zdarma ke stažení",
   description:
     "Stáhněte si zdarma PDF průvodce rychlým výkupem nemovitosti. Dozvíte se, jak probíhá výkup, na co si dát pozor a jak získat nejlepší cenu.",

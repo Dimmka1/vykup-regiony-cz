@@ -58,3 +58,65 @@ Secondary:
 - UptimeRobot: check every 5 min (prod + staging)
 - Sentry: alert on new unhandled exceptions
 - Optional: Telegram alert channel for SEV-1/SEV-2
+
+## 7) SEO indexation log
+
+Track manual SEO operator actions here so the post-migration recovery is traceable.
+
+| Date       | Action       | Detail                                                                                                    |
+| ---------- | ------------ | --------------------------------------------------------------------------------------------------------- |
+| 2026-04-30 | Plan created | `docs/superpowers/plans/2026-04-30-seo-indexation-recovery.md` — 14 tasks for post-301-migration recovery |
+
+## 8) External www. backlink cleanup
+
+GSC reports `https://www.vykoupim-nemovitost.cz/...` referring to root URLs
+(e.g. `/blog/vykup-v-exekuci`, `/vykup-pri-exekuci`). These come from external
+sites linking to the www version, which 301-redirects to non-www. To recover
+the missing canonical signal:
+
+1. In GSC → "Links" → External links → sort by target URL.
+2. For each external URL whose target starts with `https://www.vykoupim-nemovitost.cz/`,
+   contact the site owner and ask them to update their link to the non-www
+   form: `https://vykoupim-nemovitost.cz/<same-path>`.
+3. Common targets to fix first: Seznam Firmy, Foursquare, business
+   directories, partner real-estate portals.
+4. Track each fix in the table below with date + URL pair.
+
+| Date | External site | Old URL | New URL | Fixed? |
+| ---- | ------------- | ------- | ------- | ------ |
+|      |               |         |         |        |
+
+## 9) Post-deploy SEO checklist (manual operator actions)
+
+Run after each significant SEO-related deploy:
+
+1. **IndexNow** (auto-runs in CI after `deploy-production` per `.github/workflows/ci.yml`).
+   - Verify in CI logs that `Submit URLs to IndexNow` step printed `status=200` (or `202`) for at least Bing + Yandex.
+   - If a step failed (`continue-on-error: true`), re-run manually:
+     ```bash
+     npm run indexnow
+     ```
+2. **GSC URL inspection — Request indexing** for top changed root URLs (10/day quota).
+   Priority list during the post-301-migration recovery (~14 days from 2026-04-30):
+   - `/vykup-bytu`, `/vykup-domu`, `/vykup-pozemku`
+   - `/vykup-pri-exekuci`, `/vykup-pri-dedictvi`, `/vykup-pri-rozvodu`
+   - `/vykup-spoluvlastnickeho-podilu`, `/vykup-nemovitosti-s-hypotekou`
+   - `/vykup-nemovitosti-s-vecnym-bremenem`, `/zpetny-najem`, `/vykup-v-drazbe`
+   - `/blog/jak-rychle-prodat-nemovitost`, `/blog/vykup-v-exekuci`
+   - `/blog/vykup-vs-drazba`, `/blog/kolik-stoji-vykup`,
+     `/blog/nemovitost-v-exekuci-pruvodce`
+3. **Schedule a +14-day re-inspection agent** (one-time):
+   - Use the `/schedule` slash command in local Claude Code.
+   - Ask it to call the GSC MCP `inspect_url_enhanced` for each of the URLs above
+     and report a diff vs. baseline.
+4. **Watch for `referring_urls` containing `https://www.vykoupim-nemovitost.cz/...`**
+   in the next inspection — those are external www-backlinks that need cleanup
+   (see §8 above).
+
+## 10) Sitemap freshness
+
+- `<lastmod>` is auto-injected by `scripts/build.mjs` (UTC date) at every build —
+  do not hardcode dates in `src/lib/sitemap-helpers.ts`.
+- After meaningful content updates that warrant Google recrawl, simply trigger
+  a production deploy (`workflow_dispatch` with `deploy_production: true`).
+  IndexNow + new `lastmod` go out automatically.

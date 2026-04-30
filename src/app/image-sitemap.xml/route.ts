@@ -1,8 +1,48 @@
+import fs from "node:fs";
+import path from "node:path";
 import { listRegions, getRegionSubdomainUrl } from "@/lib/config";
 import { ROOT_URL, escapeXml } from "@/lib/sitemap-helpers";
 import { BLOG_POSTS } from "@/app/blog/data";
 
 const BASE_URL = ROOT_URL;
+
+/**
+ * Per-page unique-image overrides. When `/public/<value>` exists on disk, that
+ * image is preferred over the shared stock (`property-exterior.jpg`,
+ * `happy-family-home.jpg`, …). When the file is missing, the entry silently
+ * falls back to the legacy shared stock path so the sitemap stays valid even
+ * mid-rollout.
+ *
+ * Generation prompts for each unique image live in `docs/IMAGE_GEN_PROMPTS.md`.
+ */
+const USE_CASE_UNIQUE_IMAGES: Record<string, string> = {
+  "/vykup-pri-exekuci": "/images/use-cases/exekuce.jpg",
+  "/vykup-pri-dedictvi": "/images/use-cases/dedictvi.jpg",
+  "/vykup-pri-rozvodu": "/images/use-cases/rozvod.jpg",
+  "/vykup-spoluvlastnickeho-podilu":
+    "/images/use-cases/spoluvlastnicky-podil.jpg",
+  "/vykup-nemovitosti-s-hypotekou": "/images/use-cases/s-hypotekou.jpg",
+  "/vykup-nemovitosti-s-vecnym-bremenem":
+    "/images/use-cases/s-vecnym-bremenem.jpg",
+  "/zpetny-najem": "/images/use-cases/zpetny-najem.jpg",
+  "/vykup-bytu": "/images/use-cases/byty.jpg",
+  "/vykup-domu": "/images/use-cases/domy.jpg",
+  "/vykup-pozemku": "/images/use-cases/pozemky.jpg",
+  "/vykup-v-drazbe": "/images/use-cases/drazba.jpg",
+};
+
+const PUBLIC_DIR = path.join(process.cwd(), "public");
+
+function uniqueImageFor(pagePath: string): string | null {
+  const candidate = USE_CASE_UNIQUE_IMAGES[pagePath];
+  if (!candidate) return null;
+  return fs.existsSync(path.join(PUBLIC_DIR, candidate)) ? candidate : null;
+}
+
+function uniqueBlogImageFor(slug: string): string | null {
+  const candidate = `/images/blog/${slug}.jpg`;
+  return fs.existsSync(path.join(PUBLIC_DIR, candidate)) ? candidate : null;
+}
 
 /** Use-case pages on root domain with Czech titles/captions */
 const USE_CASE_PAGES = [
@@ -59,6 +99,12 @@ const USE_CASE_PAGES = [
     path: "/vykup-pozemku",
     title: "Výkup pozemků",
     caption: "Rychlý výkup stavebních i zemědělských pozemků v celé ČR",
+  },
+  {
+    path: "/vykup-v-drazbe",
+    title: "Výkup nemovitosti v dražbě",
+    caption:
+      "Zachráníme byt nebo dům před exekuční nebo nucenou dražbou — zastavíme dražbu, uhradíme dluhy, vyplatíme majitele",
   },
 ] as const;
 
@@ -202,26 +248,38 @@ export async function GET(): Promise<Response> {
   });
 
   // ─── 3. Use-case pages on root domain (10 entries) ───
+  // When a unique illustration exists at /images/use-cases/<slug>.jpg, prefer
+  // it as the SINGLE image — Google's image dedup drops repeated stock photos.
+  // Without a unique file we fall back to the legacy 3-stock-photo set.
   for (const page of USE_CASE_PAGES) {
+    const unique = uniqueImageFor(page.path);
     entries.push({
       loc: `${BASE_URL}${page.path}`,
-      images: [
-        {
-          imageLoc: `${BASE_URL}/images/property-exterior.jpg`,
-          title: page.title,
-          caption: page.caption,
-        },
-        {
-          imageLoc: `${BASE_URL}/images/process-consultation.webp`,
-          title: `${page.title} — konzultace`,
-          caption: `Bezplatná konzultace: ${page.caption}`,
-        },
-        {
-          imageLoc: `${BASE_URL}/images/happy-family-home.jpg`,
-          title: `${page.title} — spokojení klienti`,
-          caption: `Spokojení klienti kteří využili službu: ${page.title.toLowerCase()}`,
-        },
-      ],
+      images: unique
+        ? [
+            {
+              imageLoc: `${BASE_URL}${unique}`,
+              title: page.title,
+              caption: page.caption,
+            },
+          ]
+        : [
+            {
+              imageLoc: `${BASE_URL}/images/property-exterior.jpg`,
+              title: page.title,
+              caption: page.caption,
+            },
+            {
+              imageLoc: `${BASE_URL}/images/process-consultation.webp`,
+              title: `${page.title} — konzultace`,
+              caption: `Bezplatná konzultace: ${page.caption}`,
+            },
+            {
+              imageLoc: `${BASE_URL}/images/happy-family-home.jpg`,
+              title: `${page.title} — spokojení klienti`,
+              caption: `Spokojení klienti kteří využili službu: ${page.title.toLowerCase()}`,
+            },
+          ],
     });
   }
 
@@ -244,22 +302,35 @@ export async function GET(): Promise<Response> {
     });
   }
 
-  // ─── 5. Blog posts (10 entries) ───
+  // ─── 5. Blog posts ───
+  // Same unique-vs-stock fallback as use-case pages. When the unique blog
+  // illustration exists at /images/blog/<slug>.jpg, Google sees a single
+  // unique image; without it we keep the per-post OpenGraph image plus a
+  // stock fallback (so the entry still has at least one image-loc).
   for (const post of BLOG_POSTS) {
+    const unique = uniqueBlogImageFor(post.slug);
     entries.push({
       loc: `${BASE_URL}/blog/${post.slug}`,
-      images: [
-        {
-          imageLoc: `${BASE_URL}/blog/${post.slug}/opengraph-image`,
-          title: post.title,
-          caption: post.excerpt.slice(0, 200),
-        },
-        {
-          imageLoc: `${BASE_URL}/images/property-exterior.jpg`,
-          title: `${post.title} — ilustrace`,
-          caption: post.excerpt.slice(0, 200),
-        },
-      ],
+      images: unique
+        ? [
+            {
+              imageLoc: `${BASE_URL}${unique}`,
+              title: post.title,
+              caption: post.excerpt.slice(0, 200),
+            },
+          ]
+        : [
+            {
+              imageLoc: `${BASE_URL}/blog/${post.slug}/opengraph-image`,
+              title: post.title,
+              caption: post.excerpt.slice(0, 200),
+            },
+            {
+              imageLoc: `${BASE_URL}/images/property-exterior.jpg`,
+              title: `${post.title} — ilustrace`,
+              caption: post.excerpt.slice(0, 200),
+            },
+          ],
     });
   }
 

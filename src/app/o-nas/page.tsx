@@ -15,6 +15,7 @@ import {
   MapPinned,
 } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
+import { withHreflang } from "@/lib/seo-hreflang";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { AboutCounters } from "@/components/about-counters";
 import { AboutMap } from "@/components/about-map";
@@ -25,7 +26,9 @@ export const metadata: Metadata = {
   title: "O nás | Vykoupím Nemovitost — férový výkup nemovitostí",
   description:
     "Jsme česká firma specializující se na rychlý a férový výkup nemovitostí po celé ČR. Bez provize, s právním servisem zdarma a platbou do 48 hodin.",
-  alternates: { canonical: "https://vykoupim-nemovitost.cz/o-nas" },
+  alternates: withHreflang({
+    canonical: "https://vykoupim-nemovitost.cz/o-nas",
+  }),
   openGraph: {
     title: "O nás | Vykoupím Nemovitost",
     description:

@@ -54,18 +54,21 @@ export async function GET(): Promise<Response> {
     });
   }
 
-  // 4. 10 use-case pages — priority 0.8
+  // 4. 10 use-case pages — priority 0.9 (parents of the ?kraj= geo
+  // children at 0.5; lifted from 0.8 to outrank the static pages
+  // and give the canonical use-case URL a clearer signal).
   for (const path of USE_CASE_PATHS) {
     entries.push({
       url: `${ROOT_URL}${path}`,
       lastmod: BUILD_DATE,
-      changefreq: "monthly",
-      priority: 0.8,
+      changefreq: "weekly",
+      priority: 0.9,
     });
   }
 
   // 5. Key static pages — priority 0.8
   const staticPages = [
+    { path: "/vykup-v-drazbe", priority: 0.9 },
     { path: "/jak-to-funguje", priority: 0.8 },
     { path: "/garance-vykupu", priority: 0.8 },
     { path: "/proc-my", priority: 0.8 },

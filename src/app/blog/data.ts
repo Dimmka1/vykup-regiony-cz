@@ -49,9 +49,9 @@ export const BLOG_POSTS: readonly BlogPost[] = [
   },
   {
     slug: "jak-rychle-prodat-nemovitost",
-    title: "Jak rychle prodat nemovitost v roce 2026",
+    title: "Jak rychle prodat nemovitost (2026): 7 dnů vs. 6 měsíců",
     excerpt:
-      "Kompletní průvodce rychlým prodejem nemovitosti v roce 2026 - od přípravy až po předání klíčů. Praktické tipy, které vám ušetří čas i peníze.",
+      "Návod jak prodat byt nebo dům za 7 dnů. Postup, ceny 2026, daně. Srovnání výkupu, realitky a dražby. Reálné případy z celé ČR.",
     date: "2026-03-01",
     readingTime: "7 min",
   },
@@ -89,9 +89,9 @@ export const BLOG_POSTS: readonly BlogPost[] = [
   },
   {
     slug: "vykup-v-exekuci",
-    title: "Výkup nemovitosti v exekuci - co potřebujete vědět",
+    title: "Výkup nemovitosti v exekuci 2026 — postup, dokumenty, daně",
     excerpt:
-      "Praktický průvodce prodejem nemovitosti zatížené exekucí. Jaké máte možnosti a jak celý proces funguje.",
+      "Praktický návod, jak prodat nemovitost zatíženou exekucí: postup krok za krokem, dokumenty, daňové dopady, srovnání výkupu a dražby.",
     date: "2026-02-05",
     readingTime: "6 min",
   },

@@ -9,6 +9,7 @@ import {
   getRegionSubdomainUrl,
 } from "@/lib/config";
 import { getRequestHost, getRegionKeyOverride } from "@/lib/request-host";
+import { withHreflang } from "@/lib/seo-hreflang";
 
 import {
   HomePageContent,
@@ -51,9 +52,9 @@ export async function generateMetadata(): Promise<Metadata> {
     title: region.seoTitle || region.title,
     description: metaDescription,
     keywords: region.keywords,
-    alternates: {
+    alternates: withHreflang({
       canonical: canonicalUrl,
-    },
+    }),
     openGraph: {
       title: region.seoTitle || region.title,
       description: metaDescription,

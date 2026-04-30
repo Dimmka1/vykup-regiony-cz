@@ -54,13 +54,15 @@ export async function GET(): Promise<Response> {
     });
   }
 
-  // 4. 10 use-case pages — priority 0.8
+  // 4. 10 use-case pages — priority 0.9 (parents of the ?kraj= geo
+  // children at 0.5; lifted from 0.8 to outrank the static pages
+  // and give the canonical use-case URL a clearer signal).
   for (const path of USE_CASE_PATHS) {
     entries.push({
       url: `${ROOT_URL}${path}`,
       lastmod: BUILD_DATE,
-      changefreq: "monthly",
-      priority: 0.8,
+      changefreq: "weekly",
+      priority: 0.9,
     });
   }
 

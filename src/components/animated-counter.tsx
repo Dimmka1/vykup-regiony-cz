@@ -15,7 +15,12 @@ function parseNumericPart(value: string): {
   decimals: number;
   suffix: string;
 } {
-  const match = value.match(/^([^\d]*?)([\d\s,.]+)(.*)$/);
+  // Match: optional non-digit prefix, then a number that may contain
+  // space-separated thousands (e.g. "1 250") or decimals, leaving any
+  // trailing whitespace and unit text in the suffix (e.g. " Kč", " h").
+  const match = value.match(
+    /^([^\d]*?)(\d{1,3}(?:[   ]\d{3})*(?:[.,]\d+)?)(.*)$/,
+  );
   if (!match) {
     return { prefix: "", number: 0, decimals: 0, suffix: value };
   }

@@ -52,6 +52,12 @@ export const metadata: Metadata = {
     template: "%s | Výkup nemovitostí",
   },
   description: "Rychlá nezávazná konzultace výkupu nemovitostí.",
+  alternates: {
+    languages: {
+      cs: "https://vykoupim-nemovitost.cz",
+      "x-default": "https://vykoupim-nemovitost.cz",
+    },
+  },
   twitter: {
     card: "summary_large_image",
   },

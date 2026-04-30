@@ -11,12 +11,13 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "vitest run",
-    "ci": "npm run lint && npm run format:check && tsc --noEmit && npm run build",
+    "ci": "npm run lint && npm run format:check && tsc --noEmit && npm run audit:subdomain-hrefs && npm run build",
     "test:e2e": "playwright test",
     "validate:jsonld": "node scripts/validate-jsonld.js",
     "indexnow": "tsx scripts/indexnow-submit.ts",
     "audit:copy": "tsx scripts/audit-copy.ts",
-    "audit:crawlability": "tsx scripts/audit-crawlability.ts"
+    "audit:crawlability": "tsx scripts/audit-crawlability.ts",
+    "audit:subdomain-hrefs": "tsx scripts/audit-subdomain-hrefs.ts"
   },
   "dependencies": {
     "framer-motion": "^12.35.0",
@@ -46,6 +47,7 @@
     "prettier-plugin-tailwindcss": "^0.7.2",
     "sass": "^1.98.0",
     "tailwindcss": "^3.4.17",
+    "tsx": "^4.21.0",
     "typescript": "^5.7.2",
     "vitest": "^4.0.18"
   },

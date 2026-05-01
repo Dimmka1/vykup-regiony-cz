@@ -69,6 +69,7 @@ Track manual SEO operator actions here so the post-migration recovery is traceab
 | 2026-04-30 | Production deploy             | All 17 commits merged to `main` and deployed via `workflow_dispatch` (run 25172298166). Production verified: sitemap-core lastmod=2026-04-30, /vykup-v-drazbe 200, hreflang OK. |
 | 2026-04-30 | IndexNow auto-submit          | CI step "Submit URLs to IndexNow" ran during production deploy. Manual `npm run indexnow` re-run after — 190 URLs submitted to api.indexnow.org (Bing) ✓.                       |
 | 2026-04-30 | +14-day re-inspection routine | Scheduled remote agent `trig_01EF7GB2dDavvAwaehuketHZ` for 2026-05-14T08:00:00Z. View: https://claude.ai/code/routines/trig_01EF7GB2dDavvAwaehuketHZ                            |
+| 2026-05-01 | IndexNow follow-up deploy     | PR #302 (recursive sub-sitemap fix + this log) merged to `main`. Re-deployed prod via `workflow_dispatch` (run 25207891791). Auto-IndexNow now sends 190 URLs (was 4) — Bing ✓. |
 
 ### GSC manual "Request indexing" — operator-only step
 

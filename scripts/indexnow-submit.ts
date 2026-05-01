@@ -34,28 +34,57 @@ interface SubmissionResult {
   success: boolean;
 }
 
+async function extractLocs(xml: string): Promise<string[]> {
+  const locs: string[] = [];
+  const locRegex = /<loc>\s*(https?:\/\/[^<]+)\s*<\/loc>/g;
+  let match: RegExpExecArray | null;
+  while ((match = locRegex.exec(xml)) !== null) {
+    locs.push(match[1].trim());
+  }
+  return locs;
+}
+
+/**
+ * Recursively expand a sitemap (or sitemap index) into a flat list of leaf
+ * URLs. Image-sitemap and other XML namespaces are detected by the host
+ * domain match — we only follow same-host index entries.
+ */
 async function fetchSitemapUrls(sitemapUrl: string): Promise<string[]> {
   console.log(`Fetching sitemap from ${sitemapUrl}...`);
 
   const response = await fetch(sitemapUrl);
-
   if (!response.ok) {
     throw new Error(
       `Failed to fetch sitemap: ${response.status} ${response.statusText}`,
     );
   }
-
   const xml = await response.text();
-  const urls: string[] = [];
-  const locRegex = /<loc>\s*(https?:\/\/[^<]+)\s*<\/loc>/g;
-  let match: RegExpExecArray | null;
+  const isIndex = xml.includes("<sitemapindex");
+  const locs = await extractLocs(xml);
 
-  while ((match = locRegex.exec(xml)) !== null) {
-    urls.push(match[1].trim());
+  if (!isIndex) {
+    console.log(`  → ${locs.length} leaf URLs`);
+    return locs;
   }
 
-  console.log(`Found ${urls.length} URLs in sitemap.`);
-  return urls;
+  // sitemapindex: recurse into each child sitemap, but skip image-sitemap
+  // (image-sitemap entries point to the same page URLs as the other sub-sitemaps,
+  // and IndexNow doesn't index image URLs anyway).
+  console.log(`  → sitemapindex with ${locs.length} children, recursing...`);
+  const all: string[] = [];
+  for (const child of locs) {
+    if (child.includes("image-sitemap")) {
+      console.log(`    skip ${child} (image sitemap)`);
+      continue;
+    }
+    const childUrls = await fetchSitemapUrls(child);
+    all.push(...childUrls);
+  }
+
+  // De-dupe (geo URLs can theoretically appear in multiple sub-sitemaps)
+  const unique = Array.from(new Set(all));
+  console.log(`Total unique leaf URLs: ${unique.length}`);
+  return unique;
 }
 
 function createBatches<T>(items: T[], batchSize: number): T[][] {
@@ -78,19 +107,30 @@ async function submitBatch(
     urlList: urls,
   };
 
-  const response = await fetch(endpoint, {
-    method: "POST",
-    headers: { "Content-Type": "application/json; charset=utf-8" },
-    body: JSON.stringify(payload),
-  });
-
-  return {
-    endpoint,
-    batch: batchIndex + 1,
-    urlCount: urls.length,
-    status: response.status,
-    success: response.status >= 200 && response.status < 300,
-  };
+  try {
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json; charset=utf-8" },
+      body: JSON.stringify(payload),
+    });
+    return {
+      endpoint,
+      batch: batchIndex + 1,
+      urlCount: urls.length,
+      status: response.status,
+      success: response.status >= 200 && response.status < 300,
+    };
+  } catch (err) {
+    // Network failures (DNS, timeout, blocked region) — log and continue
+    // so a single flaky engine doesn't kill the whole submission.
+    return {
+      endpoint,
+      batch: batchIndex + 1,
+      urlCount: urls.length,
+      status: 0,
+      success: false,
+    };
+  }
 }
 
 async function submitToEndpoint(

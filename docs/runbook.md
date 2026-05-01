@@ -63,9 +63,39 @@ Secondary:
 
 Track manual SEO operator actions here so the post-migration recovery is traceable.
 
-| Date       | Action       | Detail                                                                                                    |
-| ---------- | ------------ | --------------------------------------------------------------------------------------------------------- |
-| 2026-04-30 | Plan created | `docs/superpowers/plans/2026-04-30-seo-indexation-recovery.md` — 14 tasks for post-301-migration recovery |
+| Date       | Action                        | Detail                                                                                                                                                                          |
+| ---------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2026-04-30 | Plan created                  | `docs/superpowers/plans/2026-04-30-seo-indexation-recovery.md` — 14 tasks for post-301-migration recovery                                                                       |
+| 2026-04-30 | Production deploy             | All 17 commits merged to `main` and deployed via `workflow_dispatch` (run 25172298166). Production verified: sitemap-core lastmod=2026-04-30, /vykup-v-drazbe 200, hreflang OK. |
+| 2026-04-30 | IndexNow auto-submit          | CI step "Submit URLs to IndexNow" ran during production deploy. Manual `npm run indexnow` re-run after — 190 URLs submitted to api.indexnow.org (Bing) ✓.                       |
+| 2026-04-30 | +14-day re-inspection routine | Scheduled remote agent `trig_01EF7GB2dDavvAwaehuketHZ` for 2026-05-14T08:00:00Z. View: https://claude.ai/code/routines/trig_01EF7GB2dDavvAwaehuketHZ                            |
+
+### GSC manual "Request indexing" — operator-only step
+
+The Google Search Console "Request indexing" button is **UI-only** — there is no API for it (Google deliberately keeps it manual to prevent abuse). Run this in the GSC web UI on day 1 (10 URLs) and day 2 (5 URLs):
+
+**Day 1 (10/day quota):**
+
+1. https://vykoupim-nemovitost.cz/vykup-bytu
+2. https://vykoupim-nemovitost.cz/vykup-domu
+3. https://vykoupim-nemovitost.cz/vykup-pozemku
+4. https://vykoupim-nemovitost.cz/vykup-pri-exekuci
+5. https://vykoupim-nemovitost.cz/vykup-pri-dedictvi
+6. https://vykoupim-nemovitost.cz/vykup-pri-rozvodu
+7. https://vykoupim-nemovitost.cz/vykup-spoluvlastnickeho-podilu
+8. https://vykoupim-nemovitost.cz/vykup-nemovitosti-s-hypotekou
+9. https://vykoupim-nemovitost.cz/vykup-nemovitosti-s-vecnym-bremenem
+10. https://vykoupim-nemovitost.cz/zpetny-najem
+
+**Day 2 (5 more):**
+
+11. https://vykoupim-nemovitost.cz/blog/jak-rychle-prodat-nemovitost
+12. https://vykoupim-nemovitost.cz/blog/vykup-v-exekuci
+13. https://vykoupim-nemovitost.cz/blog/vykup-vs-drazba
+14. https://vykoupim-nemovitost.cz/blog/kolik-stoji-vykup
+15. https://vykoupim-nemovitost.cz/blog/nemovitost-v-exekuci-pruvodce
+
+For each: paste URL into GSC URL inspection box → wait → click **Request indexing**. After all 15, append a row to the table above.
 
 ## 8) External www. backlink cleanup
 

@@ -22,6 +22,7 @@ const LLMS_TXT = `# Vykoupím Nemovitost
 - [Domovská stránka](https://vykoupim-nemovitost.cz/): Rychlý výkup nemovitostí v ČR — přehled nabídky.
 - [Jak to funguje](https://vykoupim-nemovitost.cz/jak-to-funguje): Pětistupňový proces výkupu od kontaktu po platbu.
 - [Jak stanovujeme cenu](https://vykoupim-nemovitost.cz/jak-stanovujeme-cenu): Transparentní metodika výpočtu výkupní ceny (80–90 % tržní hodnoty).
+- [Index výkupních cen 2026](https://vykoupim-nemovitost.cz/index-vykupnich-cen): Kvartální cenový index — průměrné tržní ceny bytů, domů a pozemků ve všech 14 krajích ČR (Kč/m²). Strojově čitelná data v JSON.
 - [O nás](https://vykoupim-nemovitost.cz/o-nas): Český tým, hodnoty, regionální pokrytí.
 - [Časté dotazy](https://vykoupim-nemovitost.cz/caste-dotazy): Nejčastější otázky o procesu, ceně, právní bezpečnosti.
 - [Garance výkupu](https://vykoupim-nemovitost.cz/garance-vykupu): Naše garance — co znamenají a jak je dodržujeme.

@@ -77,6 +77,13 @@ const FAQ_ITEMS: readonly FaqItem[] = [
       "Standardní výkup bytu trvá 7–14 dnů od prvního kontaktu po vyplacení peněz. U urgentních případů (hrozící dražba, exekuce) zvládneme proces i za 5–7 dnů včetně advokátní úschovy a podání návrhu na vklad do katastru nemovitostí.",
   },
   {
+    // Verbatim match for top GSC query "odkup bytů" (125 imp/0 clicks) +
+    // "rychlý výkup bytů" (46 imp/0 clicks)
+    question: "Jak probíhá rychlý odkup bytů?",
+    answer:
+      "Rychlý odkup bytů probíhá ve 4 krocích: nezávazná cenová nabídka do 24 hodin (z dat ČSÚ a katastru), prohlídka, podpis kupní smlouvy v advokátní úschově, výplata. Celá lhůta 7–14 dnů. Vykupujeme byty 1+kk až 5+1, osobní i družstevní, v Praze, Brně, Ostravě a všech 14 krajích ČR. Cena 80–90 % tržní hodnoty.",
+  },
+  {
     question: "Vykupujete i družstevní byty?",
     answer:
       "Ano. U družstevního bytu vykupujeme členský podíl v bytovém družstvu — převod neprobíhá zápisem do katastru, ale dohodou s družstvem. Komunikaci s družstvem, schválení převodu i vyrovnání případného členského dluhu zajistíme za vás.",
@@ -258,8 +265,17 @@ export default async function VykupBytuPage({
               Výkup bytu je rychlý prodej, při kterém specializovaná firma
               odkoupí osobní nebo družstevní byt za hotové z vlastních
               prostředků. Výkupní cena se obvykle pohybuje 80–90 % tržní hodnoty
-              bytu a celý proces od první konzultace po vyplacení peněz trvá
-              7–14 dnů, oproti 3–6 měsícům u klasického prodeje přes realitní
+              bytu — pro kontext: průměrná tržní cena bytu v Praze činí 150 800
+              Kč/m², ve Středočeském kraji 86 500 Kč/m², v Ústeckém kraji 40 000
+              Kč/m² (
+              <Link
+                href="/index-vykupnich-cen"
+                className="text-emerald-700 underline-offset-2 hover:underline"
+              >
+                Index výkupních cen Q2 2026
+              </Link>
+              ). Celý proces od první konzultace po vyplacení peněz trvá 7–14
+              dnů, oproti 3–6 měsícům u klasického prodeje přes realitní
               kancelář.
             </p>
             <p>

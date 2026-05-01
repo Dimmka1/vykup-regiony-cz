@@ -83,6 +83,8 @@ export async function GET(): Promise<Response> {
     { path: "/slovnik-pojmu", priority: 0.7 },
     { path: "/zdroje-a-citace", priority: 0.6 },
     { path: "/redakcni-zasady", priority: 0.6 },
+    // Original-research dataset (Dataset schema, AI-citation magnet)
+    { path: "/index-vykupnich-cen", priority: 0.9 },
   ] as const;
 
   for (const page of staticPages) {

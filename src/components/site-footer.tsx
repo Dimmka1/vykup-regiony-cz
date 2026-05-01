@@ -173,6 +173,9 @@ export function SiteFooter({ phone = "+420 776 424 145" }: SiteFooterProps) {
               <Link href="/jak-stanovujeme-cenu" className={linkClass}>
                 Jak stanovujeme cenu
               </Link>
+              <Link href="/index-vykupnich-cen" className={linkClass}>
+                Index výkupních cen
+              </Link>
               <Link href="/caste-dotazy" className={linkClass}>
                 Časté dotazy
               </Link>

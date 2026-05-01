@@ -265,6 +265,14 @@ export default async function VykupPozemkuPage({
               >
                 Českého statistického úřadu
               </a>
+              . Stavební pozemky se v ČR Q2 2026 obchodují v rozsahu 1 600 Kč/m²
+              (Vysočina) — 14 000 Kč/m² (Praha); kompletní krajský přehled v{" "}
+              <Link
+                href="/index-vykupnich-cen"
+                className="text-emerald-700 underline-offset-2 hover:underline"
+              >
+                indexu výkupních cen
+              </Link>
               .
             </p>
             <p>

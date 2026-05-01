@@ -38,6 +38,18 @@ const FAQ_ITEMS: readonly FaqItem[] = [
       "Ano. Dobrovolnou dražbu lze odvolat kdykoliv před jejím konáním. Pokud chcete dražbu zrušit a prodat napřímo bez čekání na výsledek aukce, postaráme se o celý administrativní proces a nabídneme přímý výkup za férovější cenu, než jakou byste pravděpodobně dostali v dražbě.",
   },
   {
+    // Verbatim match for top GSC query "vykup nemovitosti v drazbe" (70 imp/0 clicks)
+    question: "Jak probíhá výkup nemovitosti v dražbě?",
+    answer:
+      "Výkup nemovitosti v dražbě probíhá uhrazením celé vymáhané pohledávky exekutorovi před termínem dražby — vznikne důvod pro zastavení exekuce dle § 268 občanského soudního řádu a dražba se zastaví. Lhůta 5–10 dnů od podpisu kupní smlouvy. Vlastník dostává 70–85 % tržní hodnoty místo 60–70 % v nucené dražbě, kde vyvolávací cena činí jen 2/3 znaleckého odhadu.",
+  },
+  {
+    // Verbatim match for "vykup domu v nucene drazbe" (31 imp/0 clicks)
+    question: "Jak prodat dům v nucené dražbě před aukcí?",
+    answer:
+      "Dům v nucené dražbě lze prodat před termínem aukce výkupem za 70–85 % tržní hodnoty: výkupní firma uhradí pohledávky exekutorovi a po jejich uspokojení se exekuce zastaví. Doporučujeme začít minimálně 7 dnů před termínem dražby. Po proběhlé dražbě vlastník dostane jen zlomek tržní ceny — výkup před dražbou tedy zachrání podstatnou část hodnoty.",
+  },
+  {
     question: "Co s nájemníky v nemovitosti zatížené dražbou?",
     answer:
       "Nájemní smlouvy přejdou spolu s vlastnictvím na nového majitele — jejich platnost dražba ani výkup automaticky neruší. U problematických nájemních vztahů poskytneme právní podporu při řešení nájemní situace, včetně případných výpovědí podle občanského zákoníku.",

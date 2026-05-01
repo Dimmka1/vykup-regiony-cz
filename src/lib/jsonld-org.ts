@@ -81,6 +81,16 @@ export function buildOrganizationJsonLd(
       "@type": "PostalAddress",
       addressCountry: "CZ",
     },
+    // sameAs is the bidirectional link to Wikidata + directories.
+    // Empty for now — owner-managed off-site assets.
+    // After creating Wikidata Q-id, Firmy.cz, LinkedIn (see
+    // docs/superpowers/specs/2026-05-01-wikidata-entity-guide.md):
+    //   sameAs: [
+    //     "https://www.wikidata.org/wiki/Q...",
+    //     "https://www.firmy.cz/...",
+    //     "https://www.linkedin.com/company/..."
+    //   ]
+    sameAs: [],
     contactPoint: {
       "@type": "ContactPoint",
       telephone: contact.phone,

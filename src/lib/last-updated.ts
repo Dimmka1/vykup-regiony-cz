@@ -47,6 +47,7 @@ const LAST_UPDATED: Record<string, IsoDate> = {
   "/redakcni-zasady": "2026-05-01",
   "/slovnik-pojmu": "2026-05-01",
   "/zdroje-a-citace": "2026-05-01",
+  "/index-vykupnich-cen": "2026-05-01",
 
   // Homepage
   "/": "2026-05-01",

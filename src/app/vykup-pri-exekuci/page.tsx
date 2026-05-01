@@ -69,6 +69,18 @@ const FAQ_ITEMS: readonly FaqItem[] = [
       "Ano. Nemovitost v exekuci lze prodat za souhlasu exekutora — exekuční pohledávky se uhradí přímo z kupní ceny, kupující obdrží nemovitost bez zatížení a původní vlastník zůstatek po odečtu dluhů. Komunikaci s exekutorským úřadem vedeme za vás.",
   },
   {
+    // Verbatim match for top GSC query "výkup bytu v exekuci" (235 imp/0 clicks)
+    question: "Jak probíhá výkup bytu v exekuci?",
+    answer:
+      "Výkup bytu v exekuci probíhá ve 4 krocích: (1) ověříme stav exekuce v Centrální evidenci exekucí, (2) získáme souhlas exekutora s prodejem, (3) advokát připraví kupní smlouvu s úhradou exekuční pohledávky z kupní ceny, (4) zápis nového vlastníka v katastru. Lhůta 5–14 dnů. Vlastník dostává čistou částku po odečtu dluhu.",
+  },
+  {
+    // Verbatim match for "výkup domu v exekuci" (45 imp/0 clicks)
+    question: "Jak probíhá výkup domu v exekuci?",
+    answer:
+      "Postup výkupu rodinného domu v exekuci je shodný s bytem — ověření v Centrální evidenci exekucí, dohoda s exekutorem, kupní smlouva v advokátní úschově, vklad do katastru. U domu se navíc oceňuje pozemek (zahrada, dvůr) samostatně. U exekučně vázaných hospodářských staveb (stodola, garáž) ověřujeme, zda jsou předmětem exekuce.",
+  },
+  {
     question: "Kolik za nemovitost v exekuci dostanu?",
     answer:
       "Výkupní cena je 80–90 % tržní hodnoty. Z této částky se prvně uhradí exekuční pohledávky podle Centrální evidence exekucí, zbytek dostáváte přímo na účet. Žádné skryté slevy se neuplatňují — všechny vstupy do výpočtu vám ukážeme.",

@@ -264,7 +264,16 @@ export default async function VykupDomuPage({
               >
                 Českého statistického úřadu
               </a>{" "}
-              a koeficientu na typ stavby.
+              a koeficientu na typ stavby. Pro kontext: průměrná cena rodinného
+              domu se v ČR pohybuje od 28 000 Kč/m² (Ústecký kraj) po 105 000
+              Kč/m² (Praha) — kompletní rozpis uvádí{" "}
+              <Link
+                href="/index-vykupnich-cen"
+                className="text-emerald-700 underline-offset-2 hover:underline"
+              >
+                Index výkupních cen
+              </Link>
+              .
             </p>
             <p>
               Vykupujeme rodinné domy v jakémkoli stavu — od novostaveb po

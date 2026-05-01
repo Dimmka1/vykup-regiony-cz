@@ -7,6 +7,15 @@
  * AI Overview correlations: visible last-updated dates correlate with citation
  * rate (44% of citations from 2025+ content). The same ISO date should be
  * mirrored to Article schema dateModified where applicable.
+ *
+ * Microdata note: we do NOT add `itemprop` here. The component is used on
+ * many non-Article pages (use-cases, glossary, methodology) where there's
+ * no enclosing `itemscope` ancestor — an orphan itemprop has no item to
+ * attach to and adds no machine-readable signal. The dateModified is
+ * already present in the page-level JSON-LD WebPage/Article. Where
+ * Microdata IS the right tool (blog/[slug] which has Article scope), we
+ * add itemprop directly on the in-page time elements (datePublished,
+ * dateModified) within the article body, not via this component.
  */
 
 import {

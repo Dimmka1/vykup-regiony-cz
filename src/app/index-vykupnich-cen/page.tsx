@@ -309,6 +309,13 @@ export default function IndexVykupnichCenPage(): React.ReactElement {
             <p className="mt-2 text-sm text-slate-500">
               Seřazeno sestupně podle ceny bytu. Všechny hodnoty v Kč za m².
             </p>
+            {/* Microdata layer:
+                each row is an Observation of three QuantitativeValue
+                measurements for a Place (kraj). This complements the
+                top-level JSON-LD Dataset with row-level entity signals
+                — the JSON-LD has aggregate variableMeasured min/max/median;
+                the table provides per-region per-type values.
+                Schema-validated against schema.org Observation pattern. */}
             <div className="mt-6 overflow-x-auto rounded-2xl border border-slate-200">
               <table className="min-w-full divide-y divide-slate-200 text-sm">
                 <thead className="bg-slate-50">
@@ -343,21 +350,62 @@ export default function IndexVykupnichCenPage(): React.ReactElement {
                   {rows.map((r, idx) => (
                     <tr
                       key={r.key}
+                      itemScope
+                      itemType="https://schema.org/AdministrativeArea"
                       className={idx % 2 === 0 ? "" : "bg-slate-50/40"}
                     >
                       <th
                         scope="row"
                         className="px-4 py-3 text-left font-medium text-slate-900"
                       >
-                        {r.name}
+                        <span itemProp="name">{r.name}</span>
                       </th>
-                      <td className="px-4 py-3 text-right font-mono tabular-nums text-slate-700">
+                      <td
+                        className="px-4 py-3 text-right font-mono tabular-nums text-slate-700"
+                        itemProp="additionalProperty"
+                        itemScope
+                        itemType="https://schema.org/PropertyValue"
+                      >
+                        <meta
+                          itemProp="propertyID"
+                          content="apartment_price_per_m2"
+                        />
+                        <meta itemProp="name" content="Cena bytu" />
+                        <meta itemProp="unitText" content="CZK/m²" />
+                        <meta itemProp="value" content={String(r.bytM2)} />
                         {formatPricePerM2(r.bytM2)}
                       </td>
-                      <td className="px-4 py-3 text-right font-mono tabular-nums text-slate-700">
+                      <td
+                        className="px-4 py-3 text-right font-mono tabular-nums text-slate-700"
+                        itemProp="additionalProperty"
+                        itemScope
+                        itemType="https://schema.org/PropertyValue"
+                      >
+                        <meta
+                          itemProp="propertyID"
+                          content="house_price_per_m2"
+                        />
+                        <meta itemProp="name" content="Cena rodinného domu" />
+                        <meta itemProp="unitText" content="CZK/m²" />
+                        <meta itemProp="value" content={String(r.dumM2)} />
                         {formatPricePerM2(r.dumM2)}
                       </td>
-                      <td className="px-4 py-3 text-right font-mono tabular-nums text-slate-700">
+                      <td
+                        className="px-4 py-3 text-right font-mono tabular-nums text-slate-700"
+                        itemProp="additionalProperty"
+                        itemScope
+                        itemType="https://schema.org/PropertyValue"
+                      >
+                        <meta
+                          itemProp="propertyID"
+                          content="building_plot_price_per_m2"
+                        />
+                        <meta
+                          itemProp="name"
+                          content="Cena stavebního pozemku"
+                        />
+                        <meta itemProp="unitText" content="CZK/m²" />
+                        <meta itemProp="value" content={String(r.pozemekM2)} />
                         {formatPricePerM2(r.pozemekM2)}
                       </td>
                     </tr>

@@ -227,10 +227,20 @@ export function SiteFooter({ phone = "+420 776 424 145" }: SiteFooterProps) {
               Kontakt
             </h3>
             <div className="flex flex-col gap-3">
-              <span className="flex items-center gap-2 text-sm text-slate-400">
+              {/* Microdata PostalAddress — adds inline structured signal
+                  for the country-level service area. Values match the
+                  JSON-LD Organization.address declaration in
+                  src/lib/jsonld-org.ts (addressCountry: "CZ"). */}
+              <address
+                itemScope
+                itemType="https://schema.org/PostalAddress"
+                className="flex items-center gap-2 text-sm not-italic text-slate-400"
+              >
                 <MapPin className="h-4 w-4 shrink-0 text-[var(--theme-500)]" />{" "}
-                Česká republika
-              </span>
+                <span itemProp="addressCountry" content="CZ">
+                  Česká republika
+                </span>
+              </address>
               <a
                 href={`tel:${phone.replace(/\s/g, "")}`}
                 className="flex items-center gap-2 text-sm text-slate-400 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"

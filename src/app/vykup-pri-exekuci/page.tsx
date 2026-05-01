@@ -5,6 +5,7 @@ import { Shield, Clock, BadgeCheck, HandCoins } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
 import { withHreflang } from "@/lib/seo-hreflang";
 import { buildSpeakableSpec } from "@/lib/jsonld-speakable";
+import { buildQuestionId } from "@/lib/faq-slug";
 import { EXTERNAL_SOURCES } from "@/lib/external-sources";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { LastUpdated } from "@/components/last-updated";
@@ -167,9 +168,62 @@ export default async function VykupPriExekuciPage({
     "@type": "FAQPage",
     mainEntity: FAQ_ITEMS.map((item) => ({
       "@type": "Question",
+      "@id": buildQuestionId("/vykup-pri-exekuci", item.question),
       name: item.question,
       acceptedAnswer: { "@type": "Answer", text: item.answer },
     })),
+  };
+
+  const howToJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "@id": "https://vykoupim-nemovitost.cz/vykup-pri-exekuci#howto",
+    name: "Jak prodat nemovitost v exekuci za 5–14 dnů",
+    description:
+      "Postup výkupu nemovitosti zatížené exekucí — od ověření v Centrální evidenci exekucí přes dohodu s exekutorem po zápis nového vlastníka v katastru.",
+    totalTime: "P14D",
+    estimatedCost: { "@type": "MonetaryAmount", currency: "CZK", value: "0" },
+    tool: ["Centrální evidence exekucí", "List vlastnictví", "Telefon"],
+    supply: ["Doklad totožnosti", "Usnesení o nařízení exekuce"],
+    step: [
+      {
+        "@type": "HowToStep",
+        position: 1,
+        name: "Ověření exekuce",
+        text: "Stav a výši pohledávek ověřujeme v Centrální evidenci exekucí (Exekutorská komora ČR). Zjistíme přesnou částku k úhradě, počet exekucí a pořadí věřitelů.",
+        url: "https://vykoupim-nemovitost.cz/vykup-pri-exekuci",
+      },
+      {
+        "@type": "HowToStep",
+        position: 2,
+        name: "Cenová nabídka a dohoda s exekutorem",
+        text: "Sestavíme cenovou nabídku 80–90 % tržní hodnoty. Náš právní zástupce získá souhlas exekutora s prodejem za podmínky úhrady pohledávky z kupní ceny.",
+        url: "https://vykoupim-nemovitost.cz/vykup-pri-exekuci",
+      },
+      {
+        "@type": "HowToStep",
+        position: 3,
+        name: "Kupní smlouva v advokátní úschově",
+        text: "Advokát připraví kupní smlouvu, peníze leží v advokátní úschově dle pravidel České advokátní komory. Z úschovy se nejprve uhradí pohledávky exekutorovi, zbytek dostane prodávající.",
+        url: "https://vykoupim-nemovitost.cz/vykup-pri-exekuci",
+      },
+      {
+        "@type": "HowToStep",
+        position: 4,
+        name: "Zastavení exekuce a zápis do katastru",
+        text: "Po úhradě celé vymáhané pohledávky vznikne důvod pro zastavení exekuce dle § 268 občanského soudního řádu. Návrh na vklad do katastru nemovitostí podává advokát; lhůta zápisu 20–30 dnů.",
+        url: "https://vykoupim-nemovitost.cz/vykup-pri-exekuci",
+      },
+      {
+        "@type": "HowToStep",
+        position: 5,
+        name: "Vyplacení čisté částky",
+        text: "Po zápisu nového vlastníka v katastru se uvolní zbylá část kupní ceny — prodávající dostane čistou částku po odečtu dluhů. Zálohu až 500 000 Kč lze vyplatit hned při podpisu smlouvy.",
+        url: "https://vykoupim-nemovitost.cz/vykup-pri-exekuci",
+      },
+    ],
+    inLanguage: "cs-CZ",
+    publisher: { "@id": "https://vykoupim-nemovitost.cz/#organization" },
   };
 
   const webPageJsonLd = {
@@ -181,7 +235,12 @@ export default async function VykupPriExekuciPage({
     inLanguage: "cs-CZ",
     isPartOf: { "@id": "https://vykoupim-nemovitost.cz/#website" },
     publisher: { "@id": "https://vykoupim-nemovitost.cz/#organization" },
-    speakable: buildSpeakableSpec(),
+    speakable: buildSpeakableSpec([
+      "h1",
+      '[data-speakable="quick-answer"]',
+      '[data-speakable="howto-summary"]',
+    ]),
+    about: { "@id": "https://vykoupim-nemovitost.cz/vykup-pri-exekuci#howto" },
     dateModified: "2026-05-01",
   };
 
@@ -190,6 +249,10 @@ export default async function VykupPriExekuciPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonLd(faqJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(howToJsonLd) }}
       />
       <script
         type="application/ld+json"

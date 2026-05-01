@@ -3,6 +3,7 @@ import Link from "next/link";
 import { safeJsonLd } from "@/lib/jsonld";
 import { withHreflang } from "@/lib/seo-hreflang";
 import { buildSpeakableSpec } from "@/lib/jsonld-speakable";
+import { buildQuestionId } from "@/lib/faq-slug";
 import { LastUpdated } from "@/components/last-updated";
 import { QuickAnswer } from "@/components/quick-answer";
 
@@ -121,6 +122,7 @@ export default function CasteDotazyPage(): React.ReactElement {
     "@id": "https://vykoupim-nemovitost.cz/caste-dotazy#faq",
     mainEntity: FAQ_ITEMS.map((item) => ({
       "@type": "Question",
+      "@id": buildQuestionId("/caste-dotazy", item.question),
       name: item.question,
       acceptedAnswer: {
         "@type": "Answer",

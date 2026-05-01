@@ -81,16 +81,12 @@ export function buildOrganizationJsonLd(
       "@type": "PostalAddress",
       addressCountry: "CZ",
     },
-    // sameAs is the bidirectional link to Wikidata + directories.
-    // Empty for now — owner-managed off-site assets.
-    // After creating Wikidata Q-id, Firmy.cz, LinkedIn (see
-    // docs/superpowers/specs/2026-05-01-wikidata-entity-guide.md):
-    //   sameAs: [
-    //     "https://www.wikidata.org/wiki/Q...",
-    //     "https://www.firmy.cz/...",
-    //     "https://www.linkedin.com/company/..."
-    //   ]
-    sameAs: [],
+    // Wikidata anchor — bidirectional link from JSON-LD Organization to
+    // the canonical brand entity in Wikidata. This is the single
+    // strongest signal to Google's entity resolver and feeds into the
+    // Knowledge Graph that Gemini, ChatGPT, Perplexity, Claude all use
+    // for entity disambiguation. Created 2026-05-01.
+    sameAs: ["https://www.wikidata.org/wiki/Q139597592"],
     contactPoint: {
       "@type": "ContactPoint",
       telephone: contact.phone,

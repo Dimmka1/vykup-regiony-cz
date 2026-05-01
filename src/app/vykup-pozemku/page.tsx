@@ -12,7 +12,12 @@ import {
 } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
 import { withHreflang } from "@/lib/seo-hreflang";
+import { buildSpeakableSpec } from "@/lib/jsonld-speakable";
+import { buildQuestionId } from "@/lib/faq-slug";
+import { EXTERNAL_SOURCES } from "@/lib/external-sources";
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { LastUpdated } from "@/components/last-updated";
+import { QuickAnswer } from "@/components/quick-answer";
 import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 import { AllRegionsSection } from "@/components/all-regions-section";
@@ -69,22 +74,43 @@ const FAQ_ITEMS: readonly FaqItem[] = [
   {
     question: "Jaké typy pozemků vykupujete?",
     answer:
-      "Vykupujeme stavební pozemky, zemědělskou půdu, lesní pozemky, zahrady i parcely s komplikovaným vlastnictvím. Typ pozemku pro nás není překážkou.",
+      "Vykupujeme všechny typy pozemků dle katastrálního členění: stavební pozemky (parcely), zahrady, ornou půdu, lesní pozemky, trvalé travní porosty, vinice, sady a ostatní plochy. Typ pozemku se promítne do ceny — stavební pozemky mají typicky vyšší výkupní cenu než zemědělská půda.",
   },
   {
     question: "Vykoupíte i zemědělský pozemek?",
     answer:
-      "Ano, zemědělské pozemky vykupujeme. Cenu stanovíme na základě lokality, bonity půdy, velikosti a aktuálních tržních podmínek. Nabídku obdržíte do 24 hodin.",
+      "Ano. Zemědělské pozemky (orná půda, louky) oceňujeme podle bonity půdy (BPEJ), výměry a lokality. U pozemků v ochranném pásmu nebo s nájemní smlouvou (např. pacht) se zohlední aktuální výnosy. Cena vychází z transakčních dat ČSÚ pro daný kraj a typ půdy.",
   },
   {
     question: "Co když je pozemek ve spoluvlastnictví?",
     answer:
-      "Pozemky ve spoluvlastnictví vykupujeme běžně. Můžeme vykoupit váš podíl, nebo koordinovat prodej se všemi spoluvlastníky - záleží na vaší situaci.",
+      "Vykupujeme jak celé pozemky se souhlasem všech spoluvlastníků, tak jednotlivé spoluvlastnické podíly. Od 2020 platí obecně, že spoluvlastník svůj podíl prodává bez souhlasu ostatních. Předkupní právo dle § 1124 občanského zákoníku se uplatní pouze u spoluvlastnictví vzniklého děděním (nebo jinou neovlivnitelnou událostí), a to po dobu 6 měsíců od jeho vzniku.",
   },
   {
     question: "Jak rychle proběhne výkup pozemku?",
     answer:
-      "Od prvního kontaktu po vyplacení peněz to trvá obvykle 2–4 týdny. U jednodušších případů to zvládneme i do 7 dnů včetně zápisu do katastru.",
+      "Standardně 7–14 dnů. U pozemků obvykle není nutná osobní prohlídka — stačí ověření v katastru, územním plánu a leteckých snímcích. Smlouva je v advokátní úschově, peníze se uvolní po zápisu nového vlastníka v katastru nemovitostí.",
+  },
+  {
+    question: "Vykupujete pozemky bez přístupu z veřejné komunikace?",
+    answer:
+      "Ano, ale cena reflektuje absenci přístupu — pozemky bez přístupu z veřejné komunikace jsou tržně méně hodnotné. Pokud existuje právo cesty (služebnost) přes sousední pozemek, hodnota se zvyšuje. Vždy ověřujeme v katastru, jestli je věcné břemeno cesty zapsáno.",
+  },
+  {
+    question:
+      "Co když je pozemek v ochranném pásmu nebo s ekologickými omezeními?",
+    answer:
+      "Vykupujeme i pozemky v ochranných pásmech (PHO vodních zdrojů, CHKO, NATURA 2000), s ekologickými omezeními nebo sníženou stavební využitelností. Omezení snižují cenu, ale nikdy neznamenají, že pozemek nelze prodat.",
+  },
+  {
+    question: "Vykupujete lesní pozemky?",
+    answer:
+      "Ano. Lesní pozemky oceňujeme podle výměry, druhu dřevin, věku porostu a lokality. U lesních pozemků platí specifická pravidla pro převod (souhlas státní správy lesů, předkupní právo dle zákona o lesích). Postup zajistíme za vás.",
+  },
+  {
+    question: "Co když je na pozemku nepovolená stavba (chatka, kůlna)?",
+    answer:
+      "Nepovolená stavba (černá stavba) v katastru zapsaná není a samostatně se nepřevádí. Pokud vykupujeme pozemek, na němž je černá stavba, je to faktický stav, který se v ceně projeví. Odstranění stavby řeší obvykle nový vlastník nebo se sjednává jako podmínka prodeje.",
   },
 ] as const;
 
@@ -164,6 +190,7 @@ export default async function VykupPozemkuPage({
     "@type": "FAQPage",
     mainEntity: FAQ_ITEMS.map((item) => ({
       "@type": "Question",
+      "@id": buildQuestionId("/vykup-pozemku", item.question),
       name: item.question,
       acceptedAnswer: { "@type": "Answer", text: item.answer },
     })),
@@ -172,6 +199,7 @@ export default async function VykupPozemkuPage({
   const webPageJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebPage",
+    "@id": "https://vykoupim-nemovitost.cz/vykup-pozemku",
     name: "Výkup pozemků - rychlý prodej pozemku za hotové",
     description: region
       ? injectRegionIntoDescription(
@@ -180,7 +208,11 @@ export default async function VykupPozemkuPage({
         )
       : "Vykoupíme váš pozemek rychle a bez provize. Stavební, zemědělské i lesní pozemky. Férová cena, vyplacení do 7 dnů. Celá ČR.",
     url: "https://vykoupim-nemovitost.cz/vykup-pozemku",
-    isPartOf: { "@type": "WebSite", url: "https://vykoupim-nemovitost.cz" },
+    inLanguage: "cs-CZ",
+    isPartOf: { "@id": "https://vykoupim-nemovitost.cz/#website" },
+    publisher: { "@id": "https://vykoupim-nemovitost.cz/#organization" },
+    speakable: buildSpeakableSpec(),
+    dateModified: "2026-05-01",
   };
 
   return (
@@ -211,7 +243,57 @@ export default async function VykupPozemkuPage({
                 )
               : "Výkup pozemků a parcel - rychle, férově a bez provize"}
           </h1>
-          <p className="mt-4 text-lg text-slate-600">
+          <LastUpdated path="/vykup-pozemku" />
+          <QuickAnswer>
+            <p>
+              Výkup pozemku je rychlý prodej, při kterém specializovaná firma
+              odkoupí stavební parcelu, zemědělskou půdu, lesní pozemek nebo
+              zahradu za 80–90 % tržní hodnoty. Cena se počítá z výměry podle{" "}
+              <a
+                href={EXTERNAL_SOURCES.cuzk.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-emerald-700 underline-offset-2 hover:underline"
+              >
+                katastru nemovitostí
+              </a>
+              , typu pozemku (stavební vs. zemědělský), bonity půdy (BPEJ) u
+              zemědělské půdy a aktuálních transakčních dat{" "}
+              <a
+                href={EXTERNAL_SOURCES.czso.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-emerald-700 underline-offset-2 hover:underline"
+              >
+                Českého statistického úřadu
+              </a>
+              . Stavební pozemky se v ČR Q2 2026 obchodují v rozsahu 1 600 Kč/m²
+              (Vysočina) — 14 000 Kč/m² (Praha); kompletní krajský přehled v{" "}
+              <Link
+                href="/index-vykupnich-cen"
+                className="text-emerald-700 underline-offset-2 hover:underline"
+              >
+                indexu výkupních cen
+              </Link>
+              .
+            </p>
+            <p>
+              Vykupují se pozemky všech typů, včetně pozemků v ochranných
+              pásmech, bez přístupu z veřejné komunikace, ve spoluvlastnictví, s
+              nájemní smlouvou (pacht) nebo s ekologickými omezeními. U lesních
+              pozemků platí specifické pravidla převodu (souhlas státní správy
+              lesů, zákonné předkupní právo dle zákona o lesích) — tato
+              administrativa přechází na výkupce.
+            </p>
+            <p>
+              Celý proces výkupu trvá 7–14 dnů. Osobní prohlídka u pozemků
+              obvykle není nutná — stačí ověření v katastru, územním plánu a
+              leteckých snímcích. Smlouva je v advokátní úschově do zápisu
+              nového vlastníka v katastru, vyplacení do 3–5 pracovních dnů po
+              zápisu.
+            </p>
+          </QuickAnswer>
+          <p className="mt-6 text-lg text-slate-600">
             Chcete prodat pozemek rychle a bez zbytečných komplikací? Vykoupíme
             váš pozemek za férovou cenu a peníze vyplatíme do 7 dnů. Žádné
             čekání na kupce, žádné provize, žádné skryté poplatky.

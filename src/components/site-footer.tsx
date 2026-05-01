@@ -167,6 +167,15 @@ export function SiteFooter({ phone = "+420 776 424 145" }: SiteFooterProps) {
               <Link href="/kraje" className={linkClass}>
                 Kde působíme
               </Link>
+              <Link href="/jak-to-funguje" className={linkClass}>
+                Jak to funguje
+              </Link>
+              <Link href="/jak-stanovujeme-cenu" className={linkClass}>
+                Jak stanovujeme cenu
+              </Link>
+              <Link href="/index-vykupnich-cen" className={linkClass}>
+                Index výkupních cen
+              </Link>
               <Link href="/caste-dotazy" className={linkClass}>
                 Časté dotazy
               </Link>
@@ -176,18 +185,33 @@ export function SiteFooter({ phone = "+420 776 424 145" }: SiteFooterProps) {
               <Link href="/garance-vykupu" className={linkClass}>
                 Garance výkupu
               </Link>
+              <Link href="/slovnik-pojmu" className={linkClass}>
+                Slovník pojmů
+              </Link>
               <Link href="/blog" className={linkClass}>
                 Blog
               </Link>
             </nav>
           </div>
 
-          {/* Právní */}
+          {/* Právní a transparence */}
           <div>
             <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">
-              Právní
+              Transparence
             </h3>
-            <nav aria-label="Právní" className="flex flex-col gap-3">
+            <nav
+              aria-label="Transparence a právní"
+              className="flex flex-col gap-3"
+            >
+              <Link href="/redakcni-zasady" className={linkClass}>
+                Redakční zásady
+              </Link>
+              <Link href="/zdroje-a-citace" className={linkClass}>
+                Zdroje a citace
+              </Link>
+              <Link href="/o-nas" className={linkClass}>
+                O nás
+              </Link>
               <Link href="/ochrana-osobnich-udaju" className={linkClass}>
                 Ochrana osobních údajů
               </Link>
@@ -203,10 +227,20 @@ export function SiteFooter({ phone = "+420 776 424 145" }: SiteFooterProps) {
               Kontakt
             </h3>
             <div className="flex flex-col gap-3">
-              <span className="flex items-center gap-2 text-sm text-slate-400">
+              {/* Microdata PostalAddress — adds inline structured signal
+                  for the country-level service area. Values match the
+                  JSON-LD Organization.address declaration in
+                  src/lib/jsonld-org.ts (addressCountry: "CZ"). */}
+              <address
+                itemScope
+                itemType="https://schema.org/PostalAddress"
+                className="flex items-center gap-2 text-sm not-italic text-slate-400"
+              >
                 <MapPin className="h-4 w-4 shrink-0 text-[var(--theme-500)]" />{" "}
-                Česká republika
-              </span>
+                <span itemProp="addressCountry" content="CZ">
+                  Česká republika
+                </span>
+              </address>
               <a
                 href={`tel:${phone.replace(/\s/g, "")}`}
                 className="flex items-center gap-2 text-sm text-slate-400 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"

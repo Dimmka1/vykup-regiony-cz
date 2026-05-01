@@ -12,7 +12,12 @@ import {
 } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
 import { withHreflang } from "@/lib/seo-hreflang";
+import { buildSpeakableSpec } from "@/lib/jsonld-speakable";
+import { buildQuestionId } from "@/lib/faq-slug";
+import { EXTERNAL_SOURCES } from "@/lib/external-sources";
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { LastUpdated } from "@/components/last-updated";
+import { QuickAnswer } from "@/components/quick-answer";
 import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 import { LeadMagnetCta } from "@/components/lead-magnet-cta";
@@ -152,19 +157,25 @@ export default function VykupCinzovnichDomuPage(): React.ReactElement {
     headline: "Výkup činžovních domů – kompletní průvodce rychlým prodejem",
     description:
       "Vše o rychlém výkupu činžovních domů. Jak prodat bytový dům bez provize, jak probíhá ocenění a co řešit s nájemníky.",
-    author: {
-      "@type": "Organization",
-      name: "Vykoupím Nemovitost",
-      url: SITE_URL,
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "Vykoupím Nemovitost",
-      url: SITE_URL,
-    },
+    author: { "@id": "https://vykoupim-nemovitost.cz/#organization" },
+    publisher: { "@id": "https://vykoupim-nemovitost.cz/#organization" },
     mainEntityOfPage: `${SITE_URL}/vykup-cinzovnich-domu`,
     datePublished: "2025-03-14",
-    dateModified: "2025-03-14",
+    dateModified: "2026-05-01",
+    inLanguage: "cs-CZ",
+  };
+
+  const webPageJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${SITE_URL}/vykup-cinzovnich-domu`,
+    name: "Výkup činžovních domů",
+    url: `${SITE_URL}/vykup-cinzovnich-domu`,
+    inLanguage: "cs-CZ",
+    isPartOf: { "@id": "https://vykoupim-nemovitost.cz/#website" },
+    publisher: { "@id": "https://vykoupim-nemovitost.cz/#organization" },
+    speakable: buildSpeakableSpec(),
+    dateModified: "2026-05-01",
   };
 
   const faqJsonLd = {
@@ -172,6 +183,7 @@ export default function VykupCinzovnichDomuPage(): React.ReactElement {
     "@type": "FAQPage",
     mainEntity: FAQ_ITEMS.map((item) => ({
       "@type": "Question",
+      "@id": buildQuestionId("/vykup-cinzovnich-domu", item.question),
       name: item.question,
       acceptedAnswer: { "@type": "Answer", text: item.answer },
     })),
@@ -210,6 +222,10 @@ export default function VykupCinzovnichDomuPage(): React.ReactElement {
       />
       <script
         type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(webPageJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonLd(faqJsonLd) }}
       />
       <script
@@ -233,7 +249,42 @@ export default function VykupCinzovnichDomuPage(): React.ReactElement {
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
             Výkup činžovních domů — rychlý prodej bytového domu bez starostí
           </h1>
-          <p className="mt-4 text-lg text-slate-600">
+          <LastUpdated path="/vykup-cinzovnich-domu" />
+          <QuickAnswer>
+            <p>
+              Výkup činžovního domu je rychlý prodej bytového domu (multi-unit
+              nemovitosti) za 80–90 % tržní hodnoty. Cena se počítá z výnosu z
+              nájemného (kapitalizační metoda), tržní hodnoty jednotlivých
+              bytových jednotek a stavu společných prostor. U činžovních domů s
+              více než 5 bytovými jednotkami je klíčovým faktorem obsazenost a
+              smluvní stabilita nájemních vztahů.
+            </p>
+            <p>
+              Nájemní smlouvy přecházejí spolu s vlastnictvím na nového
+              vlastníka — nájemníky není nutné vypovídat. Vykupují se domy v
+              jakémkoli technickém stavu, včetně domů k rekonstrukci, s
+              problematickými nájemníky, ve spoluvlastnictví, s hypotékou nebo
+              věcným břemenem. Výnos z nájemného a doba vlastnictví přecházejí
+              na nového vlastníka od data zápisu v{" "}
+              <a
+                href={EXTERNAL_SOURCES.cuzk.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-emerald-700 underline-offset-2 hover:underline"
+              >
+                katastru nemovitostí
+              </a>
+              .
+            </p>
+            <p>
+              Celý proces výkupu trvá 14–30 dnů. Lhůta zahrnuje právní prověrku
+              (due diligence) všech nájemních smluv, technickou prohlídku domu,
+              dohodu o ceně, podpis kupní smlouvy v advokátní úschově, návrh na
+              vklad a zápis v katastru. Vlastník neplatí provizi, právní servis
+              ani odhad.
+            </p>
+          </QuickAnswer>
+          <p className="mt-6 text-lg text-slate-600">
             Vlastníte činžovní dům a zvažujete prodej? Ať už jde o zděděný
             bytový dům, nemovitost vyžadující nákladnou rekonstrukci nebo
             jednoduše chcete zpeněžit svůj majetek, jsme tu pro vás. Vykoupíme

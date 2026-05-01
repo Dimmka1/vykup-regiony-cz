@@ -86,18 +86,23 @@ const COMPARISON: ComparisonRow[] = [
   },
 ];
 
-const CASE_STUDIES = [
+/**
+ * Typické situace, ve kterých výkup nemovitosti dává smysl.
+ * Nejsou to konkrétní klientské příběhy — popisujeme jen postup,
+ * jak takovou situaci řešíme. Žádná smyšlená jména ani místa.
+ */
+const SITUATION_PATTERNS = [
   {
-    title: "Exekuce v Praze — byt prodán za 5 dní",
-    text: "Pan Karel z Prahy 4 měl na bytě 2+kk exekuci. Realitka mu řekla 4–6 měsíců, to bylo pozdě. Ozvali jsme se mu druhý den, do pěti dnů podepsal smlouvu a zálohou stihl zaplatit dluh dřív, než exekutor zaklepal.",
+    title: "Hrozící exekuční dražba bytu",
+    body: "Vlastník bytu zjistí, že na něj byla nařízena exekuční dražba. Klasický prodej přes realitku trvá 4–6 měsíců, dražba se ale koná za 30–60 dnů. Postup výkupu: ověření exekuce v Centrální evidenci exekucí, dohoda s exekutorem, kupní smlouva v advokátní úschově, úhrada vymáhané pohledávky → zastavení dražby. Lhůta 5–14 dnů od první konzultace.",
   },
   {
-    title: "Dědictví v Brně — vyřešeno bez hádek",
-    text: "Tři sourozenci zdědili rodinný dům v Brně-Židenicích a nemohli se dohodnout. Nabídli jsme částku, kterou přijali všichni tři. Smlouvu, katastr i rozdělení peněz jsme zařídili my — sourozenci se nemuseli o nic hádat.",
+    title: "Spoluvlastnictví z dědictví, kde se dědicové neshodnou",
+    body: "Po pravomocném usnesení o dědictví zdědí nemovitost více dědiců, dohoda na společném prodeji ale není. Postup: vykupujeme jednotlivé spoluvlastnické podíly samostatně, bez nutnosti souhlasu ostatních. Při dědictvím vzniklém spoluvlastnictví respektujeme 6měsíční předkupní právo dle § 1124 občanského zákoníku — komunikaci se spoluvlastníky vedeme za vás.",
   },
   {
-    title: "Rozvod v Ostravě — diskrétně a rychle",
-    text: "Paní Eva se rozváděla a potřebovala vypořádat společný byt v Ostravě-Porubě. Nechtěla fotky bytu na internetu ani prohlídky s cizími lidmi. Domluvili jsme se na ceně po telefonu, smlouvu podepsala za týden a peníze měla na účtu.",
+    title: "Vypořádání SJM po rozvodu se zachováním diskrétnosti",
+    body: "Po rozvodu se SJM přemění v podílové spoluvlastnictví a polovina jde prodat samostatně bez souhlasu druhého manžela. Postup: žádná veřejná inzerce, žádné prohlídky cizích zájemců — jen prodávající, advokát a kupní smlouva v úschově. Peníze rozdělíme dle dohody přímo na účty obou stran.",
   },
 ];
 
@@ -107,17 +112,10 @@ const articleJsonLd = {
   headline: "Proč prodat nemovitost nám | Výkup vs realitka vs dražba",
   description:
     "Srovnání výkupu nemovitosti přes nás, realitní kancelář a dražbu. Rychlost, záloha, provize, právní servis.",
-  author: {
-    "@type": "Organization",
-    name: "Výkup Nemovitostí",
-    url: "https://vykoupim-nemovitost.cz",
-  },
-  publisher: {
-    "@type": "Organization",
-    name: "Výkup Nemovitostí",
-    url: "https://vykoupim-nemovitost.cz",
-  },
+  author: { "@id": "https://vykoupim-nemovitost.cz/#organization" },
+  publisher: { "@id": "https://vykoupim-nemovitost.cz/#organization" },
   mainEntityOfPage: "https://vykoupim-nemovitost.cz/proc-my",
+  inLanguage: "cs-CZ",
 };
 
 export default function ProcMyPage() {
@@ -197,23 +195,27 @@ export default function ProcMyPage() {
           </div>
         </section>
 
-        {/* Case Studies */}
+        {/* Typical situations (no fabricated client testimonials) */}
         <section className="bg-slate-50 py-16">
           <div className="mx-auto max-w-5xl px-6">
-            <h2 className="mb-8 text-center text-2xl font-bold text-slate-900">
-              Reálné příběhy našich klientů
+            <h2 className="mb-3 text-center text-2xl font-bold text-slate-900">
+              Typické situace, kdy výkup dává smysl
             </h2>
+            <p className="mx-auto mb-10 max-w-2xl text-center text-sm text-slate-500">
+              Popisujeme postup, ne konkrétní klienty. Diskrétnost transakcí
+              znamená, že jména, města ani fotky bytů na webu neuvádíme.
+            </p>
             <div className="grid gap-8 md:grid-cols-3">
-              {CASE_STUDIES.map((cs) => (
+              {SITUATION_PATTERNS.map((s) => (
                 <article
-                  key={cs.title}
+                  key={s.title}
                   className="rounded-xl bg-white p-6 shadow-sm"
                 >
                   <h3 className="mb-2 text-lg font-semibold text-slate-900">
-                    {cs.title}
+                    {s.title}
                   </h3>
                   <p className="text-sm leading-relaxed text-slate-600">
-                    {cs.text}
+                    {s.body}
                   </p>
                 </article>
               ))}

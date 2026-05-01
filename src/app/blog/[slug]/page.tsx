@@ -1913,20 +1913,18 @@ export default async function BlogArticlePage({
   const article = ARTICLES[slug];
   if (!article) notFound();
 
+  const articleId = `https://vykoupim-nemovitost.cz/blog/${slug}#article`;
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
+    "@id": articleId,
     headline: article.title,
     datePublished: article.date,
     dateModified: "2026-03-16",
-    author: {
-      "@type": "Organization",
-      name: "Vykoupím Nemovitost",
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "Vykoupím Nemovitost",
-    },
+    author: { "@id": "https://vykoupim-nemovitost.cz/#organization" },
+    publisher: { "@id": "https://vykoupim-nemovitost.cz/#organization" },
+    mainEntityOfPage: `https://vykoupim-nemovitost.cz/blog/${slug}`,
+    inLanguage: "cs-CZ",
   };
 
   const faqJsonLd =
@@ -2012,7 +2010,21 @@ export default async function BlogArticlePage({
         />
       )}
 
-      <article className="bg-gradient-to-b from-slate-50 to-white py-16">
+      {/* Microdata Article wrapper merges with JSON-LD Article via shared
+          @id (itemid = articleJsonLd["@id"]), so Google sees one entity,
+          not two. Provides inline passage-level extraction signals
+          (headline, datePublished, dateModified, articleBody) that
+          complement the entity-level JSON-LD. */}
+      <article
+        itemScope
+        itemType="https://schema.org/Article"
+        itemID={articleId}
+        className="bg-gradient-to-b from-slate-50 to-white py-16"
+      >
+        <link
+          itemProp="mainEntityOfPage"
+          href={`https://vykoupim-nemovitost.cz/blog/${slug}`}
+        />
         <div className="mx-auto max-w-3xl px-4">
           <div className="mb-8">
             <Breadcrumbs
@@ -2025,23 +2037,37 @@ export default async function BlogArticlePage({
 
           <header>
             <div className="flex flex-wrap items-center gap-3">
-              <time dateTime={article.date} className="text-sm text-slate-500">
+              <time
+                dateTime={article.date}
+                itemProp="datePublished"
+                className="text-sm text-slate-500"
+              >
                 {new Date(article.date).toLocaleDateString("cs-CZ", {
                   day: "numeric",
                   month: "long",
                   year: "numeric",
                 })}
               </time>
-              <span className="inline-flex items-center rounded-full bg-emerald-100 px-3 py-0.5 text-xs font-medium text-emerald-700">
+              <time
+                dateTime="2026-03-16"
+                itemProp="dateModified"
+                className="inline-flex items-center rounded-full bg-emerald-100 px-3 py-0.5 text-xs font-medium text-emerald-700"
+              >
                 Aktualizováno březen 2026
-              </span>
+              </time>
             </div>
-            <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+            <h1
+              itemProp="headline"
+              className="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl"
+            >
               {article.title}
             </h1>
           </header>
 
-          <div className="prose-article mt-10 rounded-2xl bg-white p-8 shadow-sm">
+          <div
+            itemProp="articleBody"
+            className="prose-article mt-10 rounded-2xl bg-white p-8 shadow-sm"
+          >
             {article.body}
           </div>
 

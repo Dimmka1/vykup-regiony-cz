@@ -10,7 +10,12 @@ import {
 } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
 import { withHreflang } from "@/lib/seo-hreflang";
+import { buildSpeakableSpec } from "@/lib/jsonld-speakable";
+import { buildQuestionId } from "@/lib/faq-slug";
+import { EXTERNAL_SOURCES } from "@/lib/external-sources";
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { LastUpdated } from "@/components/last-updated";
+import { QuickAnswer } from "@/components/quick-answer";
 import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 import { AllRegionsSection } from "@/components/all-regions-section";
@@ -70,22 +75,43 @@ const FAQ_ITEMS: readonly FaqItem[] = [
   {
     question: "Lze prodat nemovitost s věcným břemenem?",
     answer:
-      "Ano, nemovitost s věcným břemenem lze prodat. Věcné břemeno přechází na nového vlastníka, proto většina běžných kupujících o takové nemovitosti nemá zájem. My se na tyto případy specializujeme a nemovitost vykoupíme za férovou cenu.",
+      "Ano. Věcné břemeno je zapsáno v katastru nemovitostí a přechází automaticky na nového vlastníka — prodej tedy proběhne bez nutnosti zrušit břemeno. Většina běžných kupujících však o takové nemovitosti nemá zájem, takže se vykupují specializovaně se srážkou v ceně podle hodnoty břemene.",
   },
   {
     question: "Jak věcné břemeno ovlivní kupní cenu?",
     answer:
-      "Věcné břemeno snižuje tržní hodnotu nemovitosti v závislosti na jeho typu a rozsahu. Právo doživotního užívání má větší dopad než např. služebnost stezky. Vždy nabídneme férovou cenu odpovídající reálné hodnotě nemovitosti s přihlédnutím k břemeni.",
+      "Cena se snižuje o aktuální hodnotu břemene podle pojistně-matematického výpočtu. Věcné břemeno doživotního užívání 75-letého oprávněného sníží cenu výrazněji než např. služebnost cesty. Hodnotu břemene počítáme z věku oprávněného a aktuálních hodnot pojistitelného plnění.",
   },
   {
-    question: "Jaké typy věcných břemen řešíte?",
+    question: "Jaké typy věcných břemen vykupujete?",
     answer:
-      "Řešíme všechny typy věcných břemen - služebnosti (právo cesty, právo vedení, právo užívání), reálná břemena i právo doživotního bydlení. U každého typu víme, jak situaci optimálně vyřešit.",
+      "Vykupujeme nemovitosti se všemi typy břemen podle občanského zákoníku: služebnosti (cesta, stezka, právo vedení sítí), reálná břemena, právo doživotního užívání bytu nebo domu, požitkové právo. U každého typu víme, jak situaci ocenit a právně ošetřit.",
   },
   {
     question: "Lze věcné břemeno zrušit?",
     answer:
-      "V některých případech ano - dohodou stran, rozhodnutím soudu nebo zánikem důvodu břemene. Naši právníci posoudí váš případ a navrhnou, zda je výhodnější břemeno zrušit před prodejem, nebo nemovitost prodat i s břemenem.",
+      "Některá ano — dohodou s oprávněnou osobou (typicky proti finanční náhradě), rozhodnutím soudu při změně okolností, nebo zánikem důvodu (smrt oprávněné osoby u doživotních práv). Posoudíme, zda je ekonomicky výhodnější zrušit břemeno před prodejem nebo prodat s ním.",
+  },
+  {
+    question: "Co když oprávněná osoba ze břemene v nemovitosti bydlí?",
+    answer:
+      "Právo doživotního bydlení znamená, že oprávněná osoba zůstává v nemovitosti i po prodeji. Nový vlastník tedy nemůže nemovitost obývat sám, dokud trvá právo. Tato zatížená nemovitost má nižší tržní hodnotu, ale stále se dá výhodně vykoupit jako investiční nemovitost.",
+  },
+  {
+    question: "Vykupujete nemovitosti se služebností cesty?",
+    answer:
+      "Ano. Služebnost cesty (právo přejití/přejezdu přes pozemek) má obvykle minimální vliv na cenu, pokud nemovitost zůstává plně užitelná. Vykupujeme za standardní výkupní cenu 80–90 % tržní hodnoty s minimálním krácením za břemeno.",
+  },
+  {
+    question:
+      "Co když je v katastru zapsaná služebnost vedení sítí (plyn, voda)?",
+    answer:
+      "Služebnost vedení sítí (vodovod, plynovod, elektrické vedení, kanalizace) je velmi běžná u většiny nemovitostí. Pokud neomezuje stavební možnosti, dopad na cenu je minimální. U pozemků určených k zástavbě se posuzuje, zda síť omezuje výstavbu.",
+  },
+  {
+    question: "Jak rychle dokážete výkup nemovitosti s věcným břemenem?",
+    answer:
+      "Standardně 14–21 dnů — k běžné lhůtě se přičítá ocenění hodnoty břemene a u některých případů (zrušení dohodou) i jednání s oprávněnou osobou. Pokud nemovitost prodáváme s břemenem, lhůta se neprodlužuje.",
   },
 ] as const;
 
@@ -136,6 +162,10 @@ export default async function VykupNemovitostiSVecnymBremenem({
     "@type": "FAQPage",
     mainEntity: FAQ_ITEMS.map((item) => ({
       "@type": "Question",
+      "@id": buildQuestionId(
+        "/vykup-nemovitosti-s-vecnym-bremenem",
+        item.question,
+      ),
       name: item.question,
       acceptedAnswer: { "@type": "Answer", text: item.answer },
     })),
@@ -144,15 +174,16 @@ export default async function VykupNemovitostiSVecnymBremenem({
   const webPageJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebPage",
+    "@id": "https://vykoupim-nemovitost.cz/vykup-nemovitosti-s-vecnym-bremenem",
     name: "Výkup nemovitosti s věcným břemenem",
     description:
       "Vykoupíme nemovitost zatíženou věcným břemenem rychle a bez komplikací.",
     url: "https://vykoupim-nemovitost.cz/vykup-nemovitosti-s-vecnym-bremenem",
-    publisher: {
-      "@type": "Organization",
-      name: "Výkup Nemovitostí",
-      url: "https://vykoupim-nemovitost.cz",
-    },
+    inLanguage: "cs-CZ",
+    isPartOf: { "@id": "https://vykoupim-nemovitost.cz/#website" },
+    publisher: { "@id": "https://vykoupim-nemovitost.cz/#organization" },
+    speakable: buildSpeakableSpec(),
+    dateModified: "2026-05-01",
   };
 
   return (
@@ -191,7 +222,47 @@ export default async function VykupNemovitostiSVecnymBremenem({
                 )
               : "Výkup nemovitosti s věcným břemenem"}
           </h1>
-          <p className="mt-4 text-lg text-slate-600">
+          <LastUpdated path="/vykup-nemovitosti-s-vecnym-bremenem" />
+          <QuickAnswer>
+            <p>
+              Nemovitost s věcným břemenem lze prodat — věcné břemeno je zapsáno
+              v{" "}
+              <a
+                href={EXTERNAL_SOURCES.cuzk.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-emerald-700 underline-offset-2 hover:underline"
+              >
+                katastru nemovitostí
+              </a>{" "}
+              a přechází automaticky na nového vlastníka. Výkupní cena se
+              stanovuje jako 80–90 % tržní hodnoty nemovitosti minus aktuální
+              hodnota břemene podle pojistně-matematického výpočtu (věk
+              oprávněné osoby, typ břemene, doba trvání).
+            </p>
+            <p>
+              Vykupují se nemovitosti se všemi typy břemen podle{" "}
+              <a
+                href={EXTERNAL_SOURCES.obcanskyzakonik.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-emerald-700 underline-offset-2 hover:underline"
+              >
+                občanského zákoníku
+              </a>
+              : služebnosti (cesta, stezka, právo vedení sítí), reálná břemena,
+              právo doživotního užívání bytu nebo domu, požitkové právo. Některá
+              břemena lze před prodejem zrušit dohodou s oprávněnou osobou nebo
+              rozhodnutím soudu.
+            </p>
+            <p>
+              Celý proces výkupu trvá 14–21 dnů. K běžné lhůtě se přičítá
+              ocenění hodnoty břemene a případné jednání o jeho zrušení. Smlouva
+              je v advokátní úschově do zápisu nového vlastníka. Vykupujeme i
+              nemovitosti se více břemeny současně, s exekucí i s hypotékou.
+            </p>
+          </QuickAnswer>
+          <p className="mt-6 text-lg text-slate-600">
             Vlastníte nemovitost zatíženou věcným břemenem a nevíte, jak ji
             prodat? Věcné břemeno - ať už jde o právo doživotního bydlení,
             služebnost cesty nebo právo vedení - výrazně komplikuje prodej na

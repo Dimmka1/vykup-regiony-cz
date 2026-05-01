@@ -10,7 +10,12 @@ import {
 } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
 import { withHreflang } from "@/lib/seo-hreflang";
+import { buildSpeakableSpec } from "@/lib/jsonld-speakable";
+import { buildQuestionId } from "@/lib/faq-slug";
+import { EXTERNAL_SOURCES } from "@/lib/external-sources";
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { LastUpdated } from "@/components/last-updated";
+import { QuickAnswer } from "@/components/quick-answer";
 import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 import { AllRegionsSection } from "@/components/all-regions-section";
@@ -70,22 +75,42 @@ const FAQ_ITEMS: readonly FaqItem[] = [
   {
     question: "Lze prodat nemovitost s nesplacenou hypotékou?",
     answer:
-      "Ano, prodej nemovitosti s hypotékou je zcela legální a běžný. Hypotéka se splatí z kupní ceny při převodu nemovitosti. My celý proces koordinujeme s vaší bankou, aby vše proběhlo hladce a bez komplikací.",
+      "Ano, prodej nemovitosti s hypotékou je legální a běžný postup. Zůstatek hypotéky se uhradí přímo bance z kupní ceny při převodu vlastnictví. Komunikaci s bankou ohledně předčasného splacení a výmazu zástavního práva vede náš právní zástupce.",
   },
   {
     question: "Co když dlužím na hypotéce více, než je hodnota nemovitosti?",
     answer:
-      "I v případě tzv. podvodní hypotéky (negative equity) vám pomůžeme najít řešení. Vyjednáme s bankou optimální podmínky splacení a navrhneme postup, který minimalizuje vaše ztráty.",
+      "U podvodní hypotéky (negative equity) je nutné rozdíl mezi zůstatkem hypotéky a výkupní cenou doplatit. Některé banky umožňují konverzi rozdílu na nezajištěný úvěr nebo dohodu o splátkovém kalendáři. Postup vyjednáváme s bankou individuálně pro každý případ.",
   },
   {
     question: "Jak rychle dokážete nemovitost s hypotékou vykoupit?",
     answer:
-      "Standardně celý proces trvá 3–5 týdnů, protože je nutná součinnost banky při výmazu zástavního práva. V urgentních případech dokážeme proces urychlit na minimum.",
+      "Standardně 14–30 dnů. K běžné lhůtě výkupu se přičítá komunikace s bankou ohledně potvrzení zůstatku, předčasného splacení a výmazu zástavního práva v katastru. Některé banky tuto lhůtu prodlužují, pracujeme s nimi paralelně s přípravou smlouvy.",
   },
   {
-    question: "Musím platit bance poplatek za předčasné splacení?",
+    question: "Jaký je poplatek bance za předčasné splacení hypotéky?",
     answer:
-      "Poplatek za předčasné splacení závisí na vaší smlouvě s bankou. U hypoték uzavřených po roce 2016 je poplatek omezený zákonem. Naši specialisté vám pomohou zjistit přesné podmínky a minimalizovat náklady.",
+      "Podle zákona č. 257/2016 Sb. o spotřebitelském úvěru je poplatek za předčasné splacení omezen na nutné a účelně vynaložené náklady banky — typicky 0,1–1 % z předčasně splacené částky. U hypoték před fixací úrokové sazby je poplatek vyšší. Přesnou výši zjistíme z výpisu z účtu nebo dotazem v bance.",
+  },
+  {
+    question: "Co když mám hypotéku u dvou bank současně?",
+    answer:
+      "Postup je obdobný — obě banky se musí písemně vzdát zástavního práva po splacení svých pohledávek. Naši právníci koordinují proces s oběma bankami současně, aby výmaz zástavního práva v katastru proběhl ve stejném vkladovém řízení.",
+  },
+  {
+    question: "Vykupujete i nemovitost s hypotékou v exekuci?",
+    answer:
+      "Ano. Při kombinaci hypotéky a exekuce nejprve uhradíme exekuční pohledávky (přednost má přednostní pohledávka), pak zůstatek hypotéky. Postup ověřujeme v Centrální evidenci exekucí a v katastru — vidíme všechna zatížení současně.",
+  },
+  {
+    question: "Co když má hypotéku jen jeden z manželů?",
+    answer:
+      "Hypotéka uzavřená jedním manželem za trvání manželství spadá do SJM. Při rozvodu nebo prodeji se hypotéka vypořádá podle režimu SJM. Pokud hypotéka byla uzavřena před manželstvím, jde o samostatný dluh — vypořádává se odděleně.",
+  },
+  {
+    question: "Můžu si nemovitost po výkupu pronajmout zpátky?",
+    answer:
+      "Ano, jde o tzv. zpětný leasing (sale & leaseback). Po výkupu zůstanete v nemovitosti jako nájemce s nájemní smlouvou. Tato varianta je vhodná, pokud chcete získat likviditu, ale neopustit nemovitost. Detail najdete na samostatné stránce o zpětném nájmu.",
   },
 ] as const;
 
@@ -136,6 +161,7 @@ export default async function VykupNemovitostiSHypotekou({
     "@type": "FAQPage",
     mainEntity: FAQ_ITEMS.map((item) => ({
       "@type": "Question",
+      "@id": buildQuestionId("/vykup-nemovitosti-s-hypotekou", item.question),
       name: item.question,
       acceptedAnswer: { "@type": "Answer", text: item.answer },
     })),
@@ -144,15 +170,16 @@ export default async function VykupNemovitostiSHypotekou({
   const webPageJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebPage",
+    "@id": "https://vykoupim-nemovitost.cz/vykup-nemovitosti-s-hypotekou",
     name: "Výkup nemovitosti s hypotékou",
     description:
       "Vykoupíme nemovitost zatíženou hypotékou nebo zástavním právem rychle a bez komplikací.",
     url: "https://vykoupim-nemovitost.cz/vykup-nemovitosti-s-hypotekou",
-    publisher: {
-      "@type": "Organization",
-      name: "Výkup Nemovitostí",
-      url: "https://vykoupim-nemovitost.cz",
-    },
+    inLanguage: "cs-CZ",
+    isPartOf: { "@id": "https://vykoupim-nemovitost.cz/#website" },
+    publisher: { "@id": "https://vykoupim-nemovitost.cz/#organization" },
+    speakable: buildSpeakableSpec(),
+    dateModified: "2026-05-01",
   };
 
   return (
@@ -191,7 +218,42 @@ export default async function VykupNemovitostiSHypotekou({
                 )
               : "Výkup nemovitosti s hypotékou"}
           </h1>
-          <p className="mt-4 text-lg text-slate-600">
+          <LastUpdated path="/vykup-nemovitosti-s-hypotekou" />
+          <QuickAnswer>
+            <p>
+              Nemovitost zatíženou hypotékou lze legálně prodat — zůstatek úvěru
+              se uhradí přímo bance z kupní ceny při převodu vlastnictví.
+              Výkupní cena se pohybuje 80–90 % tržní hodnoty nemovitosti,
+              prodávající dostává rozdíl mezi výkupní cenou a zůstatkem
+              hypotéky. Sazby a regulace hypotečního trhu vede{" "}
+              <a
+                href={EXTERNAL_SOURCES.cnb.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-emerald-700 underline-offset-2 hover:underline"
+              >
+                Česká národní banka
+              </a>
+              .
+            </p>
+            <p>
+              Poplatek za předčasné splacení je podle zákona č. 257/2016 Sb.
+              omezen na účelně vynaložené náklady banky — typicky 0,1–1 %
+              předčasně splacené částky. Banka po splacení vystaví potvrzení a
+              vzdá se zástavního práva, které následně katastrální úřad vymaže z
+              listu vlastnictví. Komunikaci s bankou, dohodu o předčasném
+              splacení a přípravu kupní smlouvy v advokátní úschově zajišťujeme
+              za prodávajícího.
+            </p>
+            <p>
+              Celý proces trvá 14–30 dnů — k běžné lhůtě výkupu se přičítá
+              komunikace s bankou, ověření zůstatku, předčasné splacení a výmaz
+              zástavního práva v katastru. Vykupujeme nemovitosti i s hypotékou
+              v exekuci, u dvou bank současně, nebo s kombinací hypotéky a
+              věcného břemene.
+            </p>
+          </QuickAnswer>
+          <p className="mt-6 text-lg text-slate-600">
             Splácíte hypotéku, kterou už nezvládáte? Potřebujete rychle prodat
             nemovitost zatíženou zástavním právem banky? Pomůžeme vám celou
             situaci vyřešit - splatíme hypotéku z kupní ceny a zbytek vyplatíme

@@ -50,11 +50,7 @@ export function GeoServiceJsonLd({
     "@type": "Service",
     name: `${serviceName} ${region.locative}`,
     description: `${serviceName} ${region.locative}. Rychlý výkup za férovou cenu 80–90 % tržní hodnoty, vyplacení do 7 dnů.`,
-    provider: {
-      "@type": "Organization",
-      name: "Vykoupím Nemovitost",
-      url: "https://vykoupim-nemovitost.cz",
-    },
+    provider: { "@id": "https://vykoupim-nemovitost.cz/#organization" },
     areaServed: {
       "@type": "AdministrativeArea",
       name: region.name,

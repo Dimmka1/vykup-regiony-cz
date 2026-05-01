@@ -113,18 +113,19 @@ const TIMELINE_MILESTONES = [
   },
 ] as const;
 
-const organizationJsonLd = {
+// AboutPage referencing the site-wide Organization (rendered in root layout)
+// — avoids duplicate Organization graph that would split entity signal.
+const aboutPageJsonLd = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "Vykoupím Nemovitost",
-  url: "https://vykoupim-nemovitost.cz",
-  description:
-    "Rychlý a férový výkup nemovitostí po celé České republice. Bez provize, s právním servisem zdarma.",
-  areaServed: {
-    "@type": "Country",
-    name: "CZ",
-  },
-  sameAs: [],
+  "@type": "AboutPage",
+  "@id": "https://vykoupim-nemovitost.cz/o-nas",
+  url: "https://vykoupim-nemovitost.cz/o-nas",
+  name: "O nás | Vykoupím Nemovitost",
+  inLanguage: "cs-CZ",
+  isPartOf: { "@id": "https://vykoupim-nemovitost.cz/#website" },
+  about: { "@id": "https://vykoupim-nemovitost.cz/#organization" },
+  publisher: { "@id": "https://vykoupim-nemovitost.cz/#organization" },
+  dateModified: "2026-05-01",
 };
 
 export default function ONasPage(): React.ReactElement {
@@ -134,7 +135,7 @@ export default function ONasPage(): React.ReactElement {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: safeJsonLd(organizationJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(aboutPageJsonLd) }}
       />
 
       <div className="bg-white">

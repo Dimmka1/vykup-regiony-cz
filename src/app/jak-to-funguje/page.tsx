@@ -10,6 +10,10 @@ import {
 } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
 import { withHreflang } from "@/lib/seo-hreflang";
+import { buildSpeakableSpec } from "@/lib/jsonld-speakable";
+import { EXTERNAL_SOURCES } from "@/lib/external-sources";
+import { LastUpdated } from "@/components/last-updated";
+import { QuickAnswer } from "@/components/quick-answer";
 import { MAX_ZALOHA, PRICE_PERCENT } from "@/lib/pricing";
 
 export const metadata: Metadata = {
@@ -85,16 +89,18 @@ const HOWTO_STEPS = [
 const JSON_LD_HOWTO = {
   "@context": "https://schema.org",
   "@type": "HowTo",
-  name: "Jak prodat nemovitost rychle – výkup v 4 krocích",
+  "@id": "https://vykoupim-nemovitost.cz/jak-to-funguje#howto",
+  name: "Jak prodat nemovitost rychle – výkup v 5 krocích",
   description:
-    "Prodejte nemovitost rychle a bez provize. Celý proces od vyplnění formuláře po vyplacení celé částky zvládneme do 7 dnů.",
-  totalTime: "P7D",
+    "Prodejte nemovitost rychle a bez provize. Celý proces od vyplnění formuláře po vyplacení celé částky zvládneme do 14 dnů.",
+  totalTime: "P14D",
   estimatedCost: {
     "@type": "MonetaryAmount",
     currency: "CZK",
     value: "0",
   },
-  tool: ["Telefon", "Počítač"],
+  tool: ["Telefon", "Počítač", "List vlastnictví"],
+  supply: ["Doklad totožnosti", "List vlastnictví", "PENB"],
   step: HOWTO_STEPS.map((s, i) => ({
     "@type": "HowToStep",
     position: i + 1,
@@ -102,6 +108,22 @@ const JSON_LD_HOWTO = {
     text: s.text,
     url: s.url,
   })),
+  inLanguage: "cs-CZ",
+  publisher: { "@id": "https://vykoupim-nemovitost.cz/#organization" },
+};
+
+const JSON_LD_WEBPAGE = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://vykoupim-nemovitost.cz/jak-to-funguje",
+  name: "Jak funguje výkup nemovitosti",
+  url: "https://vykoupim-nemovitost.cz/jak-to-funguje",
+  inLanguage: "cs-CZ",
+  isPartOf: { "@id": "https://vykoupim-nemovitost.cz/#website" },
+  publisher: { "@id": "https://vykoupim-nemovitost.cz/#organization" },
+  speakable: buildSpeakableSpec(),
+  about: { "@id": "https://vykoupim-nemovitost.cz/jak-to-funguje#howto" },
+  dateModified: "2026-05-01",
 };
 
 export default function JakToFungujePage() {
@@ -110,6 +132,10 @@ export default function JakToFungujePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonLd(JSON_LD_HOWTO) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(JSON_LD_WEBPAGE) }}
       />
 
       {/* Hero */}
@@ -122,6 +148,59 @@ export default function JakToFungujePage() {
             Od prvního kontaktu k penězům na účtu - transparentně, rychle a bez
             starostí. Celý proces zvládneme za vás.
           </p>
+        </div>
+      </section>
+
+      {/* Quick Answer + LastUpdated */}
+      <section className="bg-white pb-2 pt-12">
+        <div className="mx-auto max-w-4xl px-6">
+          <LastUpdated path="/jak-to-funguje" />
+          <QuickAnswer>
+            <p>
+              Výkup nemovitosti probíhá v pěti krocích a celkem trvá 7–14 dnů.
+              Vlastník nejprve vyplní krátký formulář s adresou, typem a stavem
+              nemovitosti. Specializovaná firma do 24 hodin sestaví nezávaznou
+              cenovou nabídku ve výši 80–90 % tržní hodnoty z dat{" "}
+              <a
+                href={EXTERNAL_SOURCES.czso.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-emerald-700 underline-offset-2 hover:underline"
+              >
+                Českého statistického úřadu
+              </a>{" "}
+              a aktuálních inzerátů v lokalitě.
+            </p>
+            <p>
+              Po prohlídce nemovitosti se cena finalizuje, advokát připraví
+              kupní smlouvu, podpis proběhne v advokátní úschově podle pravidel{" "}
+              <a
+                href={EXTERNAL_SOURCES.cak.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-emerald-700 underline-offset-2 hover:underline"
+              >
+                České advokátní komory
+              </a>
+              . Zálohu až {MAX_ZALOHA} Kč lze vyplatit hned, zbývající částku po
+              zápisu nového vlastníka v{" "}
+              <a
+                href={EXTERNAL_SOURCES.cuzk.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-emerald-700 underline-offset-2 hover:underline"
+              >
+                katastru nemovitostí
+              </a>{" "}
+              (lhůta 20–30 dnů) — celkem do 14 dnů od podpisu.
+            </p>
+            <p>
+              Vlastník neplatí provizi, právní servis ani odhad — všechny
+              náklady přebírá výkupce. Proces se používá při exekuci, dědictví,
+              rozvodu, prodeji spoluvlastnického podílu, hypotéce, věcném
+              břemenu i při potřebě rychlé likvidity.
+            </p>
+          </QuickAnswer>
         </div>
       </section>
 

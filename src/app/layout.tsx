@@ -14,6 +14,7 @@ const ExitIntentPopup = dynamic(
 import { SiteHeader } from "@/components/site-header";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { SiteFooter } from "@/components/site-footer";
+import { SiteJsonLd } from "@/components/site-jsonld";
 import { SwRegister } from "@/components/sw-register";
 import { WebVitalsReporter } from "@/components/web-vitals-reporter";
 import {
@@ -93,6 +94,7 @@ export default async function RootLayout({
         className={`${inter.className} flex min-h-screen flex-col`}
         style={themeStyle}
       >
+        <SiteJsonLd phone={region.phone} email={region.email} />
         <ScrollProgress />
         {process.env.NODE_ENV === "production" && trackingAllowed && (
           <noscript>

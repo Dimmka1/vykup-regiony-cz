@@ -10,7 +10,12 @@ import {
 } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
 import { withHreflang } from "@/lib/seo-hreflang";
+import { buildSpeakableSpec } from "@/lib/jsonld-speakable";
+import { buildQuestionId } from "@/lib/faq-slug";
+import { EXTERNAL_SOURCES } from "@/lib/external-sources";
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { LastUpdated } from "@/components/last-updated";
+import { QuickAnswer } from "@/components/quick-answer";
 import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 import { AllRegionsSection } from "@/components/all-regions-section";
@@ -67,22 +72,42 @@ const FAQ_ITEMS: readonly FaqItem[] = [
   {
     question: "Mohu prodat nemovitost při rozvodu bez souhlasu partnera?",
     answer:
-      "Pokud je nemovitost ve společném jmění manželů, je k prodeji potřeba souhlas obou stran. Pokud vlastníte nemovitost výhradně vy (např. jste ji zdědili nebo koupili před manželstvím), můžete ji prodat samostatně.",
+      "U nemovitosti ve společném jmění manželů (SJM) je k prodeji potřeba souhlas obou manželů. Pokud nemovitost vlastníte sami (zděděná, koupená před manželstvím), můžete ji prodat samostatně. Po zániku SJM rozvodem se SJM přemění v podílové spoluvlastnictví — váš poloviční podíl pak lze prodat samostatně bez souhlasu druhého manžela.",
   },
   {
     question: "Jak se rozdělí peníze z prodeje?",
     answer:
-      "Rozdělení závisí na dohodě obou manželů nebo na rozhodnutí soudu o vypořádání společného jmění. Peníze z prodeje převedeme podle vaší dohody - každému jeho podíl na úschovní účet.",
+      "Rozdělení vychází z dohody manželů nebo z rozhodnutí soudu o vypořádání SJM. Peníze z advokátní úschovy převedeme dle dohody přímo na účty obou stran v dohodnutém poměru. Při sporném vypořádání čekáme na soudní rozhodnutí o poměru dělení.",
   },
   {
-    question: "Jak rychle můžeme nemovitost prodat?",
+    question: "Jak rychle proběhne výkup?",
     answer:
-      "Od prvního kontaktu po vyplacení peněz to může být i 7 dní. Rychlý prodej vám umožní uzavřít tuto kapitolu a soustředit se na nový začátek.",
+      "Standardně 7–14 dnů od souhlasu obou manželů. U nevypořádaného SJM jen po dohodě o poměru dělení peněz, jinak proces čeká na soudní rozhodnutí. Zálohu až 500 000 Kč lze vyplatit hned při podpisu kupní smlouvy.",
   },
   {
     question: "Co když na nemovitosti vázne hypotéka?",
     answer:
-      "Zbývající hypotéku uhradíme přímo bance z kupní ceny. Rozdíl mezi kupní cenou a zbytkem hypotéky vyplatíme vám dle dohodnutého poměru.",
+      "Hypotéku uhradíme přímo bance z kupní ceny. Rozdíl mezi výkupní cenou a zůstatkem hypotéky se rozdělí mezi manžele v dohodnutém poměru. Předčasné splacení hypotéky sjedná náš právní zástupce — banka většinou účtuje malý poplatek za předčasné splacení.",
+  },
+  {
+    question: "Co když se s partnerem nedokážeme dohodnout?",
+    answer:
+      "Pokud se manželé nedohodnou, vypořádání SJM probíhá soudně. Soud rozhoduje o poměru dělení a o tom, komu připadne konkrétní majetek. Po pravomocném rozhodnutí lze zahájit výkup. Ve specifických případech lze prodat polovinu SJM jako spoluvlastnický podíl i bez vypořádání.",
+  },
+  {
+    question: "Daníme prodej nemovitosti při rozvodu?",
+    answer:
+      "Daňová povinnost se posuzuje stejně jako u běžného prodeje — 15 % daň z příjmů z rozdílu mezi prodejní a pořizovací cenou, u zisku nad 36násobek průměrné mzdy 23 %. Osvobození platí, pokud nemovitost byla vlastněna alespoň 10 let (u nabytí od 2021) nebo 5 let (u nabytí dříve), případně pokud v ní manželé bydleli alespoň 2 roky bezprostředně před prodejem.",
+  },
+  {
+    question: "Jak proběhne vypořádání, pokud má jeden z manželů exekuci?",
+    answer:
+      "Exekuce na jednoho z manželů ovlivňuje jeho podíl na SJM. Při výkupu se z jeho části kupní ceny uhradí dluh exekutorovi (ověřujeme v Centrální evidenci exekucí), druhý manžel obdrží svůj podíl bez krácení. Postup koordinujeme s exekutorem.",
+  },
+  {
+    question: "Můžeme nemovitost prodat ještě před pravomocným rozvodem?",
+    answer:
+      "Před rozvodem lze nemovitost ve SJM prodat se souhlasem obou manželů — nemusí se čekat na pravomocné rozhodnutí o rozvodu. Po prodeji se peníze rozdělí dle dohody manželů. Pokud manželé nesouhlasí, čeká se na rozhodnutí o vypořádání SJM po rozvodu.",
   },
 ] as const;
 
@@ -132,9 +157,23 @@ export default async function VykupPriRozvoduPage({
     "@type": "FAQPage",
     mainEntity: FAQ_ITEMS.map((item) => ({
       "@type": "Question",
+      "@id": buildQuestionId("/vykup-pri-rozvodu", item.question),
       name: item.question,
       acceptedAnswer: { "@type": "Answer", text: item.answer },
     })),
+  };
+
+  const webPageJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://vykoupim-nemovitost.cz/vykup-pri-rozvodu",
+    name: "Výkup nemovitosti při rozvodu",
+    url: "https://vykoupim-nemovitost.cz/vykup-pri-rozvodu",
+    inLanguage: "cs-CZ",
+    isPartOf: { "@id": "https://vykoupim-nemovitost.cz/#website" },
+    publisher: { "@id": "https://vykoupim-nemovitost.cz/#organization" },
+    speakable: buildSpeakableSpec(),
+    dateModified: "2026-05-01",
   };
 
   return (
@@ -142,6 +181,10 @@ export default async function VykupPriRozvoduPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonLd(faqJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(webPageJsonLd) }}
       />
 
       <GeoServiceJsonLd useCaseSlug="vykup-pri-rozvodu" searchParams={params} />
@@ -163,7 +206,48 @@ export default async function VykupPriRozvoduPage({
                 )
               : "Výkup nemovitosti při rozvodu"}
           </h1>
-          <p className="mt-4 text-lg text-slate-600">
+          <LastUpdated path="/vykup-pri-rozvodu" />
+          <QuickAnswer>
+            <p>
+              Při rozvodu lze nemovitost ve společném jmění manželů (SJM) prodat
+              se souhlasem obou manželů — výkupní firma odkoupí byt nebo dům za
+              80–90 % tržní hodnoty a peníze rozdělí mezi manžele v dohodnutém
+              poměru. Vypořádání SJM se řídí{" "}
+              <a
+                href={EXTERNAL_SOURCES.obcanskyzakonik.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-emerald-700 underline-offset-2 hover:underline"
+              >
+                občanským zákoníkem
+              </a>{" "}
+              a může proběhnout dohodou nebo rozhodnutím soudu.
+            </p>
+            <p>
+              Po rozvodu SJM zaniká a přemění se na podílové spoluvlastnictví.
+              Polovinu lze poté prodat jako spoluvlastnický podíl samostatně —
+              souhlas druhého manžela již nepotřebujete. Hypotéku, exekuci nebo
+              věcné břemeno váznoucí na nemovitosti uhradíme z kupní ceny:
+              hypotéku přímo bance, exekuci přímo exekutorovi (ověřujeme v{" "}
+              <a
+                href={EXTERNAL_SOURCES.centralniEvidenceExekuci.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-emerald-700 underline-offset-2 hover:underline"
+              >
+                Centrální evidenci exekucí
+              </a>
+              ).
+            </p>
+            <p>
+              Celý proces výkupu trvá 7–14 dnů od souhlasu obou manželů. Smlouva
+              je v advokátní úschově, peníze se uvolňují po zápisu nového
+              vlastníka v katastru. Vyplacení proběhne na účty obou manželů
+              přímo v poměru dle dohody — bez nutnosti následného dělení peněz
+              mezi sebou.
+            </p>
+          </QuickAnswer>
+          <p className="mt-6 text-lg text-slate-600">
             Rozvod je náročné životní období a vypořádání společné nemovitosti
             bývá jedním z nejtěžších kroků. Pomůžeme vám prodat nemovitost
             rychle, férově a bez zbytečných sporů.

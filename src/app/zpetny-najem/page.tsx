@@ -3,7 +3,12 @@ import Link from "next/link";
 import { Home, FileSignature, HandCoins, KeyRound } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
 import { withHreflang } from "@/lib/seo-hreflang";
+import { buildSpeakableSpec } from "@/lib/jsonld-speakable";
+import { buildQuestionId } from "@/lib/faq-slug";
+import { EXTERNAL_SOURCES } from "@/lib/external-sources";
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { LastUpdated } from "@/components/last-updated";
+import { QuickAnswer } from "@/components/quick-answer";
 import { RelatedArticles } from "@/components/related-articles";
 import { RentCalculator } from "@/components/rent-calculator";
 import { getRelatedArticles } from "@/lib/related-articles";
@@ -60,27 +65,42 @@ const FAQ_ITEMS: readonly FaqItem[] = [
   {
     question: "Mohu po prodeji zůstat v nemovitosti bydlet?",
     answer:
-      "Ano, to je podstata zpětného nájmu. Po prodeji s vámi uzavřeme nájemní smlouvu a vy zůstáváte bydlet ve svém domově tak dlouho, jak potřebujete.",
+      "Ano. Zpětný nájem (sale & leaseback) je transakce, při které vlastník prodá nemovitost a zároveň s novým vlastníkem uzavře nájemní smlouvu na stejnou nemovitost. Vy zůstáváte ve své nemovitosti jako nájemce, dostáváte plnou kupní cenu a platíte tržní nájemné.",
   },
   {
     question: "Jak dlouho mohu v nemovitosti zůstat?",
     answer:
-      "Doba nájmu je flexibilní a záleží na vaší dohodě. Standardně nabízíme smlouvy na 1–5 let s možností prodloužení. Konkrétní podmínky nastavíme podle vašich potřeb.",
+      "Délka nájmu se stanovuje smlouvou — standardně 1–5 let s možností prodloužení nebo přeměny na nájem na dobu neurčitou. U zpětného leasingu lze sjednat i delší dobu (10+ let), pokud máte zájem o dlouhodobý nájem se stabilitou tržního nájemného.",
   },
   {
     question: "Kolik budu platit za nájem?",
     answer:
-      "Nájemné stanovujeme férově podle aktuálních tržních cen v dané lokalitě. Přesnou částku vám sdělíme předem v rámci nezávazné nabídky, abyste se mohli svobodně rozhodnout.",
+      "Nájemné odpovídá tržnímu nájemnému v dané lokalitě podle aktuálních inzerátů. Pro byt 2+kk v Praze obvykle 18–25 tisíc Kč/měsíc, ve středně velkém městě 12–18 tisíc Kč. Konkrétní výši uvedeme v cenové nabídce ještě před podpisem.",
   },
   {
     question: "Pro koho je zpětný nájem vhodný?",
     answer:
-      "Zpětný nájem je ideální pro seniory, kteří potřebují uvolnit finance z nemovitosti, pro lidi řešící dluhy či exekuce, nebo pro kohokoli, kdo potřebuje rychle peníze, ale nechce se stěhovat.",
+      "Pro seniory uvolňující finance z nemovitosti pro důchod, pro lidi řešící dluhy nebo exekuce bez nutnosti se stěhovat, pro podnikatele potřebující kapitál pro firmu, pro rodiče vyplácející dědictví dětem. Vždy tam, kde je nutná likvidita, ale nemovitost se nemá opouštět.",
   },
   {
     question: "Mohu si nemovitost odkoupit zpět?",
     answer:
-      "Ano, nabízíme možnost zpětného odkupu nemovitosti. Nemusíte dokládat příjmy — stačí dodržet sjednané podmínky a termín odkupu stanovený ve smlouvě. Konkrétní podmínky zpětného odkupu (cenu a lhůtu) nastavíme individuálně při podpisu smlouvy.",
+      "Ano. Smlouva může obsahovat předkupní právo nebo opci odkupu — máte právo nemovitost odkoupit zpět za sjednanou cenu a v sjednaném termínu. Cena odkupu se stanovuje smluvně (typicky kupní cena + nájemné nebo aktuální tržní cena) a nemusíte dokládat příjmy.",
+  },
+  {
+    question: "Co když nemovitost má hypotéku?",
+    answer:
+      "Hypotéku uhradíme přímo bance z kupní ceny při převodu vlastnictví. Po splacení banka vystaví potvrzení a vzdá se zástavního práva, které katastr vymaže. Vy obdržíte rozdíl a můžete v nemovitosti zůstat jako nájemce.",
+  },
+  {
+    question: "Co když mě postihne exekuce — můžu zůstat v nájmu?",
+    answer:
+      "Ano. Po prodeji nemovitost přechází na nového vlastníka, exekuce se z ní vyplatí v plné výši. Nájemní smlouva mezi vámi a novým vlastníkem zůstává v platnosti — exekuce se vás dále netýká, dokud platíte nájem podle smlouvy.",
+  },
+  {
+    question: "Jak rychle proběhne celá transakce?",
+    answer:
+      "Standardně 14 dnů od první konzultace. Smlouva se uzavírá současně jako kupní smlouva (převod vlastnictví) a nájemní smlouva (váš pobyt v nemovitosti). Smlouvu připravuje advokát a peníze procházejí advokátní úschovou podle pravidel České advokátní komory.",
   },
 ] as const;
 
@@ -133,20 +153,27 @@ export default async function ZpetnyNajemPage({
     headline: "Zpětný nájem nemovitosti — prodejte a zůstaňte bydlet",
     description:
       "Prodejte nemovitost a zůstaňte v ní bydlet díky zpětnému nájmu. Získejte peníze ihned a bydlete dál bez starostí.",
-    author: {
-      "@type": "Organization",
-      name: "vykoupim-nemovitost.cz",
-      url: "https://vykoupim-nemovitost.cz",
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "vykoupim-nemovitost.cz",
-      url: "https://vykoupim-nemovitost.cz",
-    },
+    author: { "@id": "https://vykoupim-nemovitost.cz/#organization" },
+    publisher: { "@id": "https://vykoupim-nemovitost.cz/#organization" },
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": "https://vykoupim-nemovitost.cz/zpetny-najem",
     },
+    inLanguage: "cs-CZ",
+    dateModified: "2026-05-01",
+  };
+
+  const webPageJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://vykoupim-nemovitost.cz/zpetny-najem",
+    name: "Zpětný nájem nemovitosti",
+    url: "https://vykoupim-nemovitost.cz/zpetny-najem",
+    inLanguage: "cs-CZ",
+    isPartOf: { "@id": "https://vykoupim-nemovitost.cz/#website" },
+    publisher: { "@id": "https://vykoupim-nemovitost.cz/#organization" },
+    speakable: buildSpeakableSpec(),
+    dateModified: "2026-05-01",
   };
 
   const breadcrumbJsonLd = {
@@ -179,6 +206,7 @@ export default async function ZpetnyNajemPage({
     "@type": "FAQPage",
     mainEntity: FAQ_ITEMS.map((item) => ({
       "@type": "Question",
+      "@id": buildQuestionId("/zpetny-najem", item.question),
       name: item.question,
       acceptedAnswer: { "@type": "Answer", text: item.answer },
     })),
@@ -189,6 +217,10 @@ export default async function ZpetnyNajemPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonLd(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(webPageJsonLd) }}
       />
       <script
         type="application/ld+json"
@@ -216,7 +248,39 @@ export default async function ZpetnyNajemPage({
                 )
               : "Prodejte nemovitost a zůstaňte bydlet — zpětný nájem"}
           </h1>
-          <p className="mt-4 text-lg text-slate-600">
+          <LastUpdated path="/zpetny-najem" />
+          <QuickAnswer>
+            <p>
+              Zpětný nájem (sale &amp; leaseback) je transakce, při které
+              vlastník prodá nemovitost a zároveň s novým vlastníkem uzavře
+              nájemní smlouvu na stejnou nemovitost. Vlastník dostane plnou
+              kupní cenu (80–90 % tržní hodnoty), zůstává v nemovitosti jako
+              nájemce a platí tržní nájemné. Smlouva může obsahovat opci na
+              zpětný odkup za sjednanou cenu a v sjednaném termínu.
+            </p>
+            <p>
+              Tato struktura je vhodná pro seniory uvolňující finance pro
+              důchod, pro lidi řešící exekuce nebo dluhy bez nutnosti stěhování,
+              pro podnikatele potřebující kapitál a pro řešení dědických
+              vypořádání. Hypotéku nebo exekuci lze uhradit přímo z kupní ceny —
+              věřitelé dostanou své peníze, vy zůstanete v nemovitosti.
+            </p>
+            <p>
+              Kupní i nájemní smlouva se podepisují současně, smlouvy připravuje
+              advokát, peníze procházejí{" "}
+              <a
+                href={EXTERNAL_SOURCES.cak.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-emerald-700 underline-offset-2 hover:underline"
+              >
+                advokátní úschovou
+              </a>{" "}
+              do zápisu nového vlastníka v katastru. Celá transakce trvá 14 dnů
+              a kupní cena se pohybuje 80–90 % tržní hodnoty.
+            </p>
+          </QuickAnswer>
+          <p className="mt-6 text-lg text-slate-600">
             Zpětný nájem (sale and leaseback) je moderní způsob, jak získat
             peníze z nemovitosti, aniž byste se museli stěhovat. Prodáte nám
             svůj byt nebo dům a současně s vámi uzavřeme nájemní smlouvu — vy

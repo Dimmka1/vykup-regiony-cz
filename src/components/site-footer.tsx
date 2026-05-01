@@ -167,6 +167,12 @@ export function SiteFooter({ phone = "+420 776 424 145" }: SiteFooterProps) {
               <Link href="/kraje" className={linkClass}>
                 Kde působíme
               </Link>
+              <Link href="/jak-to-funguje" className={linkClass}>
+                Jak to funguje
+              </Link>
+              <Link href="/jak-stanovujeme-cenu" className={linkClass}>
+                Jak stanovujeme cenu
+              </Link>
               <Link href="/caste-dotazy" className={linkClass}>
                 Časté dotazy
               </Link>
@@ -176,18 +182,33 @@ export function SiteFooter({ phone = "+420 776 424 145" }: SiteFooterProps) {
               <Link href="/garance-vykupu" className={linkClass}>
                 Garance výkupu
               </Link>
+              <Link href="/slovnik-pojmu" className={linkClass}>
+                Slovník pojmů
+              </Link>
               <Link href="/blog" className={linkClass}>
                 Blog
               </Link>
             </nav>
           </div>
 
-          {/* Právní */}
+          {/* Právní a transparence */}
           <div>
             <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">
-              Právní
+              Transparence
             </h3>
-            <nav aria-label="Právní" className="flex flex-col gap-3">
+            <nav
+              aria-label="Transparence a právní"
+              className="flex flex-col gap-3"
+            >
+              <Link href="/redakcni-zasady" className={linkClass}>
+                Redakční zásady
+              </Link>
+              <Link href="/zdroje-a-citace" className={linkClass}>
+                Zdroje a citace
+              </Link>
+              <Link href="/o-nas" className={linkClass}>
+                O nás
+              </Link>
               <Link href="/ochrana-osobnich-udaju" className={linkClass}>
                 Ochrana osobních údajů
               </Link>

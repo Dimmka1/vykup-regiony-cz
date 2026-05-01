@@ -12,7 +12,11 @@ import {
 } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
 import { withHreflang } from "@/lib/seo-hreflang";
+import { buildSpeakableSpec } from "@/lib/jsonld-speakable";
+import { EXTERNAL_SOURCES } from "@/lib/external-sources";
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { LastUpdated } from "@/components/last-updated";
+import { QuickAnswer } from "@/components/quick-answer";
 import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 import { AllRegionsSection } from "@/components/all-regions-section";
@@ -69,22 +73,42 @@ const FAQ_ITEMS: readonly FaqItem[] = [
   {
     question: "Vykupujete i staré domy v špatném stavu?",
     answer:
-      "Ano, vykupujeme domy v jakémkoli stavu - i zchátralé, poškozené nebo vyžadující kompletní rekonstrukci. Stav domu není překážkou, naopak se na takové nemovitosti specializujeme.",
+      "Ano, vykupujeme rodinné domy v jakémkoli stavu — i zchátralé, k demolici, po požáru nebo s vyplaveným sklepem. Stav domu se promítá do výkupní ceny (sleva podle stáří poslední rekonstrukce a energetické náročnosti), ale nikdy domu neodmítneme jen kvůli stavu.",
   },
   {
     question: "Jak stanovíte cenu za rodinný dům?",
     answer:
-      "Cenu stanovíme na základě lokality, stavu nemovitosti, velikosti pozemku a aktuálních tržních podmínek. Nabízíme 80–90 % tržní hodnoty. Odhad je zdarma a nezávazný.",
+      "Tržní cena se počítá z m² podlahové plochy podle katastru, ceny pozemku v lokalitě a koeficientu na typ stavby (zděný / dřevostavba / panelový systém). Výkupní cena je 80–90 % korigované tržní hodnoty po odečtu stavu a právního zatížení. Detail metodiky popisuje samostatná stránka.",
   },
   {
     question: "Co když je na domě zástavní právo nebo hypotéka?",
     answer:
-      "Domy se zástavním právem nebo hypotékou vykupujeme běžně. Hypotéku splatíme přímo z kupní ceny a zajistíme výmaz zástavního práva z katastru nemovitostí.",
+      "Hypotéku uhradíme přímo bance z kupní ceny a po splacení banka uvolní zástavní právo. Vy obdržíte rozdíl mezi sjednanou výkupní cenou a zůstatkem hypotéky. Předčasné splacení sjednává náš právní zástupce.",
   },
   {
     question: "Jak dlouho trvá výkup domu?",
     answer:
-      "Celý proces od prvního kontaktu po vyplacení peněz trvá obvykle 2–4 týdny. V urgentních případech to zvládneme i do 7 dnů.",
+      "Standardně 7–14 dnů od prvního kontaktu po vyplacení peněz. Lhůta zahrnuje prohlídku, dohodu o ceně, podpis kupní smlouvy v advokátní úschově, podání návrhu na vklad a zápis nového vlastníka v katastru nemovitostí.",
+  },
+  {
+    question: "Vykupujete i nemovitosti s hospodářským objektem nebo stodolou?",
+    answer:
+      "Ano. Vykupujeme rodinné domy včetně přilehlých staveb (stodoly, hospodářské budovy, garáže) a pozemku, který tvoří funkční celek. Cena se počítá z plochy obytné části + samostatně z hospodářských ploch.",
+  },
+  {
+    question: "Co když je dům spoluvlastnický a my se nemůžeme dohodnout?",
+    answer:
+      "Vykupujeme i spoluvlastnické podíly samostatně, bez nutnosti souhlasu ostatních spoluvlastníků. Ostatním podle občanského zákoníku náleží zákonné předkupní právo, které vyřešíme — tříměsíční lhůta na nabídku ostatním spoluvlastníkům platí ze zákona.",
+  },
+  {
+    question: "Vykupujete chaty, chalupy, rekreační objekty?",
+    answer:
+      "Ano. Chaty, chalupy a rekreační domky vykupujeme stejným postupem jako rodinné domy. Cena reflektuje sezónní charakter a dostupnost — u rekreačních objektů hraje větší roli vzdálenost od krajského města a infrastruktura.",
+  },
+  {
+    question: "Vykupujete domy v exekuci nebo dražbě?",
+    answer:
+      "Ano. Stav exekuce ověřujeme v Centrální evidenci exekucí, dluh uhradíme přímo exekutorovi z kupní ceny. U hrozící dražby zvládneme proces 5–7 dnů, pokud je nařízena dražební vyhláška, kontaktujte nás co nejdříve.",
   },
 ] as const;
 
@@ -172,6 +196,7 @@ export default async function VykupDomuPage({
   const webPageJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebPage",
+    "@id": "https://vykoupim-nemovitost.cz/vykup-domu",
     name: "Výkup domů - rychlý prodej rodinného domu za hotové",
     description: region
       ? injectRegionIntoDescription(
@@ -180,7 +205,11 @@ export default async function VykupDomuPage({
         )
       : "Vykoupíme váš rodinný dům rychle a bez provize. Staré domy, domy k rekonstrukci i se zástavou. Férová cena, vyplacení do 7 dnů. Celá ČR.",
     url: "https://vykoupim-nemovitost.cz/vykup-domu",
-    isPartOf: { "@type": "WebSite", url: "https://vykoupim-nemovitost.cz" },
+    inLanguage: "cs-CZ",
+    isPartOf: { "@id": "https://vykoupim-nemovitost.cz/#website" },
+    publisher: { "@id": "https://vykoupim-nemovitost.cz/#organization" },
+    speakable: buildSpeakableSpec(),
+    dateModified: "2026-05-01",
   };
 
   return (
@@ -211,23 +240,59 @@ export default async function VykupDomuPage({
                 )
               : "Výkup rodinných domů - rychle, férově a bez provize"}
           </h1>
-          <p className="mt-4 text-lg text-slate-600">
-            Chcete prodat rodinný dům rychle a bez komplikací? Vykoupíme váš dům
-            za férovou cenu odpovídající 80–90 % tržní hodnoty. Celý proces
-            zvládneme do 7 dnů - vy nemusíte řešit inzerci, prohlídky ani
-            opravy.
-          </p>
-          <p className="mt-4 text-slate-600">
+          <LastUpdated path="/vykup-domu" />
+          <QuickAnswer>
+            <p>
+              Výkup rodinného domu je rychlý prodej, při kterém specializovaná
+              firma odkoupí dům včetně pozemku a hospodářských staveb za hotové.
+              Výkupní cena se pohybuje 80–90 % tržní hodnoty domu; tržní hodnota
+              se počítá z m² podlahové plochy podle{" "}
+              <a
+                href={EXTERNAL_SOURCES.cuzk.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-emerald-700 underline-offset-2 hover:underline"
+              >
+                katastru nemovitostí
+              </a>
+              , ceny pozemku v lokalitě podle{" "}
+              <a
+                href={EXTERNAL_SOURCES.czso.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-emerald-700 underline-offset-2 hover:underline"
+              >
+                Českého statistického úřadu
+              </a>{" "}
+              a koeficientu na typ stavby.
+            </p>
+            <p>
+              Vykupujeme rodinné domy v jakémkoli stavu — od novostaveb po
+              chalupy k demolici. Stav domu se promítá do ceny (sleva podle
+              stáří poslední rekonstrukce a energetické náročnosti PENB), ale
+              dům neodmítneme jen kvůli stavu. Vykupujeme i domy s hypotékou,
+              exekucí, věcným břemenem doživotního užívání, ve spoluvlastnictví
+              nebo s nájemníkem.
+            </p>
+            <p>
+              Celý proces od první konzultace po vyplacení peněz trvá 7–14 dnů.
+              Smlouvu připravuje advokát, peníze leží v advokátní úschově až do
+              zápisu nového vlastníka v katastru. Vlastník neplatí provizi,
+              právní servis, odhad ani náklady na převod — všechny náklady
+              přebírá výkupce.
+            </p>
+          </QuickAnswer>
+          <p className="mt-6 text-slate-600">
             Specializujeme se na výkup rodinných domů po celé České republice.
-            Vykoupíme domy v jakémkoli stavu - starší domy, domy k demolici,
-            rozestavěné projekty i nemovitosti zatížené hypotékou, exekucí nebo
-            věcným břemenem. Každou situaci posoudíme individuálně.
-          </p>
-          <p className="mt-4 text-slate-600">
-            Klasický prodej rodinného domu přes realitní kancelář trvá v průměru
-            6–12 měsíců. U nás je to otázka dnů. Neplatíte žádnou provizi,
-            poplatky za odhad, právní služby ani náklady na převod - vše hradíme
-            my.
+            Klasický prodej domu přes realitní kancelář trvá 6–12 měsíců — u nás
+            je to otázka dnů. Konkrétní výpočet ceny popisuje{" "}
+            <Link
+              href="/jak-stanovujeme-cenu"
+              className="font-medium text-emerald-700 hover:text-emerald-800"
+            >
+              naše transparentní metodika
+            </Link>
+            .
           </p>
           <p className="mt-4 text-slate-600">
             Náš tým zkušených odhadců a právníků zajistí rychlé a bezpečné
@@ -237,8 +302,8 @@ export default async function VykupDomuPage({
           </p>
           <p className="mt-4 text-slate-600">
             Ať už prodáváte dům ve velkém městě nebo na vesnici, kontaktujte
-            nás. Nabídku obdržíte do 24 hodin a peníze mohou být na vašem účtu
-            už za týden.
+            nás. Nabídku obdržíte do 24 hodin a zálohu až 500 000 Kč při podpisu
+            smlouvy.
           </p>
           <div className="mt-8">
             <Link

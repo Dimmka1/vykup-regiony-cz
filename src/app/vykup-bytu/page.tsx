@@ -12,7 +12,11 @@ import {
 } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
 import { withHreflang } from "@/lib/seo-hreflang";
+import { buildSpeakableSpec } from "@/lib/jsonld-speakable";
+import { EXTERNAL_SOURCES } from "@/lib/external-sources";
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { LastUpdated } from "@/components/last-updated";
+import { QuickAnswer } from "@/components/quick-answer";
 import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 import { AllRegionsSection } from "@/components/all-regions-section";
@@ -70,22 +74,52 @@ const FAQ_ITEMS: readonly FaqItem[] = [
   {
     question: "Jak rychle dokážete byt vykoupit?",
     answer:
-      "Od prvního kontaktu po vyplacení peněz to může být i 7 dní. Standardně celý proces trvá 2–4 týdny včetně právního prověření a zápisu do katastru nemovitostí.",
+      "Standardní výkup bytu trvá 7–14 dnů od prvního kontaktu po vyplacení peněz. U urgentních případů (hrozící dražba, exekuce) zvládneme proces i za 5–7 dnů včetně advokátní úschovy a podání návrhu na vklad do katastru nemovitostí.",
   },
   {
     question: "Vykupujete i družstevní byty?",
     answer:
-      "Ano, vykupujeme družstevní byty včetně převodu členských práv. Zajistíme komunikaci s družstvem a vyřešíme veškeré formality spojené s převodem.",
+      "Ano. U družstevního bytu vykupujeme členský podíl v bytovém družstvu — převod neprobíhá zápisem do katastru, ale dohodou s družstvem. Komunikaci s družstvem, schválení převodu i vyrovnání případného členského dluhu zajistíme za vás.",
   },
   {
     question: "Co když je v bytě nájemník?",
     answer:
-      "Byty s nájemníkem vykupujeme také. Nájemní vztah není překážkou - ocenění zohledníme dle aktuálního stavu a podmínek nájemní smlouvy.",
+      "Byty s nájemníkem vykupujeme. Nájemní smlouvu přebíráme, takže nájemník zůstává — vy z bytu nemusíte nikoho stěhovat ani vypovídat smlouvu. Cenu nabídky upravíme podle podmínek nájemní smlouvy a výnosu z nájmu.",
   },
   {
     question: "Kolik za byt nabídnete?",
     answer:
-      "Nabízíme 80–90 % tržní hodnoty bytu. Přesnou nabídku obdržíte do 24 hodin po vyplnění formuláře. Neplatíte žádnou provizi ani skryté poplatky - veškeré náklady hradíme my.",
+      "Nabízíme 80–90 % tržní hodnoty bytu. Konečná částka závisí na lokalitě, technickém stavu, výměře z katastru a právním zatížení. Neplatíte žádnou provizi, odhad ani právní servis — všechny náklady přebíráme my.",
+  },
+  {
+    question: "Vykupujete i byty v exekuci?",
+    answer:
+      "Ano. U bytu v exekuci nejprve ověříme přesnou výši dluhu v Centrální evidenci exekucí (vedené Exekutorskou komorou ČR). Z kupní ceny pak uhradíme dluh přímo exekutorovi a vy obdržíte čistou částku po odečtu.",
+  },
+  {
+    question: "Co když mám na bytě hypotéku?",
+    answer:
+      "Zbývající hypotéku uhradíme přímo bance z kupní ceny při převodu vlastnictví. Vy obdržíte rozdíl mezi sjednanou výkupní cenou a zůstatkem hypotéky. Předčasné splacení pomáhá vyjednat s bankou náš právní zástupce.",
+  },
+  {
+    question: "Co když je byt ve špatném technickém stavu?",
+    answer:
+      "Byt vykupujeme v aktuálním stavu, bez rekonstrukce, malování nebo úklidu. Stav nemovitosti se promítá do výkupní ceny (sleva podle stáří poslední rekonstrukce a energetické náročnosti), ale nikdy neodmítáme byt jen kvůli stavu.",
+  },
+  {
+    question: "Jak je zajištěna bezpečnost transakce?",
+    answer:
+      "Kupní smlouvu připravuje advokát a peníze leží v advokátní úschově podle pravidel České advokátní komory. Z úschovy se uvolní až po zápisu nového vlastníka do katastru nemovitostí — do té doby zůstanou v bezpečí.",
+  },
+  {
+    question: "Mohu prodat jen spoluvlastnický podíl na bytě?",
+    answer:
+      "Ano. Spoluvlastnický podíl (např. 1/2, 1/4) lze samostatně převádět bez souhlasu ostatních spoluvlastníků. Ostatním spoluvlastníkům podle občanského zákoníku náleží zákonné předkupní právo, které vyřešíme za vás.",
+  },
+  {
+    question: "Kdy přesně dostanu peníze?",
+    answer:
+      "Zálohu až 500 000 Kč obdržíte hned při podpisu kupní smlouvy. Zbývající kupní cena se vyplatí z advokátní úschovy do 3–5 pracovních dnů od zápisu do katastru — celkem tedy obvykle 14 dnů od první konzultace.",
   },
 ] as const;
 
@@ -174,6 +208,7 @@ export default async function VykupBytuPage({
   const webPageJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebPage",
+    "@id": "https://vykoupim-nemovitost.cz/vykup-bytu",
     name: "Výkup bytů - rychlý prodej bytu za hotové",
     description: region
       ? injectRegionIntoDescription(
@@ -182,7 +217,11 @@ export default async function VykupBytuPage({
         )
       : "Vykoupíme váš byt rychle a bez provize. Osobní, družstevní i problémové byty. Férová cena 80–90 % tržní hodnoty, vyplacení do 7 dnů. Celá ČR.",
     url: "https://vykoupim-nemovitost.cz/vykup-bytu",
-    isPartOf: { "@type": "WebSite", url: "https://vykoupim-nemovitost.cz" },
+    inLanguage: "cs-CZ",
+    isPartOf: { "@id": "https://vykoupim-nemovitost.cz/#website" },
+    publisher: { "@id": "https://vykoupim-nemovitost.cz/#organization" },
+    speakable: buildSpeakableSpec(),
+    dateModified: "2026-05-01",
   };
 
   return (
@@ -213,34 +252,91 @@ export default async function VykupBytuPage({
                 )
               : "Výkup bytů - rychle, férově a bez provize"}
           </h1>
-          <p className="mt-4 text-lg text-slate-600">
-            Potřebujete prodat byt rychle a bez starostí? Vykoupíme váš byt za
-            férovou cenu odpovídající 80–90 % tržní hodnoty. Celý proces
-            zvládneme do 7 dnů - od první konzultace po vyplacení peněz na váš
-            účet.
-          </p>
-          <p className="mt-4 text-slate-600">
+          <LastUpdated path="/vykup-bytu" />
+          <QuickAnswer>
+            <p>
+              Výkup bytu je rychlý prodej, při kterém specializovaná firma
+              odkoupí osobní nebo družstevní byt za hotové z vlastních
+              prostředků. Výkupní cena se obvykle pohybuje 80–90 % tržní hodnoty
+              bytu a celý proces od první konzultace po vyplacení peněz trvá
+              7–14 dnů, oproti 3–6 měsícům u klasického prodeje přes realitní
+              kancelář.
+            </p>
+            <p>
+              Vlastník bytu neplatí provizi, právní servis ani poplatky za odhad
+              — všechny náklady přebírá výkupce. Vykupují se byty v jakémkoli
+              technickém stavu, včetně bytů s hypotékou, exekucí, věcným
+              břemenem nebo nájemníkem. Smlouvu připravuje advokát a peníze leží
+              v advokátní úschově podle pravidel{" "}
+              <a
+                href={EXTERNAL_SOURCES.cak.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-emerald-700 underline-offset-2 hover:underline"
+              >
+                České advokátní komory
+              </a>{" "}
+              až do zápisu nového vlastníka v{" "}
+              <a
+                href={EXTERNAL_SOURCES.cuzk.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-emerald-700 underline-offset-2 hover:underline"
+              >
+                katastru nemovitostí
+              </a>
+              .
+            </p>
+            <p>
+              Výkup bytu se nejčastěji využívá při exekuci, dědictví, rozvodu,
+              prodeji spoluvlastnického podílu nebo při potřebě rychlé
+              likvidity. Pokrývá celou Českou republiku včetně Prahy, Brna,
+              Ostravy a krajských měst. Cena nezávazné nabídky platí 14 dnů a
+              zálohu až 500 000 Kč lze vyplatit hned při podpisu smlouvy,
+              zbývající částku po zápisu do katastru během 3–5 pracovních dnů.
+            </p>
+          </QuickAnswer>
+          <p className="mt-6 text-slate-600">
             Specializujeme se na výkup všech typů bytů v celé České republice.
             Ať už vlastníte osobní byt, družstevní byt nebo byt zatížený
-            hypotékou či exekucí - najdeme řešení přesně pro vaši situaci.
+            hypotékou či exekucí — najdeme řešení přesně pro vaši situaci.
             Neplatíte žádnou provizi, poplatky za odhad ani právní služby.
           </p>
           <p className="mt-4 text-slate-600">
             Na rozdíl od klasického prodeje přes realitní kancelář u nás
             nemusíte čekat měsíce na kupce, řešit prohlídky ani investovat do
-            oprav. Byt vykoupíme v jakémkoli stavu - i bez rekonstrukce, s
-            nájemníkem nebo s právním zatížením.
-          </p>
-          <p className="mt-4 text-slate-600">
-            Proces je jednoduchý a transparentní. Po vyplnění nezávazného
-            formuláře vám do 24 hodin zašleme cenovou nabídku. Pokud vám
-            vyhovuje, připravíme kupní smlouvu a zajistíme vše potřebné včetně
-            zápisu do katastru nemovitostí.
+            oprav. Byt vykoupíme v jakémkoli stavu — i bez rekonstrukce, s
+            nájemníkem nebo s právním zatížením. Konkrétní výpočet výkupní ceny
+            popisuje naše{" "}
+            <Link
+              href="/jak-stanovujeme-cenu"
+              className="font-medium text-emerald-700 hover:text-emerald-800"
+            >
+              transparentní metodika
+            </Link>
+            .
           </p>
           <p className="mt-4 text-slate-600">
             Vykupujeme byty v Praze, Brně, Ostravě i v menších městech po celé
-            ČR. Nezáleží na velikosti, stavu ani lokalitě - každý byt posoudíme
-            individuálně a nabídneme vám nejvýhodnější podmínky.
+            ČR. Konkrétní cena se počítá z aktuálních dat{" "}
+            <a
+              href={EXTERNAL_SOURCES.czso.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-emerald-700 underline-offset-2 hover:underline"
+            >
+              Českého statistického úřadu
+            </a>{" "}
+            a transakčních dat z lokality. Při exekuci dluh ověřujeme v{" "}
+            <a
+              href={EXTERNAL_SOURCES.centralniEvidenceExekuci.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-emerald-700 underline-offset-2 hover:underline"
+            >
+              Centrální evidenci exekucí
+            </a>
+            .
           </p>
           <div className="mt-8">
             <Link

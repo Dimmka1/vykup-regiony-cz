@@ -12,7 +12,11 @@ import {
 } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
 import { withHreflang } from "@/lib/seo-hreflang";
+import { buildSpeakableSpec } from "@/lib/jsonld-speakable";
+import { EXTERNAL_SOURCES } from "@/lib/external-sources";
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { LastUpdated } from "@/components/last-updated";
+import { QuickAnswer } from "@/components/quick-answer";
 import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 import { LeadMagnetCta } from "@/components/lead-magnet-cta";
@@ -131,19 +135,25 @@ export default function VykupPriPrivatizaciPage(): React.ReactElement {
       "Výkup při privatizaci bytu – jak prodat privatizovaný byt rychle",
     description:
       "Kompletní průvodce prodejem privatizovaného bytu. Předkupní práva, družstevní podíly a právní aspekty privatizace.",
-    author: {
-      "@type": "Organization",
-      name: "Vykoupím Nemovitost",
-      url: SITE_URL,
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "Vykoupím Nemovitost",
-      url: SITE_URL,
-    },
+    author: { "@id": "https://vykoupim-nemovitost.cz/#organization" },
+    publisher: { "@id": "https://vykoupim-nemovitost.cz/#organization" },
     mainEntityOfPage: `${SITE_URL}/vykup-pri-privatizaci`,
     datePublished: "2025-03-14",
-    dateModified: "2025-03-14",
+    dateModified: "2026-05-01",
+    inLanguage: "cs-CZ",
+  };
+
+  const webPageJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${SITE_URL}/vykup-pri-privatizaci`,
+    name: "Výkup při privatizaci bytu",
+    url: `${SITE_URL}/vykup-pri-privatizaci`,
+    inLanguage: "cs-CZ",
+    isPartOf: { "@id": "https://vykoupim-nemovitost.cz/#website" },
+    publisher: { "@id": "https://vykoupim-nemovitost.cz/#organization" },
+    speakable: buildSpeakableSpec(),
+    dateModified: "2026-05-01",
   };
 
   const faqJsonLd = {
@@ -189,6 +199,10 @@ export default function VykupPriPrivatizaciPage(): React.ReactElement {
       />
       <script
         type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(webPageJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJsonLd(faqJsonLd) }}
       />
       <script
@@ -213,7 +227,48 @@ export default function VykupPriPrivatizaciPage(): React.ReactElement {
             Výkup při privatizaci bytu — prodejte privatizovaný byt bez
             komplikací
           </h1>
-          <p className="mt-4 text-lg text-slate-600">
+          <LastUpdated path="/vykup-pri-privatizaci" />
+          <QuickAnswer>
+            <p>
+              Privatizovaný byt — byt, který byl převeden z obecního nebo
+              družstevního vlastnictví do osobního vlastnictví nájemníka — lze
+              prodat za 80–90 % tržní hodnoty. U bytů privatizovaných od obce
+              může privatizační smlouva obsahovat zákonné předkupní právo obce
+              na 5–10 let, které musí být vypořádáno před prodejem třetí osobě.
+            </p>
+            <p>
+              U družstevních bytů se neprodává nemovitost, ale členský podíl v
+              družstvu. Převod podléhá schválení valnou hromadou družstva podle
+              stanov a vyrovnání případného členského dluhu. Bytové domy s
+              privatizovanými byty jsou často ve spoluvlastnictví — v tom
+              případě platí předkupní právo ostatních spoluvlastníků podle{" "}
+              <a
+                href={EXTERNAL_SOURCES.obcanskyzakonik.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-emerald-700 underline-offset-2 hover:underline"
+              >
+                občanského zákoníku
+              </a>
+              .
+            </p>
+            <p>
+              Celý proces výkupu trvá 14–28 dnů. Lhůta zahrnuje právní prověrku
+              privatizační smlouvy, ověření předkupních práv, podpis kupní
+              smlouvy v advokátní úschově, podání návrhu na vklad do{" "}
+              <a
+                href={EXTERNAL_SOURCES.cuzk.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-emerald-700 underline-offset-2 hover:underline"
+              >
+                katastru nemovitostí
+              </a>{" "}
+              a zápis nového vlastníka. Vlastník neplatí provizi, právní servis
+              ani odhad.
+            </p>
+          </QuickAnswer>
+          <p className="mt-6 text-lg text-slate-600">
             Privatizovali jste byt a chcete ho prodat? Nebo máte družstevní
             podíl, který chcete zpeněžit? Jsme specialisté na výkup
             privatizovaných bytů — řešíme předkupní práva, omezení z

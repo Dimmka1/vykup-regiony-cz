@@ -78,6 +78,11 @@ export async function GET(): Promise<Response> {
     { path: "/vykup-cinzovnich-domu", priority: 0.8 },
     { path: "/vykup-pri-privatizaci", priority: 0.8 },
     { path: "/odhad-ceny-nemovitosti", priority: 0.8 },
+    // Authority/E-E-A-T pages added 2026-05-01
+    { path: "/jak-stanovujeme-cenu", priority: 0.8 },
+    { path: "/slovnik-pojmu", priority: 0.7 },
+    { path: "/zdroje-a-citace", priority: 0.6 },
+    { path: "/redakcni-zasady", priority: 0.6 },
   ] as const;
 
   for (const page of staticPages) {

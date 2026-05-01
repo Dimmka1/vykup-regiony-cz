@@ -10,7 +10,11 @@ import {
 } from "lucide-react";
 import { safeJsonLd } from "@/lib/jsonld";
 import { withHreflang } from "@/lib/seo-hreflang";
+import { buildSpeakableSpec } from "@/lib/jsonld-speakable";
+import { EXTERNAL_SOURCES } from "@/lib/external-sources";
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { LastUpdated } from "@/components/last-updated";
+import { QuickAnswer } from "@/components/quick-answer";
 import { RelatedArticles } from "@/components/related-articles";
 import { getRelatedArticles } from "@/lib/related-articles";
 import { AllRegionsSection } from "@/components/all-regions-section";
@@ -70,22 +74,48 @@ const FAQ_ITEMS: readonly FaqItem[] = [
   {
     question: "Mohu prodat pouze svůj podíl na nemovitosti?",
     answer:
-      "Ano, každý spoluvlastník má právo nakládat se svým podílem nezávisle na ostatních. Nepotřebujete souhlas ostatních spoluvlastníků k prodeji svého podílu. My váš podíl vykoupíme za férovou cenu bez zbytečných průtahů.",
+      "Ano. Spoluvlastnický podíl je samostatně převoditelný majetek — souhlas ostatních spoluvlastníků k prodeji nepotřebujete. Ostatním spoluvlastníkům podle § 1124 občanského zákoníku náleží zákonné předkupní právo, které musíte respektovat ve tříměsíční lhůtě.",
   },
   {
     question: "Kolik za spoluvlastnický podíl dostanu?",
     answer:
-      "Nabízíme 80–90 % tržní hodnoty vašeho podílu. Konečná cena závisí na velikosti podílu, stavu nemovitosti a případných právních komplikacích. Ocenění provádíme zdarma a nezávazně.",
+      "Výkupní cena se pohybuje 80–90 % tržní hodnoty vašeho podílu. Tržní hodnota podílu = tržní cena celé nemovitosti × velikost podílu (1/2, 1/4, 1/8 atd.) s případnou srážkou za nutnost spoluvlastnického vypořádání. Ocenění je zdarma a nezávazné.",
   },
   {
     question: "Jak dlouho trvá výkup spoluvlastnického podílu?",
     answer:
-      "Celý proces od prvního kontaktu po výplatu peněz trvá obvykle 2–4 týdny. V urgentních případech dokážeme celou transakci realizovat i do 7 dnů.",
+      "Standardně 14–21 dnů — k běžné lhůtě výkupu se přičítá tříměsíční zákonná lhůta na nabídku ostatním spoluvlastníkům podle předkupního práva. U urgentních případů (exekuce, hrozící dražba) postupujeme rychleji ve spolupráci s exekutorem.",
   },
   {
-    question: "Co když se ostatní spoluvlastníci staví proti prodeji?",
+    question: "Co když ostatní spoluvlastníci podíl chtějí koupit sami?",
     answer:
-      "Váš podíl je váš majetek a máte právo s ním nakládat. Ostatní spoluvlastníci mají ze zákona předkupní právo, které musíme respektovat, ale pokud ho nevyužijí ve lhůtě, prodej proběhne bez jejich souhlasu.",
+      "Pokud ostatní využijí předkupní právo, prodej proběhne jim za stejnou cenu, jakou nabízí externí kupec. Pokud do tříměsíční lhůty právo nevyužijí (nebo se ho zřeknou), prodej proběhne dle původní dohody. Komunikaci se spoluvlastníky vedeme za vás.",
+  },
+  {
+    question: "Jak velký podíl mohu prodat?",
+    answer:
+      "Vykupujeme jakýkoli velikostní podíl — od 1/16 (např. po druhém dělení dědictví) až po 1/2. Velikost podílu samotná nemá vliv na slevu, hraje roli kvalita nemovitosti a počet a postoj ostatních spoluvlastníků.",
+  },
+  {
+    question:
+      "Spoluvlastnictví vzniklo dědictvím — můžeme prodat ještě před zápisem?",
+    answer:
+      "Standardně se prodej uskuteční až po pravomocném usnesení o dědictví a zápisu nového spoluvlastníka v katastru. U urgentních případů lze formálně zahájit přípravu prodeje souběžně s dědickým řízením a uzavřít transakci hned po zápisu.",
+  },
+  {
+    question: "Co když je podíl zatížen exekucí jednoho z spoluvlastníků?",
+    answer:
+      "Exekuce se vždy týká pouze konkrétního spoluvlastnického podílu, ne celé nemovitosti. Pokud má exekuci ten, kdo prodává, dluh se uhradí z kupní ceny. Pokud ji má někdo z ostatních, vás se to právně netýká.",
+  },
+  {
+    question: "Můžeme prodat manželský podíl ze SJM po rozvodu?",
+    answer:
+      "Společné jmění manželů (SJM) po rozvodu zaniká a vypořádává se buď dohodou, nebo soudem. Před vypořádáním lze prodat polovinu SJM jako spoluvlastnický podíl — za podmínky, že druhý manžel souhlasí nebo soud rozhodne o samostatném vypořádání.",
+  },
+  {
+    question: "Co když má nemovitost více než 5 spoluvlastníků?",
+    answer:
+      "Postup je stejný i u více spoluvlastníků — zákonné předkupní právo musí být nabídnuto všem současně se stejnou lhůtou. Komunikaci, doručování a vyhodnocení odpovědí vedeme za vás. U velkého počtu spoluvlastníků se lhůta může mírně prodloužit kvůli doručování.",
   },
 ] as const;
 
@@ -143,15 +173,16 @@ export default async function VykupSpoluvlastnickehoPodilu({
   const webPageJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebPage",
+    "@id": "https://vykoupim-nemovitost.cz/vykup-spoluvlastnickeho-podilu",
     name: "Výkup spoluvlastnického podílu na nemovitosti",
     description:
       "Vykoupíme váš spoluvlastnický podíl na nemovitosti rychle a bez soudních sporů.",
     url: "https://vykoupim-nemovitost.cz/vykup-spoluvlastnickeho-podilu",
-    publisher: {
-      "@type": "Organization",
-      name: "Výkup Nemovitostí",
-      url: "https://vykoupim-nemovitost.cz",
-    },
+    inLanguage: "cs-CZ",
+    isPartOf: { "@id": "https://vykoupim-nemovitost.cz/#website" },
+    publisher: { "@id": "https://vykoupim-nemovitost.cz/#organization" },
+    speakable: buildSpeakableSpec(),
+    dateModified: "2026-05-01",
   };
 
   return (
@@ -190,7 +221,47 @@ export default async function VykupSpoluvlastnickehoPodilu({
                 )
               : "Výkup spoluvlastnického podílu na nemovitosti"}
           </h1>
-          <p className="mt-4 text-lg text-slate-600">
+          <LastUpdated path="/vykup-spoluvlastnickeho-podilu" />
+          <QuickAnswer>
+            <p>
+              Spoluvlastnický podíl na nemovitosti je samostatně převoditelný
+              majetek — spoluvlastník může svůj podíl prodat bez souhlasu
+              ostatních. Podle § 1124{" "}
+              <a
+                href={EXTERNAL_SOURCES.obcanskyzakonik.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-emerald-700 underline-offset-2 hover:underline"
+              >
+                občanského zákoníku
+              </a>{" "}
+              mají ostatní spoluvlastníci zákonné předkupní právo s tříměsíční
+              lhůtou — pokud ho nevyužijí, prodej probíhá dle původní nabídky.
+            </p>
+            <p>
+              Výkupní cena se pohybuje 80–90 % tržní hodnoty podílu. Hodnota
+              podílu se počítá jako tržní cena celé nemovitosti vynásobená
+              velikostí podílu (1/2, 1/4, 1/8 atd.) s případnou srážkou za
+              nutnost spoluvlastnického vypořádání. Vykupujeme podíly libovolné
+              velikosti, bez ohledu na počet ostatních spoluvlastníků.
+            </p>
+            <p>
+              Celý proces trvá 14–21 dnů včetně tříměsíční zákonné lhůty na
+              předkupní právo, kterou vedeme paralelně s přípravou kupní
+              smlouvy. Komunikaci se spoluvlastníky, právní servis i podání
+              návrhu na vklad do{" "}
+              <a
+                href={EXTERNAL_SOURCES.cuzk.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-emerald-700 underline-offset-2 hover:underline"
+              >
+                katastru nemovitostí
+              </a>{" "}
+              zajišťujeme za vás.
+            </p>
+          </QuickAnswer>
+          <p className="mt-6 text-lg text-slate-600">
             Spoluvlastnictví nemovitosti se může snadno proměnit v noční můru -
             neshody ohledně správy, oprav nebo budoucnosti nemovitosti jsou na
             denním pořádku. Pokud chcete ze spoluvlastnictví vystoupit rychle a

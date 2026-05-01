@@ -13,6 +13,7 @@ import {
 import { safeJsonLd } from "@/lib/jsonld";
 import { withHreflang } from "@/lib/seo-hreflang";
 import { buildSpeakableSpec } from "@/lib/jsonld-speakable";
+import { buildQuestionId } from "@/lib/faq-slug";
 import { EXTERNAL_SOURCES } from "@/lib/external-sources";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { LastUpdated } from "@/components/last-updated";
@@ -188,6 +189,7 @@ export default async function VykupDomuPage({
     "@type": "FAQPage",
     mainEntity: FAQ_ITEMS.map((item) => ({
       "@type": "Question",
+      "@id": buildQuestionId("/vykup-domu", item.question),
       name: item.question,
       acceptedAnswer: { "@type": "Answer", text: item.answer },
     })),

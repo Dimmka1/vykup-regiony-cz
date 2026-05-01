@@ -131,13 +131,18 @@ export default function RedakcniZasadyPage(): React.ReactElement {
               marketingově, pravidelně aktualizujeme každou stránku, opravujeme
               chyby otevřeně, neuvádíme fiktivní reference a AI nástroje
               používáme jen pro koncept — finální text vždy prochází lidskou
-              redakcí.
+              redakcí. Cílem je obsah užitečný pro člověka v reálné životní
+              situaci, ne pro vyhledávač.
             </p>
             <p>
               Každý článek má viditelné datum poslední aktualizace. Faktické
               údaje (lhůty, sazby, právní postupy) opíráme o ČÚZK, Finanční
               správu, Český statistický úřad, Exekutorskou komoru, Českou
-              advokátní komoru a občanský zákoník v aktuálním znění.
+              advokátní komoru a občanský zákoník v aktuálním znění. Stránky s
+              ročními údaji procházíme minimálně jednou ročně, stránky s
+              daňovými údaji vždy před začátkem nového kalendářního roku,
+              regionální cenová data kvartálně. Nahlášené chyby opravujeme do 7
+              pracovních dnů a změnu označujeme datem revize.
             </p>
           </QuickAnswer>
         </section>

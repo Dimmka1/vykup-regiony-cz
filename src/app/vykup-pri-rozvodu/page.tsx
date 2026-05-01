@@ -71,7 +71,7 @@ const FAQ_ITEMS: readonly FaqItem[] = [
   {
     question: "Mohu prodat nemovitost při rozvodu bez souhlasu partnera?",
     answer:
-      "U nemovitosti ve společném jmění manželů (SJM) je k prodeji potřeba souhlas obou manželů. Pokud nemovitost vlastníte sami (zděděná, koupená před manželstvím), můžete ji prodat samostatně. Po rozvodu lze polovinu SJM prodat jako spoluvlastnický podíl podle § 1124 občanského zákoníku.",
+      "U nemovitosti ve společném jmění manželů (SJM) je k prodeji potřeba souhlas obou manželů. Pokud nemovitost vlastníte sami (zděděná, koupená před manželstvím), můžete ji prodat samostatně. Po zániku SJM rozvodem se SJM přemění v podílové spoluvlastnictví — váš poloviční podíl pak lze prodat samostatně bez souhlasu druhého manžela.",
   },
   {
     question: "Jak se rozdělí peníze z prodeje?",
@@ -96,7 +96,7 @@ const FAQ_ITEMS: readonly FaqItem[] = [
   {
     question: "Daníme prodej nemovitosti při rozvodu?",
     answer:
-      "Daňová povinnost se posuzuje stejně jako u běžného prodeje — 15% daň z příjmů z rozdílu mezi prodejní cenou a daňovou základnou. Osvobození se vztahuje na nemovitost vlastněnou déle než 10 let nebo na nemovitost, kde manželé bydleli déle než 2 roky před prodejem.",
+      "Daňová povinnost se posuzuje stejně jako u běžného prodeje — 15 % daň z příjmů z rozdílu mezi prodejní a pořizovací cenou, u zisku nad 36násobek průměrné mzdy 23 %. Osvobození platí, pokud nemovitost byla vlastněna alespoň 10 let (u nabytí od 2021) nebo 5 let (u nabytí dříve), případně pokud v ní manželé bydleli alespoň 2 roky bezprostředně před prodejem.",
   },
   {
     question: "Jak proběhne vypořádání, pokud má jeden z manželů exekuci?",
@@ -222,10 +222,10 @@ export default async function VykupPriRozvoduPage({
               a může proběhnout dohodou nebo rozhodnutím soudu.
             </p>
             <p>
-              Pokud se manželé nedokážou dohodnout, lze prodat polovinu SJM jako
-              spoluvlastnický podíl bez souhlasu druhého manžela — ostatním
-              přísluší zákonné předkupní právo. Hypotéku, exekuci nebo věcné
-              břemeno přecházející z původního vlastníka uhradíme z kupní ceny:
+              Po rozvodu SJM zaniká a přemění se na podílové spoluvlastnictví.
+              Polovinu lze poté prodat jako spoluvlastnický podíl samostatně —
+              souhlas druhého manžela již nepotřebujete. Hypotéku, exekuci nebo
+              věcné břemeno váznoucí na nemovitosti uhradíme z kupní ceny:
               hypotéku přímo bance, exekuci přímo exekutorovi (ověřujeme v{" "}
               <a
                 href={EXTERNAL_SOURCES.centralniEvidenceExekuci.url}

@@ -76,7 +76,7 @@ const FAQ_ITEMS: readonly FaqItem[] = [
   {
     question: "Co když je více dědiců a neshodnou se?",
     answer:
-      "Vykupujeme i jednotlivé spoluvlastnické podíly bez nutnosti souhlasu ostatních dědiců. Ostatní spoluvlastníci podle § 1124 občanského zákoníku dostanou zákonné předkupní právo s tříměsíční lhůtou. Pokud ho nevyužijí, prodej proběhne podle původní nabídky.",
+      "Vykupujeme i jednotlivé spoluvlastnické podíly bez nutnosti souhlasu ostatních dědiců. U dědictvím vzniklého spoluvlastnictví dle § 1124 občanského zákoníku přísluší ostatním spoluvlastníkům zákonné předkupní právo po dobu 6 měsíců od vzniku spoluvlastnictví — pokud ho nevyužijí (nebo lhůta uplyne), prodej proběhne podle původní nabídky.",
   },
   {
     question: "Musím zděděnou nemovitost před prodejem opravovat?",
@@ -86,7 +86,7 @@ const FAQ_ITEMS: readonly FaqItem[] = [
   {
     question: "Jak se řeší daň z prodeje zděděné nemovitosti?",
     answer:
-      "Prodej zděděné nemovitosti je osvobozen od 15% daně z příjmů po 10 letech vlastnictví zůstavitele (lhůta běží od nabytí původním zůstavitelem, ne od dědického řízení). Pokud zůstavitel nemovitost vlastnil méně než 10 let, daňová povinnost přechází na dědice — podle aktuálního zákona o dani z příjmů.",
+      "Lhůta vlastnictví u dědictví běží od nabytí zůstavitelem, ne od dědického řízení. Prodej je osvobozen od daně z příjmů, pokud zůstavitel nemovitost vlastnil dohromady alespoň 10 let (u nemovitostí nabytých od 1. 1. 2021) nebo 5 let (u nemovitostí nabytých dříve). Pokud lhůta není splněna, daň činí 15 %, u zisků nad 36násobek průměrné mzdy 23 %. Konkrétní postup ověřte na Finanční správě.",
   },
   {
     question: "Co když je v nemovitosti hypotéka, která se převedla na dědice?",
@@ -228,9 +228,10 @@ export default async function VykupPriDedictviPage({
             </p>
             <p>
               Daňová povinnost při prodeji zděděné nemovitosti se posuzuje podle
-              doby vlastnictví zůstavitele (ne podle dědického řízení). Po 10
-              letech vlastnictví zůstavitele je prodej osvobozen od 15% daně z
-              příjmů podle{" "}
+              doby vlastnictví zůstavitele, ne podle dědického řízení. Prodej je
+              osvobozen od daně z příjmů po 10 letech vlastnictví u nemovitostí
+              nabytých od 1. 1. 2021, nebo po 5 letech u nemovitostí nabytých
+              dříve — podle pravidel{" "}
               <a
                 href={EXTERNAL_SOURCES.financnisprava.url}
                 target="_blank"

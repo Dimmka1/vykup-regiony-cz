@@ -74,7 +74,7 @@ const FAQ_ITEMS: readonly FaqItem[] = [
   {
     question: "Mohu prodat pouze svůj podíl na nemovitosti?",
     answer:
-      "Ano. Spoluvlastnický podíl je samostatně převoditelný majetek — souhlas ostatních spoluvlastníků k prodeji nepotřebujete. Ostatním spoluvlastníkům podle § 1124 občanského zákoníku náleží zákonné předkupní právo, které musíte respektovat ve tříměsíční lhůtě.",
+      "Ano. Spoluvlastnický podíl je samostatně převoditelný majetek — k prodeji třetí osobě obecně nepotřebujete souhlas ostatních spoluvlastníků ani jim nemusíte podíl přednostně nabídnout. Zákonné předkupní právo dle § 1124 občanského zákoníku platí pouze, pokud spoluvlastnictví vzniklo děděním (nebo jinou událostí, kterou spoluvlastníci nemohli ovlivnit), a to po dobu 6 měsíců od jeho vzniku.",
   },
   {
     question: "Kolik za spoluvlastnický podíl dostanu?",
@@ -84,12 +84,12 @@ const FAQ_ITEMS: readonly FaqItem[] = [
   {
     question: "Jak dlouho trvá výkup spoluvlastnického podílu?",
     answer:
-      "Standardně 14–21 dnů — k běžné lhůtě výkupu se přičítá tříměsíční zákonná lhůta na nabídku ostatním spoluvlastníkům podle předkupního práva. U urgentních případů (exekuce, hrozící dražba) postupujeme rychleji ve spolupráci s exekutorem.",
+      "Standardně 14 dnů. Pokud podíl pochází z dědictví a je v 6měsíčním okně předkupního práva, lhůta se prodlužuje o čas potřebný k oslovení ostatních spoluvlastníků. U běžně koupeného podílu lhůta naopak 14 dnů nepřevyšuje.",
   },
   {
     question: "Co když ostatní spoluvlastníci podíl chtějí koupit sami?",
     answer:
-      "Pokud ostatní využijí předkupní právo, prodej proběhne jim za stejnou cenu, jakou nabízí externí kupec. Pokud do tříměsíční lhůty právo nevyužijí (nebo se ho zřeknou), prodej proběhne dle původní dohody. Komunikaci se spoluvlastníky vedeme za vás.",
+      "Pokud existuje předkupní právo (jen u dědictvím vzniklého spoluvlastnictví, 6 měsíců) a ostatní ho využijí, prodej proběhne jim za stejnou cenu, jakou nabízí externí kupec. Pokud právo nevyužijí (nebo žádné nevzniklo), prodej proběhne podle původní dohody. Komunikaci se spoluvlastníky vedeme za vás.",
   },
   {
     question: "Jak velký podíl mohu prodat?",
@@ -115,7 +115,7 @@ const FAQ_ITEMS: readonly FaqItem[] = [
   {
     question: "Co když má nemovitost více než 5 spoluvlastníků?",
     answer:
-      "Postup je stejný i u více spoluvlastníků — zákonné předkupní právo musí být nabídnuto všem současně se stejnou lhůtou. Komunikaci, doručování a vyhodnocení odpovědí vedeme za vás. U velkého počtu spoluvlastníků se lhůta může mírně prodloužit kvůli doručování.",
+      "Postup je stejný i u více spoluvlastníků. Pokud existuje předkupní právo (jen u dědictvím vzniklého spoluvlastnictví v 6měsíčním okně), musí být nabídnuto všem oprávněným současně. Komunikaci, doručování a vyhodnocení odpovědí vedeme za vás. U běžného spoluvlastnictví bez předkupního práva výkup proběhne ve standardní lhůtě.",
   },
 ] as const;
 
@@ -226,7 +226,8 @@ export default async function VykupSpoluvlastnickehoPodilu({
             <p>
               Spoluvlastnický podíl na nemovitosti je samostatně převoditelný
               majetek — spoluvlastník může svůj podíl prodat bez souhlasu
-              ostatních. Podle § 1124{" "}
+              ostatních. Od 1. července 2020 obecné zákonné předkupní právo
+              spoluvlastníků zaniklo; podle § 1124{" "}
               <a
                 href={EXTERNAL_SOURCES.obcanskyzakonik.url}
                 target="_blank"
@@ -235,8 +236,8 @@ export default async function VykupSpoluvlastnickehoPodilu({
               >
                 občanského zákoníku
               </a>{" "}
-              mají ostatní spoluvlastníci zákonné předkupní právo s tříměsíční
-              lhůtou — pokud ho nevyužijí, prodej probíhá dle původní nabídky.
+              dnes zůstává jen ve zvláštních případech (např. spoluvlastnictví z
+              dědictví), a to po dobu 6 měsíců od vzniku.
             </p>
             <p>
               Výkupní cena se pohybuje 80–90 % tržní hodnoty podílu. Hodnota
@@ -246,10 +247,10 @@ export default async function VykupSpoluvlastnickehoPodilu({
               velikosti, bez ohledu na počet ostatních spoluvlastníků.
             </p>
             <p>
-              Celý proces trvá 14–21 dnů včetně tříměsíční zákonné lhůty na
-              předkupní právo, kterou vedeme paralelně s přípravou kupní
-              smlouvy. Komunikaci se spoluvlastníky, právní servis i podání
-              návrhu na vklad do{" "}
+              Celý proces trvá 14 dnů u běžně získaných podílů. U podílů z
+              čerstvého dědictví, kde 6měsíční předkupní právo trvá, lhůtu o
+              tuto dobu prodlouží — komunikaci se spoluvlastníky, právní servis
+              i podání návrhu na vklad do{" "}
               <a
                 href={EXTERNAL_SOURCES.cuzk.url}
                 target="_blank"

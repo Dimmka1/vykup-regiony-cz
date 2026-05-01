@@ -1919,14 +1919,10 @@ export default async function BlogArticlePage({
     headline: article.title,
     datePublished: article.date,
     dateModified: "2026-03-16",
-    author: {
-      "@type": "Organization",
-      name: "Vykoupím Nemovitost",
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "Vykoupím Nemovitost",
-    },
+    author: { "@id": "https://vykoupim-nemovitost.cz/#organization" },
+    publisher: { "@id": "https://vykoupim-nemovitost.cz/#organization" },
+    mainEntityOfPage: `https://vykoupim-nemovitost.cz/blog/${slug}`,
+    inLanguage: "cs-CZ",
   };
 
   const faqJsonLd =

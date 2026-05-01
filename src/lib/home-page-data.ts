@@ -225,12 +225,7 @@ export function buildSchema(
         "@type": "AdministrativeArea",
         name: region.name,
       },
-      provider: {
-        "@type": "Organization",
-        name: COMPANY_NAME,
-        url: "https://vykoupim-nemovitost.cz",
-        telephone: region.phone,
-      },
+      provider: { "@id": "https://vykoupim-nemovitost.cz/#organization" },
     },
   ];
 }

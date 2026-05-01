@@ -98,7 +98,7 @@ const FAQ_ITEMS: readonly FaqItem[] = [
   {
     question: "Co když je dům spoluvlastnický a my se nemůžeme dohodnout?",
     answer:
-      "Vykupujeme i spoluvlastnické podíly samostatně, bez nutnosti souhlasu ostatních spoluvlastníků. Ostatním podle občanského zákoníku náleží zákonné předkupní právo, které vyřešíme — tříměsíční lhůta na nabídku ostatním spoluvlastníkům platí ze zákona.",
+      "Vykupujeme i spoluvlastnické podíly samostatně. Souhlas ostatních spoluvlastníků k prodeji obecně nepotřebujete. Zákonné předkupní právo dle § 1124 občanského zákoníku je dnes omezené — uplatní se jen u spoluvlastnictví vzniklého děděním po dobu 6 měsíců od jeho vzniku. Ve většině případů tedy předkupní právo prodej nezdrží.",
   },
   {
     question: "Vykupujete chaty, chalupy, rekreační objekty?",

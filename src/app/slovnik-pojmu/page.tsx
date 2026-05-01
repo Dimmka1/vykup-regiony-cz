@@ -192,7 +192,7 @@ const TERMS: readonly GlossaryTerm[] = [
     term: "Daň z příjmů z prodeje nemovitosti",
     slug: "dan-z-prijmu",
     definition:
-      "Daň z příjmů z prodeje nemovitosti je 15% daň z rozdílu mezi prodejní cenou a daňovou základnou. Osvobozena je nemovitost vlastněná déle než 10 let nebo nemovitost, kde prodávající bydlel déle než 2 roky před prodejem (podle aktuálního zákona o dani z příjmů).",
+      "Daň z příjmů fyzických osob z prodeje nemovitosti činí 15 % z rozdílu mezi prodejní a pořizovací cenou; u zisku nad 36násobek průměrné mzdy se aplikuje sazba 23 %. Prodej je osvobozen, pokud byla nemovitost vlastněna alespoň 10 let (u nabytí od roku 2021) nebo 5 let (u nabytí dříve), případně pokud v ní prodávající bydlel alespoň 2 roky bezprostředně před prodejem.",
     seeAlso: {
       label: "Daň z prodeje nemovitosti 2026",
       href: "/blog/dan-z-prodeje-nemovitosti-2026",

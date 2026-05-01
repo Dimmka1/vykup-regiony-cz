@@ -97,15 +97,22 @@ export default function ZdrojeACitacePage(): React.ReactElement {
             <p>
               Veškerý obsah na vykoupim-nemovitost.cz se opírá o autoritativní
               české zdroje. Hlavní instituce, na které odkazujeme: Český úřad
-              zeměměřický a katastrální (ČÚZK), Finanční správa, Český
-              statistický úřad, Exekutorská komora, Česká advokátní komora,
-              Česká národní banka a občanský zákoník v aktuálním znění.
+              zeměměřický a katastrální (ČÚZK) pro katastr a vlastnictví;
+              Finanční správa a Ministerstvo financí pro daňová pravidla; Český
+              statistický úřad pro tržní cenové statistiky; Exekutorská komora a
+              Centrální evidence exekucí pro exekuční řízení; Insolvenční
+              rejstřík ISIR pro úpadek; Česká advokátní komora pro pravidla
+              advokátní úschovy; Česká národní banka pro hypoteční regulaci;
+              občanský zákoník (zákon č. 89/2012 Sb.) pro vlastnictví, věcná
+              břemena a smlouvy.
             </p>
             <p>
               Všechny zdroje jsou veřejně dostupné a zdarma. Pokud na webu
               uvádíme konkrétní lhůtu, sazbu, právní postup nebo cenovou
-              statistiku, najdete u ní odkaz přímo na primární zdroj — ne na
-              sekundární publikaci.
+              statistiku, u relevantního místa najdete odkaz přímo na primární
+              zdroj — ne na sekundární publikaci nebo blogové shrnutí. Tento
+              přístup je součástí redakčních zásad a zajišťuje, že čtenář může
+              každý faktický údaj sám ověřit.
             </p>
           </QuickAnswer>
         </section>

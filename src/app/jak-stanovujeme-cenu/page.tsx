@@ -134,9 +134,9 @@ export default function JakStanovujemeCenuPage(): React.ReactElement {
           <QuickAnswer>
             <p>
               Výkupní cena nemovitosti odpovídá 80–90 % aktuální tržní hodnoty.
-              Tržní hodnotu počítáme z transakčních dat Českého statistického
+              Tržní hodnotu stanovujeme z transakčních dat Českého statistického
               úřadu, krajských cenových map a aktuálních inzerátů ve stejné
-              lokalitě, výměry bereme z{" "}
+              lokalitě. Výměry bereme z{" "}
               <a
                 href={EXTERNAL_SOURCES.cuzk.url}
                 target="_blank"
@@ -145,14 +145,19 @@ export default function JakStanovujemeCenuPage(): React.ReactElement {
               >
                 katastru nemovitostí
               </a>
-              .
+              , právní stav z listu vlastnictví, technický stav z prohlídky a
+              fotodokumentace. Postup je pětistupňový: sběr údajů, výpočet tržní
+              ceny z dat, korekce na technický stav, korekce na právní zatížení
+              a finální výkupní cena.
             </p>
             <p>
-              Konečnou cenu posouvá nahoru atraktivní lokalita, čistý list
-              vlastnictví a aktuální technický stav. Dolů ji posouvají exekuce,
-              věcná břemena, nutnost rekonstrukce nebo požadavek na výkup do 7
-              dnů. Žádné skryté slevy se neaplikují — všechny vstupy do výpočtu
-              jsou v cenové nabídce viditelné.
+              Konečnou cenu posouvá nahoru atraktivní lokalita (Praha, krajská
+              města), čistý list vlastnictví, aktuální technický stav po
+              rekonstrukci a standardní typ nemovitosti. Dolů ji posouvají
+              exekuce, hypotéka, věcná břemena, nutnost rozsáhlé rekonstrukce,
+              lokalita s nízkou poptávkou nebo požadavek na výkup do 7 dnů.
+              Žádné skryté slevy se neaplikují — všechny vstupy do výpočtu jsou
+              v písemné cenové nabídce viditelné a vysvětlené řádek po řádku.
             </p>
           </QuickAnswer>
         </section>

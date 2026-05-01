@@ -238,9 +238,12 @@ export default async function VykupPriExekuciPage({
             </p>
             <p>
               Celý proces zvládneme za 5–14 dnů — dostatečně rychle i u hrozící
-              nucené dražby (zákonná lhůta od nařízení dražby je obvykle 30–60
-              dnů). Diskrétnost je zaručena: žádná veřejná inzerce, žádné
-              prohlídky cizích zájemců, jen prodávající, advokát a exekutor.
+              nucené dražby. Po nařízení dražby zbývá obvykle 30–60 dnů, během
+              kterých lze uhrazením vymáhané pohledávky vyvolat zastavení
+              exekuce dle § 268 občanského soudního řádu a tím zastavení
+              dražebního řízení. Diskrétnost je zaručena: žádná veřejná inzerce,
+              žádné prohlídky cizích zájemců, jen prodávající, advokát a
+              exekutor.
             </p>
           </QuickAnswer>
           <p className="mt-6 text-slate-600">

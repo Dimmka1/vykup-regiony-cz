@@ -83,7 +83,7 @@ const FAQ_ITEMS: readonly FaqItem[] = [
   {
     question: "Co když je pozemek ve spoluvlastnictví?",
     answer:
-      "Vykupujeme jak celé pozemky se souhlasem všech spoluvlastníků, tak jednotlivé spoluvlastnické podíly bez souhlasu ostatních (s respektováním zákonného předkupního práva podle § 1124 občanského zákoníku). U dědických případů často vykupujeme po jednotlivcích.",
+      "Vykupujeme jak celé pozemky se souhlasem všech spoluvlastníků, tak jednotlivé spoluvlastnické podíly. Od 2020 platí obecně, že spoluvlastník svůj podíl prodává bez souhlasu ostatních. Předkupní právo dle § 1124 občanského zákoníku se uplatní pouze u spoluvlastnictví vzniklého děděním (nebo jinou neovlivnitelnou událostí), a to po dobu 6 měsíců od jeho vzniku.",
   },
   {
     question: "Jak rychle proběhne výkup pozemku?",

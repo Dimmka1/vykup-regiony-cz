@@ -57,15 +57,15 @@ const GUARANTEES = [
 const JSON_LD_WEBPAGE = {
   "@context": "https://schema.org",
   "@type": "WebPage",
+  "@id": "https://vykoupim-nemovitost.cz/garance-vykupu",
   name: "Garance výkupu nemovitosti",
   description:
     "5 garancí výkupu nemovitosti — garantovaná cena, platba do 48 hodin, právní servis zdarma, bez provize a plná diskrétnost.",
   url: "https://vykoupim-nemovitost.cz/garance-vykupu",
-  publisher: {
-    "@type": "Organization",
-    name: "Výkup Nemovitostí",
-    url: "https://vykoupim-nemovitost.cz",
-  },
+  inLanguage: "cs-CZ",
+  isPartOf: { "@id": "https://vykoupim-nemovitost.cz/#website" },
+  publisher: { "@id": "https://vykoupim-nemovitost.cz/#organization" },
+  dateModified: "2026-05-01",
 };
 
 export default function GaranceVykupuPage() {

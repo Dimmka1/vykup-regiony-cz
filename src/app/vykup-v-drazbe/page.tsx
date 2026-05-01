@@ -50,7 +50,7 @@ const FAQ_ITEMS: readonly FaqItem[] = [
   {
     question: "Jak rychle dokážete zastavit nařízenou dražbu?",
     answer:
-      "Typicky 5–10 dnů od podpisu kupní smlouvy a úhrady pohledávky exekutorovi. Po úhradě celé pohledávky je exekutor podle § 268 exekučního řádu povinen zastavit dražební řízení. Čím dříve nás kontaktujete, tím více času máme na bezpečné vyřízení procesu před termínem dražby.",
+      "Typicky 5–10 dnů od podpisu kupní smlouvy a úhrady pohledávky exekutorovi. Po úhradě celé vymáhané pohledávky vznikne důvod k zastavení exekuce dle § 268 občanského soudního řádu (uplatňovaného v exekuci přes exekuční řád) a dražební řízení je následně zastaveno. Čím dříve nás kontaktujete, tím více času máme na bezpečné vyřízení procesu před termínem dražby.",
   },
   {
     question: "Co když má dražba více oprávněných věřitelů?",
@@ -70,7 +70,7 @@ const FAQ_ITEMS: readonly FaqItem[] = [
   {
     question: "Daníme prodej nemovitosti v exekuční dražbě?",
     answer:
-      "Daňová povinnost prodávajícího je stejná jako u běžného prodeje — 15% daň z příjmů z rozdílu mezi prodejní cenou a daňovou základnou. Osvobození platí po 10 letech vlastnictví nebo 2 letech bydlení. Při prodeji za cenu nižší než daňová základna daňová povinnost nevzniká.",
+      "Daňová povinnost prodávajícího je stejná jako u běžného prodeje — 15 % daň z příjmů z rozdílu mezi prodejní a pořizovací cenou (u zisku nad 36násobek průměrné mzdy 23 %). Osvobození platí po 10 letech vlastnictví (u nabytí od 2021) nebo 5 letech (u nabytí dříve), případně po 2 letech bydlení. Při prodeji za cenu nižší než pořizovací nevzniká zisk, a tudíž ani daň.",
   },
 ] as const;
 
@@ -172,11 +172,11 @@ export default async function VykupVDrazbe(): Promise<React.ReactElement> {
           <QuickAnswer>
             <p>
               Nucenou nebo dobrovolnou dražbu nemovitosti lze zastavit výkupem
-              až do termínu konání. Výkupní firma uhradí celou pohledávku
-              exekutorovi, ten je podle § 268 exekučního řádu povinen podat
-              návrh na zastavení dražebního řízení. Vyvolávací cena v nucené
-              dražbě je 2/3 znaleckého odhadu, výsledná cena obvykle 60–70 %
-              tržní hodnoty.
+              až do termínu konání. Výkupní firma uhradí celou vymáhanou
+              pohledávku exekutorovi, čímž vznikne důvod pro zastavení exekuce
+              dle § 268 občanského soudního řádu, a dražební řízení se následně
+              zastaví. Vyvolávací cena v nucené dražbě činí 2/3 znaleckého
+              odhadu, výsledná cena obvykle 60–70 % tržní hodnoty.
             </p>
             <p>
               Výkup před dražbou zachrání 70–85 % tržní hodnoty oproti zlomku v

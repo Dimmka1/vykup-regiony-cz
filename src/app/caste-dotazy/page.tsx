@@ -110,7 +110,7 @@ const FAQ_ITEMS: readonly FaqItem[] = [
   {
     question: "Daníme prodej nemovitosti přes výkup?",
     answer:
-      "Daňová povinnost prodávajícího se při výkupu řeší stejně jako u běžného prodeje — 15% daň z příjmů z rozdílu mezi prodejní cenou a daňovou základnou. Osvobození se vztahuje na nemovitost vlastněnou déle než 10 let nebo na nemovitost, kde prodávající bydlel déle než 2 roky před prodejem.",
+      "Daňová povinnost prodávajícího se při výkupu řeší stejně jako u běžného prodeje — 15 % daň z příjmů z rozdílu mezi prodejní a pořizovací cenou (resp. uznatelnými výdaji), u zisku nad 36násobek průměrné mzdy 23 %. Prodej je osvobozen, pokud nemovitost vlastníte alespoň 10 let (u nabytí od 1. 1. 2021) nebo 5 let (u nabytí dříve), případně pokud jste v ní měli bydliště alespoň 2 roky bezprostředně před prodejem.",
   },
 ] as const;
 
@@ -172,13 +172,17 @@ export default function CasteDotazyPage(): React.ReactElement {
               Vlastník neplatí provizi, právní servis ani odhad — všechny
               náklady přebírá výkupce. Vykupují se nemovitosti v jakémkoli
               stavu, včetně zatížení exekucí, hypotékou, věcným břemenem,
-              insolvencí, nájemníkem nebo dluhem. Smlouva je v advokátní úschově
-              až do zápisu nového vlastníka v katastru nemovitostí.
+              insolvencí, nájemníkem nebo dluhem. Kupní smlouvu připravuje
+              advokát a peníze leží v advokátní úschově podle pravidel České
+              advokátní komory až do zápisu nového vlastníka v katastru
+              nemovitostí — do té doby zůstanou v bezpečí uschovního účtu.
             </p>
             <p>
-              Zálohu až 500 000 Kč lze vyplatit hned při podpisu smlouvy,
-              zbývající částku po zápisu do katastru během 3–5 pracovních dnů.
-              Pokrytí je celá Česká republika — všech 14 krajů.
+              Zálohu až 500 000 Kč lze vyplatit hned při podpisu kupní smlouvy,
+              zbývající částku po zápisu do katastru během 3–5 pracovních dnů od
+              pravomocného vkladu. Pokrytí je celá Česká republika — všech 14
+              krajů, od Prahy a Středočeského kraje po Moravskoslezský a Zlínský
+              kraj.
             </p>
           </QuickAnswer>
           <p className="mt-6 text-lg text-slate-600">

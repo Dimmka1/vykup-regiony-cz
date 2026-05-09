@@ -28,6 +28,21 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  webpack: (config, { isServer, dev }) => {
+    // Next 15.5.12 leaks ~217 KB of next-devtools (Base UI menu primitives,
+    // dev-overlay components) into the client `First Load JS shared by all`
+    // chunk in production builds. Fixed in newer Next majors. Stub the
+    // module out for client production bundles only — server runtime and
+    // dev mode still resolve the real module.
+    if (!isServer && !dev) {
+      config.resolve = config.resolve ?? {};
+      config.resolve.alias = {
+        ...(config.resolve.alias ?? {}),
+        "next/dist/compiled/next-devtools$": false,
+      };
+    }
+    return config;
+  },
 };
 
 export default nextConfig;

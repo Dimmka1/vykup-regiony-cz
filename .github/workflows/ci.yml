@@ -109,7 +109,9 @@ jobs:
           cache: npm
 
       - name: Install Vercel CLI
-        run: npm i -g vercel@latest
+        # Pinned to 53.2.0 — vercel@53.3.0 (latest as of 2026-05-09) ships a broken
+        # transitive dep on @vercel/cli-config@0.1.0 which doesn't exist on npm.
+        run: npm i -g vercel@53.2.0
 
       - name: Pull Vercel env
         run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
@@ -151,7 +153,8 @@ jobs:
           cache: npm
 
       - name: Install Vercel CLI
-        run: npm i -g vercel@latest
+        # Pinned to 53.2.0 — see deploy-dev step above for context.
+        run: npm i -g vercel@53.2.0
 
       - name: Pull Vercel env (prod)
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}

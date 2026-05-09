@@ -9,7 +9,7 @@ function RegionCrossLinks() {
   const regions = listRegions();
   return (
     <div className="mt-14">
-      <p className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">
+      <p className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-slate-400">
         Výkup nemovitostí v regionech
       </p>
       <ul className="flex flex-wrap gap-x-5 gap-y-2 text-sm">
@@ -100,7 +100,7 @@ export function SiteFooter({ phone = "+420 776 424 145" }: SiteFooterProps) {
         <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 lg:grid-cols-5">
           {/* Služby */}
           <div>
-            <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">
+            <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.15em] text-slate-400">
               Služby
             </h3>
             <nav aria-label="Služby" className="flex flex-col gap-3">
@@ -142,7 +142,7 @@ export function SiteFooter({ phone = "+420 776 424 145" }: SiteFooterProps) {
 
           {/* Typy nemovitostí */}
           <div>
-            <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">
+            <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.15em] text-slate-400">
               Typy nemovitostí
             </h3>
             <nav aria-label="Typy nemovitostí" className="flex flex-col gap-3">
@@ -160,7 +160,7 @@ export function SiteFooter({ phone = "+420 776 424 145" }: SiteFooterProps) {
 
           {/* Informace */}
           <div>
-            <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">
+            <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.15em] text-slate-400">
               Informace
             </h3>
             <nav aria-label="Informace" className="flex flex-col gap-3">
@@ -196,7 +196,7 @@ export function SiteFooter({ phone = "+420 776 424 145" }: SiteFooterProps) {
 
           {/* Právní a transparence */}
           <div>
-            <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">
+            <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.15em] text-slate-400">
               Transparence
             </h3>
             <nav
@@ -223,7 +223,7 @@ export function SiteFooter({ phone = "+420 776 424 145" }: SiteFooterProps) {
 
           {/* Kontakt */}
           <div>
-            <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">
+            <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.15em] text-slate-400">
               Kontakt
             </h3>
             <div className="flex flex-col gap-3">
@@ -257,19 +257,19 @@ export function SiteFooter({ phone = "+420 776 424 145" }: SiteFooterProps) {
         {/* Bottom bar */}
         <div className="mt-14 border-t border-slate-800/60 pt-8">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-            <p className="text-sm text-slate-500">
+            <p className="text-sm text-slate-400">
               © 2026 Výkup Nemovitostí. Všechna práva vyhrazena.
             </p>
             <div className="flex items-center gap-6">
               <Link
                 href="/ochrana-osobnich-udaju"
-                className="text-xs text-slate-500 transition hover:text-slate-300"
+                className="text-xs text-slate-400 transition hover:text-slate-300"
               >
                 Ochrana osobních údajů
               </Link>
               <Link
                 href="/cookies"
-                className="text-xs text-slate-500 transition hover:text-slate-300"
+                className="text-xs text-slate-400 transition hover:text-slate-300"
               >
                 Cookies
               </Link>

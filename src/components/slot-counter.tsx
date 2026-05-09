@@ -83,7 +83,6 @@ export function SlotCounter({ value, className = "" }: SlotCounterProps) {
     <span
       ref={ref}
       className={`inline-flex items-baseline font-extrabold tabular-nums ${className}`}
-      aria-label={value}
     >
       {inView ? (
         <>

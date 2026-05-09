@@ -221,7 +221,8 @@ export function BelowFoldSections({
                   src="/images/section-process.jpg"
                   alt="Proces výkupu nemovitosti – profesionální jednání"
                   fill
-                  sizes="(max-width: 1024px) 100vw, 700px"
+                  sizes="(min-width: 1024px) 640px, 100vw"
+                  quality={65}
                   className="object-cover transition-transform duration-700 hover:scale-105"
                   loading="lazy"
                 />

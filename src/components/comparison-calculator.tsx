@@ -92,7 +92,7 @@ export function ComparisonCalculator(): ReactElement {
               onChange={(e) => setRawValue(e.target.value)}
               className="focus:ring-[var(--theme-500)]/30 block w-full rounded-xl border border-slate-300 px-4 py-3 pr-14 text-lg font-semibold text-slate-900 placeholder:text-slate-400 focus:border-[var(--theme-500)] focus:outline-none focus:ring-2"
             />
-            <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-sm font-medium text-slate-400">
+            <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-sm font-medium text-slate-500">
               Kč
             </span>
           </div>

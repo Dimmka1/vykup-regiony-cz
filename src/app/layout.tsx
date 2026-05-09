@@ -88,7 +88,7 @@ export default async function RootLayout({
   const trackingAllowed = await hasTrackingConsent();
 
   return (
-    <html lang="cs" className={inter.variable}>
+    <html lang="cs" className={inter.variable} data-scroll-behavior="smooth">
       <head>
         {/* SSR-time fallback so SEO crawlers and tools that only read the
             initial HTML response (Lighthouse, some bots) see a description.

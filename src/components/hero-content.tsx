@@ -1,34 +1,8 @@
-"use client";
-
-import { useRef, type ReactElement } from "react";
-import { motion, useReducedMotion, useInView } from "@/components/motion";
+import type { ReactElement } from "react";
 import { HeroImage } from "@/components/hero-image";
 import { CtaLink } from "@/components/cta-link";
 import { CallbackForm } from "@/components/callback-form";
 import { Check, Phone, ArrowDown } from "lucide-react";
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut" as const,
-    },
-  },
-};
 
 interface HeroContentProps {
   h1: string;
@@ -53,10 +27,6 @@ export function HeroContent({
   imageSrc,
   imageAlt,
 }: HeroContentProps): ReactElement {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true });
-  const reduced = useReducedMotion();
-
   return (
     <section className="relative min-h-[100svh] overflow-hidden bg-slate-950">
       {/* Background image with parallax */}
@@ -70,20 +40,12 @@ export function HeroContent({
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/60" aria-hidden="true" />
 
-      {/* Content */}
-      <motion.div
-        ref={ref}
-        variants={reduced ? undefined : containerVariants}
-        initial={reduced ? false : "hidden"}
-        animate={reduced ? false : inView ? "visible" : "hidden"}
-        className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-center px-6 py-32 text-white md:px-12"
-      >
-        <div className="max-w-4xl">
+      {/* Content — rendered visible at SSR; entrance polish via CSS,
+          no JS dependency on the LCP path. */}
+      <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-center px-6 py-32 text-white md:px-12">
+        <div className="hero-content max-w-4xl">
           {/* Eyebrow badges */}
-          <motion.div
-            variants={reduced ? undefined : itemVariants}
-            className="mb-8 flex flex-wrap items-center gap-3"
-          >
+          <div className="mb-8 flex flex-wrap items-center gap-3">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-sm">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--theme-400)] opacity-75" />
@@ -96,29 +58,20 @@ export function HeroContent({
             <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-medium uppercase tracking-wider text-white/60 backdrop-blur-sm">
               Přímý kupec · ne realitka
             </span>
-          </motion.div>
+          </div>
 
           {/* Heading */}
-          <motion.h1
-            variants={reduced ? undefined : itemVariants}
-            className="text-display max-w-[900px] text-balance text-4xl text-white sm:text-5xl md:text-6xl lg:text-7xl"
-          >
+          <h1 className="text-display max-w-[900px] text-balance text-4xl text-white sm:text-5xl md:text-6xl lg:text-7xl">
             {h1}
-          </motion.h1>
+          </h1>
 
           {/* Description */}
-          <motion.p
-            variants={reduced ? undefined : itemVariants}
-            className="mt-6 max-w-2xl text-balance text-lg leading-8 text-white/70"
-          >
+          <p className="mt-6 max-w-2xl text-balance text-lg leading-8 text-white/70">
             {description}
-          </motion.p>
+          </p>
 
           {/* Trust badges */}
-          <motion.ul
-            variants={reduced ? undefined : itemVariants}
-            className="mt-8 flex flex-wrap gap-2.5"
-          >
+          <ul className="mt-8 flex flex-wrap gap-2.5">
             {badges.map((badge) => (
               <li
                 key={badge}
@@ -133,13 +86,10 @@ export function HeroContent({
                 {badge}
               </li>
             ))}
-          </motion.ul>
+          </ul>
 
           {/* CTA buttons */}
-          <motion.div
-            variants={reduced ? undefined : itemVariants}
-            className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center"
-          >
+          <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
             <CtaLink href="#kontakt" label={heroCta} regionName={regionName} />
             <a
               href={`tel:${phone}`}
@@ -152,24 +102,18 @@ export function HeroContent({
               />
               {phone}
             </a>
-          </motion.div>
+          </div>
 
           {/* Callback form */}
-          <motion.div
-            variants={reduced ? undefined : itemVariants}
-            className="mt-6"
-          >
+          <div className="mt-6">
             <CallbackForm regionName={regionName} />
-          </motion.div>
+          </div>
 
-          <motion.p
-            variants={reduced ? undefined : itemVariants}
-            className="mt-4 text-sm text-white/40"
-          >
+          <p className="mt-4 text-sm text-white/40">
             Zálohu vyplácíme při podpisu smlouvy. Celý proces trvá 3–7 dní.
-          </motion.p>
+          </p>
         </div>
-      </motion.div>
+      </div>
 
       {/* Scroll indicator */}
       <div

@@ -29,7 +29,7 @@ export const BUILD_DATE: string =
  * Date of the last price data update (from PRICE_RESEARCH.json).
  * Used for geo-parameterized pages whose content depends on regional pricing.
  */
-export const PRICE_DATA_DATE = "2026-03-16";
+export const PRICE_DATA_DATE = "2026-05-09";
 
 /** Use-case pages that support ?kraj= and ?mesto= geo parameterization */
 export const USE_CASE_PATHS = [

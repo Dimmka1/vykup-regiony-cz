@@ -88,8 +88,18 @@ export default async function RootLayout({
   const trackingAllowed = await hasTrackingConsent();
 
   return (
-    <html lang="cs" className={inter.variable}>
-      <head></head>
+    <html lang="cs" className={inter.variable} data-scroll-behavior="smooth">
+      <head>
+        {/* SSR-time fallback so SEO crawlers and tools that only read the
+            initial HTML response (Lighthouse, some bots) see a description.
+            Page-level generateMetadata streams a region-specific override
+            that browsers and Google's renderer hoist into <head>; this
+            fallback only matters before that hoist completes. */}
+        <meta
+          name="description"
+          content="Rychlý výkup nemovitostí po celé ČR. Nabídka do 24 h, peníze do 48 h, bez provize a skrytých poplatků."
+        />
+      </head>
       <body
         className={`${inter.className} flex min-h-screen flex-col`}
         style={themeStyle}

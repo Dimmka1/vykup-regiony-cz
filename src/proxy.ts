@@ -234,7 +234,7 @@ function isContentPage(pathname: string): boolean {
   return CONTENT_PAGE_PREFIXES.some((prefix) => pathname.startsWith(prefix));
 }
 
-export function middleware(request: NextRequest): NextResponse | undefined {
+export function proxy(request: NextRequest): NextResponse | undefined {
   const host = request.headers.get("host") ?? "";
   const { pathname, searchParams } = request.nextUrl;
   const isProd = isProductionDomain(host);

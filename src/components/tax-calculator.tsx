@@ -57,7 +57,7 @@ export function TaxCalculator(): ReactElement {
               onChange={(e) => setRawSellPrice(e.target.value)}
               className="focus-visible:ring-[var(--theme-500)]/30 block w-full rounded-xl border border-slate-300 px-4 py-3 pr-14 text-lg font-semibold text-slate-900 placeholder:text-slate-400 focus-visible:border-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2"
             />
-            <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-sm font-medium text-slate-400">
+            <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-sm font-medium text-slate-500">
               Kč
             </span>
           </div>
@@ -80,7 +80,7 @@ export function TaxCalculator(): ReactElement {
               onChange={(e) => setRawBuyPrice(e.target.value)}
               className="focus-visible:ring-[var(--theme-500)]/30 block w-full rounded-xl border border-slate-300 px-4 py-3 pr-14 text-lg font-semibold text-slate-900 placeholder:text-slate-400 focus-visible:border-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2"
             />
-            <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-sm font-medium text-slate-400">
+            <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-sm font-medium text-slate-500">
               Kč
             </span>
           </div>

@@ -18,46 +18,51 @@ function AnimatedCounter({
   const [started, setStarted] = useState(false);
   const ref = useRef<HTMLSpanElement>(null);
 
+  // Trigger once when the element scrolls into view.
   useEffect(() => {
+    if (started) return;
     const el = ref.current;
     if (!el) return;
 
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !started) {
+        if (entry.isIntersecting) {
           setStarted(true);
+          observer.disconnect();
         }
       },
       { threshold: 0.5 },
     );
     observer.observe(el);
 
-    if (started) {
-      if (prefersReduced) {
-        setCount(target);
-        return;
-      }
-      const startTime = performance.now();
-      let animId: number;
-      const step = (now: number) => {
-        const elapsed = now - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        // Ease out cubic
-        const eased = 1 - Math.pow(1 - progress, 3);
-        setCount(Math.round(eased * target));
-        if (progress < 1) {
-          animId = requestAnimationFrame(step);
-        }
-      };
-      animId = requestAnimationFrame(step);
-      return () => cancelAnimationFrame(animId);
+    return () => observer.disconnect();
+  }, [started]);
+
+  // Run the count-up animation once `started` flips true.
+  useEffect(() => {
+    if (!started) return;
+
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (prefersReduced) {
+      setCount(target);
+      return;
     }
 
-    return () => observer.disconnect();
+    const startTime = performance.now();
+    let animId = requestAnimationFrame(function step(now: number) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.round(eased * target));
+      if (progress < 1) {
+        animId = requestAnimationFrame(step);
+      }
+    });
+
+    return () => cancelAnimationFrame(animId);
   }, [started, target, duration]);
 
   return (

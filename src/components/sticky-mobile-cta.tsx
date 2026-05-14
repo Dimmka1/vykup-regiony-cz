@@ -1,8 +1,9 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import type { ReactElement } from "react";
 import { trackEvent } from "@/lib/analytics";
+import { waitForElement } from "@/lib/wait-for-element";
 
 const SCROLL_THRESHOLD = 300;
 const FORM_SECTION_ID = "kontakt";
@@ -16,7 +17,6 @@ export function StickyMobileCTA({
 }: StickyMobileCTAProps): ReactElement | null {
   const [isVisible, setIsVisible] = useState(false);
   const [formInView, setFormInView] = useState(false);
-  const observerRef = useRef<IntersectionObserver | null>(null);
 
   /* ── Track scroll position ─────────────────────────── */
   useEffect(() => {
@@ -32,24 +32,19 @@ export function StickyMobileCTA({
   }, []);
 
   /* ── Observe form section visibility ───────────────── */
+  // The form section lives inside a lazy-loaded (ssr: false) bundle,
+  // so it may not be in the DOM when this effect first runs.
   useEffect(() => {
-    const formEl = document.getElementById(FORM_SECTION_ID);
-    if (!formEl) return;
-
-    observerRef.current = new IntersectionObserver(
-      ([entry]) => {
-        if (entry) {
-          setFormInView(entry.isIntersecting);
-        }
-      },
-      { threshold: 0.1 },
-    );
-
-    observerRef.current.observe(formEl);
-
-    return () => {
-      observerRef.current?.disconnect();
-    };
+    return waitForElement<HTMLElement>(`#${FORM_SECTION_ID}`, (formEl) => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry) setFormInView(entry.isIntersecting);
+        },
+        { threshold: 0.1 },
+      );
+      observer.observe(formEl);
+      return () => observer.disconnect();
+    });
   }, []);
 
   /* ── Handle CTA click ─────────────────────────────── */

@@ -114,7 +114,7 @@ function Floor({
 
         {/* Floor block */}
         <motion.div
-          className={`border-[var(--theme-500)]/60 relative flex h-full w-full items-center justify-center border-x-2 border-t-2 bg-gradient-to-br ${gradient} ${
+          className={`relative flex h-full w-full items-center justify-center border-x-2 border-t-2 border-[rgba(var(--theme-rgb-500),0.6)] bg-gradient-to-br ${gradient} ${
             index === 0 ? "rounded-b-lg border-b-2" : ""
           }`}
           style={{

@@ -2,34 +2,46 @@
 
 import { useEffect, useState } from "react";
 import { trackEvent } from "@/lib/analytics";
+import { waitForElement } from "@/lib/wait-for-element";
+
+const SCROLL_THRESHOLD = 900;
 
 export function FloatingDesktopCta() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const kontakt = document.getElementById("kontakt");
     let formInView = false;
+    let scrolledPast = window.scrollY > SCROLL_THRESHOLD;
 
-    const observer = kontakt
-      ? new IntersectionObserver(
-          ([entry]) => {
-            formInView = entry.isIntersecting;
-            setVisible(window.scrollY > 900 && !formInView);
-          },
-          { threshold: 0.1 },
-        )
-      : null;
-
-    if (kontakt && observer) observer.observe(kontakt);
-
-    const onScroll = () => {
-      setVisible(window.scrollY > 900 && !formInView);
+    const update = () => {
+      setVisible(scrolledPast && !formInView);
     };
 
+    const onScroll = () => {
+      scrolledPast = window.scrollY > SCROLL_THRESHOLD;
+      update();
+    };
+
+    // The form section is rendered inside a lazy (ssr: false) chunk —
+    // wait for it to mount before attaching the IntersectionObserver.
+    const stopWaiting = waitForElement<HTMLElement>("#kontakt", (kontakt) => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          formInView = entry.isIntersecting;
+          update();
+        },
+        { threshold: 0.1 },
+      );
+      observer.observe(kontakt);
+      return () => observer.disconnect();
+    });
+
     window.addEventListener("scroll", onScroll, { passive: true });
+    update();
+
     return () => {
       window.removeEventListener("scroll", onScroll);
-      observer?.disconnect();
+      stopWaiting();
     };
   }, []);
 

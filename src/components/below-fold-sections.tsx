@@ -94,11 +94,11 @@ export function BelowFoldSections({
     <>
       {/* ===== ZPĚTNÝ ODKUP BADGE ===== */}
       <ScrollReveal>
-        <section className="from-[var(--theme-50)]/80 bg-gradient-to-r to-white py-5">
+        <section className="bg-gradient-to-r from-[rgba(var(--theme-rgb-50),0.8)] to-white py-5">
           <div className="mx-auto max-w-[1400px] px-6">
             <Link
               href="/zpetny-najem"
-              className="border-[var(--theme-200)]/60 group mx-auto flex max-w-2xl items-center justify-center gap-3 rounded-2xl border bg-white px-6 py-4 shadow-sm transition-all hover:border-[var(--theme-300)] hover:shadow-md"
+              className="group mx-auto flex max-w-2xl items-center justify-center gap-3 rounded-2xl border border-[rgba(var(--theme-rgb-200),0.6)] bg-white px-6 py-4 shadow-sm transition-all hover:border-[var(--theme-300)] hover:shadow-md"
             >
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--theme-50)] transition-colors group-hover:bg-[var(--theme-100)]">
                 <RefreshCw
@@ -485,11 +485,11 @@ export function BelowFoldSections({
         />
         {/* Gradient accents */}
         <div
-          className="bg-[var(--theme-700)]/10 pointer-events-none absolute -left-40 top-0 h-[500px] w-[500px] rounded-full blur-[120px]"
+          className="pointer-events-none absolute -left-40 top-0 h-[500px] w-[500px] rounded-full bg-[rgba(var(--theme-rgb-700),0.1)] blur-[120px]"
           aria-hidden="true"
         />
         <div
-          className="bg-[var(--theme-600)]/10 pointer-events-none absolute -right-40 bottom-0 h-[400px] w-[400px] rounded-full blur-[100px]"
+          className="pointer-events-none absolute -right-40 bottom-0 h-[400px] w-[400px] rounded-full bg-[rgba(var(--theme-rgb-600),0.1)] blur-[100px]"
           aria-hidden="true"
         />
         <div className="relative mx-auto max-w-[1400px] px-6 lg:px-8">
@@ -537,7 +537,7 @@ export function BelowFoldSections({
                 <ul className="mt-8 space-y-6">
                   {FORM_BENEFITS.map((benefit, idx) => (
                     <li key={benefit} className="flex items-start gap-4">
-                      <span className="bg-[var(--theme-600)]/20 flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-semibold text-[var(--theme-400)]">
+                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[rgba(var(--theme-rgb-600),0.2)] text-sm font-semibold text-[var(--theme-400)]">
                         {idx + 1}
                       </span>
                       <span className="text-lg text-slate-300">{benefit}</span>

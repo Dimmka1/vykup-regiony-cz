@@ -10,28 +10,25 @@ const GOOGLE_ADS_CONVERSION_LABEL =
   process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL;
 const SKLIK_ID = process.env.NEXT_PUBLIC_SKLIK_ID;
 
+interface KookiokApi {
+  hasConsent: (category: "preferences" | "statistics" | "marketing") => boolean;
+  on: (event: "consentUpdate", cb: () => void) => void;
+}
+
 declare global {
   interface Window {
     fbq?: (...args: unknown[]) => void;
     _fbq?: (...args: unknown[]) => void;
     gtag?: (...args: unknown[]) => void;
+    Kookiok?: KookiokApi;
   }
 }
 
-function readConsent(): { analytics: boolean; marketing: boolean } {
+function hasMarketingConsent(): boolean {
   try {
-    const match = document.cookie.match(/(?:^|;\s*)cookie_consent=([^;]*)/);
-    if (!match) return { analytics: false, marketing: false };
-    const parsed = JSON.parse(decodeURIComponent(match[1])) as {
-      analytics?: boolean;
-      marketing?: boolean;
-    };
-    return {
-      analytics: Boolean(parsed.analytics),
-      marketing: Boolean(parsed.marketing),
-    };
+    return Boolean(window.Kookiok?.hasConsent("marketing"));
   } catch {
-    return { analytics: false, marketing: false };
+    return false;
   }
 }
 
@@ -58,11 +55,26 @@ export function TrackingPixels(): React.ReactElement | null {
   const [marketingAllowed, setMarketingAllowed] = useState(false);
 
   useEffect(() => {
-    setMarketingAllowed(readConsent().marketing);
-    const onConsent = () => setMarketingAllowed(readConsent().marketing);
-    window.addEventListener("cookie-consent-changed", onConsent);
-    return () =>
-      window.removeEventListener("cookie-consent-changed", onConsent);
+    const sync = () => setMarketingAllowed(hasMarketingConsent());
+    sync();
+
+    // Subscribe once Kookiok is ready (script loads with beforeInteractive,
+    // so usually it's there already — but poll briefly to be safe).
+    let cancelled = false;
+    const attach = () => {
+      if (cancelled) return;
+      if (window.Kookiok?.on) {
+        window.Kookiok.on("consentUpdate", sync);
+        sync();
+      } else {
+        setTimeout(attach, 100);
+      }
+    };
+    attach();
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   useConversionEvents(marketingAllowed);

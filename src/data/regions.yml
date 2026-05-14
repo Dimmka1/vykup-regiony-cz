@@ -50,8 +50,6 @@ regions:
       - vykoupim-nemovitost.cz
       - www.vykoupim-nemovitost.cz
       - vykup-regiony-cz-dev.vercel.app
-      - vykup-praha.cz
-      - vykuppraha.cz
       - praha.localhost
       - praha.vykoupim-nemovitost.cz
     marketInfo:
@@ -145,7 +143,6 @@ regions:
       - výkup domu Benešov
       - výkup nemovitostí Příbram
     hosts:
-      - vykup-stredocesky.cz
       - stredocesky.localhost
       - stredocesky.vykoupim-nemovitost.cz
     marketInfo:
@@ -236,7 +233,6 @@ regions:
       - výkup chaty Šumava
       - výkup domu Písek
     hosts:
-      - vykup-jihocesky.cz
       - jihocesky.localhost
       - jihocesky.vykoupim-nemovitost.cz
     marketInfo:
@@ -325,7 +321,6 @@ regions:
       - výkup domu Tachov
       - výkup bytu Plzeňsko
     hosts:
-      - vykup-plzensky.cz
       - plzensky.localhost
       - plzensky.vykoupim-nemovitost.cz
     marketInfo:
@@ -416,7 +411,6 @@ regions:
       - výkup bytu Ostrov
       - výkup nemovitosti Aš
     hosts:
-      - vykup-karlovarsky.cz
       - karlovarsky.localhost
       - karlovarsky.vykoupim-nemovitost.cz
     marketInfo:
@@ -505,7 +499,6 @@ regions:
       - výkup bytu Teplice
       - výkup nemovitostí Litoměřice
     hosts:
-      - vykup-ustecky.cz
       - ustecky.localhost
       - ustecky.vykoupim-nemovitost.cz
     marketInfo:
@@ -595,7 +588,6 @@ regions:
       - výkup chaty Liberecko
       - výkup domu Jablonec nad Nisou
     hosts:
-      - vykup-liberecky.cz
       - liberecky.localhost
       - liberecky.vykoupim-nemovitost.cz
     marketInfo:
@@ -686,7 +678,6 @@ regions:
       - výkup nemovitosti Jičín
       - výkup domu Rychnov nad Kněžnou
     hosts:
-      - vykup-kralovehradecky.cz
       - kralovehradecky.localhost
       - kralovehradecky.vykoupim-nemovitost.cz
     marketInfo:
@@ -777,7 +768,6 @@ regions:
       - výkup domu Litomyšl
       - výkup bytu Lanškroun
     hosts:
-      - vykup-pardubicky.cz
       - pardubicky.localhost
       - pardubicky.vykoupim-nemovitost.cz
     marketInfo:
@@ -867,7 +857,6 @@ regions:
       - výkup nemovitosti Havlíčkův Brod
       - výkup domu Pelhřimov
     hosts:
-      - vykup-vysocina.cz
       - vysocina.localhost
       - vysocina.vykoupim-nemovitost.cz
     marketInfo:
@@ -958,7 +947,6 @@ regions:
       - výkup usedlosti jižní Morava
       - výkup bytu Vyškov
     hosts:
-      - vykup-jihomoravsky.cz
       - jihomoravsky.localhost
       - jihomoravsky.vykoupim-nemovitost.cz
     marketInfo:
@@ -1047,7 +1035,6 @@ regions:
       - výkup domu Jeseník
       - výkup bytu Zábřeh
     hosts:
-      - vykup-olomoucky.cz
       - olomoucky.localhost
       - olomoucky.vykoupim-nemovitost.cz
     marketInfo:
@@ -1135,7 +1122,6 @@ regions:
       - výkup bytu Havířov
       - výkup domu Nový Jičín
     hosts:
-      - vykup-moravskoslezsky.cz
       - moravskoslezsky.localhost
       - moravskoslezsky.vykoupim-nemovitost.cz
     marketInfo:
@@ -1227,7 +1213,6 @@ regions:
       - výkup domu Rožnov pod Radhoštěm
       - výkup bytu Valašské Meziříčí
     hosts:
-      - vykup-zlinsky.cz
       - zlinsky.localhost
       - zlinsky.vykoupim-nemovitost.cz
     marketInfo:

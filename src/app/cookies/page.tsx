@@ -26,9 +26,9 @@ function Section({
 
 const COOKIES_TABLE = [
   {
-    name: "cookie_consent",
-    provider: "vykoupim-nemovitost.cz",
-    purpose: "Uložení preferencí cookies",
+    name: "kookiok_consent",
+    provider: "KookiOk (CMP)",
+    purpose: "Uložení preferencí souhlasu s cookies",
     type: "Nezbytné",
     expiry: "1 rok",
   },
@@ -212,9 +212,9 @@ export default function CookiesPage() {
 
         <Section title="Jak změnit nastavení cookies?">
           <p>
-            Nastavení cookies můžete kdykoliv změnit kliknutím na tlačítko
-            &bdquo;Nastavení cookies&ldquo; v patičce webu. Nebo je můžete
-            zakázat přímo v nastavení Vašeho prohlížeče.
+            Nastavení cookies můžete kdykoliv změnit kliknutím na plovoucí
+            tlačítko ochrany soukromí, které se zobrazuje v rohu stránky. Nebo
+            je můžete zakázat přímo v nastavení Vašeho prohlížeče.
           </p>
         </Section>
 

@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.scss";
 import dynamic from "next/dynamic";
-import { cookies } from "next/headers";
-import { CookieConsent } from "@/components/cookie-consent";
 import { TrackingPixels } from "@/components/tracking-pixels";
 
 const ExitIntentPopup = dynamic(
@@ -25,20 +24,8 @@ import {
 import { getRequestHost, getRegionKeyOverride } from "@/lib/request-host";
 import { getThemeStyle } from "@/lib/theme-colors";
 
-async function hasTrackingConsent(): Promise<boolean> {
-  try {
-    const store = await cookies();
-    const raw = store.get("cookie_consent")?.value;
-    if (!raw) return false;
-    const parsed = JSON.parse(decodeURIComponent(raw)) as {
-      analytics?: boolean;
-      marketing?: boolean;
-    };
-    return Boolean(parsed.analytics || parsed.marketing);
-  } catch {
-    return false;
-  }
-}
+const KOOKIOK_SRC =
+  "https://cdn.kookiok.com/consent.js?id=019e1880-41eb-7cb7-a099-9b57fccb95af";
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
@@ -85,11 +72,11 @@ export default async function RootLayout({
   }
   if (!region) region = getDefaultRegion();
   const themeStyle = getThemeStyle(region.themeColor);
-  const trackingAllowed = await hasTrackingConsent();
 
   return (
     <html lang="cs" className={inter.variable} data-scroll-behavior="smooth">
       <head>
+        <Script src={KOOKIOK_SRC} strategy="beforeInteractive" />
         {/* SSR-time fallback so SEO crawlers and tools that only read the
             initial HTML response (Lighthouse, some bots) see a description.
             Page-level generateMetadata streams a region-specific override
@@ -106,16 +93,6 @@ export default async function RootLayout({
       >
         <SiteJsonLd phone={region.phone} email={region.email} />
         <ScrollProgress />
-        {process.env.NODE_ENV === "production" && trackingAllowed && (
-          <noscript>
-            <iframe
-              src="https://www.googletagmanager.com/ns.html?id=GTM-PSS7C6RD"
-              height="0"
-              width="0"
-              style={{ display: "none", visibility: "hidden" }}
-            />
-          </noscript>
-        )}
         <a
           href="#hlavni-obsah"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-slate-900 focus:shadow-lg focus:ring-2 focus:ring-[var(--theme-500)]"
@@ -131,7 +108,6 @@ export default async function RootLayout({
         <ExitIntentPopup />
         <TrackingPixels />
         <SwRegister />
-        <CookieConsent />
       </body>
     </html>
   );

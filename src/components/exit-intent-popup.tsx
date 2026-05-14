@@ -68,9 +68,12 @@ export function ExitIntentPopup(): ReactElement | null {
 
   const show = useCallback(() => {
     if (triggeredRef.current || wasAlreadyShown() || wasFormSubmitted()) return;
-    // Don't show if cookie consent banner is still visible
+    // Defer to the Kookiok cookie banner — don't stack popups before the
+    // user has interacted with consent.
     try {
-      if (!document.cookie.includes("cookie_consent=")) return;
+      const kookiok = (window as { Kookiok?: { getConsent: () => unknown } })
+        .Kookiok;
+      if (kookiok && kookiok.getConsent() === null) return;
     } catch {
       /* noop */
     }

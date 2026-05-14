@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { MapPin, Phone, ArrowUpRight } from "lucide-react";
+import { MapPin, Phone, Mail } from "lucide-react";
 import { listRegions, getRegionSubdomainUrl } from "@/lib/config";
+import { CONTACT_EMAIL } from "@/lib/contact-info";
 
 const linkClass =
   "text-sm text-slate-400 hover:text-white transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950";
@@ -36,7 +37,7 @@ export function SiteFooter({ phone = "+420 776 424 145" }: SiteFooterProps) {
   return (
     <footer className="bg-slate-950 pb-[env(safe-area-inset-bottom)] text-white">
       {/* Top accent line */}
-      <div className="via-[var(--theme-500)]/30 h-px bg-gradient-to-r from-transparent to-transparent" />
+      <div className="h-px bg-gradient-to-r from-transparent via-[rgba(var(--theme-rgb-500),0.3)] to-transparent" />
 
       <div className="mx-auto max-w-7xl px-6 py-20 md:py-24">
         {/* Logo & description */}
@@ -82,18 +83,42 @@ export function SiteFooter({ phone = "+420 776 424 145" }: SiteFooterProps) {
               republice. Bez provize, s právním servisem zdarma.
             </p>
           </div>
-          <a
-            href={`tel:${phone.replace(/\s/g, "")}`}
-            className="group inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-4 transition-colors hover:border-white/20 hover:bg-white/[0.06]"
-          >
-            <div className="bg-[var(--theme-600)]/20 flex h-10 w-10 items-center justify-center rounded-xl">
-              <Phone className="h-5 w-5 text-[var(--theme-400)]" />
-            </div>
-            <div>
-              <p className="text-xs text-slate-400">Zavolejte nám</p>
-              <p className="text-base font-semibold text-white">{phone}</p>
-            </div>
-          </a>
+          <div className="flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
+            <a
+              href={`tel:${phone.replace(/\s/g, "")}`}
+              className="group inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-4 transition-colors hover:border-white/20 hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+              aria-label={`Zavolat na ${phone}`}
+            >
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[rgba(var(--theme-rgb-600),0.2)] transition-colors group-hover:bg-[rgba(var(--theme-rgb-600),0.3)]">
+                <Phone className="h-5 w-5 text-[var(--theme-400)]" />
+              </span>
+              <span className="min-w-0">
+                <span className="block text-xs text-slate-400">
+                  Zavolejte nám
+                </span>
+                <span className="block truncate text-base font-semibold text-white">
+                  {phone}
+                </span>
+              </span>
+            </a>
+            <a
+              href={`mailto:${CONTACT_EMAIL}`}
+              className="group inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-4 transition-colors hover:border-white/20 hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+              aria-label={`Napsat e-mail na ${CONTACT_EMAIL}`}
+            >
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[rgba(var(--theme-rgb-600),0.2)] transition-colors group-hover:bg-[rgba(var(--theme-rgb-600),0.3)]">
+                <Mail className="h-5 w-5 text-[var(--theme-400)]" />
+              </span>
+              <span className="min-w-0">
+                <span className="block text-xs text-slate-400">
+                  Napište nám
+                </span>
+                <span className="block truncate text-base font-semibold text-white">
+                  {CONTACT_EMAIL}
+                </span>
+              </span>
+            </a>
+          </div>
         </div>
 
         {/* Navigation grid */}
@@ -247,6 +272,15 @@ export function SiteFooter({ phone = "+420 776 424 145" }: SiteFooterProps) {
               >
                 <Phone className="h-4 w-4 shrink-0 text-[var(--theme-500)]" />{" "}
                 {phone}
+              </a>
+              <a
+                href={`mailto:${CONTACT_EMAIL}`}
+                className="group flex items-center gap-2 break-all text-sm text-slate-400 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+              >
+                <Mail className="h-4 w-4 shrink-0 text-[var(--theme-500)]" />
+                <span className="underline-offset-4 group-hover:underline">
+                  {CONTACT_EMAIL}
+                </span>
               </a>
             </div>
           </div>

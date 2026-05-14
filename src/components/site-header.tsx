@@ -113,7 +113,7 @@ export function SiteHeader({ phone = "+420 776 424 145" }: SiteHeaderProps) {
           </a>
           <a
             href="#kontakt"
-            className="cta-glow btn-ripple shadow-[var(--theme-600)]/20 hover:shadow-[var(--theme-600)]/30 hidden min-h-[48px] items-center gap-2 rounded-full bg-gradient-to-r from-[var(--theme-600)] to-[var(--theme-700)] px-7 py-2.5 text-sm font-semibold text-white shadow-lg transition-all hover:from-[var(--theme-500)] hover:to-[var(--theme-600)] hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 lg:inline-flex"
+            className="cta-glow btn-ripple hidden min-h-[48px] items-center gap-2 rounded-full bg-gradient-to-r from-[var(--theme-600)] to-[var(--theme-700)] px-7 py-2.5 text-sm font-semibold text-white shadow-[0_10px_15px_-3px_rgba(var(--theme-rgb-600),0.20),0_4px_6px_-4px_rgba(var(--theme-rgb-600),0.15)] transition-all hover:from-[var(--theme-500)] hover:to-[var(--theme-600)] hover:shadow-[0_20px_25px_-5px_rgba(var(--theme-rgb-600),0.30),0_8px_10px_-6px_rgba(var(--theme-rgb-600),0.25)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-500)] focus-visible:ring-offset-2 lg:inline-flex"
           >
             Nezávazná poptávka
             <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />

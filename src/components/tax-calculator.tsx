@@ -55,7 +55,7 @@ export function TaxCalculator(): ReactElement {
               placeholder="např. 4 000 000"
               value={rawSellPrice}
               onChange={(e) => setRawSellPrice(e.target.value)}
-              className="focus-visible:ring-[var(--theme-500)]/30 block w-full rounded-xl border border-slate-300 px-4 py-3 pr-14 text-lg font-semibold text-slate-900 placeholder:text-slate-400 focus-visible:border-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2"
+              className="block w-full rounded-xl border border-slate-300 px-4 py-3 pr-14 text-lg font-semibold text-slate-900 placeholder:text-slate-400 focus-visible:border-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(var(--theme-rgb-500),0.3)]"
             />
             <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-sm font-medium text-slate-500">
               Kč
@@ -78,7 +78,7 @@ export function TaxCalculator(): ReactElement {
               placeholder="např. 2 500 000"
               value={rawBuyPrice}
               onChange={(e) => setRawBuyPrice(e.target.value)}
-              className="focus-visible:ring-[var(--theme-500)]/30 block w-full rounded-xl border border-slate-300 px-4 py-3 pr-14 text-lg font-semibold text-slate-900 placeholder:text-slate-400 focus-visible:border-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2"
+              className="block w-full rounded-xl border border-slate-300 px-4 py-3 pr-14 text-lg font-semibold text-slate-900 placeholder:text-slate-400 focus-visible:border-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(var(--theme-rgb-500),0.3)]"
             />
             <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-sm font-medium text-slate-500">
               Kč
@@ -100,7 +100,7 @@ export function TaxCalculator(): ReactElement {
             placeholder="např. 3"
             value={ownershipYears}
             onChange={(e) => setOwnershipYears(e.target.value)}
-            className="focus-visible:ring-[var(--theme-500)]/30 mt-1 block w-full rounded-xl border border-slate-300 px-4 py-3 text-lg font-semibold text-slate-900 placeholder:text-slate-400 focus-visible:border-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2"
+            className="mt-1 block w-full rounded-xl border border-slate-300 px-4 py-3 text-lg font-semibold text-slate-900 placeholder:text-slate-400 focus-visible:border-[var(--theme-500)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(var(--theme-rgb-500),0.3)]"
           />
         </div>
 

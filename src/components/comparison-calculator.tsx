@@ -90,7 +90,7 @@ export function ComparisonCalculator(): ReactElement {
               placeholder="např. 3 000 000"
               value={rawValue}
               onChange={(e) => setRawValue(e.target.value)}
-              className="focus:ring-[var(--theme-500)]/30 block w-full rounded-xl border border-slate-300 px-4 py-3 pr-14 text-lg font-semibold text-slate-900 placeholder:text-slate-400 focus:border-[var(--theme-500)] focus:outline-none focus:ring-2"
+              className="block w-full rounded-xl border border-slate-300 px-4 py-3 pr-14 text-lg font-semibold text-slate-900 placeholder:text-slate-400 focus:border-[var(--theme-500)] focus:outline-none focus:ring-2 focus:ring-[rgba(var(--theme-rgb-500),0.3)]"
             />
             <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-sm font-medium text-slate-500">
               Kč
@@ -123,7 +123,7 @@ export function ComparisonCalculator(): ReactElement {
                 <row.icon className="hidden h-4 w-4 shrink-0 text-slate-400 sm:block" />
                 {row.label}
               </div>
-              <div className="bg-[var(--theme-50)]/50 flex items-center justify-center border-l border-slate-100 px-4 py-3 font-medium text-[var(--theme-700)]">
+              <div className="flex items-center justify-center border-l border-slate-100 bg-[rgba(var(--theme-rgb-50),0.5)] px-4 py-3 font-medium text-[var(--theme-700)]">
                 {row.vykup}
               </div>
               <div className="flex items-center justify-center border-l border-slate-100 px-4 py-3 text-slate-500">

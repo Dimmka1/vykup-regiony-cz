@@ -50,9 +50,9 @@ export function HeroParallaxShapes() {
         className="absolute bottom-32 left-[15%]"
       >
         <div className="flex gap-2">
-          <div className="bg-[var(--theme-400)]/30 h-1.5 w-1.5 rounded-full" />
-          <div className="bg-[var(--theme-400)]/20 h-1.5 w-1.5 rounded-full" />
-          <div className="bg-[var(--theme-400)]/10 h-1.5 w-1.5 rounded-full" />
+          <div className="h-1.5 w-1.5 rounded-full bg-[rgba(var(--theme-rgb-400),0.3)]" />
+          <div className="h-1.5 w-1.5 rounded-full bg-[rgba(var(--theme-rgb-400),0.2)]" />
+          <div className="h-1.5 w-1.5 rounded-full bg-[rgba(var(--theme-rgb-400),0.1)]" />
         </div>
       </motion.div>
 

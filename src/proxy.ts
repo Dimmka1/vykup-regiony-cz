@@ -342,11 +342,12 @@ export function proxy(request: NextRequest): NextResponse | undefined {
       "CDN-Cache-Control",
       "public, s-maxage=3600, stale-while-revalidate=86400",
     );
-    // Override browser Cache-Control: remove private/no-store for content pages
-    response.headers.set(
-      "Cache-Control",
-      "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400",
-    );
+    // Browser Cache-Control is intentionally left as Next's dynamic-SSR
+    // default (no-store): each host renders region-specific HTML, so the
+    // document must not be reused across hosts by the browser or shared
+    // caches. Per-host edge caching is handled via the *-CDN-Cache-Control
+    // headers above. (Note: middleware cannot override a dynamic route's
+    // browser Cache-Control anyway — the framework sets it last.)
     return response;
   }
 

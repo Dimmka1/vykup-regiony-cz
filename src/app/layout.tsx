@@ -76,6 +76,12 @@ export default async function RootLayout({
   return (
     <html lang="cs" className={inter.variable} data-scroll-behavior="smooth">
       <head>
+        {/* KookiOk CMP — MUST remain strategy="beforeInteractive". The vendor
+            requires the consent script to load synchronously and run before
+            any analytics/marketing script (and before hydration) for GDPR
+            compliance. Do NOT switch to afterInteractive/lazyOnload/worker and
+            do NOT add async/defer — it breaks the consent-timing guarantee.
+            Keep it the first <script> in <head>. */}
         <Script src={KOOKIOK_SRC} strategy="beforeInteractive" />
         {/* SSR-time fallback so SEO crawlers and tools that only read the
             initial HTML response (Lighthouse, some bots) see a description.

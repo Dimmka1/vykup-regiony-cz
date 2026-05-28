@@ -30,13 +30,12 @@ export function HeroContent({
 }: HeroContentProps): ReactElement {
   return (
     <section className="relative min-h-[100svh] overflow-hidden bg-slate-950">
-      {/* Background image with parallax */}
-      <HeroImage
-        src={imageSrc}
-        alt={imageAlt}
-        priority
-        className="object-cover"
-      />
+      {/* Background image — NOT the LCP element (LCP is the hero subhead
+          text). Deliberately left non-priority: a high-priority preload here
+          stole bandwidth from the render-critical fonts/CSS on the text-paint
+          path and regressed LCP (measured: priority=High → LCP 3756ms vs
+          non-priority → 3156ms, mobile/simulated). Do not re-add `priority`. */}
+      <HeroImage src={imageSrc} alt={imageAlt} className="object-cover" />
 
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/60" aria-hidden="true" />

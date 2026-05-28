@@ -35,6 +35,13 @@ const nextConfig: NextConfig = {
     // below-fold image (section-process); list both values so next/image
     // keeps optimizing instead of coercing.
     qualities: [65, 75],
+    // Without this, optimized /_next/image outputs are served with
+    // `max-age=0, must-revalidate` (Lighthouse: "Use efficient cache
+    // lifetimes"). All our image sources are static, versioned assets, so a
+    // long browser TTL is safe. OPERATIONAL NOTE: when replacing an image,
+    // change its filename (cache-bust) — same-path replacements stay cached
+    // in browsers up to this TTL.
+    minimumCacheTTL: 31536000,
   },
 };
 

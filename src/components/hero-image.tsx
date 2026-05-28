@@ -16,6 +16,7 @@ export function HeroImage({ src, alt, className, priority }: HeroImageProps) {
           alt={alt}
           fill
           priority={priority}
+          fetchPriority={priority ? "high" : undefined}
           className={className}
           sizes="100vw"
           quality={75}

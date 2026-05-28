@@ -6,9 +6,6 @@ const nextConfig: NextConfig = {
   // RUM/error-reporting tooling can then resolve minified stack traces.
   productionBrowserSourceMaps: true,
   experimental: {
-    // Inline critical CSS into <head>, defer the rest. Eliminates the single
-    // render-blocking CSS bundle Lighthouse flags. Powered by critters.
-    optimizeCss: true,
     // Rewrite barrel imports (e.g. `import { Shield } from "lucide-react"`)
     // into direct deep imports at build time. Trims unused icons / motion
     // primitives out of the client JS bundle, reducing main-thread work.
@@ -29,9 +26,14 @@ const nextConfig: NextConfig = {
     ];
   },
   images: {
-    // Default `qualities` was reduced to [75] in Next 16. We use
-    // quality={65} for one below-fold image (section-process); list both
-    // values so next/image keeps optimizing instead of coercing.
+    // Kept on WebP only (Next's default). Measured: AVIF is *larger* than
+    // WebP for the high-detail hero cityscape at quality 75 (≈97.5 KiB vs
+    // ≈92.3 KiB), which would regress LCP for AVIF-capable browsers. Do not
+    // re-enable AVIF globally without per-image measurement.
+    //
+    // `qualities` was reduced to [75] in Next 16. We use quality={65} for one
+    // below-fold image (section-process); list both values so next/image
+    // keeps optimizing instead of coercing.
     qualities: [65, 75],
   },
 };

@@ -30,11 +30,13 @@ export async function GET(): Promise<Response> {
     priority: 0.7,
   });
 
-  // 2. Individual blog posts
+  // 2. Individual blog posts — use each post's real publish date as lastmod.
+  //    A single hardcoded literal makes every post look stale-but-identical and
+  //    de-prioritises recrawl (see sitemap-helpers BUILD_DATE rationale).
   for (const post of BLOG_POSTS) {
     entries.push({
       url: `${ROOT_URL}/blog/${post.slug}`,
-      lastmod: "2026-03-16",
+      lastmod: post.date,
       changefreq: "monthly",
       priority: 0.6,
     });

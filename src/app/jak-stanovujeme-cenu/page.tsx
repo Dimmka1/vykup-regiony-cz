@@ -13,8 +13,7 @@ const PAGE_URL = `https://vykoupim-nemovitost.cz${PAGE_PATH}`;
 const PAGE_NAME = "Jak stanovujeme výkupní cenu — transparentní metodika";
 
 export const metadata: Metadata = {
-  title:
-    "Jak stanovujeme výkupní cenu — metodika výpočtu | Vykoupím Nemovitost",
+  title: "Jak stanovujeme výkupní cenu — transparentní metodika",
   description:
     "Transparentní metodika výpočtu výkupní ceny nemovitosti. 80–90 % tržní hodnoty, vstupy, kalkulace a co cenu posouvá nahoru či dolů.",
   alternates: withHreflang({ canonical: PAGE_URL }),

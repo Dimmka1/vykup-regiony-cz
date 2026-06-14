@@ -23,7 +23,7 @@ import { AboutMap } from "@/components/about-map";
 const FOUNDER_NAME = process.env.NEXT_PUBLIC_FOUNDER_NAME || "";
 
 export const metadata: Metadata = {
-  title: "O nás | Vykoupím Nemovitost — férový výkup nemovitostí",
+  title: "O nás — kdo jsme a jak vykupujeme nemovitosti",
   description:
     "Jsme česká firma specializující se na rychlý a férový výkup nemovitostí po celé ČR. Bez provize, s právním servisem zdarma a platbou do 48 hodin.",
   alternates: withHreflang({

@@ -211,6 +211,24 @@ const SEO_REDIRECTS: Record<string, string> = {
 };
 
 /**
+ * Paths where ?kraj=/?mesto=/?typ= are INERT: these pages ignore those query
+ * params and render identical content to the param-less URL (their canonical
+ * already points there). The homepage and the non-geo use-case pages below are
+ * NOT part of the ?kraj= geo system (USE_CASE_PATHS in sitemap-helpers), so such
+ * URLs are pure duplicates that Google crawls from legacy discovery. They are
+ * 301-stripped to consolidate them and stop wasting crawl budget. The 10
+ * geo-enabled use-case pages are intentionally excluded — they DO differentiate
+ * by ?kraj= and self-canonicalise with it.
+ */
+const GEO_INERT_PARAM_PATHS = new Set([
+  "/",
+  "/vykup-v-drazbe",
+  "/vykup-cinzovnich-domu",
+  "/vykup-pri-privatizaci",
+]);
+const GEO_DUP_PARAMS = ["kraj", "mesto", "typ"] as const;
+
+/**
  * Content page paths eligible for CDN caching (VR-312).
  * API routes, admin pages, and internal paths are excluded.
  */
@@ -266,21 +284,21 @@ export function proxy(request: NextRequest): NextResponse | undefined {
     return response;
   }
 
-  // 1b. SEO: strip legacy ?mesto= / ?typ= params on the homepage. The homepage
-  //     (page.tsx) ignores all query params, so these URLs render identical
-  //     content to the bare home — they are duplicates the canonical already
-  //     points at. Google has been crawling them (legacy: they were once in the
-  //     sitemap) and handling them inconsistently ("Alternate page with proper
-  //     canonical tag" for some, duplicate index entries for others). A 301
-  //     consolidates them deterministically and stops wasting crawl budget on
-  //     dupes. Use-case pages keep ?mesto (the geo system noindexes those).
+  // 1b. SEO: strip inert ?kraj=/?mesto=/?typ= params on pages that don't use the
+  //     geo system (homepage + non-geo use-case pages). They ignore these params
+  //     and render content identical to the param-less URL (canonical already
+  //     points there), so the variants are pure duplicates Google crawls from
+  //     legacy discovery — Google handles them inconsistently ("Alternate page
+  //     with proper canonical tag" / "Duplicate, no user-selected canonical").
+  //     A 301 consolidates them deterministically and stops wasting crawl
+  //     budget. The 10 geo-enabled use-case pages keep ?kraj= (they differentiate
+  //     by region); use-case ?mesto= without ?kraj= is handled via noindex.
   if (
-    pathname === "/" &&
-    (searchParams.has("mesto") || searchParams.has("typ"))
+    GEO_INERT_PARAM_PATHS.has(pathname) &&
+    GEO_DUP_PARAMS.some((p) => searchParams.has(p))
   ) {
     const url = request.nextUrl.clone();
-    url.searchParams.delete("mesto");
-    url.searchParams.delete("typ");
+    for (const p of GEO_DUP_PARAMS) url.searchParams.delete(p);
     return NextResponse.redirect(url, 301);
   }
 

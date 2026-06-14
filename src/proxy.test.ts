@@ -7,7 +7,7 @@ function req(url: string): NextRequest {
   return new NextRequest(u, { headers: { host: u.host } });
 }
 
-describe("proxy: legacy ?mesto=/?typ= homepage canonicalization", () => {
+describe("proxy: inert ?kraj=/?mesto=/?typ= canonicalization", () => {
   it("301-strips ?mesto on a subdomain homepage (duplicate of bare home)", () => {
     const res = proxy(
       req("https://praha.vykoupim-nemovitost.cz/?mesto=praha-1"),
@@ -49,6 +49,23 @@ describe("proxy: legacy ?mesto=/?typ= homepage canonicalization", () => {
 
   it("does NOT redirect the bare homepage", () => {
     const res = proxy(req("https://praha.vykoupim-nemovitost.cz/"));
+    if (res) expect(res.status).not.toBe(301);
+  });
+
+  it("301-strips ?kraj on a NON-geo use-case page (vykup-v-drazbe)", () => {
+    const res = proxy(
+      req("https://vykoupim-nemovitost.cz/vykup-v-drazbe?kraj=praha"),
+    );
+    expect(res?.status).toBe(301);
+    const loc = new URL(res!.headers.get("location")!);
+    expect(loc.pathname).toBe("/vykup-v-drazbe");
+    expect(loc.searchParams.has("kraj")).toBe(false);
+  });
+
+  it("does NOT strip ?kraj on a geo-enabled use-case page (vykup-bytu)", () => {
+    const res = proxy(
+      req("https://vykoupim-nemovitost.cz/vykup-bytu?kraj=praha"),
+    );
     if (res) expect(res.status).not.toBe(301);
   });
 });

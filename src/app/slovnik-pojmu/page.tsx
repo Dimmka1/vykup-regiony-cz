@@ -10,7 +10,7 @@ const PAGE_PATH = "/slovnik-pojmu";
 const PAGE_URL = `https://vykoupim-nemovitost.cz${PAGE_PATH}`;
 
 export const metadata: Metadata = {
-  title: "Slovník pojmů — výkup nemovitostí | Vykoupím Nemovitost",
+  title: "Slovník pojmů — exekuce, dražba, věcné břemeno",
   description:
     "Definice odborných pojmů z oblasti výkupu nemovitostí: exekuce, dražba, věcné břemeno, advokátní úschova, katastr nemovitostí, spoluvlastnický podíl a další.",
   alternates: withHreflang({ canonical: PAGE_URL }),

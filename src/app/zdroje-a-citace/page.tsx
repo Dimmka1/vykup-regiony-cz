@@ -11,7 +11,7 @@ const PAGE_PATH = "/zdroje-a-citace";
 const PAGE_URL = `https://vykoupim-nemovitost.cz${PAGE_PATH}`;
 
 export const metadata: Metadata = {
-  title: "Zdroje a citace — autoritativní české zdroje | Vykoupím Nemovitost",
+  title: "Zdroje a citace — autoritativní české zdroje",
   description:
     "Seznam autoritativních českých zdrojů, ze kterých čerpáme: ČÚZK, Finanční správa, ČSÚ, Exekutorská komora, ČAK, ČNB, občanský zákoník.",
   alternates: withHreflang({ canonical: PAGE_URL }),

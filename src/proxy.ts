@@ -266,6 +266,24 @@ export function proxy(request: NextRequest): NextResponse | undefined {
     return response;
   }
 
+  // 1b. SEO: strip legacy ?mesto= / ?typ= params on the homepage. The homepage
+  //     (page.tsx) ignores all query params, so these URLs render identical
+  //     content to the bare home — they are duplicates the canonical already
+  //     points at. Google has been crawling them (legacy: they were once in the
+  //     sitemap) and handling them inconsistently ("Alternate page with proper
+  //     canonical tag" for some, duplicate index entries for others). A 301
+  //     consolidates them deterministically and stops wasting crawl budget on
+  //     dupes. Use-case pages keep ?mesto (the geo system noindexes those).
+  if (
+    pathname === "/" &&
+    (searchParams.has("mesto") || searchParams.has("typ"))
+  ) {
+    const url = request.nextUrl.clone();
+    url.searchParams.delete("mesto");
+    url.searchParams.delete("typ");
+    return NextResponse.redirect(url, 301);
+  }
+
   // 2. Path-based regional URLs (/praha, /brno, etc.)
   const pathSegment = pathname.split("/")[1] ?? "";
   if (

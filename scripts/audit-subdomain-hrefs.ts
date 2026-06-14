@@ -63,6 +63,13 @@ export function findSubdomainContentHrefs(sources: Source[]): Finding[] {
 }
 
 const SCAN_EXTENSIONS = new Set([".ts", ".tsx", ".js", ".jsx", ".mjs", ".md"]);
+
+/**
+ * Test files (anywhere, incl. co-located `src/**` / `__tests__`) intentionally
+ * include subdomain URLs as fixtures. They never ship or get crawled, so they
+ * are exempt — same intent as the `tests` dir exclusion below.
+ */
+const TEST_FILE_RE = /\.(test|spec)\.[cm]?[jt]sx?$/;
 const IGNORE_DIRS = new Set([
   "node_modules",
   ".next",
@@ -83,6 +90,7 @@ function walk(dir: string, acc: string[]): void {
       if (IGNORE_DIRS.has(entry.name)) continue;
       walk(path.join(dir, entry.name), acc);
     } else if (entry.isFile()) {
+      if (TEST_FILE_RE.test(entry.name)) continue;
       const ext = path.extname(entry.name);
       if (SCAN_EXTENSIONS.has(ext)) acc.push(path.join(dir, entry.name));
     }

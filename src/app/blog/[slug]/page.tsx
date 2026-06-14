@@ -15,10 +15,329 @@ import { TaxCalculator } from "@/components/tax-calculator";
 interface ArticleContent {
   title: string;
   date: string;
+  /** Optional last-modified date (ISO). Falls back to `date` when absent. */
+  updated?: string;
   body: React.ReactElement;
 }
 
 const ARTICLES: Record<string, ArticleContent> = {
+  "jak-zastavit-drazbu-nemovitosti": {
+    title: "Jak zastavit dražbu nemovitosti – legální možnosti a lhůty 2026",
+    date: "2026-06-14",
+    body: (
+      <>
+        <p>
+          Pokud vám hrozí dražba nemovitosti, máte zpravidla více času a
+          možností, než se na první pohled zdá. Tento text srozumitelně shrnuje
+          legální cesty, jak exekuční dražbu zastavit nebo odložit – od úhrady
+          dluhu přes návrh na odklad či zastavení exekuce až po{" "}
+          <Link
+            href="/vykup-v-drazbe"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            prodej nemovitosti před dražbou
+          </Link>{" "}
+          nebo řešení v insolvenci. Mezi vydáním dražební vyhlášky a samotnou
+          dražbou musí ze zákona uplynout nejméně 30 dnů (§ 336d o.s.ř.), takže
+          prostor k jednání obvykle existuje.
+        </p>
+        <p>
+          <strong>Upozornění:</strong> jde o obecné informace, nikoli o právní
+          poradenství. Každý případ je jiný a před rozhodnutím doporučujeme
+          konzultaci s advokátem a komunikaci přímo s exekutorem, který exekuci
+          vede.
+        </p>
+
+        <h2>
+          Jak vlastně exekuční dražba nemovitosti probíhá a kolik máte času
+        </h2>
+        <p>
+          Dražba nemovitosti v exekuci se řídí exekučním řádem (zákon č.
+          120/2001 Sb.), který pro samotný prodej nemovitých věcí odkazuje na
+          ustanovení občanského soudního řádu (zákon č. 99/1963 Sb.), § 336 a
+          násl. Proces má několik fází: nejprve soudní znalec ocení nemovitost,
+          na základě posudku soud (resp. soudní exekutor) vydá usnesení o ceně,
+          poté následuje dražební vyhláška a teprve nakonec samotná dražba.
+        </p>
+        <p>
+          Proti usnesení o ceně, jímž se na základě znaleckého posudku stanoví
+          výsledná cena, může povinný podat odvolání zpravidla ve lhůtě 15 dnů
+          od doručení. Dražební jednání pak soudní exekutor nařídí nejméně 30
+          dnů po vydání dražební vyhlášky (§ 336d odst. 2 o.s.ř.). Pozor: tato
+          30denní lhůta se počítá od vydání vyhlášky, nikoli od jejího doručení
+          vám – protože je vám vyhláška doručována až po vydání, máte od jejího
+          doručení do vlastních rukou obvykle o něco méně než 30 dnů na reakci.
+        </p>
+        <p>
+          Celá exekuce na nemovitost trvá zpravidla 6 až 12 měsíců, takže
+          vlastník má obvykle několik měsíců na řešení. Nemovitost, v níž má
+          povinný se svou rodinou trvalý pobyt (obydlí), navíc požívá zvláštní
+          ochrany a má být dražena až jako poslední po vyčerpání jiných způsobů
+          vymáhání (§ 58 odst. 2 exekučního řádu).
+        </p>
+
+        <h2>
+          První kroky: přečtěte dražební vyhlášku a zjistěte přesnou výši dluhu
+        </h2>
+        <p>
+          Dražební vyhláška obsahuje klíčové údaje – datum, čas a místo
+          dražebního jednání, označení nemovité věci a jejího příslušenství,
+          výslednou cenu, výši nejnižšího podání a výši jistoty a způsob jejího
+          zaplacení (§ 336b odst. 2 o.s.ř.). Vyhláška se doručuje mimo jiné
+          povinnému, jeho manželovi/manželce, oprávněnému, přihlášeným věřitelům
+          i příslušným úřadům (§ 336c odst. 1 o.s.ř.) a vyvěšuje se na úřední
+          desce soudního exekutora; u elektronických dražeb se zveřejňuje na
+          centrálním{" "}
+          <a
+            href="https://www.portaldrazeb.cz"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Portálu dražeb
+          </a>{" "}
+          (portaldrazeb.cz), který provozuje Exekutorská komora ČR.
+        </p>
+        <p>
+          Úplně prvním praktickým krokem je kontaktovat exekutorský úřad uvedený
+          v dražební vyhlášce nebo exekučním příkazu a vyžádat si vyčíslení
+          dluhu – tedy aktuální výši vymáhané pohledávky, jejího příslušenství,
+          úroků a nákladů exekuce. Náklady exekuce vyčísluje exekutor v příkazu
+          k úhradě nákladů exekuce. Protože úroky narůstají, je třeba znát
+          přesnou, aktuální částku přímo od exekutora; údaj z katastru nebo
+          exekučního příkazu zpravidla zachycuje jen jistinu.
+        </p>
+        <p>
+          Vhodným prvním krokem je také poradit se s advokátem nebo s bezplatnou
+          dluhovou poradnou. Pokud jsou pro to zákonné důvody, lze podat návrh
+          na odklad nebo na zastavení exekuce – obojí ale není automatické a
+          závisí na splnění zákonných podmínek.
+        </p>
+
+        <h2>Úhrada dluhu: nejjistější způsob, jak dražbě zabránit</h2>
+        <p>
+          Nejjednodušší a nejjistější způsob, jak exekuční dražbě zabránit, je
+          úhrada celé vymáhané pohledávky včetně příslušenství, nákladů exekuce
+          a nákladů oprávněného. Uhradí-li povinný (nebo jiná osoba za něj) celý
+          dluh nejpozději do zahájení dražebního jednání, exekuce se splněním
+          skončí a dražba se nekoná. Jako bezpečné pravidlo platí, že částka
+          musí být připsána na účet exekutora ještě před zahájením dražby; po
+          zahájení dražby už dluh tímto způsobem dražbu zpravidla nezastaví.
+        </p>
+        <p>
+          Existuje i nejlevnější okamžik k zaplacení: splní-li povinný vymáhanou
+          povinnost a uhradí zálohu na snížené náklady exekuce a náklady
+          oprávněného do 30 dnů od doručení výzvy ke splnění vymáhané povinnosti
+          (kterou dostává spolu s vyrozuměním o zahájení exekuce), sníží se
+          odměna exekutora na polovinu (§ 46 odst. 6 exekučního řádu ve spojení
+          s § 11 vyhlášky č. 330/2001 Sb.). To motivuje řešit situaci co
+          nejdříve.
+        </p>
+        <p>
+          Po úplném zaplacení vydá exekutor příkaz k úhradě nákladů exekuce;
+          jeho právní mocí je exekuce provedena a zanikají účinky všech vydaných
+          exekučních příkazů. Generální inhibitorium (zákaz nakládat s majetkem)
+          zaniká a po nabytí právní moci je majetek odblokován. Pozor – výmaz
+          exekuce a zástavních práv z katastru neproběhne automaticky: provádí
+          se na základě usnesení exekutora a katastrální úřad má na výmaz lhůtu
+          zhruba 30 dnů, proto je vhodné podání aktivně sledovat a doložit.
+        </p>
+
+        <h2>Odklad a zastavení exekuce: kdy lze dražbu zdržet nebo zrušit</h2>
+        <p>
+          Návrh na odklad exekuce se podává u exekutora, který exekuci vede (§
+          54 odst. 1 exekučního řádu). Nevyhoví-li exekutor návrhu do 7 dnů,
+          postoupí jej exekučnímu soudu, který rozhodne bez zbytečného odkladu,
+          nejpozději do 15 dnů (§ 54 odst. 12 EŘ). Odklad podle § 266 o.s.ř.
+          připadá v úvahu, pokud se povinný bez své viny ocitl přechodně v
+          takovém postavení, že by neprodlené provedení výkonu mohlo mít pro
+          něho nebo jeho rodinu zvlášť nepříznivé následky a oprávněný by
+          odkladem nebyl vážně poškozen. Samotné podání návrhu ale neznamená
+          automatický odklad – účinky nastávají jen za zákonem stanovených
+          podmínek (§ 54 odst. 2 EŘ).
+        </p>
+        <p>
+          Návrh na zastavení exekuce může povinný podat do 15 dnů ode dne, kdy
+          se dozvěděl o důvodu zastavení (§ 55 odst. 1 EŘ); podává se u
+          exekutora, a nevyhoví-li exekutor, postoupí jej exekučnímu soudu.
+          Důvody pro zastavení výkonu rozhodnutí jsou vymezeny v § 268 odst. 1
+          o.s.ř. (mj. písm. a, b, c, g, h) – například že rozhodnutí dosud není
+          vykonatelné, bylo zrušeno, nebo že přiznané právo zaniklo (typicky
+          zaplacením dluhu).
+        </p>
+        <p>
+          Dražbu lze odvrátit i jinak než prodejem – uhrazením dluhu, doložením
+          jiného exekučně postižitelného majetku (§ 58 EŘ klade prodej obydlí až
+          na poslední místo a povinný nese důkazní břemeno o existenci jiného
+          majetku), návrhem na odklad či zastavení exekuce. Samotná splátková
+          dohoda s exekutorem ale exekuci nezastavuje – exekutor jí není vázán;
+          pouze u zákonného splátkového kalendáře podle § 54 odst. 7 EŘ (závazek
+          hradit nejméně 1 500 Kč měsíčně) exekutor odloží prodej movitých věcí.
+          K ukončení exekuce dochází až úplným uhrazením dluhu. Zvláštní
+          ochranou je, že soud nebo exekutor zastaví dražbu obydlí, pokud souhrn
+          pohledávek oprávněného, dalších oprávněných a přihlášených věřitelů k
+          okamžiku zahájení dražebního jednání nepřesahuje 100 000 Kč bez
+          příslušenství (§ 336i odst. 2 o.s.ř.); výjimky platí např. pro výživné
+          nebo náhradu újmy na zdraví.
+        </p>
+
+        <h2>
+          Prodej nemovitosti před dražbou (rychlý výkup) jako jedna z možností
+        </h2>
+        <p>
+          <Link
+            href="/vykup-pri-exekuci"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            Nemovitost v exekuci
+          </Link>{" "}
+          lze prodat i mimo dražbu – tzv. prodejem z volné ruky. Jde o zákonem
+          upravený postup podle § 44a odst. 4 exekučního řádu, nikoli o šedou
+          zónu. Vyžaduje však písemný souhlas soudního exekutora, oprávněného a{" "}
+          <strong>všech</strong> přihlášených věřitelů; bez těchto souhlasů je
+          převod zpravidla neplatný. Dalšími podmínkami jsou, že nemovitost
+          nesmí být postižena jinou exekucí, cena musí být zjištěna znaleckým
+          posudkem, dohodnutá kupní cena musí odpovídat minimálně zjištěné ceně
+          obvyklé a je splatná při podpisu smlouvy k rukám soudního exekutora.
+        </p>
+        <p>
+          Výhodou prodeje před dražbou bývá vyšší cena. V dražbě činí nejnižší
+          podání v první dražbě jen dvě třetiny výsledné (odhadní) ceny a v
+          opakovaných dražbách klesá dál (50 %, 40 %, 30 %, 25 % výsledné ceny).
+          Naproti tomu u prodeje z volné ruky musí cena odpovídat minimálně ceně
+          obvyklé – z vyššího výtěžku tak lze uhradit větší část (případně celý)
+          dluh a něco může zbýt povinnému. Pokud je nemovitost zatížena
+          zástavním právem (banka, jiný věřitel), uspokojují se zajištěné
+          pohledávky přednostně a nesplatné zajištěné pohledávky se pro rozvrh
+          považují za splatné – z prodeje tak musí být uhrazeny i ony.
+        </p>
+        <p>
+          V praxi rychlý výkup typicky umožní stanovit předběžnou cenu během
+          několika hodin z podkladů a fotografií a často vyplatit exekuce ještě
+          před zahájením dražby; někteří kupující nabízejí i variantu{" "}
+          <Link
+            href="/zpetny-najem"
+            className="text-emerald-600 hover:text-emerald-500"
+          >
+            zpětného pronájmu
+          </Link>
+          , kdy prodávající zůstane v nemovitosti jako nájemce. Pozor na rizika:
+          pro kupujícího hrozí, že po složení peněz nedojde k převodu v katastru
+          a zůstane bez nemovitosti i bez peněz – proto se doporučuje úschova a
+          smlouvy připravené odborníkem. Pro prodávajícího platí, že transakce
+          mimo součinnost exekutora je zpravidla neplatná a postup vyžaduje
+          koordinaci s více věřiteli; proto je vhodné zapojit advokáta
+          specializovaného na reality a exekuce. Rychlý výkup je jednou z
+          legálních možností – ne jedinou a ne vždy nejvýhodnější.
+        </p>
+
+        <h2>Insolvence a veřejné (nucené) dražby: další souvislosti</h2>
+        <p>
+          Alternativou k zastavení exekuce může být insolvenční (oddlužovací)
+          řešení. Po zahájení insolvenčního řízení (od okamžiku zveřejnění
+          vyhlášky o zahájení v insolvenčním rejstříku, § 109 odst. 1 písm. c) a
+          odst. 4 zákona č. 182/2006 Sb.) lze exekuci nařídit nebo zahájit,
+          nelze ji však provést – nařízenou dražbu nemovitosti tedy nelze
+          dokončit. Nemovitost se místo toho zpeněží v rámci insolvence
+          insolvenčním správcem. Rozhodnutí o úpadku, resp. o povolení
+          oddlužení, tuto překážku dále posiluje. Jde o krajní řešení vhodné
+          zejména při více dluzích a řídí se insolvenčním zákonem, nikoli
+          exekučním řádem.
+        </p>
+        <p>
+          Vedle exekučních dražeb existují i veřejné dražby podle zvláštního
+          zákona. Důležité upozornění: zákon č. 26/2000 Sb. o veřejných dražbách
+          byl k 1. 1. 2025 zrušen a nahrazen zákonem č. 250/2023 Sb., o
+          veřejných dražbách. Dřívější pojem „dražba nedobrovolná“ v platném
+          právu (2026) nahradila „nucená dražba“. I podle nové úpravy platí, že
+          dražebník upustí od dražby nejpozději do jejího zahájení – například
+          na základě písemné žádosti zástavce, dlužníka nebo vlastníka, je-li
+          současně doloženo, že zanikl zajištěný dluh (§ 46 zákona č. 250/2023
+          Sb.). Konkrétní paragrafy a postup se však oproti zrušenému zákonu
+          liší, proto u veřejné (nucené) dražby vždy vycházejte z aktuálního
+          zákona č. 250/2023 Sb. a ověřte si postup u dražebníka nebo advokáta.
+        </p>
+        <p>
+          Tento text slouží jako obecný informační přehled, nikoli jako právní
+          poradenství. Lhůty bývají krátké a okolnosti každého případu jiné,
+          proto co nejdříve kontaktujte exekutora, který exekuci vede, a poraďte
+          se s advokátem nebo bezplatnou dluhovou poradnou o konkrétním postupu
+          ve vaší situaci.
+        </p>
+
+        <h2>Časté dotazy: jak zastavit dražbu nemovitosti</h2>
+        <h3>Do kdy nejpozději lze zaplatit, aby se dražba nekonala?</h3>
+        <p>
+          Celý vymáhaný dluh včetně příslušenství a nákladů exekuce je třeba
+          uhradit a mít připsaný na účtu exekutora nejpozději před zahájením
+          dražebního jednání. Uhradí-li dlužník (nebo jiná osoba za něj) celý
+          dluh včas, exekuce se splněním skončí a dražba se nekoná. Po zahájení
+          dražby už dluh tímto způsobem dražbu zpravidla nezastaví.
+        </p>
+        <h3>
+          Můžu se s exekutorem domluvit na splátkách a tím dražbu zastavit?
+        </h3>
+        <p>
+          Splátková dohoda s exekutorem sama o sobě exekuci nezastavuje –
+          exekutor jí není vázán a řízení běží dál. Pouze u zákonného
+          splátkového kalendáře podle § 54 odst. 7 exekučního řádu (písemný
+          závazek hradit nejméně 1 500 Kč měsíčně) exekutor odloží prodej
+          movitých věcí. K ukončení exekuce dojde až úplným uhrazením vymáhané
+          pohledávky.
+        </p>
+        <h3>Jak podám návrh na odklad nebo zastavení exekuce?</h3>
+        <p>
+          Oba návrhy se podávají u exekutora, který exekuci vede. Nevyhoví-li
+          exekutor návrhu na odklad do 7 dnů, postoupí jej exekučnímu soudu,
+          který rozhodne nejpozději do 15 dnů (§ 54 EŘ). Návrh na zastavení lze
+          podat do 15 dnů ode dne, kdy se dlužník dozvěděl o důvodu zastavení (§
+          55 odst. 1 EŘ); důvody vymezuje § 268 odst. 1 o.s.ř. Návrhům se vyhoví
+          jen při splnění zákonných podmínek.
+        </p>
+        <h3>Mohu nemovitost v exekuci prodat sám před dražbou?</h3>
+        <p>
+          Po doručení vyrozumění o zahájení exekuce platí zákaz volně nakládat s
+          majetkem (generální inhibitorium, § 44a EŘ). Prodej mimo dražbu (z
+          volné ruky) je možný podle § 44a odst. 4 EŘ, ale jen s písemným
+          souhlasem exekutora, oprávněného a všech přihlášených věřitelů,
+          není-li nemovitost postižena jinou exekucí, nejméně za cenu obvyklou
+          dle znaleckého posudku, splatnou k rukám exekutora. Bez těchto
+          souhlasů je převod zpravidla neplatný.
+        </p>
+        <h3>
+          Je výhodnější prodat nemovitost před dražbou, nebo ji nechat vydražit?
+        </h3>
+        <p>
+          Prodej před dražbou obvykle vynese více. V první dražbě činí nejnižší
+          podání jen dvě třetiny výsledné ceny a v opakovaných dražbách klesá až
+          na 25 %. U prodeje z volné ruky musí cena odpovídat minimálně ceně
+          obvyklé, takže z vyššího výtěžku lze uhradit větší část dluhu a část
+          může zbýt vlastníkovi. Je-li nemovitost zatížena zástavním právem
+          (např. hypotékou), uspokojují se zajištěné pohledávky přednostně.
+        </p>
+        <h3>Zastaví podání insolvenčního návrhu dražbu nemovitosti?</h3>
+        <p>
+          Po zahájení insolvenčního řízení (okamžikem zveřejnění vyhlášky o
+          zahájení v insolvenčním rejstříku) lze exekuci nařídit nebo zahájit,
+          nelze ji však provést, takže již nařízenou dražbu nemovitosti nelze
+          dokončit (§ 109 odst. 1 písm. c) zákona č. 182/2006 Sb.). Nemovitost
+          se pak zpeněží v rámci insolvence. Jde o krajní řešení, vhodné zejména
+          při více dluzích.
+        </p>
+        <h3>
+          Po zaplacení dluhu se exekuce a zástavní práva z katastru smažou samy?
+        </h3>
+        <p>
+          Ne. Po úplném zaplacení vydá exekutor příkaz k úhradě nákladů exekuce,
+          jehož právní mocí je exekuce provedena a majetek se odblokuje. Výmaz
+          exekuce a zástavních práv z katastru ale neproběhne automaticky –
+          provádí se na základě usnesení exekutora a katastrální úřad má na
+          výmaz lhůtu zhruba 30 dnů, proto je vhodné podání aktivně sledovat a
+          doložit.
+        </p>
+      </>
+    ),
+  },
   "jake-dokumenty-potrebuji": {
     title: "Jaké dokumenty potřebuji k výkupu nemovitosti?",
     date: "2026-03-02",
@@ -1872,6 +2191,56 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
+/**
+ * Optional per-slug FAQ entries. When present, the blog post renders a
+ * matching FAQPage JSON-LD (the post must also show these Q&As visibly).
+ */
+const BLOG_FAQS: Record<
+  string,
+  ReadonlyArray<{ question: string; answer: string }>
+> = {
+  "jak-zastavit-drazbu-nemovitosti": [
+    {
+      question: "Do kdy nejpozději lze zaplatit, aby se dražba nekonala?",
+      answer:
+        "Celý vymáhaný dluh včetně příslušenství a nákladů exekuce je třeba uhradit a mít připsaný na účtu exekutora nejpozději před zahájením dražebního jednání. Uhradí-li dlužník (nebo jiná osoba za něj) celý dluh včas, exekuce se splněním skončí a dražba se nekoná. Po zahájení dražby už dluh tímto způsobem dražbu zpravidla nezastaví.",
+    },
+    {
+      question:
+        "Můžu se s exekutorem domluvit na splátkách a tím dražbu zastavit?",
+      answer:
+        "Splátková dohoda s exekutorem sama o sobě exekuci nezastavuje – exekutor jí není vázán a řízení běží dál. Pouze u zákonného splátkového kalendáře podle § 54 odst. 7 exekučního řádu (písemný závazek hradit nejméně 1 500 Kč měsíčně) exekutor odloží prodej movitých věcí. K ukončení exekuce dojde až úplným uhrazením vymáhané pohledávky.",
+    },
+    {
+      question: "Jak podám návrh na odklad nebo zastavení exekuce?",
+      answer:
+        "Oba návrhy se podávají u exekutora, který exekuci vede. Nevyhoví-li exekutor návrhu na odklad do 7 dnů, postoupí jej exekučnímu soudu, který rozhodne nejpozději do 15 dnů (§ 54 EŘ). Návrh na zastavení lze podat do 15 dnů ode dne, kdy se dlužník dozvěděl o důvodu zastavení (§ 55 odst. 1 EŘ); důvody vymezuje § 268 odst. 1 o.s.ř. Návrhům se vyhoví jen při splnění zákonných podmínek.",
+    },
+    {
+      question: "Mohu nemovitost v exekuci prodat sám před dražbou?",
+      answer:
+        "Po doručení vyrozumění o zahájení exekuce platí zákaz volně nakládat s majetkem (generální inhibitorium, § 44a EŘ). Prodej mimo dražbu (z volné ruky) je možný podle § 44a odst. 4 EŘ, ale jen s písemným souhlasem exekutora, oprávněného a všech přihlášených věřitelů, není-li nemovitost postižena jinou exekucí, nejméně za cenu obvyklou dle znaleckého posudku, splatnou k rukám exekutora. Bez těchto souhlasů je převod zpravidla neplatný.",
+    },
+    {
+      question:
+        "Je výhodnější prodat nemovitost před dražbou, nebo ji nechat vydražit?",
+      answer:
+        "Prodej před dražbou obvykle vynese více. V první dražbě činí nejnižší podání jen dvě třetiny výsledné ceny a v opakovaných dražbách klesá až na 25 %. U prodeje z volné ruky musí cena odpovídat minimálně ceně obvyklé, takže z vyššího výtěžku lze uhradit větší část dluhu a část může zbýt vlastníkovi. Je-li nemovitost zatížena zástavním právem (např. hypotékou), uspokojují se zajištěné pohledávky přednostně.",
+    },
+    {
+      question: "Zastaví podání insolvenčního návrhu dražbu nemovitosti?",
+      answer:
+        "Po zahájení insolvenčního řízení (okamžikem zveřejnění vyhlášky o zahájení v insolvenčním rejstříku) lze exekuci nařídit nebo zahájit, nelze ji však provést, takže již nařízenou dražbu nemovitosti nelze dokončit (§ 109 odst. 1 písm. c) zákona č. 182/2006 Sb.). Nemovitost se pak zpeněží v rámci insolvence. Jde o krajní řešení, vhodné zejména při více dluzích.",
+    },
+    {
+      question:
+        "Po zaplacení dluhu se exekuce a zástavní práva z katastru smažou samy?",
+      answer:
+        "Ne. Po úplném zaplacení vydá exekutor příkaz k úhradě nákladů exekuce, jehož právní mocí je exekuce provedena a majetek se odblokuje. Výmaz exekuce a zástavních práv z katastru ale neproběhne automaticky – provádí se na základě usnesení exekutora a katastrální úřad má na výmaz lhůtu zhruba 30 dnů, proto je vhodné podání aktivně sledovat a doložit.",
+    },
+  ],
+};
+
 export async function generateStaticParams(): Promise<Array<{ slug: string }>> {
   return BLOG_POSTS.map((post) => ({ slug: post.slug }));
 }
@@ -1912,6 +2281,7 @@ export default async function BlogArticlePage({
   const host = await getRequestHost();
   const article = ARTICLES[slug];
   if (!article) notFound();
+  const modified = article.updated ?? article.date;
 
   const articleId = `https://vykoupim-nemovitost.cz/blog/${slug}#article`;
   const articleJsonLd = {
@@ -1920,7 +2290,7 @@ export default async function BlogArticlePage({
     "@id": articleId,
     headline: article.title,
     datePublished: article.date,
-    dateModified: "2026-03-16",
+    dateModified: modified,
     author: { "@id": "https://vykoupim-nemovitost.cz/#organization" },
     publisher: { "@id": "https://vykoupim-nemovitost.cz/#organization" },
     mainEntityOfPage: `https://vykoupim-nemovitost.cz/blog/${slug}`,
@@ -1991,7 +2361,17 @@ export default async function BlogArticlePage({
             },
           ],
         }
-      : null;
+      : BLOG_FAQS[slug]
+        ? {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: BLOG_FAQS[slug].map((f) => ({
+              "@type": "Question",
+              name: f.question,
+              acceptedAnswer: { "@type": "Answer", text: f.answer },
+            })),
+          }
+        : null;
 
   const otherPosts = BLOG_POSTS.filter((p) => p.slug !== slug);
   const relatedArticles = getRelatedArticles(`blog/${slug}`);
@@ -2049,11 +2429,15 @@ export default async function BlogArticlePage({
                 })}
               </time>
               <time
-                dateTime="2026-03-16"
+                dateTime={modified}
                 itemProp="dateModified"
                 className="inline-flex items-center rounded-full bg-emerald-100 px-3 py-0.5 text-xs font-medium text-emerald-700"
               >
-                Aktualizováno březen 2026
+                Aktualizováno{" "}
+                {new Date(modified).toLocaleDateString("cs-CZ", {
+                  month: "long",
+                  year: "numeric",
+                })}
               </time>
             </div>
             <h1

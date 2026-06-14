@@ -8,6 +8,14 @@ export interface BlogPost {
 
 export const BLOG_POSTS: readonly BlogPost[] = [
   {
+    slug: "jak-zastavit-drazbu-nemovitosti",
+    title: "Jak zastavit dražbu nemovitosti – legální možnosti a lhůty 2026",
+    excerpt:
+      "Hrozí vám exekuční dražba nemovitosti? Jak ji legálně zastavit: úhrada dluhu, odklad či zastavení exekuce, prodej z volné ruky i insolvence. Lhůty a postup.",
+    date: "2026-06-14",
+    readingTime: "10 min",
+  },
+  {
     slug: "dan-z-prodeje-nemovitosti-2026",
     title: "Daň z prodeje nemovitosti 2026 — kompletní průvodce",
     excerpt:

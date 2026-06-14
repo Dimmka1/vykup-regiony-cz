@@ -3,6 +3,12 @@ import type { RelatedArticle } from "@/components/related-articles";
 /** All linkable pages for cross-referencing */
 const ALL_PAGES: Record<string, RelatedArticle> = {
   // Blog articles
+  "blog/jak-zastavit-drazbu-nemovitosti": {
+    href: "/blog/jak-zastavit-drazbu-nemovitosti",
+    title: "Jak zastavit dražbu nemovitosti",
+    description:
+      "Legální možnosti, jak zastavit nebo odložit exekuční dražbu — úhrada dluhu, odklad, zastavení i prodej z volné ruky.",
+  },
   "blog/jak-rychle-prodat-nemovitost": {
     href: "/blog/jak-rychle-prodat-nemovitost",
     title: "Jak rychle prodat nemovitost v roce 2026",
@@ -140,6 +146,12 @@ const ALL_PAGES: Record<string, RelatedArticle> = {
 /** Mapping: page key → array of related page keys */
 const RELATED_MAP: Record<string, string[]> = {
   // Blog articles
+  "blog/jak-zastavit-drazbu-nemovitosti": [
+    "vykup-v-drazbe",
+    "blog/vykup-v-exekuci",
+    "vykup-pri-exekuci",
+    "blog/vykup-vs-drazba",
+  ],
   "blog/jak-rychle-prodat-nemovitost": [
     "blog/vykup-nemovitosti-vs-realitni-kancelar",
     "blog/jak-probiha-rychly-vykup",
@@ -172,8 +184,8 @@ const RELATED_MAP: Record<string, string[]> = {
   ],
   "blog/vykup-v-exekuci": [
     "blog/nemovitost-v-exekuci-pruvodce",
+    "blog/jak-zastavit-drazbu-nemovitosti",
     "vykup-pri-exekuci",
-    "blog/jak-probiha-rychly-vykup",
     "vykup-v-drazbe",
   ],
   "blog/jake-dokumenty-potrebuji": [
@@ -187,9 +199,9 @@ const RELATED_MAP: Record<string, string[]> = {
     "blog/jak-probiha-rychly-vykup",
   ],
   "blog/vykup-vs-drazba": [
+    "blog/jak-zastavit-drazbu-nemovitosti",
     "blog/vykup-v-exekuci",
     "blog/kolik-stoji-vykup",
-    "blog/vykup-nemovitosti-vs-realitni-kancelar",
     "vykup-v-drazbe",
   ],
   "blog/dan-z-prodeje-nemovitosti-2026": [
@@ -278,9 +290,9 @@ const RELATED_MAP: Record<string, string[]> = {
   ],
   "vykup-v-drazbe": [
     "vykup-pri-exekuci",
+    "blog/jak-zastavit-drazbu-nemovitosti",
     "blog/vykup-vs-drazba",
     "blog/nemovitost-v-exekuci-pruvodce",
-    "vykup-nemovitosti-s-hypotekou",
   ],
 };
 

@@ -1,9 +1,11 @@
 node_modules/
 .next/
-.env
-.env.local
 .vercel
-.env.production.local
+
+# Env: ignore every variant (incl. `vercel env pull` output), keep only the template
+.env
+.env.*
+!.env.example
 
 # Playwright
 test-results/

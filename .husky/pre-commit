@@ -1,3 +1,23 @@
 #!/usr/bin/env sh
+
+# Secret guard. A leaked TELEGRAM_BOT_TOKEN (committed .env.production.local,
+# public repo) let a third party hijack the bot — never again.
+staged=$(git diff --cached --name-only --diff-filter=ACMR)
+
+# `|| true`: husky runs this under `sh -e`, and a non-matching grep exits 1
+env_files=$(echo "$staged" | grep -E '(^|/)\.env($|\.)' | grep -v '\.env\.example$' || true)
+if [ -n "$env_files" ]; then
+  echo "✖ Commit blocked — env file with secrets is staged:"
+  echo "$env_files" | sed 's/^/    /'
+  echo "  Secrets belong in Vercel (\`vercel env add\`), not in git."
+  exit 1
+fi
+
+if git diff --cached -U0 | grep -qE '^\+.*[0-9]{8,10}:AA[0-9A-Za-z_-]{33}'; then
+  echo "✖ Commit blocked — a Telegram bot token appears in the staged diff."
+  echo "  Remove it, then rotate the token via @BotFather."
+  exit 1
+fi
+
 npx lint-staged
 npx tsc --noEmit
